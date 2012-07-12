@@ -4,6 +4,7 @@ Created on 30 May 2012
 @author: gordon
 '''
 import os,time,subprocess,sys,time,math
+sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Black_Scholes,Heston
 from ForwardFinancialFramework.Derivatives import European_Option,Barrier_Option,Double_Barrier_Option,Digital_Double_Barrier_Option,Asian_Option
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
@@ -255,10 +256,9 @@ for i in range(1,14):
       elif(option_number=="10"): derivative.append(Double_Barrier_Option.Double_Barrier_Option(underlying_heston_VI,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down,second_barrier=second_barrier))   
 
 if __name__ == '__main__':
-    runs = int(sys.argv[1])
-    paths = int(sys.argv[2])
-    threads = int(sys.argv[3])
-    points = int(sys.argv[4])
+    paths = int(sys.argv[1])
+    threads = int(sys.argv[2])
+    points = int(sys.argv[3])
     
     for d in derivative: d.points = points #setting all derivatives to have the number of path points specified in the command line
     mc_solver = MonteCarlo.MonteCarlo(derivative,paths=paths,threads=threads)

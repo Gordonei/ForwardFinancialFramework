@@ -103,9 +103,11 @@ class MonteCarlo:
     
     def multicore_code_generate(self,overide=True):
         #Changing to code generation directory
-        try: os.chdir("ForwardFinancialFramework/Solvers/MonteCarlo/multicore_c_code")
+        #print subprocess.check_output("pwd")
+        try: os.chdir("../Solvers/MonteCarlo/multicore_c_code")
         except: print "Multicore C directory doesn't exist!"
         
+        #print subprocess.check_output("pwd")
         #subprocess.check_output("pwd")
         #Checking that the source code for the derivative and underlying is present
         for u in self.underlying:
@@ -502,13 +504,11 @@ class MonteCarlo:
     
         else: print "multicore code already exists, using previous version. Set overide to True if you would like to force the code to be regenerated"
         
-        os.chdir("../../../..")
+        os.chdir("../../../bin")
     
     def multicore_compile(self,overide=True):
-        try: os.chdir("ForwardFinancialFramework/Solvers/MonteCarlo/multicore_c_code")
+        try: os.chdir("../../ForwardFinancialFramework/Solvers/MonteCarlo/multicore_c_code")
         except: print "Multicore C directory doesn't exist!"
-        
-        #print subprocess.check_output("pwd")
         if(overide or os.path.exists("%s"%self.output_file_name)):
             compile_cmd = ["g++","%s.c"%self.output_file_name]
             
@@ -559,15 +559,16 @@ class MonteCarlo:
             
             #print compile_cmd
             result = subprocess.check_output(compile_cmd)
-            os.chdir("../../../..")
+            #print subprocess.check_output("pwd")
+            os.chdir("../../../bin")
             return result
             
         else: print "multicore binary already exists, using previous version. Set overide to True if you would like to force the code to be recompiled"
         
-        os.chdir("../../../..")
+        os.chdir("../../../../bin")
     
     def multicore_execute(self):
-        try: os.chdir("ForwardFinancialFramework/Solvers/MonteCarlo/multicore_c_code")
+        try: os.chdir("../../ForwardFinancialFramework/Solvers/MonteCarlo/multicore_c_code")
         except: print "Multicore C directory doesn't exist!"
     
         #print subprocess.check_output("pwd")
@@ -599,7 +600,7 @@ class MonteCarlo:
         #print results
         results.append((finish-start)*1000000)
         
-        os.chdir("../../../..")
+        os.chdir("../../../bin")
         
         return results
     

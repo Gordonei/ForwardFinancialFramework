@@ -4,6 +4,7 @@ Created on 30 May 2012
 @author: gordon
 '''
 import os,time,subprocess,sys,time,math
+sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Black_Scholes,Heston
 from ForwardFinancialFramework.Derivatives import European_Option,Barrier_Option,Double_Barrier_Option,Digital_Double_Barrier_Option,Asian_Option
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
