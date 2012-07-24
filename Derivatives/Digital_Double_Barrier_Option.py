@@ -1,7 +1,6 @@
 '''
 Created on 17 June 2012
 
-@author: gordon
 '''
 import Double_Barrier_Option
 

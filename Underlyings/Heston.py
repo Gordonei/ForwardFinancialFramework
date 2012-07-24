@@ -1,7 +1,6 @@
 '''
 Created on 12 June 2012
 
-@author: gordon
 '''
 import numpy
 import Underlying

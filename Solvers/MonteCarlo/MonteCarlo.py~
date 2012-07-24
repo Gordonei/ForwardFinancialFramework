@@ -1,7 +1,6 @@
 '''
 Created on 11 July 2012
 
-@author: gordon
 '''
 import os,time,subprocess,sys,time,math
 
@@ -20,16 +19,15 @@ class MonteCarlo:
     underlying_variables = []
     underlying_dependencies = []
     
-    def __init__(self,derivative,platform="multi_core",paths=1,threads=1,reduce_underlyings=True):
+    def __init__(self,derivative,paths,platform,reduce_underlyings=True):
         name = "monte_carlo_solver"
         self.platform = platform
         self.paths = paths
-        self.threads = threads
         
-        if(self.platform=="multi_core"):
+        if(self.platform.name=="multicore_cpu"):
             self.utility_libraries = ["math.h","pthread.h","stdint.h","stdlib.h","stdio.h","sys/time.h","sys/resource.h","unistd.h"]
             self.non_system_libraries = ["memory_used"]
-            self.solver_metadata = {"paths":self.paths,"threads":self.threads}
+            self.solver_metadata = {"paths":self.paths,"threads":self.platform.threads}
             
         self.derivative = derivative
         self.underlying = []
@@ -571,7 +569,7 @@ class MonteCarlo:
         try: os.chdir("../../ForwardFinancialFramework/Solvers/MonteCarlo/multicore_c_code")
         except: print "Multicore C directory doesn't exist!"
     
-        print subprocess.check_output("pwd")
+        #print subprocess.check_output("pwd")
         run_cmd = ["./%s"%self.output_file_name]
         for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k])) 
         
@@ -600,7 +598,7 @@ class MonteCarlo:
         #print results
         results.append((finish-start)*1000000)
         
-        os.chdir("../../../../bin")
+        os.chdir("../../../bin")
         
         return results
     

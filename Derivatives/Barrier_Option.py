@@ -1,7 +1,6 @@
 '''
 Created on 16 June 2012
 
-@author: gordon
 '''
 import European_Option
 

@@ -1,7 +1,6 @@
 '''
 Created on 11 July 2012
 
-@author: gordon
 '''
 import os,time,subprocess,sys,time,math
 
@@ -20,16 +19,15 @@ class MonteCarlo:
     underlying_variables = []
     underlying_dependencies = []
     
-    def __init__(self,derivative,platform="multi_core",paths=1,threads=1,reduce_underlyings=True):
+    def __init__(self,derivative,paths,platform,reduce_underlyings=True):
         name = "monte_carlo_solver"
         self.platform = platform
         self.paths = paths
-        self.threads = threads
         
-        if(self.platform=="multi_core"):
+        if(self.platform.name=="multicore_cpu"):
             self.utility_libraries = ["math.h","pthread.h","stdint.h","stdlib.h","stdio.h","sys/time.h","sys/resource.h","unistd.h"]
             self.non_system_libraries = ["memory_used"]
-            self.solver_metadata = {"paths":self.paths,"threads":self.threads}
+            self.solver_metadata = {"paths":self.paths,"threads":self.platform.threads}
             
         self.derivative = derivative
         self.underlying = []
@@ -90,14 +88,14 @@ class MonteCarlo:
             self.derivative_variables.append(self.attribute_stripper(self.derivative_attributes[-1],d.path_init.__code__.co_names))
     
     def generate(self):
-        if(self.platform=="multi_core"):
+        if(self.platform.name=="multicore_cpu"):
             self.multicore_code_generate()
             self.multicore_compile()
             
         else: print "Sorry, there is no generation behaviour specified for the %s platform" % self.platform
             
     def execute(self):
-        if(self.platform=="multi_core"): return self.multicore_execute()
+        if(self.platform.name=="multicore_cpu"): return self.multicore_execute()
         
         else: print "Sorry, there is no execution behaviour specified for the %s platform" % self.platform
     

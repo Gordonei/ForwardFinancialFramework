@@ -1,7 +1,6 @@
 '''
 Created on 30 May 2012
 
-@author: gordon
 '''
 
 class Underlying:
