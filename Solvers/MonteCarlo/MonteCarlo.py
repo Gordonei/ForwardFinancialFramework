@@ -35,7 +35,7 @@ class MonteCarlo:
             for u in d.underlying:
                 temp_underlying_dict = []
                 for uu in self.underlying: temp_underlying_dict.append(uu.__dict__)
-                if(u.__dict__ not in temp_underlying_dict and reduce_underlyings):  self.underlying.append(u) #Extracting underlyings from derivatives
+                if(u.__dict__ not in temp_underlying_dict and reduce_underlyings):  self.underlying.append(u) #Extracting unique underlyings from derivatives
                 elif(reduce_underlyings):  #Making sure that equal underlyings are merged - TODO make this check stronger
                     index = derivative.index(d)
                     u_index = d.underlying.index(u)
@@ -54,7 +54,7 @@ class MonteCarlo:
             for uu in self.underlying:
               if(uu.name==u.name): count = count + 1
     
-            self.output_file_name = "%s_%s_%d" % (self.output_file_name,u.name[0],count)
+            self.output_file_name = "%s_%s_%d" % (self.output_file_name,u.name[0],count) #First letter is used to keep names succinct
             temp.append(u.name)
     
         for d in self.derivative: 
@@ -101,12 +101,9 @@ class MonteCarlo:
     
     def multicore_code_generate(self,overide=True):
         #Changing to code generation directory
-        #print subprocess.check_output("pwd")
         try: os.chdir("../Solvers/MonteCarlo/multicore_c_code")
         except: print "Multicore C directory doesn't exist!"
         
-        #print subprocess.check_output("pwd")
-        #subprocess.check_output("pwd")
         #Checking that the source code for the derivative and underlying is present
         for u in self.underlying:
             if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
@@ -121,7 +118,6 @@ class MonteCarlo:
             
             #Solver Metadata
             output_file.write("//\t*Solver Metadata*\n")
-            #for k in solver_metadata.keys(): output_file.write("#define %s %s\n"%(str(k).upper(),solver_metadata[k])) #execution code must mirror this ordering
             output_file.write("\n")
             
             #Generating Utility Library imports
@@ -138,28 +134,10 @@ class MonteCarlo:
                     output_file.write("#include \"%s.h\"\n"%u.name)
                     temp.append(u.name)
                     
-                    """base_list = []
-                    generate_base_class_names(u.__class__,base_list)
-                    base_list.remove("underlying")
-                    
-                    for b in base_list:
-                        if(b not in temp):
-                            output_file.write("#include \"%s.h\"\n"%b)
-                            temp.append(b)"""
-                    
             for d in self.derivative: 
                 if(d.name not in temp):
                     output_file.write("#include \"%s.h\"\n"%d.name)
                     temp.append(d.name)
-                    
-                    """base_list = []
-                    generate_base_class_names(d.__class__,base_list)
-                    base_list.remove("option")
-                    
-                    for b in base_list:
-                        if(b not in temp):
-                            output_file.write("#include \"%s.h\"\n"%b)
-                            temp.append(b)"""
                     
             output_file.write("\n")
             
@@ -189,8 +167,6 @@ class MonteCarlo:
             output_file.write("int thread_paths,i,j;\n")
             
             output_file.write("struct thread_data{\n")
-            #for u_a in self.underlying_attributes: ("\tdouble %s_%s;\n"%(underlying.name,u_a))
-            #for o_a in self.derivative_attributes: ("\tdouble %s_%s;\n"%(derivative.name,o_a))
             output_file.write("\tint thread_paths;\n")
             output_file.write("\tdouble *thread_result;\n")
             output_file.write("};\n")
@@ -206,6 +182,7 @@ class MonteCarlo:
             #Generate Path Loop Function
             output_file.write("//\t*Path Loop Function*\n")
             output_file.write("void * path_loop(void* thread_arg){\n")
+            
             ##Declare Loop Data Structures
             output_file.write("//\t**Loop Data Structures**\n")
             output_file.write("\tstruct thread_data* temp_data;\n")
@@ -225,22 +202,7 @@ class MonteCarlo:
             output_file.write("\n")
             output_file.write("//\t**Initialising Loop Attributes*\n")
             
-            """
-            ##Directly setting the underlying attributes
-            index = 0
-            for u_a in self.underlying_attributes:
-                for a in u_a: output_file.write("\tu_a_%d.%s=%s_%d_%s;\n"%(index,a,underlying[index].name,index,a))
-                index += 1
-            output_file.write("\n")
-            
-            index = 0
-            for o_a in self.derivative_attributes:
-                for o in o_a: output_file.write("\to_a_%d.%s=%s_%d_%s;\n"%(index,o,derivative[index].name,index,o))
-                index += 1
-            output_file.write("\n")
-            """
-            ##Callinit Init Function
-            #print self.underlying_attributes
+            ##Calling Init Functions
             for u in self.underlying:
                 u_index = self.underlying.index(u)
                 
@@ -248,7 +210,6 @@ class MonteCarlo:
                 for u_a in self.underlying_attributes[u_index][:-1]: output_file.write("%s_%d_%s,"%(u.name,u_index,u_a))
                 output_file.write("%s_%d_%s,&u_a_%d);\n"%(u.name,u_index,self.underlying_attributes[u_index][-1],u_index))
             
-            #print self.derivative_attributes
             for d in self.derivative:
                 index = self.derivative.index(d)
                 
@@ -295,9 +256,7 @@ class MonteCarlo:
             
             output_file.write("\t\tdone=1;\n")
             output_file.write("\t\twhile(done){\n")
-            #output_file.write("\t\t\t\tprintf(\"%f %f\\n\",next_time_1_0,u_v_0.time);\n")
             output_file.write("//\t***Derivative Path Function Calls***\n")
-            #output_file.write("\t\t\tprintf(\"here\\n\");\n")
             for d in self.derivative: #calling the derivative path function
                 index = self.derivative.index(d)
                 output_file.write("\t\t\tif(")
@@ -309,9 +268,7 @@ class MonteCarlo:
                 for u in d.underlying:
                     u_index = self.underlying.index(u)
                     output_file.write("\t\t\t\tprice_%d_%d = u_a_%d.current_price*exp(u_v_%d.gamma);\n"%(index,u_index,u_index,u_index))
-                    #output_file.write("\t\t\t\tprintf(\"%f: %f\\n\",")
-                    #output_file.write("u_v_%d.time,price_%d_%d);\n"%(u_index,index,u_index))
-                
+                   
                 output_file.write("\t\t\t\t%s_derivative_path(price_%d_%d,u_v_%d.time,&o_v_%d,&o_a_%d);\n" % (d.name,index,u_index,u_index,index,index)) #TODO - Some clever introspection to determine the composition of the call
                 
                 for u in d.underlying:
@@ -341,7 +298,7 @@ class MonteCarlo:
                 for u in d.underlying:
                     u_index = self.underlying.index(u)
                     output_file.write(" && (u_v_%d.time>=o_a_%d.time_period)"%(u_index,index)) 
-            output_file.write("){\n") #ending the loop if all underlyings are passed the time periods required by the derivatives
+            output_file.write("){\n") #ending the loop if all underlyings are passed the time required by the derivatives
             output_file.write("\t\t\t\tdone=0;\n")
             output_file.write("\t\t\t}\n")
             output_file.write("\n")
@@ -351,12 +308,7 @@ class MonteCarlo:
                 u_index = self.underlying.index(u)
                 output_file.write("\t\t\tif(u_v_%d.time<very_next_time_%d){\n"%(u_index,u_index))
                 
-                #output_file.write("\t\t\t\tprintf(\"%f: %f\\n\",")
-                #output_file.write("u_v_%d.time,u_v_%d.gamma);\n"%(u_index,u_index))
                 output_file.write("\t\t\t\t%s_underlying_path((very_next_time_%d-u_v_%d.time),&u_v_%d,&u_a_%d);\n" % (u.name,u_index,u_index,u_index,u_index))
-                
-                #output_file.write("\t\t\t\tprintf(\"%f\\n\"")
-                #output_file.write(",u_v_%d.volatility);\n"%(u_index))
                 
                 output_file.write("\t\t\t}\n")
             output_file.write("\n")
@@ -369,14 +321,8 @@ class MonteCarlo:
                 for u in d.underlying:
                     u_index = self.underlying.index(u)
                     
-                    #output_file.write("\t\tprintf(\"%f\\n\"")
-                    #output_file.write(",u_v_%d.time);\n"%(u_index))
-                    
-                    #output_file.write("\t\tend_price_%d_%d=u_a_%d.current_price*exp(end_price_%d_%d);\n"%(index,u_index,u_index,index,u_index))
                     output_file.write("\t\t%s_derivative_payoff(price_%d_%d,&o_v_%d,&o_a_%d);\n"%(d.name,index,u_index,index,index))
                     output_file.write("\t\ttemp_total_%d += o_v_%d.value;\n"%(index,index))
-                    #output_file.write("\t\tprintf(\"\%f\\n\"")
-                    #output_file.write(",temp_total_%d);\n"%(index))
                     
             output_file.write("\t}\n")
             ##Return result to main loop
@@ -389,7 +335,7 @@ class MonteCarlo:
             output_file.write("//\t*Main Function*\n")
             output_file.write("int main(int argc,char* argv[]){\n")
             ##Commented out diagnostic tool
-            output_file.write("\t/*for(i=0;i<argc;i++){//For diagnostic Purposes\n\t\tprintf(\"%s \",argv[i]);\n\t}*/\n")
+            #output_file.write("\t/*for(i=0;i<argc;i++){//For diagnostic Purposes\n\t\tprintf(\"%s \",argv[i]);\n\t}*/\n")
             
             ##Convert command line arguments to static variables
             output_file.write("//\t**Unpacking Command Line Variables**\n")
@@ -398,7 +344,6 @@ class MonteCarlo:
             for k in self.solver_metadata.keys(): 
                 output_file.write("\t%s = atoi(argv[%d]);\n"%(k,temp))
                 temp += 1
-            #print underlying_attributes
             
             output_file.write("//\t***Underlying Attributes***\n")
             index = 0
@@ -502,6 +447,7 @@ class MonteCarlo:
     
         else: print "multicore code already exists, using previous version. Set overide to True if you would like to force the code to be regenerated"
         
+        #Changing back to script directory
         os.chdir("../../../bin")
     
     def multicore_compile(self,overide=True):
@@ -583,19 +529,11 @@ class MonteCarlo:
             for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
             index +=1
         
-        #print run_cmd
-        
-        #temp = ""
-        #for r in run_cmd: temp = ("%s %s"%(temp,r))
-        #print temp
-        
-        start = time.time()
+        start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
         results = subprocess.check_output(run_cmd)
-        #results = ""
         finish = time.time()
         
         results = results.split("\n")[:-1]
-        #print results
         results.append((finish-start)*1000000)
         
         os.chdir("../../../bin")
@@ -611,5 +549,6 @@ class MonteCarlo:
         return tuple(variables)
     
     def generate_base_class_names(self,tempclass,templist):
-        if(tempclass.name not in templist): templist.append(tempclass.name)
-        for b in tempclass.__bases__: self.generate_base_class_names(b,templist)
+      """Another Helper Method, uses to help pull in various super classes during compilation """
+      if(tempclass.name not in templist): templist.append(tempclass.name)
+      for b in tempclass.__bases__: self.generate_base_class_names(b,templist)

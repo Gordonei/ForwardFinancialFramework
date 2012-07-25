@@ -39,8 +39,6 @@ class Barrier_Option(European_Option.European_Option):
             
         #TODO behaviour that adjusts the delta time if getting close to the barrier, to improve accuracy
         
-        #if((self.out and (price<=self.barrier)) or (not(self.out) and (price>=self.barrier))): self.barrier_event = True
-            
         if(self.barrier_event and self.out): self.delta_time = self.time_period - time #If the barrier has been hit and this is an out option, accelerate to the end of the time period to end the path
         
     def payoff(self,end_price):

@@ -14,7 +14,7 @@ if __name__ == '__main__':
     points = 4096
     
     derivative = []
-    derivative_set = range(1,14)
+    derivative_set = range(1,14) #Modify this list to choose a subset of the options
     for i in derivative_set: 
       option_number = str(i)
       
