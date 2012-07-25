@@ -34,5 +34,9 @@ Getting Started
 ---------------
 
 1. Change to the script directory (i.e. ForwardFinancialFramework/bin)  
-2. Run the following command: "python \<script file name\>" i.e. "python mc_solver_fully_connected_portfolio.py" would run the fully connected portfolio experiment script.  
+2. Run the following command:  
+   python \<script file name\>
+i.e.  
+    python mc_solver_fully_connected_portfolio.py  
+would run the fully connected portfolio experiment script.  
 
