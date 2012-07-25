@@ -16,12 +16,10 @@ Framework Layout
 
 * ForwardFinancialFramework  
   * bin - the experimental scripts for Multicore CPU implementations utilised in the paper  
-  * Derivatives - the financial derivatives classes currently support by F^3  
-  * Platforms  
-    * MulticoreCPU - the class for a Multicore CPU platform  
-  * Solvers  
-    * MonteCarlo - the class and support files for a Monte Carlo Algorithm-based Solver  
-  * Underlyings - the underlyings classes that are currently support by F^3  
+  * Derivatives - the financial derivatives classes  
+  * Platforms - the platform classes   
+  * Solvers - the solver alogrithms  
+  * Underlyings - the underlyings classes  
 
 Installation
 ------------
@@ -36,5 +34,5 @@ Getting Started
 ---------------
 
 1. Change to the script directory (i.e. ForwardFinancialFramework/bin)  
-2. Run the following command: \"python \<script file name\>\" i.e. \"python mc_solver_fully_connected_portfolio.py\" would run the fully connected portfolio experiment script.  
+2. Run the following command: "python \<script file name\>" i.e. "python mc_solver_fully_connected_portfolio.py" would run the fully connected portfolio experiment script.  
 
