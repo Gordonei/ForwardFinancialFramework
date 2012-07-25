@@ -15,13 +15,13 @@ Framework Layout
 ----------------
 
 * ForwardFinancialFramework
- * bin - the experimental scripts for Multicore CPU implementations utilised in the paper
- * Derivatives - the financial derivatives classes currently support by F^3
- * Platforms 
-  * MulticoreCPU - the class for a Multicore CPU platform
- * Solvers
-  * MonteCarlo - the class and support files for a Monte Carlo Algorithm-based Solver
- * Underlyings - the underlyings classes that are currently support by F^3
+  * bin - the experimental scripts for Multicore CPU implementations utilised in the paper
+  * Derivatives - the financial derivatives classes currently support by F^3
+  * Platforms 
+    * MulticoreCPU - the class for a Multicore CPU platform
+  * Solvers
+    * MonteCarlo - the class and support files for a Monte Carlo Algorithm-based Solver
+  * Underlyings - the underlyings classes that are currently support by F^3
 
 Installation
 ------------
