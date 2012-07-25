@@ -5,26 +5,26 @@ ForwardFinancialFramework
 F^3 is Python-based application framework for valuing forward looking financial frameworks on Heterogeneous Parallel Computing Platforms.
 
 Introduction
-============
+------------
 
 This version of the F^3 code is referenced by the paper entitled "Exploiting Heterogeneous Parallelism through Domain-Orientated Introspection" submitted to ASPLOS2013.
 If a camera ready version of the paper is required, the reference in the paper will be changed to reflect the official F^3 repository, which unfortunately includes blind-review
 defeating measures such as authors' names and locations, and hence the need for this repository.
 
 Framework Layout
-================
+----------------
 
 * ForwardFinancialFramework
-* * bin - the experimental scripts for Multicore CPU implementations utilised in the paper
-* * Derivatives - the financial derivatives classes currently support by F^3
-* * Platforms 
-* * * MulticoreCPU - the class for a Multicore CPU platform
-* * Solvers
-* * * MonteCarlo - the class and support files for a Monte Carlo Algorithm-based Solver
-* Underlyings - the underlyings classes that are currently support by F^3
+ * bin - the experimental scripts for Multicore CPU implementations utilised in the paper
+ * Derivatives - the financial derivatives classes currently support by F^3
+ * Platforms 
+  * MulticoreCPU - the class for a Multicore CPU platform
+ * Solvers
+  * MonteCarlo - the class and support files for a Monte Carlo Algorithm-based Solver
+ * Underlyings - the underlyings classes that are currently support by F^3
 
 Installation
-============
+------------
 
 F^3 requires:
 1. A *nix-based Operating System
@@ -33,7 +33,7 @@ F^3 requires:
 4. Numpy (http://numpy.scipy.org/)
 
 Getting Started
-===============
+---------------
 
 1. Change to the script directory (i.e. ForwardFinancialFramework/bin)
 2. Run the following command: "python <script file name>" i.e. "python mc_solver_fully_connected_portfolio.py" would run the fully connected portfolio experiment script.
