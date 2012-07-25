@@ -26,7 +26,7 @@ Framework Layout
 Installation
 ------------
 
-F^3 requires:
+F^3 requires:  
 1. A *nix-based Operating System  
 2. GCC (http://gcc.gnu.org/)  
 3. Python >= 2.7 (http://www.python.org/getit/releases/2.7.3/)  
@@ -36,5 +36,5 @@ Getting Started
 ---------------
 
 1. Change to the script directory (i.e. ForwardFinancialFramework/bin)  
-2. Run the following command: "python <script file name>" i.e. "python mc_solver_fully_connected_portfolio.py" would run the fully connected portfolio experiment script.  
+2. Run the following command: \"python \<script file name\>\" i.e. \"python mc_solver_fully_connected_portfolio.py\" would run the fully connected portfolio experiment script.  
 
