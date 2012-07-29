@@ -7,15 +7,34 @@ F^3 is Python-based application framework for valuing forward looking financial 
 Introduction
 ------------
 
-This version of the F^3 code is referenced by the paper entitled "Exploiting Heterogeneous Parallelism through Domain-Orientated Introspection" submitted to ASPLOS2013.  
-If a camera ready version of the paper is required, the reference in the paper will be changed to reflect the official F^3 repository, which unfortunately includes blind-review
-defeating measures such as authors' names and locations, and hence the need for this repository.
+The vision of F^3 is to allow financial engineers to express valuation computations naturally while taking advantage of the plethora of new computing platforms available.
+
+The application framework also serves as a test case for research into domain-orienteted, heterogeneous computing.
+
+Current Underlyings and Derivatives Supported:
+ * Black-Scholes Stochastic Underlyings
+ * Heston-based Stochastic Underlyings
+ * European Options
+ * European Single and Double Barrier Options
+ * European Double Digital Barrier Options
+ * Asian Options
+ 
+Platforms:
+ * Multicore CPUs (via C and Posix threads)
+ 
+In Progress:
+ * Maxeler FPGA platform
+ 
+Coming Soon:
+ * IP-based Network execution
+ * GPUs (most likely via OpenCL)
+ * Lattice-based Solvers
 
 Framework Layout
 ----------------
 
 * ForwardFinancialFramework  
-  * bin - the experimental scripts for Multicore CPU implementations utilised in the paper  
+  * bin - the experimental scripts for Multicore CPU implementations for various portfolios 
   * Derivatives - the financial derivatives classes  
   * Platforms - the platform classes   
   * Solvers - the solver alogrithms  
@@ -40,3 +59,17 @@ i.e.
         "python mc_solver_fully_connected_portfolio.py"  
 would run the fully connected portfolio experiment script.  
 
+Extending the Framework
+-----------------------
+
+* To add a new derivative or underlying, look at the existing derivatives and underlyings as an example. The basic procedure:
+ 1. Create a new class in the correct directory, inheirting from Option.py or Underlying.py respectively.
+ 2. Overload or add the required methods and variables for the solver(s) being targetted to the new class being created.
+ 3. Create the required supporting libraries for generating the platform-solver code.
+ 
+* To add a new solver or platform, its a bit more involved. Again, look at the existing ones for ideas.
+
+Contact Info
+------------
+
+Please, feel free to get in touch with me (gordon.inggs (at) gmail.com).
