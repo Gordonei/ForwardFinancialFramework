@@ -99,10 +99,22 @@ class MonteCarlo:
         
         else: print "Sorry, there is no execution behaviour specified for the %s platform" % self.platform
     
+    def maxeler_code_generate(self,overide=True):
+	#Changing to code generation directory
+        try: os.chdir("../Solvers/MonteCarlo/maxeler_code")
+        except: print "Maxeler Code directory doesn't exist!"
+        
+        for u in self.underlying:
+            if(not(os.path.exists("%s_Underlying.java"%u.name))): raise IOError, ("missing the source code for the underlying - %s.java" % (u.name))
+            if(not(os.path.exists("%s_Parameters.java"%u.name))): raise IOError, ("missing the source code for the underlying parameter set - %s_Parameters.java" % (u.name))
+        for d in self.derivative:
+            if(not(os.path.exists("%s.java"%d.name))): raise IOError, ("missing the source code for the derivative - %s.java" %  (d.name))
+        
+    
     def multicore_code_generate(self,overide=True):
         #Changing to code generation directory
         try: os.chdir("../Solvers/MonteCarlo/multicore_c_code")
-        except: print "Multicore C directory doesn't exist!"
+        except: print "Multicore C Code directory doesn't exist!"
         
         #Checking that the source code for the derivative and underlying is present
         for u in self.underlying:

@@ -1,0 +1,15 @@
+In Progress Log
+---------------
+Comments for on-going work go here.
+
+Tasks
+-----
+1) Change Java class and source file names to be compliant with the lower case scheme used in the c and Python code.
+2) Maxeler Host code generation for the Monte Carlo Solver
+3) Maxeler Kernel code generation for the Monte Carlo Solver*
+4) Automating Maxeler compiler flow for the Monte Carlo Solver**
+
+Notes
+-----
+* Support for multiple derivatives depending on the same underlying - issue with numerical accurcracy making time progress difficult
+** Possibly link to broader effort to support IP execution?
