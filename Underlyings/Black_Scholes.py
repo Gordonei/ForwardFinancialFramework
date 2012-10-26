@@ -9,7 +9,7 @@ class Black_Scholes(Underlying.Underlying):
     '''
     classdocs
     '''
-    name = "black_scholes"
+    name = "black_scholes_underlying"
     
     volatility = 0.0
 

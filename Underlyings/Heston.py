@@ -9,7 +9,7 @@ class Heston(Underlying.Underlying):
     '''
     classdocs
     '''
-    name = "heston"
+    name = "heston_underlying"
     
     #attributes
     initial_volatility = 0.0
