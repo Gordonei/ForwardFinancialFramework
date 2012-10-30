@@ -12,11 +12,13 @@ Tasks
 Tasks' Notes
 ----------
 * Support for multiple derivatives depending on the same underlying - issue with numerical accurcracy making multirate time progression difficult
-** Link to broader effort to support IP execution?
+** Link to broader effort to support over-IP execution?
 
 Proposed
 --------
-1) Sort out path issues in Solver generation and compilation code
+1) Sort out path issues in Solver generation and compilation code -> Rather generate code in string and write only when necessary
 2) Separate generation, compilation and execution from main solver class.
   2.1) Generation goes to additional classes
   2.2) Compilation and Execution made the responsibility of platform class
+3) Improve the monitoring infrastructure - emphasis on resource utilisation
+4) Cleanup behaviour for solvers

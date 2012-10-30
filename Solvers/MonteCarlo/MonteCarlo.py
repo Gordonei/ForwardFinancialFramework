@@ -2,14 +2,15 @@
 Created on 11 July 2012
 
 '''
-import os,time,subprocess,sys,time,math
+import os,time,subprocess,sys,time,math,MonteCarlo_Maxeler,MonteCarlo_Multicore
 
 class MonteCarlo:
     name = "monte_carlo_solver"
     paths = None
     threads = None
     
-    solver_metadata = {}
+    platforms = []
+    
     derivative = []
     derivative_attributes = []
     derivative_variables = []
@@ -19,15 +20,16 @@ class MonteCarlo:
     underlying_variables = []
     underlying_dependencies = []
     
-    def __init__(self,derivative,paths,platform,reduce_underlyings=True):
+    
+    
+    def __init__(self,derivative,paths,platforms,reduce_underlyings=True):
         name = "monte_carlo_solver"
-        self.platform = platform
+        self.platforms = platforms
         self.paths = paths
         
-        if(self.platform.name=="multicore_cpu"):
-            self.utility_libraries = ["math.h","pthread.h","stdint.h","stdlib.h","stdio.h","sys/time.h","sys/resource.h","unistd.h"]
-            self.non_system_libraries = ["memory_used"]
-            self.solver_metadata = {"paths":self.paths,"threads":self.platform.threads}
+        #if(self.platform.name=="multicore_cpu"):   
+            #self.non_system_libraries = ["memory_used"]
+            #self.solver_metadata = {"paths":self.paths,"threads":self.platform.threads}
             
         self.derivative = derivative
         self.underlying = []
@@ -46,8 +48,12 @@ class MonteCarlo:
                     
                 if((len(self.underlying)==0) or not reduce_underlyings): self.underlying.append(u)
          
-        temp = [] #Generating Filename - based on underlyings and derivatives used
-        self.output_file_name = ("mc_solver_%s"%platform)
+        temp = [] #Generating Filename - based on underlyings,derivatives and platforms used
+        self.output_file_name = "mc_solver"
+        
+        for p in self.platforms:
+	  self.output_file_name = ("%s_%s"%(self.output_file_name,p.name))
+        
         for u in self.underlying:
           if u.name not in temp:
             count = 0
@@ -92,9 +98,9 @@ class MonteCarlo:
             self.multicore_code_generate()
             self.multicore_compile()
             
-        elif(self.platform.name=="maxeler_fpga"):
+        """elif(self.platform.name=="maxeler_fpga"):
             self.maxeler_code_generate()
-            self.maxeler_compile()
+            self.maxeler_compile()"""
             
         else: print "Sorry, there is no generation behaviour specified for the %s platform" % self.platform
             
@@ -138,15 +144,6 @@ class MonteCarlo:
 	output_file.write("\n")
 	
 	#Device Interaction Variables
-	
-	#Main Method
-	##Accessing and Configuring device
-	##Creating memory structures for data to stream to the device
-	##Setting parameter values from command line
-	##Streaming scaler values to the deivce
-	##Running the kernel on the device
-	##Printing out results
-	##Shutdown procedure
     
     def maxeler_kernel_code_generate(self):
 	pass
@@ -162,16 +159,12 @@ class MonteCarlo:
       
 	return results
     
-    def multicore_code_generate(self,overide=True):
+    def main_code_generate(self,overide=True):
         #Changing to code generation directory
         try: os.chdir("../Solvers/MonteCarlo/multicore_c_code")
         except: print "Multicore C Code directory doesn't exist!"
         
-        #Checking that the source code for the derivative and underlying is present
-        for u in self.underlying:
-            if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
-        for d in self.derivative:
-            if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
+        
         
         if(overide or not os.path.exists("%s.c"%self.output_file_name)):
             #Opening the output file for editing
