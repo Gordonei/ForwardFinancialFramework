@@ -8,4 +8,4 @@ class MaxelerFPGA:
   instances = 1
   
   def __init__(self,instances=1):
-    self.threads = instances
+    self.instances = instances

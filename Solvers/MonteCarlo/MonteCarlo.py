@@ -2,7 +2,7 @@
 Created on 11 July 2012
 
 '''
-import os,time,subprocess,sys,time,math,MonteCarlo_Maxeler,MonteCarlo_Multicore
+import os,time,subprocess,sys,time,math
 
 class MonteCarlo:
     name = "monte_carlo_solver"
