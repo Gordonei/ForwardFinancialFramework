@@ -4,9 +4,9 @@ Created on 30 October 2012
 '''
 import os,time,subprocess,sys,time,math,MonteCarlo
 
-class MonteCarlo_Multicore:
-  def __init__(self,mc):
-    self.mc = mc
+class MonteCarlo_Multicore(MonteCarlo.MonteCarlo):
+  def __init__(self,platform):
+    self.platform = platform
     
   def generate_libraries(self):
      #Checking that the platform source code for the derivatives and underlyings required are present

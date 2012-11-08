@@ -22,9 +22,9 @@ class MonteCarlo:
     
     
     
-    def __init__(self,derivative,paths,platforms,reduce_underlyings=True):
+    def __init__(self,derivative,paths,platform,reduce_underlyings=True):
         name = "monte_carlo_solver"
-        self.platforms = platforms
+        self.platform = platform
         self.paths = paths
         
         #if(self.platform.name=="multicore_cpu"):   
