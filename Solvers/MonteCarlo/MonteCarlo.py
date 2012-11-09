@@ -104,10 +104,9 @@ class MonteCarlo:
 		for i in range(tab_count): output_file.write("\t")	
 		output_file.write("%s\n"%c_s)
 		
-		if(c_s.contains("{")):
-		    tab_count = tab_count+1
-		elif(c_s.contains("}"))
-		    tab_count = max(tab_count-1,0)
+		if("{" in c_s): tab_count = tab_count+1
+		if("}" in c_s): tab_count = max(tab_count-1,0)
+	    output_file.close()
 	
     def compile(self):
 	pass
@@ -160,11 +159,11 @@ class MonteCarlo:
 	output_list.append("}")
 	
 	#Performance Monitoring Variables
-	output_file.write("//\t*Performance Monitoring Variables*")
-	output_file.write("double system_time,user_time,cpu_time,wall_time;")
-	output_file.write("struct timeval start, end;")
-	output_file.write("int ret,ret_2;")
-	output_file.write("struct rusage usage,usage_2;")
+	output_list.append("//*Performance Monitoring Variables*")
+	output_list.append("double system_time,user_time,cpu_time,wall_time;")
+	output_list.append("struct timeval start, end;")
+	output_list.append("int ret,ret_2;")
+	output_list.append("struct rusage usage,usage_2;")
     
     def generate_activity_thread(self): pass
     
@@ -175,114 +174,109 @@ class MonteCarlo:
 	output_list.append("//*Main Function*")
 	output_list.append("int main(int argc,char* argv[]){")
 	##Commented out diagnostic tool
-	#output_file.write("\t/*for(i=0;i<argc;i++){//For diagnostic Purposes\n\t\tprintf(\"%s \",argv[i]);\n\t}*/\n")
+	#output_file.write("/*for(i=0;i<argc;i++){//For diagnostic Purposes\nprintf(\"%s \",argv[i]);\n}*/\n")
 	
 	##Convert command line arguments to static variables
 	output_list.append("//**Unpacking Command Line Variables**")
 	temp = 1
-	output_list.append.write("//\t***Solver Metadata***\n")
+	output_list.append.write("//***Solver Metadata***")
 	for k in self.solver_metadata.keys(): 
-	    output_list.append.write("\t%s = atoi(argv[%d]);\n"%(k,temp))
+	    output_list.append.write("%s = atoi(argv[%d]);"%(k,temp))
 	    temp += 1
 	
-	output_file.write("//\t***Underlying Attributes***\n")
+	output_list.append("//***Underlying Attributes***\n")
 	index = 0
 	for u_a in self.underlying_attributes:
 	    for a in u_a:
-		output_list.append("\t%s_%d_%s = strtod(argv[%d],NULL);\n"%(self.underlying[index].name,index,a,temp))
+		output_list.append("%s_%d_%s = strtod(argv[%d],NULL);"%(self.underlying[index].name,index,a,temp))
 		temp += 1
 	    output_list.append("\n")
 	    index += 1
 	
-	output_list.append("//\t***Derivative Attributes***\n")
+	output_list.append("//***Derivative Attributes***")
 	index = 0
 	for o_a in self.derivative_attributes:
 	    for a in o_a:
-		output_list.append("\t%s_%d_%s = strtod(argv[%d],NULL);\n"%(self.derivative[index].name,index,a,temp))
+		output_list.append("%s_%d_%s = strtod(argv[%d],NULL);\n"%(self.derivative[index].name,index,a,temp))
 		temp += 1
 	    output_list.append("\n")
 	    index += 1
 	    
-	output_list.append("//\t**Starting Timers**\n")
-	output_list.append("\tint who = RUSAGE_SELF;\n")
-	output_list.append("\tgettimeofday(&start,NULL);\n")
-	output_list.append("\tret=getrusage(who,&usage);\n")
+	output_list.append("//**Starting Timers**")
+	output_list.append("int who = RUSAGE_SELF;")
+	output_list.append("gettimeofday(&start,NULL);")
+	output_list.append("ret=getrusage(who,&usage);")
 	
 	##Calculate Discount Factor
-	output_list.append("//\t**Calculating Discount Factor**\n")
+	output_list.append("//**Calculating Discount Factor**")
 	
 	for d in self.derivative:
 	    index = self.derivative.index(d)
 	    for u in d.underlying:
 		u_index = self.underlying.index(u)
-		output_list.append("\tdiscount_%d_%d = exp(-%s_%d_rfir*%s_%d_time_period);\n"%(index,u_index,u.name,u_index,d.name,index))
+		output_list.append("discount_%d_%d = exp(-%s_%d_rfir*%s_%d_time_period);"%(index,u_index,u.name,u_index,d.name,index))
 		
 	output_list.append("\n")
 	
 	##Create Thread Support Structure
-	output_list.append("//\t**Creating Thread Variables**\n")
-	output_list.append("\tthread_paths = paths/threads;\n")
-	output_list.append("\tpthread_t pthreads[threads];\n")
-	output_list.append("\tdouble thread_results[threads][%d];\n"%len(self.derivative))
-	output_list.append("\tstruct thread_data temp_data[threads];\n")
+	output_list.append("//**Creating Thread Variables**")
+	output_list.append("thread_paths = paths/threads;")
+	output_list.append("pthread_t pthreads[threads];")
+	output_list.append("double thread_results[threads][%d];"%len(self.derivative))
+	output_list.append("struct thread_data temp_data[threads];")
 	
-	output_list.append("\tpthread_attr_t attr;\n")
-	output_list.append("\tpthread_attr_init(&attr);\n")
-	output_list.append("\tpthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);\n")
-	output_list.append("\n")
+	output_list.append("pthread_attr_t attr;")
+	output_list.append("pthread_attr_init(&attr);")
+	output_list.append("pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);")
 	
 	##Pack up data and pass to threads
-	output_list.append("//\t**Packing up data and passing to threads**\n")
-	output_list.append("\tint i;\n");
-	output_list.append("\tfor(i=0;i<threads;i++){ //Generating Threads\n");
-	output_list.append("\t\ttemp_data[i].thread_paths = thread_paths;\n")
-	output_list.append("\t\tif(i==(threads-1)){ //If final thread, allocating any remaining paths to it (i.e. PATHS%THREADS!=0)\n")
-	output_list.append("\t\t\ttemp_data[i].thread_paths += paths%threads;\n")
-	output_list.append("\t\t}\n")
-	output_list.append("\t\ttemp_data[i].thread_result = thread_results[i];\n")
-	output_list.append("\t\tpthread_create(&pthreads[i],&attr,path_loop,&temp_data[i]);\n")
-	output_list.append("\t}\n")
-	output_list.append("\n")
+	output_list.append("//**Packing up data and passing to threads**")
+	output_list.append("int i;");
+	output_list.append("for(i=0;i<threads;i++){ //Generating Threads");
+	output_list.append("temp_data[i].thread_paths = thread_paths;")
+	output_list.append("if(i==(threads-1)){ //If final thread, allocating any remaining paths to it (i.e. PATHS%THREADS!=0)")
+	output_list.append("temp_data[i].thread_paths += paths%threads;")
+	output_list.append("}")
+	output_list.append("temp_data[i].thread_result = thread_results[i];")
+	output_list.append("pthread_create(&pthreads[i],&attr,path_loop,&temp_data[i]);")
+	output_list.append("}")
 	##Join Threads, aggregate results
-	output_list.append("//\t**Waiting for threads to join**\n")
-	output_list.append("\tvoid *status;\n")
-	for d in self.derivative: output_list.append("\toption_price_%d = 0;\n"%self.derivative.index(d))
-	output_list.append("\tfor(i=0;i<threads;i++){ //Waiting for Threads\n");
-	output_list.append("\t\tpthread_join(pthreads[i],&status);\n");
+	output_list.append("//**Waiting for threads to join**")
+	output_list.append("void *status;")
+	for d in self.derivative: output_list.append("option_price_%d = 0;"%self.derivative.index(d))
+	output_list.append("for(i=0;i<threads;i++){ //Waiting for Threads");
+	output_list.append("pthread_join(pthreads[i],&status);");
 	
 	for d in self.derivative:
 	    index = self.derivative.index(d)
 	    for u in d.underlying:
 		u_index = self.underlying.index(u)
-		output_list.append("\t\toption_price_%d += discount_%d_%d*thread_results[i][%d];\n"%(index,index,u_index,index));
-		#output_file.write("\t\toption_price_%d = thread_results[i][%d];\n"%(index,index));
+		output_list.append("option_price_%d += discount_%d_%d*thread_results[i][%d];"%(index,index,u_index,index));
+		#output_file.write("option_price_%d = thread_results[i][%d];"%(index,index));
 	
-	output_list.append("\t}\n")
-	output_list.append("\n")
+	output_list.append("}")
 	
 	##Calculate final value and return value
-	output_list.append("//\t**Calculating Final Option Value and Return**\n")
+	output_list.append("//**Calculating Final Option Value and Return**")
 	for d in self.derivative:
-	    output_list.append("\toption_price_%d = option_price_%d/paths;//Calculate final value and return value as well as timing\n"%(self.derivative.index(d),self.derivative.index(d)))
-	    output_list.append("\tprintf(\"\%f\\n\"")
-	    output_list.append(",option_price_%d);\n"%self.derivative.index(d))
+	    output_list.append("option_price_%d = option_price_%d/paths;//Calculate final value and return value as well as timing"%(self.derivative.index(d),self.derivative.index(d)))
+	    output_list.append("printf(\"\%f\\n\"")
+	    output_list.append(",option_price_%d);"%self.derivative.index(d))
 	
 	##Return Performance evaluation
-	output_list.append("//\t**Performance Monitoring Calculation and Return**\n")
-	output_list.append("\tgettimeofday(&end,NULL);\n")
-	output_list.append("\tret_2=getrusage(who,&usage_2);\n")
+	output_list.append("//**Performance Monitoring Calculation and Return**")
+	output_list.append("gettimeofday(&end,NULL);")
+	output_list.append("ret_2=getrusage(who,&usage_2);")
 	
-	output_list.append("\tuser_time = usage_2.ru_utime.tv_sec*1000000+usage_2.ru_utime.tv_usec-(usage.ru_utime.tv_sec*1000000+usage.ru_utime.tv_usec);\n")
-	output_list.append("\tsystem_time = usage_2.ru_stime.tv_sec*1000000+usage_2.ru_stime.tv_usec-(usage.ru_stime.tv_sec*1000000+usage.ru_stime.tv_usec);\n")
-	output_list.append("\tcpu_time = (user_time + system_time);\n")
-	output_list.append("\twall_time = 1000000*(end.tv_sec-start.tv_sec)+end.tv_usec-start.tv_usec;\n")
+	output_list.append("user_time = usage_2.ru_utime.tv_sec*1000000+usage_2.ru_utime.tv_usec-(usage.ru_utime.tv_sec*1000000+usage.ru_utime.tv_usec);")
+	output_list.append("system_time = usage_2.ru_stime.tv_sec*1000000+usage_2.ru_stime.tv_usec-(usage.ru_stime.tv_sec*1000000+usage.ru_stime.tv_usec);")
+	output_list.append("cpu_time = (user_time + system_time);")
+	output_list.append("wall_time = 1000000*(end.tv_sec-start.tv_sec)+end.tv_usec-start.tv_usec;")
 	
-	output_list.append("\tprintf(\"\%f\\n\",cpu_time);\n")
-	output_list.append("\tprintf(\"\%f\\n\",wall_time);\n")
-	output_list.append("\tprintf(\"\%d\\n\",(MemoryUsed()));\n")
-	
-	output_list.append("}\n")
-	output_list.append("\n")
+	output_list.append("printf(\"\%f\\n\",cpu_time);")
+	output_list.append("printf(\"\%f\\n\",wall_time);")
+	output_list.append("printf(\"\%d\\n\",(MemoryUsed()));")
+	output_list.append("}")
 	
 	return output_list
     

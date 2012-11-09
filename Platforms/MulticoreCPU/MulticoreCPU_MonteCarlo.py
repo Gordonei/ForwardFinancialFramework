@@ -28,158 +28,155 @@ class MonteCarlo_Multicore(MonteCarlo.MonteCarlo):
   
   def generate_activity_thread(self):
     #Generate Path Loop Function
-    output_file.write("//\t*Path Loop Function*\n")
-    output_file.write("void * path_loop(void* thread_arg){\n")
+    output_list = []
+    output_list.append("//*Path Loop Function*")
+    output_list.append("void * path_loop(void* thread_arg){")
     
     ##Declare Loop Data Structures
-    output_file.write("//\t**Loop Data Structures**\n")
-    output_file.write("\tstruct thread_data* temp_data;\n")
-    output_file.write("\ttemp_data = (struct thread_data*) thread_arg;\n")
-    output_file.write("\n")
+    output_list.append("//**Loop Data Structures**")
+    output_list.append("struct thread_data* temp_data;")
+    output_list.append("temp_data = (struct thread_data*) thread_arg;")
+    
     
     for u in self.underlying:
         index = self.underlying.index(u)
-        output_file.write("\t%s_under_attr u_a_%d;\n" % (u.name,index))
-        output_file.write("\t%s_under_var u_v_%d;\n" % (u.name,index))
+        output_list.append("%s_under_attr u_a_%d;" % (u.name,index))
+        output_list.append("%s_under_var u_v_%d;" % (u.name,index))
     
     for d in self.derivative:
         index = self.derivative.index(d)
-        output_file.write("\t%s_opt_attr o_a_%d;\n" % (d.name,index))
-        output_file.write("\t%s_opt_var o_v_%d;\n" % (d.name,index))
+        output_list.append("%s_opt_attr o_a_%d;" % (d.name,index))
+        output_list.append("%s_opt_var o_v_%d;" % (d.name,index))
     
-    output_file.write("\n")
-    output_file.write("//\t**Initialising Loop Attributes*\n")
+    
+    output_list.append("//**Initialising Loop Attributes*")
     
     ##Calling Init Functions
     for u in self.underlying:
         u_index = self.underlying.index(u)
         
-        output_file.write("\t%s_underlying_init("%u.name)
-        for u_a in self.underlying_attributes[u_index][:-1]: output_file.write("%s_%d_%s,"%(u.name,u_index,u_a))
-        output_file.write("%s_%d_%s,&u_a_%d);\n"%(u.name,u_index,self.underlying_attributes[u_index][-1],u_index))
+        output_list.append("%s_underlying_init("%u.name)
+        for u_a in self.underlying_attributes[u_index][:-1]: output_list.append("%s_%d_%s,"%(u.name,u_index,u_a))
+        output_list.append("%s_%d_%s,&u_a_%d);"%(u.name,u_index,self.underlying_attributes[u_index][-1],u_index))
     
     for d in self.derivative:
         index = self.derivative.index(d)
         
-        output_file.write("\t%s_derivative_init("%d.name)
-        for o_a in self.derivative_attributes[index][:-1]: output_file.write("%s_%d_%s,"%(d.name,index,o_a))
-        output_file.write("%s_%d_%s,&o_a_%d);\n"%(d.name,index,self.derivative_attributes[index][-1],index))
+        output_list.append("%s_derivative_init("%d.name)
+        for o_a in self.derivative_attributes[index][:-1]: output_list.append("%s_%d_%s,"%(d.name,index,o_a))
+        output_list.append("%s_%d_%s,&o_a_%d);"%(d.name,index,self.derivative_attributes[index][-1],index))
     
     ##Thread calculation loop
-    output_file.write("//\t**Thread Calculation Loop**\n")
+    output_list.append("//**Thread Calculation Loop**")
     
     for r in range(len(self.derivative)):
-        output_file.write("\tdouble temp_total_%d=0;\n"%r)
+        output_list.append("double temp_total_%d=0;"%r)
     
-    output_file.write("\tdouble dummy_2")
+    output_list.append("double dummy_2")
     for d in self.derivative:
         index = self.derivative.index(d)
         for u in d.underlying:
             u_index = self.underlying.index(u)
-            output_file.write(",price_%d_%d,next_time_%d_%d"%(index,u_index,index,u_index))
+            output_list.append(",price_%d_%d,next_time_%d_%d"%(index,u_index,index,u_index))
             
     for u in self.underlying:
         u_index = self.underlying.index(u)
-        output_file.write(",very_next_time_%d"%u_index)
+        output_list.append(",very_next_time_%d"%u_index)
             
-    output_file.write(";\n")
+    output_list.append(";")
     
-    output_file.write("\tint l,k,done;\n")
-    output_file.write("\tfor(l=0;l<temp_data->thread_paths;l++){\n")
+    output_list.append("int l,k,done;")
+    output_list.append("for(l=0;l<temp_data->thread_paths;l++){")
     
-    output_file.write("//\t***Underlying and Derivative Path Initiation***\n")
+    output_list.append("//***Underlying and Derivative Path Initiation***")
     for u in self.underlying: 
         index = self.underlying.index(u)
-        output_file.write("\t\t%s_underlying_path_init(&u_v_%d,&u_a_%d);\n" % (u.name,index,index))
-    output_file.write("\n")
+        output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
+    
     
     for d in self.derivative:
         index = self.derivative.index(d)
-        output_file.write("\t\t%s_derivative_path_init(&o_v_%d,&o_a_%d);\n" % (d.name,index,index))
+        output_list.append("%s_derivative_path_init(&o_v_%d,&o_a_%d);" % (d.name,index,index))
         for u in d.underlying:
             u_index = self.underlying.index(u)
-            output_file.write("\t\tnext_time_%d_%d = 0;\n"%(index,u_index))
-            output_file.write("\t\tprice_%d_%d = u_a_%d.current_price*exp(u_v_%d.gamma);\n"%(index,u_index,u_index,u_index))
-    output_file.write("\n")
+            output_list.append("next_time_%d_%d = 0;"%(index,u_index))
+            output_list.append("price_%d_%d = u_a_%d.current_price*exp(u_v_%d.gamma);"%(index,u_index,u_index,u_index))
     
-    output_file.write("\t\tdone=1;\n")
-    output_file.write("\t\twhile(done){\n")
-    output_file.write("//\t***Derivative Path Function Calls***\n")
+    
+    output_list.append("done=1;")
+    output_list.append("while(done){")
+    output_list.append("//***Derivative Path Function Calls***")
     for d in self.derivative: #calling the derivative path function
         index = self.derivative.index(d)
-        output_file.write("\t\t\tif(")
+        output_list.append("if(")
         for u in d.underlying:
             u_index = self.underlying.index(u)
-            output_file.write("(next_time_%d_%d==u_v_%d.time) && (u_v_%d.time<=o_a_%d.time_period) &&"%(index,u_index,u_index,u_index,index))
-        output_file.write(" 1){\n")
+            output_list.append("(next_time_%d_%d==u_v_%d.time) && (u_v_%d.time<=o_a_%d.time_period) &&"%(index,u_index,u_index,u_index,index))
+        output_list.append(" 1){")
         
         for u in d.underlying:
             u_index = self.underlying.index(u)
-            output_file.write("\t\t\t\tprice_%d_%d = u_a_%d.current_price*exp(u_v_%d.gamma);\n"%(index,u_index,u_index,u_index))
+            output_list.append("price_%d_%d = u_a_%d.current_price*exp(u_v_%d.gamma);"%(index,u_index,u_index,u_index))
            
-        output_file.write("\t\t\t\t%s_derivative_path(price_%d_%d,u_v_%d.time,&o_v_%d,&o_a_%d);\n" % (d.name,index,u_index,u_index,index,index)) #TODO - Some clever introspection to determine the composition of the call
+        output_list.append("%s_derivative_path(price_%d_%d,u_v_%d.time,&o_v_%d,&o_a_%d);" % (d.name,index,u_index,u_index,index,index)) #TODO - Some clever introspection to determine the composition of the call
         
         for u in d.underlying:
             u_index = self.underlying.index(u)
-            output_file.write("\t\t\t\tnext_time_%d_%d = u_v_%d.time + o_v_%d.delta_time;\n" % (index,u_index,u_index,index))
-        output_file.write("\t\t\t}\n")
-    output_file.write("\n")
+            output_list.append("next_time_%d_%d = u_v_%d.time + o_v_%d.delta_time;" % (index,u_index,u_index,index))
+        output_list.append("}")
     
-    output_file.write("//\t***Determining Next Times for Underlyings***\n")
+    
+    output_list.append("//***Determining Next Times for Underlyings***")
     for u in self.underlying: 
         u_index = self.underlying.index(u)
-        output_file.write("\t\t\tif((u_v_%d.time<o_a_%d.time_period)){\n"%(u_index,self.underlying_dependencies[u_index][0])) #setting very next time to the first active next time point
-        output_file.write("\t\t\t\tvery_next_time_%d=next_time_%d_%d;\n"%(u_index,self.underlying_dependencies[u_index][0],u_index))
-        output_file.write("\t\t\t}\n")
+        output_list.append("if((u_v_%d.time<o_a_%d.time_period)){"%(u_index,self.underlying_dependencies[u_index][0])) #setting very next time to the first active next time point
+        output_list.append("very_next_time_%d=next_time_%d_%d;"%(u_index,self.underlying_dependencies[u_index][0],u_index))
+        output_list.append("}")
         if(len(self.underlying_dependencies[u_index])>1): 
             for u_l in self.underlying_dependencies[u_index][1:]:
-                output_file.write("\t\t\tif((u_v_%d.time<o_a_%d.time_period)&&(next_time_%d_%d<very_next_time_%d)){\n"%(u_index,u_l,u_l,u_index,u_index))
-                output_file.write("\t\t\t\tvery_next_time_%d=next_time_%d_%d;\n"%(u_index,u_l,u_index))
-                output_file.write("\t\t\t}\n")
-        output_file.write("\n")
-    output_file.write("\n")
-                
-    output_file.write("//\t***Assesing whether loop is complete or not***\n")
-    output_file.write("\t\t\tif(1")
+                output_list.append("if((u_v_%d.time<o_a_%d.time_period)&&(next_time_%d_%d<very_next_time_%d)){"%(u_index,u_l,u_l,u_index,u_index))
+                output_list.append("very_next_time_%d=next_time_%d_%d;"%(u_index,u_l,u_index))
+                output_list.append("}")
+        
+    output_list.append("//***Assesing whether loop is complete or not***")
+    output_list.append("if(1")
     for d in self.derivative:
         index = self.derivative.index(d)
         for u in d.underlying:
             u_index = self.underlying.index(u)
-            output_file.write(" && (u_v_%d.time>=o_a_%d.time_period)"%(u_index,index)) 
-    output_file.write("){\n") #ending the loop if all underlyings are passed the time required by the derivatives
-    output_file.write("\t\t\t\tdone=0;\n")
-    output_file.write("\t\t\t}\n")
-    output_file.write("\n")
+            output_list.append(" && (u_v_%d.time>=o_a_%d.time_period)"%(u_index,index)) 
+    output_list.append("){") #ending the loop if all underlyings are passed the time required by the derivatives
+    output_list.append("done=0;")
+    output_list.append("}")
     
-    output_file.write("//\t***Calling Underlying Path Functions***\n")
+    output_list.append("//***Calling Underlying Path Functions***")
     for u in self.underlying: #Calling the underlying path function
         u_index = self.underlying.index(u)
-        output_file.write("\t\t\tif(u_v_%d.time<very_next_time_%d){\n"%(u_index,u_index))
+        output_list.append("if(u_v_%d.time<very_next_time_%d){"%(u_index,u_index))
         
-        output_file.write("\t\t\t\t%s_underlying_path((very_next_time_%d-u_v_%d.time),&u_v_%d,&u_a_%d);\n" % (u.name,u_index,u_index,u_index,u_index))
+        output_list.append("%s_underlying_path((very_next_time_%d-u_v_%d.time),&u_v_%d,&u_a_%d);" % (u.name,u_index,u_index,u_index,u_index))
         
-        output_file.write("\t\t\t}\n")
-    output_file.write("\n")
+        output_list.append("}")
     
-    output_file.write("\t\t}\n") #End of Path Generation Loop
+    output_list.append("}") #End of Path Generation Loop
     
-    output_file.write("//\t**Post path-generation calculations**\n")
+    output_list.append("//**Post path-generation calculations**")
     for d in self.derivative: #Post path-generation calculations
         index = self.derivative.index(d)
         for u in d.underlying:
             u_index = self.underlying.index(u)
             
-            output_file.write("\t\t%s_derivative_payoff(price_%d_%d,&o_v_%d,&o_a_%d);\n"%(d.name,index,u_index,index,index))
-            output_file.write("\t\ttemp_total_%d += o_v_%d.value;\n"%(index,index))
+            output_list.append("%s_derivative_payoff(price_%d_%d,&o_v_%d,&o_a_%d);"%(d.name,index,u_index,index,index))
+            output_list.append("temp_total_%d += o_v_%d.value;"%(index,index))
             
-    output_file.write("\t}\n")
+    output_list.append("}")
     ##Return result to main loop
-    output_file.write("//\t**Returning Result**\n")
-    for d in self.derivative: output_file.write("\ttemp_data->thread_result[%d] = temp_total_%d;\n"%(self.derivative.index(d),self.derivative.index(d)))
-    output_file.write("}\n")
-    output_file.write("\n")
+    output_list.append("//**Returning Result**")
+    for d in self.derivative: output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
+    output_list.append("}")
+    
       
-  return ""
+  return output_list
   
   def compile(self,overide=True):
         try: os.chdir("../../ForwardFinancialFramework/Solvers/MonteCarlo/multicore_c_code")
@@ -264,7 +261,7 @@ class MonteCarlo_Multicore(MonteCarlo.MonteCarlo):
         results = subprocess.check_output(run_cmd)
         finish = time.time()
         
-        results = results.split("\n")[:-1]
+        results = results.split("")[:-1]
         results.append((finish-start)*1000000)
         
         os.chdir("../../../bin")
