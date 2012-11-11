@@ -10,15 +10,15 @@
 typedef struct underlying_variables{
 double gamma;
 double time;
-} under_var;
+} underlying_under_var;
 
 typedef struct underlying_attributes{
 double rfir;
 double current_price;
-} under_attr;
+} underlying_under_attr;
 
-void underlying_init(double r,double p,under_attr* u_a);
-void underlying_path_init(under_var* u_v,under_attr* u_a);
-void underlying_path(double delta_time,under_var* u_v,under_attr* u_a);
+void underlying_underlying_init(double r,double p,underlying_under_attr* u_a);
+void underlying_underlying_path_init(underlying_under_var* u_v,underlying_under_attr* u_a);
+void underlying_underlying_path(double delta_time,underlying_under_var* u_v,underlying_under_attr* u_a);
 
-#endif /* UNDERLYING_H_ */
+#endif UNDERLYING_H_

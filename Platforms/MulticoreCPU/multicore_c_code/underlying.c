@@ -10,17 +10,17 @@
 #include "math.h"
 #include "underlying.h"
 
-void black_scholes_underlying_init(double r,double p,under_attr* u_a){
+void underlying_underlying_init(double r,double p,underlying_under_attr* u_a){
 	u_a->rfir = r;
 	u_a->current_price = p;
 }
 
-void underlying_path_init(under_var* u_v,under_attr* u_a){
+void underlying_underlying_path_init(underlying_under_var* u_v,underlying_under_attr* u_a){
 	u_v->gamma = 0.0;
 	u_v->time = 0.0;
 }
 
-void underlying_path(double delta_time,under_var* u_v,under_attr* u_a){
+void underlying_underlying_path(double delta_time,underlying_under_var* u_v,underlying_under_attr* u_a){
 	u_v->gamma += u_a->rfir*delta_time;
 	u_v->time += delta_time;
 }

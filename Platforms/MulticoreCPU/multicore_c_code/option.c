@@ -13,7 +13,7 @@ void option_derivative_init(double t,double c,double k,double p,option_opt_attr*
 	o_a->points = p;
 }
 
-void option_derivative_path_init(european_option_opt_var* o_v,option_opt_attr* o_a){
+void option_derivative_path_init(option_opt_var* o_v,option_opt_attr* o_a){
 	o_v->value=0;
 	o_v->delta_time=o_a->time_period/o_a->points;
 }

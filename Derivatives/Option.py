@@ -11,15 +11,17 @@ class Option:
     underlying = None
     
     #Attributes - things that are set once
+    strike_price = 0.0
     time_period = 0.0
     call = None
+    points = 0
     
     #Variables - things that are changed throughout
     delta_time = 0.0
     value = 0.0
 
 
-    def __init__(self,underlying,time_period,call):
+    def __init__(self,underlying,time_period,call,strike_price,points):
         '''
         Constructor
         '''
@@ -27,6 +29,8 @@ class Option:
         
         self.time_period = time_period
         self.call = call
+        self.strike_price = strike_price
+        self.points = points
         
     def path_init(self):
         self.value = 0
@@ -34,5 +38,7 @@ class Option:
         
     def path(self,price,time): pass
     
-    def payoff(self,end_price): return end_price
+    def payoff(self,end_price):
+        if(call): return end_price - strike_price
+        else: return strike_price - end_price
         
