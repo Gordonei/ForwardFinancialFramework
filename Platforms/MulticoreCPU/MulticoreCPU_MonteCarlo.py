@@ -260,10 +260,13 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
     
   def execute(self):
-    try: os.chdir("../../ForwardFinancialFramework/Solvers/MonteCarlo/multicore_c_code")
-    except: print "Multicore C directory doesn't exist!"
+    try:
+      os.chdir("..")
+      os.chdir(self.platform.platform_directory())
+    except:
+      os.chdir("bin")
+      return "Multicore C directory doesn't exist!"
 
-    #print subprocess.check_output("pwd")
     run_cmd = ["./%s"%self.output_file_name]
     for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k])) 
     
@@ -281,9 +284,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     results = subprocess.check_output(run_cmd)
     finish = time.time()
     
-    results = results.split("")[:-1]
+    results = results.split("\n")[:-1]
     results.append((finish-start)*1000000)
     
-    os.chdir("../../../bin")
+    os.chdir(self.platform.root_directory())
+    os.chdir("bin")
     
     return results
