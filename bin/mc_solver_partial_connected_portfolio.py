@@ -5,8 +5,7 @@ import os,time,subprocess,sys,time,math,multiprocessing
 sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Black_Scholes,Heston
 from ForwardFinancialFramework.Derivatives import European_Option,Barrier_Option,Double_Barrier_Option,Digital_Double_Barrier_Option,Asian_Option
-from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
-from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU
+from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU, MulticoreCPU_MonteCarlo
 
 if __name__ == '__main__':
     paths = 10000000 #10 Million Paths
@@ -263,8 +262,9 @@ if __name__ == '__main__':
     multicore_platform = MulticoreCPU.MulticoreCPU(threads)
     
     for d in derivative: d.points = points
-    mc_solver = MonteCarlo.MonteCarlo(derivative,paths,multicore_platform,reduce_underlyings=False)
+    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(derivative,paths,multicore_platform,reduce_underlyings=False)
     mc_solver.generate()
+    mc_solver.compile()
     results = mc_solver.execute()
     
     print "Derivative Values"

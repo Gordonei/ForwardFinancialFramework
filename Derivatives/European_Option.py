@@ -16,10 +16,7 @@ class European_Option(Option.Option):
         '''
         Constructor
         '''
-        Option.Option.__init__(self,underlying,time_period,call)
-        self.strike_price = strike_price
-        self.underlying = underlying
-        self.points = points
+        Option.Option.__init__(self,underlying,time_period,call,strike_price,points)
         
     def path_init(self):
         self.value = 0
