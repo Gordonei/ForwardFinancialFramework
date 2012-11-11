@@ -5,9 +5,10 @@ Comments for on-going work go here.
 Tasks
 -----
 1) Change Java class and source file names to be compliant with the lower case scheme used in the c and Python code. [DONE]
-2) Maxeler Host code generation for the Monte Carlo Solver
-3) Maxeler Kernel code generation for the Monte Carlo Solver*
-4) Automating Maxeler compiler flow for the Monte Carlo Solver**
+2) Change Monte Carlo and Multicore Monte Carlo Solver infrastructure to allow for easier resuse of multicore code in Maxeler Code Generation [DONE]
+3) Maxeler Host code generation for the Monte Carlo Solver
+4) Maxeler Kernel code generation for the Monte Carlo Solver*
+5) Automating Maxeler compiler flow for the Monte Carlo Solver**
 
 Tasks' Notes
 ----------
@@ -16,9 +17,5 @@ Tasks' Notes
 
 Proposed
 --------
-1) Sort out path issues in Solver generation and compilation code -> Rather generate code in string and write only when necessary
-2) Separate generation, compilation and execution from main solver class.
-  2.1) Generation goes to additional classes
-  2.2) Compilation and Execution made the responsibility of platform class
-3) Improve the monitoring infrastructure - emphasis on resource utilisation
-4) Cleanup behaviour for solvers
+1) Improve the monitoring infrastructure - emphasis on resource utilisation
+2) Cleanup behaviour for solvers
