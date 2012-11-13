@@ -432,7 +432,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       os.chdir(self.platform.root_directory)
       os.chdir("bin")
           
-  def execute(self):
+  def execute(self,cleanup=False):
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -463,7 +463,16 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
     
+    if(cleanup): self.cleanup()
+    
     return results
+  
+  def cleanup(self):
+    os.chdir("..")
+    os.chdir(self.platform.platform_directory())
+    
+    subprocess.call(["rm","%s.c"%self.output_file_name])
+    subprocess.call(["rm","%s"%self.output_file_name])
   
   def generate_c_source(self,code_string,name_extension=""):
     os.chdir("..")
