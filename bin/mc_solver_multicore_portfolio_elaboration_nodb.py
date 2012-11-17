@@ -1,26 +1,19 @@
 '''
 Created on 30 May 2012
 '''
-import os,time,subprocess,sys,time,math,multiprocessing,MySQLdb
+import os,time,subprocess,sys,time,math,multiprocessing
 sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Black_Scholes,Heston
 from ForwardFinancialFramework.Derivatives import European_Option,Barrier_Option,Double_Barrier_Option,Digital_Double_Barrier_Option,Asian_Option
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU, MulticoreCPU_MonteCarlo
 
-if(len(sys.argv)>=8):
-    db_hostname = sys.argv[1]
-    db_username = sys.argv[2]
-    db_password = sys.argv[3]
-    db_name = sys.argv[4]
-    tablename = sys.argv[5]
-    paths = int(sys.argv[6])
-    points = int(sys.argv[7])
+if(len(sys.argv)>=4):
+    output_filename = sys.argv[1]
+    paths = int(sys.argv[2])
+    points = int(sys.argv[3])
 
-if (__name__ == '__main__') and (len(sys.argv)>=8):
-    db = MySQLdb.connect(d_hostname,db_username,db_password,db_name)
-    
-    db.query("DELETE FROM %s;"%tablename)
-    db.commit()
+if (__name__ == '__main__') and (len(sys.argv)>=5):
+    output_file = open(output_filename,"w")
     
     derivative = []
     derivative_set = range(1,14)
@@ -303,8 +296,7 @@ if (__name__ == '__main__') and (len(sys.argv)>=8):
 	CPU_time = float(results[offset])
 	Wall_time = float(results[offset+1])
 	efficiency_factor = 1.0*CPU_time/threads/Wall_time
-	db.query("INSERT INTO %s VALUES(%d,%d,%d,%f);"%(tablename,i,int(CPU_time),int(Wall_time),efficiency_factor))
-	db.commit()
+	output_file.write("%d,%d,%d,%f\n"%(i,int(CPU_time),int(Wall_time),efficiency_factor))
 	
 	print "\n*Performance Monitoring*"
 	print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time/threads))
@@ -312,4 +304,4 @@ if (__name__ == '__main__') and (len(sys.argv)>=8):
 	print ("Efficiency Factor: %f"%efficiency_factor)
 	print "\n\n"
         
-else: print "use: python mc_solver_multicore_portfolio_elaboration.py [db_hostname] [db_username] [db_password] [db_name] [tablename] [path] [points]"
+else: print "use: python mc_solver_multicore_portfolio_elaboration.py [output_filename] [path] [points]"
