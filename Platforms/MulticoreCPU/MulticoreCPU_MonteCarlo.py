@@ -11,10 +11,12 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     self.solver_metadata["threads"] = self.platform.threads #Number of threads set by the platform
     
     self.utility_libraries = ["math.h","pthread.h","stdint.h","stdlib.h","stdio.h","sys/time.h","sys/resource.h","unistd.h"]
+    self.activity_thread_name = "multicore_montecarlo_activity_thread"
     
   def generate(self,override=True):
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
+    
     if(override or not os.path.exists("%s.c"%self.output_file_name)):
         os.chdir(self.platform.root_directory())
         os.chdir("bin")
@@ -126,7 +128,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     index = 0
     for o_a in self.derivative_attributes:
         for a in o_a:
-            output_list.append("%s_%d_%s = strtod(argv[%d],NULL);\n"%(self.derivative[index].name,index,a,temp))
+            output_list.append("%s_%d_%s = strtod(argv[%d],NULL);"%(self.derivative[index].name,index,a,temp))
             temp += 1
         index += 1
         
@@ -165,7 +167,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("temp_data[i].thread_paths += paths%threads;")
     output_list.append("}")
     output_list.append("temp_data[i].thread_result = thread_results[i];")
-    output_list.append("pthread_create(&pthreads[i],&attr,path_loop,&temp_data[i]);")
+    output_list.append("pthread_create(&pthreads[i],&attr,%s,&temp_data[i]);"%self.activity_thread_name)
     output_list.append("}")
     ##Join Threads, aggregate results
     output_list.append("//**Waiting for threads to join**")
@@ -210,8 +212,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
   def generate_activity_thread(self):
     #Generate Path Loop Function
     output_list = []
-    output_list.append("//*Path Loop Function*")
-    output_list.append("void * path_loop(void* thread_arg){")
+    output_list.append("//*MC Multicore Activity Thread Function*")
+    output_list.append("void * %s(void* thread_arg){"%self.activity_thread_name)
     
     ##Declare Loop Data Structures
     output_list.append("//**Loop Data Structures**")
@@ -418,6 +420,12 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         #Optimisation Level 3
         compile_cmd.append("-O3")
         compile_cmd.append("-w")
+        
+        #SSE
+        compile_cmd.append("-msse3")
+        
+        #Fast Math
+        compile_cmd.append("-ffast-math")
         
         #print compile_cmd
         result = subprocess.check_output(compile_cmd)
