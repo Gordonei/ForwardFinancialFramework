@@ -22,16 +22,17 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   
   def generate(self,override=True):
     #Generate C Host Code largely using Multicore infrastructure
-    MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate(self,override)
+    MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate(self,"_Host_Code.c",override)
     
     #Generate Maxeler Kernel Code
     #self.generate_kernel()
     
     #Generate Maxeler HW Builder Code
-    #self.generate_hw_builder()
+    hw_builder_code_string = self.generate_hw_builder()
+    self.generate_java_source(hw_builder_code_string,"_HW_Builder.java")
     
     #Generate Maxeler Makefile
-    #self.generate_makefile()
+    self.generate_makefile()
   
   def generate_activity_thread(self):
     output_list = []
@@ -50,14 +51,14 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("uint32_t *seeds_in;")
     output_list.append("float *values_out;")
     
-    seeds_in = math.ceil(float(len(self.underlying))/4)
+    seeds_in = math.ceil(float(len(self.underlying))/4) #Making sure seeds in is in increments of 128 bits
     #if(len(self.underlying)%4): seeds_in = seeds_in + (4-len(self.underlying)%4) #Making sure seeds in is in increments of 128 bits
 
-    values_out = math.ceil(float(len(self.derivative))/4)
+    values_out = math.ceil(float(len(self.derivative))/4) #Making sure values are in increments of 128 bits
     #if(len(self.underlying)%4): values_out = values_out + (4-len(self.derivative)%4) #Making sure values are in increments of 128 bits
   
-    output_list.append("posix_memalign(&seeds_in,%d,sizeof(uint32_t)*%d);"%(seeds_in*4,seeds_in*self.iterations))
-    output_list.append("posix_memalign(&values_out,%d,sizeof(float)*%d);"%(values_out*4,values_out*self.iterations))
+    output_list.append("posix_memalign(&seeds_in,%d,sizeof(uint32_t)*%d*iterations);"%(seeds_in*4,seeds_in))
+    output_list.append("posix_memalign(&values_out,%d,sizeof(float)*%d*iterations);"%(values_out*4,values_out))
     output_list.append("uint32_t initial_seed = lrand48()%%(2**31-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
     output_list.append("for (i=0;i<%d;i++){"%(self.iterations*seeds_in)) #Quick way of creating many different seeds
     output_list.append("seeds_in[i] = initial_seed+i;")
@@ -97,7 +98,6 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("}")
     output_list.append("//**Returning Result**")
     for d in self.derivative: output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
-    
     output_list.append("}")
     
     return output_list
@@ -130,6 +130,99 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     os.chdir("bin")
     
-  def generate_hw_builder(self): pass
+  def generate_hw_builder(self):
+    output_list = []
+    
+    #Package Declaration
+    output_list.append("package mc_solver_prototype_maxeler;")
+    
+    #Maxeler Library imports
+    output_list.append("import static config.BoardModel.BOARDMODEL;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.Kernel;")
+    output_list.append("import com.maxeler.maxcompiler.v1.managers.BuildConfig;")
+    output_list.append("import com.maxeler.maxcompiler.v1.managers.standard.Manager;")
+    output_list.append("import com.maxeler.maxcompiler.v1.managers.standard.Manager.IOType;")
+    
+    #Class declaration
+    output_list.append("public class MC_Solver_Test_HW_Builder {")
+    
+    #Kernel Variable Setting
+    output_list.append("private static int instance_paths = %d;"%self.solver_metadata["instance_paths"])
+    output_list.append("private static int path_points = %d;"%self.solver_metadata["path_points"])
+    output_list.append("private static int instances = %d;"%self.solver_metadata["instances"])
+    
+    #Main Method
+    output_list.append("public static void main(String[] args) {")
+    #Manager Declaration
+    output_list.append("Manager m = new Manager(\"%s\", BOARDMODEL);"%self.output_file_name)
+    #Kernel Declaration and parameter setting
+    output_list.append("Kernel k = new MC_Solver_Test_Kernel(m.makeKernelParameters(\"%s_Kernel\"),instance_paths,path_points,instances);"%self.output_file_name)
+    output_list.append("m.setKernel(k);")
+    output_list.append("m.setIO(IOType.ALL_PCIE);")
+    output_list.append("m.addMaxFileConstant(\"instance_paths\", instance_paths);")
+    output_list.append("m.addMaxFileConstant(\"path_points\", path_points);")
+    output_list.append("m.addMaxFileConstant(\"instances\", instances);")
+    output_list.append("m.setClockFrequency(100);")
+    #Build Configuration
+    output_list.append("BuildConfig c = new BuildConfig(BuildConfig.Level.FULL_BUILD);")
+    output_list.append("c.setBuildEffort(BuildConfig.Effort.MEDIUM);")  #LOW,MEDIUM,HIGH,VERY_HIGH
+    output_list.append("c.setEnableTimingAnalysis(true);")
+    output_list.append("c.setMPPRCostTableSearchRange(1,100);")
+    output_list.append("c.setMPPRParallelism(10);")
+    output_list.append("m.setBuildConfig(c);")
+    output_list.append("m.build();")
+    output_list.append("}")#Closing off Main Method
+    output_list.append("}")#Closing off Class decleration
+    
+    return output_list
   
-  def generate_makefile(self): pass
+  def generate_makefile(self):
+    os.chdir("..")
+    os.chdir(self.platform.platform_directory())
+    
+    makefile = open("Makefile","w")
+    makefile.write("BASEDIR=../..\n")
+    makefile.write("PACKAGE=MaxelerFPGA_MonteCarlo\n")
+    makefile.write("APP=%s\n"%self.output_file_name)
+    makefile.write("HWMAXFILE=$(APP).max\n")
+    #makefile.write("HOSTSIMMAXFILE=$(APP)_Host_Sim.max")
+    makefile.write("HWBUILDER=$(APP)_HW_Builder.java\n")
+    #makefile.write("HOSTSIMBUILDER=$(APP)_Host_Sim_Builder.java")
+    #makefile.write("SIMRUNNER=$(APP)_Sim_Runner.java")
+    makefile.write("HOSTCODE=$(APP)_Host_Code.c\n")
+    makefile.write("KERNELCODE=$(APP)_Kernel.java\n\n")
+    
+    makefile.write("nullstring :=\n")
+    makefile.write("space := $(nullstring)\n")
+    makefile.write("MAXCOMPILERDIR_QUOTE:=$(subst $(space),\ ,$(MAXCOMPILERDIR))\n")
+    makefile.write("include $(MAXCOMPILERDIR_QUOTE)/lib/Makefile.include\n")
+    makefile.write("ifndef MAXCOMPILERDIR\n")
+    makefile.write("\t$(error MAXCOMPILERDIR environment variable is not set)\n")
+    makefile.write("endif\n")
+    makefile.write("nullstring :=\n")
+    makefile.write("space := $(nullstring) # a space at the end\n")
+    makefile.write("MAXCOMPILERDIR_QUOTE:=$(subst $(space),\\ ,$(MAXCOMPILERDIR))\n")
+    makefile.write("include $(MAXCOMPILERDIR)/lib/Makefile.include\n")
+    makefile.write("include $(MAXCOMPILERDIR_QUOTE)/examples/common/Makefile.include\n")
+    makefile.close()
+    
+    os.chdir(self.platform.root_directory())
+    os.chdir("bin")
+    
+  """def generate_java_source(self,code_string,name_extension=""):
+    os.chdir("..")
+    os.chdir(self.platform.platform_directory())
+    
+    output_file = open("%s%s.java"%(self.output_file_name,name_extension),"w")
+    tab_count = 0;
+    for c_s in code_string:
+        if("*" in c_s and "//" in c_s): output_file.write("\n") #Insert a blank line if the line is a comment section
+        for i in range(tab_count): output_file.write("\t")	#Tabify the code
+        output_file.write("%s\n"%c_s)
+            
+        if("{" in c_s): tab_count = tab_count+1
+        if("}" in c_s): tab_count = max(tab_count-1,0)
+    output_file.close()
+    
+    os.chdir(self.platform.root_directory())
+    os.chdir("bin")"""
