@@ -6,16 +6,20 @@ Tasks
 -----
 1) Change Java class and source file names to be compliant with the lower case scheme used in the c and Python code. [DONE]
 2) Change Monte Carlo and Multicore Monte Carlo Solver infrastructure to allow for easier resuse of multicore code in Maxeler Code Generation [DONE]
-3) Maxeler Host code generation for the Monte Carlo Solver
-4) Maxeler Kernel code generation for the Monte Carlo Solver*
-5) Automating Maxeler compiler flow for the Monte Carlo Solver**
+3) Maxeler Host code generation for the Monte Carlo Solver [DONE]
+4) Maxeler Kernel code generation for the Monte Carlo Solver [IN PROGRESS]
+5) Automating Maxeler compiler flow for the Monte Carlo Solver*
 
 Tasks' Notes
-----------
-* Support for multiple derivatives depending on the same underlying - issue with numerical accurcracy making multirate time progression difficult
-** Link to broader effort to support over-IP execution?
+------------
+* Link to broader effort to support over-IP execution?
 
 Proposed
 --------
 1) Improve the monitoring infrastructure - emphasis on resource utilisation
 2) Cleanup behaviour for solvers
+3) Modify Monte Carlo algorithm to accurracy on demand 
+
+Put Off
+-------
+* Support for multiple derivatives depending on the same underlying - issue with numerical accurcracy making multirate time progression difficult by comparison to the CPU. For now assuming that shared underlyings only have the same time period and points.
