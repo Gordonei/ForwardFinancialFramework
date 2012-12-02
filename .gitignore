@@ -26,5 +26,11 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-# Generate code
-mc_solver_multi_core_*
+# Generated code
+mc_solver_multicore_*
+mc_solver_maxeler_fpga_*
+Makefile
+
+#Example Code
+MC_Solver_Test_*
+MC_Solver_prototype_maxeler
