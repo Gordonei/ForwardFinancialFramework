@@ -13,7 +13,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     self.utility_libraries = ["math.h","pthread.h","stdint.h","stdlib.h","stdio.h","sys/time.h","sys/resource.h","unistd.h","string.h"]
     self.activity_thread_name = "multicore_montecarlo_activity_thread"
     
-  def generate(self,name_extension="",override=True,verbose=False):
+  def generate(self,name_extension=".c",override=True,verbose=False):
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
     
@@ -486,6 +486,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     os.chdir(self.platform.platform_directory())
     
     output_file = open("%s%s"%(self.output_file_name,name_extension),"w")
+    print "%s%s"%(self.output_file_name,name_extension)
     tab_count = 0;
     for c_s in code_string:
         if("*" in c_s and "//" in c_s):

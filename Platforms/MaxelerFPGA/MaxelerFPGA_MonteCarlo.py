@@ -99,7 +99,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("for(int i=0;i<%d;i++){"%(self.iterations))
     for d in self.derivative:
       index = self.derivative.index(d)
-      output_list.append("temp_total_%d += values_out[i*%d+%d]/instance_paths;"%(index,values_out,index))
+      output_list.append("temp_total_%d += values_out[i*%d+%d];"%(index,values_out,index))
     output_list.append("}")
     output_list.append("//**Returning Result**")
     for d in self.derivative: output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
@@ -260,7 +260,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         output_list.append("%s_%d.connect_path();"%(d.name,d_index))
         output_list.append("HWVar payoff_%d = pp.eq(this.path_points-1) ? (%s_%d.payoff(temp_price_%d)) : 0.0;"%(d_index,d.name,d_index,u_index))
         output_list.append("HWVar loopAccumulate_%d = accum.makeAccumulator(payoff_%d.cast(accumType), ap);"%(d_index,d_index))
-        output_list.append("accumulate_%d += loopAccumulate_%d/this.instance_paths;"%(d_index,d_index))
+        output_list.append("accumulate_%d += loopAccumulate_%d;"%(d_index,d_index))
     
     output_list.append("}")
     
@@ -268,7 +268,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("KArray<HWVar> output_array = outputArrayType.newInstance(this);")
     for d in self.derivative:
       index = self.derivative.index(d)
-      output_list.append("output_array[%d] <== (accumulate_%d.cast(inputFloatType)/(this.instances));"%(index,index))
+      output_list.append("output_array[%d] <== (accumulate_%d.cast(inputFloatType));"%(index,index))
       
     for i in range(len(self.derivative),int(values_out)): output_list.append("output_array[%d] <== this.constant.var(inputFloatType,0.0);"%i)
     
