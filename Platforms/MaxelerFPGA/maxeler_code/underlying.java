@@ -1,5 +1,6 @@
-package mc_solver_prototype_maxeler;
+package mc_solver_maxeler;
 
+import com.maxeler.maxcompiler.v1.kernelcompiler.Kernel;
 import com.maxeler.maxcompiler.v1.kernelcompiler.KernelLib;
 import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
 
@@ -7,7 +8,7 @@ public class underlying extends KernelLib {
 
 	String name = "underlying";
 
-	protected MC_Solver_Test_Kernel kernel;
+	protected Kernel kernel;
 	protected HWVar point;
 	protected HWVar path;
 
@@ -23,7 +24,7 @@ public class underlying extends KernelLib {
 	//protected HWVar temp_price;
 	//protected HWVar delta_time;
 
-	public underlying(MC_Solver_Test_Kernel k,HWVar pp,HWVar p,underlying_parameters up){
+	public underlying(MC_Solver_Maxeler_Base_Kernel k,HWVar pp,HWVar p,underlying_parameters up){
 		super(k);
 		this.point = pp;
 		this.path = p;
@@ -47,8 +48,8 @@ public class underlying extends KernelLib {
 	}
 
 	public void path_init(){
-		this.carried_gamma = this.kernel.expType.newInstance(this);
-		this.carried_time = this.kernel.expType.newInstance(this);
+		this.carried_gamma = ((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType.newInstance(this);
+		this.carried_time = ((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType.newInstance(this);
 
 		this.gamma = this.point.eq(0) ? 0.0 : carried_gamma;
 		this.time = this.point.eq(0) ? 0.0 : carried_time;
@@ -61,11 +62,11 @@ public class underlying extends KernelLib {
 	}
 
 	public void connect_path(){
-		this.carried_gamma <== this.stream.offset(this.new_gamma,-this.kernel.paths);
-		this.carried_time <== this.stream.offset(this.new_time,-this.kernel.paths);
+		this.carried_gamma <== this.stream.offset(this.new_gamma,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).instance_paths);
+		this.carried_time <== this.stream.offset(this.new_time,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).instance_paths);
 	}
 
-	public Underlying_Parameters getParameters(){
+	public underlying_parameters getParameters(){
 		return this.parameters;
 	}
 

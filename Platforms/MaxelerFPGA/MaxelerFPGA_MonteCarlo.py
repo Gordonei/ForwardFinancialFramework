@@ -14,7 +14,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     self.solver_metadata["path_points"] = 252
     self.iterations = int(self.solver_metadata["paths"]/self.solver_metadata["instance_paths"]) #calculating the number of iterations required of the kernel
     
-    self.utility_libraries = ["stdio.h","stdlib.h","stdint.h","pthread.h","MaxCompilerRT.h"]
+    self.utility_libraries = ["stdio.h","stdlib.h","stdint.h","pthread.h","MaxCompilerRT.h","sys/time.h","sys/resource.h"]
     
     self.activity_thread_name = "maxeler_montecarlo_activity_thread"
   
@@ -22,14 +22,15 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   
   def generate(self,override=True):
     #Generate C Host Code largely using Multicore infrastructure
-    MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate(self,"_Host_Code.c",override)
+    MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate(self,"_Host_Code.c",override,verbose=True)
     
     #Generate Maxeler Kernel Code
-    #self.generate_kernel()
+    kernel_code_string = self.generate_kernel()
+    self.generate_source(kernel_code_string,"_Kernel.java")
     
     #Generate Maxeler HW Builder Code
     hw_builder_code_string = self.generate_hw_builder()
-    self.generate_java_source(hw_builder_code_string,"_HW_Builder.java")
+    self.generate_source(hw_builder_code_string,"_HW_Builder.java")
     
     #Generate Maxeler Makefile
     self.generate_makefile()
@@ -39,27 +40,31 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
     output_list.append("//*MC Maxeler Activity Thread Function*")
     output_list.append("void * %s(void* thread_arg){"%self.activity_thread_name)
+    output_list.append("struct thread_data* temp_data;")
+    output_list.append("temp_data = (struct thread_data*) thread_arg;")
     output_list.append("//**Creating Maxeler Variables, opening and configuring the FPGA**")
-    output_list.append("char *device_name = (argc==2 ? argv[1] : NULL);") #TODO
+    output_list.append("char *device_name = \"/dev/maxeler0\";") #TODO
     output_list.append("max_maxfile_t* maxfile;")
     output_list.append("max_device_handle_t* device;")
     output_list.append("maxfile = max_maxfile_init_%s();"%self.output_file_name)
     output_list.append("device = max_open_device(maxfile, device_name);")
     output_list.append("max_set_terminate_on_error(device);")
     
-    output_list.append("//**Creating kernel IO variables, as well as generating random seeds to send to the FPGA**")
+    output_list.append("//**Creating kernel IO variables**")
     output_list.append("uint32_t *seeds_in;")
     output_list.append("float *values_out;")
     
-    seeds_in = math.ceil(float(len(self.underlying))/4) #Making sure seeds in is in increments of 128 bits
-    #if(len(self.underlying)%4): seeds_in = seeds_in + (4-len(self.underlying)%4) #Making sure seeds in is in increments of 128 bits
-
+    seeds_in = math.ceil(float(len(self.underlying))/4) #Making sure seeds in is in increments of 128 bits (groups of 4 x 32 bit variables)
     values_out = math.ceil(float(len(self.derivative))/4) #Making sure values are in increments of 128 bits
-    #if(len(self.underlying)%4): values_out = values_out + (4-len(self.derivative)%4) #Making sure values are in increments of 128 bits
   
-    output_list.append("posix_memalign(&seeds_in,%d,sizeof(uint32_t)*%d*iterations);"%(seeds_in*4,seeds_in))
-    output_list.append("posix_memalign(&values_out,%d,sizeof(float)*%d*iterations);"%(values_out*4,values_out))
-    output_list.append("uint32_t initial_seed = lrand48()%%(2**31-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
+    output_list.append("seeds_in = malloc(%d*sizeof(uint32_t));"%(int(self.iterations*seeds_in*4)))
+    output_list.append("values_out = malloc(%d*sizeof(float));"%(int(self.iterations*values_out*4)))
+    #output_list.append("posix_memalign(&seeds_in,%d,sizeof(uint32_t)*%d);"%(seeds_in*4,self.iterations*seeds_in*4))
+    #output_list.append("posix_memalign(&values_out,%d,sizeof(float)*%d);"%(values_out*4,self.iterations*values_out*4))
+    
+    output_list.append("//**Generating initial random seed**")
+    output_list.append("uint32_t initial_seed = ((uint32_t)lrand48());") #%%((uint32_t)pow(2,31)-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
+    output_list.append("//**Populating Seed Array**")
     output_list.append("for (i=0;i<%d;i++){"%(self.iterations*seeds_in)) #Quick way of creating many different seeds
     output_list.append("seeds_in[i] = initial_seed+i;")
     output_list.append("}")
@@ -84,9 +89,9 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         
     output_list.append("//***Streaming IO Data to FPGA and Running Kernel***")
     output_list.append("max_run(device,")
-    output_list.append("max_input(\"seeds_in\",seeds_in,%d*iterations*sizeof(uint32_t)),"%(seeds_in))
-    output_list.append("max_output(\"values_out\", values_out, %d*iterations*sizeof(float)),"%(values_out))
-    output_list.append("max_runfor(\"MC_Solver_Test_Kernel\",iterations*instance_paths*path_points),")
+    output_list.append("max_input(\"seeds_in\",seeds_in,%d*%d*sizeof(uint32_t)),"%(4*seeds_in,self.iterations))
+    output_list.append("max_output(\"values_out\", values_out, %d*%d*sizeof(float)),"%(4*values_out,self.iterations))
+    output_list.append("max_runfor(\"%s_Kernel\",%d*instance_paths*path_points),"%(self.output_file_name,self.iterations))
     output_list.append("max_end());")
     
     output_list.append("//**Post-Kernel Calculations**")
@@ -111,30 +116,182 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   
   def generate_kernel(self,overide=True):
     #Changing to code generation directory
-    try:
-      os.chdir("..")
-      os.chdir(self.platform.platform_directory())
+    os.chdir("..")
+    os.chdir(self.platform.platform_directory())
       
-      #Checking that the source code for the derivative and underlying is present
-      for u in self.underlying:
-        if(not(os.path.exists("%s.java"%u.name))): raise IOError, ("missing the source code for the underlying - %s.java" % (u.name))
-        if(not(os.path.exists("%s_parameters.java"%u.name))): raise IOError, ("missing the source code for the underlying parameter set - %s_parameters.java" % (u.name))
-      for d in self.derivative:
-        if(not(os.path.exists("%s.java"%d.name))): raise IOError, ("missing the source code for the derivative - %s.java" %  (d.name))
-        if(not(os.path.exists("%s_parameters.java"%d.name))): raise IOError, ("missing the source code for the derivative parameter set - %s_parameters.java" %  (d.name))
-      
-      os.chdir(self.platform.root_directory)
-      
-    except:
-      print "Maxeler Code directory doesn't exist!"
+    #Checking that the source code for the derivative and underlying is present
+    for u in self.underlying:
+      if(not(os.path.exists("%s.java"%u.name))): raise IOError, ("missing the source code for the underlying - %s.java" % (u.name))
+      if(not(os.path.exists("%s_parameters.java"%u.name))): raise IOError, ("missing the source code for the underlying parameter set - %s_parameters.java" % (u.name))
+    for d in self.derivative:
+      if(not(os.path.exists("%s.java"%d.name))): raise IOError, ("missing the source code for the derivative - %s.java" %  (d.name))
+      if(not(os.path.exists("%s_parameters.java"%d.name))): raise IOError, ("missing the source code for the derivative parameter set - %s_parameters.java" %  (d.name))
     
+    os.chdir(self.platform.root_directory())
     os.chdir("bin")
+    
+    output_list = []
+    
+    #Package Declaration
+    output_list.append("package mc_solver_maxeler;")
+    
+    #Maxeler Library Imports
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.Kernel;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.KernelParameters;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.Accumulator;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.KernelMath;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.Reductions;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.core.CounterChain;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWFix;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWFix.SignMode;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWFloat;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.composite.KArray;")
+    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.composite.KArrayType;")
+    
+    #Class Declaration
+    output_list.append("public class %s_Kernel extends MC_Solver_Maxeler_Base_Kernel {"%self.output_file_name)
+    
+    #Type Declarations
+    output_list.append("//*Type Decleration*\n")
+    #output_list.append("HWFloat inputFloatType = Kernel.hwFloat(8, 24);")
+    #output_list.append("HWFloat inputDoubleType = Kernel.hwFloat(8, 24);")
+    #output_list.append("HWFix accumType = Kernel.hwFix(32,32,SignMode.TWOSCOMPLEMENT);")
+    seeds_in = math.ceil(float(len(self.underlying))/4)*4 #Making sure seeds_in is in increments of 128 bits
+    output_list.append("KArrayType<HWVar> inputArrayType = new KArrayType<HWVar>(Kernel.hwUInt(32),%d);"%seeds_in)
+    values_out = math.ceil(float(len(self.derivative))/4)*4 #Making sure values_out are in increments of 128 bits
+    output_list.append("KArrayType<HWVar> outputArrayType = new KArrayType<HWVar>(inputFloatType,%d);"%values_out)
+    
+    #Class Parameters
+    """output_list.append("//*Class Parameters*\n")
+    output_list.append("protected int instance_paths;")
+    output_list.append("protected int path_points;")
+    output_list.append("protected int instances;")
+    output_list.append("Accumulator.Params ap;")"""
+    
+    #Class Declaration
+    output_list.append("//*Kernel Class*\n")
+    output_list.append("public %s_Kernel(KernelParameters parameters,int instance_paths,int path_points,int instances){"%self.output_file_name)
+    output_list.append("super(parameters,instance_paths,path_points,instances);")
+    """output_list.append("this.instance_paths=instance_paths;")
+    output_list.append("this.path_points=path_points;")
+    output_list.append("this.instances=instances;")"""
+    
+    #Counters
+    output_list.append("//**Counters**\n")
+    output_list.append("CounterChain chain = control.count.makeCounterChain();")
+    output_list.append("HWVar pp = chain.addCounter(this.path_points,1);") #Path Points is the outer loop to implement the C-Slow architecture
+    output_list.append("HWVar p = chain.addCounter(this.instance_paths,1);")
+    
+    #Scaler Inputs
+    output_list.append("//**Scaler Inputs**\n")
+    output_list.append("//***Underlying Attributes***\n")
+    index = 0
+    for u_a in self.underlying_attributes:
+        for a in u_a:
+            temp_attribute_name = "%s_%d_%s" % (self.underlying[index].name,index,a)
+            output_list.append("HWVar %s = (io.scalarInput(\"%s\", inputFloatType)).cast(inputDoubleType);"%(temp_attribute_name,temp_attribute_name))
+        index += 1
+    
+    output_list.append("//***Derivative Attributes***")
+    index = 0
+    for o_a in self.derivative_attributes:
+        for a in o_a:
+            temp_attribute_name = "%s_%d_%s" % (self.derivative[index].name,index,a)
+            output_list.append("HWVar %s = (io.scalarInput(\"%s\", inputFloatType)).cast(inputDoubleType);"%(temp_attribute_name,temp_attribute_name))
+        index += 1
+        
+    output_list.append("//**Random Seed Input**\n")
+    output_list.append("KArray<HWVar> input_array = io.input(\"seeds_in\",inputArrayType,(p.eq(0)&pp.eq(0)));")
+    for u in self.underlying:
+      index = self.underlying.index(u)
+      output_list.append("HWVar seeds_in_%d = input_array[%d];"% (index,index))
+    
+    output_list.append("//**Creating Accumulators**\n")
+    output_list.append("Accumulator accum = Reductions.accumulator;")
+    output_list.append("Accumulator.Params ap = accum.makeAccumulatorConfig(accumType).withClear(pp.eq(0));")
+    for d in self.derivative: output_list.append("HWVar accumulate_%d = this.constant.var(accumType,0.0);"%self.derivative.index(d))
+    
+    output_list.append("//**Parallelism Loop**")
+    output_list.append("for (int i=0;i<this.instances;i++){")
+    
+    output_list.append("//***Underlying Declaration(s)***")
+    for u in self.underlying:
+      index = self.underlying.index(u)
+      
+      #Creating the parameter object
+      temp_string = "%s_parameters %s_%d_parameters = new %s_parameters(this" % (u.name,u.name,index,u.name)
+      for u_a in self.underlying_attributes[index][:-1]: temp_string = ("%s,%s_%d_%s"%(temp_string,u.name,index,u_a))
+      temp_string = "%s,%s_%d_%s);"%(temp_string,u.name,index,self.underlying_attributes[index][-1])
+      
+      output_list.append(temp_string)
+      output_list.append("%s %s_%d = new %s(this,pp,p,%s_%d_parameters);"%(u.name,u.name,index,u.name,u.name,index))
+      output_list.append("%s_%d.path_init();"%(u.name,index))
+      
+    output_list.append("//***Derivative Declaration(s)***")
+    for d in self.derivative:
+      index = self.derivative.index(d)
+      
+      #Creating the parameter object
+      temp_string = "%s_parameters %s_%d_parameters = new %s_parameters(this" % (d.name,d.name,index,d.name)
+      for d_a in self.derivative_attributes[index][:-1]: temp_string = ("%s,%s_%d_%s"%(temp_string,d.name,index,d_a))
+      temp_string = "%s,%s_%d_%s);"%(temp_string,d.name,index,self.derivative_attributes[index][-1])
+      
+      output_list.append(temp_string)
+      output_list.append("%s %s_%d = new %s(this,pp,p,this.constant.var(true),%s_%d_parameters);"%(d.name,d.name,index,d.name,d.name,index))
+      output_list.append("%s_%d.path_init();"%(d.name,index)) #path initialisation
+      #output_list.append("HWVar delta_time_%d = %s_%d.delta_time;"%(index,d.name,index))
+      
+    output_list.append("//***Path Initialisation, Path, Payoff Calls and Accumulation***")
+    
+    temp_path_call = []
+    for d in self.derivative:
+      d_index = self.derivative.index(d)
+      for u in d.underlying:
+        u_index = self.underlying.index(u)
+        if("%s_%d"%(u.name,u_index) not in temp_path_call): #checking to see if this path has not been called already
+          output_list.append("%s_%d.path(%s_%d.delta_time);"%(u.name,u_index,d.name,d_index)) #Calling the path function
+          output_list.append("%s_%d.connect_path();"%(u.name,u_index))
+          temp_path_call.append("%s_%d"%(u.name,u_index))
+    
+          output_list.append("HWVar temp_price_%d = (%s_%d.parameters.current_price*KernelMath.exp(%s_%d.gamma));"%(u_index,u.name,u_index,u.name,u_index))
+        
+        output_list.append("%s_%d.path(temp_price_%d,%s_%d.time);"%(d.name,d_index,u_index,u.name,u_index))
+        output_list.append("%s_%d.connect_path();"%(d.name,d_index))
+        output_list.append("HWVar payoff_%d = pp.eq(this.path_points-1) ? (%s_%d.payoff(temp_price_%d)) : 0.0;"%(d_index,d.name,d_index,u_index))
+        output_list.append("HWVar loopAccumulate_%d = accum.makeAccumulator(payoff_%d.cast(accumType), ap);"%(d_index,d_index))
+        output_list.append("accumulate_%d += loopAccumulate_%d/this.instance_paths;"%(d_index,d_index))
+    
+    output_list.append("}")
+    
+    output_list.append("//**Copying Outputs to Output array and outputing it**")
+    output_list.append("KArray<HWVar> output_array = outputArrayType.newInstance(this);")
+    for d in self.derivative:
+      index = self.derivative.index(d)
+      output_list.append("output_array[%d] <== (accumulate_%d.cast(inputFloatType)/(this.instances));"%(index,index))
+      
+    for i in range(len(self.derivative),int(values_out)): output_list.append("output_array[%d] <== this.constant.var(inputFloatType,0.0);"%i)
+    
+    output_list.append("io.output(\"values_out\", output_array ,outputArrayType,p.eq(this.instance_paths-1)&pp.eq(this.path_points-1));")
+    output_list.append("}")
+    output_list.append("}")
+    
+    return output_list
+      
+    """for u in self.underlying:
+        u_index = self.underlying.index(u)
+        
+        temp = ("%s_underlying_init("%u.name)
+        for u_a in self.underlying_attributes[u_index][:-1]: temp=("%s%s_%d_%s,"%(temp,u.name,u_index,u_a))
+        temp=("%s%s_%d_%s,&u_a_%d);"%(temp,u.name,u_index,self.underlying_attributes[u_index][-1],u_index))
+        output_list.append(temp)"""
+    
     
   def generate_hw_builder(self):
     output_list = []
     
     #Package Declaration
-    output_list.append("package mc_solver_prototype_maxeler;")
+    output_list.append("package mc_solver_maxeler;")
     
     #Maxeler Library imports
     output_list.append("import static config.BoardModel.BOARDMODEL;")
@@ -144,7 +301,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("import com.maxeler.maxcompiler.v1.managers.standard.Manager.IOType;")
     
     #Class declaration
-    output_list.append("public class MC_Solver_Test_HW_Builder {")
+    output_list.append("public class %s_HW_Builder {"%self.output_file_name)
     
     #Kernel Variable Setting
     output_list.append("private static int instance_paths = %d;"%self.solver_metadata["instance_paths"])
@@ -156,7 +313,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Manager Declaration
     output_list.append("Manager m = new Manager(\"%s\", BOARDMODEL);"%self.output_file_name)
     #Kernel Declaration and parameter setting
-    output_list.append("Kernel k = new MC_Solver_Test_Kernel(m.makeKernelParameters(\"%s_Kernel\"),instance_paths,path_points,instances);"%self.output_file_name)
+    output_list.append("Kernel k = new %s_Kernel(m.makeKernelParameters(\"%s_Kernel\"),instance_paths,path_points,instances);"%(self.output_file_name,self.output_file_name))
     output_list.append("m.setKernel(k);")
     output_list.append("m.setIO(IOType.ALL_PCIE);")
     output_list.append("m.addMaxFileConstant(\"instance_paths\", instance_paths);")
@@ -182,7 +339,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     makefile = open("Makefile","w")
     makefile.write("BASEDIR=../..\n")
-    makefile.write("PACKAGE=MaxelerFPGA_MonteCarlo\n")
+    makefile.write("PACKAGE=mc_solver_maxeler\n")
     makefile.write("APP=%s\n"%self.output_file_name)
     makefile.write("HWMAXFILE=$(APP).max\n")
     #makefile.write("HOSTSIMMAXFILE=$(APP)_Host_Sim.max")
@@ -192,7 +349,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     makefile.write("HOSTCODE=$(APP)_Host_Code.c\n")
     makefile.write("KERNELCODE=$(APP)_Kernel.java\n\n")
     
-    makefile.write("nullstring :=\n")
+    """makefile.write("nullstring :=\n")
     makefile.write("space := $(nullstring)\n")
     makefile.write("MAXCOMPILERDIR_QUOTE:=$(subst $(space),\ ,$(MAXCOMPILERDIR))\n")
     makefile.write("include $(MAXCOMPILERDIR_QUOTE)/lib/Makefile.include\n")
@@ -201,9 +358,10 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     makefile.write("endif\n")
     makefile.write("nullstring :=\n")
     makefile.write("space := $(nullstring) # a space at the end\n")
-    makefile.write("MAXCOMPILERDIR_QUOTE:=$(subst $(space),\\ ,$(MAXCOMPILERDIR))\n")
+    makefile.write("MAXCOMPILERDIR_QUOTE:=$(subst $(space),\\ ,$(MAXCOMPILERDIR))\n")"""
     makefile.write("include $(MAXCOMPILERDIR)/lib/Makefile.include\n")
-    makefile.write("include $(MAXCOMPILERDIR_QUOTE)/examples/common/Makefile.include\n")
+    makefile.write("include $(MAXCOMPILERDIR)/examples/common/Makefile.include\n")
+    #makefile.write("include $(MAXCOMPILERDIR_QUOTE)/examples/common/Makefile.include\n")
     makefile.close()
     
     os.chdir(self.platform.root_directory())
