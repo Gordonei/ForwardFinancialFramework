@@ -58,7 +58,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     values_out = math.ceil(float(len(self.derivative))/4) #Making sure values are in increments of 128 bits
   
     output_list.append("seeds_in = malloc(%d*sizeof(uint32_t));"%(int(self.iterations*seeds_in*4)))
-    output_list.append("values_out = malloc(%d*sizeof(float));"%(int(self.iterations*values_out*4)))
+    output_list.append("values_out = malloc(%d*sizeof(float));"%(int(self.iterations*values_out*4*self.solver_metadata["instance_paths"])))
     #output_list.append("posix_memalign(&seeds_in,%d,sizeof(uint32_t)*%d);"%(seeds_in*4,self.iterations*seeds_in*4))
     #output_list.append("posix_memalign(&values_out,%d,sizeof(float)*%d);"%(values_out*4,self.iterations*values_out*4))
     
@@ -90,18 +90,20 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//***Streaming IO Data to FPGA and Running Kernel***")
     output_list.append("max_run(device,")
     output_list.append("max_input(\"seeds_in\",seeds_in,%d*%d*sizeof(uint32_t)),"%(4*seeds_in,self.iterations))
-    output_list.append("max_output(\"values_out\", values_out, %d*%d*sizeof(float)),"%(4*values_out,self.iterations))
-    output_list.append("max_runfor(\"%s_Kernel\",%d*instance_paths*path_points),"%(self.output_file_name,self.iterations))
+    output_list.append("max_output(\"values_out\", values_out, %d*%d*%d*sizeof(float)),"%(4*values_out,self.iterations,self.solver_metadata["instance_paths"]))
+    output_list.append("max_runfor(\"%s_Kernel\",%d*instance_paths*(path_points+1)),"%(self.output_file_name,self.iterations))
     output_list.append("max_end());")
     
     output_list.append("//**Post-Kernel Calculations**")
     for d in range(len(self.derivative)): output_list.append("double temp_total_%d=0;"%d)
-    output_list.append("for(int i=0;i<%d;i++){"%(self.iterations))
+    output_list.append("for(int i=0;i<%d;i++){"%(self.iterations*self.solver_metadata["instance_paths"]*int(values_out)*4))
     for d in self.derivative:
       index = self.derivative.index(d)
-      output_list.append("temp_total_%d += values_out[i*%d+%d];"%(index,values_out,index))
+      #output_list.append("temp_total_%d += values_out[i*%d+%d];"%(index,values_out*4,index))
+      output_list.append("printf(\"%%d - %%f\\n\",i,values_out[i+%d]);"%index)
     output_list.append("}")
     output_list.append("//**Returning Result**")
+    #output_list.append("printf(\"temp_total=%f\",temp_total_0);")
     for d in self.derivative: output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
     output_list.append("}")
     
@@ -167,7 +169,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("protected int instance_paths;")
     output_list.append("protected int path_points;")
     output_list.append("protected int instances;")
-    output_list.append("Accumulator.Params ap;")"""
+    #output_list.append("Accumulator.Params ap;")"""
     
     #Class Declaration
     output_list.append("//*Kernel Class*\n")
@@ -180,7 +182,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Counters
     output_list.append("//**Counters**\n")
     output_list.append("CounterChain chain = control.count.makeCounterChain();")
-    output_list.append("HWVar pp = chain.addCounter(this.path_points,1);") #Path Points is the outer loop to implement the C-Slow architecture
+    output_list.append("HWVar pp = chain.addCounter(this.path_points+1,1);") #Path Points is the outer loop to implement the C-Slow architecture
     output_list.append("HWVar p = chain.addCounter(this.instance_paths,1);")
     
     #Scaler Inputs
@@ -190,7 +192,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for u_a in self.underlying_attributes:
         for a in u_a:
             temp_attribute_name = "%s_%d_%s" % (self.underlying[index].name,index,a)
-            output_list.append("HWVar %s = (io.scalarInput(\"%s\", inputFloatType)).cast(inputDoubleType);"%(temp_attribute_name,temp_attribute_name))
+            output_list.append("HWVar %s = (io.scalarInput(\"%s\", inputFloatType));"%(temp_attribute_name,temp_attribute_name))
         index += 1
     
     output_list.append("//***Derivative Attributes***")
@@ -198,7 +200,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for o_a in self.derivative_attributes:
         for a in o_a:
             temp_attribute_name = "%s_%d_%s" % (self.derivative[index].name,index,a)
-            output_list.append("HWVar %s = (io.scalarInput(\"%s\", inputFloatType)).cast(inputDoubleType);"%(temp_attribute_name,temp_attribute_name))
+            output_list.append("HWVar %s = (io.scalarInput(\"%s\", inputFloatType));"%(temp_attribute_name,temp_attribute_name))
         index += 1
         
     output_list.append("//**Random Seed Input**\n")
@@ -208,12 +210,12 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("HWVar seeds_in_%d = input_array[%d];"% (index,index))
     
     output_list.append("//**Creating Accumulators**\n")
-    output_list.append("Accumulator accum = Reductions.accumulator;")
-    output_list.append("Accumulator.Params ap = accum.makeAccumulatorConfig(accumType).withClear(pp.eq(0));")
-    for d in self.derivative: output_list.append("HWVar accumulate_%d = this.constant.var(accumType,0.0);"%self.derivative.index(d))
+    #output_list.append("Accumulator accum = Reductions.accumulator;")
+    #output_list.append("Accumulator.Params ap = accum.makeAccumulatorConfig(accumType).withClear(pp.eq(0));")
+    #for d in self.derivative: output_list.append("HWVar accumulate_%d = this.constant.var(accumType,0.0);"%self.derivative.index(d))
     
     output_list.append("//**Parallelism Loop**")
-    output_list.append("for (int i=0;i<this.instances;i++){")
+    #output_list.append("for (int i=0;i<this.instances;i++){")
     
     output_list.append("//***Underlying Declaration(s)***")
     for u in self.underlying:
@@ -258,21 +260,23 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         
         output_list.append("%s_%d.path(temp_price_%d,%s_%d.time);"%(d.name,d_index,u_index,u.name,u_index))
         output_list.append("%s_%d.connect_path();"%(d.name,d_index))
-        output_list.append("HWVar payoff_%d = pp.eq(this.path_points-1) ? (%s_%d.payoff(temp_price_%d)) : 0.0;"%(d_index,d.name,d_index,u_index))
-        output_list.append("HWVar loopAccumulate_%d = accum.makeAccumulator(payoff_%d.cast(accumType), ap);"%(d_index,d_index))
-        output_list.append("accumulate_%d += loopAccumulate_%d;"%(d_index,d_index))
+        output_list.append("HWVar payoff_%d = pp.eq(this.path_points) ? (%s_%d.payoff(temp_price_%d)) : 0.0;"%(d_index,d.name,d_index,u_index))
+        #output_list.append("HWVar loopAccumulate_%d = accum.makeAccumulator(payoff_%d.cast(accumType), ap);"%(d_index,d_index))
+        #output_list.append("accumulate_%d += loopAccumulate_%d;"%(d_index,d_index))
     
-    output_list.append("}")
+    #output_list.append("}")
     
     output_list.append("//**Copying Outputs to Output array and outputing it**")
     output_list.append("KArray<HWVar> output_array = outputArrayType.newInstance(this);")
     for d in self.derivative:
       index = self.derivative.index(d)
-      output_list.append("output_array[%d] <== (accumulate_%d.cast(inputFloatType));"%(index,index))
+      #output_list.append("output_array[%d] <== (accumulate_%d.cast(inputFloatType));"%(index,index))
+      output_list.append("output_array[%d] <== (payoff_%d.cast(inputFloatType));"%(index,index))
       
     for i in range(len(self.derivative),int(values_out)): output_list.append("output_array[%d] <== this.constant.var(inputFloatType,0.0);"%i)
     
-    output_list.append("io.output(\"values_out\", output_array ,outputArrayType,p.eq(this.instance_paths-1)&pp.eq(this.path_points-1));")
+    #output_list.append("io.output(\"values_out\", output_array ,outputArrayType,p.eq(this.instance_paths-1)&pp.eq(this.path_points-1));")
+    output_list.append("io.output(\"values_out\", output_array ,outputArrayType,pp.eq(this.path_points));")
     output_list.append("}")
     output_list.append("}")
     

@@ -486,7 +486,6 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     os.chdir(self.platform.platform_directory())
     
     output_file = open("%s%s"%(self.output_file_name,name_extension),"w")
-    print "%s%s"%(self.output_file_name,name_extension)
     tab_count = 0;
     for c_s in code_string:
         if("*" in c_s and "//" in c_s):
