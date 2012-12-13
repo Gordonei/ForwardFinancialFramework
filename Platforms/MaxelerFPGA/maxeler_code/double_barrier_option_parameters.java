@@ -1,4 +1,4 @@
-package mc_solver_prototype_maxeler;
+package mc_solver_maxeler;
 
 import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
 
@@ -6,9 +6,8 @@ public class double_barrier_option_parameters extends barrier_option_parameters 
 
 	protected HWVar second_barrier;
 
-	public double_barrier_option_parameters(MC_Solver_Test_Kernel k,
-			HWVar time_period, HWVar call, HWVar observation_points,HWVar strike_price, HWVar barrier, HWVar out,HWVar second_barrier) {
-		super(k, time_period, call, observation_points,strike_price, barrier, k.constant.var(k.doubleType,1.0), out);
+	public double_barrier_option_parameters(MC_Solver_Maxeler_Base_Kernel k,HWVar time_period, HWVar call,HWVar strike_price, HWVar observation_points, HWVar barrier, HWVar out,HWVar down,HWVar second_barrier) {
+		super(k, time_period, call,strike_price, observation_points, barrier, out,((MC_Solver_Maxeler_Base_Kernel)this.kernel).constant.var(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType,1.0));
 
 		this.second_barrier = second_barrier;
 	}

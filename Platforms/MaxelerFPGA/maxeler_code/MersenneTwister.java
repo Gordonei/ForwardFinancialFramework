@@ -8,7 +8,7 @@
  *                                                                   *
  *********************************************************************/
 
-package mc_solver_prototype_maxeler;
+package mc_solver_maxeler;
 
 import com.maxeler.maxcompiler.v1.kernelcompiler.Kernel;
 import com.maxeler.maxcompiler.v1.kernelcompiler.KernelLib;
@@ -52,6 +52,7 @@ public class MersenneTwister extends KernelLib{
 		super(design);
 		Count.Params countParams = control.count.makeParams(MathUtils.bitsToRepresent(n))
 		.withWrapMode(WrapMode.STOP_AT_MAX)
+		//.withWrapMode(WrapMode.COUNT_LT_MAX_THEN_WRAP)
 		.withMax(n+1);
 		count = control.count.makeCounter(countParams).getCount();
 	}

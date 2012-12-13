@@ -1,14 +1,14 @@
-package mc_solver_prototype_maxeler;
+package mc_solver_maxeler;
 
 import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
 
 
-public class european_option extends Option {
+public class european_option extends option {
 	String name = "european_option";
 
 	protected european_option_parameters parameters;
 
-	public european_option(MC_Solver_Test_Kernel kernel,HWVar pp,HWVar p,HWVar enable,european_option_parameters eop){
+	public european_option(MC_Solver_Maxeler_Base_Kernel kernel,HWVar pp,HWVar p,HWVar enable,european_option_parameters eop){
 		super(kernel,pp,p,enable,eop);
 
 		this.parameters = eop;
@@ -16,9 +16,10 @@ public class european_option extends Option {
 
 	@Override
 	public HWVar payoff(HWVar end_price){
-		return ((this.parameters.call.eq(0)?
-				((this.parameters.strike_price-end_price).gt(0) ? (this.parameters.strike_price-end_price) : 0.0)
-				: ((end_price-this.parameters.strike_price).gt(0) ? (end_price-this.parameters.strike_price) : 0.0)));
+		HWVar temp_diff = ((option_parameters)this.parameters).strike_price-end_price;
+		return (this.parameters.call.eq(0)?
+				((temp_diff).gt(0) ? temp_diff : 0.0)
+				: ((-temp_diff).gt(0) ? -temp_diff : 0.0));
 	}
 	/*
 	@Override

@@ -1,12 +1,11 @@
-package mc_solver_prototype_maxeler;
+package mc_solver_maxeler;
 
 import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
 
-public class heston_parameters extends underlying_parameters {
-	protected HWVar initial_volatility,volatility_volatility,rho,kappa,theta;
-	protected int seed,seed2;
+public class heston_underlying_parameters extends underlying_parameters {
+	protected HWVar initial_volatility,volatility_volatility,rho,kappa,theta,seed,seed2;
 
-	public heston_parameters(MC_Solver_Test_Kernel k,HWVar rfir, HWVar current_price,HWVar initial_volatility,HWVar volatility_volatility,HWVar rho,HWVar kappa,HWVar theta,HWVar dummy,int seed){
+	public heston_underlying_parameters(MC_Solver_Maxeler_Base_Kernel k,HWVar rfir, HWVar current_price,HWVar initial_volatility,HWVar volatility_volatility,HWVar rho,HWVar kappa,HWVar theta){
 		super(k,rfir,current_price);
 
 		this.initial_volatility = initial_volatility;
@@ -14,8 +13,8 @@ public class heston_parameters extends underlying_parameters {
 		this.rho = rho;
 		this.kappa = kappa;
 		this.theta = theta;
-		this.seed = seed;
-		this.seed2 = (seed+1);
+		//this.seed = 1;
+		//this.seed2 = seed+1;
 
 	}
 

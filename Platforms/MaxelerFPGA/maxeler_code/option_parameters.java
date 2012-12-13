@@ -14,8 +14,8 @@ public class option_parameters extends KernelLib {
 		super(k);
 		this.time_period = time_period;
 		this.call = call;
-		this.strike_price = strike_price;
 		this.points = points;
+		this.strike_price = strike_price;
 	}
 
 }

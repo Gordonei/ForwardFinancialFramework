@@ -43,7 +43,7 @@ void heston_underlying_underlying_path(double delta_time,heston_underlying_under
 	*/
         
 	//moment matching
-	u_v->moment_difference = u_a->theta + (pow(u_v->volatility,2)-u_a->theta)*exp(-u_a->kappa*delta_time)-pow(u_a->volatility_volatility,2)/4/u_a->kappa*(1-exp(-u_a->kappa*delta_time));
+	u_v->moment_difference = u_a->theta + (pow(u_v->volatility,2)-u_a->theta)*exp(-u_a->kappa*delta_time) - pow(u_a->volatility_volatility,2)/4/u_a->kappa*(1-exp(-u_a->kappa*delta_time));
 	if(u_v->moment_difference<0){
 		u_v->moment_difference = 0;
 	}

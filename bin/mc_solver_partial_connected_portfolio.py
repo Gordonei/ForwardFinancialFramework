@@ -9,11 +9,10 @@ from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU, Multi
 
 if __name__ == '__main__':
     paths = 10000000 #10 Million Paths
-    threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
     points = 4096
     
     derivative = []
-    derivative_set = range(1,14) #Modify this list to choose a subset of the options
+    derivative_set = [2]#range(1,14) #Modify this list to choose a subset of the options
     for i in range(1,14): 
 	option_number = str(i)
 	
@@ -230,7 +229,7 @@ if __name__ == '__main__':
 	    kappa = 0.0
 	    theta = 0.0
 	    
-	points = 4096
+	points = points
 	underlying_heston_I = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
 	underlying_heston_II = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
 	underlying_heston_III = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
@@ -259,27 +258,28 @@ if __name__ == '__main__':
 	  elif(option_number=="9"): derivative.append(Double_Barrier_Option.Double_Barrier_Option(underlying_heston_I,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down,second_barrier=second_barrier))
 	  elif(option_number=="10"): derivative.append(Double_Barrier_Option.Double_Barrier_Option(underlying_heston_VI,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down,second_barrier=second_barrier))   
 
-    multicore_platform = MulticoreCPU.MulticoreCPU(threads)
-    
-    for d in derivative: d.points = points
-    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(derivative,paths,multicore_platform,reduce_underlyings=False)
-    mc_solver.generate()
-    mc_solver.compile()
-    results = mc_solver.execute()
-    
-    print "Derivative Values"
-    for d in derivative_set: print ("Value of Option %d:\t%s" % (d,results[d-1]))
-    
-    #Performance Monitoring
-    offset = len(derivative)
-    CPU_time = float(results[offset])
-    Wall_time = float(results[offset+1])
-    efficiency_factor = 1.0*CPU_time/threads/Wall_time
-    
-    print "\n*Performance Monitoring*"
-    print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time/threads))
-    print ("Wall Time: %s uS" % results[offset+1])
-    print ("Efficiency Factor: %f"%efficiency_factor)
+	threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
+	multicore_platform = MulticoreCPU.MulticoreCPU(threads)
+	
+	for d in derivative: d.points = points
+	mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(derivative,paths,multicore_platform,reduce_underlyings=False)
+	mc_solver.generate()
+	mc_solver.compile()
+	results = mc_solver.execute()
+	
+	print "Derivative Values"
+	for d in derivative_set: print ("Value of Option %d:\t%s" % (d,results[d-1]))
+	
+	#Performance Monitoring
+	offset = len(derivative)
+	CPU_time = float(results[offset])
+	Wall_time = float(results[offset+1])
+	efficiency_factor = 1.0*CPU_time/threads/Wall_time
+	
+	print "\n*Performance Monitoring*"
+	print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time/threads))
+	print ("Wall Time: %s uS" % results[offset+1])
+	print ("Efficiency Factor: %f"%efficiency_factor)
         
         
     
