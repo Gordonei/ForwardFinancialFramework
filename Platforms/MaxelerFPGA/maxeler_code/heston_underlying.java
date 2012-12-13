@@ -33,7 +33,7 @@ public class heston_underlying extends underlying {
 		this.mt = new MersenneTwister(this.kernel);
 		this.mt2 = new MersenneTwister(this.kernel);
 		this.rangeU = new KernelMath.Range(0.0, 1.0);
-		this.rangeS = new KernelMath.Range(0.0, 1000000.0);
+		//this.rangeS = new KernelMath.Range(0.0, 1000000.0);
 		this.mt_carried = hwUInt(32).newInstance(this);
 		this.mt2_carried = hwUInt(32).newInstance(this);
 

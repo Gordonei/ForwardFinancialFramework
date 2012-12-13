@@ -3,8 +3,8 @@ Created on 26 October 2012
 '''
 import os,time,subprocess,sys,time,math,multiprocessing
 sys.path.append("../..")
-from ForwardFinancialFramework.Underlyings import Underlying,Heston
-from ForwardFinancialFramework.Derivatives import Option,Barrier_Option, European_Option
+from ForwardFinancialFramework.Underlyings import Underlying,Heston,Black_Scholes
+from ForwardFinancialFramework.Derivatives import Option,Barrier_Option, European_Option,Asian_Option
 from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA,MaxelerFPGA_MonteCarlo
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU,MulticoreCPU_MonteCarlo
 
@@ -37,11 +37,13 @@ if( __name__ == '__main__'):
   
   reference_value = 0.10280
   
-  underlying = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
-  option = [Barrier_Option.Barrier_Option(underlying,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down)]
+  underlying = [Black_Scholes.Black_Scholes(rfir=rfir,current_price=current_price,volatility=initial_volatility)]
+  #underlying = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
+  #option = [Barrier_Option.Barrier_Option(underlying,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down)]
   #option = [European_Option.European_Option(underlying,call=call,strike_price=strike_price,time_period=time_period,points=points)]
+  option = [Asian_Option.Asian_Option(underlying,call=call,strike_price=strike_price,time_period=time_period,points=points)]
   
-  maxeler_fpga_platform = MaxelerFPGA.MaxelerFPGA(1)
+  maxeler_fpga_platform = MaxelerFPGA.MaxelerFPGA(5)
   multicore_cpu_platform = MulticoreCPU.MulticoreCPU(1)
   
   mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,maxeler_fpga_platform)

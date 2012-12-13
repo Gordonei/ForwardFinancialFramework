@@ -22,7 +22,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   
   def generate(self,override=True):
     #Generate C Host Code largely using Multicore infrastructure
-    MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate(self,"_Host_Code.c",override,verbose=True)
+    MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate(self,"_Host_Code.c",override,verbose=False)
     
     #Generate Maxeler Kernel Code
     kernel_code_string = self.generate_kernel()
@@ -100,7 +100,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for d in self.derivative:
       index = self.derivative.index(d)
       output_list.append("temp_total_%d += values_out[i*%d+%d];"%(index,values_out*4,index))
-      output_list.append("if(values_out[i*%d+%d]){printf(\"%%d - %%f\\n\",i,values_out[i*%d+%d]);}"%(values_out*4,index,values_out*4,index))
+      #output_list.append("if(values_out[i*%d+%d]){printf(\"%%d - %%f\\n\",i,values_out[i*%d+%d]);}"%(values_out*4,index,values_out*4,index))
     output_list.append("}")
     output_list.append("//**Returning Result**")
     #output_list.append("printf(\"temp_total=%f\",temp_total_0);")
@@ -171,7 +171,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("protected int instances;")
     #output_list.append("Accumulator.Params ap;")"""
     
-    #Class Declaration
+    #Class Constructor Declaration and call to parent class constructor
     output_list.append("//*Kernel Class*\n")
     output_list.append("public %s_Kernel(KernelParameters parameters,int instance_paths,int path_points,int instances){"%self.output_file_name)
     output_list.append("super(parameters,instance_paths,path_points,instances);")
@@ -182,7 +182,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Counters
     output_list.append("//**Counters**\n")
     output_list.append("CounterChain chain = control.count.makeCounterChain();")
-    output_list.append("HWVar pp = chain.addCounter(this.path_points+1,1);") #Path Points is the outer loop to implement the C-Slow architecture
+    output_list.append("HWVar pp = chain.addCounter(this.path_points+1,1);") #Path Points is the outer loop so as to implement a C-Slow architecture
     output_list.append("HWVar p = chain.addCounter(this.instance_paths,1);")
     
     #Scaler Inputs
@@ -209,13 +209,14 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       index = self.underlying.index(u)
       output_list.append("HWVar seeds_in_%d = input_array[%d];"% (index,index))
     
-    output_list.append("//**Creating Accumulators**\n")
+    #output_list.append("//**Creating Accumulators**\n")
     #output_list.append("Accumulator accum = Reductions.accumulator;")
     #output_list.append("Accumulator.Params ap = accum.makeAccumulatorConfig(accumType).withClear(pp.eq(0));")
     #for d in self.derivative: output_list.append("HWVar accumulate_%d = this.constant.var(accumType,0.0);"%self.derivative.index(d))
     
+    for d in self.derivative: output_list.append("HWVar accumulate_%d = this.constant.var(this.inputDoubleType,0.0);"%self.derivative.index(d))
     output_list.append("//**Parallelism Loop**")
-    #output_list.append("for (int i=0;i<this.instances;i++){")
+    output_list.append("for (int i=0;i<this.instances;i++){")
     
     output_list.append("//***Underlying Declaration(s)***")
     for u in self.underlying:
@@ -262,16 +263,16 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         output_list.append("%s_%d.connect_path();"%(d.name,d_index))
         output_list.append("HWVar payoff_%d = pp.eq(this.path_points) ? (%s_%d.payoff(temp_price_%d)) : 0.0;"%(d_index,d.name,d_index,u_index))
         #output_list.append("HWVar loopAccumulate_%d = accum.makeAccumulator(payoff_%d.cast(accumType), ap);"%(d_index,d_index))
-        #output_list.append("accumulate_%d += loopAccumulate_%d;"%(d_index,d_index))
+        output_list.append("accumulate_%d += payoff_%d;"%(d_index,d_index))
     
-    #output_list.append("}")
+    output_list.append("}") #End of parallelism loop
     
     output_list.append("//**Copying Outputs to Output array and outputing it**")
     output_list.append("KArray<HWVar> output_array = outputArrayType.newInstance(this);")
     for d in self.derivative:
       index = self.derivative.index(d)
       #output_list.append("output_array[%d] <== (accumulate_%d.cast(inputFloatType));"%(index,index))
-      output_list.append("output_array[%d] <== (payoff_%d.cast(inputFloatType));"%(index,index))
+      output_list.append("output_array[%d] <== (accumulate_%d/this.instances).cast(inputFloatType);"%(index,index))
       
     for i in range(len(self.derivative),int(values_out)): output_list.append("output_array[%d] <== this.constant.var(inputFloatType,0.0);"%i)
     

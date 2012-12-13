@@ -3,19 +3,19 @@ package mc_solver_maxeler;
 import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.KernelMath;
 import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
 
-public class black_scholes extends underlying {
+public class black_scholes_underlying extends underlying {
 	String name = "black_scholes_underlying";
 
 	//private HWVar volatility;
-	protected final black_scholes_parameters parameters;
+	protected final black_scholes_underlying_parameters parameters;
 
 	private MersenneTwister mt,mt2;// = new MersenneTwister(this);
 	private KernelMath.Range rangeU,rangeS;
-	protected HWVar mt_carried,mt2_carried,U1,U2,x;
+	protected HWVar mt_carried,mt2_carried,U1,U2,x,R,A;
 	//private final int seed,seed2;
 
 
-	public black_scholes(MC_Solver_Maxeler_Base_Kernel kernel,HWVar pp,HWVar p,black_scholes_parameters bsp){
+	public black_scholes_underlying(MC_Solver_Maxeler_Base_Kernel kernel,HWVar pp,HWVar p,black_scholes_underlying_parameters bsp){
 		super(kernel,pp,p,bsp);
 
 		this.parameters = bsp;
@@ -31,7 +31,7 @@ public class black_scholes extends underlying {
 		super.path_init();
 		this.mt = new MersenneTwister(this.kernel);
 		this.mt2 = new MersenneTwister(this.kernel);
-		//this.rangeU = new KernelMath.Range(0.0, 1.0);
+		this.rangeU = new KernelMath.Range(0.0, 1.0);
 		//this.rangeS = new KernelMath.Range(0.0, 100.0);
 		this.mt_carried = hwUInt(32).newInstance(this);
 		this.mt2_carried = hwUInt(32).newInstance(this);

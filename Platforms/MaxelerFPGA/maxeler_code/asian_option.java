@@ -9,7 +9,7 @@ public class asian_option extends european_option {
 
 	protected HWVar average,carried_average,new_average;
 
-	public Asian_Option(MC_Solver_Maxeler_Base_Kernel kernel,HWVar pp,HWVar p,HWVar enable,asian_option_parameters aop){
+	public asian_option(MC_Solver_Maxeler_Base_Kernel kernel,HWVar pp,HWVar p,HWVar enable,asian_option_parameters aop){
 		super(kernel,pp,p,enable,aop);
 
 		this.parameters = aop;
@@ -27,7 +27,8 @@ public class asian_option extends european_option {
 	@Override
 	public void path(HWVar temp_price,HWVar time){
 		super.path(temp_price,time);
-		this.new_average = this.average + (this.enable.eq(true)?(temp_price/this.parameters.observation_points).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType):0.0);
+		HWVar temp_average_contribution = (temp_price/this.parameters.points).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType);
+		this.new_average = this.average + temp_average_contribution;
 	}
 
 	@Override
