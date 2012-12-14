@@ -104,7 +104,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("}")
     output_list.append("//**Returning Result**")
     #output_list.append("printf(\"temp_total=%f\",temp_total_0);")
-    for d in self.derivative: output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
+    for d in self.derivative: output_list.append("temp_data->thread_result[%d] = temp_total_%d/instances;"%(self.derivative.index(d),self.derivative.index(d)))
     output_list.append("}")
     
     return output_list
@@ -272,7 +272,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for d in self.derivative:
       index = self.derivative.index(d)
       #output_list.append("output_array[%d] <== (accumulate_%d.cast(inputFloatType));"%(index,index))
-      output_list.append("output_array[%d] <== (accumulate_%d/this.instances).cast(inputFloatType);"%(index,index))
+      output_list.append("output_array[%d] <== (accumulate_%d).cast(inputFloatType);"%(index,index))
       
     for i in range(len(self.derivative),int(values_out)): output_list.append("output_array[%d] <== this.constant.var(inputFloatType,0.0);"%i)
     
@@ -290,7 +290,6 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         for u_a in self.underlying_attributes[u_index][:-1]: temp=("%s%s_%d_%s,"%(temp,u.name,u_index,u_a))
         temp=("%s%s_%d_%s,&u_a_%d);"%(temp,u.name,u_index,self.underlying_attributes[u_index][-1],u_index))
         output_list.append(temp)"""
-    
     
   def generate_hw_builder(self):
     output_list = []
@@ -371,6 +370,32 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
+    
+  def compile(self,override=True):
+    try:
+      os.chdir("..")
+      os.chdir(self.platform.platform_directory())
+      
+    except:
+      os.chdir("bin")
+      return "Maxeler Code directory doesn't exist!"
+    
+    if(overide or not os.path.exists("hardware/%s"%self.output_file_name)):
+      #Hardware Compile
+      compile_cmd = ["make build-hw"]
+      hw_result = subprocess.check_output(compile_cmd)
+      print hw_result
+      
+      #Software Compile
+      compile_cmd = ["make build-app"]
+      sw_result = subprocess.check_output(compile_cmd)
+      print sw_result
+      
+      os.chdir(self.platform.root_directory())
+      os.chdir("bin")
+      
+      return (hw_result,sw_result)
+    
     
   """def generate_java_source(self,code_string,name_extension=""):
     os.chdir("..")

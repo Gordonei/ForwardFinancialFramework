@@ -372,7 +372,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       os.chdir("bin")
       return "Multicore C directory doesn't exist!"
     
-    if(overide or os.path.exists("%s"%self.output_file_name)):
+    if(overide or not os.path.exists("%s"%self.output_file_name)):
         compile_cmd = ["g++","%s.c"%self.output_file_name]
         
         #Including all of the derivative and option classes that are used
