@@ -7,15 +7,16 @@ class MaxelerFPGA:
   name = "maxeler_fpga"
   instances = 1
   threads = 1
-  platform_directory = ""
-  root_directory = ""
+  platform_directory_string = ""
+  root_directory_string = ""
   
-  def __init__(self,instances=1,platform_directory="Platforms/MaxelerFPGA/maxeler_code/src/mc_solver_maxeler",root_directory="../../../../.."):
+  def __init__(self,instances=1,platform_directory_string="Platforms/MaxelerFPGA/maxeler_code/src/mc_solver_maxeler",root_directory_string="../../../../.."):
     self.instances = instances
-    self.platform_directory = platform_directory
+    self.platform_directory_string = platform_directory_string
+    self.root_directory_string = root_directory_string
     
   def platform_directory(self):
-    return self.platform_directory
+    return self.platform_directory_string
   
   def root_directory(self):
-    return self.root_directory
+    return self.root_directory_string

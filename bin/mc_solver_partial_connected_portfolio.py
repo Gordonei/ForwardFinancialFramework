@@ -6,6 +6,7 @@ sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Black_Scholes,Heston
 from ForwardFinancialFramework.Derivatives import European_Option,Barrier_Option,Double_Barrier_Option,Digital_Double_Barrier_Option,Asian_Option
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU, MulticoreCPU_MonteCarlo
+from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA, MaxelerFPGA_MonteCarlo
 
 if __name__ == '__main__':
     paths = 10000000 #10 Million Paths
@@ -258,13 +259,15 @@ if __name__ == '__main__':
 	  elif(option_number=="9"): derivative.append(Double_Barrier_Option.Double_Barrier_Option(underlying_heston_I,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down,second_barrier=second_barrier))
 	  elif(option_number=="10"): derivative.append(Double_Barrier_Option.Double_Barrier_Option(underlying_heston_VI,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down,second_barrier=second_barrier))   
 
-	threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
-	multicore_platform = MulticoreCPU.MulticoreCPU(threads)
+	#threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
+	#multicore_platform = MulticoreCPU.MulticoreCPU(threads)
+	maxeler_platform = MaxelerFPGA.MaxelerFPGA(1)
 	
 	for d in derivative: d.points = points
-	mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(derivative,paths,multicore_platform,reduce_underlyings=False)
+	#mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(derivative,paths,multicore_platform,reduce_underlyings=False)
+	mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(derivative,paths,maxeler_platform)
 	mc_solver.generate()
-	mc_solver.compile()
+	"""mc_solver.compile()
 	results = mc_solver.execute()
 	
 	print "Derivative Values"
@@ -279,7 +282,7 @@ if __name__ == '__main__':
 	print "\n*Performance Monitoring*"
 	print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time/threads))
 	print ("Wall Time: %s uS" % results[offset+1])
-	print ("Efficiency Factor: %f"%efficiency_factor)
+	print ("Efficiency Factor: %f"%efficiency_factor)"""
         
         
     

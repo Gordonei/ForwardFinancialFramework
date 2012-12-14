@@ -124,10 +124,10 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Checking that the source code for the derivative and underlying is present
     for u in self.underlying:
       if(not(os.path.exists("%s.java"%u.name))): raise IOError, ("missing the source code for the underlying - %s.java" % (u.name))
-      if(not(os.path.exists("%s_parameters.java"%u.name))): raise IOError, ("missing the source code for the underlying parameter set - %s_parameters.java" % (u.name))
+      #if(not(os.path.exists("%s_parameters.java"%u.name))): raise IOError, ("missing the source code for the underlying parameter set - %s_parameters.java" % (u.name))
     for d in self.derivative:
       if(not(os.path.exists("%s.java"%d.name))): raise IOError, ("missing the source code for the derivative - %s.java" %  (d.name))
-      if(not(os.path.exists("%s_parameters.java"%d.name))): raise IOError, ("missing the source code for the derivative parameter set - %s_parameters.java" %  (d.name))
+      #if(not(os.path.exists("%s_parameters.java"%d.name))): raise IOError, ("missing the source code for the derivative parameter set - %s_parameters.java" %  (d.name))
     
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
