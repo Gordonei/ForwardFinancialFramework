@@ -486,6 +486,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
   
   def generate_source(self,code_string,name_extension=".c",verbose=False):
     os.chdir("..")
+    print sys.check_output(["pwd"])
     os.chdir(self.platform.platform_directory())
     
     output_file = open("%s%s"%(self.output_file_name,name_extension),"w")
