@@ -8,10 +8,10 @@ Tasks
 2) Change Monte Carlo and Multicore Monte Carlo Solver infrastructure to allow for easier resuse of multicore code in Maxeler Code Generation [DONE]
 3) Maxeler Host code generation for the Monte Carlo Solver [DONE]
 4) Maxeler Kernel code generation for the Monte Carlo Solver [IN PROGRESS]
-  4.1) Generate Kernel with one underlying and one derivative [IN PROGRESS]
-  4.2) Generate Kernel with one underlying and one derivative, with multiple instances 
-  4.3) Generate Kernel with one underlying and multiple derivatives
-  4.4) Generate Kernel with many underlyings and many derivatives
+  4.1) Generate Kernel with one underlying and one derivative [DONE]
+  4.2) Generate Kernel with one underlying and one derivative, with multiple instances [DONE]
+  4.3) Generate Kernel with one underlying and multiple derivatives 
+  4.4) Generate Kernel with many underlyings and many derivatives [IN PROGRESS]
 5) Automating Maxeler compiler flow for the Monte Carlo Solver*
 
 Tasks' Notes
@@ -26,4 +26,4 @@ Proposed
 
 Put Off
 -------
-* Support for multiple derivatives depending on the same underlying - issue with numerical accurcracy making multirate time progression difficult by comparison to the CPU. For now assuming that shared underlyings only have the same time period and points.
+* Support for multiple derivatives depending on the same underlying with different expiry dates - issue with numerical accurcracy making multirate time progression difficult by comparison to the CPU. For now assuming that shared underlyings only have the same time period and points.

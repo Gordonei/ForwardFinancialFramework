@@ -9,12 +9,12 @@ from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU, Multi
 from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA, MaxelerFPGA_MonteCarlo
 
 if __name__ == '__main__':
-    paths = 10000000 #10 Million Paths
-    points = 4096
+    paths = 1000 #10 Million Paths
+    points = 252
     
     derivative = []
-    derivative_set = [2]#range(1,14) #Modify this list to choose a subset of the options
-    for i in range(1,14): 
+    derivative_set = [6]#range(1,14) #Modify this list to choose a subset of the options
+    for i in derivative_set: 
 	option_number = str(i)
 	
 	call = 1.0
@@ -259,30 +259,30 @@ if __name__ == '__main__':
 	  elif(option_number=="9"): derivative.append(Double_Barrier_Option.Double_Barrier_Option(underlying_heston_I,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down,second_barrier=second_barrier))
 	  elif(option_number=="10"): derivative.append(Double_Barrier_Option.Double_Barrier_Option(underlying_heston_VI,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down,second_barrier=second_barrier))   
 
-	#threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
-	#multicore_platform = MulticoreCPU.MulticoreCPU(threads)
-	maxeler_platform = MaxelerFPGA.MaxelerFPGA(1)
-	
-	for d in derivative: d.points = points
-	#mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(derivative,paths,multicore_platform,reduce_underlyings=False)
-	mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(derivative,paths,maxeler_platform)
-	mc_solver.generate()
-	"""mc_solver.compile()
-	results = mc_solver.execute()
-	
-	print "Derivative Values"
-	for d in derivative_set: print ("Value of Option %d:\t%s" % (d,results[d-1]))
-	
-	#Performance Monitoring
-	offset = len(derivative)
-	CPU_time = float(results[offset])
-	Wall_time = float(results[offset+1])
-	efficiency_factor = 1.0*CPU_time/threads/Wall_time
-	
-	print "\n*Performance Monitoring*"
-	print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time/threads))
-	print ("Wall Time: %s uS" % results[offset+1])
-	print ("Efficiency Factor: %f"%efficiency_factor)"""
+    #threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
+    #multicore_platform = MulticoreCPU.MulticoreCPU(threads)
+    maxeler_platform = MaxelerFPGA.MaxelerFPGA(1)
+    
+    for d in derivative: d.points = points
+    #mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(derivative,paths,multicore_platform,reduce_underlyings=False)
+    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(derivative,paths,maxeler_platform)
+    mc_solver.generate()
+    mc_solver.compile()
+    results = mc_solver.execute()
+    
+    print "Derivative Values"
+    for d in derivative_set: print ("Value of Option %d:\t%s" % (d,results[d-1]))
+    
+    #Performance Monitoring
+    offset = len(derivative)
+    CPU_time = float(results[offset])
+    Wall_time = float(results[offset+1])
+    efficiency_factor = 1.0*CPU_time/threads/Wall_time
+    
+    print "\n*Performance Monitoring*"
+    print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time/threads))
+    print ("Wall Time: %s uS" % results[offset+1])
+    print ("Efficiency Factor: %f"%efficiency_factor)
         
         
     

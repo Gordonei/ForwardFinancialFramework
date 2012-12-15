@@ -380,14 +380,14 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       os.chdir("bin")
       return "Maxeler Code directory doesn't exist!"
     
-    if(overide or not os.path.exists("hardware/%s"%self.output_file_name)):
-      #Hardware Compile
-      compile_cmd = ["make build-hw"]
+    if(override or not os.path.exists("hardware/%s/"%self.output_file_name)):
+      #Hardware Build Process
+      compile_cmd = ["make","build-hw"]
       hw_result = subprocess.check_output(compile_cmd)
       print hw_result
       
-      #Software Compile
-      compile_cmd = ["make build-app"]
+      #Host Code Compile
+      compile_cmd = ["make","app-hw"]
       sw_result = subprocess.check_output(compile_cmd)
       print sw_result
       
@@ -395,6 +395,43 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       os.chdir("bin")
       
       return (hw_result,sw_result)
+      
+  def execute(self,cleanup=False):
+    try:
+      os.chdir("..")
+      os.chdir(self.platform.platform_directory())
+      
+    except:
+      os.chdir("bin")
+      return "Maxeler Code directory doesn't exist!"
+    
+    run_cmd = ["./%sRun"%self.output_file_name]
+    for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k]))
+    
+    index = 0
+    for u_a in self.underlying_attributes:
+        for a in u_a: run_cmd.append(str(self.underlying[index].__dict__[a])) #mirrors generation code to preserve order of variable loading
+        index += 1
+    
+    index = 0
+    for o_a in self.derivative_attributes: 
+        for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
+        index +=1
+    
+    start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
+    print run_cmd
+    #results = subprocess.check_output(run_cmd)
+    finish = time.time()
+    
+    results = results.split("\n")[:-1]
+    results.append((finish-start)*1000000)
+    
+    os.chdir(self.platform.root_directory())
+    os.chdir("bin")
+    
+    if(cleanup): self.cleanup()
+    
+    return results
     
     
   """def generate_java_source(self,code_string,name_extension=""):
