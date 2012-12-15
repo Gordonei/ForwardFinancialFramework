@@ -13,7 +13,9 @@ public class double_barrier_option extends barrier_option {
 
 	@Override
 	protected HWVar check_barrier(HWVar temp_price){
-		return ((temp_price.gte(this.parameters.second_barrier) ? ((MC_Solver_Maxeler_Base_Kernel)this.kernel).constant.var(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType,1.0) : super.check_barrier(temp_price))); //Up Behaviour Only
+		return (temp_price.gte(this.parameters.second_barrier) ?
+			 ((MC_Solver_Maxeler_Base_Kernel)this.kernel).constant.var(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType,1.0)
+			 : super.check_barrier(temp_price)); //Up Behaviour Only, the down behaviour is covered by the single barrier option that this inheirts from
 	}
 
 }

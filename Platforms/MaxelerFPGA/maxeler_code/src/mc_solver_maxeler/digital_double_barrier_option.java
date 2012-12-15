@@ -11,7 +11,9 @@ public class digital_double_barrier_option extends double_barrier_option {
 	@Override
 	public HWVar payoff(HWVar end_price){
 		HWVar temp_result = super.payoff(end_price);
-		return (temp_result.gt(0) ? ((MC_Solver_Maxeler_Base_Kernel)this.kernel).constant.var(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType,1.0) : 0.0);
+		return (temp_result.gt(0) ?
+			((MC_Solver_Maxeler_Base_Kernel)this.kernel).constant.var(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType,1.0)
+			: 0.0);
 	}
 
 }
