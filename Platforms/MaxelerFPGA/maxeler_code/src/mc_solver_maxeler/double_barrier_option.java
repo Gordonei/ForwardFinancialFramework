@@ -10,6 +10,12 @@ public class double_barrier_option extends barrier_option {
 		super(kernel, pp, p, enable,dbop);
 		this.parameters = dbop;
 	}
+	
+	@Override
+	public void path(HWVar temp_price,HWVar time){
+		super.path(temp_price,time);
+		this.new_barrier_event = (this.barrier_event.eq(0)? check_barrier(temp_price) : this.carried_barrier_event);
+	}
 
 	@Override
 	protected HWVar check_barrier(HWVar temp_price){
