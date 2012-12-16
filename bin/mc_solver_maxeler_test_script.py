@@ -9,17 +9,17 @@ from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU, Multi
 from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA, MaxelerFPGA_MonteCarlo
 
 if __name__ == '__main__':
-    paths = 1000
-    points = 252
+    paths = int(sys.argv[2])
+    points = int(sys.argv[3])
     
     derivative = []
     derivative_set = []
-    if(len(sys.argv)>=3):
-      if(sys.argv=="all"): derivative_set = range(1,14)
+    if(len(sys.argv)>=5):
+      if(sys.argv[4]=="all"): derivative_set = range(1,14)
       else:
-        for arg in sys.argv[2:]: derivative_set.append(int(arg))
+        for arg in sys.argv[4:]: derivative_set.append(int(arg))
         
-    else: print "Usuage: python mc_solver_maxeler_test_script.py [compile/execute] [all/1 2 ... 13]"
+    else: print "Usuage: python mc_solver_maxeler_test_script.py [compile/execute] [paths] [path_points] [Options:all/1 2 ... 13]"
     
     for i in derivative_set: 
 	option_number = str(i)
@@ -154,7 +154,7 @@ if __name__ == '__main__':
 	current_price = 100
 
 	if(parameter_set=="I"):
-	    #Kaiserslatuarn Parameter set II
+	    #Kaiserslatuarn Parameter set I
 	    rfir = 0
 	    volatility = 0.0384
 	    time_period = 1
@@ -272,7 +272,7 @@ if __name__ == '__main__':
     
     for d in derivative: d.points = points
     #mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(derivative,paths,multicore_platform,reduce_underlyings=False)
-    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(derivative,paths,maxeler_platform)
+    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(derivative,paths,maxeler_platform,points)
     
     if(sys.argv[1]=="compile"):
       mc_solver.generate()
@@ -281,7 +281,9 @@ if __name__ == '__main__':
       results = mc_solver.execute()
     
       print "Derivative Values"
-      for d in derivative_set: print ("Value of Option %d:\t%s" % (d,results[d-1]))
+      for d in derivative_set:
+        index = derivative_set.index(d)
+        print ("Value of Option %d:\t%s" % (d,results[index]))
     
       #Performance Monitoring
       offset = len(derivative)
@@ -290,8 +292,8 @@ if __name__ == '__main__':
       efficiency_factor = 1.0*CPU_time/threads/Wall_time
     
       print "\n*Performance Monitoring*"
-      print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time/threads))
+      print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time))
       print ("Wall Time: %s uS" % results[offset+1])
       print ("Efficiency Factor: %f"%efficiency_factor)
       
-    else: print "Usuage: python mc_solver_maxeler_test_script.py [compile/execute] [all/1 2 ... 13]"
+    else: print "Usuage: python mc_solver_maxeler_test_script.py [compile/execute] [paths] [path_points] [Options:all/1 2 ... 13]"

@@ -6,12 +6,12 @@ import os,time,subprocess,sys,time,math
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo
 
 class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
-  def __init__(self,derivative,paths,platform,reduce_underlyings=True):
+  def __init__(self,derivative,paths,platform,points=252,reduce_underlyings=True):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     
     self.solver_metadata["instances"] = self.platform.instances #Number of instances set by the platform
     self.solver_metadata["instance_paths"] = 1000 #setting the number of threads used per instance
-    self.solver_metadata["path_points"] = 252
+    self.solver_metadata["path_points"] = points
     self.iterations = int(self.solver_metadata["paths"]/self.solver_metadata["instance_paths"]) #calculating the number of iterations required of the kernel
     
     self.utility_libraries = ["stdio.h","stdlib.h","stdint.h","pthread.h","MaxCompilerRT.h","sys/time.h","sys/resource.h"]
