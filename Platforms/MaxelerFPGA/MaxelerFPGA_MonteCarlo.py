@@ -419,8 +419,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         index +=1
     
     start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
-    print run_cmd
-    #results = subprocess.check_output(run_cmd)
+    #print run_cmd
+    results = subprocess.check_output(run_cmd)
     finish = time.time()
     
     results = results.split("\n")[:-1]
