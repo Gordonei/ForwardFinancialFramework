@@ -289,7 +289,7 @@ if __name__ == '__main__':
       offset = len(derivative)
       CPU_time = float(results[offset])
       Wall_time = float(results[offset+1])
-      efficiency_factor = 1.0*CPU_time/threads/Wall_time
+      efficiency_factor = 1.0*CPU_time/Wall_time
     
       print "\n*Performance Monitoring*"
       print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time))
