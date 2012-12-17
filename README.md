@@ -9,7 +9,7 @@ Introduction
 
 The vision of F^3 is to allow financial engineers to express valuation computations naturally while taking advantage of the plethora of new computing platforms available.
 
-The application framework also serves as a test case for research into domain-orienteted, heterogeneous computing.
+The application framework also serves as a test case for research into domain-orienteted heterogeneous computing.
 
 Current Underlyings and Derivatives Supported:
  * Black-Scholes Stochastic Underlyings
@@ -21,9 +21,12 @@ Current Underlyings and Derivatives Supported:
  
 Platforms:
  * Multicore CPUs (via C and Posix threads)
+ * Maxeler FPGA platform
  
 In Progress:
- * Maxeler FPGA platform
+ * Experimental comparision with Kaiserslautarn Option Pricing Benchmark (http://www.uni-kl.de/en/benchmarking/option-pricing/)
+ * Use of domain-orientated knowledge to guide partitioning of option portfolio evaluation tasks
+ * Choose-your-own-accuracy algorithm
  
 Coming Soon:
  * IP-based Network execution
@@ -47,7 +50,8 @@ F^3 requires:
 1. A *nix-based Operating System  
 2. GCC (http://gcc.gnu.org/)  
 3. Python >= 2.7 (http://www.python.org/getit/releases/2.7.3/)  
-4. Numpy (http://numpy.scipy.org/)  
+4. Numpy (http://numpy.scipy.org/)
+5. (For Maxeler code) Maxcompiler version 12.1
 
 Getting Started
 ---------------
