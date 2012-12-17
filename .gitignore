@@ -34,3 +34,6 @@ Makefile
 #Example Code
 MC_Solver_Test_*
 MC_Solver_prototype_maxeler
+
+#Random Files
+.DS_Store
