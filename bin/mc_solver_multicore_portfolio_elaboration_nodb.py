@@ -12,7 +12,7 @@ if(len(sys.argv)>=4):
     paths = int(sys.argv[2])
     points = int(sys.argv[3])
 
-if (__name__ == '__main__') and (len(sys.argv)>=5):
+if (__name__ == '__main__') and (len(sys.argv)>=4):
     output_file = open(output_filename,"w")
     
     derivative = []
