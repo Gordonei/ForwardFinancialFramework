@@ -279,8 +279,8 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	    index = index - 1
 	
 	same_points = True
-	d_0_points = test_derivative_set[0].points
-	for d in test_derivative_set:
+	d_0_points = test_derivative[0].points
+	for d in test_derivative:
 	    if(d_0_points!=d.points): same_points = False 
 	
 	#threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
@@ -321,4 +321,4 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	
     output_file.close()
         
-else: print "use: python mc_solver_multicore_portfolio_elaboration.py [output_filename] [path] [points] [compile/execute]"
+else: print "use: python mc_solver_maxeler_portfolio_elaboration.py [output_filename] [path] [points] [compile/execute]"
