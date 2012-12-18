@@ -276,7 +276,8 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 		test_derivative_set.append(index+1)
 	    index = index - 1
 	
-	threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
+	#threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
+	threads = 7
 	multicore_platform = MulticoreCPU.MulticoreCPU(threads)
 	
 	mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(test_derivative,paths,multicore_platform,reduce_underlyings=True)
@@ -297,11 +298,14 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	Wall_time = float(results[offset+1])
 	efficiency_factor = 1.0*CPU_time/threads/Wall_time
 	output_file.write("%d,%d,%d,%f\n"%(i,int(CPU_time),int(Wall_time),efficiency_factor))
+	output_file.flush()
 	
 	print "\n*Performance Monitoring*"
 	print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time/threads))
 	print ("Wall Time: %s uS" % results[offset+1])
 	print ("Efficiency Factor: %f"%efficiency_factor)
 	print "\n\n"
+	
+    output_file.close()
         
 else: print "use: python mc_solver_multicore_portfolio_elaboration.py [output_filename] [path] [points]"
