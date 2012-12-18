@@ -289,7 +289,7 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	maxeler_platform = MaxelerFPGA.MaxelerFPGA(2)
 	
 	#mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(test_derivative,paths,multicore_platform,reduce_underlyings=True)
-	mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(test_dertivative,paths,maxeler_platform)
+	mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(test_derivative,paths,maxeler_platform)
 	if(command=="compile" and same_points):
 	    print "Building for trial: %s (%s)"%(selection,str(test_derivative_set))
 	    mc_solver.generate()
