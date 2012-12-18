@@ -262,7 +262,8 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	  elif(option_number=="9"): derivative.append(Double_Barrier_Option.Double_Barrier_Option(underlying_heston_I,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down,second_barrier=second_barrier))
 	  elif(option_number=="10"): derivative.append(Double_Barrier_Option.Double_Barrier_Option(underlying_heston_VI,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down,second_barrier=second_barrier))   
 
-    for d in derivative: d.points = points
+    for d in derivative:
+	d.points = points*int(d.time_period)
     
     for i in range(1,2**len(derivative)):
 	test_derivative = []
