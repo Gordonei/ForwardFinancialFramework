@@ -90,8 +90,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//***Streaming IO Data to FPGA and Running Kernel***")
     output_list.append("max_run(device,")
     output_list.append("max_input(\"seeds_in\",seeds_in,paths/instance_paths*%d*sizeof(uint32_t)),"%(4*seeds_in))
-    output_list.append("max_output(\"values_out\", values_out, paths/instance_paths*%d*%d*sizeof(float)),"%(4*values_out,self.solver_metadata["instance_paths"]))
-    output_list.append("max_runfor(\"%s_Kernel\",paths*(path_points+1)),"%(self.output_file_name))
+    output_list.append("max_output(\"values_out\", values_out, paths/instances*%d*sizeof(float)),"%(4*values_out))
+    output_list.append("max_runfor(\"%s_Kernel\",paths/instances*(path_points+1)),"%(self.output_file_name))
     output_list.append("max_end());")
     
     output_list.append("//**Post-Kernel Calculations**")
