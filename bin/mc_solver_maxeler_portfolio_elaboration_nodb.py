@@ -7,13 +7,14 @@ from ForwardFinancialFramework.Underlyings import Black_Scholes,Heston
 from ForwardFinancialFramework.Derivatives import European_Option,Barrier_Option,Double_Barrier_Option,Digital_Double_Barrier_Option,Asian_Option
 from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA, MaxelerFPGA_MonteCarlo
 
-if(len(sys.argv)>=5):
+if(len(sys.argv)>=6):
     output_filename = sys.argv[1]
     paths = int(sys.argv[2])
     points = int(sys.argv[3])
-    command = sys.argv[4]
+    time_period = int(sys.argv[4])
+    command = sys.argv[5]
 
-if (__name__ == '__main__') and (len(sys.argv)>=5):
+if (__name__ == '__main__') and (len(sys.argv)>=6):
     output_file = open(output_filename,"w")
     
     derivative = []
@@ -234,7 +235,6 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	    kappa = 0.0
 	    theta = 0.0
 	    
-	points = 4096
 	underlying_heston_I = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
 	underlying_heston_II = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
 	underlying_heston_III = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
@@ -281,7 +281,7 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	same_points = True
 	d_0_points = test_derivative[0].points
 	for d in test_derivative:
-	    if(d_0_points!=d.points): same_points = False 
+	    if((d_0_points!=d.points)and(d_0_points!=time_period*points)): same_points = False 
 	
 	#threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
 	#threads = 7
