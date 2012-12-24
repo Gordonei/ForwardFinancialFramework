@@ -54,7 +54,7 @@ class MonteCarlo:
             for uu in self.underlying:
               if(uu.name==u.name): count = count + 1
     
-            self.output_file_name = "%s_%s_%d" % (self.output_file_name,u.name[0],count) #First letter is used to keep names succinct
+            self.output_file_name = "%s_%s_%d" % (self.output_file_name,u.name[0:2],count) #First letter is used to keep names succinct
             temp.append(u.name)
     
         for d in self.derivative: 
@@ -63,7 +63,7 @@ class MonteCarlo:
             for dd in self.derivative:
               if(dd.name==d.name): count = count + 1
       
-            self.output_file_name = "%s_%s_%d" % (self.output_file_name,d.name[0],count)
+            self.output_file_name = "%s_%s_%d" % (self.output_file_name,d.name[0:2],count)
             temp.append(d.name)
         
         self.underlying_dependencies = [] #Creating a dependency list for each underlying, detailing the derivative that depends on it
