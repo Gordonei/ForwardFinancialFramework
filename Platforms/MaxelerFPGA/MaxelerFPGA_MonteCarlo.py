@@ -323,7 +323,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("m.addMaxFileConstant(\"instance_paths\", instance_paths);")
     output_list.append("m.addMaxFileConstant(\"path_points\", path_points);")
     output_list.append("m.addMaxFileConstant(\"instances\", instances);")
-    output_list.append("m.setClockFrequency(100);")
+    output_list.append("m.setClockFrequency(150);")
     #Build Configuration
     output_list.append("BuildConfig c = new BuildConfig(BuildConfig.Level.FULL_BUILD);")
     output_list.append("c.setBuildEffort(BuildConfig.Effort.MEDIUM);")  #LOW,MEDIUM,HIGH,VERY_HIGH

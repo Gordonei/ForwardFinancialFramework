@@ -268,7 +268,7 @@ if __name__ == '__main__':
 
     #threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
     #multicore_platform = MulticoreCPU.MulticoreCPU(threads)
-    maxeler_platform = MaxelerFPGA.MaxelerFPGA(1)
+    maxeler_platform = MaxelerFPGA.MaxelerFPGA(2)
     
     for d in derivative: d.points = points
     #mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(derivative,paths,multicore_platform,reduce_underlyings=False)
