@@ -11,15 +11,16 @@ from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA, Maxeler
 if __name__ == '__main__':
     paths = int(sys.argv[2])
     points = int(sys.argv[3])
+    instances = int(sys.argv[4])
     
     derivative = []
     derivative_set = []
     if(len(sys.argv)>=5):
-      if(sys.argv[4]=="all"): derivative_set = range(1,14)
+      if(sys.argv[5]=="all"): derivative_set = range(1,14)
       else:
-        for arg in sys.argv[4:]: derivative_set.append(int(arg))
+        for arg in sys.argv[5:]: derivative_set.append(int(arg))
         
-    else: print "Usuage: python mc_solver_maxeler_test_script.py [compile/execute] [paths] [path_points] [Options:all/1 2 ... 13]"
+    else: print "Usuage: python mc_solver_maxeler_test_script.py [compile/execute] [paths] [path_points] [instances] [Options:all/1 2 ... 13]"
     
     for i in derivative_set: 
 	option_number = str(i)
@@ -268,7 +269,7 @@ if __name__ == '__main__':
 
     #threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
     #multicore_platform = MulticoreCPU.MulticoreCPU(threads)
-    maxeler_platform = MaxelerFPGA.MaxelerFPGA(2)
+    maxeler_platform = MaxelerFPGA.MaxelerFPGA(instances)
     
     for d in derivative: d.points = points
     #mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(derivative,paths,multicore_platform,reduce_underlyings=False)
@@ -296,4 +297,4 @@ if __name__ == '__main__':
       print ("Wall Time: %s uS" % results[offset+1])
       print ("Efficiency Factor: %f"%efficiency_factor)
       
-    else: print "Usuage: python mc_solver_maxeler_test_script.py [compile/execute] [paths] [path_points] [Options:all/1 2 ... 13]"
+    else: print "Usuage: python mc_solver_maxeler_test_script.py [compile/execute] [paths] [path_points] [instances] [Options:all/1 2 ... 13]"

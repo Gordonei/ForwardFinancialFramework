@@ -286,12 +286,14 @@ if (__name__ == '__main__') and (len(sys.argv)>=6):
 	#threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
 	#threads = 7
 	#multicore_platform = MulticoreCPU.MulticoreCPU(threads)
-	maxeler_platform = MaxelerFPGA.MaxelerFPGA(2)
+	instances = int(10/len(test_derivative))
+	maxeler_platform = MaxelerFPGA.MaxelerFPGA(instances)
 	
 	#mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(test_derivative,paths,multicore_platform,reduce_underlyings=True)
 	mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(test_derivative,paths,maxeler_platform)
 	if(command=="compile" and same_points):
 	    print "Building for trial: %s (%s)"%(selection,str(test_derivative_set))
+    
 	    mc_solver.generate()
 	    mc_solver.compile()
 	
