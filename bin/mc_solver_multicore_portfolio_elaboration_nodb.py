@@ -14,8 +14,6 @@ if(len(sys.argv)>=5):
     threads = int(sys.argv[4])
 
 if (__name__ == '__main__') and (len(sys.argv)>=5):
-    output_file = open(output_filename,"w")
-    
     derivative = []
     derivative_set = range(1,14)
     for i in range(1,14): 
@@ -234,7 +232,7 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	    kappa = 0.0
 	    theta = 0.0
 	    
-	points = 4096
+	#points = 4096
 	underlying_heston_I = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
 	underlying_heston_II = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
 	underlying_heston_III = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
@@ -308,11 +306,13 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	for d in test_derivative_set:
 	    print ("Value of Option %d:\t%s" % (d,results[index]))
 	    index = index + 1
-	#Performance Monitoring
 	
+	#Writing to Output File
+	output_file = open(output_filename,"w")
 	output_file.write("%d,%d,%d,%f\n"%(i,int(CPU_time),int(Wall_time),efficiency_factor))
 	output_file.flush()
 	
+	#Performance Monitoring
 	print "\n*Performance Monitoring*"
 	print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time/threads))
 	print ("Wall Time: %s uS" % results[offset+1])
