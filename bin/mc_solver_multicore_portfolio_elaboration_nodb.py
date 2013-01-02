@@ -7,12 +7,13 @@ from ForwardFinancialFramework.Underlyings import Black_Scholes,Heston
 from ForwardFinancialFramework.Derivatives import European_Option,Barrier_Option,Double_Barrier_Option,Digital_Double_Barrier_Option,Asian_Option
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU, MulticoreCPU_MonteCarlo
 
-if(len(sys.argv)>=4):
+if(len(sys.argv)>=5):
     output_filename = sys.argv[1]
     paths = int(sys.argv[2])
     points = int(sys.argv[3])
+    threads = int(sys.argv[4])
 
-if (__name__ == '__main__') and (len(sys.argv)>=4):
+if (__name__ == '__main__') and (len(sys.argv)>=5):
     output_file = open(output_filename,"w")
     
     derivative = []
@@ -277,27 +278,38 @@ if (__name__ == '__main__') and (len(sys.argv)>=4):
 		test_derivative_set.append(index+1)
 	    index = index - 1
 	
-	#threads = multiprocessing.cpu_count() #queries the OS as to how many CPUs there are available
-	threads = 7
 	multicore_platform = MulticoreCPU.MulticoreCPU(threads)
 	
 	mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(test_derivative,paths,multicore_platform,reduce_underlyings=True)
 	mc_solver.generate()
 	mc_solver.compile()
-	results = mc_solver.execute()
+	
+	results = []
+	offset = len(test_derivative)
+	CPU_time = 0.0
+	Wall_time = 0.0
+	efficiency_factor = 0.0
+	number_trials = 10 #Each trial is run 10 times, and the result averaged
+	for i in range(number_trials): 
+	    results = mc_solver.execute()
+	    
+	    CPU_time = CPU_time + float(results[offset])
+	    Wall_time = Wall_time + float(results[offset+1])
+	    efficiency_factor = efficiency_factor + 1.0*float(results[offset])/threads/float(results[offset+1])
+	    
+	CPU_time = CPU_time/number_trials
+	Wall_time = Wall_time/number_trials
+	efficiency_factor = efficiency_factor/number_trials
 	
 	print "Selection for trial: %s (%s)"%(selection,str(test_derivative_set))
 	print "Derivative Values"
-	index = 0
+	  
+	index = 0  
 	for d in test_derivative_set:
 	    print ("Value of Option %d:\t%s" % (d,results[index]))
 	    index = index + 1
-	
 	#Performance Monitoring
-	offset = len(test_derivative)
-	CPU_time = float(results[offset])
-	Wall_time = float(results[offset+1])
-	efficiency_factor = 1.0*CPU_time/threads/Wall_time
+	
 	output_file.write("%d,%d,%d,%f\n"%(i,int(CPU_time),int(Wall_time),efficiency_factor))
 	output_file.flush()
 	
@@ -309,4 +321,4 @@ if (__name__ == '__main__') and (len(sys.argv)>=4):
 	
     output_file.close()
         
-else: print "use: python mc_solver_multicore_portfolio_elaboration.py [output_filename] [path] [points]"
+else: print "use: python mc_solver_multicore_portfolio_elaboration.py [output_filename] [path] [points] [threads]"

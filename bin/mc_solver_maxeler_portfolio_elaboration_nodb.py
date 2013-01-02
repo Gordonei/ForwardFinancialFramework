@@ -293,13 +293,11 @@ if (__name__ == '__main__') and (len(sys.argv)>=6):
 	mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(test_derivative,paths,maxeler_platform)
 	if(command=="compile" and same_points):
 	    print "Building for trial: %s (%s)"%(selection,str(test_derivative_set))
-    
 	    mc_solver.generate()
 	    mc_solver.compile()
 	
 	elif(command=="execute" and same_points):
 	    results = mc_solver.execute()
-	
 	    print "Selection for trial: %s (%s)"%(selection,str(test_derivative_set))
 	    print "Derivative Values"
 	    index = 0
@@ -323,4 +321,4 @@ if (__name__ == '__main__') and (len(sys.argv)>=6):
 	
     output_file.close()
         
-else: print "use: python mc_solver_maxeler_portfolio_elaboration.py [output_filename] [path] [points] [compile/execute]"
+else: print "use: python mc_solver_maxeler_portfolio_elaboration.py [output_filename] [path] [points] [time period] [compile/execute]"
