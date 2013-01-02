@@ -288,7 +288,7 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	Wall_time = 0.0
 	efficiency_factor = 0.0
 	number_trials = 10 #Each trial is run 10 times, and the result averaged
-	for i in range(number_trials): 
+	for j in range(number_trials): 
 	    results = mc_solver.execute()
 	    
 	    CPU_time = CPU_time + float(results[offset])
