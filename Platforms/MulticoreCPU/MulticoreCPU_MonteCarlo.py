@@ -274,6 +274,11 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append(temp)
     
     output_list.append("int l,k,done;")
+    output_list.append("double ")
+    for d in self.derivative:
+      index = self.derivative.index(d)
+      if(index<(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d,"%(output_list[-1],index))
+      elif(index==(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d;"%(output_list[-1],index))
     output_list.append("for(l=0;l<temp_data->thread_paths;l++){")
     
     output_list.append("//***Underlying and Derivative Path Initiation***")
@@ -349,6 +354,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("}") #End of Path Generation Loop
     
     output_list.append("//**Post path-generation calculations**")
+    
     for d in self.derivative: #Post path-generation calculations
         index = self.derivative.index(d)
         for u in d.underlying:
@@ -356,8 +362,15 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
             
             output_list.append("%s_derivative_payoff(price_%d_%d,&o_v_%d,&o_a_%d);"%(d.name,index,u_index,index,index))
             output_list.append("temp_total_%d += o_v_%d.value;"%(index,index))
+            output_list.append("temp_value_sqrd_%d += pow(o_v_%d.value,2);"%(index,index))
             
     output_list.append("}")
+    ##Calculating standard error
+    for d in self.derivative:
+      index = self.derivative.index(d)
+      output_list.append("double temp_sample_std_dev_%d = pow((temp_value_sqrd_%d/temp_data->thread_paths-pow(temp_total_%d/temp_data->thread_paths,2))/(temp_data->thread_paths-1),0.5);"%(index,index,index))
+      output_list.append("double temp_sample_std_error_%d = 1.96*temp_sample_std_dev_%d/pow(temp_data->thread_paths,0.5);"%(index,index))
+      output_list.append("printf(\"%%f\\n\",temp_sample_std_error_%d);"%(index))
     ##Return result to main loop
     output_list.append("//**Returning Result**")
     for d in self.derivative: output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
