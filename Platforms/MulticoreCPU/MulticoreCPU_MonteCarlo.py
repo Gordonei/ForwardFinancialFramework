@@ -200,7 +200,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("//**Calculating Final Option Value and Return**")
     for d in self.derivative:
         output_list.append("option_price_%d = option_price_%d/paths;//Calculate final value and return value as well as timing"%(self.derivative.index(d),self.derivative.index(d)))
-        output_list.append("option_price_%d_confidence_interval = 1.96*pow(option_price_%d_confidence_interval,0.5);//Calculate final value and return value as well as timing"%(self.derivative.index(d),self.derivative.index(d)))
+        output_list.append("option_price_%d_confidence_interval = 1.96*pow(option_price_%d_confidence_interval,0.5)/pow(threads,1.5);//Calculate final confidence interval"%(self.derivative.index(d),self.derivative.index(d)))
         output_list.append("printf(\"\%f\\n\"")
         output_list.append(",option_price_%d);"%self.derivative.index(d))
         output_list.append("printf(\"\%f\\n\"")
@@ -457,7 +457,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         compile_cmd.append("-ffast-math")
         
         #Compile for this specific Machine
-        #compile_cmd.append("-march=native")
+        compile_cmd.append("-march=native")
         
         #print compile_cmd
         result = subprocess.check_output(compile_cmd)
