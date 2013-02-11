@@ -382,7 +382,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
     
-  def compile(self,override=True):
+  def compile(self,override=True,cleanup=True):
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -395,12 +395,13 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #Hardware Build Process
       compile_cmd = ["make","build-hw","APP=%s"%self.output_file_name]
       hw_result = subprocess.check_output(compile_cmd)
-      print hw_result
+      subprocess.check_output(["rm -r ../../scratch/*"]) #cleaning up majority of HDL source code generated for synthesis
+      #print hw_result
       
       #Host Code Compile
       compile_cmd = ["make","app-hw","APP=%s"%self.output_file_name]
       sw_result = subprocess.check_output(compile_cmd)
-      print sw_result
+      #print sw_result
       
       os.chdir(self.platform.root_directory())
       os.chdir("bin")
