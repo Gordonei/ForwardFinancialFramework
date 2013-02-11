@@ -13,8 +13,8 @@ if( __name__ == '__main__'):
   #underlying = [Underlying.Underlying(0.0,100)]
   #option = [Option.Option(underlying,1.0,1.0,105,1)]
   
-  paths = 1843692
-  points = 1024
+  paths = 1000
+  points = 252
   threads = 1
   #Kaiserslatuarn Parameter set I
   current_price = 100

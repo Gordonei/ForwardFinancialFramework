@@ -4,25 +4,14 @@ Comments for on-going work go here.
 
 Tasks
 -----
-1) Change Java class and source file names to be compliant with the lower case scheme used in the c and Python code. [DONE]
-2) Change Monte Carlo and Multicore Monte Carlo Solver infrastructure to allow for easier resuse of multicore code in Maxeler Code Generation [DONE]
-3) Maxeler Host code generation for the Monte Carlo Solver [DONE]
-4) Maxeler Kernel code generation for the Monte Carlo Solver [IN PROGRESS]
-  4.1) Generate Kernel with one underlying and one derivative [DONE]
-  4.2) Generate Kernel with one underlying and one derivative, with multiple instances [DONE]
-  4.3) Generate Kernel with one underlying and multiple derivatives 
-  4.4) Generate Kernel with many underlyings and many derivatives [IN PROGRESS]
-5) Automating Maxeler compiler flow for the Monte Carlo Solver*
-
-Tasks' Notes
-------------
-* Link to broader effort to support over-IP execution?
+1) Support the calculation of 95% confidence intervals for the pricing tasks done [IN PROGRESS]
+2) Create scripts for generating Perato surfaces for confidence intervals, latency and cost
+3) Generate experimental scripts for verifying the perato surfaces created
 
 Proposed
 --------
 1) Improve the monitoring infrastructure - emphasis on resource utilisation
-2) Cleanup (i.e. remove generated files) behaviour for solvers -> implemented for C files generated as a method in multicore solver class.
-3) Modify Monte Carlo algorithm to accurracy on demand 
+2) Support compilation and execution over-IP
 
 Put Off
 -------

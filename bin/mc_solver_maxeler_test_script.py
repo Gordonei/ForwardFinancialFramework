@@ -283,11 +283,11 @@ if __name__ == '__main__':
     
       print "Derivative Values"
       for d in derivative_set:
-        index = derivative_set.index(d)
-        print ("Value of Option %d:\t%s" % (d,results[index]))
+        index = derivative_set.index(d)*2
+        print ("Value of Option %d:\t%s \twith 95%% Confidence Interval of %s" % (d,results[index],results[index+1]))
     
       #Performance Monitoring
-      offset = len(derivative)
+      offset = len(derivative)*2
       CPU_time = float(results[offset])
       Wall_time = float(results[offset+1])
       efficiency_factor = 1.0*CPU_time/Wall_time
@@ -298,3 +298,4 @@ if __name__ == '__main__':
       print ("Efficiency Factor: %f"%efficiency_factor)
       
     else: print "Usuage: python mc_solver_maxeler_test_script.py [compile/execute] [paths] [path_points] [instances] [Options:all/1 2 ... 13]"
+    
