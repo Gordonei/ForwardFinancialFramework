@@ -299,3 +299,4 @@ if __name__ == '__main__':
       print ("Efficiency Factor: %f"%efficiency_factor)
       
     else: print "Usuage: python mc_solver_maxeler_test_script.py [compile/execute] [paths] [path_points] [instances] [Options:all/1 2 ... 13]"
+    
