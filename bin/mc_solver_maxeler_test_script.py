@@ -9,6 +9,7 @@ from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU, Multi
 from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA, MaxelerFPGA_MonteCarlo
 
 if __name__ == '__main__':
+    print sys.argv
     paths = int(sys.argv[2])
     points = int(sys.argv[3])
     instances = int(sys.argv[4])
@@ -283,11 +284,11 @@ if __name__ == '__main__':
     
       print "Derivative Values"
       for d in derivative_set:
-        index = derivative_set.index(d)
-        print ("Value of Option %d:\t%s" % (d,results[index]))
+        index = derivative_set.index(d)*2
+        print ("Value of Option %d:\t%s \twith 95% Confidence Interval of %s" % (d,results[index],results[index+1]))
     
       #Performance Monitoring
-      offset = len(derivative)
+      offset = len(derivative)*2
       CPU_time = float(results[offset])
       Wall_time = float(results[offset+1])
       efficiency_factor = 1.0*CPU_time/Wall_time

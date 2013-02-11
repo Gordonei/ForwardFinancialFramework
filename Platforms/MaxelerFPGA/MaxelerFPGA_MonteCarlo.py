@@ -97,7 +97,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**Post-Kernel Calculations**")
     for d in range(len(self.derivative)): 
       output_list.append("double temp_total_%d=0;"%d)
-      output_list.append("double temp_total_%d_squared=0;"%d)
+      output_list.append("double temp_value_sqrd_%d=0;"%d)
     output_list.append("for(int i=0;i<paths;i++){")
     for d in self.derivative:
       index = self.derivative.index(d)
@@ -395,7 +395,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #Hardware Build Process
       compile_cmd = ["make","build-hw","APP=%s"%self.output_file_name]
       hw_result = subprocess.check_output(compile_cmd)
-      subprocess.check_output(["rm -r ../../scratch/*"]) #cleaning up majority of HDL source code generated for synthesis
+      #subprocess.check_output(["rm -r ../../scratch/*"]) #cleaning up majority of HDL source code generated for synthesis
       #print hw_result
       
       #Host Code Compile
