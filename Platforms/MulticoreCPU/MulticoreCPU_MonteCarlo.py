@@ -73,6 +73,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
               output_list.append("double discount_%d_%d;"%(index,u_index))
               
           output_list.append("double option_price_%d;"%index)
+          output_list.append("double option_price_%d_confidence_interval;"%index)
           
       index = 0
       for u_a in self.underlying_attributes:
@@ -91,6 +92,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       output_list.append("struct thread_data{")
       output_list.append("int thread_paths;")
       output_list.append("double *thread_result;")
+      output_list.append("double *thread_result_std_error;")
       output_list.append("};")
       
       #Performance Monitoring Variables
@@ -154,8 +156,12 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("//**Creating Thread Variables**")
     output_list.append("thread_paths = paths/threads;")
     output_list.append("pthread_t pthreads[threads];")
-    output_list.append("double thread_results[threads][%d];"%len(self.derivative))
+    #output_list.append("double thread_results[threads][%d];"%len(self.derivative))
     output_list.append("struct thread_data temp_data[threads];")
+    output_list.append("for(i=0;i<threads;i++){")
+    output_list.append("temp_data[i].thread_result=(double*)malloc(%d*sizeof(double));"%len(self.derivative))
+    output_list.append("temp_data[i].thread_result_std_error=(double*)malloc(%d*sizeof(double));"%len(self.derivative))
+    output_list.append("}")
     
     output_list.append("pthread_attr_t attr;")
     output_list.append("pthread_attr_init(&attr);")
@@ -169,13 +175,15 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("if(i==(threads-1)){ //If final thread, allocating any remaining paths to it (i.e. PATHS%THREADS!=0)")
     output_list.append("temp_data[i].thread_paths += paths%threads;")
     output_list.append("}")
-    output_list.append("temp_data[i].thread_result = thread_results[i];")
+    #output_list.append("temp_data[i].thread_result = thread_results[i];")
     output_list.append("pthread_create(&pthreads[i],&attr,%s,&temp_data[i]);"%self.activity_thread_name)
     output_list.append("}")
     ##Join Threads, aggregate results
     output_list.append("//**Waiting for threads to join**")
     output_list.append("void *status;")
-    for d in self.derivative: output_list.append("option_price_%d = 0;"%self.derivative.index(d))
+    for d in self.derivative: 
+      output_list.append("option_price_%d = 0;"%self.derivative.index(d))
+      output_list.append("option_price_%d_confidence_interval = 0;"%self.derivative.index(d))
     output_list.append("for(i=0;i<threads;i++){ //Waiting for Threads");
     output_list.append("pthread_join(pthreads[i],&status);");
     
@@ -183,8 +191,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         index = self.derivative.index(d)
         for u in d.underlying:
             u_index = self.underlying.index(u)
-            output_list.append("option_price_%d += discount_%d_%d*thread_results[i][%d];"%(index,index,u_index,index));
-            #output_file.write("option_price_%d = thread_results[i][%d];"%(index,index));
+            output_list.append("option_price_%d += discount_%d_%d*temp_data[i].thread_result[%d];"%(index,index,u_index,index));
+            output_list.append("option_price_%d_confidence_interval += pow(temp_data[i].thread_result_std_error[%d],2);"%(index,index));
     
     output_list.append("}")
     
@@ -192,8 +200,11 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("//**Calculating Final Option Value and Return**")
     for d in self.derivative:
         output_list.append("option_price_%d = option_price_%d/paths;//Calculate final value and return value as well as timing"%(self.derivative.index(d),self.derivative.index(d)))
+        output_list.append("option_price_%d_confidence_interval = 1.96*pow(option_price_%d_confidence_interval,0.5);//Calculate final value and return value as well as timing"%(self.derivative.index(d),self.derivative.index(d)))
         output_list.append("printf(\"\%f\\n\"")
         output_list.append(",option_price_%d);"%self.derivative.index(d))
+        output_list.append("printf(\"\%f\\n\"")
+        output_list.append(",option_price_%d_confidence_interval);"%self.derivative.index(d))
     
     ##Return Performance evaluation
     output_list.append("//**Performance Monitoring Calculation and Return**")
@@ -274,6 +285,13 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append(temp)
     
     output_list.append("int l,k,done;")
+    
+    output_list.append("double ")
+    for d in self.derivative:
+      index = self.derivative.index(d)
+      if(index<(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d,"%(output_list[-1],index))
+      elif(index==(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d;"%(output_list[-1],index))
+    
     output_list.append("for(l=0;l<temp_data->thread_paths;l++){")
     
     output_list.append("//***Underlying and Derivative Path Initiation***")
@@ -356,11 +374,19 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
             
             output_list.append("%s_derivative_payoff(price_%d_%d,&o_v_%d,&o_a_%d);"%(d.name,index,u_index,index,index))
             output_list.append("temp_total_%d += o_v_%d.value;"%(index,index))
+            output_list.append("temp_value_sqrd_%d += pow(o_v_%d.value,2);"%(index,index))
             
     output_list.append("}")
+    for d in self.derivative:
+      index = self.derivative.index(d)
+      output_list.append("double temp_sample_std_dev_%d = pow((temp_value_sqrd_%d/temp_data->thread_paths-pow(temp_total_%d/temp_data->thread_paths,2))/(temp_data->thread_paths-1),0.5);"%(index,index,index))
+      output_list.append("double temp_sample_std_error_%d = temp_sample_std_dev_%d/pow(temp_data->thread_paths,0.5);"%(index,index))
+      
     ##Return result to main loop
     output_list.append("//**Returning Result**")
-    for d in self.derivative: output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
+    for d in self.derivative: 
+      output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
+      output_list.append("temp_data->thread_result_std_error[%d] = temp_sample_std_error_%d;"%(self.derivative.index(d),self.derivative.index(d)))
     output_list.append("}")
     
       
@@ -424,10 +450,13 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         compile_cmd.append("-w")
         
         #SSE
-        compile_cmd.append("-msse3")
+        #compile_cmd.append("-msse3")
         
         #Fast Math
         compile_cmd.append("-ffast-math")
+        
+        #Compile for this specific Machine
+        compile_cmd.append("-march=native")
         
         #print compile_cmd
         result = subprocess.check_output(compile_cmd)

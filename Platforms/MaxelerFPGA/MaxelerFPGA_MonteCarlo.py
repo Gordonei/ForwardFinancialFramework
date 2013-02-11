@@ -95,16 +95,27 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("max_end());")
     
     output_list.append("//**Post-Kernel Calculations**")
-    for d in range(len(self.derivative)): output_list.append("double temp_total_%d=0;"%d)
+    for d in range(len(self.derivative)): 
+      output_list.append("double temp_total_%d=0;"%d)
+      output_list.append("double temp_total_%d_squared=0;"%d)
     output_list.append("for(int i=0;i<paths;i++){")
     for d in self.derivative:
       index = self.derivative.index(d)
       output_list.append("temp_total_%d += values_out[i*%d+%d];"%(index,values_out*4,index))
+      output_list.append("temp_value_sqrd_%d += pow(values_out[i*%d+%d],2);"%(index,values_out*4,index))
       #output_list.append("if(values_out[i*%d+%d]){printf(\"%%d - %%f\\n\",i,values_out[i*%d+%d]);}"%(values_out*4,index,values_out*4,index))
     output_list.append("}")
+    
+    for d in self.derivative:
+      index = self.derivative.index(d)
+      output_list.append("double temp_sample_std_dev_%d = pow((temp_value_sqrd_%d/temp_data->thread_paths-pow(temp_total_%d/temp_data->thread_paths,2))/(temp_data->thread_paths-1),0.5);"%(index,index,index))
+      output_list.append("double temp_sample_std_error_%d = temp_sample_std_dev_%d/pow(temp_data->thread_paths,0.5);"%(index,index))
+      
     output_list.append("//**Returning Result**")
     #output_list.append("printf(\"temp_total=%f\",temp_total_0);")
-    for d in self.derivative: output_list.append("temp_data->thread_result[%d] = temp_total_%d/instances;"%(self.derivative.index(d),self.derivative.index(d)))
+    for d in self.derivative: 
+      output_list.append("temp_data->thread_result[%d] = temp_total_%d/instances;"%(self.derivative.index(d),self.derivative.index(d)))
+      output_list.append("temp_data->thread_result_std_error[%d] = temp_sample_std_error_%d;"%(self.derivative.index(d),self.derivative.index(d)))
     output_list.append("}")
     
     return output_list
@@ -344,7 +355,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     makefile = open("Makefile","w")
     makefile.write("BASEDIR=../..\n")
     makefile.write("PACKAGE=mc_solver_maxeler\n")
-    makefile.write("APP=%s\n"%self.output_file_name)
+    makefile.write("APP=dummy\n"#%self.output_file_name)
     makefile.write("HWMAXFILE=$(APP).max\n")
     #makefile.write("HOSTSIMMAXFILE=$(APP)_Host_Sim.max")
     makefile.write("HWBUILDER=$(APP)_HW_Builder.java\n")
@@ -382,12 +393,12 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     if(override or not os.path.exists("hardware/%s/"%self.output_file_name)):
       #Hardware Build Process
-      compile_cmd = ["make","build-hw"]
+      compile_cmd = ["make","build-hw","APP=%s"%self.output_file_name]
       hw_result = subprocess.check_output(compile_cmd)
       print hw_result
       
       #Host Code Compile
-      compile_cmd = ["make","app-hw"]
+      compile_cmd = ["make","app-hw","APP=%s"%self.output_file_name]
       sw_result = subprocess.check_output(compile_cmd)
       print sw_result
       
