@@ -355,7 +355,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     makefile = open("Makefile","w")
     makefile.write("BASEDIR=../..\n")
     makefile.write("PACKAGE=mc_solver_maxeler\n")
-    makefile.write("APP=dummy\n"#%self.output_file_name)
+    makefile.write("APP=dummy\n")#%self.output_file_name)
     makefile.write("HWMAXFILE=$(APP).max\n")
     #makefile.write("HOSTSIMMAXFILE=$(APP)_Host_Sim.max")
     makefile.write("HWBUILDER=$(APP)_HW_Builder.java\n")
