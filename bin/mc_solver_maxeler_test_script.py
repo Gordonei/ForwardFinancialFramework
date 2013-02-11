@@ -285,7 +285,7 @@ if __name__ == '__main__':
       print "Derivative Values"
       for d in derivative_set:
         index = derivative_set.index(d)*2
-        print ("Value of Option %d:\t%s \twith 95% Confidence Interval of %s" % (d,results[index],results[index+1]))
+        print ("Value of Option %d:\t%s \twith 95%% Confidence Interval of %s" % (d,results[index],results[index+1]))
     
       #Performance Monitoring
       offset = len(derivative)*2
