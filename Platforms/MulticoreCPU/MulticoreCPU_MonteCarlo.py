@@ -92,7 +92,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       output_list.append("struct thread_data{")
       output_list.append("int thread_paths;")
       output_list.append("double *thread_result;")
-      output_list.append("double *thread_result_std_error;")
+      output_list.append("double *thread_result_sqrd;")
       output_list.append("};")
       
       #Performance Monitoring Variables
@@ -160,7 +160,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("struct thread_data temp_data[threads];")
     output_list.append("for(i=0;i<threads;i++){")
     output_list.append("temp_data[i].thread_result=(double*)malloc(%d*sizeof(double));"%len(self.derivative))
-    output_list.append("temp_data[i].thread_result_std_error=(double*)malloc(%d*sizeof(double));"%len(self.derivative))
+    output_list.append("temp_data[i].thread_result_sqrd=(double*)malloc(%d*sizeof(double));"%len(self.derivative))
     output_list.append("}")
     
     output_list.append("pthread_attr_t attr;")
@@ -192,15 +192,18 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         for u in d.underlying:
             u_index = self.underlying.index(u)
             output_list.append("option_price_%d += discount_%d_%d*temp_data[i].thread_result[%d];"%(index,index,u_index,index));
-            output_list.append("option_price_%d_confidence_interval += pow(temp_data[i].thread_result_std_error[%d],2);"%(index,index));
+            output_list.append("option_price_%d_confidence_interval += temp_data[i].thread_result_sqrd[%d]; //accumulating variances for calculating the confidence interval"%(index,index));
     
     output_list.append("}")
+    
+    #output_list.append("double temp_sample_std_dev_%d = pow((temp_value_sqrd_%d/temp_data->thread_paths-pow(temp_total_%d/temp_data->thread_paths,2))/(temp_data->thread_paths-1),0.5);"%(index,index,index)) 
     
     ##Calculate final value and return value
     output_list.append("//**Calculating Final Option Value and Return**")
     for d in self.derivative:
         output_list.append("option_price_%d = option_price_%d/paths;//Calculate final value and return value as well as timing"%(self.derivative.index(d),self.derivative.index(d)))
-        output_list.append("option_price_%d_confidence_interval = 1.96*pow(option_price_%d_confidence_interval,0.5)/pow(threads,1.5);//Calculate final confidence interval"%(self.derivative.index(d),self.derivative.index(d)))
+        output_list.append("double temp_std_dev=pow((option_price_%d_confidence_interval/paths-pow(option_price_%d,2)),0.5);"%(self.derivative.index(d),self.derivative.index(d)))
+        output_list.append("option_price_%d_confidence_interval = 1.96*temp_std_dev/pow(paths,0.5);//Calculate standard error and final confidence interval"%(self.derivative.index(d)))
         output_list.append("printf(\"\%f\\n\"")
         output_list.append(",option_price_%d);"%self.derivative.index(d))
         output_list.append("printf(\"\%f\\n\"")
@@ -286,11 +289,11 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     output_list.append("int l,k,done;")
     
-    output_list.append("double ")
     for d in self.derivative:
       index = self.derivative.index(d)
-      if(index<(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d,"%(output_list[-1],index))
-      elif(index==(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d;"%(output_list[-1],index))
+      output_list.append("double temp_total_sqrd_%d=0;"%(index))
+      #if(index<(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d,"%(output_list[-1],index))
+      #elif(index==(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d;"%(output_list[-1],index))
       
     output_list.append("for(l=0;l<temp_data->thread_paths;l++){")
     
@@ -375,19 +378,21 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
             
             output_list.append("%s_derivative_payoff(price_%d_%d,&o_v_%d,&o_a_%d);"%(d.name,index,u_index,index,index))
             output_list.append("temp_total_%d += o_v_%d.value;"%(index,index))
-            output_list.append("temp_value_sqrd_%d += pow(o_v_%d.value,2);"%(index,index))
+            output_list.append("temp_total_sqrd_%d += pow(o_v_%d.value,2);"%(index,index))
+            #output_list.append("printf(\"%%f\\n\",temp_value_sqrd_%d);"%index)
             
     output_list.append("}")
-    for d in self.derivative:
-      index = self.derivative.index(d)
-      output_list.append("double temp_sample_std_dev_%d = pow((temp_value_sqrd_%d/temp_data->thread_paths-pow(temp_total_%d/temp_data->thread_paths,2))/(temp_data->thread_paths-1),0.5);"%(index,index,index))
-      output_list.append("double temp_sample_std_error_%d = temp_sample_std_dev_%d/pow(temp_data->thread_paths,0.5);"%(index,index))
+    #for d in self.derivative:
+      #index = self.derivative.index(d)
+      #output_list.append("double temp_sample_std_dev_%d = pow((temp_value_sqrd_%d/temp_data->thread_paths-pow(temp_total_%d/temp_data->thread_paths,2))/(temp_data->thread_paths-1),0.5);"%(index,index,index))
+      
+      #output_list.append("double temp_sample_std_error_%d = temp_sample_std_dev_%d/pow(temp_data->thread_paths,0.5);"%(index,index))
       
     ##Return result to main loop
     output_list.append("//**Returning Result**")
     for d in self.derivative: 
       output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
-      output_list.append("temp_data->thread_result_std_error[%d] = temp_sample_std_error_%d;"%(self.derivative.index(d),self.derivative.index(d)))
+      output_list.append("temp_data->thread_result_sqrd[%d] = temp_total_sqrd_%d;"%(self.derivative.index(d),self.derivative.index(d)))
     output_list.append("}")
     
       
@@ -493,6 +498,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
         index +=1
     
+    #print run_cmd
     start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
     results = subprocess.check_output(run_cmd)
     finish = time.time()
