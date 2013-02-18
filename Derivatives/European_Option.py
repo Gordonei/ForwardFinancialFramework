@@ -12,15 +12,15 @@ class European_Option(Option.Option):
     
     strike_price = 0.0
 
-    def __init__(self,underlying,time_period,call,strike_price,points=1):
+    def __init__(self,underlying,time_period,call,strike_price):
         '''
         Constructor
         '''
-        Option.Option.__init__(self,underlying,time_period,call,strike_price,points)
+        Option.Option.__init__(self,underlying,time_period,call,strike_price)
         
     def path_init(self):
         self.value = 0
-        self.delta_time = self.time_period/self.points
+        #self.delta_time = self.time_period/self.points
         
     def payoff(self,end_price):
         if(self.call and (end_price>self.strike_price)): self.value = (end_price-self.strike_price)

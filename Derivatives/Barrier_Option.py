@@ -14,6 +14,7 @@ class Barrier_Option(European_Option.European_Option):
     barrier = 0.0
     out = None
     down = None
+    points = 0
     
     #class variables
     barrier_event = None
@@ -22,8 +23,9 @@ class Barrier_Option(European_Option.European_Option):
         '''
         Constructor
         '''
-        European_Option.European_Option.__init__(self,underlying,time_period,call,strike_price,points)
+        European_Option.European_Option.__init__(self,underlying,time_period,call,strike_price)
         
+        self.points = points
         self.barrier = barrier
         self.out = out
         self.down = down
@@ -33,6 +35,7 @@ class Barrier_Option(European_Option.European_Option):
     def path_init(self):
         European_Option.European_Option.path_init(self)
         self.barrier_event = False
+        self.delta_time = self.time_period/self.points
         
     def path(self,price,time):
         if((self.down and (price<=self.barrier)) or (not(self.down) and (price>=self.barrier))): self.barrier_event = True

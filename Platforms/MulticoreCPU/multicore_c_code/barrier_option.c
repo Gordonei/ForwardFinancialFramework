@@ -9,13 +9,13 @@
 
 void barrier_option_derivative_init(double t,double c,double k,double p,double b,double o,double d,barrier_option_opt_attr* o_a){
 	//Calling European Behaviour
-        european_option_derivative_init(t,c,k,p,&(o_a->european));
+        european_option_derivative_init(t,c,k,&(o_a->european));
         o_a->strike_price = (o_a->european).strike_price;
 	o_a->call = (o_a->european).call;
 	o_a->time_period = (o_a->european).time_period;
-	o_a->points = (o_a->european).points;
-        
+	
         //Barrier Specific Behaviour
+	o_a->points = p;
         o_a->barrier = b;
         o_a->out = o;
         o_a->down = d;
@@ -25,7 +25,7 @@ void barrier_option_derivative_path_init(barrier_option_opt_var* o_v,barrier_opt
 	//Calling European Behaviour
         european_option_derivative_path_init(&(o_v->european),&(o_a->european));
         o_v->value = (o_v->european).value;
-	o_v->delta_time = (o_v->european).delta_time;
+	o_v->delta_time = (o_v->european).delta_time/o_a->points;
         
         //Barrier Specific Behaviour
         o_v->barrier_event = 0;

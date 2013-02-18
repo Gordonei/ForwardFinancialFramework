@@ -16,7 +16,6 @@ typedef struct option_attributes{
 	double strike_price;
 	double time_period;
 	double call;
-	double points;
 } option_opt_attr;
 
 //time_period, call, strike_price, points

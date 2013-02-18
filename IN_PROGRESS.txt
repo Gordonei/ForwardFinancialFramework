@@ -4,14 +4,17 @@ Comments for on-going work go here.
 
 Tasks
 -----
-1) Support the calculation of 95% confidence intervals for the pricing tasks done [IN PROGRESS]
-2) Create scripts for generating Perato surfaces for confidence intervals, latency and cost
-3) Generate experimental scripts for verifying the perato surfaces created
+1) Support the calculation of 95% confidence intervals for the pricing tasks done [DONE]
+2) Create scripts for generating Perato surfaces for confidence intervals, latency and cost [IN PROGRESS]
+3) Generate experimental scripts for verifying the perato surfaces created [IN PROGRESS]
 
 Proposed
 --------
 1) Improve the monitoring infrastructure - emphasis on resource utilisation
 2) Support compilation and execution over-IP
+3) Replace the use of the Box-Muller transform with the Zigarat for the URN to GRN in the CPU implementation
+4) Allow for the Monte Carlo Implementation to be "seeded" with values for each derivative - should this be done throught the derivative objects? This suggest persistance between solvers
+5) Differentiate between options that incorporate path points into their definition (e.g. barrier or asian) and how many path points are defined for the Monte Carlo Solver.
 
 Put Off
 -------

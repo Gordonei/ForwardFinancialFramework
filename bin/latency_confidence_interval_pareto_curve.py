@@ -16,7 +16,7 @@ if( __name__ == '__main__'):
   
   paths = 1000
   points = 252
-  threads = 8
+  threads = 4
   #Kaiserslatuarn Parameter set I
   current_price = 100
   
@@ -51,84 +51,90 @@ if( __name__ == '__main__'):
   mc_solver.generate()
   compile_output = mc_solver.compile()
   
-  
-  #Speculative Step
-  speculative_paths = 1000
-  mc_solver.solver_metadata["paths"] = speculative_paths
-  execution_output = mc_solver.execute()
-  
-  latency = float(execution_output[-1])
-  confidence_interval = float(execution_output[1])
-  
-  print "%d paths with %f latency and %f 95%% confidence interval"%(speculative_paths,latency,confidence_interval)
-  
-  projected_latency_set = []
-  projected_confidence_interval_set = []
-  projected_paths = []
-  
-  pessimism_factor = 1.0
-  
-  for i in range(1,3):
-    for j in range(10):
-      desired_confidence_interval = (0.01/10**i)*(10-j)
-      m = ((1.0*confidence_interval/desired_confidence_interval))**2
-      desired_paths = int(math.ceil(m*speculative_paths))
-      #print "If %f 95%% confidence interval is desired, need %d paths" % (desired_confidence_interval,desired_paths)
-      
-      projected_paths.append(desired_paths)
-      projected_latency_set.append(latency*m)
-      projected_confidence_interval_set.append(desired_confidence_interval)
-  
-  actual_latency_set = []
-  actual_confidence_interval_set = []
-  
-  index = 0
-  for p in projected_paths:
-    mc_solver.solver_metadata["paths"] = p
+  latency_error_plot = []
+  confidence_interval_error_plot = []
+  for i in range(1,11):
+    #Speculative Step
+    speculative_paths = 1000*i
+    mc_solver.solver_metadata["paths"] = speculative_paths
     execution_output = mc_solver.execute()
-    
-    actual_latency = float(execution_output[-1])
-    actual_confidence_interval = float(execution_output[1])
-    
-    actual_latency_set.append(actual_latency)
-    actual_confidence_interval_set.append(actual_confidence_interval)
-   
-    index = index + 1
-        
-  correction_steps = 10
-  corrected_latency_set = []
-  corrected_confidence_interval_set = []
-  for p in projected_paths:
-    done = False
-    temp_paths = int(math.ceil(p/correction_steps))
-    count = 0
-    corrected_latency = 0
-    while(not done):
-      temp_paths = temp_paths + int(math.ceil(p/correction_steps))
-      mc_solver.solver_metadata["paths"] = temp_paths
+    execution_output = mc_solver.execute()
+
+    latency = float(execution_output[-1])
+    confidence_interval = float(execution_output[1])
+
+    print "Using %d paths with %f latency and %f 95%% confidence interval as reference"%(speculative_paths,latency,confidence_interval)
+
+    projected_latency_set = []
+    projected_confidence_interval_set = []
+    projected_paths = []
+
+    for i in range(1,3):
+      for j in range(100):
+	desired_confidence_interval = (1.0/10**i)-(1.0/10**(i+2))*j
+	m = ((1.0*confidence_interval/desired_confidence_interval))**2
+	desired_paths = int(math.ceil(m*speculative_paths))
+	#print "If %f 95%% confidence interval is desired, need %d paths" % (desired_confidence_interval,desired_paths)
+	
+	projected_paths.append(desired_paths)
+	projected_latency_set.append(latency*desired_paths*1.0/speculative_paths)
+	projected_confidence_interval_set.append(desired_confidence_interval)
+
+    actual_latency_set = []
+    actual_confidence_interval_set = []
+
+    corrected_latency_set = []
+    corrected_confidence_interval_set = []
+
+    for index,p in enumerate(projected_paths):
+      mc_solver.solver_metadata["paths"] = p
       execution_output = mc_solver.execute()
       
-      corrected_latency += float(execution_output[-1])
-      corrected_confidence_interval = float(execution_output[1])
+      actual_latency = float(execution_output[-1])
+      actual_confidence_interval = float(execution_output[1])
+      #print "performed %d paths, aiming for %f 95%% confidence interval, achieved %f 95%% confidence interval instead"%(p,projected_confidence_interval_set[index],actual_confidence_interval)
       
-      if(corrected_confidence_interval<=projected_confidence_interval_set[projected_paths.index(p)]): done = True
-      count = count + 1
-    
-    print count
-    corrected_latency_set.append(corrected_latency)
-    corrected_confidence_interval_set.append(corrected_confidence_interval)
-    
-  projected_latency_set = numpy.log(projected_latency_set)/numpy.log(10)
-  projected_confidence_interval_set = numpy.log(numpy.array(projected_confidence_interval_set))/numpy.log(10)
-  plt.plot(projected_latency_set,projected_confidence_interval_set,"bo--",label="Projected from %d"%speculative_paths)
+      actual_latency_set.append(actual_latency)
+      actual_confidence_interval_set.append(actual_confidence_interval)
+      
+      """if(actual_confidence_interval>projected_confidence_interval_set[index]):
+	m = ((1.0*actual_confidence_interval/projected_confidence_interval_set[index]))**2
+	desired_paths = int(math.ceil(m*p))
+	print "Achieved %f, desired %f, correcting with %d paths"%(actual_confidence_interval,projected_confidence_interval_set[index],desired_paths)
+	mc_solver.solver_metadata["paths"] = p
+	execution_output = mc_solver.execute()
+	
+	corrected_latency_set.append(float(execution_output[-1]))
+	corrected_confidence_interval_set.append(float(execution_output[1]))"""
+	
+	  
+      
+    """projected_latency_set = projected_latency_set
+    projected_confidence_interval_set = projected_confidence_interval_set
+    plt.plot(projected_latency_set,projected_confidence_interval_set,"bo--",label="Projected from %d"%speculative_paths)
+
+    corrected_latency_set =corrected_latency_set
+    corrected_confidence_interval_set = corrected_confidence_interval_set
+    plt.plot(corrected_latency_set,corrected_confidence_interval_set,"go--",label="Corrected")
+      
+    actual_latency_set = actual_latency_set
+    actual_confidence_interval_set = actual_confidence_interval_set
+    plt.plot(actual_latency_set,actual_confidence_interval_set,"rx-",label="Actual")
+
+    ax = plt.gca()
+    ax.set_yscale('log')
+    ax.set_xscale('log')
+
+    plt.legend()"""
+
+    latency_error = (numpy.array(projected_latency_set) - numpy.array(actual_latency_set))/numpy.array(actual_latency_set)
+    confidence_interval_error = (numpy.array(projected_confidence_interval_set) - numpy.array(actual_confidence_interval_set))/numpy.array(actual_confidence_interval_set)
+
+    #plt.scatter(latency_error,confidence_interval_error)
+    latency_error_plot.append(numpy.mean(latency_error)*100)
+    confidence_interval_error_plot.append(numpy.mean(confidence_interval_error)*100)
   
-  corrected_latency_set = numpy.log(corrected_latency_set)/numpy.log(10)
-  corrected_confidence_interval_set = numpy.log(numpy.array(corrected_confidence_interval_set))/numpy.log(10)
-  plt.plot(corrected_latency_set,corrected_confidence_interval_set,"go--",label="Projected from %d, with %d correction steps"%(speculative_paths,correction_steps))
-    
-  actual_latency_set = numpy.log(actual_latency_set)/numpy.log(10)
-  actual_confidence_interval_set = numpy.log(numpy.array(actual_confidence_interval_set))/numpy.log(10)
-  plt.plot(actual_latency_set,actual_confidence_interval_set,"rx-",label="Actual")
+  plt.scatter(latency_error_plot,confidence_interval_error_plot)
   
   plt.grid()
   plt.show()
