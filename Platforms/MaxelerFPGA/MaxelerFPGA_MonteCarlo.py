@@ -264,7 +264,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       for u in d.underlying:
         u_index = self.underlying.index(u)
         if("%s_%d"%(u.name,u_index) not in temp_path_call): #checking to see if this path has not been called already
-          output_list.append("%s_%d.path(%s_%d.delta_time);"%(u.name,u_index,d.name,d_index)) #Calling the path function
+          if("points" in derivative_attributes[d_index]): output_list.append("%s_%d.path(%s_%d.delta_time);"%(u.name,u_index,d.name,d_index)) #Calling the path function
+	  else: output_list.append("%s_%d.path(%s_%d.delta_time/%d);"%(u.name,u_index,d.name,d_index,self.solver_metadata["path_points"])) #Calling the path function
           output_list.append("%s_%d.connect_path();"%(u.name,u_index))
           temp_path_call.append("%s_%d"%(u.name,u_index))
     
