@@ -102,7 +102,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for d in self.derivative:
       index = self.derivative.index(d)
       output_list.append("temp_total_%d += values_out[i*%d+%d];"%(index,values_out*4,index))
-      output_list.append("temp_value_sqrd_%d += pow(values_out[i*%d+%d],2);"%(index,values_out*4,index))
+      output_list.append("temp_value_sqrd_%d += pow(values_out[i*%d+%d]/instances,2);"%(index,values_out*4,index))
       #output_list.append("if(values_out[i*%d+%d]){printf(\"%%d - %%f\\n\",i,values_out[i*%d+%d]);}"%(values_out*4,index,values_out*4,index))
     output_list.append("}")
     
@@ -115,7 +115,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #output_list.append("printf(\"temp_total=%f\",temp_total_0);")
     for d in self.derivative: 
       output_list.append("temp_data->thread_result[%d] = temp_total_%d/instances;"%(self.derivative.index(d),self.derivative.index(d)))
-      output_list.append("temp_data->thread_result_sqrd[%d] = temp_total_sqrd_%d;"%(self.derivative.index(d),self.derivative.index(d)))
+      output_list.append("temp_data->thread_result_sqrd[%d] = temp_value_sqrd_%d;"%(self.derivative.index(d),self.derivative.index(d)))
     output_list.append("}")
     
     return output_list
