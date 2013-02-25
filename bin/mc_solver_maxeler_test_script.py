@@ -247,7 +247,7 @@ if __name__ == '__main__':
 	underlying_heston_VI = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
 	underlying_black_scholes_VII = [Black_Scholes.Black_Scholes(rfir=rfir,current_price=current_price,volatility=volatility)]
 	    
-	if(option_number=="1"): derivative.append(European_Option.European_Option(underlying_heston_II,call=call,strike_price=strike_price,time_period=time_period,points=points))
+	if(option_number=="1"): derivative.append(European_Option.European_Option(underlying_heston_II,call=call,strike_price=strike_price,time_period=time_period))
 	  
 	elif((option_number=="2")or(option_number=="3")or(option_number=="11")):
 	  if(option_number=="2"): derivative.append(Barrier_Option.Barrier_Option(underlying_heston_II,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down))

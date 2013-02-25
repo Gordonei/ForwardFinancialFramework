@@ -19,6 +19,9 @@ public class asian_option extends european_option {
 	@Override
 	public void path_init(){
 		super.path_init();
+
+		this.delta_time = this.point.eq(0) ? ((this.parameters.time_period/this.parameters.points)).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType) : this.carried_delta_time;
+
 		carried_average = ((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType.newInstance(this);
 
 		this.average = this.point.eq(0) ? 0.0 : this.carried_average;
@@ -27,6 +30,7 @@ public class asian_option extends european_option {
 	@Override
 	public void path(HWVar temp_price,HWVar time){
 		super.path(temp_price,time);
+		this.new_delta_time = this.enable.eq(true)?this.parameters.time_period/this.parameters.points:0.0;
 		this.temp_average_contribution = (temp_price/this.parameters.points).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType);
 		this.new_average = this.average + this.temp_average_contribution;
 	}

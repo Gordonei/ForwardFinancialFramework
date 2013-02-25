@@ -41,11 +41,11 @@ public class option extends KernelLib{
 	public void path_init(){
 		carried_delta_time = ((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType.newInstance(((MC_Solver_Maxeler_Base_Kernel)this.kernel));
 
-		this.delta_time = this.point.eq(0) ? ((this.parameters.time_period/(this.parameters.points))).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType) : this.carried_delta_time;
+		this.delta_time = this.point.eq(0) ? ((this.parameters.time_period)).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType) : this.carried_delta_time;
 		}
 
 	public void path(HWVar temp_price,HWVar time){
-		this.new_delta_time = this.enable.eq(true)?this.parameters.time_period/(this.parameters.points):0.0;
+		this.new_delta_time = this.enable.eq(true)?this.parameters.time_period:0.0;
 		this.new_enable = this.enable;
 		//this.value = (this.point.eq(this.kernel.path_points-1)) ? this.payoff(temp_price) : this.kernel.constant.var(this.kernel.doubleType,0.0);
 	}

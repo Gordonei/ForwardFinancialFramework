@@ -9,6 +9,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
   def __init__(self,derivative,paths,platform,reduce_underlyings=True):
     MonteCarlo.MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     self.solver_metadata["threads"] = self.platform.threads #Number of threads set by the platform
+    self.solver_metadata["default_points"] = 10
     
     self.utility_libraries = ["math.h","pthread.h","stdint.h","stdlib.h","stdio.h","sys/time.h","sys/resource.h","unistd.h","string.h"]
     self.activity_thread_name = "multicore_montecarlo_activity_thread"
@@ -329,14 +330,20 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
            
         output_list.append("%s_derivative_path(price_%d_%d,u_v_%d.time,&o_v_%d,&o_a_%d);" % (d.name,index,u_index,u_index,index,index)) #TODO - Some clever introspection to determine the composition of the call
         
-        for u in d.underlying:
-            u_index = self.underlying.index(u)
-            output_list.append("next_time_%d_%d = u_v_%d.time + o_v_%d.delta_time;" % (index,u_index,u_index,index))
+        if("points" in self.derivative_attributes[index]):
+	  for u in d.underlying:
+	      u_index = self.underlying.index(u)
+	      output_list.append("next_time_%d_%d = u_v_%d.time + o_v_%d.delta_time;" % (index,u_index,u_index,index))
+        else:
+	  for u in d.underlying:
+	      u_index = self.underlying.index(u)
+	      output_list.append("next_time_%d_%d = u_v_%d.time + o_v_%d.delta_time/%d;" % (index,u_index,u_index,index,self.solver_metadata["default_points"]))
+        
         output_list.append("}")
     
     
     output_list.append("//***Determining Next Times for Underlyings***")
-    for u in self.underlying: 
+    for u in self.underlying:
         u_index = self.underlying.index(u)
         output_list.append("if((u_v_%d.time<o_a_%d.time_period)){"%(u_index,self.underlying_dependencies[u_index][0])) #setting very next time to the first active next time point
         output_list.append("very_next_time_%d=next_time_%d_%d;"%(u_index,self.underlying_dependencies[u_index][0],u_index))

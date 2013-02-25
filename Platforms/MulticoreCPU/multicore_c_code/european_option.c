@@ -6,16 +6,15 @@
  */
 #include "european_option.h"
 
-void european_option_derivative_init(double t,double c,double k,double p,european_option_opt_attr* o_a){
+void european_option_derivative_init(double t,double c,double k,european_option_opt_attr* o_a){
 	o_a->strike_price = k;
 	o_a->call=c;
 	o_a->time_period=t;
-	o_a->points = p;
 }
 
 void european_option_derivative_path_init(european_option_opt_var* o_v,european_option_opt_attr* o_a){
 	o_v->value=0;
-	o_v->delta_time=o_a->time_period/o_a->points;
+	o_v->delta_time=o_a->time_period;
 }
 
 void european_option_derivative_path(double price,double time,european_option_opt_var* o_v,european_option_opt_attr* o_a){

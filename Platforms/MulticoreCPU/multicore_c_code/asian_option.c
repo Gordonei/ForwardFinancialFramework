@@ -8,20 +8,20 @@
 #include "european_option.h"
 
 void asian_option_derivative_init(double t,double c,double k,double p,asian_option_opt_attr* o_a){
-    european_option_derivative_init(t,c,k,p,&(o_a->european_option));
+    european_option_derivative_init(t,c,k,&(o_a->european_option));
     o_a->strike_price = (o_a->european_option).strike_price;
     o_a->call = (o_a->european_option).call;
     o_a->time_period = (o_a->european_option).time_period;
-    o_a->points = (o_a->european_option).points;
-        
+    
     //Asian Specific Behaviour
+    o_a->points = p;
     
 }
 
 void asian_option_derivative_path_init(asian_option_opt_var* o_v,asian_option_opt_attr* o_a){
     european_option_derivative_path_init(&(o_v->european_option),&(o_a->european_option));
     o_v->value = (o_v->european_option).value;
-    o_v->delta_time = (o_v->european_option).delta_time;
+    o_v->delta_time = (o_v->european_option).delta_time/o_a->points;
     
     o_v->average_value = 0;
 }

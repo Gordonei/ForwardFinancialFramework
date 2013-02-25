@@ -18,6 +18,8 @@ public class barrier_option extends european_option {
 	public void path_init(){
 		super.path_init();
 		
+		this.delta_time = this.point.eq(0) ? ((this.parameters.time_period/this.parameters.points)).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType) : this.carried_delta_time;
+
 		carried_barrier_event = ((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType.newInstance(this.kernel);
 		this.barrier_event = this.point.eq(0) ? 0.0 : this.carried_barrier_event;
 	}
@@ -25,6 +27,7 @@ public class barrier_option extends european_option {
 	@Override
 	public void path(HWVar temp_price,HWVar time){
 		super.path(temp_price,time);
+		this.new_delta_time = this.enable.eq(true)?this.parameters.time_period/this.parameters.points:0.0;
 		this.new_barrier_event = (this.barrier_event.eq(0)? check_barrier(temp_price) : this.carried_barrier_event);
 	}
 

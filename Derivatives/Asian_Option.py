@@ -11,6 +11,7 @@ class Asian_Option(European_Option.European_Option):
     name = "asian_option"
     
     #class attributes
+    points = 0
     
     #class variables
     average_value = 0.0
@@ -19,13 +20,15 @@ class Asian_Option(European_Option.European_Option):
         '''
         Constructor
         '''
-        European_Option.European_Option.__init__(self,underlying,time_period,call,strike_price,points)
+        European_Option.European_Option.__init__(self,underlying,time_period,call,strike_price)
+        self.points = points
         
         self.average_value = 0.0
         
     def path_init(self):
         European_Option.European_Option.path_init(self)
         self.average_value = 0.0
+        self.delta_time = self.time_period/self.points
         
     def path(self,price,time):
         self.average_value += price

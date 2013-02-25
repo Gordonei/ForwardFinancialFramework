@@ -14,14 +14,13 @@ class Option:
     strike_price = 0.0
     time_period = 0.0
     call = None
-    points = 0
     
     #Variables - things that are changed throughout
     delta_time = 0.0
     value = 0.0
 
 
-    def __init__(self,underlying,time_period,call,strike_price,points):
+    def __init__(self,underlying,time_period,call,strike_price):
         '''
         Constructor
         '''
@@ -30,11 +29,10 @@ class Option:
         self.time_period = time_period
         self.call = call
         self.strike_price = strike_price
-        self.points = points
         
     def path_init(self):
         self.value = 0
-        self.delta_time = 0.0
+        self.delta_time = self.time_period
         
     def path(self,price,time): pass
     
