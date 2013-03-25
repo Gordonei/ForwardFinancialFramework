@@ -2,7 +2,7 @@
 Created on 12 June 2012
 
 '''
-import numpy
+import numpy,scipy.linalg
 import Underlying
 
 class Heston(Underlying.Underlying):
@@ -15,13 +15,18 @@ class Heston(Underlying.Underlying):
     initial_volatility = 0.0
     volatility_volatility = 0.0
     rho = 0.0 #correlation factor between evolution of price and volatility
-    kappa = 0.0 #long run mean of volatility evolution reversion rate
+    kappa = 0.0 #volatility evolution reversion rate
     theta = 0.0 #long run mean of volatility evolution, analogous to the rfir for the underlying price
+    
+    correlation_matrix_0_0 = 0.0 #Attributes storing the Cholesky matrix of the correlation between the two random numbers generated
+    correlation_matrix_0_1 = 0.0
+    correlation_matrix_1_0 = 0.0
+    correlation_matrix_1_1 = 0.0
     
     #variables
     volatility = 0.0
 
-    def __init__(self,rfir,current_price,initial_volatility,volatility_volatility,rho,kappa,theta):
+    def __init__(self,rfir,current_price,initial_volatility,volatility_volatility,rho,kappa,theta,correlation_matrix_0_0=0.0,correlation_matrix_0_1=0.0,correlation_matrix_1_0=0.0,correlation_matrix_1_1=0.0):
         '''
         Constructor
         '''
@@ -33,6 +38,14 @@ class Heston(Underlying.Underlying):
         self.theta = theta
         
         self.volatility = str(float(initial_volatility)**0.5)
+        
+        self.correlation_matrix_1_1 = scipy.linalg.cholesky(numpy.matrix([[1.0,self.rho],[self.rho,1.0]]),lower=False)
+        print numpy.matrix([[1.0,self.rho],[self.rho,1.0]])
+        #print self.correlation_matrix_1_1
+        self.correlation_matrix_0_0 = self.correlation_matrix_1_1[0,0]
+        self.correlation_matrix_0_1 = self.correlation_matrix_1_1[0,1]
+        self.correlation_matrix_1_0 = self.correlation_matrix_1_1[1,0]
+        self.correlation_matrix_1_1 = self.correlation_matrix_1_1[1,1]
         
     def path(self,delta_time):
         #rfir,volatility_volatility,delta_time,volatility,rho,kappa,theta

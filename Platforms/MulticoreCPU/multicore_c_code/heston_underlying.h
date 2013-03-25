@@ -31,10 +31,13 @@ double current_price;
 double rho;
 double kappa;
 double theta;
+double correlation_matrix_0_0;
+double correlation_matrix_0_1;
+double correlation_matrix_1_0;
+double correlation_matrix_1_1;
 } heston_underlying_under_attr;
 
-//heston_0_rfir,heston_0_current_price,heston_0_initial_volatility,heston_0_volatility_volatility,heston_0_rho,heston_0_kappa,heston_0_theta
-void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,double rh,double k,double t,heston_underlying_under_attr* u_a);
+void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,double rh,double k,double t,double cm_0_0,double cm_0_1,double cm_1_0,double cm_1_1,heston_underlying_under_attr* u_a);
 void heston_underlying_underlying_path_init(heston_underlying_under_var* u_v,heston_underlying_under_attr* u_a);
 void heston_underlying_underlying_path(double delta_time,heston_underlying_under_var* u_v,heston_underlying_under_attr* u_a);
 
