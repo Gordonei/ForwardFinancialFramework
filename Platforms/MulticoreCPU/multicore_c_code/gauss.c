@@ -28,9 +28,9 @@
 
 #include <math.h>
 #include <assert.h>
+#include <stdint.h>
 
 #include <gsl/gsl_rng.h>
-//#include "mwc64x/cl/mwc64x.cl"
 
 /* position of right-most step */
 #define PARAM_R 3.44428647676
@@ -189,72 +189,32 @@ static const double wtab[128] = {
 //  return  sign ? sigma*x : -sigma*x;
 //}
 
-////Beginning of modified code that uses the mwc64x RNG
-//static unsigned long mwc64x_rng_uint32 (mwc64x_state_t *r)
-///* the uniform distribution on 0..2^{32}-1 */
-//{
-//  unsigned long min = 0;
-//  unsigned long max = 2**32-1;
-//
-//  if (min == 0 && max == 4294967295U) { /* we have full 32 bit values */
-//    return  MWC64X_NextUint(r);
-//  } else {
-//    assert (max-min >= 65536); /* make sure we have at least 16 bit */
-//    unsigned long a = (MWC64X_NextUint(r)-min)&0xFFFF;
-//    unsigned long b = (MWC64X_NextUint(r)-min)&0xFFFF;
-//    return  (a<<16)|b;
-//  }
-//}
-//
-//double mwc64x_ran_gaussian_ziggurat (mwc64x_state_t *r, double sigma)
-//{
-//  unsigned long  U, sign, i, j;
-//  double  x, y;
-//  
-//  unsigned long min = 0;
-//  unsigned long max = 2**32-1;
-//
-//  while (1) {
-//    U = MWC64X_NextUint(r);
-//    i = U & 0x0000007F;		/* 7 bit to choose the step */
-//    sign = U & 0x00000080;	/* 1 bit for the sign */
-//    j = U>>8;			/* 24 bit for the x-value */
-//
-//    x = j*wtab[i];
-//    if (j < ktab[i])  break;
-//
-//    if (i<127) {
-//      double  y0, y1;
-//      y0 = ytab[i];
-//      y1 = ytab[i+1];
-//      y = y1+(y0-y1)*MWC64X_NextUint(r)/(max+1);
-//    } else {
-//      x = PARAM_R - log(1.0-MWC64X_NextUint(r)/(max+1))/PARAM_R;
-//      y = exp(-PARAM_R*(x-0.5*PARAM_R))*MWC64X_NextUint(r)/(max+1);
-//    }
-//    if (y < exp(-0.5*x*x))  break;
-//  }
-//  return  sign ? sigma*x : -sigma*x;
-//}
-//End of modified code that uses the mwc64x RNG
+//Beginning of modified code that uses the Combined TAUSWORTHE RNG
+uint32_t s1=2, s2=8, s3=16;
 
-//Beginning of modified code that uses the rand48 RNG
-static unsigned long rand48_rng_uint32 ()
-/* the uniform distribution on 0..2^{32}-1 */
+static uint32_t __random32()
 {
-  unsigned long a = (lrand48())&0xFFFF;
-  unsigned long b = (lrand48())&0xFFFF;
-  
-  return  (a<<16)|b;
+#define TAUSWORTHE(s,a,b,c,d) ((s&c)<<d) ^ (((s <<a) ^ s)>>b)
+
+    s1 = TAUSWORTHE(s1, 13, 19, 4294967294UL, 12);
+    s2 = TAUSWORTHE(s2, 2, 25, 4294967288UL, 4);
+    s3 = TAUSWORTHE(s3, 3, 11, 4294967280UL, 17);
+
+    return (s1 ^ s2 ^ s3);
 }
 
-double rand48_ran_gaussian_ziggurat (double sigma)
+static double __drandom32()
+{
+    return (__random32()/(pow(2,32)-1));
+}
+
+double taus_ran_gaussian_ziggurat (double sigma)
 {
   unsigned long  U, sign, i, j;
   double  x, y;
 
   while (1) {
-    U = rand48_rng_uint32();
+    U = __random32();
     i = U & 0x0000007F;		/* 7 bit to choose the step */
     sign = U & 0x00000080;	/* 1 bit for the sign */
     j = U>>8;			/* 24 bit for the x-value */
@@ -266,10 +226,10 @@ double rand48_ran_gaussian_ziggurat (double sigma)
       double  y0, y1;
       y0 = ytab[i];
       y1 = ytab[i+1];
-      y = y1+(y0-y1)*drand48();
+      y = y1+(y0-y1)*__drandom32();
     } else {
-      x = PARAM_R - log(1.0-drand48())/PARAM_R;
-      y = exp(-PARAM_R*(x-0.5*PARAM_R))*drand48();
+      x = PARAM_R - log(1.0-__drandom32())/PARAM_R;
+      y = exp(-PARAM_R*(x-0.5*PARAM_R))*__drandom32();
     }
     if (y < exp(-0.5*x*x))  break;
   }

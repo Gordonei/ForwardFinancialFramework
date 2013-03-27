@@ -40,7 +40,7 @@ class Heston(Underlying.Underlying):
         self.volatility = str(float(initial_volatility)**0.5)
         
         self.correlation_matrix_1_1 = scipy.linalg.cholesky(numpy.matrix([[1.0,self.rho],[self.rho,1.0]]),lower=False)
-        print numpy.matrix([[1.0,self.rho],[self.rho,1.0]])
+        #print numpy.matrix([[1.0,self.rho],[self.rho,1.0]])
         #print self.correlation_matrix_1_1
         self.correlation_matrix_0_0 = self.correlation_matrix_1_1[0,0]
         self.correlation_matrix_0_1 = self.correlation_matrix_1_1[0,1]

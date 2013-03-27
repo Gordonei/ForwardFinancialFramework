@@ -203,8 +203,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("//**Calculating Final Option Value and Return**")
     for d in self.derivative:
         output_list.append("option_price_%d = option_price_%d/paths;//Calculate final value and return value as well as timing"%(self.derivative.index(d),self.derivative.index(d)))
-        output_list.append("double temp_std_dev=pow((option_price_%d_confidence_interval/paths-pow(option_price_%d,2)),0.5);"%(self.derivative.index(d),self.derivative.index(d)))
-        output_list.append("option_price_%d_confidence_interval = 1.96*temp_std_dev/pow(paths,0.5);//Calculate standard error and final confidence interval"%(self.derivative.index(d)))
+        output_list.append("double temp_std_dev_%d=pow((option_price_%d_confidence_interval/paths-pow(option_price_%d,2)),0.5);"%(self.derivative.index(d),self.derivative.index(d),self.derivative.index(d)))
+        output_list.append("option_price_%d_confidence_interval = 1.96*temp_std_dev_%d/pow(paths,0.5);//Calculate standard error and final confidence interval"%(self.derivative.index(d),self.derivative.index(d)))
         output_list.append("printf(\"\%f\\n\"")
         output_list.append(",option_price_%d);"%self.derivative.index(d))
         output_list.append("printf(\"\%f\\n\"")
@@ -469,7 +469,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         compile_cmd.append("-ffast-math")
         
         #Compile for this specific Machine
-        compile_cmd.append("-march=native")
+        #compile_cmd.append("-march=native")
         
         #print compile_cmd
         result = subprocess.check_output(compile_cmd)
@@ -506,7 +506,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         index +=1
     
     #print run_cmd
-    start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
+    start = time.time() #Wall-time is measured by framework, as well as in the generated application to measure overhead in calling code
     results = subprocess.check_output(run_cmd)
     finish = time.time()
     

@@ -11,6 +11,7 @@
 typedef struct underlying_variables{
 double gamma;
 double time;
+double x;
 } black_scholes_underlying_under_var;
 
 typedef struct underlying_attributes{

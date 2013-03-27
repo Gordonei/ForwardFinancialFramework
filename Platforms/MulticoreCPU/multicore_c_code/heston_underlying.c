@@ -22,9 +22,9 @@ void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,d
         u_a->kappa = k;
         u_a->theta = t;
 	u_a->correlation_matrix_0_0 = cm_0_0;
-	u_a->correlation_matrix_0_0 = cm_0_1;
-	u_a->correlation_matrix_0_0 = cm_1_0;
-	u_a->correlation_matrix_0_0 = cm_1_1;
+	u_a->correlation_matrix_0_1 = cm_0_1;
+	u_a->correlation_matrix_1_0 = cm_1_0;
+	u_a->correlation_matrix_1_1 = cm_1_1;
 }
 
 void heston_underlying_underlying_path_init(heston_underlying_under_var* u_v,heston_underlying_under_attr* u_a){
@@ -34,11 +34,11 @@ void heston_underlying_underlying_path_init(heston_underlying_under_var* u_v,hes
 }
 
 void heston_underlying_underlying_path(double delta_time,heston_underlying_under_var* u_v,heston_underlying_under_attr* u_a){
-	u_v->w = rand48_ran_gaussian_ziggurat (1.0);//(M_SQRT2);
-	u_v->v = rand48_ran_gaussian_ziggurat (1.0);//(M_SQRT2);
+	u_v->w = taus_ran_gaussian_ziggurat (1.0);
+	u_v->v = taus_ran_gaussian_ziggurat (1.0);
 	
 	u_v->x = u_a->correlation_matrix_0_0*u_v->w + u_a->correlation_matrix_1_0*u_v->v;
-	u_v->y = u_a->correlation_matrix_0_1*u_v->w + u_a->correlation_matrix_1_1*u_v->v;
+	u_v->y = u_a->correlation_matrix_0_1*u_v->w + u_a->correlation_matrix_1_1*u_v->v; //u_a->correlation_matrix_0_1 should always be 0
 	
 	/*u_v->w = drand48();
 	u_v->v = drand48();

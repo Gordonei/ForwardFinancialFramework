@@ -20,7 +20,6 @@ class European_Option(Option.Option):
         
     def path_init(self):
         self.value = 0
-        #self.delta_time = self.time_period/self.points
         
     def payoff(self,end_price):
         if(self.call and (end_price>self.strike_price)): self.value = (end_price-self.strike_price)
