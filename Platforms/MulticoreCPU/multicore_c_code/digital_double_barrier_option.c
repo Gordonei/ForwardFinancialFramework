@@ -35,6 +35,7 @@ void digital_double_barrier_option_derivative_path(double price,double time,digi
     //Calling Double Barrier Behaviour
     double_barrier_option_derivative_path(price,time,&(o_v->double_barrier_option),&(o_a->double_barrier_option));
     o_v->barrier_event = (o_v->double_barrier_option).barrier_event;
+    o_v->delta_time = (o_v->double_barrier_option).delta_time;
 }
 
 void digital_double_barrier_option_derivative_payoff(double end_price,digital_double_barrier_option_opt_var* o_v,digital_double_barrier_option_opt_attr* o_a){
@@ -43,8 +44,7 @@ void digital_double_barrier_option_derivative_payoff(double end_price,digital_do
     o_v->value = (o_v->double_barrier_option).value;
     
     //Digital Behaviour
-    if(o_v->value>0){
-        o_v->value = 1;
-        (o_v->double_barrier_option).value = o_v->value;
-    }
+    o_v->value = (o_v->value>0)?1:0;
+	
+    (o_v->double_barrier_option).value = o_v->value;
 }
