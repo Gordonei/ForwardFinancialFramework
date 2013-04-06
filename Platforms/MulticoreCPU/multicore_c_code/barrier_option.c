@@ -37,18 +37,13 @@ void barrier_option_derivative_path(double price,double time,barrier_option_opt_
         
         //Barrier Specific Behaviour
         //if((self.out and (price<=self.barrier)) or (not(self.out) and (price>=self.barrier))): self.barrier_event = True
-        if((o_a->down==1.0) && (price<=o_a->barrier)){
-            o_v->barrier_event = 1.0;
-        }
-        else if((o_a->down==0.0) && (price>=o_a->barrier)){
-            o_v->barrier_event = 1.0;
-        }
+	o_v->barrier_event = (((o_a->down) && (price<=o_a->barrier))||((o_a->down==0.0) && (price>=o_a->barrier)))?
+			      1.0: 
+			      o_v->barrier_event;
         
         //if(self.barrier_event and self.out): self.delta_time = self.time_period - time
-        if(o_v->barrier_event && o_a->out){
-            o_v->delta_time = o_a->time_period-time;
-            (o_v->european).delta_time = o_v->delta_time;
-        }
+        o_v->delta_time = ((o_v->barrier_event) && (o_a->out)) ? (o_a->time_period-time) : o_v->delta_time;
+        (o_v->european).delta_time = o_v->delta_time;
 }
 
 void barrier_option_derivative_payoff(double end_price,barrier_option_opt_var* o_v,barrier_option_opt_attr* o_a){

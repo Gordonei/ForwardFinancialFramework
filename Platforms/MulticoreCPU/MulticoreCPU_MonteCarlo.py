@@ -426,7 +426,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
             
             base_list = []
             self.generate_base_class_names(u.__class__,base_list)
-            base_list.remove("underlying")
+            #base_list.remove("underlying")
         
             for b in base_list:
                 if(b not in temp):
@@ -440,7 +440,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
                 
             base_list = []
             self.generate_base_class_names(d.__class__,base_list)
-            base_list.remove("option")
+            #base_list.remove("option")
                 
             for b in base_list:
                 if(b not in temp):
@@ -469,7 +469,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         compile_cmd.append("-ffast-math")
         
         #Compile for this specific Machine
-        #compile_cmd.append("-march=native")
+        compile_cmd.append("-march=native")
         
         #print compile_cmd
         result = subprocess.check_output(compile_cmd)

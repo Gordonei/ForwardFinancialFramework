@@ -241,7 +241,7 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	underlying_heston_VI = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
 	underlying_black_scholes_VII = [Black_Scholes.Black_Scholes(rfir=rfir,current_price=current_price,volatility=volatility)]
 	    
-	if(option_number=="1"): derivative.append(European_Option.European_Option(underlying_heston_II,call=call,strike_price=strike_price,time_period=time_period,points=points))
+	if(option_number=="1"): derivative.append(European_Option.European_Option(underlying_heston_II,call=call,strike_price=strike_price,time_period=time_period))
 	  
 	elif((option_number=="2")or(option_number=="3")or(option_number=="11")):
 	  if(option_number=="2"): derivative.append(Barrier_Option.Barrier_Option(underlying_heston_II,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down))
@@ -261,10 +261,11 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	  elif(option_number=="9"): derivative.append(Double_Barrier_Option.Double_Barrier_Option(underlying_heston_I,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down,second_barrier=second_barrier))
 	  elif(option_number=="10"): derivative.append(Double_Barrier_Option.Double_Barrier_Option(underlying_heston_VI,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,down=down,second_barrier=second_barrier))   
 
-    for d in derivative:
-	d.points = points*int(d.time_period)
+    #for d in derivative:
+	#d.points = points*int(d.time_period)
     
-    for i in range(1,2**len(derivative)):
+    output_file = open(output_filename,"w")
+    for i in [1,2,4,8,16,32,64,128,256,512,1024,2048,4096]: #range(1,2**len(derivative)):
 	test_derivative = []
 	test_derivative_set = []
 	
@@ -279,21 +280,22 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	multicore_platform = MulticoreCPU.MulticoreCPU(threads)
 	
 	mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(test_derivative,paths,multicore_platform,reduce_underlyings=True)
+	mc_solver.solver_metadata["default_points"]=points
 	mc_solver.generate()
 	mc_solver.compile()
 	
 	results = []
-	offset = len(test_derivative)
+	offset = len(test_derivative)*2
 	CPU_time = 0.0
 	Wall_time = 0.0
 	efficiency_factor = 0.0
 	number_trials = 10 #Each trial is run 10 times, and the result averaged
-	for j in range(number_trials): 
+	for j in range(number_trials):
 	    results = mc_solver.execute()
 	    
 	    CPU_time = CPU_time + float(results[offset])
-	    Wall_time = Wall_time + float(results[offset+1])
-	    efficiency_factor = efficiency_factor + 1.0*float(results[offset])/threads/float(results[offset+1])
+	    Wall_time = Wall_time + float(results[offset+2])
+	    efficiency_factor = efficiency_factor + 1.0*float(results[offset])/threads/float(results[offset+2])
 	    
 	CPU_time = CPU_time/number_trials
 	Wall_time = Wall_time/number_trials
@@ -302,20 +304,17 @@ if (__name__ == '__main__') and (len(sys.argv)>=5):
 	print "Selection for trial: %s (%s)"%(selection,str(test_derivative_set))
 	print "Derivative Values"
 	  
-	index = 0  
-	for d in test_derivative_set:
-	    print ("Value of Option %d:\t%s" % (d,results[index]))
-	    index = index + 1
+	for index,d in enumerate(test_derivative_set):
+	    print ("Value of Option %d:\t%s +- %s" % (d,results[index*2],results[index*2+1]))
 	
 	#Writing to Output File
-	output_file = open(output_filename,"w")
 	output_file.write("%d,%d,%d,%f\n"%(i,int(CPU_time),int(Wall_time),efficiency_factor))
 	output_file.flush()
 	
 	#Performance Monitoring
 	print "\n*Performance Monitoring*"
 	print ("CPU Time: %d uS (%f uS/Thread)" % (int(CPU_time),CPU_time/threads))
-	print ("Wall Time: %s uS" % results[offset+1])
+	print ("Wall Time: %s uS" % int(Wall_time))
 	print ("Efficiency Factor: %f"%efficiency_factor)
 	print "\n\n"
 	

@@ -15,7 +15,7 @@ void option_derivative_init(double t,double c,double k,option_opt_attr* o_a){
 
 void option_derivative_path_init(option_opt_var* o_v,option_opt_attr* o_a){
 	o_v->value=0;
-	o_v->delta_time=o_a->time_period
+	o_v->delta_time=o_a->time_period;
 	//o_v->delta_time=o_a->time_period/o_a->points;
 }
 
@@ -23,10 +23,12 @@ void option_derivative_path(double price,double time,option_opt_var* o_v,option_
 }
 
 void option_derivative_payoff(double end_price,option_opt_var* o_v,option_opt_attr* o_a){
-	if((o_a->call)){
+	
+	o_v->value = (o_a->call==1.0)?  (end_price-o_a->strike_price) : (o_a->strike_price-end_price);
+	/*if((o_a->call)){
 		o_v->value = (end_price-o_a->strike_price);
 	}
 	else{
 		o_v->value = (o_a->strike_price-end_price);
-	}
+	}*/
 }
