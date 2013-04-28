@@ -19,7 +19,7 @@ typedef struct option_attributes{
 } option_opt_attr;
 
 //time_period, call, strike_price, points
-void option_derivative_init(double t,double c,double k,double p,option_opt_attr* o_a);
+void option_derivative_init(double t,double c,double k,option_opt_attr* o_a);
 void option_derivative_path_init(option_opt_var* o_v,option_opt_attr* o_a);
 void option_derivative_path(double price,double time,option_opt_var* o_v,option_opt_attr* o_a);
 void option_derivative_payoff(double end_price,option_opt_var* o_v,option_opt_attr* o_a);

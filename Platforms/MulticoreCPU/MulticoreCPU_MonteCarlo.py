@@ -316,8 +316,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("done=1;")
     output_list.append("while(done){")
     output_list.append("//***Derivative Path Function Calls***")
-    for d in self.derivative: #calling the derivative path function
-        index = self.derivative.index(d)
+    for index,d in enumerate(self.derivative): #calling the derivative path function
         output_list.append("if(")
         for u in d.underlying:
             u_index = self.underlying.index(u)
@@ -405,7 +404,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       
     return output_list
   
-  def compile(self,overide=True):
+  def compile(self,overide=True,compile_options=[]):
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -469,7 +468,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         compile_cmd.append("-ffast-math")
         
         #Compile for this specific Machine
-        #compile_cmd.append("-march=native")
+        compile_cmd.append("-march=native")
+        
+        #Adding other compile flags
+        for c_o in compile_options: compile_cmd.append(c_o)
         
         #print compile_cmd
         result = subprocess.check_output(compile_cmd)
