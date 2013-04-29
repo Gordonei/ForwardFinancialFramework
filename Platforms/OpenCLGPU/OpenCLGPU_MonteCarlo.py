@@ -86,6 +86,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     ###Creating the Memory Objects for each underlying and derivative
     #TODO Maybe there should an attribute memory object for each path, instead of one shared between all
     output_list.append("//***Creating OpenCL Memory Objects***")
+    output_list.append("cl_mem path_points_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(cl_int),NULL,NULL);")
     for index,u in enumerate(self.underlying):
         output_list.append("%s_under_attr u_a_%d[1];" % (u.name,index))
         output_list.append("cl_mem u_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_under_attr),NULL,NULL);" % (index,u.name))
@@ -100,7 +101,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     ##Binding the Memory Objects to the Kernel
     output_list.append("//**Setting Kernel Arguments**")
-    output_list.append("clSetKernelArg(%s_kernel, 0, sizeof(cl_int), (void *)&path_points);"%(self.output_file_name))
+    output_list.append("clSetKernelArg(%s_kernel, 0, sizeof(cl_int), (void *)&path_points_buff);"%(self.output_file_name))
     
     for index,u in enumerate(self.underlying):
       output_list.append("clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&u_a_%d_buff);"%(self.output_file_name,1 + index*2,index))
@@ -115,7 +116,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("cl_command_queue command_queue = clCreateCommandQueue(context, device, 0, &ret);")
     
     output_list.append("//**Initialising Attributes and writing to OpenCL Memory Object**")
-    ##Calling Init Functions
+    ###Writing Control Parameter
+    output_list.append("clEnqueueWriteBuffer(command_queue, path_points_buff, CL_TRUE, 0, sizeof(cl_int), &path_points, 0, NULL, NULL);")
+    output_list.append("clFinish(command_queue);")
+    ###Calling Init Functions
     for u_index,u in enumerate(self.underlying):
         temp = ("%s_underlying_init("%u.name)
         for u_a in self.underlying_attributes[u_index][:-1]: temp=("%s%s_%d_%s,"%(temp,u.name,u_index,u_a))
@@ -171,23 +175,77 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return output_list"""
   
   def generate_kernel(self):
-    #Changing to code generation directory
+    output_list = []
+    
+    #Changing to code generation directory for underlying and derivatives
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
-    #Checking that the source code for the derivative and underlying is present
+    #Checking that the source code for the derivative and underlying required is avaliable
     for u in self.underlying: 
       if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
+      else: output_list.append("#include \"%s.h\""%u.name)
         
     for d in self.derivative:
       if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
-    
+      else: output_list.append("#include \"%s.h\""%d.name)    
+    #Leaving code generation directory
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
     
-    output_list = []
+    output_list.append("kernel void %s_kernel(global int *path_points,"%self.output_file_name)
+    for index,u in enumerate(self.underlying):
+      output_list.append("\tglobal %s_under_attr *u_a_%d,"%(u.name,index))
+      output_list.append("\tglobal %s_under_var *u_v_%d,"%(u.name,index))
+      
+    for index,d in enumerate(self.derivative):
+      output_list.append("\tglobal %s_opt_attr *o_a_%d,"%(d.name,index))
+      if(index<(len(self.derivative)-1)): output_list.append("\tglobal %s_opt_var *o_v_%d,"%(d.name,index))
+      else: output_list.append("\tglobal %s_opt_var *o_v_%d) {"%(d.name,index))
     
-    #Code generation goes here
+    output_list.append("int i = get_global_id(0);")
+    output_list.append("int local_path_points=path_points[0];")
+    for index,u in enumerate(self.underlying):
+      output_list.append("%s_under_attr local_u_a_%d = u_a_%d[0];"%(u.name,index,index))
+      output_list.append("%s_under_var local_u_v_%d = u_v_%d[i];"%(u.name,index,index))
+      
+    for index,d in enumerate(self.derivative):
+      output_list.append("%s_opt_attr local_o_a_%d = o_a_%d[0];"%(d.name,index,index))
+      output_list.append("%s_opt_var local_o_v_%d = o_v_%d[i];"%(d.name,index,index))
     
+    for index,u in enumerate(self.underlying): 
+        output_list.append("%s_underlying_path_init(&local_u_v_%d,&local_u_a_%d);" % (u.name,index,index))
+        output_list.append("double spot_price_%d = local_u_a_%d.current_price*exp(local_u_v_%d.gamma);"%(index,index,index))
+        output_list.append("double time_%d = local_u_v_%d.time;"%(index,index))
+    
+    for index,d in enumerate(self.derivative):
+        output_list.append("%s_derivative_path_init(&local_o_v_%d,&local_o_a_%d);" % (d.name,index,index))
+	
+    output_list.append("for(int j=0;j<local_path_points;++j){")
+    
+    temp_underlying = self.underlying[:]
+    for index,d in enumerate(self.derivative):
+      for u in d.underlying: #Calling derivative and underlying path functions
+	u_index = self.underlying.index(u)
+	output_list.append("%s_derivative_path(spot_price_%d,time_%d,&local_o_v_%d,&local_o_a_%d);" % (d.name,u_index,u_index,index,index))
+	
+	if(u in temp_underlying):
+	  output_list.append("%s_underlying_path(local_o_v_%d.delta_time,&local_u_v_%d,&local_u_a_%d);" % (u.name,index,u_index,u_index))
+	  temp_underlying.remove(u)
+	  
+	  output_list.append("spot_price_%d = local_u_a_%d.current_price*exp(local_u_v_%d.gamma);"%(u_index,u_index,u_index))
+	  output_list.append("time_%d = local_u_v_%d.time;"%(u_index,u_index))
+    
+    output_list.append("}") #End of For Loop
+    
+    for index,d in enumerate(self.derivative):
+      for u in d.underlying:
+	u_index = self.underlying.index(u)
+	output_list.append("%s_derivative_payoff(spot_price_%d,&local_o_v_%d,&local_o_a_%d);"%(d.name,u_index,index,index))
+	output_list.append("o_v_%d[i] = local_o_v_%d;"%(index,index))
+    
+    output_list.append("}") #End of Kernel
+    
+    #Turning output list into output string
     output_string = ""
     for line in output_list: output_string = "%s\n%s"%(output_string,line)
     output_string = "%s\n"%(output_string) #Adding newline to end of file
@@ -200,8 +258,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
-    self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build() #Creating OpenCL program based upon Kernel
-    
+    #print self.kernel_code_string
+    self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build(["-I."]) #Creating OpenCL program based upon Kernel
     binary_kernel = self.program.get_info(pyopencl.program_info.BINARIES)[0] #Getting the binary code for the OpenCL code
     binary_kernel_file = open("%s.clbin"%self.output_file_name,"wb") #Writing the binary code to a file to be read by the Host C Code
     binary_kernel_file.write(binary_kernel)
@@ -262,7 +320,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         index +=1
     
     start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
-    #print run_cmd
+    print run_cmd
     results = subprocess.check_output(run_cmd)
     finish = time.time()
     
