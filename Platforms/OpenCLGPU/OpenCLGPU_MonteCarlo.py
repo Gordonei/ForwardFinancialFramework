@@ -62,13 +62,14 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     ###Creating OpenCL Context
     output_list.append("//***Creating Context***")
     output_list.append("cl_context_properties cps[3] = { CL_CONTEXT_PLATFORM, (cl_context_properties)platform, 0 };")
-    output_list.append("cl_context context = clCreateContextFromType(cps, %d, NULL, NULL, &ret);"%self.platform.device_type)
+    output_list.append("cl_context context = clCreateContextFromType(cps, CL_DEVICE_TYPE_%s, NULL, NULL, NULL);"%pyopencl.device_type.to_string(self.platform.device_type))
     
     ###Creating OpenCL Device
     output_list.append("//***Creating Device***")
     output_list.append("size_t deviceListSize;")
     output_list.append("clGetContextInfo(context,CL_CONTEXT_DEVICES,0, NULL,&deviceListSize);")
     output_list.append("cl_device_id *devices = (cl_device_id *)malloc(deviceListSize);")
+    output_list.append("clGetContextInfo(context, CL_CONTEXT_DEVICES, deviceListSize,devices,NULL);")
     output_list.append("cl_device_id device = devices[0];")
      
     ###Creating the OpenCL Program from the precompiled binary
@@ -78,10 +79,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("size_t binary_size = fread(binary_buf, 1, 0x100000, fp);")
     output_list.append("fclose(fp);")
     output_list.append("cl_program program = clCreateProgramWithBinary(context, 1, &device, (const size_t *)&binary_size,(const unsigned char **)&binary_buf, NULL, NULL);")
+    #output_list.append("clBuildProgram(program, 1, &device, NULL, NULL, NULL);")
     
     ###Creating the OpenCL Kernel
     output_list.append("//***Creating Kernel Object***")
-    output_list.append("cl_kernel %s_kernel = clCreateKernel(program,\"%s\",NULL);"%(self.output_file_name,self.output_file_name))
+    output_list.append("cl_kernel %s_kernel = clCreateKernel(program,\"%s_kernel\",NULL);"%(self.output_file_name,self.output_file_name))
     
     ###Creating the Memory Objects for each underlying and derivative
     #TODO Maybe there should an attribute memory object for each path, instead of one shared between all
@@ -123,7 +125,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for u_index,u in enumerate(self.underlying):
         temp = ("%s_underlying_init("%u.name)
         for u_a in self.underlying_attributes[u_index][:-1]: temp=("%s%s_%d_%s,"%(temp,u.name,u_index,u_a))
-        temp=("%s%s_%d_%s,u_a_%d);"%(temp,u.name,u_index,self.underlying_attributes[u_index][-1],u_index))
+        temp=("%s%s_%d_%s,u_a_%d);"%(temp,u.name,u_index,self.underlying_attributes[u_index][-1],u_index))   
         output_list.append(temp)
         output_list.append("clEnqueueWriteBuffer(command_queue, u_a_%d_buff, CL_TRUE, 0, sizeof(u_a_%d), u_a_%d, 0, NULL, NULL);"%(u_index,u_index,u_index))
 	output_list.append("clFinish(command_queue);")
@@ -135,7 +137,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         output_list.append(temp)
         output_list.append("clEnqueueWriteBuffer(command_queue, o_a_%d_buff, CL_TRUE, 0, sizeof(o_a_%d), o_a_%d, 0, NULL, NULL);"%(d_index,d_index,d_index))
         output_list.append("clFinish(command_queue);")
-        
+      
     ##Running the actual kernel
     output_list.append("//**Run the kernel**")
     output_list.append("size_t kernel_paths = temp_data->thread_paths;")
@@ -219,6 +221,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     for index,d in enumerate(self.derivative):
         output_list.append("%s_derivative_path_init(&local_o_v_%d,&local_o_a_%d);" % (d.name,index,index))
+        
+        #If a derivative doesn't have the number of path points specified, its delta time needs to be set to reflect what is the default points or that of the other derivatives
+	if("points" not in self.derivative_attributes[index]): output_list.append("local_o_v_%d.delta_time = local_o_a_%d.time_period/local_path_points;"%(index,index))
 	
     output_list.append("for(int j=0;j<local_path_points;++j){")
     
@@ -246,8 +251,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("}") #End of Kernel
     
     #Turning output list into output string
-    output_string = ""
-    for line in output_list: output_string = "%s\n%s"%(output_string,line)
+    output_string = output_list[0]
+    for line in output_list[1:]: output_string = "%s\n%s"%(output_string,line)
     output_string = "%s\n"%(output_string) #Adding newline to end of file
     
     return output_string
@@ -258,12 +263,17 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
+    
     #print self.kernel_code_string
-    self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build(["-I."]) #Creating OpenCL program based upon Kernel
+    """self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build(["-I."]) #Creating OpenCL program based upon Kernel
     binary_kernel = self.program.get_info(pyopencl.program_info.BINARIES)[0] #Getting the binary code for the OpenCL code
     binary_kernel_file = open("%s.clbin"%self.output_file_name,"wb") #Writing the binary code to a file to be read by the Host C Code
     binary_kernel_file.write(binary_kernel)
-    binary_kernel_file.close()
+    binary_kernel_file.close()"""
+    kernel_file = open("%s.cl"%self.output_file_name,"w")
+    kernel_file.write(self.kernel_code_string)
+    kernel_file.close()
+    
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
     
@@ -320,7 +330,6 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         index +=1
     
     start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
-    print run_cmd
     results = subprocess.check_output(run_cmd)
     finish = time.time()
     

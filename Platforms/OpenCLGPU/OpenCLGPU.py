@@ -22,7 +22,7 @@ class OpenCLGPU:
     for p in pyopencl.get_platforms():
       if(self.platform_name in str(p)): self.platform = p
       
-    self.device = self.platform.get_devices(pyopencl.device_type.CPU)[0] #Takes the first device available for the specified platform and type
+    self.device = self.platform.get_devices(self.device_type)[0] #Takes the first device available for the specified platform and type
     self.context = pyopencl.Context(devices=[self.device])
     
   def platform_directory(self):
