@@ -14,7 +14,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     self.kernel_code_string = ""
     
-    #TODO where must this go?
+    #Setting the number of points in the path, as determined by the derivatives passed to the solver
+    #TODO where must this go? Probably somewhere that it will get called everytime the generate command is called
     path_points = 0
     for index,d in enumerate(self.derivative):
       if("points" in self.derivative_attributes[index]):
@@ -32,6 +33,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     #Generate OpenCL Kernel Code
     self.kernel_code_string = self.generate_kernel()
+    self.generate_source(self.kernel_code_string,".cl")
   
   def generate_activity_thread(self):
     output_list = []
@@ -87,17 +89,17 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("source_size = fread(source_str, 1, 0x100000, fp);")
     output_list.append("fclose(fp);")
     output_list.append("cl_program program = clCreateProgramWithSource(context, 1, (const char **)&source_str, (const size_t *)&source_size, &ret);")
-    output_list.append("const char* buildOption =\"-x clc++ -I . -m\";")
+    output_list.append("const char* buildOption =\"-x clc++ -I .\";")
     output_list.append("ret = clBuildProgram(program, 1, &device, buildOption, NULL, NULL);")
     #output_list.append("clBuildProgram(program, 1, &device, NULL, NULL, NULL);")
 
    ###Outputing the Build Log
-    output_list.append("size_t ret_val_size;")
+    """output_list.append("size_t ret_val_size;")
     output_list.append("clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &ret_val_size);")   
     output_list.append("char build_log[ret_val_size+1];")
     output_list.append("clGetProgramBuildInfo(program,device,CL_PROGRAM_BUILD_LOG,sizeof(build_log),build_log,NULL);")
     output_list.append("build_log[ret_val_size] = '\0';")
-    output_list.append("printf(\"OpenCL Build Log: %s\\n\",build_log);")    
+    output_list.append("printf(\"OpenCL Build Log: %s\\n\",build_log);")"""  
 
 
     ###Creating the OpenCL Kernel
@@ -178,10 +180,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("double temp_value_sqrd_%d=0;"%d)
     output_list.append("for(int i=0;i<paths;i++){")
     for index,d in enumerate(self.derivative):
-      output_list.append("printf(\"%%f\\n\",o_a_%d->time_period);"%index)
-      output_list.append("printf(\"%%f\\n\",o_v_%d->delta_time);"%index)
-      output_list.append("temp_total_%d += o_v_%d->value;"%(index,index))
-      output_list.append("temp_value_sqrd_%d += pow(o_v_%d->value,2);"%(index,index))
+      #output_list.append("printf(\"%%f\\n\",o_a_%d->time_period);"%index)
+      #output_list.append("printf(\"%%f\\n\",o_v_%d->delta_time);"%index)
+      output_list.append("temp_total_%d += o_v_%d[i].value;"%(index,index))
+      output_list.append("temp_value_sqrd_%d += pow(o_v_%d[i].value,2);"%(index,index))
     output_list.append("}")
     
     output_list.append("//**Returning Result**")
@@ -209,11 +211,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Checking that the source code for the derivative and underlying required is avaliable
     for u in self.underlying: 
       if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
-      else: output_list.append("#include \"%s.h\""%u.name)
+      else: output_list.append("#include \"%s.c\""%u.name) #Include source code body files as it all gets compiled at once
         
     for d in self.derivative:
       if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
-      else: output_list.append("#include \"%s.h\""%d.name)    
+      else: output_list.append("#include \"%s.c\""%d.name) #Include source code body files as it all gets compiled at once
     #Leaving code generation directory
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
@@ -228,7 +230,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       if(index<(len(self.derivative)-1)): output_list.append("\tglobal %s_opt_var *o_v_%d,"%(d.name,index))
       else: output_list.append("\tglobal %s_opt_var *o_v_%d) {"%(d.name,index))
     
+    output_list.append("//**getting unique ID**")
     output_list.append("int i = get_global_id(0);")
+    output_list.append("//**reading parameters from host**")
     output_list.append("int local_path_points=path_points[0];")
     for index,u in enumerate(self.underlying):
       output_list.append("%s_under_attr local_u_a_%d = u_a_%d[0];"%(u.name,index,index))
@@ -238,6 +242,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("%s_opt_attr local_o_a_%d = o_a_%d[0];"%(d.name,index,index))
       output_list.append("%s_opt_var local_o_v_%d = o_v_%d[i];"%(d.name,index,index))
     
+    output_list.append("//**Initiating the Path and creating path variables**")
     for index,u in enumerate(self.underlying): 
         output_list.append("%s_underlying_path_init(&local_u_v_%d,&local_u_a_%d);" % (u.name,index,index))
         output_list.append("double spot_price_%d = local_u_a_%d.current_price*exp(local_u_v_%d.gamma);"%(index,index,index))
@@ -249,6 +254,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         #If a derivative doesn't have the number of path points specified, its delta time needs to be set to reflect what is the default points or that of the other derivatives
 	if("points" not in self.derivative_attributes[index]): output_list.append("local_o_v_%d.delta_time = local_o_a_%d.time_period/local_path_points;"%(index,index))
 	
+    output_list.append("//**Running the path**")
     output_list.append("for(int j=0;j<local_path_points;++j){")
     
     temp_underlying = self.underlying[:]
@@ -266,6 +272,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     output_list.append("}") #End of For Loop
     
+    output_list.append("//**Calculating payoff(s) and returning the result**")
     for index,d in enumerate(self.derivative):
       for u in d.underlying:
 	u_index = self.underlying.index(u)
@@ -275,11 +282,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("}") #End of Kernel
     
     #Turning output list into output string
-    output_string = output_list[0]
+    """output_string = output_list[0]
     for line in output_list[1:]: output_string = "%s\n%s"%(output_string,line)
-    output_string = "%s\n"%(output_string) #Adding newline to end of file
+    output_string = "%s\n"%(output_string) #Adding newline to end of file"""
     
-    return output_string
+    return output_list
       
   def compile(self,override=True,cleanup=True):
     
@@ -288,100 +295,14 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
     
-    #print self.kernel_code_string
     """self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build(["-I."]) #Creating OpenCL program based upon Kernel
     binary_kernel = self.program.get_info(pyopencl.program_info.BINARIES)[0] #Getting the binary code for the OpenCL code
     binary_kernel_file = open("%s.clbin"%self.output_file_name,"wb") #Writing the binary code to a file to be read by the Host C Code
     binary_kernel_file.write(binary_kernel)
     binary_kernel_file.close()"""
-    kernel_file = open("%s.cl"%self.output_file_name,"w")
-    kernel_file.write(self.kernel_code_string)
-    kernel_file.close()
     
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
     
       
     return result
-  
-      
-  """def compile(self,override=True,cleanup=True):
-    try:
-      os.chdir("..")
-      os.chdir(self.platform.platform_directory())
-      
-    except:
-      os.chdir("bin")
-      return "Maxeler Code directory doesn't exist!"
-    
-    if(override or not os.path.exists("hardware/%s/"%self.output_file_name)):
-      #Hardware Build Process
-      compile_cmd = ["make","build-hw","APP=%s"%self.output_file_name]
-      hw_result = subprocess.check_output(compile_cmd)
-      #subprocess.check_output(["rm -r ../../scratch/*"]) #cleaning up majority of HDL source code generated for synthesis
-      #print hw_result
-      
-      #Host Code Compile
-      compile_cmd = ["make","app-hw","APP=%s"%self.output_file_name]
-      sw_result = subprocess.check_output(compile_cmd)
-      #print sw_result
-      
-      os.chdir(self.platform.root_directory())
-      os.chdir("bin")
-      
-      return (hw_result,sw_result)"""
-      
-  def execute(self,cleanup=False):
-    try:
-      os.chdir("..")
-      os.chdir(self.platform.platform_directory())
-      
-    except:
-      os.chdir("bin")
-      return "OpenCL code directory doesn't exist!"
-    
-    run_cmd = ["./%s"%self.output_file_name]
-    for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k]))
-    
-    index = 0
-    for u_a in self.underlying_attributes:
-        for a in u_a: run_cmd.append(str(self.underlying[index].__dict__[a])) #mirrors generation code to preserve order of variable loading
-        index += 1
-    
-    index = 0
-    for o_a in self.derivative_attributes: 
-        for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
-        index +=1
-    
-    start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
-    results = subprocess.check_output(run_cmd)
-    finish = time.time()
-    
-    results = results.split("\n")[:-1]
-    results.append((finish-start)*1000000)
-    
-    os.chdir(self.platform.root_directory())
-    os.chdir("bin")
-    
-    if(cleanup): self.cleanup()
-    
-    return results
-    
-    
-  """def generate_java_source(self,code_string,name_extension=""):
-    os.chdir("..")
-    os.chdir(self.platform.platform_directory())
-    
-    output_file = open("%s%s.java"%(self.output_file_name,name_extension),"w")
-    tab_count = 0;
-    for c_s in code_string:
-        if("*" in c_s and "//" in c_s): output_file.write("\n") #Insert a blank line if the line is a comment section
-        for i in range(tab_count): output_file.write("\t")	#Tabify the code
-        output_file.write("%s\n"%c_s)
-            
-        if("{" in c_s): tab_count = tab_count+1
-        if("}" in c_s): tab_count = max(tab_count-1,0)
-    output_file.close()
-    
-    os.chdir(self.platform.root_directory())
-    os.chdir("bin")"""

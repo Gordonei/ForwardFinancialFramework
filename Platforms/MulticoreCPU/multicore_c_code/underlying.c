@@ -5,9 +5,8 @@
  *      Author: gordon
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "math.h"
+//#include <stdio.h>
+//#include <stdlib.h>
 #include "underlying.h"
 
 void underlying_underlying_init(double r,double p,underlying_under_attr* u_a){

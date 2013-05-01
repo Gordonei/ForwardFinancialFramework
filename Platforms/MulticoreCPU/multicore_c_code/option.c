@@ -24,9 +24,9 @@ void option_derivative_path(double price,double time,option_opt_var* o_v,option_
 
 void option_derivative_payoff(double end_price,option_opt_var* o_v,option_opt_attr* o_a){
 	if((o_a->call)){
-		o_v->value = (end_price-o_a->strike_price);
+		o_v->value = end_price-o_a->strike_price;
 	}
 	else{
-		o_v->value = (o_a->strike_price-end_price);
+		o_v->value = o_a->strike_price-end_price;
 	}
 }

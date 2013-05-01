@@ -35,13 +35,13 @@ if( __name__ == '__main__'):
   call = 1.0
   down = 0.0
   
+  parameter_set = "I"
+  reference_value = 5.7576
+  
   #Test Parameters
   rfir = 0.1
   strike_price = 100
   time_period = 1.0
-  
-  parameter_set = "I"
-  reference_value = 5.7576
   
   underlying = [Underlying.Underlying(rfir,current_price)]
   option = [Option.Option(underlying,time_period,call,strike_price)]
@@ -58,4 +58,5 @@ if( __name__ == '__main__'):
   execution_output = mc_solver.execute()
   
   print compile_output
-  print execution_output
+  for e_o in execution_output:
+    print e_o
