@@ -3,7 +3,7 @@ Created on 8 November 2012
 '''
 import os,time,subprocess,sys,time,math,multiprocessing
 sys.path.append("../..")
-from ForwardFinancialFramework.Underlyings import Underlying
+from ForwardFinancialFramework.Underlyings import Underlying,Black_Scholes
 from ForwardFinancialFramework.Derivatives import Option
 from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
 
@@ -43,7 +43,8 @@ if( __name__ == '__main__'):
   strike_price = 100
   time_period = 1.0
   
-  underlying = [Underlying.Underlying(rfir,current_price)]
+  #underlying = [Underlying.Underlying(rfir,current_price)]
+  underlying = [Black_Scholes.Black_Scholes(rfir,current_price,volatility)]
   option = [Option.Option(underlying,time_period,call,strike_price)]
   
   #underlying = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
@@ -54,8 +55,8 @@ if( __name__ == '__main__'):
   
   mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,opencl_platform)
   mc_solver.generate()
-  compile_output = mc_solver.compile()
-  execution_output = mc_solver.execute()
+  compile_output = mc_solver.compile(debug=True)
+  execution_output = mc_solver.execute(debug=True)
   
   print compile_output
   for e_o in execution_output:

@@ -405,7 +405,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       
     return output_list
   
-  def compile(self,overide=True,compile_options=[]):
+  def compile(self,overide=True,compile_options=[],debug=False):
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -421,7 +421,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         temp = []
         for u in self.underlying:
             if(not(u.name in temp)):
-                compile_cmd.append(("%s.c" % u.name))
+                compile_cmd.append(("../../MulticoreCPU/multicore_c_code/%s.c" % u.name))
                 temp.append(u.name)
             
             base_list = []
@@ -430,7 +430,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
             for b in base_list:
                 if(b not in temp):
-                    compile_cmd.append(("%s.c" % b))
+                    compile_cmd.append(("../../MulticoreCPU/multicore_c_code/%s.c" % b))
                     temp.append(b)
             
         for d in self.derivative:
@@ -474,7 +474,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         #Adding other compile flags
         for c_o in compile_options: compile_cmd.append(c_o)
         
-        #print compile_cmd
+        compile_string = ""
+        for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
+        if(debug): print compile_string
+        
         result = subprocess.check_output(compile_cmd)
         os.chdir(self.platform.root_directory())
         os.chdir("bin")
@@ -486,7 +489,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       os.chdir(self.platform.root_directory)
       os.chdir("bin")
           
-  def execute(self,cleanup=False):
+  def execute(self,cleanup=False,debug=False):
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -506,8 +509,11 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     for o_a in self.derivative_attributes: 
         for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
         index +=1
+        
+    run_string = ""
+    for r_c in run_cmd: run_string = "%s %s"%(run_string,r_c)
+    if(debug): print run_string
     
-    #print run_cmd
     start = time.time() #Wall-time is measured by framework, as well as in the generated application to measure overhead in calling code
     results = subprocess.check_output(run_cmd)
     finish = time.time()

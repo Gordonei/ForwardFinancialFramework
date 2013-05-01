@@ -89,17 +89,17 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("source_size = fread(source_str, 1, 0x100000, fp);")
     output_list.append("fclose(fp);")
     output_list.append("cl_program program = clCreateProgramWithSource(context, 1, (const char **)&source_str, (const size_t *)&source_size, &ret);")
-    output_list.append("const char* buildOption =\"-x clc++ -I .\";")
+    output_list.append("const char* buildOption =\"-I . -I mwc64x/cl\";") #-x clc++
     output_list.append("ret = clBuildProgram(program, 1, &device, buildOption, NULL, NULL);")
     #output_list.append("clBuildProgram(program, 1, &device, NULL, NULL, NULL);")
 
    ###Outputing the Build Log
-    """output_list.append("size_t ret_val_size;")
+    output_list.append("size_t ret_val_size;")
     output_list.append("clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &ret_val_size);")   
     output_list.append("char build_log[ret_val_size+1];")
     output_list.append("clGetProgramBuildInfo(program,device,CL_PROGRAM_BUILD_LOG,sizeof(build_log),build_log,NULL);")
     output_list.append("build_log[ret_val_size] = '\0';")
-    output_list.append("printf(\"OpenCL Build Log: %s\\n\",build_log);")"""  
+    output_list.append("printf(\"OpenCL Build Log: %s\\n\",build_log);")
 
 
     ###Creating the OpenCL Kernel
@@ -180,8 +180,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("double temp_value_sqrd_%d=0;"%d)
     output_list.append("for(int i=0;i<paths;i++){")
     for index,d in enumerate(self.derivative):
-      #output_list.append("printf(\"%%f\\n\",o_a_%d->time_period);"%index)
-      #output_list.append("printf(\"%%f\\n\",o_v_%d->delta_time);"%index)
+      output_list.append("printf(\"%%f\\n\",o_a_%d[i].time_period);"%index)
+      output_list.append("printf(\"%%f\\n\",o_v_%d[i].delta_time);"%index)
       output_list.append("temp_total_%d += o_v_%d[i].value;"%(index,index))
       output_list.append("temp_value_sqrd_%d += pow(o_v_%d[i].value,2);"%(index,index))
     output_list.append("}")
@@ -195,12 +195,23 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     return output_list
   
-  """def generate_libraries(self):
-    output_list = ["//*Libraries"]
-    output_list.append("#define __STDC_FORMAT_MACROS")
-    for u in self.utility_libraries: output_list.append("#include \"%s\";"%u)
+  def generate_libraries(self):
+    output_list = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate_libraries(self)
     
-    return output_list"""
+    os.chdir("..")
+    os.chdir(self.platform.platform_directory())
+    
+    print output_list
+    for u in self.underlying: 
+      if(not(os.path.exists("../../MulticoreCPU/multicore_c_code/%s.c"%u.name)) or not(os.path.exists("../../MulticoreCPU/multicore_c_code/%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - ../../MulticoreCPU/multicore_c_code/%s.c or ../../MulticoreCPU/multicore_c_code/%s.h" % (u.name,u.name))
+      else:
+	output_list.remove("#include \"%s.h\";"%u.name)
+	output_list.append("#include \"../../MulticoreCPU/multicore_c_code/%s.h\""%u.name)
+	
+    os.chdir(self.platform.root_directory())
+    os.chdir("bin")
+    
+    return output_list
   
   def generate_kernel(self):
     output_list = []
@@ -208,6 +219,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Changing to code generation directory for underlying and derivatives
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
+    
+    output_list.append("#include \"mwc64x.cl\"")
     #Checking that the source code for the derivative and underlying required is avaliable
     for u in self.underlying: 
       if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
@@ -288,9 +301,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     return output_list
       
-  def compile(self,override=True,cleanup=True):
+  def compile(self,override=True,cleanup=True,debug=False):
     
-    result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,["-lOpenCL","-I/opt/AMDAPP/include","-fpermissive","-ggdb"]) #Compiling Host C Code
+    result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,["-lOpenCL","-I/opt/AMDAPP/include","-fpermissive","-ggdb"],debug) #Compiling Host C Code
       
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
@@ -306,3 +319,5 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
       
     return result
+  
+ 
