@@ -180,8 +180,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("double temp_value_sqrd_%d=0;"%d)
     output_list.append("for(int i=0;i<paths;i++){")
     for index,d in enumerate(self.derivative):
-      output_list.append("printf(\"%%f\\n\",o_a_%d[i].time_period);"%index)
-      output_list.append("printf(\"%%f\\n\",o_v_%d[i].delta_time);"%index)
+      #output_list.append("printf(\"%%f\\n\",o_a_%d[i].time_period);"%index)
+      #output_list.append("printf(\"%%f\\n\",o_v_%d[i].delta_time);"%index)
       output_list.append("temp_total_%d += o_v_%d[i].value;"%(index,index))
       output_list.append("temp_value_sqrd_%d += pow(o_v_%d[i].value,2);"%(index,index))
     output_list.append("}")
