@@ -19,7 +19,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     path_points = 0
     for index,d in enumerate(self.derivative):
       if("points" in self.derivative_attributes[index]):
-	if((d.points!=path_points) and not(path_points)): raise IOError, ("For an OpenCL solver the number of path points must match")
+	if((d.points!=path_points) and path_points): raise IOError, ("For an OpenCL solver the number of path points must match")
 	elif(not(path_points)): path_points = d.points
 	
     if(path_points): self.solver_metadata["path_points"] = path_points
@@ -118,10 +118,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         output_list.append("cl_mem u_v_%d_buff = clCreateBuffer(context, CL_MEM_READ_WRITE,temp_data->thread_paths*sizeof(%s_under_var),NULL,NULL);" % (index,u.name))
     
     for index,d in enumerate(self.derivative):
-        output_list.append("%s_opt_attr o_a_%d[1];" % (d.name,index))
-        output_list.append("cl_mem o_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_opt_attr),NULL,NULL);" % (index,d.name))
-        output_list.append("%s_opt_var o_v_%d[temp_data->thread_paths];" % (d.name,index)) #Mallocs, here?
-        output_list.append("cl_mem o_v_%d_buff = clCreateBuffer(context, CL_MEM_READ_WRITE,temp_data->thread_paths*sizeof(%s_opt_var),NULL,NULL);" % (index,d.name))
+        output_list.append("%s_attributes o_a_%d[1];" % (d.name,index))
+        output_list.append("cl_mem o_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,NULL);" % (index,d.name))
+        output_list.append("%s_variables o_v_%d[temp_data->thread_paths];" % (d.name,index)) #Mallocs, here?
+        output_list.append("cl_mem o_v_%d_buff = clCreateBuffer(context, CL_MEM_READ_WRITE,temp_data->thread_paths*sizeof(%s_variables),NULL,NULL);" % (index,d.name))
     
     ##Binding the Memory Objects to the Kernel
     output_list.append("//**Setting Kernel Arguments**")
@@ -171,7 +171,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     ##Reading the Results out from the derivative objects
     output_list.append("//**Reading the results**")
     for d_index,d in enumerate(self.derivative):
-        output_list.append("clEnqueueReadBuffer(command_queue, o_v_%d_buff, CL_TRUE, 0, temp_data->thread_paths * sizeof(%s_opt_var),o_v_%d, 0, NULL, NULL);"%(d_index,d.name,d_index))
+        output_list.append("clEnqueueReadBuffer(command_queue, o_v_%d_buff, CL_TRUE, 0, temp_data->thread_paths * sizeof(%s_variables),o_v_%d, 0, NULL, NULL);"%(d_index,d.name,d_index))
 	output_list.append("clFinish(command_queue);")
     
     output_list.append("//**Post-Kernel Calculations**")
@@ -226,9 +226,27 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
       else: output_list.append("#include \"%s.c\""%u.name) #Include source code body files as it all gets compiled at once
         
+    #for d in self.derivative:
+      #if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
+      #else: output_list.append("#include \"%s.c\""%d.name) #Include source code body files as it all gets compiled at once
+    
+    temp = []
     for d in self.derivative:
-      if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
-      else: output_list.append("#include \"%s.c\""%d.name) #Include source code body files as it all gets compiled at once
+            if(not(d.name in temp)):
+		if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
+                
+                output_list.append("#include \"%s.c\"" % d.name)
+                temp.append(d.name)
+                
+            base_list = []
+            self.generate_base_class_names(d.__class__,base_list)
+            base_list.remove("option")
+                
+            for b in base_list:
+                if(b not in temp):
+		    if(not(os.path.exists("%s.c"%b)) or not(os.path.exists("%s.h"%b))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (b,b))
+                    output_list.append("#include \"%s.c\"" % b)
+                    
     #Leaving code generation directory
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
@@ -239,9 +257,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("\tglobal %s_under_var *u_v_%d,"%(u.name,index))
       
     for index,d in enumerate(self.derivative):
-      output_list.append("\tglobal %s_opt_attr *o_a_%d,"%(d.name,index))
-      if(index<(len(self.derivative)-1)): output_list.append("\tglobal %s_opt_var *o_v_%d,"%(d.name,index))
-      else: output_list.append("\tglobal %s_opt_var *o_v_%d) {"%(d.name,index))
+      output_list.append("\tglobal %s_attributes *o_a_%d,"%(d.name,index))
+      if(index<(len(self.derivative)-1)): output_list.append("\tglobal %s_variables *o_v_%d,"%(d.name,index))
+      else: output_list.append("\tglobal %s_variables *o_v_%d) {"%(d.name,index))
     
     output_list.append("//**getting unique ID**")
     output_list.append("int i = get_global_id(0);")
@@ -252,8 +270,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("%s_under_var local_u_v_%d = u_v_%d[i];"%(u.name,index,index))
       
     for index,d in enumerate(self.derivative):
-      output_list.append("%s_opt_attr local_o_a_%d = o_a_%d[0];"%(d.name,index,index))
-      output_list.append("%s_opt_var local_o_v_%d = o_v_%d[i];"%(d.name,index,index))
+      output_list.append("%s_attributes local_o_a_%d = o_a_%d[0];"%(d.name,index,index))
+      output_list.append("%s_variables local_o_v_%d = o_v_%d[i];"%(d.name,index,index))
     
     output_list.append("//**Initiating the Path and creating path variables**")
     for index,u in enumerate(self.underlying): 

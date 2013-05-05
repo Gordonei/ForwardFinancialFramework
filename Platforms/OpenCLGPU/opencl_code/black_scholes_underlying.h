@@ -1,7 +1,7 @@
 /*
- * black_scholes.h
+ * black_scholes.h (Black Scholes Version)
  *
- *  Created on: 26 May 2012
+ *  Created on: 1 May 2012
  *      Author: gordon
  */
 #ifndef BLACK_SCHOLES_H_
