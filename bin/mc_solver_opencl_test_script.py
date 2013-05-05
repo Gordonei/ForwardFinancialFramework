@@ -49,15 +49,14 @@ if( __name__ == '__main__'):
   
   #option = [Option.Option(underlying,time_period,call,strike_price)]
   option = [Double_Barrier_Option.Double_Barrier_Option(underlying,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,second_barrier=second_barrier,down=down)]
-  #option = [European_Option.European_Option(underlying,call=call,strike_price=strike_price,time_period=time_period)]
+  option.append(European_Option.European_Option(underlying,call=call,strike_price=strike_price,time_period=time_period))
   
   opencl_platform = OpenCLGPU.OpenCLGPU()
   
   mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,opencl_platform)
   mc_solver.generate()
-  compile_output = mc_solver.compile(debug=True)
-  execution_output = mc_solver.execute(debug=True)
+  compile_output = mc_solver.compile()
+  execution_output = mc_solver.execute()
   
-  print compile_output
   for e_o in execution_output:
     print e_o
