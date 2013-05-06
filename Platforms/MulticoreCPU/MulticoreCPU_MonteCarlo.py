@@ -469,7 +469,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         compile_cmd.append("-ffast-math")
         
         #Compile for this specific Machine
-        #compile_cmd.append("-march=native")
+        compile_cmd.append("-march=native")
         
         #Adding other compile flags
         for c_o in compile_options: compile_cmd.append(c_o)

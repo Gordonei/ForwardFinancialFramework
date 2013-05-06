@@ -106,7 +106,6 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
     ###Creating the OpenCL Kernel
     output_list.append("//***Creating Kernel Object***")
-    print self.output_file_name
     output_list.append("cl_kernel %s_kernel = clCreateKernel(program,\"%s_kernel\",&ret);"%(self.output_file_name,self.output_file_name))
     #output_list.append("printf(\"%d\\n\",ret);")
     

@@ -14,3 +14,9 @@ class MaxelerFPGA:
     self.instances = instances
     self.platform_directory_string = platform_directory_string
     self.root_directory_string = root_directory_string
+    
+  def platform_directory(self):
+    return self.platform_directory_string
+  
+  def root_directory(self):
+    return self.root_directory_string
