@@ -7,21 +7,21 @@
 #ifndef EUROPEAN_OPTION_H_
 #define EUROPEAN_OPTION_H_
 
-typedef struct european_option_variables{
+typedef struct {
 	double delta_time;
 	double value;
-} european_option_opt_var;
+} european_option_variables;//european_option_opt_var;
 
-typedef struct european_option_attributes{
+typedef struct {
 	double strike_price;
 	double time_period;
 	double call;
-} european_option_opt_attr;
+} european_option_attributes;//european_option_opt_attr;
 
 //time_period, call, strike_price, points
-void european_option_derivative_init(double t,double c,double k,european_option_opt_attr* o_a);
-void european_option_derivative_path_init(european_option_opt_var* o_v,european_option_opt_attr* o_a);
-void european_option_derivative_path(double price,double time,european_option_opt_var* o_v,european_option_opt_attr* o_a);
-void european_option_derivative_payoff(double end_price,european_option_opt_var* o_v,european_option_opt_attr* o_a);
+void european_option_derivative_init(double t,double c,double k,european_option_attributes* o_a);
+void european_option_derivative_path_init(european_option_variables* o_v,european_option_attributes* o_a);
+void european_option_derivative_path(double price,double time,european_option_variables* o_v,european_option_attributes* o_a);
+void european_option_derivative_payoff(double end_price,european_option_variables* o_v,european_option_attributes* o_a);
 
 #endif /* EUROPEAN_OPTION_H_ */
