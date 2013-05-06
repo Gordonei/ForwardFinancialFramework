@@ -5,7 +5,6 @@
  *      Author: gordon
  */
 #include "european_option.h"
-#include "option.h"
 
 void european_option_derivative_init(double t,double c,double k,european_option_attributes* o_a){
 	option_derivative_init(t,c,k,&(o_a->option));
