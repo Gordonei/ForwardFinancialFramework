@@ -22,8 +22,8 @@ void black_scholes_underlying_underlying_path_init(black_scholes_underlying_vari
 	u_v->gamma = 0.0;
 	u_v->time = 0.0;
 	u_v->x = 0.0;
-	u_v->rng_state.x = 0; //get_global_id(0)
-	u_v->rng_state.c = 1 + get_global_id(0);//get_global_id(0);
+	
+	MWC64X_SeedStreams(&(u_v->rng_state),0,get_global_id(0));
 }
 
 void black_scholes_underlying_underlying_path(double delta_time,black_scholes_underlying_variables* u_v,black_scholes_underlying_attributes* u_a){
