@@ -1,5 +1,5 @@
 '''
-Created on 26 October 2012
+Created on 23 February 2013
 
 '''
 import pyopencl

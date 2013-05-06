@@ -13,7 +13,7 @@
 #include "gauss.c"
 
 
-void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,double rh,double k,double t,double cm_0_0,double cm_0_1,double cm_1_0,double cm_1_1heston_underlying_attributes* u_a){
+void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,double rh,double k,double t,double cm_0_0,double cm_0_1,double cm_1_0,double cm_1_1,heston_underlying_attributes* u_a){
 	u_a->rfir = r;
         u_a->current_price = p;
 	u_a->initial_volatility=i_v;
@@ -27,13 +27,13 @@ void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,d
 	u_a->correlation_matrix_1_1 = cm_1_1;
 }
 
-void heston_underlying_underlying_path_init(heston_underlying_variables* u_vheston_underlying_attributes* u_a){
+void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
 	u_v->gamma = 0.0;
 	u_v->time = 0.0;
 	u_v->volatility = sqrt(u_a->initial_volatility);
 }
 
-void heston_underlying_underlying_path(double delta_time,heston_underlying_variables* u_vheston_underlying_attributes* u_a){
+void heston_underlying_underlying_path(double delta_time,heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
 	u_v->w = taus_ran_gaussian_ziggurat (1.0);
 	u_v->v = taus_ran_gaussian_ziggurat (1.0);
 	

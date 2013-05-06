@@ -9,7 +9,7 @@
 
 #include "option.h"
 
-typedef struct european_option_variables{
+typedef struct {
 	double delta_time;
 	double value;
 	option_variables option;

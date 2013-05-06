@@ -22,10 +22,10 @@ Current Underlyings and Derivatives Supported:
 Platforms:
  * Multicore CPUs (via C and Posix threads)
  * Maxeler FPGA platform
+ * GPUs (via OpenCL)
  
 In Progress:
  * Library for loading pricing problems from Kaiserslautarn Option Pricing Benchmark (http://www.uni-kl.de/en/benchmarking/option-pricing/)
- * GPUs (via OpenCL)
  
 Coming Soon:
  * IP-based Network execution

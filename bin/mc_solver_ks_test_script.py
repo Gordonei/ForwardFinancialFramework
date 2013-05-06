@@ -3,28 +3,14 @@ Created on 6 May 2013
 '''
 import sys
 sys.path.append("../..")
-from ForwardFinancialFramework.Underlyings import Underlying
-from ForwardFinancialFramework.Derivatives import Option
+import KS_ProblemSet
 
-if( __name__ == '__main__' and len(sys.argv)>1):
+if( __name__ == '__main__' and len(sys.argv)>3):
   platform_name = sys.argv[1]
+  paths = int(sys.argv[2])
+  options = sys.argv[3:]
   
-  #Test Parameters  
-  ##Underlying Parameters
-  rfir = 0.1
-  current_price = 100
-  
-  ##Option Parameters
-  time_period = 1.0
-  call = 1.0
-  strike_price = 100
-  
-  ##Solver Paramters
-  paths = 1000
-  
-  underlying = [Underlying.Underlying(rfir,current_price)]
-  
-  option = [Option.Option(underlying,time_period,call,strike_price)]
+  option = KS_ProblemSet.KS_Options(options)
  
   if(platform_name=="GPU"):
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
@@ -53,4 +39,4 @@ if( __name__ == '__main__' and len(sys.argv)>1):
     print e_o
     
 else:
-  print "usage: python mc_solver_test_script [CPU|GPU|FPGA]"
+  print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] [Number of Paths] [KS Option Number 1] [KS Option Number 2] [...] [KS Option Number N]"

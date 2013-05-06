@@ -242,7 +242,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
                 
 		base_list = []
 		self.generate_base_class_names(d.__class__,base_list)
-		base_list.remove("option")
+		#base_list.remove("option")
                 
 		for b in base_list:
 		    if(b not in temp):

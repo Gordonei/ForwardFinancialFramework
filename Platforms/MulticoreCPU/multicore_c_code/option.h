@@ -24,4 +24,4 @@ void option_derivative_path_init(option_variables* o_v,option_attributes* o_a);
 void option_derivative_path(double price,double time,option_variables* o_v,option_attributes* o_a);
 void option_derivative_payoff(double end_price,option_variables* o_v,option_attributes* o_a);
 
-#endif OPTION_H_
+#endif /*OPTION_H_*/
