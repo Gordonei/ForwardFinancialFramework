@@ -192,7 +192,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         index = self.derivative.index(d)
         for u in d.underlying:
             u_index = self.underlying.index(u)
-            output_list.append("option_price_%d += discount_%d_%d*temp_data[i].thread_result[%d];"%(index,index,u_index,index));
+            output_list.append("option_price_%d += temp_data[i].thread_result[%d];"%(index,index));
             output_list.append("option_price_%d_confidence_interval += temp_data[i].thread_result_sqrd[%d]; //accumulating variances for calculating the confidence interval"%(index,index));
     
     output_list.append("}")
@@ -201,9 +201,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     ##Calculate final value and return value
     output_list.append("//**Calculating Final Option Value and Return**")
-    for d in self.derivative:
+    for index,d in enumerate(self.derivative):
         output_list.append("option_price_%d = option_price_%d/paths;//Calculate final value and return value as well as timing"%(self.derivative.index(d),self.derivative.index(d)))
         output_list.append("double temp_std_dev_%d=pow((option_price_%d_confidence_interval/paths-pow(option_price_%d,2)),0.5);"%(self.derivative.index(d),self.derivative.index(d),self.derivative.index(d)))
+        for u in d.underlying: output_list.append("option_price_%d = option_price_%d*discount_%d_%d;"%(index,index,index,self.underlying.index(u)))
         output_list.append("option_price_%d_confidence_interval = 1.96*temp_std_dev_%d/pow(paths,0.5);//Calculate standard error and final confidence interval"%(self.derivative.index(d),self.derivative.index(d)))
         output_list.append("printf(\"\%f\\n\"")
         output_list.append(",option_price_%d);"%self.derivative.index(d))
@@ -240,13 +241,13 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     for u in self.underlying:
         index = self.underlying.index(u)
-        output_list.append("%s_under_attr u_a_%d;" % (u.name,index))
-        output_list.append("%s_under_var u_v_%d;" % (u.name,index))
+        output_list.append("%s_attributes u_a_%d;" % (u.name,index))
+        output_list.append("%s_variables u_v_%d;" % (u.name,index))
     
     for d in self.derivative:
         index = self.derivative.index(d)
-        output_list.append("%s_opt_attr o_a_%d;" % (d.name,index))
-        output_list.append("%s_opt_var o_v_%d;" % (d.name,index))
+        output_list.append("%s_attributes o_a_%d;" % (d.name,index))
+        output_list.append("%s_variables o_v_%d;" % (d.name,index))
     
     
     output_list.append("//**Initialising Loop Attributes*")
@@ -316,8 +317,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("done=1;")
     output_list.append("while(done){")
     output_list.append("//***Derivative Path Function Calls***")
-    for d in self.derivative: #calling the derivative path function
-        index = self.derivative.index(d)
+    for index,d in enumerate(self.derivative): #calling the derivative path function
         output_list.append("if(")
         for u in d.underlying:
             u_index = self.underlying.index(u)
@@ -405,7 +405,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       
     return output_list
   
-  def compile(self,overide=True):
+  def compile(self,overide=True,compile_options=[],debug=False):
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -421,7 +421,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         temp = []
         for u in self.underlying:
             if(not(u.name in temp)):
-                compile_cmd.append(("%s.c" % u.name))
+                compile_cmd.append(("../../MulticoreCPU/multicore_c_code/%s.c" % u.name))
                 temp.append(u.name)
             
             base_list = []
@@ -430,7 +430,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
             for b in base_list:
                 if(b not in temp):
-                    compile_cmd.append(("%s.c" % b))
+                    compile_cmd.append(("../../MulticoreCPU/multicore_c_code/%s.c" % b))
                     temp.append(b)
             
         for d in self.derivative:
@@ -470,10 +470,15 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
         #Compile for this specific Machine
         compile_cmd.append("-march=native")
+	
+	#Adding other compile flags
+        for c_o in compile_options: compile_cmd.append(c_o)
         
-        #print compile_cmd
+        compile_string = ""
+        for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
+        if(debug): print compile_string
+        
         result = subprocess.check_output(compile_cmd)
-        #print subprocess.check_output("pwd")
         os.chdir(self.platform.root_directory())
         os.chdir("bin")
         
@@ -484,7 +489,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       os.chdir(self.platform.root_directory)
       os.chdir("bin")
           
-  def execute(self,cleanup=False):
+  def execute(self,cleanup=False,debug=False):
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -504,8 +509,11 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     for o_a in self.derivative_attributes: 
         for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
         index +=1
+        
+    run_string = ""
+    for r_c in run_cmd: run_string = "%s %s"%(run_string,r_c)
+    if(debug): print run_string
     
-    #print run_cmd
     start = time.time() #Wall-time is measured by framework, as well as in the generated application to measure overhead in calling code
     results = subprocess.check_output(run_cmd)
     finish = time.time()

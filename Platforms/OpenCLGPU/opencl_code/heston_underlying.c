@@ -1,19 +1,18 @@
 /*
- * heston.c
+ * heston.c (OpenCL version)
  *
- *  Created on: 26 June 2012
+ *  Created on: 4 May 2013
  *      Author: gordon
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "math.h"
-#include <gsl/gsl_rng.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include "math.h"
+#include "mwc64x.cl"
 #include "heston_underlying.h"
-#include "gauss.c"
 
 
-void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,double rh,double k,double t,double cm_0_0,double cm_0_1,double cm_1_0,double cm_1_1heston_underlying_attributes* u_a){
+void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,double rh,double k,double t,double cm_0_0,double cm_0_1,double cm_1_0,double cm_1_1,heston_underlying_attributes* u_a){
 	u_a->rfir = r;
         u_a->current_price = p;
 	u_a->initial_volatility=i_v;
@@ -27,25 +26,28 @@ void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,d
 	u_a->correlation_matrix_1_1 = cm_1_1;
 }
 
-void heston_underlying_underlying_path_init(heston_underlying_variables* u_vheston_underlying_attributes* u_a){
+void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
 	u_v->gamma = 0.0;
 	u_v->time = 0.0;
 	u_v->volatility = sqrt(u_a->initial_volatility);
+	
+	u_v->rng_state.x = 0; //get_global_id(0)
+	u_v->rng_state.c = 1 + get_global_id(0);//get_global_id(0);
 }
 
-void heston_underlying_underlying_path(double delta_time,heston_underlying_variables* u_vheston_underlying_attributes* u_a){
-	u_v->w = taus_ran_gaussian_ziggurat (1.0);
-	u_v->v = taus_ran_gaussian_ziggurat (1.0);
+void heston_underlying_underlying_path(double delta_time,heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
+	u_v->w = ((double)MWC64X_NextUint(&u_v->rng_state))/4294967296;//taus_ran_gaussian_ziggurat (1.0);
+	u_v->v = ((double)MWC64X_NextUint(&u_v->rng_state))/4294967296;//taus_ran_gaussian_ziggurat (1.0);
 	
-	u_v->x = u_a->correlation_matrix_0_0*u_v->w + u_a->correlation_matrix_1_0*u_v->v;
-	u_v->y = u_a->correlation_matrix_0_1*u_v->w + u_a->correlation_matrix_1_1*u_v->v; //u_a->correlation_matrix_0_1 should always be 0
+	//u_v->x = u_a->correlation_matrix_0_0*u_v->w + u_a->correlation_matrix_1_0*u_v->v;
+	//u_v->y = u_a->correlation_matrix_0_1*u_v->w + u_a->correlation_matrix_1_1*u_v->v; //u_a->correlation_matrix_0_1 should always be 0
 	
-	/*u_v->w = drand48();
-	u_v->v = drand48();
+	//u_v->w = drand48();
+	//u_v->v = drand48();
 	u_v->x = sqrt(-2*log(u_v->w))*cos(2*PI*u_v->v);
 	
 	u_v->y = sqrt(-2*log(u_v->w))*sin(2*PI*u_v->v);
-	u_v->y = u_v->x*u_a->rho+sqrt(1.0-pow(u_a->rho,2))*u_v->y;*/
+	u_v->y = u_v->x*u_a->rho+sqrt(1.0-pow(u_a->rho,2))*u_v->y;
         
 	
 	//central discretisation

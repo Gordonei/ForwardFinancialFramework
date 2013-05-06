@@ -9,15 +9,15 @@
 
 #include "european_option.h"
 
-typedef struct barrier_option_variables{
+typedef struct{
         double barrier_event;
     
 	double delta_time;
 	double value;
         european_option_variables european;
-} barrier_option_opt_var;
+} barrier_option_variables;
 
-typedef struct barrier_option_attributes{
+typedef struct {
         double barrier;
         double out;
         double down;
@@ -27,11 +27,11 @@ typedef struct barrier_option_attributes{
 	double call;
 	double points;
         european_option_attributes european;
-} barrier_option_opt_attr;
+} barrier_option_attributes;
 
-void barrier_option_derivative_init(double t,double c,double k,double p,double b,double o,double d,barrier_option_opt_attr* o_a);
-void barrier_option_derivative_path_init(barrier_option_opt_var* o_v,barrier_option_opt_attr* o_a);
-void barrier_option_derivative_path(double price,double time,barrier_option_opt_var* o_v,barrier_option_opt_attr* o_a);
-void barrier_option_derivative_payoff(double end_price,barrier_option_opt_var* o_v,barrier_option_opt_attr* o_a);
+void barrier_option_derivative_init(double t,double c,double k,double p,double b,double o,double d,barrier_option_attributes* o_a);
+void barrier_option_derivative_path_init(barrier_option_variables* o_v,barrier_option_attributes* o_a);
+void barrier_option_derivative_path(double price,double time,barrier_option_variables* o_v,barrier_option_attributes* o_a);
+void barrier_option_derivative_payoff(double end_price,barrier_option_variables* o_v,barrier_option_attributes* o_a);
 
 #endif /* BARRIER_OPTION_H_ */

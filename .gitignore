@@ -35,5 +35,8 @@ Makefile
 MC_Solver_Test_*
 MC_Solver_prototype_maxeler
 
+#Tilda Backups
+*~
+
 #Random Files
 .DS_Store

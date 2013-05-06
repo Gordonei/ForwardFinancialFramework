@@ -1,7 +1,7 @@
 /*
- * heston.h
+ * heston.h (OpenCL version)
  *
- *  Created on: 12 June 2012
+ *  Created on: 4 May 2013
  *      Author: gordon
  */
 #ifndef HESTON_H_
@@ -21,6 +21,7 @@ double u;
 double volatility_approx;
 double theta_v_approx;
 double moment_difference;
+mwc64x_state_t rng_state;
 } heston_underlying_variables;
 
 typedef struct {

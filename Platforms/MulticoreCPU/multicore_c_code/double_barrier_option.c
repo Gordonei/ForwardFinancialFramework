@@ -4,11 +4,10 @@
  *  Created on: 17 June 2012
  *      Author: gordon
  */
+//#include "barrier_option.h"
 #include "double_barrier_option.h"
-#include "barrier_option.h"
-#include "european_option.h"
 
-void double_barrier_option_derivative_init(double t,double c,double k,double p,double b,double o,double d,double s_b,double_barrier_option_opt_attr* o_a){
+void double_barrier_option_derivative_init(double t,double c,double k,double p,double b,double o,double d,double s_b,double_barrier_option_attributes* o_a){
     //Calling Barrier Behaviour
     barrier_option_derivative_init(t,c,k,p,b,o,1.0,&(o_a->barrier_option)); //Down is set to true by default, according to convention
     o_a->strike_price = (o_a->barrier_option).strike_price;
@@ -22,7 +21,7 @@ void double_barrier_option_derivative_init(double t,double c,double k,double p,d
     o_a->second_barrier = s_b;
 }
 
-void double_barrier_option_derivative_path_init(double_barrier_option_opt_var* o_v,double_barrier_option_opt_attr* o_a){
+void double_barrier_option_derivative_path_init(double_barrier_option_variables* o_v,double_barrier_option_attributes* o_a){
     //Calling European Behaviour
     barrier_option_derivative_path_init(&(o_v->barrier_option),&(o_a->barrier_option));
     o_v->value = (o_v->barrier_option).value;
@@ -31,7 +30,7 @@ void double_barrier_option_derivative_path_init(double_barrier_option_opt_var* o
     
 }
 
-void double_barrier_option_derivative_path(double price,double time,double_barrier_option_opt_var* o_v,double_barrier_option_opt_attr* o_a){
+void double_barrier_option_derivative_path(double price,double time,double_barrier_option_variables* o_v,double_barrier_option_attributes* o_a){
     //if(self.out and (price>=self.second_barrier)): self.barrier_event = True #Can assume this is an up barrier
     /*o_v->barrier_event = (price>=o_a->second_barrier) ? 1.0 : o_v->barrier_event;
     (o_v->barrier_option).barrier_event = o_v->barrier_event;
@@ -51,7 +50,7 @@ void double_barrier_option_derivative_path(double price,double time,double_barri
     o_v->delta_time = (o_v->barrier_option).delta_time;
 }
 
-void double_barrier_option_derivative_payoff(double end_price,double_barrier_option_opt_var* o_v,double_barrier_option_opt_attr* o_a){
+void double_barrier_option_derivative_payoff(double end_price,double_barrier_option_variables* o_v,double_barrier_option_attributes* o_a){
     barrier_option_derivative_payoff(end_price,&(o_v->barrier_option),&(o_a->barrier_option));
     o_v->value = (o_v->barrier_option).value;
 }

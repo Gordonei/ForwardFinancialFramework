@@ -4,9 +4,8 @@ Created on 8 November 2012
 import os,time,subprocess,sys,time,math,multiprocessing
 sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Underlying,Heston
-from ForwardFinancialFramework.Derivatives import Option,Barrier_Option,Double_Barrier_Option,European_Option
-from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
-from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo, MulticoreCPU
+from ForwardFinancialFramework.Derivatives import Option,Double_Barrier_Option,European_Option
+from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU,MulticoreCPU_MonteCarlo
 
 if( __name__ == '__main__'):
   
@@ -39,12 +38,14 @@ if( __name__ == '__main__'):
   parameter_set = "I"
   reference_value = 5.7576
   
+  #underlying = [Underlying.Underlying(rfir,current_price)]
+  #option = [Option.Option(underlying,time_period,call,strike_price)]
+  
   underlying = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
-  #option = [Double_Barrier_Option.Double_Barrier_Option(underlying,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,second_barrier=second_barrier,down=down)]
-  option = [European_Option.European_Option(underlying,call=call,strike_price=strike_price,time_period=time_period,points=points)]
+  option = [Double_Barrier_Option.Double_Barrier_Option(underlying,call=call,strike_price=strike_price,time_period=time_period,points=points,out=out,barrier=barrier,second_barrier=second_barrier,down=down)]
+  option.append(European_Option.European_Option(underlying,call=call,strike_price=strike_price,time_period=time_period))
   
-  
-  multicore_cpu_platform = MulticoreCPU.MulticoreCPU(threads)
+  multicore_cpu_platform = MulticoreCPU.MulticoreCPU()
   
   mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,multicore_cpu_platform)
   mc_solver.generate()
