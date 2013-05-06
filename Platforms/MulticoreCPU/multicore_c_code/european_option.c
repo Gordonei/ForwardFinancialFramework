@@ -23,7 +23,7 @@ void european_option_derivative_path_init(european_option_variables* o_v,europea
 
 void european_option_derivative_path(double price,double time,european_option_variables* o_v,european_option_attributes* o_a){
 	option_derivative_path(price,time,&(o_v->option),&(o_a->option));
-	o_v->delta_time=(o_v->option).delta_time;
+	//o_v->delta_time=(o_v->option).delta_time;
 }
 
 void european_option_derivative_payoff(double end_price,european_option_variables* o_v,european_option_attributes* o_a){

@@ -225,7 +225,8 @@ def KS_Options(option_numbers=[]):
 	kappa = 0.0
 	theta = 0.0
 	
-    points = time_period*252 #Its assumed that there is a point for every trading day
+    points = 4096
+    #points = time_period*252 #Its assumed that there is a point for every trading day
     
     underlying_heston_I = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]
     underlying_heston_II = [Heston.Heston(rfir=rfir,current_price=current_price,initial_volatility=initial_volatility,volatility_volatility=volatility_volatility,rho=rho,kappa=kappa,theta=theta)]

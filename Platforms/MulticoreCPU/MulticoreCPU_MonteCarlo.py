@@ -268,6 +268,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         for o_a in self.derivative_attributes[index][:-1]: temp=("%s%s_%d_%s,"%(temp,d.name,index,o_a))
         temp=("%s%s_%d_%s,&o_a_%d);"%(temp,d.name,index,self.derivative_attributes[index][-1],index))
         output_list.append(temp)
+        
+        if("points" not in self.derivative_attributes[index]): output_list.append("o_v_%d.delta_time = o_a_%d.time_period/default_points;"%(index,index))
     
     ##Thread calculation loop
     output_list.append("//**Thread Calculation Loop**")
@@ -432,7 +434,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
                 if(b not in temp):
                     compile_cmd.append(("../../MulticoreCPU/multicore_c_code/%s.c" % b))
                     temp.append(b)
-            
+          
+        compile_cmd.append("../../MulticoreCPU/multicore_c_code/gauss.c")
         for d in self.derivative:
             if(not(d.name in temp)):
                 compile_cmd.append(("%s.c" % d.name))

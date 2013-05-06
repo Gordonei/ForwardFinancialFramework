@@ -182,17 +182,31 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("double temp_value_sqrd_%d=0;"%d)
     output_list.append("for(int i=0;i<paths;i++){")
     for index,d in enumerate(self.derivative):
-      #output_list.append("printf(\"%%f\\n\",o_a_%d[i].time_period);"%index)
+      #output_list.append("printf(\"%%f\\n\",o_a_%d[0].time_period);"%index)
       #output_list.append("printf(\"%%f\\n\",o_v_%d[i].delta_time);"%index)
       output_list.append("temp_total_%d += o_v_%d[i].value;"%(index,index))
       output_list.append("temp_value_sqrd_%d += pow(o_v_%d[i].value,2);"%(index,index))
     output_list.append("}")
     
     output_list.append("//**Returning Result**")
-    #output_list.append("printf(\"temp_total=%f\",temp_total_0);")
+    #output_list.append("printf(\"path_points_array[0]=%d\\n\",path_points_array[0]);")
     for index,d in enumerate(self.derivative):
       output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(index,index))
       output_list.append("temp_data->thread_result_sqrd[%d] = temp_value_sqrd_%d;"%(index,index))
+    
+    output_list.append("//**Cleaning up**")
+    output_list.append("clReleaseKernel(%s_kernel);"%self.output_file_name)
+    output_list.append("clReleaseProgram(program);")
+    output_list.append("clReleaseCommandQueue(command_queue);")
+    output_list.append("clReleaseContext(context);")
+    output_list.append("clReleaseMemObject(path_points_buff);")
+    
+    for index,u in enumerate(self.underlying):
+        output_list.append("clReleaseMemObject(u_a_%d_buff);" % (index))
+        
+    for index,d in enumerate(self.derivative):
+	output_list.append("clReleaseMemObject(o_a_%d_buff);" % (index))
+    
     output_list.append("}")
     
     return output_list
@@ -226,7 +240,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Checking that the source code for the derivative and underlying required is avaliable
     for u in self.underlying: 
       if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
-      else: output_list.append("#include \"%s.c\""%u.name) #Include source code body files as it all gets compiled at once
+      elif("#include \"%s.c\""%u.name not in output_list): output_list.append("#include \"%s.c\""%u.name) #Include source code body files as it all gets compiled at once
         
     #for d in self.derivative:
       #if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))

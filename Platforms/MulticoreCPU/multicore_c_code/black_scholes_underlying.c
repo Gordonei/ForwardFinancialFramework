@@ -9,12 +9,15 @@
 #include <stdlib.h>
 #include "math.h"
 #include "black_scholes_underlying.h"
-#include "gauss.c"
 
 void black_scholes_underlying_underlying_init(double r,double p,double v,black_scholes_underlying_attributes* u_a){
 	u_a->rfir = r;
 	u_a->volatility=v;
 	u_a->current_price = p;
+	
+	(u_a->rng_state).s1 = 2+ (unsigned int)pthread_self(); //+ (unsigned int)pthread_self();
+	(u_a->rng_state).s2 = 8;
+	(u_a->rng_state).s3 = 16;
 }
 
 void black_scholes_underlying_underlying_path_init(black_scholes_underlying_variables* u_v,black_scholes_underlying_attributes* u_a){
@@ -27,7 +30,7 @@ void black_scholes_underlying_underlying_path(double delta_time,black_scholes_un
 	//double u = drand48();
 	//double v = drand48();
 	//double x = sqrt(-2*log(u))*cos(2*PI*v); //double y = sqrt(-2*log(u))*sin(2*PI*v);
-	u_v->x = taus_ran_gaussian_ziggurat (1.0);
+	u_v->x = taus_ran_gaussian_ziggurat (1.0,&(u_a->rng_state));
 
 	u_v->gamma += (u_a->rfir-pow((u_a->volatility),2)/2)*delta_time+u_a->volatility*u_v->x*sqrt(delta_time);
 	u_v->time += delta_time;
