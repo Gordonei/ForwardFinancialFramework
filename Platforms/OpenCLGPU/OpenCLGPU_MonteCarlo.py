@@ -75,15 +75,15 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("cl_device_id device = devices[0];")
      
     ###Creating the OpenCL Program from the precompiled binary
-    output_list.append("//***Creating Program***")
+    """output_list.append("//***Creating Program***")
     output_list.append("FILE *fp=fopen(\"%s.clbin\", \"r\");"%self.output_file_name)
     output_list.append("char *binary_buf = (char *)malloc(0x100000);")
     output_list.append("size_t binary_size = fread(binary_buf, 1, 0x100000, fp);")
     output_list.append("fclose(fp);")
     output_list.append("cl_program program = clCreateProgramWithBinary(context, 1, &device, (const size_t *)&binary_size,(const unsigned char **)&binary_buf, NULL, NULL);")
-    output_list.append("clBuildProgram(program, 1, &device, NULL, NULL, NULL);")
+    output_list.append("clBuildProgram(program, 1, &device, NULL, NULL, NULL);")"""
     
-    """output_list.append("FILE *fp;")
+    output_list.append("FILE *fp;")
     output_list.append("char *source_str;")
     output_list.append("size_t source_size;")
     output_list.append("fp=fopen(\"%s.cl\",\"r\");"%self.output_file_name)
@@ -344,11 +344,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
     
-    self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build(["-I . -I mwc64x/cl"]) #Creating OpenCL program based upon Kernel
+    """self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build(["-I . -I mwc64x/cl"]) #Creating OpenCL program based upon Kernel
     binary_kernel = self.program.get_info(pyopencl.program_info.BINARIES)[0] #Getting the binary code for the OpenCL code
     binary_kernel_file = open("%s.clbin"%self.output_file_name,"w") #Writing the binary code to a file to be read by the Host C Code
     binary_kernel_file.write(binary_kernel)
-    binary_kernel_file.close()
+    binary_kernel_file.close()"""
     
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
