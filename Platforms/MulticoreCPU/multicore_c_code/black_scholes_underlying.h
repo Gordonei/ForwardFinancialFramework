@@ -15,13 +15,13 @@ typedef struct {
 double gamma;
 double time;
 double x;
+rng_state_t rng_state;
 } black_scholes_underlying_variables;
 
 typedef struct {
 double rfir;
 double volatility;
 double current_price;
-rng_state_t rng_state;
 } black_scholes_underlying_attributes;
 
 //double r,double p,double i_v,double v_v,double rh,double k,double t

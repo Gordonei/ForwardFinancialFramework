@@ -33,7 +33,7 @@ void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,hes
 	
 	//u_v->rng_state.x = 0;
 	//u_v->rng_state.c = 1;//get_global_id(0);
-	MWC64X_SeedStreams(&(u_v->rng_state),0,get_global_id(0));
+	MWC64X_SeedStreams(&(u_v->rng_state),0,4096*2);
 	//mwc64x_state_t *s, ulong baseOffset, ulong perStreamOffset
 }
 
@@ -46,9 +46,11 @@ void heston_underlying_underlying_path(double delta_time,heston_underlying_varia
 	
 	//u_v->w = drand48();
 	//u_v->v = drand48();
-	u_v->x = sqrt(-2*log(u_v->w))*cos(2*PI*u_v->v);
 	
-	u_v->y = sqrt(-2*log(u_v->w))*sin(2*PI*u_v->v);
+	double sqr_log_w = sqrt(-2*log(u_v->w));
+	u_v->x = sqr_log_w*cos(2*PI*u_v->v);
+	
+	u_v->y = sqr_log_w*sin(2*PI*u_v->v);
 	u_v->y = u_v->x*u_a->rho+sqrt(1.0-pow(u_a->rho,2))*u_v->y;
         
 	

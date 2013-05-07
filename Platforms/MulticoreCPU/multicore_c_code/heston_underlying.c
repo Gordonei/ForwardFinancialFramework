@@ -21,9 +21,7 @@ void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,d
 	u_a->correlation_matrix_1_0 = cm_1_0;
 	u_a->correlation_matrix_1_1 = cm_1_1;
 	
-	(u_a->rng_state).s1 = 2 + (unsigned int)pthread_self(); //+ (unsigned int)pthread_self();
-	(u_a->rng_state).s2 = 8;
-	(u_a->rng_state).s3 = 16;
+	
 }
 
 void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
@@ -31,12 +29,19 @@ void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,hes
 	u_v->time = 0.0;
 	u_v->volatility = sqrt(u_a->initial_volatility);
 	
+	(u_v->rng_state).s1 = 2;//+ (unsigned int)pthread_self(); //+ (unsigned int)pthread_self();
+	(u_v->rng_state).s2 = 8;
+	(u_v->rng_state).s3 = 16 + (unsigned int)pthread_self();
 	
+	int temp;
+	for(int i=0;i<100;++i){
+	  temp = __random32(&(u_v->rng_state)); //Getting the random number generator suitably random
+	}
 }
 
 void heston_underlying_underlying_path(double delta_time,heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
-	u_v->w = taus_ran_gaussian_ziggurat (1.0,&(u_a->rng_state));
-	u_v->v = taus_ran_gaussian_ziggurat (1.0,&(u_a->rng_state));
+	u_v->w = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
+	u_v->v = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
 	
 	u_v->x = u_a->correlation_matrix_0_0*u_v->w + u_a->correlation_matrix_1_0*u_v->v;
 	u_v->y = u_a->correlation_matrix_0_1*u_v->w + u_a->correlation_matrix_1_1*u_v->v; //u_a->correlation_matrix_0_1 should always be 0

@@ -193,12 +193,12 @@ static const double wtab[128] = {
 //}
 
 //Beginning of modified code that uses the Combined TAUSWORTHE RNG
-typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;} rng_state_t;
+typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;unsigned int offset;} rng_state_t;
 //uint32_t s1=2, s2=8, s3=16;
 
-static uint32_t __random32(rng_state_t *rng_state);
+uint32_t __random32(rng_state_t *rng_state);
 
-static double __drandom32(rng_state_t *rng_state);
+double __drandom32(rng_state_t *rng_state);
 
 double taus_ran_gaussian_ziggurat (double sigma, rng_state_t *rng_state);
 //End of modified code that uses the Combined TAUSWORTHE RNG
