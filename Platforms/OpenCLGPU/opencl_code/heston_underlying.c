@@ -33,7 +33,7 @@ void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,hes
 	
 	//u_v->rng_state.x = 0;
 	//u_v->rng_state.c = 1;//get_global_id(0);
-	MWC64X_SeedStreams(&(u_v->rng_state),0,4096*2);
+	MWC64X_SeedStreams(&(u_v->rng_state),0,get_global_id(0)*4096*2);//get_global_id(0)*4096*2);
 	//mwc64x_state_t *s, ulong baseOffset, ulong perStreamOffset
 }
 

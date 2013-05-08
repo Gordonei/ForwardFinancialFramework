@@ -11,6 +11,8 @@ if( __name__ == '__main__' and len(sys.argv)>3):
   min_paths = int(sys.argv[2])
   max_paths = int(sys.argv[3])
   
+  output_file = open(sys.argv[4],"w")
+  
   options = map(str,range(1,14))
   
   option = KS_ProblemSet.KS_Options(options)
@@ -38,6 +40,7 @@ if( __name__ == '__main__' and len(sys.argv)>3):
   compile_output = mc_solver.compile()
   
   for p in range(min_paths,max_paths,1000):
+    print p
     mc_solver.solver_metadata["paths"] = p
     execution_output = mc_solver.execute()
   
@@ -56,10 +59,10 @@ if( __name__ == '__main__' and len(sys.argv)>3):
     
     average = average/(len(execution_output[:-3])/2)
     output_string = "%s%f,"%(output_string,average)
-    output_string = "%s%s,"%(output_string,execution_output[-1])
+    output_string = "%s%s,\n"%(output_string,execution_output[-1])
     #output_string = "%s\n"%output_string
     
-    print output_string
+    output_file.write(output_string)
     
 else:
-  print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] [Minimum Number of Paths] [Maximum Number of Paths]"
+  print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] [Minimum Number of Paths] [Maximum Number of Paths] [Output File]"
