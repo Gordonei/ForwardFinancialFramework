@@ -50,11 +50,12 @@ void barrier_option_derivative_payoff(double end_price,barrier_option_variables*
         //else: self.value = European_Option.European_Option.payoff
         
         if(((o_a->out==1.0) && (o_v->barrier_event==1.0)) || ((o_a->out==0.0) && (o_v->barrier_event==0.0))){
-            o_v->value = 0;
-            (o_v->european).value = o_v->value;
+            //o_v->value = 0;
+            //(o_v->european).value = o_v->value;
+	    european_option_derivative_payoff(o_a->strike_price,&(o_v->european),&(o_a->european));
         }
         else {
             european_option_derivative_payoff(end_price,&(o_v->european),&(o_a->european));
-            o_v->value = (o_v->european).value;
         }
+        o_v->value = (o_v->european).value;
 }

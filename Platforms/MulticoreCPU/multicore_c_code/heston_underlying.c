@@ -5,8 +5,15 @@
  *      Author: gordon
  */
 
+#ifdef OPENCL_GPU
+#include "mwc64x.cl"
+#endif
+#ifdef MULTICORE_CPU
 #include "math.h"
+#endif
+
 #include "heston_underlying.h"
+
 
 void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,double rh,double k,double t,double cm_0_0,double cm_0_1,double cm_1_0,double cm_1_1,heston_underlying_attributes* u_a){
 	u_a->rfir = r;
@@ -29,6 +36,7 @@ void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,hes
 	u_v->time = 0.0;
 	u_v->volatility = sqrt(u_a->initial_volatility);
 	
+	#ifdef MULTICORE_CPU
 	(u_v->rng_state).s1 = 2;//+ (unsigned int)pthread_self(); //+ (unsigned int)pthread_self();
 	(u_v->rng_state).s2 = 8;
 	(u_v->rng_state).s3 = 16 + (unsigned int)pthread_self();
@@ -37,15 +45,31 @@ void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,hes
 	for(int i=0;i<100;++i){
 	  temp = __random32(&(u_v->rng_state)); //Getting the random number generator suitably random
 	}
+	#endif
+	#ifdef OPENCL_GPU
+	MWC64X_SeedStreams(&(u_v->rng_state),0,4096*2);
+	#endif
 }
 
 void heston_underlying_underlying_path(double delta_time,heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
+	#ifdef MULTICORE_CPU
 	u_v->w = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
 	u_v->v = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
 	
 	u_v->x = u_a->correlation_matrix_0_0*u_v->w + u_a->correlation_matrix_1_0*u_v->v;
 	u_v->y = u_a->correlation_matrix_0_1*u_v->w + u_a->correlation_matrix_1_1*u_v->v; //u_a->correlation_matrix_0_1 should always be 0
+	#endif
 	
+	#ifdef OPENCL_GPU
+	u_v->w = ((double)MWC64X_NextUint(&(u_v->rng_state)))/4294967296;
+	u_v->v = ((double)MWC64X_NextUint(&(u_v->rng_state)))/4294967296;
+	
+	double sqr_log_w = sqrt(-2*log(u_v->w));
+	u_v->x = sqr_log_w*cos(2*PI*u_v->v);
+	
+	u_v->y = sqr_log_w*sin(2*PI*u_v->v);
+	u_v->y = u_v->x*u_a->rho+sqrt(1.0-pow(u_a->rho,2))*u_v->y;
+	#endif
 	/*u_v->w = drand48();
 	u_v->v = drand48();
 	u_v->x = sqrt(-2*log(u_v->w))*cos(2*PI*u_v->v);

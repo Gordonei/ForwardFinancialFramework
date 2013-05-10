@@ -28,11 +28,10 @@ void european_option_derivative_path(double price,double time,european_option_va
 
 void european_option_derivative_payoff(double end_price,european_option_variables* o_v,european_option_attributes* o_a){
 	if(((o_a->call==1) && (end_price < o_a->strike_price)) || ((o_a->call==0) && (end_price > o_a->strike_price))){
-		o_v->value = 0;
-		(o_v->option).value = o_v->value;
+		option_derivative_payoff(o_a->strike_price,&(o_v->option),&(o_a->option));
 	}
 	else{
-		option_derivative_payoff(end_price,&(o_v->option),&(o_a->option));
-		o_v->value = (o_v->option).value;
+		option_derivative_payoff(end_price,&(o_v->option),&(o_a->option));	
 	}
+	o_v->value = (o_v->option).value;
 }

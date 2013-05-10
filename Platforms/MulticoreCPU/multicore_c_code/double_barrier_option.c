@@ -39,7 +39,7 @@ void double_barrier_option_derivative_path(double price,double time,double_barri
     o_v->barrier_event = (o_v->barrier_option).barrier_event;
     o_v->delta_time = (o_v->barrier_option).delta_time;*/
     
-    if(o_a->out && (price>=o_a->second_barrier)){
+    if(price>=o_a->second_barrier){
         o_v->barrier_event = 1.0;
         (o_v->barrier_option).barrier_event = o_v->barrier_event;
     }
@@ -48,6 +48,7 @@ void double_barrier_option_derivative_path(double price,double time,double_barri
     if((o_v->barrier_option).barrier_event){
       o_v->barrier_event = (o_v->barrier_option).barrier_event;
     }
+    
     o_v->delta_time = (o_v->barrier_option).delta_time;
 }
 
