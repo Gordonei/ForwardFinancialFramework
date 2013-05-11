@@ -3,13 +3,15 @@ Created on 23 February 2013
 
 '''
 import os,time,subprocess,sys,time,math,pyopencl
+import platform as plat
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo
 
 class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   def __init__(self,derivative,paths,platform,reduce_underlyings=True):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     
-    self.utility_libraries.extend(["CL/cl.hpp"])
+    if("Darwin" in plat.system()): self.utility_libraries.extend(["OpenCL/opencl.h"])
+    else: self.utility_libraries.extend(["CL/cl.hpp"])
     self.activity_thread_name = "opencl_montecarlo_activity_thread"
     
     self.kernel_code_string = ""
@@ -240,6 +242,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
     
+    output_list.append("#define %s"%self.platform.name.upper())
     output_list.append("#include \"mwc64x.cl\"")
     #Checking that the source code for the derivative and underlying required is avaliable
     for u in self.underlying: 
@@ -385,12 +388,20 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       
   def compile(self,override=True,cleanup=True,debug=False):
     
-    result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,["-lOpenCL","-I/opt/AMDAPP/include","-fpermissive","-ggdb"],debug) #Compiling Host C Code
+    compile_flags = ["-lOpenCL","-I/opt/AMDAPP/include","-fpermissive"]
+    if(debug): compile_flags.append("-ggdb")
+    if('Darwin' in plat.system()):
+      compile_flags.remove("-lOpenCL")
+      compile_flags.append("-framework")
+      compile_flags.append("OpenCL")
+    result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_flags,debug) #Compiling Host C Code
       
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
     
-    self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build(["-I . -I mwc64x/cl"]) #Creating OpenCL program based upon Kernel
+    path_string = "mwc64x/cl"
+    if('Darwin' in plat.system()): path_string = "%s/%s"%(os.getcwd(),path_string)
+    self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build(["-I . -I %s"%path_string]) #Creating OpenCL program based upon Kernel
     binary_kernel = self.program.get_info(pyopencl.program_info.BINARIES)[0] #Getting the binary code for the OpenCL code
     binary_kernel_file = open("%s.clbin"%self.output_file_name,"w") #Writing the binary code to a file to be read by the Host C Code
     binary_kernel_file.write(binary_kernel)

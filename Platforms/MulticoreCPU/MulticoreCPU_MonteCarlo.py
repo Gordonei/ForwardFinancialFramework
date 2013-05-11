@@ -2,7 +2,7 @@
 Created on 30 October 2012
 
 '''
-import os,time,subprocess,sys,time,math
+import os,time,subprocess,sys,time,math,platform
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
@@ -422,7 +422,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     if(overide or not os.path.exists("%s"%self.output_file_name)):
         compile_cmd = ["g++","%s.c"%self.output_file_name]
-        
+        #compile_cmd.append("-D%s"%self.platform.name.upper())
+        compile_cmd.append("-DMULTICORE_CPU")
         #Including all of the derivative and option classes that are used
         temp = []
         for u in self.underlying:
@@ -475,8 +476,11 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         #Fast Math
         compile_cmd.append("-ffast-math")
         
-        #Compile for this specific Machine
-        compile_cmd.append("-march=native")
+        #Permissive
+        compile_cmd.append("-fpermissive")
+        
+        #Compile for this specific Machine (Linux only)
+        if("Darwin" not in platform.system()):compile_cmd.append("-march=native")
 	
 	#Adding other compile flags
         for c_o in compile_options: compile_cmd.append(c_o)

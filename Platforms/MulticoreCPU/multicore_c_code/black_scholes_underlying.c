@@ -5,22 +5,12 @@
  *      Author: gordon
  */
 
-//#include <stdio.h>
-//#include <stdlib.h>
-#ifdef OPENCL_GPU
-#include "mwc64x.cl"
-#endif
-
 #include "black_scholes_underlying.h"
 
 void black_scholes_underlying_underlying_init(double r,double p,double v,black_scholes_underlying_attributes* u_a){
 	u_a->rfir = r;
 	u_a->volatility=v;
 	u_a->current_price = p;
-	
-	/*(u_a->rng_state).s1 = 2+ (unsigned int)pthread_self(); //+ (unsigned int)pthread_self();
-	(u_a->rng_state).s2 = 8;
-	(u_a->rng_state).s3 = 16;*/
 }
 
 void black_scholes_underlying_underlying_path_init(black_scholes_underlying_variables* u_v,black_scholes_underlying_attributes* u_a){
@@ -28,14 +18,20 @@ void black_scholes_underlying_underlying_path_init(black_scholes_underlying_vari
 	u_v->time = 0.0;
 	u_v->x = 0.0;
 	
-	(u_v->rng_state).s1 = 2 ;//+ (unsigned int)pthread_self(); //+ (unsigned int)pthread_self();
+	#ifdef MULTICORE_CPU
+	(u_v->rng_state).s1 = 2;//+ (unsigned int)pthread_self(); //+ (unsigned int)pthread_self();
 	(u_v->rng_state).s2 = 8;
-	(u_v->rng_state).s3 = 16 + (unsigned int)pthread_self();
+	(u_v->rng_state).s3 = 16 + *((unsigned int*) pthread_self());
 	
 	int temp;
 	for(int i=0;i<100;++i){
 	  temp = __random32(&(u_v->rng_state)); //Getting the random number generator suitably random
 	}
+	#endif
+	
+	#ifdef OPENCL_GPU
+	MWC64X_SeedStreams(&(u_v->rng_state),0,4096);
+	#endif
 }
 
 void black_scholes_underlying_underlying_path(double delta_time,black_scholes_underlying_variables* u_v,black_scholes_underlying_attributes* u_a){

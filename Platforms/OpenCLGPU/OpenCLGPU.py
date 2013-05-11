@@ -22,6 +22,8 @@ class OpenCLGPU:
     for p in pyopencl.get_platforms():
       if(self.platform_name in str(p)): self.platform = p
       
+    if(not self.platform): self.platform = pyopencl.get_platforms()[0] #If the preferred platform isn't available, take the first one there
+      
     self.device = self.platform.get_devices(self.device_type)[0] #Takes the first device available for the specified platform and type
     self.context = pyopencl.Context(devices=[self.device])
     

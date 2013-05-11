@@ -13,6 +13,9 @@
 #include "pthread.h"
 #include "math.h"
 #endif
+#ifdef OPENCL_GPU
+#include "mwc64x.cl"
+#endif
 
 typedef struct {
 double gamma;

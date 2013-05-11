@@ -4,14 +4,6 @@
  *  Created on: 26 June 2012
  *      Author: gordon
  */
-
-#ifdef OPENCL_GPU
-#include "mwc64x.cl"
-#endif
-#ifdef MULTICORE_CPU
-#include "math.h"
-#endif
-
 #include "heston_underlying.h"
 
 
@@ -28,7 +20,6 @@ void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,d
 	u_a->correlation_matrix_1_0 = cm_1_0;
 	u_a->correlation_matrix_1_1 = cm_1_1;
 	
-	
 }
 
 void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
@@ -39,13 +30,14 @@ void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,hes
 	#ifdef MULTICORE_CPU
 	(u_v->rng_state).s1 = 2;//+ (unsigned int)pthread_self(); //+ (unsigned int)pthread_self();
 	(u_v->rng_state).s2 = 8;
-	(u_v->rng_state).s3 = 16 + (unsigned int)pthread_self();
+	(u_v->rng_state).s3 = 16 + *((unsigned int*) pthread_self());
 	
 	int temp;
 	for(int i=0;i<100;++i){
 	  temp = __random32(&(u_v->rng_state)); //Getting the random number generator suitably random
 	}
 	#endif
+	
 	#ifdef OPENCL_GPU
 	MWC64X_SeedStreams(&(u_v->rng_state),0,4096*2);
 	#endif
@@ -70,6 +62,7 @@ void heston_underlying_underlying_path(double delta_time,heston_underlying_varia
 	u_v->y = sqr_log_w*sin(2*PI*u_v->v);
 	u_v->y = u_v->x*u_a->rho+sqrt(1.0-pow(u_a->rho,2))*u_v->y;
 	#endif
+	
 	/*u_v->w = drand48();
 	u_v->v = drand48();
 	u_v->x = sqrt(-2*log(u_v->w))*cos(2*PI*u_v->v);
@@ -77,9 +70,8 @@ void heston_underlying_underlying_path(double delta_time,heston_underlying_varia
 	u_v->y = sqrt(-2*log(u_v->w))*sin(2*PI*u_v->v);
 	u_v->y = u_v->x*u_a->rho+sqrt(1.0-pow(u_a->rho,2))*u_v->y;*/
         
-	
 	//central discretisation
-	u_v->theta_v = (u_a->theta-pow(u_a->volatility_volatility,2)/4/u_a->kappa)/u_v->volatility;
+	u_v->theta_v = (u_a->theta-pow(u_a->volatility_volatility,2)/4/u_a->kappa)/u_v->volatility; 
 	u_v->u = u_v->theta_v + (u_v->volatility-u_v->theta_v)*exp(-0.5*u_a->kappa*delta_time);
 	u_v->volatility_approx = 0.5*(u_v->volatility+u_v->u);
 	u_v->theta_v_approx = (u_a->theta-pow(u_a->volatility_volatility,2)/4/u_a->kappa)/u_v->volatility_approx;
@@ -94,5 +86,4 @@ void heston_underlying_underlying_path(double delta_time,heston_underlying_varia
 	u_v->gamma += (u_a->rfir-0.5*pow(u_v->volatility,2))*delta_time+u_v->volatility*u_v->x*sqrt(delta_time);
 	u_v->volatility += 0.5*u_a->kappa*(u_v->theta_v_approx-u_v->volatility)*delta_time+0.5*u_a->volatility_volatility*u_v->y*sqrt(delta_time);
 	u_v->time += delta_time;
-        
 }
