@@ -29,7 +29,7 @@ void black_scholes_underlying_underlying_path_init(black_scholes_underlying_vari
 	}
 	#endif
 	
-	#ifdef OPENCL_GPU
+	#if (defined OPENCL_GPU && !defined AMD_GPU)
 	MWC64X_SeedStreams(&(u_v->rng_state),0,4096);
 	#endif
 }

@@ -38,7 +38,7 @@ void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,hes
 	}
 	#endif
 	
-	#ifdef OPENCL_GPU
+	#if (defined OPENCL_GPU && !defined AMD_GPU)
 	MWC64X_SeedStreams(&(u_v->rng_state),0,4096*2);
 	#endif
 }

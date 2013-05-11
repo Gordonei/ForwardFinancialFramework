@@ -12,6 +12,7 @@
 #include "gauss.h"
 #include "pthread.h"
 #include "math.h"
+typedef struct{ unsigned int x; unsigned int c; } mwc64x_state_t;
 #endif
 #ifdef OPENCL_GPU
 #include "mwc64x.cl"

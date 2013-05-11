@@ -27,6 +27,9 @@ class OpenCLGPU:
     self.device = self.platform.get_devices(self.device_type)[0] #Takes the first device available for the specified platform and type
     self.context = pyopencl.Context(devices=[self.device])
     
+    self.cpu_device = self.platform.get_devices(pyopencl.device_type.CPU)[0] #Taking the first CPU available
+    self.cpu_context = pyopencl.Context(devices=[self.cpu_device])
+    
   def platform_directory(self):
     return self.platform_directory_string
   
