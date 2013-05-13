@@ -394,8 +394,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	output_list.append("%s_variables temp_u_v_%d;"%(u.name,index)) #= u_v_%d[j]
         
         output_list.append("%s_underlying_path_init(&temp_u_v_%d,&temp_u_a_%d);" % (u.name,index,index))
-        if("AMD" in self.platform.platform_name):
-          output_list.append("temp_u_v_%d.rng_state = u_v_%d[i];"%(index,index))
+        if("AMD" in self.platform.platform_name): output_list.append("temp_u_v_%d.rng_state = u_v_%d[i];"%(index,index))
         
         #output_list.append("local_u_a_%d[0] = temp_u_a;"%(index))
 	#output_list.append("local_u_v_%d[i] = temp_u_v;"%(index))
@@ -482,7 +481,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.platform_directory())
     
     output_list.append("#define %s"%self.platform.name.upper())
-    output_list.append("#include \"mwc64x.cl\"")
+    output_list.append("#define FP_t %s"%self.floating_point_format)
+    
     #Checking that the source code for the derivative and underlying required is avaliable
     for u in self.underlying: 
       if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
