@@ -7,7 +7,7 @@
 #include "heston_underlying.h"
 
 
-void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,double rh,double k,double t,double cm_0_0,double cm_0_1,double cm_1_0,double cm_1_1,heston_underlying_attributes* u_a){
+void heston_underlying_underlying_init(FP_t r,FP_t p,FP_t i_v,FP_t v_v,FP_t rh,FP_t k,FP_t t,FP_t cm_0_0,FP_t cm_0_1,FP_t cm_1_0,FP_t cm_1_1,heston_underlying_attributes* u_a){
 	u_a->rfir = r;
         u_a->current_price = p;
 	u_a->initial_volatility=i_v;
@@ -43,7 +43,7 @@ void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,hes
 	#endif
 }
 
-void heston_underlying_underlying_path(double delta_time,heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
+void heston_underlying_underlying_path(FP_t delta_time,heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
 	#ifdef MULTICORE_CPU
 	u_v->w = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
 	u_v->v = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
@@ -53,10 +53,10 @@ void heston_underlying_underlying_path(double delta_time,heston_underlying_varia
 	#endif
 	
 	#ifdef OPENCL_GPU
-	u_v->w = ((double)MWC64X_NextUint(&(u_v->rng_state)))/4294967296;
-	u_v->v = ((double)MWC64X_NextUint(&(u_v->rng_state)))/4294967296;
+	u_v->w = ((FP_t)MWC64X_NextUint(&(u_v->rng_state)))/4294967296;
+	u_v->v = ((FP_t)MWC64X_NextUint(&(u_v->rng_state)))/4294967296;
 	
-	double sqr_log_w = sqrt(-2*log(u_v->w));
+	FP_t sqr_log_w = sqrt(-2*log(u_v->w));
 	u_v->x = sqr_log_w*cos(2*PI*u_v->v);
 	
 	u_v->y = sqr_log_w*sin(2*PI*u_v->v);

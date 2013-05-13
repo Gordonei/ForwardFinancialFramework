@@ -12,16 +12,12 @@
 #include "gauss.h"
 #include "pthread.h"
 #include "math.h"
-typedef struct{ unsigned int x; unsigned int c; } mwc64x_state_t;
-#endif
-#ifdef OPENCL_GPU
-#include "mwc64x.cl"
 #endif
 
 typedef struct {
-double gamma;
-double time;
-double x;
+FP_t gamma;
+FP_t time;
+FP_t x;
 #ifdef MULTICORE_CPU
 rng_state_t rng_state;
 #endif
@@ -31,14 +27,14 @@ mwc64x_state_t rng_state;
 } black_scholes_underlying_variables;
 
 typedef struct {
-double rfir;
-double volatility;
-double current_price;
+FP_t rfir;
+FP_t volatility;
+FP_t current_price;
 } black_scholes_underlying_attributes;
 
-//double r,double p,double i_v,double v_v,double rh,double k,double t
-void black_scholes_underlying_underlying_init(double r,double p,double v,black_scholes_underlying_attributes* u_a);
+//FP_t r,FP_t p,FP_t i_v,FP_t v_v,FP_t rh,FP_t k,FP_t t
+void black_scholes_underlying_underlying_init(FP_t r,FP_t p,FP_t v,black_scholes_underlying_attributes* u_a);
 void black_scholes_underlying_underlying_path_init(black_scholes_underlying_variables* u_v,black_scholes_underlying_attributes* u_a);
-void black_scholes_underlying_underlying_path(double delta_time,black_scholes_underlying_variables* u_v,black_scholes_underlying_attributes* u_a);
+void black_scholes_underlying_underlying_path(FP_t delta_time,black_scholes_underlying_variables* u_v,black_scholes_underlying_attributes* u_a);
 
 #endif /* BLACK_SCHOLES_H_ */

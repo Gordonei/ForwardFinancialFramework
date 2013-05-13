@@ -6,7 +6,7 @@
  */
 #include "digital_double_barrier_option.h"
 
-void digital_double_barrier_option_derivative_init(double t,double c,double k,double p,double b,double o,double d,double s_b,digital_double_barrier_option_attributes* o_a){
+void digital_double_barrier_option_derivative_init(FP_t t,FP_t c,FP_t k,FP_t p,FP_t b,FP_t o,FP_t d,FP_t s_b,digital_double_barrier_option_attributes* o_a){
     //Calling Double Barrier Behaviour
     double_barrier_option_derivative_init(t,c,k,p,b,o,1.0,s_b,&(o_a->double_barrier_option));
     o_a->strike_price = (o_a->double_barrier_option).strike_price;
@@ -28,14 +28,14 @@ void digital_double_barrier_option_derivative_path_init(digital_double_barrier_o
     
 }
 
-void digital_double_barrier_option_derivative_path(double price,double time,digital_double_barrier_option_variables* o_v,digital_double_barrier_option_attributes* o_a){
+void digital_double_barrier_option_derivative_path(FP_t price,FP_t time,digital_double_barrier_option_variables* o_v,digital_double_barrier_option_attributes* o_a){
     //Calling Double Barrier Behaviour
     double_barrier_option_derivative_path(price,time,&(o_v->double_barrier_option),&(o_a->double_barrier_option));
     o_v->barrier_event = (o_v->double_barrier_option).barrier_event;
     o_v->delta_time = (o_v->double_barrier_option).delta_time;
 }
 
-void digital_double_barrier_option_derivative_payoff(double end_price,digital_double_barrier_option_variables* o_v,digital_double_barrier_option_attributes* o_a){
+void digital_double_barrier_option_derivative_payoff(FP_t end_price,digital_double_barrier_option_variables* o_v,digital_double_barrier_option_attributes* o_a){
     //Calling Double Barrier Behaviour
     double_barrier_option_derivative_payoff(end_price,&(o_v->double_barrier_option),&(o_a->double_barrier_option));
     o_v->value = (o_v->double_barrier_option).value;

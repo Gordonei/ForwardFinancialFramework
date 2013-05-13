@@ -6,7 +6,7 @@
  */
 #include "option.h"
 
-void option_derivative_init(double t,double c,double k,option_attributes* o_a){
+void option_derivative_init(FP_t t,FP_t c,FP_t k,option_attributes* o_a){
 	o_a->strike_price = k;
 	o_a->call=c;
 	o_a->time_period=t;
@@ -19,10 +19,10 @@ void option_derivative_path_init(option_variables* o_v,option_attributes* o_a){
 	//o_v->delta_time=o_a->time_period/o_a->points;
 }
 
-void option_derivative_path(double price,double time,option_variables* o_v,option_attributes* o_a){
+void option_derivative_path(FP_t price,FP_t time,option_variables* o_v,option_attributes* o_a){
 }
 
-void option_derivative_payoff(double end_price,option_variables* o_v,option_attributes* o_a){
+void option_derivative_payoff(FP_t end_price,option_variables* o_v,option_attributes* o_a){
 	if((o_a->call)){
 		o_v->value = end_price-o_a->strike_price;
 	}

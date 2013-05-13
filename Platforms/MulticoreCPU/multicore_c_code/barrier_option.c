@@ -6,7 +6,7 @@
  */
 #include "barrier_option.h"
 
-void barrier_option_derivative_init(double t,double c,double k,double p,double b,double o,double d,barrier_option_attributes* o_a){
+void barrier_option_derivative_init(FP_t t,FP_t c,FP_t k,FP_t p,FP_t b,FP_t o,FP_t d,barrier_option_attributes* o_a){
 	//Calling European Behaviour
         european_option_derivative_init(t,c,k,&(o_a->european));
         o_a->strike_price = (o_a->european).strike_price;
@@ -30,7 +30,7 @@ void barrier_option_derivative_path_init(barrier_option_variables* o_v,barrier_o
         o_v->barrier_event = 0;
 }
 
-void barrier_option_derivative_path(double price,double time,barrier_option_variables* o_v,barrier_option_attributes* o_a){
+void barrier_option_derivative_path(FP_t price,FP_t time,barrier_option_variables* o_v,barrier_option_attributes* o_a){
         //European Behaviour
         european_option_derivative_path(price,time,&(o_v->european),&(o_a->european));
         
@@ -45,7 +45,7 @@ void barrier_option_derivative_path(double price,double time,barrier_option_vari
         (o_v->european).delta_time = o_v->delta_time;
 }
 
-void barrier_option_derivative_payoff(double end_price,barrier_option_variables* o_v,barrier_option_attributes* o_a){
+void barrier_option_derivative_payoff(FP_t end_price,barrier_option_variables* o_v,barrier_option_attributes* o_a){
 	//if((self.out and self.barrier_event) or (not(self.out) and not(self.barrier_event))): self.value = 0
         //else: self.value = European_Option.European_Option.payoff
         

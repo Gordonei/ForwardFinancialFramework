@@ -10,28 +10,28 @@
 #include "european_option.h"
 
 typedef struct{
-        double barrier_event;
+        FP_t barrier_event;
     
-	double delta_time;
-	double value;
+	FP_t delta_time;
+	FP_t value;
         european_option_variables european;
 } barrier_option_variables;
 
 typedef struct {
-        double barrier;
-        double out;
-        double down;
+        FP_t barrier;
+        FP_t out;
+        FP_t down;
     
-	double strike_price;
-	double time_period;
-	double call;
-	double points;
+	FP_t strike_price;
+	FP_t time_period;
+	FP_t call;
+	FP_t points;
         european_option_attributes european;
 } barrier_option_attributes;
 
-void barrier_option_derivative_init(double t,double c,double k,double p,double b,double o,double d,barrier_option_attributes* o_a);
+void barrier_option_derivative_init(FP_t t,FP_t c,FP_t k,FP_t p,FP_t b,FP_t o,FP_t d,barrier_option_attributes* o_a);
 void barrier_option_derivative_path_init(barrier_option_variables* o_v,barrier_option_attributes* o_a);
-void barrier_option_derivative_path(double price,double time,barrier_option_variables* o_v,barrier_option_attributes* o_a);
-void barrier_option_derivative_payoff(double end_price,barrier_option_variables* o_v,barrier_option_attributes* o_a);
+void barrier_option_derivative_path(FP_t price,FP_t time,barrier_option_variables* o_v,barrier_option_attributes* o_a);
+void barrier_option_derivative_payoff(FP_t end_price,barrier_option_variables* o_v,barrier_option_attributes* o_a);
 
 #endif /* BARRIER_OPTION_H_ */

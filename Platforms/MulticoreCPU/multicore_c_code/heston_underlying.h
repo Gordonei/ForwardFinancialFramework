@@ -12,25 +12,24 @@
 #include "gauss.h"
 #include "pthread.h"
 #include "math.h"
-typedef struct{ unsigned int x; unsigned int c; } mwc64x_state_t;
 #endif
-#ifdef OPENCL_GPU
-#include "mwc64x.cl"
-#endif
+//#ifdef OPENCL_GPU
+//#include "mwc64x.cl"
+//#endif
 
 typedef struct {
-double gamma;
-double volatility;
-double time;
-double w;
-double v;
-double x;
-double y;        
-double theta_v;
-double u;
-double volatility_approx;
-double theta_v_approx;
-double moment_difference;
+FP_t gamma;
+FP_t volatility;
+FP_t time;
+FP_t w;
+FP_t v;
+FP_t x;
+FP_t y;        
+FP_t theta_v;
+FP_t u;
+FP_t volatility_approx;
+FP_t theta_v_approx;
+FP_t moment_difference;
 #ifdef MULTICORE_CPU
 rng_state_t rng_state;
 #endif
@@ -40,21 +39,21 @@ mwc64x_state_t rng_state;
 } heston_underlying_variables;
 
 typedef struct {
-double rfir;
-double initial_volatility;
-double volatility_volatility;
-double current_price;
-double rho;
-double kappa;
-double theta;
-double correlation_matrix_0_0;
-double correlation_matrix_0_1;
-double correlation_matrix_1_0;
-double correlation_matrix_1_1;
+FP_t rfir;
+FP_t initial_volatility;
+FP_t volatility_volatility;
+FP_t current_price;
+FP_t rho;
+FP_t kappa;
+FP_t theta;
+FP_t correlation_matrix_0_0;
+FP_t correlation_matrix_0_1;
+FP_t correlation_matrix_1_0;
+FP_t correlation_matrix_1_1;
 } heston_underlying_attributes;
 
-void heston_underlying_underlying_init(double r,double p,double i_v,double v_v,double rh,double k,double t,double cm_0_0,double cm_0_1,double cm_1_0,double cm_1_1,heston_underlying_attributes* u_a);
+void heston_underlying_underlying_init(FP_t r,FP_t p,FP_t i_v,FP_t v_v,FP_t rh,FP_t k,FP_t t,FP_t cm_0_0,FP_t cm_0_1,FP_t cm_1_0,FP_t cm_1_1,heston_underlying_attributes* u_a);
 void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,heston_underlying_attributes* u_a);
-void heston_underlying_underlying_path(double delta_time,heston_underlying_variables* u_v,heston_underlying_attributes* u_a);
+void heston_underlying_underlying_path(FP_t delta_time,heston_underlying_variables* u_v,heston_underlying_attributes* u_a);
 
 #endif /* HESTON_H_ */

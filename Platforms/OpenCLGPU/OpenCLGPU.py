@@ -10,7 +10,7 @@ class OpenCLGPU:
   platform_directory_string = ""
   root_directory_string = ""
   
-  def __init__(self,threads=1,platform_directory_string="Platforms/OpenCLGPU/opencl_code/",root_directory_string="../../..",platform_name="AMD",device_type=pyopencl.device_type.CPU):
+  def __init__(self,threads=1,platform_directory_string="Platforms/OpenCLGPU/opencl_code/",root_directory_string="../../..",platform_name="Apple",device_type=pyopencl.device_type.GPU):
     self.threads = threads
     self.platform_directory_string = platform_directory_string
     self.root_directory_string = root_directory_string
@@ -27,7 +27,7 @@ class OpenCLGPU:
     self.device = self.platform.get_devices(self.device_type)[0] #Takes the first device available for the specified platform and type
     self.context = pyopencl.Context(devices=[self.device])
     
-    self.cpu_device = self.platform.get_devices(pyopencl.device_type.CPU)[0] #Taking the first CPU available
+    self.cpu_device = self.platform.get_devices(pyopencl.device_type.CPU)[0] #Taking the first CPU available, needed for AMD GPUs
     self.cpu_context = pyopencl.Context(devices=[self.cpu_device])
     
   def platform_directory(self):

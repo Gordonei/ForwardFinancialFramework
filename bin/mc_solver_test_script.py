@@ -46,8 +46,8 @@ if( __name__ == '__main__' and len(sys.argv)>1):
     sys.exit()
     
   mc_solver.generate()
-  compile_output = mc_solver.compile()
-  execution_output = mc_solver.execute()
+  compile_output = mc_solver.compile(debug=True)
+  execution_output = mc_solver.execute(debug=True)
   
   for e_o in execution_output:
     print e_o

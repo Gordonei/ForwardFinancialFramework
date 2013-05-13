@@ -10,22 +10,22 @@
 #include "option.h"
 
 typedef struct {
-	double delta_time;
-	double value;
+	FP_t delta_time;
+	FP_t value;
 	option_variables option;
 } european_option_variables;//european_option_opt_var;
 
 typedef struct {
-	double strike_price;
-	double time_period;
-	double call;
+	FP_t strike_price;
+	FP_t time_period;
+	FP_t call;
 	option_attributes option;
 } european_option_attributes;//european_option_opt_attr;
 
 //time_period, call, strike_price, points
-void european_option_derivative_init(double t,double c,double k,european_option_attributes* o_a);
+void european_option_derivative_init(FP_t t,FP_t c,FP_t k,european_option_attributes* o_a);
 void european_option_derivative_path_init(european_option_variables* o_v,european_option_attributes* o_a);
-void european_option_derivative_path(double price,double time,european_option_variables* o_v,european_option_attributes* o_a);
-void european_option_derivative_payoff(double end_price,european_option_variables* o_v,european_option_attributes* o_a);
+void european_option_derivative_path(FP_t price,FP_t time,european_option_variables* o_v,european_option_attributes* o_a);
+void european_option_derivative_payoff(FP_t end_price,european_option_variables* o_v,european_option_attributes* o_a);
 
 #endif /* EUROPEAN_OPTION_H_ */
