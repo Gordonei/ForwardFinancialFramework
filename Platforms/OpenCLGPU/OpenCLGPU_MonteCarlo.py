@@ -200,9 +200,14 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #output_list.append("clSetKernelArg(%s_kernel, %d, sizeof(temp_data->thread_paths*sizeof(%s_variables)), NULL);"%(self.output_file_name,1 + index*4+3 + 4*len(self.underlying),d.name))
     
     if("AMD" in self.platform.platform_name):
+      output_list.append("cl_mem chunk_size_buff = clCreateBuffer(cpu_context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
+      output_list.append("cl_mem chunk_number_buff = clCreateBuffer(cpu_context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
+      
+      output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 0, sizeof(cl_mem), (void *)&chunk_size_buff);"%(self.output_file_name))
+      output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 1, sizeof(cl_mem), (void *)&chunk_number_buff);"%(self.output_file_name))
       for index,u in enumerate(self.underlying):
-        output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(mwc64x_state_t)*chunk_paths, NULL);"%(self.output_file_name,2*index))
-        output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(cl_mem), (void *)&cpu_u_v_%d_buff);"%(self.output_file_name,1 + 2*index,index))
+        output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(mwc64x_state_t)*chunk_paths, NULL);"%(self.output_file_name,2*index+2))
+        output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(cl_mem), (void *)&cpu_u_v_%d_buff);"%(self.output_file_name,1 + 2*index+2,index))
         
     
     ##Creating the Command Queue for the Kernel
@@ -232,6 +237,16 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         output_list.append(temp)
         output_list.append("clEnqueueWriteBuffer(command_queue, o_a_%d_buff, CL_TRUE, 0, sizeof(%s_attributes), o_a_%d, 0, NULL, NULL);"%(d_index,d.name,d_index))
     
+    if("AMD" in self.platform.platform_name):
+      ###Writing Control Parameter
+      output_list.append("cl_uint *chunk_size_array = (cl_uint*)malloc(sizeof(cl_uint));")
+      output_list.append("chunk_size_array[0] = chunk_paths;")
+      output_list.append("clEnqueueWriteBuffer(command_queue, chunk_size_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_size_array, 0, NULL, NULL);")
+      output_list.append("cl_uint *chunk_number_array = (cl_uint*)malloc(sizeof(cl_uint));")
+      output_list.append("chunk_number_array[0] = 0;")
+      output_list.append("clEnqueueWriteBuffer(command_queue, chunk_number_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, NULL);")
+      output_list.append("clFinish(cpu_command_queue);")
+    
     output_list.append("clFinish(command_queue);")
       
       #for index,u in enumerate(self.underlying):
@@ -258,6 +273,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("clFinish(cpu_command_queue);")
       for index,u in enumerate(self.underlying): output_list.append("clEnqueueReadBuffer(cpu_command_queue, cpu_u_v_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t),u_v_%d, 0, NULL, NULL);"%(index,index))
       output_list.append("clFinish(cpu_command_queue);")
+      
+      output_list.append("chunk_number_array[0] = j;")
+      output_list.append("clEnqueueWriteBuffer(command_queue, chunk_number_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, NULL);")
+      output_list.append("clFinish(cpu_command_queue);")
+      
       output_list.append("clEnqueueNDRangeKernel(cpu_command_queue, %s_cpu_seed_kernel, (cl_uint) 1, NULL, &cpu_kernel_paths, NULL, 0, NULL, NULL);"%(self.output_file_name))
       
       for index,u in enumerate(self.underlying): output_list.append("clEnqueueWriteBuffer(command_queue, u_v_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t), u_v_%d, 0, NULL, NULL);"%(index,index))
@@ -511,6 +531,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("bin")
     
     output_list.append("kernel void %s_cpu_seed_kernel("%self.output_file_name)
+    output_list.append("\tconstant chunk_size,")
+    output_list.append("\tconstant chunk_number,")
     for index,u in enumerate(self.underlying):
       output_list.append("\tlocal mwc64x_state_t *local_u_v_%d,"%(index))
       output_list.append("\tglobal mwc64x_state_t *u_v_%d,"%(index))
@@ -525,7 +547,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,u in enumerate(self.underlying):
 	output_list.append("mwc64x_state_t temp_u_v_%d;"%(index))
         output_list.append("if(j==0){")
-        output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2);"%index)
+        output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*chunk_size[0]*chunk_number[0]);"%index)
         output_list.append("local_u_v_%d[j] = temp_u_v_%d;"%(index,index))
         output_list.append("}")
         output_list.append("barrier(CLK_LOCAL_MEM_FENCE);")
