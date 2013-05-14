@@ -531,8 +531,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("bin")
     
     output_list.append("kernel void %s_cpu_seed_kernel("%self.output_file_name)
-    output_list.append("\tconstant chunk_size,")
-    output_list.append("\tconstant chunk_number,")
+    output_list.append("\tconstant uint *chunk_size,")
+    output_list.append("\tconstant uint *chunk_number,")
     for index,u in enumerate(self.underlying):
       output_list.append("\tlocal mwc64x_state_t *local_u_v_%d,"%(index))
       output_list.append("\tglobal mwc64x_state_t *u_v_%d,"%(index))
