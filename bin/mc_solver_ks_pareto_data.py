@@ -5,15 +5,16 @@ import sys
 sys.path.append("../..")
 import KS_ProblemSet
 
-if( __name__ == '__main__' and len(sys.argv)>3):
+if( __name__ == '__main__' and len(sys.argv)>5):
   platform_name = sys.argv[1]
   
   min_paths = int(sys.argv[2])
   max_paths = int(sys.argv[3])
+  step_size = int(sys.argv[4])
   
-  output_file = open(sys.argv[4],"w")
+  output_file = open(sys.argv[5],"w")
   
-  options = map(str,range(1,14))
+  options = map(str,[1,2,4,12,13]) #range(1,14)
   
   option = KS_ProblemSet.KS_Options(options)
  
@@ -39,7 +40,7 @@ if( __name__ == '__main__' and len(sys.argv)>3):
   mc_solver.generate()
   compile_output = mc_solver.compile()
   
-  for p in range(min_paths,max_paths,1000):
+  for p in range(min_paths,max_paths,step_size):
     print p
     mc_solver.solver_metadata["paths"] = p
     execution_output = mc_solver.execute()
@@ -65,4 +66,4 @@ if( __name__ == '__main__' and len(sys.argv)>3):
     output_file.write(output_string)
     
 else:
-  print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] [Minimum Number of Paths] [Maximum Number of Paths] [Output File]"
+  print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] [Minimum Number of Paths] [Maximum Number of Paths] [Step Size] [Output File]"

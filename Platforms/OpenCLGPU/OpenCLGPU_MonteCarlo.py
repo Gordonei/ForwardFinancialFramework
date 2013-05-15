@@ -547,7 +547,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,u in enumerate(self.underlying):
 	output_list.append("mwc64x_state_t temp_u_v_%d;"%(index))
         output_list.append("if(j==0){")
-        output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*chunk_size[0]*chunk_number[0]);"%index)
+        output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*(chunk_size[0]*chunk_number[0]+1));"%index)
         output_list.append("local_u_v_%d[j] = temp_u_v_%d;"%(index,index))
         output_list.append("}")
         output_list.append("barrier(CLK_LOCAL_MEM_FENCE);")
