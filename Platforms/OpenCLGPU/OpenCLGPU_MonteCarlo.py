@@ -546,7 +546,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**Initiating the Path for each underlying**")
     for index,u in enumerate(self.underlying):
 	output_list.append("mwc64x_state_t temp_u_v_%d;"%(index))
-        output_list.append("if(j==0){")
+        output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*(chunk_size[0]*chunk_number[0]+1));"%index)
+        """output_list.append("if(j==0){")
         output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*(chunk_size[0]*chunk_number[0]+1));"%index)
         output_list.append("local_u_v_%d[j] = temp_u_v_%d;"%(index,index))
         output_list.append("}")
@@ -554,7 +555,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         output_list.append("if(j>0){")
         output_list.append("temp_u_v_%d=local_u_v_%d[0];"%(index,index))
         output_list.append("MWC64X_Skip( &(temp_u_v_%d), 4096*2);"%index)
-        output_list.append("}")
+        output_list.append("}")"""
         output_list.append("u_v_%d[i] = temp_u_v_%d;"%(index,index))
         
     output_list.append("}") #End of Kernel

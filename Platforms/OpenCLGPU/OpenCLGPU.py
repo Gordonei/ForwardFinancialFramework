@@ -10,19 +10,21 @@ class OpenCLGPU:
   platform_directory_string = ""
   root_directory_string = ""
   
-  def __init__(self,threads=1,platform_directory_string="Platforms/OpenCLGPU/opencl_code/",root_directory_string="../../..",platform_name="Apple",device_type=pyopencl.device_type.GPU):
+  def __init__(self,threads=1,platform_directory_string="Platforms/OpenCLGPU/opencl_code/",root_directory_string="../../..",platform_name="",device_type=pyopencl.device_type.GPU):
     self.threads = threads
     self.platform_directory_string = platform_directory_string
     self.root_directory_string = root_directory_string
     
-    self.platform_name = platform_name
     self.device_type = device_type
+    
+    self.platform_name = platform_name
     
     self.platform = None
     for p in pyopencl.get_platforms():
       if(self.platform_name in str(p)): self.platform = p
       
-    if(not self.platform): self.platform = pyopencl.get_platforms()[0] #If the preferred platform isn't available, take the first one there
+    if(not self.platform): self.platform = pyopencl.get_platforms()[0] #If the preferred platform isn't available, just take the first one
+    self.platform_name = self.platform.get_info(pyopencl.platform_info.NAME)
       
     self.device = self.platform.get_devices(self.device_type)[0] #Takes the first device available for the specified platform and type
     self.context = pyopencl.Context(devices=[self.device])

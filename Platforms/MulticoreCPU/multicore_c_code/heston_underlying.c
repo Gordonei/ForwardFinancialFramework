@@ -56,10 +56,10 @@ void heston_underlying_underlying_path(FP_t delta_time,heston_underlying_variabl
 	u_v->w = ((FP_t)MWC64X_NextUint(&(u_v->rng_state)))/4294967296;
 	u_v->v = ((FP_t)MWC64X_NextUint(&(u_v->rng_state)))/4294967296;
 	
-	FP_t sqr_log_w = native_sqrt(-2*native_log(u_v->w));
-	u_v->x = sqr_log_w*native_cos(2*PI*u_v->v);
+	FP_t sqr_log_w = native_sqrt(-2f*native_log(u_v->w));
+	u_v->x = sqr_log_w*native_cos((float)2f*M_PI*u_v->v);
 	
-	u_v->y = sqr_log_w*native_sin(2*PI*u_v->v);
+	u_v->y = sqr_log_w*native_sin((float)2f*M_PI*u_v->v);
 	u_v->y = u_v->x*u_a->rho+native_sqrt(1.0-pow(u_a->rho,2))*u_v->y;
 	#endif
 	

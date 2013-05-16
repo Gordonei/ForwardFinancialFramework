@@ -42,7 +42,7 @@ void black_scholes_underlying_underlying_path(FP_t delta_time,black_scholes_unde
 	#ifdef OPENCL_GPU
 	FP_t u = ((FP_t)MWC64X_NextUint(&u_v->rng_state))/4294967296;///4294967296;
 	FP_t v = ((FP_t)MWC64X_NextUint(&u_v->rng_state))/4294967296;///4294967296;
-	u_v->x = native_sqrt(-2*native_log(u))*native_cos(2*PI*v);
+	u_v->x = native_sqrt(-2*native_log(u))*native_cos((float)2*M_PI*v);
 	
 	#endif
   
