@@ -81,7 +81,7 @@ void heston_underlying_underlying_path(FP_t delta_time,heston_underlying_variabl
 	if(u_v->moment_difference<0){
 		u_v->moment_difference = 0;
 	}
-	u_v->theta_v_approx = (native_sqrt(u_v->moment_difference)-u_v->volatility*native_exp(-0.5f*u_a->kappa*delta_time))/(1-native_exp(-0.5*u_a->kappa*delta_time));
+	u_v->theta_v_approx = (native_sqrt(u_v->moment_difference)-u_v->volatility*native_exp(-0.5f*u_a->kappa*delta_time))/(1-native_exp(-0.5f*u_a->kappa*delta_time));
 	
 	u_v->gamma += (u_a->rfir-0.5f*pow(u_v->volatility,2))*delta_time+u_v->volatility*u_v->x*native_sqrt(delta_time);
 	u_v->volatility += 0.5f*u_a->kappa*(u_v->theta_v_approx-u_v->volatility)*delta_time+0.5f*u_a->volatility_volatility*u_v->y*native_sqrt(delta_time);
