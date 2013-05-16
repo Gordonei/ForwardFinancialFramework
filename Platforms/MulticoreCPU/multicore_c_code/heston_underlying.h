@@ -12,6 +12,10 @@
 #include "gauss.h"
 #include "pthread.h"
 #include "math.h"
+#define native_sqrt sqrt
+#define native_exp exp
+#define native_log log
+#define native_powr pow
 #endif
 //#ifdef OPENCL_GPU
 //#include "mwc64x.cl"

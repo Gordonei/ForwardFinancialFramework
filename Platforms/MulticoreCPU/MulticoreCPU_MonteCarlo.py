@@ -45,6 +45,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     #output_list.append("#define %s 1"%self.platform.name.upper())
     output_list.append("#define MULTICORE_CPU 1")
     output_list.append("#define FP_t %s"%self.floating_point_format)
+    output_list.append("#define native_sqrt sqrt")
+    output_list.append("#define native_exp exp")
     return output_list
     
   def generate_libraries(self):
@@ -431,6 +433,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         #compile_cmd.append("-D%s"%self.platform.name.upper())
         compile_cmd.append("-DMULTICORE_CPU")
         compile_cmd.append("-DFP_t=%s"%self.floating_point_format)
+        #compile_cmd.append("-Dnative_sqrt=sqrt")
+        #compile_cmd.append("-Dnative_exp=exp")
         #Including all of the derivative and option classes that are used
         temp = []
         for u in self.underlying:

@@ -433,7 +433,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         #output_list.append("local_u_a_%d[0] = temp_u_a;"%(index))
 	#output_list.append("local_u_v_%d[i] = temp_u_v;"%(index))
         
-        output_list.append("FP_t spot_price_%d = temp_u_a_%d.current_price*exp(temp_u_v_%d.gamma);"%(index,index,index))
+        output_list.append("FP_t spot_price_%d = temp_u_a_%d.current_price*native_exp(temp_u_v_%d.gamma);"%(index,index,index))
         output_list.append("FP_t time_%d = temp_u_v_%d.time;"%(index,index))
         
     """output_list.append("//**Initiating the Path and creating path variables**")
@@ -480,7 +480,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  
 	  #output_list.append("spot_price_%d = local_u_a_%d.current_price*exp(local_u_v_%d.gamma);"%(u_index,u_index,u_index))
 	  #output_list.append("time_%d = local_u_v_%d.time;"%(u_index,u_index))
-	  output_list.append("spot_price_%d = temp_u_a_%d.current_price*exp(temp_u_v_%d.gamma);"%(u_index,u_index,u_index))
+	  output_list.append("spot_price_%d = temp_u_a_%d.current_price*native_exp(temp_u_v_%d.gamma);"%(u_index,u_index,u_index))
 	  output_list.append("time_%d = temp_u_v_%d.time;"%(u_index,u_index))
     
     output_list.append("}") #End of For Loop

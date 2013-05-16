@@ -42,13 +42,14 @@ void black_scholes_underlying_underlying_path(FP_t delta_time,black_scholes_unde
 	#ifdef OPENCL_GPU
 	FP_t u = ((FP_t)MWC64X_NextUint(&u_v->rng_state))/4294967296;///4294967296;
 	FP_t v = ((FP_t)MWC64X_NextUint(&u_v->rng_state))/4294967296;///4294967296;
-	u_v->x = sqrt(-2*log(u))*cos(2*PI*v);
+	u_v->x = native_sqrt(-2*native_log(u))*native_cos(2*PI*v);
+	
 	#endif
   
 	#ifdef MULTICORE_CPU
 	u_v->x = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
 	#endif
 
-	u_v->gamma += (u_a->rfir-pow((u_a->volatility),2)/2)*delta_time+u_a->volatility*u_v->x*sqrt(delta_time);
+	u_v->gamma += (u_a->rfir-pow((u_a->volatility),2)/2)*delta_time+u_a->volatility*u_v->x*native_sqrt(delta_time);
 	u_v->time += delta_time;
 }

@@ -56,11 +56,11 @@ void heston_underlying_underlying_path(FP_t delta_time,heston_underlying_variabl
 	u_v->w = ((FP_t)MWC64X_NextUint(&(u_v->rng_state)))/4294967296;
 	u_v->v = ((FP_t)MWC64X_NextUint(&(u_v->rng_state)))/4294967296;
 	
-	FP_t sqr_log_w = sqrt(-2*log(u_v->w));
-	u_v->x = sqr_log_w*cos(2*PI*u_v->v);
+	FP_t sqr_log_w = native_sqrt(-2*native_log(u_v->w));
+	u_v->x = sqr_log_w*native_cos(2*PI*u_v->v);
 	
-	u_v->y = sqr_log_w*sin(2*PI*u_v->v);
-	u_v->y = u_v->x*u_a->rho+sqrt(1.0-pow(u_a->rho,2))*u_v->y;
+	u_v->y = sqr_log_w*native_sin(2*PI*u_v->v);
+	u_v->y = u_v->x*u_a->rho+native_sqrt(1.0-pow(u_a->rho,2))*u_v->y;
 	#endif
 	
 	/*u_v->w = drand48();
@@ -72,18 +72,19 @@ void heston_underlying_underlying_path(FP_t delta_time,heston_underlying_variabl
         
 	//central discretisation
 	u_v->theta_v = (u_a->theta-pow(u_a->volatility_volatility,2)/4/u_a->kappa)/u_v->volatility; 
-	u_v->u = u_v->theta_v + (u_v->volatility-u_v->theta_v)*exp(-0.5*u_a->kappa*delta_time);
+	u_v->u = u_v->theta_v + (u_v->volatility-u_v->theta_v)*native_exp(-0.5*u_a->kappa*delta_time);
 	u_v->volatility_approx = 0.5*(u_v->volatility+u_v->u);
 	u_v->theta_v_approx = (u_a->theta-pow(u_a->volatility_volatility,2)/4/u_a->kappa)/u_v->volatility_approx;
         
 	//moment matching
-	u_v->moment_difference = u_a->theta + (pow(u_v->volatility,2)-u_a->theta)*exp(-u_a->kappa*delta_time) - pow(u_a->volatility_volatility,2)/4/u_a->kappa*(1-exp(-u_a->kappa*delta_time));
+	u_v->moment_difference = u_a->theta + (pow(u_v->volatility,2)-u_a->theta)*native_exp(-u_a->kappa*delta_time) - pow(u_a->volatility_volatility,2)/4/u_a->kappa*(1-native_exp(-u_a->kappa*delta_time));
 	if(u_v->moment_difference<0){
 		u_v->moment_difference = 0;
 	}
-	u_v->theta_v_approx = (sqrt(u_v->moment_difference)-u_v->volatility*exp(-0.5*u_a->kappa*delta_time))/(1-exp(-0.5*u_a->kappa*delta_time));
+	u_v->theta_v_approx = (native_sqrt(u_v->moment_difference)-u_v->volatility*native_exp(-0.5*u_a->kappa*delta_time))/(1-native_exp(-0.5*u_a->kappa*delta_time));
 	
-	u_v->gamma += (u_a->rfir-0.5*pow(u_v->volatility,2))*delta_time+u_v->volatility*u_v->x*sqrt(delta_time);
-	u_v->volatility += 0.5*u_a->kappa*(u_v->theta_v_approx-u_v->volatility)*delta_time+0.5*u_a->volatility_volatility*u_v->y*sqrt(delta_time);
+	u_v->gamma += (u_a->rfir-0.5*pow(u_v->volatility,2))*delta_time+u_v->volatility*u_v->x*native_sqrt(delta_time);
+	u_v->volatility += 0.5*u_a->kappa*(u_v->theta_v_approx-u_v->volatility)*delta_time+0.5*u_a->volatility_volatility*u_v->y*native_sqrt(delta_time);
 	u_v->time += delta_time;
+	
 }
