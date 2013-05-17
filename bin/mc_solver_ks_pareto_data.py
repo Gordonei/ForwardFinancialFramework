@@ -14,24 +14,24 @@ if( __name__ == '__main__' and len(sys.argv)>5):
   
   output_file = open(sys.argv[5],"w")
   
-  options = map(str,[1,2,4,12,13]) #range(1,14)
+  options = map(str,sys.argv[6:]) #range(1,14)
   
-  option = KS_ProblemSet.KS_Options(options)
+  options = KS_ProblemSet.KS_Options(options)
  
   if(platform_name=="GPU"):
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
     platform = OpenCLGPU.OpenCLGPU()
-    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,min_paths,platform)
+    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(options,min_paths,platform)
     
   elif(platform_name=="CPU"):
     from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
     platform = MulticoreCPU.MulticoreCPU()
-    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,min_paths,platform)
+    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(options,min_paths,platform)
     
   elif(platform_name=="FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
     platform = MaxelerFPGA.MaxelerFPGA()
-    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,min_paths,platform)
+    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(options,min_paths,platform)
     
   else:
     print "incorrect platform type!"
@@ -66,4 +66,4 @@ if( __name__ == '__main__' and len(sys.argv)>5):
     output_file.write(output_string)
     
 else:
-  print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] [Minimum Number of Paths] [Maximum Number of Paths] [Step Size] [Output File]"
+  print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] [Minimum Number of Paths] [Maximum Number of Paths] [Step Size] [Output File] [Option 1] [Option 2] ... [Option N]"
