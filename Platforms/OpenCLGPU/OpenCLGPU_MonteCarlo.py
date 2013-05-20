@@ -357,6 +357,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.platform_directory())
     
     if("AMD" in self.platform.platform_name): output_list.append("#define AMD_GPU")
+    else: output_list.append("#define M_PI 3.141592653589793238f")
     output_list.append("#define %s"%self.platform.name.upper())
     output_list.append("#define FP_t %s"%self.floating_point_format)
     path_string = "mwc64x/cl/mwc64x.cl"
