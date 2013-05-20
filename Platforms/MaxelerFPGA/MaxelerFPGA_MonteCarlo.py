@@ -400,7 +400,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #print hw_result
       
       #Host Code Compile
-      compile_cmd = ["make","app-hw","APP=%s"%self.output_file_name]
+      compile_cmd = ["FP_t=%s"%self.floating_point_format, "make","app-hw","APP=%s"%self.output_file_name]
       sw_result = subprocess.check_output(compile_cmd)
       #print sw_result
       
