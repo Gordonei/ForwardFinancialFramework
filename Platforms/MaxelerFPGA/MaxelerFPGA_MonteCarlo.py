@@ -383,7 +383,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
     
-  def compile(self,override=True,cleanup=True):
+  def compile(self,override=True,cleanup=True,debug=True):
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
