@@ -33,6 +33,7 @@ if( __name__ == '__main__' and len(sys.argv)>3):
     
   mc_solver.generate()
   compile_output = mc_solver.compile(debug=True)
+  exection_output=[""]
   if not(platform_name=="FPGA"): execution_output = mc_solver.execute(debug=True)
   
   for e_o in execution_output:
