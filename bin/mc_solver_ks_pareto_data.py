@@ -48,18 +48,18 @@ if( __name__ == '__main__' and len(sys.argv)>5):
     output_string = ""
     value = 0.0
     std_error = 0.0
-    average = 0.0
+    max_value = 0.0
     for index,e_o in enumerate(execution_output[:-3]): 
       if(not index%2): value = float(e_o)+0.00000000000001
       else: 
 	std_error = float(e_o)
 	
 	error_prop = std_error/value*100
-	average = average + error_prop
+	if(error_prop>max_value): max_value = error_prop
 	output_string = "%s%f,"%(output_string,error_prop)
     
-    average = average/(len(execution_output[:-3])/2)
-    output_string = "%s%f,"%(output_string,average)
+    max_value = max_value/(len(execution_output[:-3])/2)
+    output_string = "%s%f,"%(output_string,max_value)
     output_string = "%s%s,\n"%(output_string,execution_output[-1])
     #output_string = "%s\n"%output_string
     
