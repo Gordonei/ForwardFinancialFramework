@@ -446,21 +446,3 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     return results
     
-    
-  """def generate_java_source(self,code_string,name_extension=""):
-    os.chdir("..")
-    os.chdir(self.platform.platform_directory())
-    
-    output_file = open("%s%s.java"%(self.output_file_name,name_extension),"w")
-    tab_count = 0;
-    for c_s in code_string:
-        if("*" in c_s and "//" in c_s): output_file.write("\n") #Insert a blank line if the line is a comment section
-        for i in range(tab_count): output_file.write("\t")	#Tabify the code
-        output_file.write("%s\n"%c_s)
-            
-        if("{" in c_s): tab_count = tab_count+1
-        if("}" in c_s): tab_count = max(tab_count-1,0)
-    output_file.close()
-    
-    os.chdir(self.platform.root_directory())
-    os.chdir("bin")"""
