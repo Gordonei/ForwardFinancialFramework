@@ -58,7 +58,6 @@ if( __name__ == '__main__' and len(sys.argv)>5):
 	if(error_prop>max_value): max_value = error_prop
 	output_string = "%s%f,"%(output_string,error_prop)
     
-    max_value = max_value/(len(execution_output[:-3])/2)
     output_string = "%s%f,"%(output_string,max_value)
     output_string = "%s%s,\n"%(output_string,execution_output[-1])
     #output_string = "%s\n"%output_string
