@@ -15,18 +15,21 @@ class OpenCLGPU:
     self.platform_directory_string = platform_directory_string
     self.root_directory_string = root_directory_string
     
-    self.device_type = device_type
-    
     self.platform_name = platform_name
     
     self.platform = None
     for p in pyopencl.get_platforms():
       if(self.platform_name in str(p)): self.platform = p
-      
+        
     if(not self.platform): self.platform = pyopencl.get_platforms()[0] #If the preferred platform isn't available, just take the first one
     self.platform_name = self.platform.get_info(pyopencl.platform_info.NAME)
-      
-    self.device = self.platform.get_devices(self.device_type)[0] #Takes the first device available for the specified platform and type
+    
+    self.device_type = device_type
+    try: self.device = self.platform.get_devices(self.device_type)[0] #Takes the first device available for the specified platform and type
+    except: #If the preferred device type isn't available, just take the first available CPU to that platform
+      self.device_type = pyopencl.device_type.CPU
+      self.device = self.platform.get_devices(pyopencl.device_type.CPU)[0] 
+    
     self.context = pyopencl.Context(devices=[self.device])
     
     self.cpu_device = self.platform.get_devices(pyopencl.device_type.CPU)[0] #Taking the first CPU available, needed for AMD GPUs

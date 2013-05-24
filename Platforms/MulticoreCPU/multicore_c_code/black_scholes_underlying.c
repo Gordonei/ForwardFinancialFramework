@@ -29,9 +29,9 @@ void black_scholes_underlying_underlying_path_init(black_scholes_underlying_vari
 	}
 	#endif
 	
-	#if (defined OPENCL_GPU && !defined AMD_GPU)
-	MWC64X_SeedStreams(&(u_v->rng_state),0,4096);
-	#endif
+	//#if (defined OPENCL_GPU && !defined AMD_GPU) This is done in the kernel proper now
+	//MWC64X_SeedStreams(&(u_v->rng_state),0,4096*2*1000);
+	//#endif
 }
 
 void black_scholes_underlying_underlying_path(FP_t delta_time,black_scholes_underlying_variables* u_v,black_scholes_underlying_attributes* u_a){
