@@ -3,7 +3,7 @@ Created on 7 May 2013
 '''
 import sys
 sys.path.append("../..")
-import KS_ProblemSet
+import KS_ProblemSet, latency_accuracy_model_parameter_script
 
 if( __name__ == '__main__' and len(sys.argv)>5):
   platform_name = sys.argv[1]
@@ -13,6 +13,7 @@ if( __name__ == '__main__' and len(sys.argv)>5):
   step_size = int(sys.argv[4])
   
   output_file = open(sys.argv[5],"w")
+  prediction_output_file = open("%s_prediction.csv"%sys.argv[5][:sys.argv[5].find(".")],"w")
   
   options = map(str,sys.argv[6:]) #range(1,14)
   
@@ -40,6 +41,35 @@ if( __name__ == '__main__' and len(sys.argv)>5):
   mc_solver.generate()
   compile_output = mc_solver.compile()
   
+  trial_paths = min_paths/10
+  steps = 10
+  
+  trial_run_results = latency_accuracy_model_parameter_script.trial_run(trial_paths,steps,mc_solver)
+  accuracy = trial_run_results[0]
+  latency = trial_run_results[1]
+    
+  latency_coefficients = latency_accuracy_model_parameter_script.generate_latency_prediction_function_coefficients(min_paths,steps,latency)
+  accuracy_coefficients = latency_accuracy_model_parameter_script.generate_accuracy_prediction_function_coefficients(min_paths,steps,accuracy)
+  
+  output_string = ""
+  prediction_results = []
+  for p in range(min_paths,max_paths,step_size):
+    prediction_results.append([])
+    prediction_results[-1].append(accuracy_coefficients[0]*(p*min_paths/trial_paths)**-0.5 + accuracy_coefficients[1])
+    prediction_results[-1].append(latency_coefficients[0]*(p*min_paths/trial_paths) + latency_coefficients[1])
+    
+    output_string = ""
+    for p_r in prediction_results[-1]: output_string = "%s%f," % (output_string,p_r)
+    output_string = "%s\n" % output_string
+    #print p
+    #print latency_coefficients
+    #print accuracy_coefficients
+    #print output_string[:-1]
+    prediction_output_file.write(output_string)
+    
+  prediction_output_file.close()
+    
+  
   for p in range(min_paths,max_paths,step_size):
     print p
     mc_solver.solver_metadata["paths"] = p
@@ -58,11 +88,14 @@ if( __name__ == '__main__' and len(sys.argv)>5):
 	if(error_prop>max_value): max_value = error_prop
 	output_string = "%s%f,"%(output_string,error_prop)
     
-    output_string = "%s%f,"%(output_string,max_value)
-    output_string = "%s%s,\n"%(output_string,execution_output[-1])
+    output_string = "%s%f,"%(output_string,max_value) #Accuracy Result
+    output_string = "%s%s,\n"%(output_string,execution_output[-1]) #Latency Result
     #output_string = "%s\n"%output_string
     
     output_file.write(output_string)
+    output_file.flush()
+    
+  output_file.close()
     
 else:
   print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] [Minimum Number of Paths] [Maximum Number of Paths] [Step Size] [Output File] [Option 1] [Option 2] ... [Option N]"

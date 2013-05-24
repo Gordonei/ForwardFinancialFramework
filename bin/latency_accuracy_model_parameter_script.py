@@ -7,15 +7,16 @@ import KS_ProblemSet, numpy.linalg
 import matplotlib.pyplot as plt
 
 def generate_latency_prediction_function_coefficients(base_speculative_paths,data_points,latencies,degree=2):
-  #speculative_matrix = numpy.zeros((degree*redudency,degree))
   speculative_matrix = numpy.zeros((data_points,degree))
-  #for i in range(redudency*degree-1,-1,-1): #Creating NxN speculative matrix
-  for i in range(data_points-1,-1,-1): #Creating NxN speculative matrix
-   for j in range(degree-1,-1,-1): 
-      #speculative_matrix[redudency*degree-1-i, j] = ((redudency*degree-i)*base_speculative_paths)**(degree-1-j)
-      speculative_matrix[data_points-1-i, j] = ((data_points-i)*base_speculative_paths)**(degree-1-j)
-      #print speculative_matrix
-      #print "\n"
+  
+  for i in range(data_points):
+    speculative_matrix[i][0] = (i+1)*base_speculative_paths
+    speculative_matrix[i][1] = 1.0 
+    
+  #for i in range(data_points-1,-1,-1): #Creating NxN speculative matrix
+   #for j in range(degree-1,-1,-1): 
+      #speculative_matrix[data_points-1-i, j] = ((data_points-i)*base_speculative_paths)**(degree-1-j)
+      
   
   #predicition_function_coefficients = gauss(speculative_matrix,latencies)
   predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,latencies)[0]
@@ -23,16 +24,12 @@ def generate_latency_prediction_function_coefficients(base_speculative_paths,dat
   return predicition_function_coefficients
 
 def generate_accuracy_prediction_function_coefficients(base_speculative_paths,data_points,accuracy_data):
-  #speculative_matrix = numpy.zeros((degree*redudency,degree))
   speculative_matrix = numpy.zeros((data_points,2))
-  #for i in range(redudency*degree-1,-1,-1): #Creating NxN speculative matrix
-  for i in range(data_points-1,-1,-1): #Creating NxN speculative matrix
-   speculative_matrix[data_points-1-i, 0] = ((data_points-i)*base_speculative_paths)**-0.5
-   speculative_matrix[data_points-1-i, 1] = 1
-      #print speculative_matrix
-      #print "\n"
+  
+  for i in range(data_points): #Creating NxN speculative matrix
+   speculative_matrix[i][0] = ((i+1)*base_speculative_paths)**-0.5
+   speculative_matrix[i][1] = 1.0
 
-  #predicition_function_coefficients = gauss(speculative_matrix,latencies)
   predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,accuracy_data)[0]
 
   return predicition_function_coefficients
@@ -43,15 +40,15 @@ def trial_run(paths,steps,solver):
   
   path_set = numpy.arange(paths,paths*(steps+1),paths)
   for p in path_set: #Trial Runs to generate data needed for predicition functions
-    mc_solver.solver_metadata["paths"] = p
-    execution_output = mc_solver.execute()
-  
+    solver.solver_metadata["paths"] = p
+    execution_output = solver.execute()
+    
     latency.append(float(execution_output[-1]))
     
     value = 0.0
     std_error = 0.0
     max_value = 0.0
-    for index,e_o in enumerate(execution_output[:-3]): 
+    for index,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
       if(not index%2): value = float(e_o)+0.00000000000001
       else: 
 	std_error = float(e_o)
@@ -124,5 +121,5 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   plt.ylabel("Latency (Microseconds)")
   plt.show()
     
-else:
+elif(__name__ == '__main__'):
   print "usage: python latency_accuracy_model_parameter_script.py [CPU|GPU|FPGA] [Number of  Test Paths] [Number of Test Steps] [Option 1] [Option 2] ... [Option N]"
