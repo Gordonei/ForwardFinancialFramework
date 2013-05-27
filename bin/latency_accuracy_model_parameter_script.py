@@ -4,7 +4,6 @@ Created on 23 May 2013
 import sys
 sys.path.append("../..")
 import KS_ProblemSet, numpy.linalg
-import matplotlib.pyplot as plt
 
 def generate_latency_prediction_function_coefficients(base_speculative_paths,data_points,latencies,degree=2):
   speculative_matrix = numpy.zeros((data_points,degree))
@@ -61,6 +60,7 @@ def trial_run(paths,steps,solver):
   return [accuracy,latency]
 
 if( __name__ == '__main__' and len(sys.argv)>4):
+  import matplotlib.pyplot as plt
   platform_name = sys.argv[1]
   
   paths = int(sys.argv[2])
