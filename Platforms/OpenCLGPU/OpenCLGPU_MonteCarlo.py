@@ -7,7 +7,7 @@ import platform as plat
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo
 
 class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
-  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=20):
+  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=100):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     
     #mwc64x_path_string = "mwc64x/cl/mwc64x.cl"
@@ -38,8 +38,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     if(path_points): self.solver_metadata["path_points"] = path_points
     else: self.solver_metadata["path_points"] = self.solver_metadata["default_points"]
     
-    self.solver_metadata["local_work_items"] = 128
-    self.solver_metadata["chunk_paths"] = self.platform.device.get_info(pyopencl.device_info.MAX_COMPUTE_UNITS)*self.solver_metadata["local_work_items"]*2 #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE)
+    self.solver_metadata["local_work_items"] = 64
+    self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.get_info(pyopencl.device_info.MAX_COMPUTE_UNITS) #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
     self.chunk_paths = self.solver_metadata["chunk_paths"]
     
     #self.solver_metadata["kernel_loops"] = self.paths/self.chunk_paths #Setting how many loops are done within each kernel
@@ -298,7 +298,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("clEnqueueNDRangeKernel(cpu_command_queue, %s_cpu_seed_kernel, (cl_uint) 1, NULL, &cpu_kernel_paths, NULL, 0, NULL, NULL);"%(self.output_file_name))
       
       for index,u in enumerate(self.underlying): output_list.append("clEnqueueWriteBuffer(command_queue, seed_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t), seed_%d, 0, NULL, NULL);"%(index,index))
-      output_list.append("clFinish(command_queue);")
+      #output_list.append("clFinish(command_queue);")
     
     ##Reading the Results out
     output_list.append("//**Reading the results**")
@@ -436,7 +436,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,u in enumerate(self.underlying):
       output_list.append("%s_attributes temp_u_a_%d = u_a_%d[0];"%(u.name,index,index))
       output_list.append("%s_variables temp_u_v_%d;"%(u.name,index))
-      if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("temp_u_v_%d.rng_state = seed_%d[i];"%(index,index))
+      if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU) and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): output_list.append("temp_u_v_%d.rng_state = seed_%d[i];"%(index,index))
       elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name): output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),0,%d*4096*2*(chunk_size[0]*chunk_number[0]+1));"%(index,self.kernel_loops))
     
       output_list.append("FP_t spot_price_%d,time_%d;"%(index,index))
@@ -543,7 +543,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**Initiating the Path for each underlying**")
     for index,u in enumerate(self.underlying):
 	output_list.append("mwc64x_state_t temp_seed_%d;"%(index))
-        output_list.append("MWC64X_SeedStreams(&(temp_seed_%d),0,%d*4096*2*(chunk_size[0]*chunk_number[0]+1));"%(index,self.kernel_loops))
+        output_list.append("MWC64X_SeedStreams(&(temp_seed_%d),0,%d*4096*2*(chunk_size[0]*chunk_number[0]+1)*(%d+1));"%(index,self.kernel_loops,index))
         """output_list.append("if(j==0){")
         output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*(chunk_size[0]*chunk_number[0]+1));"%index)
         output_list.append("local_u_v_%d[j] = temp_u_v_%d;"%(index,index))
