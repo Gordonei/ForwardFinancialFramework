@@ -42,6 +42,7 @@ if( __name__ == '__main__' and len(sys.argv)>5):
   compile_output = mc_solver.compile()
   
   trial_paths = min_paths/10
+  if(platform_name=="GPU"): trial_paths = mc_solver.min_paths
   steps = 10
   
   trial_run_results = latency_accuracy_model_parameter_script.trial_run(trial_paths,steps,mc_solver)
@@ -53,7 +54,7 @@ if( __name__ == '__main__' and len(sys.argv)>5):
   
   output_string = ""
   prediction_results = []
-  for p in range(min_paths,max_paths,step_size):
+  for p in range(min_paths,(max_paths+step_size*10),step_size):
     prediction_results.append([])
     prediction_results[-1].append(accuracy_coefficients[0]*(p*min_paths/trial_paths)**-0.5 + accuracy_coefficients[1])
     prediction_results[-1].append(latency_coefficients[0]*(p*min_paths/trial_paths) + latency_coefficients[1])

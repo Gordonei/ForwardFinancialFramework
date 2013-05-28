@@ -16,13 +16,14 @@ for datafile in sys.argv[2:]:
             latency[-1].append(float(data[-2])/1000000)
         
 for i in range(len(sys.argv[2:])):
-    plt.plot(accuracy[i],latency[i],label=sys.argv[i+2],marker=".")
-    
+    if("prediction" not in sys.argv[i+2]): plt.plot(accuracy[i],latency[i],label=sys.argv[i+2],marker=".")
+    else: plt.plot(accuracy[i],latency[i],"--",label=sys.argv[i+2])
+        
 axes = plt.gca()
 axes.set_title(sys.argv[1])
 axes.set_yscale('log')
 axes.set_ylabel('Latency (Seconds)')
 axes.set_xlabel("Relative Accuracy Percentage (100*95%CI/Value)")
 
-plt.legend()
+plt.legend(loc="best")
 plt.show()
