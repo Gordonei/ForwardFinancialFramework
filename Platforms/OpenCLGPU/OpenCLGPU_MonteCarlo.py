@@ -39,8 +39,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     else: self.solver_metadata["path_points"] = self.solver_metadata["default_points"]
     
     self.solver_metadata["local_work_items"] = 64
-    self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.get_info(pyopencl.device_info.MAX_COMPUTE_UNITS) #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
-    self.chunk_paths = self.solver_metadata["chunk_paths"]
+    self.work_groups_per_compute_unit = 10
+    self.set_chunk_paths()
     
     #self.solver_metadata["kernel_loops"] = self.paths/self.chunk_paths #Setting how many loops are done within each kernel
     #if(self.solver_metadata["kernel_loops"]>kernel_path_max): self.solver_metadata["kernel_loops"] = kernel_path_max
@@ -418,11 +418,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("\tconstant uint *chunk_size,")
     output_list.append("\tconstant uint *chunk_number,")
     for index,u in enumerate(self.underlying):
-      output_list.append("\tglobal %s_attributes *u_a_%d,"%(u.name,index))
+      output_list.append("\tconstant %s_attributes *u_a_%d,"%(u.name,index))
       output_list.append("\tglobal mwc64x_state_t *seed_%d,"%(index))
       
     for index,d in enumerate(self.derivative):
-      output_list.append("\tglobal %s_attributes *o_a_%d,"%(d.name,index))
+      output_list.append("\tconstant %s_attributes *o_a_%d,"%(d.name,index))
       output_list.append("\tglobal FP_t *value_%d,"%(index))
       output_list.append("\tglobal FP_t *value_sqrd_%d,"%(index))
       
@@ -590,6 +590,14 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     if('Darwin' in plat.system()): path_string = "%s/%s"%(os.getcwd(),path_string)
     
     self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build(["-I . -I %s"%path_string]) #Creating OpenCL program based upon Kernel
+    
+    
+    #self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)
+    #self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.WORK_GROUP_SIZE,self.platform.device)
+    
+    self.solver_metadata["local_work_items"] = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)
+    self.set_chunk_paths()
+    
     binary_kernel = self.program.get_info(pyopencl.program_info.BINARIES)[0] #Getting the binary code for the OpenCL code
     binary_kernel_file = open("%s.clbin"%self.output_file_name,"w") #Writing the binary code to a file to be read by the Host C Code
     binary_kernel_file.write(binary_kernel)
@@ -608,3 +616,21 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       
     return result
  
+  def execute(self,cleanup=False,debug=False):
+    while(self.solver_metadata["paths"]<(self.solver_metadata["chunk_paths"]*self.solver_metadata["kernel_loops"])):
+      if(self.work_groups_per_compute_unit>=2):
+        self.work_groups_per_compute_unit = self.work_groups_per_compute_unit/2
+        self.set_chunk_paths()
+      else:
+        self.work_groups_per_compute_unit = 1
+        self.set_chunk_paths()
+        break
+    
+    result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.execute(self,cleanup,debug)
+  
+    return result
+  
+  def set_chunk_paths(self):
+    self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.get_info(pyopencl.device_info.MAX_COMPUTE_UNITS)*self.work_groups_per_compute_unit #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
+    #self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]
+    self.chunk_paths = self.solver_metadata["chunk_paths"]
