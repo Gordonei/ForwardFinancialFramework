@@ -2,7 +2,7 @@
 Created on 11 July 2012
 
 '''
-import os,time,subprocess,sys,time,math
+import os,time,subprocess,sys,time,math,numpy.linalg
 
 class MonteCarlo:
     name = "monte_carlo_solver"
@@ -25,7 +25,7 @@ class MonteCarlo:
         self.platform = platform
         self.paths = paths
            
-	self.solver_metadata = {"paths":self.paths} 
+	self.solver_metadata = {"paths":self.paths}
         self.derivative = derivative
         self.underlying = []
         for d in self.derivative:
@@ -97,11 +97,98 @@ class MonteCarlo:
     
     def cleanup(self): pass
     
+    def populate_model(self,base_trial_paths,trial_steps):
+      derivative_backup = self.derivative[:]
+      
+      for d in derivative_backup:
+	self.derivative = [d]
+	self.generate()
+	self.compile()
+	
+	trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
+	accuracy = trial_run_results[0]
+	latency = trial_run_results[1]
+	
+	latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
+	accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
+	
+	d.latency_model["%s",self.platform.name] = lambda x: latency_coefficients[0]*x + latency_coefficients[1]
+	d.accuracy_model["%s",self.platform.name] = lambda x: accuracy_coefficients[0]*x**-0.5 + accuracy_coefficients[1]
+	
+      self.derivative = derivative_backup
+      
+    def latency_model(self,paths):
+      latency_sum = 0.0
+      for d in self.derivative: latency_sum = latency_sum + d.latency_model[self.platform.name](paths)
+      
+      return latency_sum
+    
+    def accuracy_model(self,paths):
+      accuracies = []
+      for d in self.derivative: accuracies.append(d.accuracy_model[self.platform.name](paths))
+      
+      return max(accuracies)
+    
+    #Helper Methods
     def attribute_stripper(self,attributes,variables):
-        """Helper Method used to remove all items in the first list from the second list, if present """
-        variables = list(variables)
-        for a in attributes:
-            if(variables.count(a)): variables.remove(a)
-        
-        return tuple(variables)
+      """Helper Method used to remove all items in the first list from the second list, if present """
+      variables = list(variables)
+      for a in attributes:
+	  if(variables.count(a)): variables.remove(a)
+      
+      return tuple(variables)
+      
+    def trial_run(self,paths,steps,solver):
+      accuracy = []
+      latency = []
+
+      path_set = numpy.arange(paths,paths*(steps+1),paths)
+      for p in path_set: #Trial Runs to generate data needed for predicition functions
+	solver.solver_metadata["paths"] = p
+	execution_output = solver.execute()
+	
+	latency.append(float(execution_output[-1]))
+	
+	value = 0.0
+	std_error = 0.0
+	max_value = 0.0
+	for index,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
+	  if(not index%2): value = float(e_o)+0.00000000000001
+	  else: 
+	    std_error = float(e_o)
+	    
+	    error_prop = std_error/value*100
+	    if(error_prop>max_value): max_value = error_prop
+	
+	accuracy.append(max_value)
+
+      return [accuracy,latency]
+      
+    def generate_latency_prediction_function_coefficients(self,base_speculative_paths,data_points,latencies,degree=2):
+      speculative_matrix = numpy.zeros((data_points,degree))
+      
+      for i in range(data_points):
+	speculative_matrix[i][0] = (i+1)*base_speculative_paths
+	speculative_matrix[i][1] = 1.0 
+	
+      #for i in range(data_points-1,-1,-1): #Creating NxN speculative matrix
+      #for j in range(degree-1,-1,-1): 
+	  #speculative_matrix[data_points-1-i, j] = ((data_points-i)*base_speculative_paths)**(degree-1-j)
+	  
+      
+      #predicition_function_coefficients = gauss(speculative_matrix,latencies)
+      predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,latencies)[0]
+
+      return predicition_function_coefficients
+
+    def generate_accuracy_prediction_function_coefficients(self,base_speculative_paths,data_points,accuracy_data):
+      speculative_matrix = numpy.zeros((data_points,2))
+      
+      for i in range(data_points): #Creating NxN speculative matrix
+	speculative_matrix[i][0] = ((i+1)*base_speculative_paths)**-0.5
+	speculative_matrix[i][1] = 1.0
+
+      predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,accuracy_data)[0]
+
+      return predicition_function_coefficients
     

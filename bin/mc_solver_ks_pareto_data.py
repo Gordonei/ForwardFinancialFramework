@@ -3,7 +3,7 @@ Created on 7 May 2013
 '''
 import sys
 sys.path.append("../..")
-import KS_ProblemSet, latency_accuracy_model_parameter_script
+import KS_ProblemSet
 
 if( __name__ == '__main__' and len(sys.argv)>5):
   platform_name = sys.argv[1]
@@ -45,12 +45,12 @@ if( __name__ == '__main__' and len(sys.argv)>5):
   if(platform_name=="GPU"): trial_paths = mc_solver.min_paths
   steps = 10
   
-  trial_run_results = latency_accuracy_model_parameter_script.trial_run(trial_paths,steps,mc_solver)
+  trial_run_results = mc_solver.trial_run(trial_paths,steps,mc_solver)
   accuracy = trial_run_results[0]
   latency = trial_run_results[1]
     
-  latency_coefficients = latency_accuracy_model_parameter_script.generate_latency_prediction_function_coefficients(min_paths,steps,latency)
-  accuracy_coefficients = latency_accuracy_model_parameter_script.generate_accuracy_prediction_function_coefficients(min_paths,steps,accuracy)
+  latency_coefficients = mc_solver.generate_latency_prediction_function_coefficients(min_paths,steps,latency)
+  accuracy_coefficients = mc_solver.generate_accuracy_prediction_function_coefficients(min_paths,steps,accuracy)
   
   output_string = ""
   prediction_results = []
