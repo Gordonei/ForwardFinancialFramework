@@ -18,7 +18,10 @@ class Option:
     #Variables - things that are changed throughout
     delta_time = 0.0
     value = 0.0
-
+    
+    #Model
+    latency_model = {}
+    accuracy_model = {}
 
     def __init__(self,underlying,time_period,call,strike_price):
         '''

@@ -14,6 +14,10 @@ class Underlying:
 
     gamma = 0.0
     time = 0.0
+    
+    #Dictionary of model functions, only used if there are shared underlyings for a given solver
+    latency_models = {}
+    accuracy_models = {}
 
     def __init__(self,rfir,current_price):
         '''
@@ -28,3 +32,4 @@ class Underlying:
         
     def path(self,delta_time):
         self.gamma += delta_time*self.rfir
+        self.time += delta_time
