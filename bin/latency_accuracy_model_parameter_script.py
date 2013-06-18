@@ -54,16 +54,16 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   
   plotted_data = []
   for p in numpy.arange(paths,paths*(steps+1),paths): plotted_data.append(mc_solver.accuracy_model(p))
-  plt.plot(numpy.arange(paths,paths*(steps+1),paths),plotted_data,"--",label="plotted data")
+  plt.plot(numpy.arange(paths,paths*(steps+1),paths),plotted_data,"--",label="predicted data")
   plt.legend(loc="best")
-  plt.ylabel("Revlative Accuracy Percentage (95%CI/Value)")
+  plt.ylabel("Relative Accuracy Percentage (95%CI/Value)")
   
   plt.subplot(212)
   plt.plot(numpy.arange(paths,paths*(steps+1),paths),latency,label="data")
   
   latency_plotted_data = []
   for p in numpy.arange(paths,paths*(steps+1),paths): latency_plotted_data.append(mc_solver.latency_model(p))
-  plt.plot(numpy.arange(paths,paths*(steps+1),paths),latency_plotted_data,"--",label="plotted data")
+  plt.plot(numpy.arange(paths,paths*(steps+1),paths),latency_plotted_data,"--",label="predicted data")
   
   plt.legend(loc="best")
   plt.ylabel("Latency (Microseconds)")
