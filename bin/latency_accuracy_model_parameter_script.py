@@ -3,7 +3,7 @@ Created on 23 May 2013
 '''
 import sys
 sys.path.append("../..")
-import KS_ProblemSet, numpy.linalg
+import KS_ProblemSet, numpy.linalg, pickle
 
 if( __name__ == '__main__' and len(sys.argv)>4):
   import matplotlib.pyplot as plt
@@ -48,6 +48,9 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   print "Accuracy: y = %fx^-0.5 + %f"%(accuracy_coefficients[0],accuracy_coefficients[1])
   
   mc_solver.populate_model(paths,steps)
+  
+  mc_solver.latency_model = mc_solver.generate_aggregate_latency_model()
+  mc_solver.accuracy_model = mc_solver.generate_aggregate_accuracy_model()
   
   plt.subplot(211)
   plt.plot(numpy.arange(paths,paths*(steps+1),paths),accuracy,label="data")

@@ -2,7 +2,7 @@
 Created on 11 July 2012
 
 '''
-import os,time,subprocess,sys,time,math,numpy.linalg
+import os,time,subprocess,sys,time,math,numpy.linalg,pickle
 
 class MonteCarlo:
     name = "monte_carlo_solver"
@@ -21,6 +21,9 @@ class MonteCarlo:
     underlying_attributes = []
     underlying_variables = []
     underlying_dependencies = []
+    
+    latency_model = None
+    accuracy_model = None
     
     def __init__(self,derivative,paths,platform,reduce_underlyings=True):
         name = "monte_carlo_solver"
@@ -104,6 +107,7 @@ class MonteCarlo:
     
     def populate_model(self,base_trial_paths,trial_steps):
       derivative_backup = self.derivative[:]
+      underlying_backup = self.underlying[:]
       
       for d in derivative_backup:
 	self.derivative = [d]
@@ -121,11 +125,12 @@ class MonteCarlo:
 	d.latency_model["%s"%self.platform.name] = lambda x: latency_coefficients[0]*x + latency_coefficients[1]
 	d.accuracy_model["%s"%self.platform.name] = lambda x: accuracy_coefficients[0]*x**-0.5 + accuracy_coefficients[1]
 	
-      if(len(derivative_backup)>len(self.underlying)): #Checking to see if there are any shared underlyings
-	for u in self.underlying:
+      if(len(derivative_backup)>len(underlying_backup)): #Checking to see if there are any shared underlyings
+	for u in underlying_backup:
 	    temp_derivatives = []
 	    for d in derivative_backup:
-		if(d.underlying[0]==u): temp_derivatives.append(d)
+		if(d.underlying[0]==u):
+		  temp_derivatives.append(d)
 		    
 	    if(len(temp_derivatives)>1):
 		u.latency_models["%s"%self.platform.name]={}
@@ -159,9 +164,14 @@ class MonteCarlo:
 	    
     
       self.derivative = derivative_backup
+      self.underlying = underlying_backup
       
-    def latency_model(self,paths):
-      latency_sum = 0.0
+      self.latency_model = self.generate_aggregate_latency_model()
+      self.accuracy_model = self.generate_aggregate_accuracy_model()
+      
+    """def latency_model(self,paths):
+      latency_sum = [lambda x: 0.0]
+      #latency_sum = lambda x: 0.0
     
       temp_derivatives = self.derivative[:]
       if(len(self.derivative)>len(self.underlying)):
@@ -177,13 +187,42 @@ class MonteCarlo:
 		for d in temp_temp_derivatives: temp_derivatives.remove(d)
 		name = "%s"%temp_temp_derivatives[0].name[:2]
 		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
-		latency_sum = latency_sum + u.latency_models["%s"%self.platform.name]["%s"%(name)](paths)
+		latency_sum.append(lambda x: u.latency_models["%s"%self.platform.name]["%s"%(name)](x))
       
-      for d in temp_derivatives: latency_sum = latency_sum + d.latency_model[self.platform.name](paths)
+      for d in temp_derivatives: latency_sum.append(lambda x: d.latency_model[self.platform.name](x))
       
-      return latency_sum
+      return lambda x: sum([l_s(x) for l_s in latency_sum])
     
     def accuracy_model(self,paths):
+      
+      return lambda x: max([a(x) for a in accuracies])"""
+    
+    
+    def generate_aggregate_latency_model(self):
+      latency_sum = [lambda x: 0.0]
+      #latency_sum = lambda x: 0.0
+    
+      temp_derivatives = self.derivative[:]
+      if(len(self.derivative)>len(self.underlying)):
+	for u in self.underlying:
+	    count = 0
+	    temp_temp_derivatives = []
+	    for d in self.derivative:
+		if(d.underlying[0]==u):
+		    temp_temp_derivatives.append(d)
+		    count = count + 1
+	    
+	    if(count>1):
+		for d in temp_temp_derivatives: temp_derivatives.remove(d)
+		name = "%s"%temp_temp_derivatives[0].name[:2]
+		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
+		latency_sum.append(lambda x: u.latency_models["%s"%self.platform.name]["%s"%(name)](x))
+      
+      for d in temp_derivatives: latency_sum.append(lambda x: d.latency_model[self.platform.name](x))
+      
+      return lambda x: sum([l_s(x) for l_s in latency_sum])
+      
+    def generate_aggregate_accuracy_model(self):
       accuracies = []
       
       temp_derivatives = self.derivative[:]
@@ -200,11 +239,13 @@ class MonteCarlo:
 		for d in temp_temp_derivatives: temp_derivatives.remove(d)
 		name = "%s"%temp_temp_derivatives[0].name[:2]
 		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
-		accuracies.append(u.accuracy_models["%s"%self.platform.name]["%s"%(name)](paths))
+		accuracies.append(lambda x: u.accuracy_models["%s"%self.platform.name]["%s"%(name)](x))		
       
-      for d in temp_derivatives: accuracies.append(d.accuracy_model[self.platform.name](paths))
+      for d in temp_derivatives: accuracies.append(lambda x: d.accuracy_model[self.platform.name](x))
       
-      return max(accuracies)
+      return lambda x: max([a(x) for a in accuracies])
+    
+    def generate_pickle(self,file_name=self.output_file_name): pickle.dump(self,open(file_name,"wb"))
     
     #Helper Methods
     def attribute_stripper(self,attributes,variables):
