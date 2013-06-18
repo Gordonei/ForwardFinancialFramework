@@ -3,7 +3,7 @@ Created on 23 May 2013
 '''
 import sys
 sys.path.append("../..")
-import KS_ProblemSet, numpy.linalg, pickle
+import KS_ProblemSet, numpy.linalg
 
 if( __name__ == '__main__' and len(sys.argv)>4):
   import matplotlib.pyplot as plt
