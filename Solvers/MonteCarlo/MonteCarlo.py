@@ -213,12 +213,15 @@ class MonteCarlo:
 		    count = count + 1
 	    
 	    if(count>1):
-		for d in temp_temp_derivatives: temp_derivatives.remove(d)
+		for d in temp_temp_derivatives:
+		  temp_derivatives.remove(d)
 		name = "%s"%temp_temp_derivatives[0].name[:2]
 		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
+		print u.latency_models
 		latency_sum.append(lambda x: u.latency_models["%s"%self.platform.name]["%s"%(name)](x))
       
-      for d in temp_derivatives: latency_sum.append(lambda x: d.latency_model[self.platform.name](x))
+      for d in temp_derivatives:
+	latency_sum.append(lambda x: d.latency_model[self.platform.name](x))
       
       return lambda x: sum([l_s(x) for l_s in latency_sum])
       
@@ -250,6 +253,10 @@ class MonteCarlo:
       self.accuracy_model = None
       if(file_name==""): pickle.dump(self,open("%s.p"%self.output_file_name,"wb"))
       else: pickle.dump(self,open("%s.p"%file_name,"wb"))
+      
+    def generate_derivative_pickle(self,file_name=""):
+      if(file_name==""): pickle.dump(self.derivative,open("%s_derivative.p"%self.output_file_name,"wb"))
+      else: pickle.dump(self.derivative,open("%s_derivative.p"%file_name,"wb"))
     
     #Helper Methods
     def attribute_stripper(self,attributes,variables):

@@ -3,7 +3,7 @@ Created on 18 June 2013
 '''
 import sys
 sys.path.append("../..")
-import KS_ProblemSet, pickle
+import KS_ProblemSet, pickle, numpy
 
 if( __name__ == '__main__' and len(sys.argv)>5):
   pickle_file_name = sys.argv[1]
@@ -38,6 +38,12 @@ if( __name__ == '__main__' and len(sys.argv)>5):
   mc_solver.populate_model(paths,steps)
   
   mc_solver.generate_pickle(pickle_file_name)
+  mc_solver.generate_derivative_pickle(pickle_file_name)
+  
+  mc_solver = pickle.load(open("%s.p"%pickle_file_name,"rb"))
+  mc_solver.derivative = pickle.load(open("%s_derivative.p"%pickle_file_name,"rb"))
+  mc_solver.latency_model = mc_solver.generate_aggregate_latency_model()
+  for p in numpy.arange(paths,paths*(steps+1),paths): print mc_solver.latency_model(p)
     
 elif(__name__ == '__main__'):
   print "usage: python pickle_model_generation.py [Pickle File Name] [CPU|GPU|FPGA] [Number of  Test Paths] [Number of Test Steps] [Option 1] [Option 2] ... [Option N]"
