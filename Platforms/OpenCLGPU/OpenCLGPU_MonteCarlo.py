@@ -644,4 +644,5 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       self.platform.cpu_device = None
       self.platform.cpu_context = None
       self.program = None
+      self.cpu_seed_program = None
       MonteCarlo.MonteCarlo.generate_pickle(self,file_name)
