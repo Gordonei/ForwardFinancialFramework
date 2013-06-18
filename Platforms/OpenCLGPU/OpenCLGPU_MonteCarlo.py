@@ -5,6 +5,7 @@ Created on 23 February 2013
 import os,time,subprocess,sys,time,math,pyopencl
 import platform as plat
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo
+from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=20):
@@ -634,3 +635,13 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.get_info(pyopencl.device_info.MAX_COMPUTE_UNITS)*self.work_groups_per_compute_unit #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
     #self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]
     self.chunk_paths = self.solver_metadata["chunk_paths"]
+    
+  def generate_pickle(self,file_name=""):
+      self.platform.platform = None
+      self.platform.device_type = None
+      self.platform.device = None
+      self.platform.context = None
+      self.platform.cpu_device = None
+      self.platform.cpu_context = None
+      self.program = None
+      MonteCarlo.MonteCarlo.generate_pickle(self,file_name)
