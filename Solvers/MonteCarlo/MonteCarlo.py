@@ -245,7 +245,11 @@ class MonteCarlo:
       
       return lambda x: max([a(x) for a in accuracies])
     
-    def generate_pickle(self,file_name=self.output_file_name): pickle.dump(self,open("%s.p"%file_name,"wb"))
+    def generate_pickle(self,file_name=""):
+      self.latency_model = None
+      self.accuracy_model = None
+      if(file_name==""): pickle.dump(self,open("%s.p"%self.output_file_name,"wb"))
+      else: pickle.dump(self,open("%s.p"%file_name,"wb"))
     
     #Helper Methods
     def attribute_stripper(self,attributes,variables):

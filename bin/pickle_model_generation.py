@@ -40,4 +40,4 @@ if( __name__ == '__main__' and len(sys.argv)>5):
   mc_solver.generate_pickle(pickle_file_name)
     
 elif(__name__ == '__main__'):
-  print "usage: python pickle_model_script.py [Pickle File Name] [CPU|GPU|FPGA] [Number of  Test Paths] [Number of Test Steps] [Option 1] [Option 2] ... [Option N]"
+  print "usage: python pickle_model_generation.py [Pickle File Name] [CPU|GPU|FPGA] [Number of  Test Paths] [Number of Test Steps] [Option 1] [Option 2] ... [Option N]"
