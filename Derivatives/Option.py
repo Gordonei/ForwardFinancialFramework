@@ -20,8 +20,8 @@ class Option:
     value = 0.0
     
     #Model
-    latency_model = {}
-    accuracy_model = {}
+    latency_model_coefficients = []
+    accuracy_model_coefficients = []
 
     def __init__(self,underlying,time_period,call,strike_price):
         '''
@@ -33,6 +33,9 @@ class Option:
         self.call = call
         self.strike_price = strike_price
         
+        self.latency_model_coefficients = []
+	self.accuracy_model_coefficients = []
+        
     def path_init(self):
         self.value = 0
         self.delta_time = self.time_period
@@ -42,4 +45,8 @@ class Option:
     def payoff(self,end_price):
         if(call): return end_price - strike_price
         else: return strike_price - end_price
+        
+    def latency_model(self,paths): return self.latency_model_coefficients[0]*paths + self.latency_model_coefficients[1]
+      
+    def accuracy_model(self,paths): return self.accuracy_model_coefficients[0]*paths**-0.5 + self.accuracy_model_coefficients[1]
         
