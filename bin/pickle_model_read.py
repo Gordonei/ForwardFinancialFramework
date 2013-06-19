@@ -20,7 +20,7 @@ if( __name__ == '__main__' and len(sys.argv)>3):
   for p_f_n in pickle_file_names:
     print p_f_n
     mc_solver = pickle.load(open("%s.p"%p_f_n,"rb"))
-    mc_solver.derivative = pickle.load(open("%s_derivative.p"%p_f_n,"rb"))
+    #mc_solver.derivative = pickle.load(open("%s_derivative.p"%p_f_n,"rb"))
     mc_solver.latency_model = mc_solver.generate_aggregate_latency_model()
     
     plotted_data = []
@@ -31,4 +31,4 @@ if( __name__ == '__main__' and len(sys.argv)>3):
   plt.show()
   
 elif(__name__ == '__main__'):
-  print "usage: python pickle_model_generation.py [Pickle File Name] [CPU|GPU|FPGA] [Number of  Test Paths] [Number of Test Steps] [Option 1] [Option 2] ... [Option N]"
+  print "usage: python pickle_model_read.py [Number of  Test Paths] [Number of Test Steps] [Pickle File Name 1] [Pickle File Name 2] ... [Pickle File Name N]"

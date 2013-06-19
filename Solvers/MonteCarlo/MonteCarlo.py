@@ -2,7 +2,7 @@
 Created on 11 July 2012
 
 '''
-import os,time,subprocess,sys,time,math,numpy.linalg,pickle
+import os,time,subprocess,sys,time,math,numpy.linalg,pickle,copy
 
 class MonteCarlo:
     name = "monte_carlo_solver"
@@ -33,6 +33,12 @@ class MonteCarlo:
 	self.solver_metadata = {"paths":self.paths}
         self.derivative = derivative
         self.setup_underlyings(reduce_underlyings)
+    
+    """def __getstate__(self):
+      state = self.__dict__.copy()
+      return state
+    
+    def __setstate__(self,state): self.__dict__.update(state)"""
     
     def generate(self,override=True): pass
 	
@@ -122,8 +128,8 @@ class MonteCarlo:
 	latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
 	accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
 	
-	d.latency_model["%s"%self.platform.name] = lambda x: latency_coefficients[0]*x + latency_coefficients[1]
-	d.accuracy_model["%s"%self.platform.name] = lambda x: accuracy_coefficients[0]*x**-0.5 + accuracy_coefficients[1]
+	d.latency_model_coefficients.extend(latency_coefficients)
+	d.accuracy_model_coefficients.extend(accuracy_coefficients)
 	
       if(len(derivative_backup)>len(underlying_backup)): #Checking to see if there are any shared underlyings
 	for u in underlying_backup:
@@ -133,8 +139,6 @@ class MonteCarlo:
 		  temp_derivatives.append(d)
 		    
 	    if(len(temp_derivatives)>1):
-		u.latency_models["%s"%self.platform.name]={}
-		u.accuracy_models["%s"%self.platform.name]={}
 		for i in range(2**len(temp_derivatives)):
 		    count = 0
 		    for b in bin(i)[2:]:
@@ -158,8 +162,8 @@ class MonteCarlo:
 			name = "%s"%temp_derivatives[0].name[:2]
 			for t_d in temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
 	
-			u.latency_models["%s"%self.platform.name]["%s"%(name)] = lambda x: latency_coefficients[0]*x + latency_coefficients[1]
-			u.accuracy_models["%s"%self.platform.name]["%s"%(name)] = lambda x: accuracy_coefficients[0]*x**-0.5 + accuracy_coefficients[1]
+			u.latency_model_coefficients["%s"%name] = latency_coefficients
+			u.accuracy_model_coefficients["%s"%name] = accuracy_coefficients
 		    
 	    
     
@@ -213,15 +217,13 @@ class MonteCarlo:
 		    count = count + 1
 	    
 	    if(count>1):
-		for d in temp_temp_derivatives:
-		  temp_derivatives.remove(d)
+		for d in temp_temp_derivatives: temp_derivatives.remove(d)
 		name = "%s"%temp_temp_derivatives[0].name[:2]
 		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
-		print u.latency_models
-		latency_sum.append(lambda x: u.latency_models["%s"%self.platform.name]["%s"%(name)](x))
+		temp_u = copy.copy(u)
+		latency_sum.append(lambda x: temp_u.latency_model("%s"%name[:],x))
       
-      for d in temp_derivatives:
-	latency_sum.append(lambda x: d.latency_model[self.platform.name](x))
+      for d in temp_derivatives: latency_sum.append(lambda x: d.latency_model(x))
       
       return lambda x: sum([l_s(x) for l_s in latency_sum])
       
@@ -242,9 +244,9 @@ class MonteCarlo:
 		for d in temp_temp_derivatives: temp_derivatives.remove(d)
 		name = "%s"%temp_temp_derivatives[0].name[:2]
 		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
-		accuracies.append(lambda x: u.accuracy_models["%s"%self.platform.name]["%s"%(name)](x))		
+		accuracies.append(lambda x: u.accuracy_models("%s"%name,x))	
       
-      for d in temp_derivatives: accuracies.append(lambda x: d.accuracy_model[self.platform.name](x))
+      for d in temp_derivatives: accuracies.append(lambda x: d.accuracy_model(x))
       
       return lambda x: max([a(x) for a in accuracies])
     
@@ -254,9 +256,9 @@ class MonteCarlo:
       if(file_name==""): pickle.dump(self,open("%s.p"%self.output_file_name,"wb"))
       else: pickle.dump(self,open("%s.p"%file_name,"wb"))
       
-    def generate_derivative_pickle(self,file_name=""):
-      if(file_name==""): pickle.dump(self.derivative,open("%s_derivative.p"%self.output_file_name,"wb"))
-      else: pickle.dump(self.derivative,open("%s_derivative.p"%file_name,"wb"))
+    """def generate_derivative_pickle(self,file_name=""):
+      if(file_name==""): dumps(self.derivative,open("%s_derivative.p"%self.output_file_name,"wb"))
+      else: dumps(self.derivative,open("%s_derivative.p"%file_name,"wb"))"""
     
     #Helper Methods
     def attribute_stripper(self,attributes,variables):

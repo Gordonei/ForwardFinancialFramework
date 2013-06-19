@@ -73,4 +73,4 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   plt.show()
     
 elif(__name__ == '__main__'):
-  print "usage: python latency_accuracy_model_parameter_script.py [CPU|GPU|FPGA] [Number of  Test Paths] [Number of Test Steps] [Option 1] [Option 2] ... [Option N]"
+  print "usage: python model_ks_test_script.py [CPU|GPU|FPGA] [Number of  Test Paths] [Number of Test Steps] [Option 1] [Option 2] ... [Option N]"
