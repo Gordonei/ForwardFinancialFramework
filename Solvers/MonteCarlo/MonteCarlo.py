@@ -244,7 +244,8 @@ class MonteCarlo:
 		for d in temp_temp_derivatives: temp_derivatives.remove(d)
 		name = "%s"%temp_temp_derivatives[0].name[:2]
 		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
-		accuracies.append(lambda x: u.accuracy_models("%s"%name,x))	
+		temp_u = copy.copy(u)
+		accuracies.append(lambda x: temp_u.accuracy_model("%s"%name,x))	
       
       for d in temp_derivatives: accuracies.append(lambda x: d.accuracy_model(x))
       

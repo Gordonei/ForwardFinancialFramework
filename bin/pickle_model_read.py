@@ -18,16 +18,17 @@ if( __name__ == '__main__' and len(sys.argv)>3):
   
   
   for p_f_n in pickle_file_names:
-    print p_f_n
     mc_solver = pickle.load(open("%s.p"%p_f_n,"rb"))
-    #mc_solver.derivative = pickle.load(open("%s_derivative.p"%p_f_n,"rb"))
     mc_solver.latency_model = mc_solver.generate_aggregate_latency_model()
+    mc_solver.accuracy_model = mc_solver.generate_aggregate_accuracy_model()
     
-    plotted_data = []
-    for p in numpy.arange(paths,paths*(steps+1),paths): plotted_data.append(mc_solver.latency_model(p))
-    plt.plot(numpy.arange(paths,paths*(steps+1),paths),plotted_data,"--",label=pickle_file_names)
+    latency_data = map(mc_solver.latency_model,numpy.arange(paths,paths*(steps+1),paths))
+    accuracy_data = map(mc_solver.accuracy_model,numpy.arange(paths,paths*(steps+1),paths))
+    
+    plt.plot(accuracy_data,latency_data,"--",label=p_f_n)
     
     
+  plt.legend(loc='best')
   plt.show()
   
 elif(__name__ == '__main__'):
