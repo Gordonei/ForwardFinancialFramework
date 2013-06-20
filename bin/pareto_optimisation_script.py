@@ -1,0 +1,2 @@
+from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo
+from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo
