@@ -48,5 +48,6 @@ class Option:
         
     def latency_model(self,paths): return self.latency_model_coefficients[0]*paths + self.latency_model_coefficients[1]
       
-    def accuracy_model(self,paths): return self.accuracy_model_coefficients[0]*paths**-0.5 + self.accuracy_model_coefficients[1]
-        
+    def accuracy_model(self,paths): #return self.accuracy_model_coefficients[0]*paths**-0.5 + self.accuracy_model_coefficients[1]
+      if(paths>0): return self.accuracy_model_coefficients[0]*paths**-0.5 + self.accuracy_model_coefficients[1]
+      else: return 100.0
