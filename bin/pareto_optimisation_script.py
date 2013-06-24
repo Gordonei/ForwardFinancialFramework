@@ -1,4 +1,4 @@
-import sys,numpy,pickle,copy,multiprocessing
+import sys,numpy,pickle,copy,multiprocessing,random
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import scipy.optimize
@@ -17,10 +17,15 @@ from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,O
         paths = paths + 100
         temp_latency = solver.latency_model(paths)"""
         
+def random_colour():
+    return (random.random(),random.random(),random.random())
+        
 def accuracy_latency(target_accuracy,solver):
     paths = 100
-    
     temp_accuracy = solver.accuracy_model(paths)
+    
+    #print temp_accuracy
+    #print target_accuracy
     while(temp_accuracy>=target_accuracy):
         paths = paths + 100
         temp_accuracy = solver.accuracy_model(paths)
@@ -69,24 +74,34 @@ def solvers_cost_function(x,target_accuracy,reference_paths,solvers):
     #print x
     solver_results = []
     for i,solver in enumerate(solvers[:-1]): solver_results.append(proportional_solver_cost(x[i],reference_paths[i],solver)) #gather characteristics of solvers for the current iteration
-    
+        
     #Summing the accuracies to find if the target accuracy has been met
     std_deviations = numpy.zeros(len(x[0]))
-    paths = numpy.zeros(len(x[0]))
+    paths = numpy.ones(len(x[0]))
     for i,s_r in enumerate(solver_results):
-        std_deviations = std_deviations + (solver_results[i][0]**2)*(x[i]*reference_paths[i])**0.5/1.96
+        std_deviations = std_deviations + (x[i]*reference_paths[i])*((solver_results[i][0])*(x[i]*reference_paths[i])**0.5/1.96)**2
         paths = paths + x[i]*reference_paths[i]
         
+    #print paths
     current_std_dev = (std_deviations/paths)**0.5
     current_accuracy = current_std_dev*1.96/(paths)**0.5
     
+    """print "New Result"
+    print x
+    print reference_paths
+    print solver_results
+    print current_accuracy
+    print target_accuracy"""
+    
     if(max(current_accuracy)>target_accuracy): #If the target accuracy hasn't been met, use the remaining solver to meet it
 	max_index = list(current_accuracy).index(max(current_accuracy))
+        #print "max accuracy: %f"%current_accuracy[max_index]
         num_paths_total = (current_std_dev[max_index]*1.96/target_accuracy)**2
         num_paths_needed = num_paths_total - paths[max_index]
         solver_results.append((solvers[-1].accuracy_model(num_paths_needed),solvers[-1].latency_model(num_paths_needed)))
         
     latency = max([s_r[1] for s_r in solver_results]) #The total latency is the longest running solver
+    #print latency
     
     return latency
 
@@ -128,43 +143,53 @@ def optimise_latency_target_accuracy(target_accuracy,reference_solvers,index,que
     for j,t in enumerate(r_s.derivative):
       reference_paths[i][j] = accuracy_to_paths(target_accuracy,t,r_s)
       
-  initial_guess = 0.5*numpy.ones((len(reference_solvers)-1,len(reference_solvers[0].derivative)))
+  initial_guess = 0.1*numpy.ones((len(reference_solvers)-1,len(reference_solvers[0].derivative)))
   temp = []
   for i_g in initial_guess: temp.extend(i_g)
   initial_guess = numpy.array(temp)
   #print scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Powell")
   
   #result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Powell")
-  result = scipy.optimize.anneal(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),lower=0.0,upper=1.0,full_output=True,dwell=200)
+  
+  anneal_result = scipy.optimize.anneal(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),lower=0.0,upper=1.0,full_output=True) #,dwell=100
+  powell_result = scipy.optimize.fmin_powell(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),full_output=True) #,dwell=100
+  
+  result = anneal_result
+  if(result[1]>powell_result[1]): result = powell_result
   #queue.put((index,result.fun,result.x))
   queue.put((index,result[1],flip_and_cap(result[0])))
 
-if( __name__ == '__main__' and len(sys.argv)>2):
+if( __name__ == '__main__' and len(sys.argv)>4):
     fig = plt.figure()
     ax = fig.gca(projection='3d')
   
-    upper_time = int(sys.argv[1])*1000000 #converting to microseconds
-    accuracy_range = numpy.arange(50,0.5,-0.5)
+    lower_accuracy = float(sys.argv[1])
+    accuracy_step = float(sys.argv[2])
+    upper_accuracy = float(sys.argv[3])
+    accuracy_range = numpy.arange(lower_accuracy,upper_accuracy+accuracy_step,accuracy_step)
     
     reference_solvers = []
     
-    reference_latency = numpy.zeros((len(sys.argv[2:]),len(accuracy_range)))
-    for i,p_f_n in enumerate(sys.argv[2:]):
+    reference_latency = numpy.zeros((len(sys.argv[4:]),len(accuracy_range)))
+    for i,p_f_n in enumerate(sys.argv[4:]):
         reference_solvers.append(pickle.load(open("%s"%p_f_n,"rb")))
         reference_solvers[-1].latency_model = reference_solvers[-1].generate_aggregate_latency_model()
         reference_solvers[-1].accuracy_model = reference_solvers[-1].generate_aggregate_accuracy_model()
         for j,t_a in enumerate(accuracy_range): reference_latency[i][j] = accuracy_latency(t_a,reference_solvers[-1])
         #plt.plot(accuracy_range,reference_latency[i],label="Reference Solver %s"%p_f_n)
-        ax.plot_wireframe(accuracy_range,[1.0 for k in range(len(accuracy_range))],numpy.log(reference_latency[i])/numpy.log(10),label="Reference Solver %s"%p_f_n,color='r')
+        
+        X,Y = numpy.meshgrid(accuracy_range,numpy.arange(0,1.0,1.0/len(accuracy_range)),)
+        Z = [reference_latency[i] for y in accuracy_range]
+        ax.plot_wireframe(X,Y,Z,label="Reference Solver %s"%p_f_n,color=random_colour())
+        #accuracy_range = accuracy_range[0] #not sure why this has to be done...
     
     thread_count = 0
-    thread_limit = multiprocessing.cpu_count()*2#Allow up to 2 times as many threads as there are processors
+    thread_limit = multiprocessing.cpu_count()*2 #Allow up to 2 times as many threads as there are processors
     processes = []
     x_results = [[] for i in range(len(accuracy_range))]
     latency_results = numpy.zeros(len(accuracy_range))
     queue = multiprocessing.Queue()
     for k,target_accuracy in enumerate(accuracy_range):
-      #latency_results[k] = optimise_latency_target_accuracy(target_accuracy,reference_solvers)
       if(thread_count == thread_limit): 
 	for p in processes: p.join()
 	processes = []
@@ -178,23 +203,27 @@ if( __name__ == '__main__' and len(sys.argv)>2):
     while(not queue.empty()): 
       result = queue.get()
       latency_results[result[0]] = result[1]
-      x_results[result[0]] = result[2]
+      x_results[result[0]] = numpy.array(result[2]) #.reshape((len(reference_solvers),len(reference_solvers[0].derivative)))
     
-    x_set = []
-    for x in x_results: 
-      print x
-      x_set.append(numpy.mean(x))
+    x_results = numpy.array(x_results).reshape(len(accuracy_range),len(reference_solvers)-1,len(reference_solvers[0].derivative))
     
     #plt.plot(accuracy_range,latency_results,label="Pareto Optimal Design Space Curve")
     #plt.plot(accuracy_range,x_set)
     
-    print latency_results
-    ax.plot_wireframe(accuracy_range,x_set,numpy.log(latency_results)/numpy.log(10),label="Pareto Optimal Surface")
+    x_set = [[] for i in reference_solvers[:-1]]
+    for i,x in enumerate(x_results):
+        for j,x_i in enumerate(x):
+            x_set[j].append(numpy.mean(x_i))
+    
+    for i,x in enumerate(x_set): ax.plot_wireframe(accuracy_range,x,latency_results,label="%s Pareto Optimal Curve"%sys.argv[4:][i],color=random_colour())
+    
+    #numpy.log(latency_results)/numpy.log(10)
     ax.set_xlabel("Relative Accuracy Percentage (95%CI/value)")
-    ax.set_ylabel("Mean Task proportion on CPU")
+    ax.set_ylabel("Mean Task proportion on Platform")
     ax.set_zlabel("Latency")
+    ax.set_zscale("log")
     #axes = plt.gca()
     plt.legend(loc="best")
     plt.show()
 
-else: print "python pareto_optimisation_scripy.py [Time, in seconds] [Pickled Solver File 1] [Pickled Solver File 2] ... [Pickled Solver File N]"
+else: print "python pareto_optimisation_scripy.py [Lower Accuracy] [Accuracy Step] [Upper Accuracy] [Pickled Solver File 1] [Pickled Solver File 2] ... [Pickled Solver File N]"
