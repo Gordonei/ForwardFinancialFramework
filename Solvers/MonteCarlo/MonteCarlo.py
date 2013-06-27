@@ -204,7 +204,6 @@ class MonteCarlo:
     
     def generate_aggregate_latency_model(self):
       latency_sum = [lambda x: 0.0]
-      #latency_sum = lambda x: 0.0
     
       temp_derivatives = self.derivative[:]
       if(len(self.derivative)>len(self.underlying)):

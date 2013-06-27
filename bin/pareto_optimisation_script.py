@@ -51,20 +51,22 @@ def proportional_solver_cost(x,reference_paths,reference_solver):
     temp_solver = copy.copy(reference_solver)
     
     task_proportional_paths = x*reference_paths
-    task_order_list = [0 for n in len(x)]
+    task_order_list = []
     
     shared_dict = {}
     for i,x_i in enumerate(temp_solver.derivative): #enumerate over the tasks, looking for shared underlyings
         shared_dict[i] = []
+	#print "i=%d, task_order_list=%s"%(i,str(task_order_list))
         if(i not in task_order_list):
             task_order_list.append(i) #Adding this task to the order list if it is not already in it
-            for j,x_j in enumerate(temp_solver.derivative[i:]): #Look from the current task onwards
-                if((x_i.underlying==x_j.underlying) and (i!=j)): #If a shared underlying is found
-                    shared_dict[i].append(x_j) #Add it to a dictionary
-                    task_order_list.append(j) #Indicate that it is next in line after the current tasks
-                    max_paths = max(task_proportional_paths[i],task_proportional_paths[j]) #Set the number of paths to be equal to the maximum number required
-                    task_proportion_paths[i] = max_paths
-                    task_proportion_paths[j] = max_paths
+            if(len(temp_solver.derivative)>(i+1)):
+	        for j,x_j in enumerate(temp_solver.derivative[i+1:]): #Look from the current task onwards
+                    if((x_i.underlying==x_j.underlying) and (i!=j)): #If a shared underlying is found
+                       shared_dict[i].append(x_j) #Add it to a dictionary
+                       task_order_list.append(j) #Indicate that it is next in line after the current tasks
+                       max_paths = max(task_proportional_paths[i],task_proportional_paths[j]) #Set the number of paths to be equal to the maximum number required
+                       task_proportional_paths[i] = max_paths
+                       task_proportional_paths[j] = max_paths
     
     tasks_to_run = range(len(temp_solver.derivative[:])) #List for keeping track of which tasks still need to be run
     
@@ -73,13 +75,16 @@ def proportional_solver_cost(x,reference_paths,reference_solver):
     for index,x_i in enumerate(x): #enumerate over the tasks
         if not(shared_dict[index] and (index in tasks_to_run)): #if there is no shared underlyings
             temp_solver.derivative = [reference_solver.derivative[index]]
-            tasks_to_run.remove(index)
             
         elif(index in tasks_to_run): #If there is shared underlyings...
             temp_tasks = [reference_solver.derivative[index]]
             temp_tasks.extend(shared_dict[index]) #Adding the shared tasks to the run
             temp_solver.derivative = temp_tasks
-            for j,t_t in enumerate(temp_tasks): tasks_to_run.remove(reference_solver.derivative.index(t_t)) #Removing the shared tasks from the run list
+            temp_task_order_list_index = task_order_list.index(index)
+	    #print task_order_list
+            #print task_order_list[temp_task_order_list_index+1:temp_task_order_list_index+len(temp_tasks)]
+            #print tasks_to_run
+            for t_t in task_order_list[temp_task_order_list_index+1:temp_task_order_list_index+len(temp_tasks)]: tasks_to_run.remove(t_t) #Removing the shared tasks from the run list
             
         if(index in tasks_to_run): #If a task is being run, actually run it!
             temp_solver.latency_model = temp_solver.generate_aggregate_latency_model()
@@ -88,6 +93,7 @@ def proportional_solver_cost(x,reference_paths,reference_solver):
             temp_accuracy = temp_solver.accuracy_model(int(x_i*task_proportional_paths[index]))
             latency.append(temp_latency)
             accuracy.append(temp_accuracy)
+            tasks_to_run.remove(index)
         
     accuracy = [accuracy[t_o_l] for t_o_l in task_order_list] #Reordering accuracy to the order expected
         
@@ -204,19 +210,22 @@ def optimise_latency_target_accuracy(target_accuracy,reference_solvers,index,que
   temp = []
   for i_g in initial_guess: temp.extend(i_g)
   initial_guess = numpy.array(temp)
-  #print scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Powell")
-  
-  #result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Powell")
-  
+    
   first_run = True
   iterations = 0
   result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Nelder-Mead")
  
   results = []
-  while(((min_reference_result<=result.fun) or first_run) and (iterations<100)):   
-    results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Nelder-Mead"))
-    results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Powell"))
-    results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Anneal",options={"lower":0.0,"upper":1.0}))
+  while(((min_reference_result<=result.fun) or first_run) and (iterations<10)):
+    for i in range(10):
+        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Nelder-Mead"))
+        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Powell"))
+        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="L-BFGS-B",bounds=(tuple([(0.0,1.0) for x_i in initial_guess]))))
+        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="TNC",bounds=(tuple([(0.0,1.0) for x_i in initial_guess]))))
+        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="COBYLA",bounds=(tuple([(0.0,1.0) for x_i in initial_guess]))))
+        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="SLSQP",bounds=(tuple([(0.0,1.0) for x_i in initial_guess]))))
+        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Anneal",options={"lower":0.0,"upper":1.0}))
+        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Anneal",options={"lower":0.0,"upper":1.0,"schedule":"cauchy"}))
     #results.append(scipy.optimize.anneal(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),lower=0.0,upper=1.0,full_output=True))
     #for T0 in numpy.arange(0.2,1.2,0.2): results.append(scipy.optimize.anneal(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),lower=0.0,upper=1.0,full_output=True,T0=T0))
       #for dwell in range(100,500,100): anneal_results.append(scipy.optimize.anneal(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),lower=0.0,upper=1.0,full_output=True,T0=T0,dwell=dwell)) #,dwell=100
