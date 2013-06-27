@@ -47,18 +47,49 @@ def accuracy_to_paths(target_accuracy,task,solver):
   return temp_paths
 
 def proportional_solver_cost(x,reference_paths,reference_solver):
+    #TODO this could be a lot smarter, and take better advantage of the solver infrastructure
     temp_solver = copy.copy(reference_solver)
+    
+    task_proportional_paths = x*reference_paths
+    task_order_list = [0 for n in len(x)]
+    
+    shared_dict = {}
+    for i,x_i in enumerate(temp_solver.derivative): #enumerate over the tasks, looking for shared underlyings
+        shared_dict[i] = []
+        if(i not in task_order_list):
+            task_order_list.append(i) #Adding this task to the order list if it is not already in it
+            for j,x_j in enumerate(temp_solver.derivative[i:]): #Look from the current task onwards
+                if((x_i.underlying==x_j.underlying) and (i!=j)): #If a shared underlying is found
+                    shared_dict[i].append(x_j) #Add it to a dictionary
+                    task_order_list.append(j) #Indicate that it is next in line after the current tasks
+                    max_paths = max(task_proportional_paths[i],task_proportional_paths[j]) #Set the number of paths to be equal to the maximum number required
+                    task_proportion_paths[i] = max_paths
+                    task_proportion_paths[j] = max_paths
+    
+    tasks_to_run = range(len(temp_solver.derivative[:])) #List for keeping track of which tasks still need to be run
     
     latency = []
     accuracy = []
     for index,x_i in enumerate(x): #enumerate over the tasks
-        temp_solver.derivative = [reference_solver.derivative[index]]
-        temp_solver.latency_model = temp_solver.generate_aggregate_latency_model()
-        temp_solver.accuracy_model = temp_solver.generate_aggregate_accuracy_model()
-        temp_latency = temp_solver.latency_model(int(x_i*reference_paths[index]))
-        temp_accuracy = temp_solver.accuracy_model(int(x_i*reference_paths[index]))
-        latency.append(temp_latency)
-        accuracy.append(temp_accuracy)
+        if not(shared_dict[index] and (index in tasks_to_run)): #if there is no shared underlyings
+            temp_solver.derivative = [reference_solver.derivative[index]]
+            tasks_to_run.remove(index)
+            
+        elif(index in tasks_to_run): #If there is shared underlyings...
+            temp_tasks = [reference_solver.derivative[index]]
+            temp_tasks.extend(shared_dict[index]) #Adding the shared tasks to the run
+            temp_solver.derivative = temp_tasks
+            for j,t_t in enumerate(temp_tasks): tasks_to_run.remove(reference_solver.derivative.index(t_t)) #Removing the shared tasks from the run list
+            
+        if(index in tasks_to_run): #If a task is being run, actually run it!
+            temp_solver.latency_model = temp_solver.generate_aggregate_latency_model()
+            temp_solver.accuracy_model = temp_solver.generate_aggregate_accuracy_model()
+            temp_latency = temp_solver.latency_model(int(x_i*task_proportional_paths[index]))
+            temp_accuracy = temp_solver.accuracy_model(int(x_i*task_proportional_paths[index]))
+            latency.append(temp_latency)
+            accuracy.append(temp_accuracy)
+        
+    accuracy = [accuracy[t_o_l] for t_o_l in task_order_list] #Reordering accuracy to the order expected
         
     return (numpy.array(accuracy),sum(latency))
     
@@ -73,7 +104,7 @@ def solvers_cost_function(x,target_accuracy,reference_paths,solvers):
     #print x
     #print len(solvers)-1
     #print len(solvers[0].derivative)
-    x = numpy.array(x).reshape((len(solvers)-1,len(solvers[0].derivative)))
+    x = numpy.array(x).reshape((len(solvers)-1,len(solvers[0].derivative))) #Reshaping into matrix of task allocation
     #print x
     solver_results = []
     for i,solver in enumerate(solvers[:-1]): solver_results.append(proportional_solver_cost(x[i],reference_paths[i],solver)) #gather characteristics of solvers for the current iteration
@@ -132,8 +163,7 @@ def enforce_bounds(x,target_accuracy,reference_paths,solvers):
   x = flip_and_cap(x)
   
   return solvers_cost_function(x,target_accuracy,reference_paths,solvers)
-  
-  
+    
 def optimise_latency_target_accuracy(target_accuracy,reference_solvers,index,queue):
   
   reference_paths = numpy.zeros((len(reference_solvers),len(reference_solvers[0].derivative)))
