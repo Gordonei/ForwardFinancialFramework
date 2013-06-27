@@ -214,18 +214,21 @@ def optimise_latency_target_accuracy(target_accuracy,reference_solvers,index,que
   first_run = True
   iterations = 0
   result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Nelder-Mead")
- 
+  best_method = "Nelder-Mead"
+  
+  max_iterations = 20
+  methods = ["Nelder-Mead","Powell","L-BFGS-B","TNC","COBYLA","SLSQP","Anneal","Anneal-with-cauchy"]
   results = []
-  while(((min_reference_result<=result.fun) or first_run) and (iterations<10)):
-    for i in range(10):
-        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Nelder-Mead"))
-        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Powell"))
-        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="L-BFGS-B",bounds=(tuple([(0.0,1.0) for x_i in initial_guess]))))
-        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="TNC",bounds=(tuple([(0.0,1.0) for x_i in initial_guess]))))
-        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="COBYLA",bounds=(tuple([(0.0,1.0) for x_i in initial_guess]))))
-        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="SLSQP",bounds=(tuple([(0.0,1.0) for x_i in initial_guess]))))
-        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Anneal",options={"lower":0.0,"upper":1.0}))
-        results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Anneal",options={"lower":0.0,"upper":1.0,"schedule":"cauchy"}))
+  method_results = []
+  while(((min_reference_result<=result.fun) or first_run) and (iterations<max_iterations)):
+    for i in range(5):
+        for m in methods:
+            if(m in ["L-BFGS-B","TNC","COBYLA","SLSQP"]): results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=m,bounds=(tuple([(0.0,1.0) for x_i in initial_guess]))))
+            elif(m in ["Anneal"]): results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=m,options={"lower":0.0,"upper":1.0}))
+            elif(m in ["Anneal-with-cauchy"]): results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Anneal",options={"lower":0.0,"upper":1.0,"schedule":"cauchy"}))
+            else: scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=m)
+            method_results.append(m)
+        
     #results.append(scipy.optimize.anneal(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),lower=0.0,upper=1.0,full_output=True))
     #for T0 in numpy.arange(0.2,1.2,0.2): results.append(scipy.optimize.anneal(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),lower=0.0,upper=1.0,full_output=True,T0=T0))
       #for dwell in range(100,500,100): anneal_results.append(scipy.optimize.anneal(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),lower=0.0,upper=1.0,full_output=True,T0=T0,dwell=dwell)) #,dwell=100
@@ -233,15 +236,16 @@ def optimise_latency_target_accuracy(target_accuracy,reference_solvers,index,que
     
     best_result_index = 0
     for i,r in enumerate(results):
-      if(r.fun < results[best_result_index].fun): best_result_index = i
+      if(r.fun < results[best_result_index].fun):
+        best_result_index = i
       
     result = results[best_result_index] #Selecting best result so far...
     first_run = False
     iterations = iterations+1
     #print iterations
     
-  if(iterations==100): print "Max iterations reached for %f"%target_accuracy
-  else: print "Exited on iteration %d for %f"% (iterations,target_accuracy)
+  if(iterations==max_iterations): print "Max iterations reached for %f"%target_accuracy
+  else: print "Exited on iteration %d for %f with %s method"% (iterations,target_accuracy,method_results[i])
   
   #print result
   queue.put((index,result.fun,flip_and_cap(result.x)))
