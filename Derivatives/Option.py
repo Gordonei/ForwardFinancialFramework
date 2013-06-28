@@ -46,7 +46,9 @@ class Option:
         if(call): return end_price - strike_price
         else: return strike_price - end_price
         
-    def latency_model(self,paths): return self.latency_model_coefficients[0]*paths + self.latency_model_coefficients[1]
+    def latency_model(self,paths): 
+      if(paths>0): return self.latency_model_coefficients[0]*paths + self.latency_model_coefficients[1]
+      else: return self.latency_model_coefficients[1]
       
     def accuracy_model(self,paths): #return self.accuracy_model_coefficients[0]*paths**-0.5 + self.accuracy_model_coefficients[1]
       if(paths>0): temp = self.accuracy_model_coefficients[0]*paths**-0.5 + self.accuracy_model_coefficients[1]
