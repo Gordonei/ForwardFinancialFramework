@@ -22,6 +22,7 @@ def random_colour():
         
 def accuracy_latency(target_accuracy,solver):
     paths = 100
+    solver.accuracy_model = solver.generate_aggregate_accuracy_model() #just to be sure...
     temp_accuracy = solver.accuracy_model(paths)
     
     #print temp_accuracy
@@ -86,8 +87,10 @@ def proportional_solver_cost(x,reference_paths,reference_solver):
         if(index in tasks_to_run): #If a task is being run, actually run it!
             temp_solver.latency_model = temp_solver.generate_aggregate_latency_model()
             temp_solver.accuracy_model = temp_solver.generate_aggregate_accuracy_model()
-            temp_latency = temp_solver.latency_model(int(x_i*task_proportional_paths[index]))
-            temp_accuracy = temp_solver.accuracy_model(int(x_i*task_proportional_paths[index]))
+            temp_latency = temp_solver.latency_model(int(task_proportional_paths[index]))
+            #print task_proportional_paths[index]
+            temp_accuracy = temp_solver.accuracy_model(int(task_proportional_paths[index]))
+            #print temp_accuracy
             latency.append(temp_latency)
             accuracy.append(temp_accuracy)
             for t in shared_dict[i]: 
@@ -97,7 +100,7 @@ def proportional_solver_cost(x,reference_paths,reference_solver):
         
     #print accuracy
     accuracy = [accuracy[t_o_l] for t_o_l in task_order_list] #Reordering accuracy to the order expected
-        
+       
     return (numpy.array(accuracy),sum(latency))
     
 def solvers_cost_function(x,target_accuracy,reference_paths,solvers):
@@ -116,7 +119,7 @@ def solvers_cost_function(x,target_accuracy,reference_paths,solvers):
 	if(temp>=1.0): flag = True
       
       if(flag): solver_results.append(proportional_solver_cost(x[i],reference_paths[i],solver)) #gather characteristics of solvers for the current iteration
-        
+      
     #Summing the accuracies to find if the target accuracy has been met
     std_deviations = numpy.zeros(len(x[0]))
     paths = numpy.ones(len(x[0]))
@@ -129,9 +132,7 @@ def solvers_cost_function(x,target_accuracy,reference_paths,solvers):
     else:
       current_std_dev = (std_deviations/paths)**0.5
       current_accuracy = current_std_dev*1.96/(paths)**0.5
-    
-    
-    
+      
     """print "New Result"
     print x
     print reference_paths
@@ -143,15 +144,23 @@ def solvers_cost_function(x,target_accuracy,reference_paths,solvers):
 	#max_index = list(current_accuracy).index(max(current_accuracy))
         #print "max accuracy: %f"%current_accuracy[max_index]
         if (std_deviations.any()): num_paths_total = (current_std_dev*1.96/target_accuracy)**2
-        else: num_paths_total = [accuracy_to_paths(target_accuracy,t,solvers[-1]) for t in solvers[-1].derivative]
+        else: num_paths_total = numpy.array([accuracy_to_paths(target_accuracy,t,solvers[-1]) for t in solvers[-1].derivative])
+        
         paths_diff = num_paths_total - paths
         num_paths_needed = []
         for p in paths_diff:
             if(p>0): num_paths_needed.append(p)
             else: num_paths_needed.append(0.0)
             
-        portional_paths = numpy.array(num_paths_needed)/reference_paths[-1]
+        num_paths_needed = numpy.array(num_paths_needed)
+        #print current_accuracy
+        #print num_paths_needed
+        portional_paths = num_paths_needed/reference_paths[-1]
+        #print portional_paths
         solver_results.append(proportional_solver_cost(portional_paths,reference_paths[-1],solvers[-1]))
+        #print solver_results[-1]
+    
+    #print solver_results
         
     #else: print "Accuracy Target achieved for %f, not using fall back platform" %target_accuracy
         
@@ -166,29 +175,28 @@ def flip_and_cap(x):
   x = temp[:]
   temp = []
   for x_i in x:
-    if(x_i)>1.0: temp.append(1.0) #Capping values at 1.0
+    if(x_i>1.0): temp.append(1.0) #Capping values at 1.0
     else: temp.append(x_i)
   x = temp[:]
   
   return x
 
 def enforce_bounds(x,target_accuracy,reference_paths,solvers):
-  
   x = flip_and_cap(x)
   
   return solvers_cost_function(x,target_accuracy,reference_paths,solvers)
     
 def optimise_latency_target_accuracy(target_accuracy,reference_solvers,index,queue):
-  
   initial_guesses = []
   
   reference_paths = numpy.zeros((len(reference_solvers),len(reference_solvers[0].derivative)))
   reference_results = []
   for i,r_s in enumerate(reference_solvers): #iterating over solvers
-    for j,t in enumerate(r_s.derivative): reference_paths[i][j] = accuracy_to_paths(target_accuracy,t,r_s) #iterating over tasks
+    for j,t in enumerate(r_s.derivative): reference_paths[i][j] = accuracy_to_paths(target_accuracy,t,r_s) #iterating over tasks to find the paths needed to achieve the desired accuracy 
+    
     reference_results.append(accuracy_latency(target_accuracy,r_s)) #Finding out what is the best performance possible on the individual platforms
       
-  min_reference_result = min(reference_results)
+  min_reference_result = numpy.min(reference_results)
   min_reference_index = reference_results.index(min_reference_result)
       
   """initial_weights = []
@@ -231,6 +239,7 @@ def optimise_latency_target_accuracy(target_accuracy,reference_solvers,index,que
   result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Nelder-Mead")
   best_method = "Nelder-Mead"
   
+  #print flip_and_cap(result.x)
   print "Initial for %f: %f vs %f" % (target_accuracy,min_reference_result,result.fun)
   
   max_iterations = 20
@@ -240,7 +249,7 @@ def optimise_latency_target_accuracy(target_accuracy,reference_solvers,index,que
   results = []
   method_results = ["Nelder-Mead"]
   best_result_index = 0
-  while(((min_reference_result<=result.fun) or first_run) and (iterations<max_iterations)):
+  while(((min_reference_result<result.fun) or first_run) and (iterations<max_iterations)):
     for initial_guess in initial_guesses: #Trying all of the initial guesses
         for m in methods:
             if(m in ["L-BFGS-B","TNC","COBYLA","SLSQP"]): results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=m,bounds=(tuple([(0.0,1.0) for x_i in initial_guess]))))
