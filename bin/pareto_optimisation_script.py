@@ -184,9 +184,17 @@ def flip_and_cap(x):
 def enforce_bounds(x,target_accuracy,reference_paths,solvers):
   x = flip_and_cap(x)
   
-  return solvers_cost_function(x,target_accuracy,reference_paths,solvers)
+  result = solvers_cost_function(x,target_accuracy,reference_paths,solvers)
+  return result
+
+def optimise_thread(target_accuracy,reference_paths,solvers,initial_guess,method,options,bounds,queue):
+  if(bounds and options): result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=method,options=options,bounds=bounds)
+  elif(bounds): result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=method,bounds=bounds)
+  elif(options): result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=method,options=options)
+  else: result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=method)
+  queue.put(result)
     
-def optimise_latency_target_accuracy(target_accuracy,reference_solvers,index,queue):
+def optimise_latency_target_accuracy(target_accuracy,reference_solvers):
   initial_guesses = []
   
   reference_paths = numpy.zeros((len(reference_solvers),len(reference_solvers[0].derivative)))
@@ -236,42 +244,60 @@ def optimise_latency_target_accuracy(target_accuracy,reference_solvers,index,que
   for i_g in numpy.arange(0.0,1.0,0.2): initial_guesses.append(numpy.ones(initial_guess.shape)*i_g) #The rest of the guesses slowly increase the task proportion across all platforms
 
   iterations = 0
-  result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Nelder-Mead")
-  best_method = "Nelder-Mead"
+  result = 0.0
   
   #print flip_and_cap(result.x)
-  print "Initial for %f: %f vs %f" % (target_accuracy,min_reference_result,result.fun)
+  #print "Initial for %f: %f vs %f" % (target_accuracy,min_reference_result,result.fun)
+  
+  thread_count = 0
+  thread_limit = int(multiprocessing.cpu_count()*1.5) #Allow up to 1.5 times as many threads as there are processors
+  processes = []
+  x_results = [[] for i in range(len(accuracy_range))]
+  latency_results = numpy.zeros(len(accuracy_range))
+  queue = multiprocessing.Queue()
   
   max_iterations = 20
+  min_iterations = 2
   first_run = True
   methods = ["Nelder-Mead","Powell","L-BFGS-B","TNC","COBYLA","SLSQP","Anneal","Anneal-with-cauchy"]
-  #methods = ["Nelder-Mead"] 
+  #methods = ["Nelder-Mead"]
+  
+  result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Nelder-Mead")
   results = []
-  method_results = ["Nelder-Mead"]
   best_result_index = 0
-  while(((min_reference_result<result.fun) or first_run) and (iterations<max_iterations)):
+  while(((min_reference_result<result.fun) or first_run or (iterations<min_iterations)) and (iterations<max_iterations)):
     for initial_guess in initial_guesses: #Trying all of the initial guesses
         for m in methods:
-            if(m in ["L-BFGS-B","TNC","COBYLA","SLSQP"]): results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=m,bounds=(tuple([(0.0,1.0) for x_i in initial_guess]))))
-            elif(m in ["Anneal"]): results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=m,options={"lower":0.0,"upper":1.0}))
-            elif(m in ["Anneal-with-cauchy"]): results.append(scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Anneal",options={"lower":0.0,"upper":1.0,"schedule":"cauchy"}))
-            else: scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=m)
-            method_results.append(m)
-        
+	    if(thread_count == thread_limit): #If the thread limit has been reached
+	      for p in processes: p.join()
+	      processes = []
+	      thread_count = 0
+	  
+            if(m in ["L-BFGS-B","TNC","SLSQP"]): processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,m,{},tuple([(0.0,1.0) for x_i in initial_guess]),queue))) 
+	    elif(m in ["Anneal"]): processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,"Anneal",{"lower":0.0,"upper":1.0},[],queue)))
+	    elif(m in ["Anneal-with-cauchy"]): processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,"Anneal",{"lower":0.0,"upper":1.0,"schedule":"cauchy"},[],queue))) 
+	    else: processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,m,{},[],queue))) 
+	    
+	    processes[-1].start()
+	    thread_count = thread_count + 1
+    
+    if(iterations==(max_iterations-1)):
+      for i,p in enumerate(processes): p.join() #Wait for everything to finish on the last iteration
+  
+    while(not(queue.empty()) or not(results)): results.append(queue.get())
+    
     for i,r in enumerate(results):
-      if(r.fun < results[best_result_index].fun):
-        best_result_index = i
+      if(r.fun < result.fun): result = r
       
-    result = results[best_result_index] #Selecting best result so far...
     iterations = iterations+1
     first_run = False
     #print iterations
     
-  if(iterations==max_iterations): print "Max iterations reached for %f, best effort used %s method"% (target_accuracy,method_results[best_result_index])
-  else: print "Exited on iteration %d for %f with %s method"% (iterations,target_accuracy,method_results[best_result_index])
+  if(iterations==max_iterations): print "Max iterations reached for %f"% (target_accuracy)
+  else: print "Exited on iteration %d for %f"% (iterations,target_accuracy)
   
   print flip_and_cap(result.x)
-  queue.put((index,result.fun,flip_and_cap(result.x)))
+  return (flip_and_cap(result.x),result.fun)
 
 if( __name__ == '__main__' and len(sys.argv)>4):
     fig = plt.figure()
@@ -310,27 +336,12 @@ if( __name__ == '__main__' and len(sys.argv)>4):
         #accuracy_range = accuracy_range[0] #not sure why this has to be done...
     
     print "Launching Optimisation"
-    thread_count = 0
-    thread_limit = multiprocessing.cpu_count()*2 #Allow up to 2 times as many threads as there are processors
-    processes = []
-    x_results = [[] for i in range(len(accuracy_range))]
-    latency_results = numpy.zeros(len(accuracy_range))
-    queue = multiprocessing.Queue()
+    x_results = []
+    latency_results = []
     for k,target_accuracy in enumerate(accuracy_range):
-      if(thread_count == thread_limit): 
-	for p in processes: p.join()
-	processes = []
-	thread_count = 0
-      processes.append(multiprocessing.Process(target=optimise_latency_target_accuracy,args=(target_accuracy,reference_solvers,k,queue)))
-      processes[-1].start()
-      thread_count = thread_count + 1
-      
-    for i,p in enumerate(processes): p.join() #Wait for everything to finish
-    
-    while(not queue.empty()): 
-      result = queue.get()
-      latency_results[result[0]] = result[1]
-      x_results[result[0]] = numpy.array(result[2]) #.reshape((len(reference_solvers),len(reference_solvers[0].derivative)))
+      result = optimise_latency_target_accuracy(target_accuracy,reference_solvers)
+      x_results.append(result[0])
+      latency_results.append(result[1])
     
     #print x_results
     x_results = numpy.array(x_results).reshape(len(accuracy_range),len(reference_solvers)-1,len(reference_solvers[0].derivative))
