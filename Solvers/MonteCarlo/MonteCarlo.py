@@ -220,6 +220,7 @@ class MonteCarlo:
 		name = "%s"%temp_temp_derivatives[0].name[:2]
 		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
 		temp_u = copy.copy(u)
+		#print "%d - %s"%(self.underlying.index(u)+1,name)
 		latency_sum.append(lambda x: temp_u.latency_model("%s"%name[:],x))
       
       for d in temp_derivatives: latency_sum.append(lambda x: d.latency_model(x))
@@ -246,6 +247,7 @@ class MonteCarlo:
 		temp_u = copy.copy(u)
 		accuracies.append(lambda x: temp_u.accuracy_model("%s"%name,x))	
       
+      #print len(temp_derivatives)
       for d in temp_derivatives: accuracies.append(lambda x: d.accuracy_model(x))
       
       return lambda x: max([a(x) for a in accuracies])

@@ -38,6 +38,9 @@ class Underlying:
         self.time += delta_time
         
     def latency_model(self,tasks,paths):
-      return self.latency_model_coefficients[tasks][0]*paths + self.latency_model_coefficients[tasks][1]
-      
-    def accuracy_model(self,tasks,paths): return self.accuracy_model_coefficients[tasks][0]*paths**-0.5 + self.accuracy_model_coefficients[tasks][1]
+      if(paths>0): return self.latency_model_coefficients[tasks][0]*paths + self.latency_model_coefficients[tasks][1]
+      else: return 0.0      
+
+    def accuracy_model(self,tasks,paths): 
+      if(paths>0): return self.accuracy_model_coefficients[tasks][0]*paths**-0.5 + self.accuracy_model_coefficients[tasks][1]
+      else: return 100.0
