@@ -52,7 +52,5 @@ class Option:
       #else: return self.latency_model_coefficients[1]
       
     def accuracy_model(self,paths): #return self.accuracy_model_coefficients[0]*paths**-0.5 + self.accuracy_model_coefficients[1]
-      if(paths>0): temp = self.accuracy_model_coefficients[0]*paths**-0.5 + self.accuracy_model_coefficients[1]
-      else: temp = 100.0
-      if(temp>0.0): return temp
+      if(paths>0): return self.accuracy_model_coefficients[0]*paths**-0.5 + self.accuracy_model_coefficients[1]
       else: return 100.0
