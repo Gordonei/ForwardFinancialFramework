@@ -44,9 +44,11 @@ def task_accuracy_to_paths(target_accuracy,task,solver):
   
   temp_paths = 100
   temp_accuracy = temp_solver.accuracy_model(temp_paths)
-  while(temp_accuracy>=target_accuracy):
+  while(temp_accuracy>=target_accuracy and target_accuracy!=100.0):
     temp_paths = temp_paths + 100
     temp_accuracy = temp_solver.accuracy_model(temp_paths)
+  
+  if(target_accuracy==100.0): temp_paths = 0.0
     
   return temp_paths
 
@@ -154,24 +156,27 @@ def solvers_cost_function(x,target_accuracy,reference_paths,solvers):
     paths = numpy.ones(len(x[0]))
     for i,s_r in enumerate(solver_results):
 	prop_paths = numpy.array([int(x[i][j]*reference_paths[i][j]) for j in range(len(x[i]))])
-        std_deviations = std_deviations + prop_paths*((solver_results[i][0])*(prop_paths)**0.5/1.96)**2
+        std_deviations = std_deviations + prop_paths*((solver_results[i][0])*(prop_paths)**0.5/1.96/100)**2
         paths = paths + prop_paths
         
     #print paths
     
+    current_std_dev = []
     current_accuracy = []
     for i,s_d in enumerate(std_deviations):
       if(s_d==0): current_accuracy.append(100.0)
       else:
-	current_std_dev = (s_d/paths[i])**0.5
-	current_accuracy.append(current_std_dev*1.96/(paths[i])**0.5)
+	current_std_dev.append((s_d/paths[i])**0.5)
+	current_accuracy.append(current_std_dev[-1]*1.96*100/(paths[i])**0.5)
+	if(current_accuracy[-1]>100.0): current_accuracy[-1] = 100.0
 	
+    current_std_dev = numpy.array(current_std_dev)
     current_accuracy = numpy.array(current_accuracy)
 	
     """if not(std_deviations.any()): current_accuracy = numpy.ones(len(x[0]))*100.0
     else:
       current_std_dev = (std_deviations/paths)**0.5
-      current_accuracy = current_std_dev*1.96/(paths)**0.5"""
+      current_accuracy = current_std_dev*1.96/100/(paths)**0.5"""
       
     #print "New Result"
     #print x*reference_paths[:-1]
@@ -180,26 +185,35 @@ def solvers_cost_function(x,target_accuracy,reference_paths,solvers):
     #print target_accuracy
     
     if(numpy.max(current_accuracy)>target_accuracy): #If the target accuracy hasn't been met, use the remaining solver to meet it
-	#print "accuracy target has not been met"
-	#print x
-	#max_index = list(current_accuracy).index(max(current_accuracy))
-        #print "max accuracy: %f"%current_accuracy[max_index]
-        if (std_deviations.any()): num_paths_total = (current_std_dev*1.96/target_accuracy)**2
+	#print "target_accuracy %f vs %s" % (target_accuracy,current_accuracy)
+	
+        """if (std_deviations.any()): num_paths_total = (current_std_dev*1.96/target_accuracy)**2
         else: num_paths_total = numpy.array([task_accuracy_to_paths(target_accuracy,t,solvers[-1]) for t in solvers[-1].derivative])
+        )"""
+        #print len(current_std_dev)
+        #print len(reference_paths[-1])
+            
+        #num_paths_total = numpy.power(numpy.divide(current_std_dev*1.96,(numpy.ones(len(reference_paths[-1]))*target_accuracy)),2.0)
+        num_paths_current = []
+        for i,t in enumerate(reference_solvers[-1].derivative): num_paths_current.append(task_accuracy_to_paths(current_accuracy[i],t,reference_solvers[-1]))
+        num_paths_current = numpy.array(num_paths_current)
         
-        paths_diff = num_paths_total - paths
+        paths_diff = reference_paths[-1] - num_paths_current
+        
         num_paths_needed = []
-        for p in paths_diff:
-            if(p>0): num_paths_needed.append(p)
+        for i,p in enumerate(paths_diff):
+            if(p>0): num_paths_needed.append(int(p))
             else: num_paths_needed.append(0.0)
             
         num_paths_needed = numpy.array(num_paths_needed)
-        #print current_accuracy
-        #print num_paths_needed
+        
+        #print "reference_paths %s" % reference_paths[-1]
+        #print "paths needed %s" % num_paths_needed
+        
         portional_paths = num_paths_needed/reference_paths[-1]
-        #print portional_paths
+        #print "proportional paths %s"% portional_paths
         solver_results.append(proportional_solver_cost(portional_paths,reference_paths[-1],solvers[-1]))
-        #print solver_results[-1]
+	#print solver_results[-1]
     
     flag = True
     for s_r in solver_results:
@@ -380,7 +394,7 @@ def optimise_latency_target_accuracy(target_accuracy,reference_solvers):
 
   print "Finished with optimisation"
   for p in processes: #Killing what is left...
-    #p.join(1.0)
+    p.join(0.1)
     p.terminate()
 
   #processes = []
