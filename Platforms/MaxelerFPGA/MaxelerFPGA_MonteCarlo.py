@@ -33,7 +33,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     self.generate_source(hw_builder_code_string,"_HW_Builder.java")
     
     #Generate Maxeler Makefile
-    self.generate_makefile()
+    #self.generate_makefile()
   
   def generate_activity_thread(self):
     output_list = []

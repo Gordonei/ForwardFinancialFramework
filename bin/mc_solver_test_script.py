@@ -47,7 +47,7 @@ if( __name__ == '__main__' and len(sys.argv)>1):
     print "incorrect platform type!"
     sys.exit()
     
-  if((platform_name=="FPGA" and fpga_option=="Compile") or (platform.name!="FPGA")):
+  if((platform_name=="FPGA" and fpga_option=="Compile") or (platform_name!="FPGA")):
     mc_solver.generate()
     compile_output = mc_solver.compile()
   else: compile_output = ""
@@ -55,7 +55,7 @@ if( __name__ == '__main__' and len(sys.argv)>1):
   for c_o in compile_output:
     print c_o
   
-  if ((platform_name=="FPGA" and fpga_option=="Execute") or (platform.name!="FPGA")):
+  if ((platform_name=="FPGA" and fpga_option=="Execute") or (platform_name!="FPGA")):
     execution_output = mc_solver.execute(debug=True)
   else: execution_output = ""
   
