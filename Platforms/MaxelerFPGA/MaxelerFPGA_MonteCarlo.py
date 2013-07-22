@@ -397,22 +397,30 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #Hardware Build Process
       compile_cmd = ["make","build-hw","APP=%s"%self.output_file_name]
       hw_result = subprocess.check_output(compile_cmd)
+      
+      compile_string = ""
+      for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
+      if(debug): print compile_string
+   
       #subprocess.check_output(["rm -r ../../scratch/*"]) #cleaning up majority of HDL source code generated for synthesis
       #print hw_result
       
       #Host Code Compile
       #compile_cmd = ["FP_t=%s"%self.floating_point_format, "make","app-hw","APP=%s"%self.output_file_name]
       compile_cmd = ["make","app-hw","APP=%s"%self.output_file_name]
-      print compile_cmd
       sw_result = subprocess.check_output(compile_cmd)
       #print sw_result
+      
+      compile_string = ""
+      for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
+      if(debug): print compile_string
       
       os.chdir(self.platform.root_directory())
       os.chdir("bin")
       
       return (hw_result,sw_result)
       
-  def execute(self,cleanup=False):
+  def execute(self,cleanup=False,debug=False):
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -437,6 +445,10 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
     results = subprocess.check_output(run_cmd)
     finish = time.time()
+    
+    run_string = ""
+    for r_c in run_cmd: run_string = "%s %s"%(run_string,r_c)
+    if(debug): print run_string
     
     results = results.split("\n")[:-1]
     results.append((finish-start)*1000000)
