@@ -363,7 +363,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #makefile.write("HOSTSIMBUILDER=$(APP)_Host_Sim_Builder.java")
     #makefile.write("SIMRUNNER=$(APP)_Sim_Runner.java")
     makefile.write("HOSTCODE=$(APP)_Host_Code.c\n")
-    makefile.write("KERNELCODE=$(APP)_Kernel.java\n\n")
+    makefile.write("KERNELCODE=$(APP)_Kernel.java\n")
+    makefile.write("CFLAGS+=-DFP_t=%s\n\n"%self.floating_point_format)
     
     """makefile.write("nullstring :=\n")
     makefile.write("space := $(nullstring)\n")
@@ -400,7 +401,9 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #print hw_result
       
       #Host Code Compile
-      compile_cmd = ["FP_t=%s"%self.floating_point_format, "make","app-hw","APP=%s"%self.output_file_name]
+      #compile_cmd = ["FP_t=%s"%self.floating_point_format, "make","app-hw","APP=%s"%self.output_file_name]
+      compile_cmd = ["make","app-hw","APP=%s"%self.output_file_name]
+      print compile_cmd
       sw_result = subprocess.check_output(compile_cmd)
       #print sw_result
       
@@ -432,7 +435,6 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         index +=1
     
     start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
-    #print run_cmd
     results = subprocess.check_output(run_cmd)
     finish = time.time()
     
