@@ -5,7 +5,8 @@ import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
 public class heston_underlying_parameters extends underlying_parameters {
 	protected HWVar initial_volatility,volatility_volatility,rho,kappa,theta,seed,seed2;
 
-	public heston_underlying_parameters(MC_Solver_Maxeler_Base_Kernel k,HWVar rfir, HWVar current_price,HWVar initial_volatility,HWVar volatility_volatility,HWVar rho,HWVar kappa,HWVar theta){
+	//rfir,current_price,initial_volatility,volatility_volatility,rho,kappa,theta,correlation_matrix_0_0=0.0,correlation_matrix_0_1=0.0,correlation_matrix_1_0=0.0,correlation_matrix_1_1=0.0
+	public heston_underlying_parameters(MC_Solver_Maxeler_Base_Kernel k,HWVar rfir, HWVar current_price,HWVar initial_volatility,HWVar volatility_volatility,HWVar rho,HWVar kappa,HWVar theta,HWVar correlation_matrix_0_0,HWVar correlation_matrix_0_1,HWVar correlation_matrix_1_0,HWVar correlation_matrix_1_1){
 		super(k,rfir,current_price);
 
 		this.initial_volatility = initial_volatility;

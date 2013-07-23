@@ -57,10 +57,9 @@ if( __name__ == '__main__' and len(sys.argv)>1):
   
   if ((platform_name=="FPGA" and fpga_option=="Execute") or (platform_name!="FPGA")):
     execution_output = mc_solver.execute(debug=True)
+    for e_o in execution_output: print execution_output
+
   else: execution_output = ""
-  
-  for e_o in execution_output:
-    print e_o
     
 else:
   print "usage: python mc_solver_test_script [CPU|GPU|FPGA] [Compile|Execute]"

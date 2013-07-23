@@ -2,15 +2,18 @@
 Created on 30 October 2012
 
 '''
-import os,time,subprocess,sys,time,math
+import os,time,subprocess,sys,time,math,multiprocessing,numpy
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo
+from ForwardFinancialFramework.Underlyings import Underlying
+from ForwardFinancialFramework.Derivatives import Option
+import MaxelerFPGA
 
 class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
-  def __init__(self,derivative,paths,platform,points=252,reduce_underlyings=True):
+  def __init__(self,derivative,paths,platform,points=4096,reduce_underlyings=True):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     
     self.solver_metadata["instances"] = self.platform.instances #Number of instances set by the platform
-    self.solver_metadata["instance_paths"] = 1000 #setting the number of threads used per instance
+    self.solver_metadata["instance_paths"] = 1000 #setting the number of paths per instance
     self.solver_metadata["path_points"] = points
     self.iterations = int(self.solver_metadata["paths"]/self.solver_metadata["instance_paths"]) #calculating the number of iterations required of the kernel
     
@@ -341,7 +344,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("c.setBuildEffort(BuildConfig.Effort.MEDIUM);")  #LOW,MEDIUM,HIGH,VERY_HIGH
     output_list.append("c.setEnableTimingAnalysis(true);")
     output_list.append("c.setMPPRCostTableSearchRange(1,100);")
-    output_list.append("c.setMPPRParallelism(10);")
+    output_list.append("c.setMPPRParallelism(%d);"%int(math.ceil(multiprocessing.cpu_count()*0.8))) #Why not take up most of the cores available?
     output_list.append("m.setBuildConfig(c);")
     output_list.append("m.build();")
     output_list.append("}")#Closing off Main Method
@@ -396,11 +399,12 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     if(override or not os.path.exists("hardware/%s/"%self.output_file_name)):
       #Hardware Build Process
       compile_cmd = ["make","build-hw","APP=%s"%self.output_file_name]
-      hw_result = subprocess.check_output(compile_cmd)
       
       compile_string = ""
       for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
       if(debug): print compile_string
+      
+      hw_result = subprocess.check_output(compile_cmd)
    
       #subprocess.check_output(["rm -r ../../scratch/*"]) #cleaning up majority of HDL source code generated for synthesis
       #print hw_result
@@ -408,18 +412,45 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #Host Code Compile
       #compile_cmd = ["FP_t=%s"%self.floating_point_format, "make","app-hw","APP=%s"%self.output_file_name]
       compile_cmd = ["make","app-hw","APP=%s"%self.output_file_name]
-      sw_result = subprocess.check_output(compile_cmd)
-      #print sw_result
       
       compile_string = ""
       for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
       if(debug): print compile_string
+      
+      sw_result = subprocess.check_output(compile_cmd)
+      #print sw_result
       
       os.chdir(self.platform.root_directory())
       os.chdir("bin")
       
       return (hw_result,sw_result)
       
+  def populate_model(self,base_trial_paths,trial_steps):
+      derivative_backup = self.derivative[:]
+      underlying_backup = self.underlying[:]
+      
+      for d in derivative_backup:
+	self.derivative = [d]
+	self.setup_underlyings(True)
+	self.generate()
+	#self.compile() #assumes that compilation has already been done
+	
+	trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
+	accuracy = trial_run_results[0]
+	latency = trial_run_results[1]
+	
+	latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
+	accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
+	
+	d.latency_model_coefficients.extend(latency_coefficients)
+	d.accuracy_model_coefficients.extend(accuracy_coefficients)
+    
+      self.derivative = derivative_backup
+      self.underlying = underlying_backup
+      
+      self.latency_model = self.generate_aggregate_latency_model()
+      self.accuracy_model = self.generate_aggregate_accuracy_model()
+  
   def execute(self,cleanup=False,debug=False):
     try:
       os.chdir("..")
@@ -459,4 +490,49 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     if(cleanup): self.cleanup()
     
     return results
+  
+  def trial_run(self,paths,steps,solver):
+      accuracy = []
+      latency = []
+
+      path_set = numpy.arange(paths,paths*(steps+1),paths)
+      for p in path_set: #Trial Runs to generate data needed for predicition functions
+	#Need to do a dummy run to clear the card before each run
+	self.dummy_run()
+	
+	#The Actual run
+	solver.solver_metadata["paths"] = p
+	execution_output = solver.execute()
+	
+	latency.append(float(execution_output[-1]))
+	
+	value = 0.0
+	std_error = 0.0
+	max_value = 0.0
+	for index,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
+	  if(not index%2): value = float(e_o)+0.00000000000001
+	  else: 
+	    std_error = float(e_o)
+	    
+	    error_prop = std_error/value*100
+	    if(error_prop>max_value): max_value = error_prop
+	
+	accuracy.append(max_value)
+
+      return [accuracy,latency]
     
+  def dummy_run(self):
+      rfir = 0.1
+      current_price = 100
+      time_period = 1.0
+      call = 1.0
+      strike_price = 100
+      paths = 1000
+      
+      underlying = [Underlying.Underlying(rfir,current_price)]
+      option = [Option.Option(underlying,time_period,call,strike_price)]
+      platform = MaxelerFPGA.MaxelerFPGA()
+      mc_solver = MaxelerFPGA_MonteCarlo(option,paths,platform) #because we can do recursive calls like this
+      #mc_solver.generate()
+      #compile_output = mc_solver.compile() #assume this has been done already
+      mc_solver.execute()

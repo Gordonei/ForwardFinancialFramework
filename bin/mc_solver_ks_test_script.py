@@ -7,8 +7,9 @@ import KS_ProblemSet
 
 if( __name__ == '__main__' and len(sys.argv)>3):
   platform_name = sys.argv[1]
-  paths = int(sys.argv[2])
-  options = sys.argv[3:]
+  paths = int(sys.argv[3])
+  fpga_option = sys.argv[2]
+  options = sys.argv[4:]
   
   option = KS_ProblemSet.KS_Options(options)
  
@@ -32,12 +33,12 @@ if( __name__ == '__main__' and len(sys.argv)>3):
     sys.exit()
     
   mc_solver.generate()
-  compile_output = mc_solver.compile(debug=True)
-  exection_output=[""]
-  if not(platform_name=="FPGA"): execution_output = mc_solver.execute(debug=True)
+  if ((platform_name=="FPGA" and "Compile"==fpga_option) or (platform_name!="FPGA")): compile_output = mc_solver.compile(debug=True)
+  execution_output=[""]
+  if ((platform_name=="FPGA" and "Execute"==fpga_option) or (platform_name!="FPGA")): execution_output = mc_solver.execute(debug=True)
   
   for e_o in execution_output:
     print e_o
     
 else:
-  print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] [Number of Paths] [KS Option Number 1] [KS Option Number 2] [...] [KS Option Number N]"
+  print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] {Compile|Execute} [Number of Paths] [KS Option Number 1] [KS Option Number 2] [...] [KS Option Number N]"
