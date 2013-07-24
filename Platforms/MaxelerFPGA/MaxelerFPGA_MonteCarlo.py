@@ -453,7 +453,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		if(d.underlying[0]==u):
 		  temp_derivatives.append(d)
 		    
-	    if(len(temp_derivatives)>1):
+	    if(len(temp_derivatives)>1): #If there are derivatives that share underlyings
 		for i in range(2**len(temp_derivatives)):
 		    count = 0
 		    for b in bin(i)[2:]:
@@ -461,13 +461,13 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 			
 		    derivatives=[]
 		    if(count>1):
-			for index in range(count): derivatives.append(temp_derivatives[index])
-			self.derivative = derivatives
+			#for index in range(count): derivatives.append(temp_derivatives[index]) #Get those underlyings together
+			self.derivative = temp_derivatives
 			self.setup_underlyings(True)
 			self.generate()
 			#self.compile()
 			
-			trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
+			trial_run_results = self.trial_run(base_trial_paths,trial_steps,self) #Run the trial for that grouping of underlyings
 			accuracy = trial_run_results[0]
 			latency = trial_run_results[1]
 	
@@ -536,13 +536,13 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
         index +=1
     
-    start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
-    results = subprocess.check_output(run_cmd)
-    finish = time.time()
-    
     run_string = ""
     for r_c in run_cmd: run_string = "%s %s"%(run_string,r_c)
     if(debug): print run_string
+    
+    start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
+    results = subprocess.check_output(run_cmd)
+    finish = time.time()
     
     results = results.split("\n")[:-1]
     results.append((finish-start)*1000000)
@@ -565,7 +565,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	
 	#The Actual run
 	solver.solver_metadata["paths"] = p
-	execution_output = solver.execute()
+	execution_output = solver.execute(debug=True)
 	
 	latency.append(float(execution_output[-1]))
 	

@@ -135,8 +135,7 @@ class MonteCarlo:
 	for u in underlying_backup:
 	    temp_derivatives = []
 	    for d in derivative_backup:
-		if(d.underlying[0]==u):
-		  temp_derivatives.append(d)
+		if(d.underlying[0]==u): temp_derivatives.append(d)
 		    
 	    if(len(temp_derivatives)>1):
 		for i in range(2**len(temp_derivatives)):
@@ -146,8 +145,8 @@ class MonteCarlo:
 			
 		    derivatives=[]
 		    if(count>1):
-			for index in range(count): derivatives.append(temp_derivatives[index])
-			self.derivative = derivatives
+			#for index in range(count): derivatives.append(temp_derivatives[index])
+			self.derivative = temp_derivatives
 			self.setup_underlyings(True)
 			self.generate()
 			self.compile()
