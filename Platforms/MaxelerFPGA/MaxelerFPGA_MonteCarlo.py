@@ -425,7 +425,70 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       
       return (hw_result,sw_result)
       
+  
   def populate_model(self,base_trial_paths,trial_steps):
+      derivative_backup = self.derivative[:]
+      underlying_backup = self.underlying[:]
+      
+      for d in derivative_backup:
+	self.derivative = [d]
+	self.setup_underlyings(True)
+	self.generate()
+	#self.compile()
+	
+	trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
+	accuracy = trial_run_results[0]
+	latency = trial_run_results[1]
+	
+	latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
+	accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
+	
+	d.latency_model_coefficients.extend(latency_coefficients)
+	d.accuracy_model_coefficients.extend(accuracy_coefficients)
+	
+      if(len(derivative_backup)>len(underlying_backup)): #Checking to see if there are any shared underlyings
+	for u in underlying_backup:
+	    temp_derivatives = []
+	    for d in derivative_backup:
+		if(d.underlying[0]==u):
+		  temp_derivatives.append(d)
+		    
+	    if(len(temp_derivatives)>1):
+		for i in range(2**len(temp_derivatives)):
+		    count = 0
+		    for b in bin(i)[2:]:
+			if(b=="1"): count = count+1
+			
+		    derivatives=[]
+		    if(count>1):
+			for index in range(count): derivatives.append(temp_derivatives[index])
+			self.derivative = derivatives
+			self.setup_underlyings(True)
+			self.generate()
+			#self.compile()
+			
+			trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
+			accuracy = trial_run_results[0]
+			latency = trial_run_results[1]
+	
+			latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
+			accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
+	
+			name = "%s"%temp_derivatives[0].name[:2]
+			for t_d in temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
+	
+			u.latency_model_coefficients["%s"%name] = latency_coefficients
+			u.accuracy_model_coefficients["%s"%name] = accuracy_coefficients
+		    
+	    
+    
+      self.derivative = derivative_backup
+      self.underlying = underlying_backup
+      
+      self.latency_model = self.generate_aggregate_latency_model()
+      self.accuracy_model = self.generate_aggregate_accuracy_model()
+      
+  """def populate_model(self,base_trial_paths,trial_steps):
       derivative_backup = self.derivative[:]
       underlying_backup = self.underlying[:]
       
@@ -449,7 +512,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       self.underlying = underlying_backup
       
       self.latency_model = self.generate_aggregate_latency_model()
-      self.accuracy_model = self.generate_aggregate_accuracy_model()
+      self.accuracy_model = self.generate_aggregate_accuracy_model()"""
   
   def execute(self,cleanup=False,debug=False):
     try:
