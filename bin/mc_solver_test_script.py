@@ -47,20 +47,19 @@ if( __name__ == '__main__' and len(sys.argv)>1):
     print "incorrect platform type!"
     sys.exit()
     
-  if((platform_name=="FPGA" and fpga_option=="Compile") or (platform.name!="FPGA")):
+  if((platform_name=="FPGA" and fpga_option=="Compile") or (platform_name!="FPGA")):
     mc_solver.generate()
-    compile_output = mc_solver.compile(debug=True)
+    compile_output = mc_solver.compile()
   else: compile_output = ""
   
   for c_o in compile_output:
     print c_o
   
-  if ((platform_name=="FPGA" and fpga_option=="Execute") or (platform.name!="FPGA")):
+  if ((platform_name=="FPGA" and fpga_option=="Execute") or (platform_name!="FPGA")):
     execution_output = mc_solver.execute(debug=True)
+    for e_o in execution_output: print execution_output
+
   else: execution_output = ""
-  
-  for e_o in execution_output:
-    print e_o
     
 else:
   print "usage: python mc_solver_test_script [CPU|GPU|FPGA] [Compile|Execute]"
