@@ -22,18 +22,25 @@ def random_colour():
     return (random.random(),random.random(),random.random())
         
 def accuracy_latency(target_accuracy,solver):
-    paths = 100
+    #paths = 100
     solver.accuracy_model = solver.generate_aggregate_accuracy_model() #just to be sure...
-    temp_accuracy = solver.accuracy_model(paths)
+    #temp_accuracy = solver.accuracy_model(paths)
     
     #print temp_accuracy
     #print target_accuracy
-    while(temp_accuracy>=target_accuracy):
-      paths = paths + 100
-      temp_accuracy = solver.accuracy_model(paths)
+    #while(temp_accuracy>=target_accuracy):
+      #paths = paths + 100
+      #temp_accuracy = solver.accuracy_model(paths)
     
     #print temp_accuracy
+    paths = []
+    for task in solver.derivative:
+      temp = (task.accuracy_model_coefficients[0]/(target_accuracy-task.accuracy_model_coefficients[1]))**2.0
+      paths.append(temp)
+      print "(%f/(%f-%f))^2 = %f"%(task.accuracy_model_coefficients[0],target_accuracy,task.accuracy_model_coefficients[1],paths[-1])
     
+    paths = max(paths)
+    print paths
     return solver.latency_model(paths)
 
 def task_accuracy_to_paths(target_accuracy,task,solver):
@@ -42,13 +49,21 @@ def task_accuracy_to_paths(target_accuracy,task,solver):
   temp_solver.derivative = [task]
   temp_solver.accuracy_model = temp_solver.generate_aggregate_accuracy_model()
   
+  if(target_accuracy==100): temp_paths = 0
+  else:
+    temp_paths = ((target_accuracy-task.accuracy_model_coefficients[1])/task.accuracy_model_coefficients[0])**-2.0
+    #print temp_paths
+    
+  """count = 1
   temp_paths = 100
   temp_accuracy = temp_solver.accuracy_model(temp_paths)
   while(temp_accuracy>=target_accuracy and target_accuracy!=100.0):
-    temp_paths = temp_paths + 100
+    temp_paths = temp_paths + 10**count
     temp_accuracy = temp_solver.accuracy_model(temp_paths)
+    print temp_accuracy
+    count = count + 1
   
-  if(target_accuracy==100.0): temp_paths = 0.0
+  if(target_accuracy==100.0): temp_paths = 0.0"""
     
   return temp_paths
 
@@ -67,7 +82,9 @@ def proportional_solver_cost(x,reference_paths,reference_solver):
     temp_solver = copy.copy(reference_solver)
     
     task_proportional_paths = x*reference_paths
-    for i,t_p_p in enumerate(task_proportional_paths): task_proportional_paths[i] = int(t_p_p)
+    for i,t_p_p in enumerate(task_proportional_paths): 
+      try: task_proportional_paths[i] = int(t_p_p)
+      except: task_proportional_paths[i] = 0
     #print task_proportional_paths
     
     task_order_list = []
@@ -138,9 +155,15 @@ def proportional_solver_cost(x,reference_paths,reference_solver):
 
 def remaining_solver_results(target_accuracy,solver_results,solver_paths,remaining_solver,remaining_reference_paths):
   #Summing the accuracies to find if the target accuracy has been met
-  std_deviations = numpy.zeros(len(remaining_reference_paths))
+  #std_deviations = numpy.zeros(len(remaining_reference_paths))
   paths = numpy.ones(len(remaining_reference_paths))
   for i,s_r in enumerate(solver_results):
+    for j,s_r_i in enumerate(s_r[0]):
+      paths[j] = paths[j] + task_accuracy_to_paths(s_r_i,remaining_solver.derivative[j],remaining_solver)
+  
+  paths_diff = remaining_reference_paths - paths
+  
+  """for i,s_r in enumerate(solver_results):
     for j,s_r_i in enumerate(s_r[0]):
       if(s_r_i<100.0):
 	std_deviations[j] = std_deviations[j] + solver_paths[i][j]*((s_r_i)*(solver_paths[i][j])**0.5/1.96/100)**2
@@ -156,19 +179,17 @@ def remaining_solver_results(target_accuracy,solver_results,solver_paths,remaini
       if(current_accuracy[-1]>100.0): current_accuracy[-1] = 100.0
       
   current_std_dev = numpy.array(current_std_dev)
-  current_accuracy = numpy.array(current_accuracy)
+  current_accuracy = numpy.array(current_accuracy)"""
   
   #print "current_std_dev %s" % current_std_dev
   #print "current_accuracy %s" % current_accuracy
   
-  if(numpy.max(current_accuracy)>target_accuracy): #If the target accuracy hasn't been met, use the remaining solver to meet it
+  if(numpy.max(paths_diff)>0): #If the target accuracy hasn't been met, use the remaining solver to meet it
       #print "target_accuracy %f vs %s" % (target_accuracy,current_accuracy)
 	  
-      num_paths_current = []
+      """num_paths_current = []
       for i,t in enumerate(remaining_solver.derivative): num_paths_current.append(task_accuracy_to_paths(current_accuracy[i],t,remaining_solver))
-      num_paths_current = numpy.array(num_paths_current)
-      
-      paths_diff = remaining_reference_paths - num_paths_current
+      num_paths_current = numpy.array(num_paths_current)"""
       
       num_paths_needed = []
       for i,p in enumerate(paths_diff):
@@ -199,16 +220,9 @@ def solvers_cost_function(x,target_accuracy,reference_paths,solvers):
     reference_paths: matrix of task reference paths. Each row represents a platform, each column a task. Each entry corresponds to the simulations required to achieve the targeted accuracy for the task on that platform alone.
     solvers: the set of solvers to consider.
     """
-    #print x
     x = numpy.array(x).reshape((len(solvers)-1,len(solvers[0].derivative))) #Reshaping into matrix of task allocation
     solver_results = []
-    for i,solver in enumerate(solvers[:-1]):
-      #flag = False
-      for j,x_i in enumerate(x[i]): #Checking to make sure that we're going to run at least one complete one path for at least one derivative in this solver
-	temp = int(x_i*reference_paths[i][j])
-	#if(temp>=1): flag = True
-      
-      solver_results.append(proportional_solver_cost(x[i],reference_paths[i],solver)) #gather characteristics of solvers for the current iteration
+    for i,solver in enumerate(solvers[:-1]): solver_results.append(proportional_solver_cost(x[i],reference_paths[i],solver)) #gather characteristics of solvers for the current iteration
       
     #print "solver_results %s for %s"% (str(solver_results),str(x))
     proportional_paths = numpy.zeros(reference_paths[:-1].shape)
@@ -218,16 +232,19 @@ def solvers_cost_function(x,target_accuracy,reference_paths,solvers):
     solver_results.append((remaining_solver_result[1],remaining_solver_result[2]))
       
     latency = max([s_r[1] for s_r in solver_results]) #The total latency is the longest running solver across the platforms
-    
+    #print "%s gives %f"%(x,latency)
     return latency
 
 def flip_and_cap(x):
   temp = numpy.array([abs(x_i) for x_i in x]) #Make sure everything is positive
   x = temp[:]
   temp = []
+  
   for x_i in x:
+    #for x_i_i in x_i:
     if(x_i>1.0): temp.append(1.0) #Capping values at 1.0
     else: temp.append(x_i)
+      
   x = temp[:]
   
   return x
@@ -243,7 +260,10 @@ def optimise_thread(target_accuracy,reference_paths,solvers,initial_guess,method
   elif(bounds): result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=method,bounds=bounds)
   elif(options): result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=method,options=options)
   else: result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method=method)
+  
+  #print "putting result %d - queue is full=%s" % (unique_value,queue.full())
   queue.put(result)
+  #print "done putting result %d" % unique_value
     
 def optimise_latency_target_accuracy(target_accuracy,reference_solvers):
   initial_guesses = []
@@ -255,57 +275,46 @@ def optimise_latency_target_accuracy(target_accuracy,reference_solvers):
     reference_result = proportional_solver_cost(numpy.ones(len(reference_paths[-1])),reference_paths[-1],r_s)
     other_reference_result_2 = accuracy_latency(target_accuracy,r_s)
     reference_results.append(reference_result[1])
-  
-  #print reference_paths
-  #print reference_results
-  #print min_reference_index
-      
-  """initial_weights = []
-  for i,r_s in enumerate(reference_solvers[:]):
-    initial_weights.append([])
-    for j,d in enumerate(r_s.derivative):
-        temp_solver = copy.copy(r_s)
-        temp_solver.derivative = [d]
-        temp_solver.accuracy_model = temp_solver.generate_aggregate_accuracy_model()
-        initial_weights[-1].append(accuracy_latency(target_accuracy,temp_solver)) #Initially spread results across platforms in proportion to how long the reference implementations take
-    
-    initial_weights[-1] = numpy.array(initial_weights[-1])
-  initial_weights = numpy.array(initial_weights)
-
-  initial_weight_min = numpy.ones(initial_weights.shape[1])*sum(initial_weights)
-  temp = copy.copy(initial_weights).T
-  for i,i_w in enumerate(initial_weights.T):
-      print "%d - %s" % (i,str(i_w))
-      for j,i_i_w in enumerate(i_w):
-          if(i_i_w==min(i_w)): temp[i][j] = 1.0
-	  else: temp[i][j] = 0.0 #0.2/(len(reference_solvers)-1)
-
-  #initial_weights = 1.0/(initial_weights/initial_weight_min) #working out how long the tasks take in proportion to eachother
-  initial_weights = temp.T"""
 
   reference_paths = numpy.array(reference_paths)
   min_reference_result = numpy.min(reference_results)
   min_reference_index = reference_results.index(min_reference_result)
+  print "reference_results = %s"%str(reference_results)
+  print "min_reference_index = %d"%min_reference_index
 
   initial_guess = numpy.zeros((len(reference_solvers)-1,len(reference_solvers[0].derivative))) #First guess just assigns everything to the best platform
   if(min_reference_index<len(initial_guess)): initial_guess[min_reference_index] = numpy.ones(len(reference_solvers[0].derivative))
+  temp = 1.0
+  for s in initial_guess.shape: temp = temp*s 
+  initial_guess = initial_guess.reshape((1,temp))[0]
+  initial_guesses.append(initial_guess)
   
-  temp = []
+  """temp = []
   for i_g in initial_guess: temp.extend(i_g)
   initial_guess = numpy.array(temp)
+  initial_guesses.append(initial_guess)"""
+
+  reference_results_relative_weights = [r_r/max(reference_results) for r_r in reference_results]
+  reference_results_relative_sum = sum(reference_results_relative_weights)
+  reference_results_weights = [r_r_r_w/reference_results_relative_sum for r_r_r_w in reference_results_relative_weights]
+  initial_guess = numpy.ones((len(reference_solvers)-1,len(reference_solvers[0].derivative)))
+  for i,r_r_w in enumerate(reference_results_weights[:-1]): initial_guess[i] = initial_guess[i]*r_r_w
+  temp = 1.0
+  for s in initial_guess.shape: temp = temp*s 
+  initial_guess = initial_guess.reshape((1,temp))[0]
   initial_guesses.append(initial_guess)
 
-  for i_g in numpy.arange(0.0,1.0,0.2): initial_guesses.append(numpy.ones(initial_guess.shape)*i_g) #These guesses slowly increase the task proportion across all platforms
+  #for i_g in numpy.arange(0.0,1.0,0.2): initial_guesses.append(numpy.ones(initial_guess.shape)*i_g) #These guesses slowly increase the task proportion across all platforms
+  
+  #initial_guesses.append(numpy.ones(initial_guess.shape)*(1.0/(len(reference_solvers)))) #Another guess which spreads the work out evenly across the platforms available
 
-  initial_guesses.append(numpy.ones(initial_guess.shape)*(1.0/(len(reference_solvers)-1))) #Another guess which spreads the work out evenly across the platforms available
-
-  if(min_reference_index<len(initial_guess)): 
+  """if(min_reference_index<len(initial_guess)): 
     for i_g in numpy.arange(0.02,0.12,0.02): 
       initial_guesses.append(numpy.zeros(initial_guess.shape))
       for i in range(len(reference_solvers[0].derivative)):
-	initial_guesses[-1][min_reference_index+i] = 1.0-i_g
+	initial_guesses[-1][min_reference_index+i] = 1.0-i_g"""
 
-  iterations = 0
+  iterations = 1
   result = 0.0
   
   #print flip_and_cap(result.x)
@@ -317,56 +326,75 @@ def optimise_latency_target_accuracy(target_accuracy,reference_solvers):
   processes = []
   x_results = [[] for i in range(len(accuracy_range))]
   latency_results = numpy.zeros(len(accuracy_range))
-  queue = multiprocessing.queues.SimpleQueue()
+  queue = multiprocessing.queues.Queue()
   
-  max_iterations = 10
-  min_iterations = 2
-  methods = ["Nelder-Mead","Powell","L-BFGS-B","TNC","COBYLA","SLSQP","Anneal","Anneal-with-cauchy"] #Why not throw everything at it?
+  max_iterations = 5
+  min_iterations = 1
+  #methods = ["Nelder-Mead","Powell","L-BFGS-B","TNC","COBYLA","SLSQP","Anneal","Anneal-with-cauchy"] #Why not throw everything at it?
+  methods = ["Nelder-Mead","Powell"] #Use Simplex methods to refine sim. anneal result
   
-  result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Nelder-Mead")
+  print "getting initial result"
+  #print initial_guess.shape
+  #print scipy.optimize.show_options("minimize", "Anneal")
+  
+  print initial_guess
+  result = scipy.optimize.minimize(enforce_bounds,initial_guess,args=(target_accuracy,reference_paths,reference_solvers),method="Anneal",options={"lower":0.0,"upper":1.0}) #,"T0":200.0,"dwell":500
+  print "initial result computed"
+  
   results = []
   best_result_index = 0
-  while(((min_reference_result<result.fun) or (iterations<min_iterations)) and (iterations<max_iterations)):
+  while((((min_reference_result*(0.5+0.1*(iterations%5)))<result.fun) or (iterations<min_iterations)) and (iterations<max_iterations)):
     print "Main optimisation loop: %d"%iterations
-    for initial_guess in initial_guesses: #Trying all of the initial guesses
-        #print "Initial Guess loop: %s"% str(initial_guess)
-	for m in methods:
-	    #print "Method loop: %s"%m
-	    if(thread_count == thread_limit): #If the thread limit has been reached, try and make some space for a new thread
-	      processes[0].join(0.1)
-	      processes[0].terminate()
-	      processes.remove(processes[0])
-	      thread_count = thread_count - 1
+    #for initial_guess in initial_guesses: #Trying all of the initial guesses
+    #print "Initial Guess loop: %s"% str(initial_guess)
+    for i_g in initial_guesses:
+      temp_result = scipy.optimize.minimize(enforce_bounds,i_g,args=(target_accuracy,reference_paths,reference_solvers),method="Anneal",options={"lower":0.0,"upper":1.0}) #,"T0":200.0,"dwell":500
+      for m in methods:
+	  #print "Method loop: %s"%m
+	  if(thread_count == thread_limit): #If the thread limit has been reached, try and make some space for a new thread
+	    processes[0].join()
+	    processes[0].terminate()
+	    processes.remove(processes[0])
+	    thread_count = thread_count - 1
+	
+	
+	  initial_guess = temp_result.x#(result.x).reshape(initial_guess.shape)
+	  #print initial_guess
+	  #print initial_guess.shape
+	  if(m in ["L-BFGS-B","TNC","SLSQP"]): processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,m,{},tuple([(0.0,1.0) for x_i in initial_guess]),queue))) 
+	  elif(m in ["Anneal"]): processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,"Anneal",{"lower":0.0,"upper":1.0},[],queue)))
+	  elif(m in ["Anneal-with-cauchy"]): processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,"Anneal",{"lower":0.0,"upper":1.0,"schedule":"cauchy"},[],queue))) 
+	  else: processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,m,{},[],queue))) 
 	  
-            if(m in ["L-BFGS-B","TNC","SLSQP"]): processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,m,{},tuple([(0.0,1.0) for x_i in initial_guess]),queue))) 
-	    elif(m in ["Anneal"]): processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,"Anneal",{"lower":0.0,"upper":1.0},[],queue)))
-	    elif(m in ["Anneal-with-cauchy"]): processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,"Anneal",{"lower":0.0,"upper":1.0,"schedule":"cauchy"},[],queue))) 
-	    else: processes.append(multiprocessing.Process(target=optimise_thread,args=(target_accuracy,reference_paths,reference_solvers,initial_guess,m,{},[],queue))) 
-	    
-	    #print "Process starting"
-	    processes[-1].start()
-	    thread_count = thread_count + 1
-
-    if(iterations==(min_iterations-1)): #At the minimum number of iterations, try get results from all of the algorithms
-      for p in processes: 
-	p.join(10)
+	  #print "Process starting"
+	  processes[-1].start()
+	  thread_count = thread_count + 1
+  
+    if((iterations==(min_iterations)) or (iterations==(max_iterations))): #At the minimum number of iterations, try get results from all of the algorithms
+      print "getting all of the results at the min number of iterations"
+      for p in processes:
+	#print "waiting for process %d to join"%p.pid
+	p.join()
+	#print "process %d has joined"%p.pid
 	p.terminate()
 	
       processes = []
       thread_count = 0
 	
+    #print "getting results from queue"
     while(not(queue.empty())):
         #print "getting results from queue"
         temp_result = queue.get()
         #print "result retrieved from queue"
 	if(temp_result.success): results.append(temp_result) #put the results that are in the queue into the results list
-        #print "done getting result from queue"
+	#print "done getting result from queue"
     
-    for i,r in enumerate(results):
-       if(r.fun < result.fun): result = r
+    for i,r in enumerate(results): 
+      if(r.fun < result.fun): 
+	print "current_result=%s and new_result=%s"%(str(result.fun),str(r.fun))
+	result = r
 	 #print r
 
-    if(iterations==(max_iterations-2)): time.sleep(1) #If on the second to last iteration, give the algorithms a little more time...      
     iterations = iterations+1
     #print iterations
 
