@@ -277,20 +277,20 @@ class MonteCarlo:
       path_set = numpy.arange(paths,paths*(steps+1),paths)
       for p in path_set: #Trial Runs to generate data needed for predicition functions
 	solver.solver_metadata["paths"] = p
-	execution_output = solver.execute()
-	
-	latency.append(float(execution_output[-1]))
-	
-	value = 0.0
-	std_error = 0.0
-	max_value = 0.0
-	for index,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
-	  if(not index%2): value = float(e_o)+0.00000000000001
-	  else: 
-	    std_error = float(e_o)
-	    
-	    error_prop = std_error/value*100
-	    if(error_prop>max_value): max_value = error_prop
+	for i in range(10):
+	  execution_output = solver.execute()
+	  
+	  latency.append(float(execution_output[-1]))
+	  
+	  value = 0.0
+	  std_error = 0.0
+	  max_value = 0.0
+	  for index,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
+	    if(not index%2): value = float(e_o)+0.00000000000001
+	    else: std_error = float(e_o)
+	      
+	      error_prop = std_error/value*100
+	      if(error_prop>max_value): max_value = error_prop
 	
 	accuracy.append(max_value)
 

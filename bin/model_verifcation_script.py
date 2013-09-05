@@ -26,9 +26,9 @@ if( __name__ == '__main__' and len(sys.argv)>3):
     mc_solver.latency_model = mc_solver.generate_aggregate_latency_model()
     mc_solver.accuracy_model = mc_solver.generate_aggregate_accuracy_model()
     
-    latency_data = map(mc_solver.latency_model,[10**i for i in range(start,end)])
-    accuracy_data = map(mc_solver.accuracy_model,[10**i for i in range(start,end)])
-    plt.plot(accuracy_data,latency_data,"--",label="model")
+    latency_data = map(mc_solver.latency_model,[10**i for i in range(start,end+2)])
+    accuracy_data = map(mc_solver.accuracy_model,[10**i for i in range(start,end+2)])
+    plt.plot(accuracy_data,latency_data,"x--",label="model")
     
     #Generating the Test data
     #mc_solver.generate()
@@ -55,6 +55,7 @@ if( __name__ == '__main__' and len(sys.argv)>3):
 	actual_accuracy_data[-1].append(max(temp_accuracy)) #selecting the most inaccurate of the results
 
       plt.scatter(actual_accuracy_data[-1],actual_latency_data[-1])
+      plt.scatter(numpy.mean(actual_accuracy_data[-1]),numpy.mean(actual_latency_data[-1]),color='r')
     
   plt.legend(loc='best')
   plt.show()
