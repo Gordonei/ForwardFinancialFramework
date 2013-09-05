@@ -3,16 +3,11 @@ Created on 18 June 2013
 '''
 import sys,numpy,pickle
 
-gui = sys.argv[1].lower()
-if(gui=="yes"): import matplotlib.pyplot as plt
-
 sys.path.append("../..")
-import KS_ProblemSet
-from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
-from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
-from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
 
-if( __name__ == '__main__' and len(sys.argv)>4):
+if(len(sys.argv)>4):
+  gui = sys.argv[1].lower()
+  if(gui=="yes"): import matplotlib.pyplot as plt
   paths = int(sys.argv[2])
   steps = int(sys.argv[3])
   redudancy = 10
@@ -23,6 +18,15 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   pickle_file_names = sys.argv[4:]
   
   for p_f_n in pickle_file_names:
+    
+    import KS_ProblemSet
+    if("FPGA" in p_f_n.upper()):
+      from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
+    elif("CPU" in p_f_n.upper()):
+      from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
+    elif("GPU" in p_f_n.upper()):  
+      from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
+    
     #Generating the Model data
     mc_solver = pickle.load(open("%s"%p_f_n,"rb"))
     datafile = open("%s_model_verfication.csv"%p_f_n[:-2],"w")

@@ -27,7 +27,6 @@ if( __name__ == '__main__' and len(sys.argv)>3):
     
     plt.plot(accuracy_data,latency_data,"--",label=p_f_n)
     
-    
   plt.legend(loc='best')
   plt.show()
   
