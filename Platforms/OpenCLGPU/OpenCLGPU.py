@@ -34,7 +34,7 @@ class OpenCLGPU:
     
     self.cpu_device = self.platform.get_devices(pyopencl.device_type.CPU)[0] #Taking the first CPU available, needed for AMD GPUs
     self.cpu_context = pyopencl.Context(devices=[self.cpu_device])
-    
+  
   def platform_directory(self):
     return self.platform_directory_string
   

@@ -40,9 +40,9 @@ void black_scholes_underlying_underlying_path(FP_t delta_time,black_scholes_unde
 	//FP_t x = sqrt(-2*log(u))*cos(2*PI*v); //FP_t y = sqrt(-2*log(u))*sin(2*PI*v);
   
 	#ifdef OPENCL_GPU
-	FP_t u = ((FP_t)MWC64X_NextUint(&u_v->rng_state))/4294967296;///4294967296;
-	FP_t v = ((FP_t)MWC64X_NextUint(&u_v->rng_state))/4294967296;///4294967296;
-	u_v->x = native_sqrt(-2*native_log(u))*native_cos((float)(2*M_PI*v));
+	FP_t u = ((FP_t)MWC64X_NextUint(&u_v->rng_state)/4294967296);///4294967296;
+	FP_t v = ((FP_t)MWC64X_NextUint(&u_v->rng_state)/4294967296);///4294967296;
+	u_v->x = native_sqrt(-2*native_log(u))*native_cos((FP_t)(2*M_PI*v)); //native_sqrt, native_log, native_cos
 	
 	#endif
   
@@ -50,6 +50,6 @@ void black_scholes_underlying_underlying_path(FP_t delta_time,black_scholes_unde
 	u_v->x = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
 	#endif
 
-	u_v->gamma += (u_a->rfir-pow((u_a->volatility),2)/2)*delta_time+u_a->volatility*u_v->x*native_sqrt(delta_time);
+	u_v->gamma += (u_a->rfir-pow((u_a->volatility),2)/2)*delta_time+u_a->volatility*u_v->x*native_sqrt(delta_time); //native_sqrt
 	u_v->time += delta_time;
 }

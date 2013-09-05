@@ -32,13 +32,17 @@ class MonteCarlo:
            
 	self.solver_metadata = {"paths":self.paths}
         self.derivative = derivative
-        self.setup_underlyings(reduce_underlyings)
+        self.reduce_underlyings = reduce_underlyings
+        self.setup_underlyings(self.reduce_underlyings)
     
     """def __getstate__(self):
       state = self.__dict__.copy()
-      return state
+      return state"""
     
-    def __setstate__(self,state): self.__dict__.update(state)"""
+    def __setstate__(self,state):
+      self.__dict__.update(state)
+      self.setup_underlyings(self.reduce_underlyings)
+      self.generate_name()
     
     def generate(self,override=True): pass
 	
@@ -68,9 +72,7 @@ class MonteCarlo:
                 if((len(self.underlying)==0) or not reduce_underlyings): self.underlying.append(u)
          
         temp = [] #Generating Filename - based on underlyings,derivatives and platforms used
-        self.output_file_name = "mc_solver"
-        
-        self.output_file_name = ("%s_%s"%(self.output_file_name,self.platform.name))
+        self.generate_name()
 	  
         for u in self.underlying:
           if u.name not in temp:
@@ -110,6 +112,10 @@ class MonteCarlo:
             self.derivative_attributes[-1].remove("underlying")
             self.derivative_attributes[-1] = tuple(self.derivative_attributes[-1])
             self.derivative_variables.append(self.attribute_stripper(self.derivative_attributes[-1],d.path_init.__code__.co_names))
+    
+    def generate_name(self):
+      self.output_file_name = "mc_solver"  
+      self.output_file_name = ("%s_%s"%(self.output_file_name,self.platform.name))
     
     def populate_model(self,base_trial_paths,trial_steps):
       derivative_backup = self.derivative[:]
