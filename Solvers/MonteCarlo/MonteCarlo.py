@@ -297,9 +297,9 @@ class MonteCarlo:
       return [accuracy,latency]
       
     def generate_latency_prediction_function_coefficients(self,base_speculative_paths,data_points,latencies,degree=2,redudancy=10):
-      speculative_matrix = numpy.zeros((data_points,degree))
+      speculative_matrix = numpy.zeros((data_points*redudancy,degree))
       
-      for i in range(data_points):
+      for i in range(data_points*redudancy):
 	  speculative_matrix[i][0] = (int(i/redudancy)+1)*base_speculative_paths
 	  speculative_matrix[i][1] = 1.0 
 	
@@ -307,19 +307,17 @@ class MonteCarlo:
       #for j in range(degree-1,-1,-1): 
 	  #speculative_matrix[data_points-1-i, j] = ((data_points-i)*base_speculative_paths)**(degree-1-j)
 	  
-      
       #predicition_function_coefficients = gauss(speculative_matrix,latencies)
       predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,latencies)[0]
 
       return predicition_function_coefficients
 
     def generate_accuracy_prediction_function_coefficients(self,base_speculative_paths,data_points,accuracy_data,degree=2,redudancy=10):
-      speculative_matrix = numpy.zeros((data_points,degree))
+      speculative_matrix = numpy.zeros((data_points*redudancy,degree))
       
-      for i in range(data_points): #Creating NxN speculative matrix
-	for j in range(10):
-	  speculative_matrix[i][0] = ((int(i/redudancy)+1)*base_speculative_paths)**-0.5
-	  speculative_matrix[i][1] = 1.0
+      for i in range(data_points*redudancy): #Creating NxN speculative matrix
+	speculative_matrix[i][0] = ((int(i/redudancy)+1)*base_speculative_paths)**-0.5
+	speculative_matrix[i][1] = 1.0
 
       predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,accuracy_data)[0]
 
