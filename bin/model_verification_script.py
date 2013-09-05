@@ -40,9 +40,9 @@ if(len(sys.argv)>4):
     datafile.write("\n")
     
     #Generating the Test data
-    #mc_solver.generate()
-    #mc_solver.compile()
-    mc_solver.setup_underlyings(True) #This is quite an important step
+    if("FPGA" not in p_f_n.upper()):
+      mc_solver.generate()
+      mc_solver.compile()
     
     actual_latency_data = []
     actual_accuracy_data = []

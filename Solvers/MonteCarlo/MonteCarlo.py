@@ -43,6 +43,9 @@ class MonteCarlo:
       self.__dict__.update(state)
       self.setup_underlyings(self.reduce_underlyings)
       self.generate_name()
+      
+      #self.generate()
+      #self.compile()
     
     def generate(self,override=True): pass
 	
