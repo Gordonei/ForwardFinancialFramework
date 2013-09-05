@@ -1,5 +1,5 @@
 '''
-Created on 18 June 2013
+Created on 4 September 2013
 '''
 import sys,numpy,pickle
 
@@ -52,6 +52,7 @@ if(len(sys.argv)>4):
       mc_solver.solver_metadata["paths"] = p
       
       for i in range(redudancy):
+	if("FPGA" in p_f_n.upper()): mc_solver.dummy_run() #This is to clear the FPGA
 	temp_result = mc_solver.execute()
 	print temp_result
 	actual_latency_data[-1].append(temp_result[-1])
