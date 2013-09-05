@@ -265,16 +265,13 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("//**Initialising Loop Attributes*")
     
     ##Calling Init Functions
-    for u in self.underlying:
-        u_index = self.underlying.index(u)
-        
+    for u_index,u in enumerate(self.underlying):
         temp = ("%s_underlying_init("%u.name)
         for u_a in self.underlying_attributes[u_index][:-1]: temp=("%s%s_%d_%s,"%(temp,u.name,u_index,u_a))
         temp=("%s%s_%d_%s,&u_a_%d);"%(temp,u.name,u_index,self.underlying_attributes[u_index][-1],u_index))
         output_list.append(temp)
     
-    for d in self.derivative:
-        index = self.derivative.index(d)
+    for index,d in enumerate(self.derivative):
         
         temp = ("%s_derivative_init("%d.name)
         for o_a in self.derivative_attributes[index][:-1]: temp=("%s%s_%d_%s,"%(temp,d.name,index,o_a))
