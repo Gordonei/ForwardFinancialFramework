@@ -287,8 +287,8 @@ class MonteCarlo:
 	  max_value = 0.0
 	  for index,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
 	    if(not index%2): value = float(e_o)+0.00000000000001
-	    else: std_error = float(e_o)
-	      
+	    else: 
+	      std_error = float(e_o) 
 	      error_prop = std_error/value*100
 	      if(error_prop>max_value): max_value = error_prop
 	
