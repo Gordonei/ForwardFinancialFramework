@@ -2,7 +2,9 @@
 Created on 18 June 2013
 '''
 import sys,numpy,pickle
-import matplotlib.pyplot as plt
+
+gui = sys.argv[1].lower()
+if(gui=="yes"): import matplotlib.pyplot as plt
 
 sys.path.append("../..")
 import KS_ProblemSet
@@ -11,7 +13,6 @@ from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteC
 from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
 
 if( __name__ == '__main__' and len(sys.argv)>4):
-  gui = sys.argv[1].lower()
   paths = int(sys.argv[2])
   steps = int(sys.argv[3])
   redudancy = 10
