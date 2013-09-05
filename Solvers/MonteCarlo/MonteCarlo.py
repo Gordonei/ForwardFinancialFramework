@@ -270,14 +270,14 @@ class MonteCarlo:
       
       return tuple(variables)
       
-    def trial_run(self,paths,steps,solver):
+    def trial_run(self,paths,steps,solver,redudancy=10):
       accuracy = []
       latency = []
 
       path_set = numpy.arange(paths,paths*(steps+1),paths)
       for p in path_set: #Trial Runs to generate data needed for predicition functions
 	solver.solver_metadata["paths"] = p
-	for i in range(10):
+	for i in range(redudancy):
 	  execution_output = solver.execute()
 	  
 	  latency.append(float(execution_output[-1]))
@@ -292,16 +292,16 @@ class MonteCarlo:
 	      error_prop = std_error/value*100
 	      if(error_prop>max_value): max_value = error_prop
 	
-	accuracy.append(max_value)
+	  accuracy.append(max_value)
 
       return [accuracy,latency]
       
-    def generate_latency_prediction_function_coefficients(self,base_speculative_paths,data_points,latencies,degree=2):
+    def generate_latency_prediction_function_coefficients(self,base_speculative_paths,data_points,latencies,degree=2,redudancy=10):
       speculative_matrix = numpy.zeros((data_points,degree))
       
       for i in range(data_points):
-	speculative_matrix[i][0] = (i+1)*base_speculative_paths
-	speculative_matrix[i][1] = 1.0 
+	  speculative_matrix[i][0] = (int(i/redudancy)+1)*base_speculative_paths
+	  speculative_matrix[i][1] = 1.0 
 	
       #for i in range(data_points-1,-1,-1): #Creating NxN speculative matrix
       #for j in range(degree-1,-1,-1): 
@@ -313,12 +313,13 @@ class MonteCarlo:
 
       return predicition_function_coefficients
 
-    def generate_accuracy_prediction_function_coefficients(self,base_speculative_paths,data_points,accuracy_data):
-      speculative_matrix = numpy.zeros((data_points,2))
+    def generate_accuracy_prediction_function_coefficients(self,base_speculative_paths,data_points,accuracy_data,degree=2,redudancy=10):
+      speculative_matrix = numpy.zeros((data_points,degree))
       
       for i in range(data_points): #Creating NxN speculative matrix
-	speculative_matrix[i][0] = ((i+1)*base_speculative_paths)**-0.5
-	speculative_matrix[i][1] = 1.0
+	for j in range(10):
+	  speculative_matrix[i][0] = ((int(i/redudancy)+1)*base_speculative_paths)**-0.5
+	  speculative_matrix[i][1] = 1.0
 
       predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,accuracy_data)[0]
 
