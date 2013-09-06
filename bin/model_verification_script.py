@@ -13,7 +13,8 @@ if(len(sys.argv)>4):
   redudancy = 10
   
   start = int(numpy.log(paths)/numpy.log(10))
-  end = start+steps+1
+  end = start+steps
+  paths = [10**i for i in range(start,end+2)]
   
   pickle_file_names = sys.argv[4:]
   
@@ -33,10 +34,10 @@ if(len(sys.argv)>4):
     mc_solver.latency_model = mc_solver.generate_aggregate_latency_model()
     mc_solver.accuracy_model = mc_solver.generate_aggregate_accuracy_model()
     
-    latency_data = map(mc_solver.latency_model,[10**i for i in range(start,end+2)])
-    accuracy_data = map(mc_solver.accuracy_model,[10**i for i in range(start,end+2)])
+    latency_data = map(mc_solver.latency_model,paths)
+    accuracy_data = map(mc_solver.accuracy_model,paths)
     if(gui=="yes"):plt.plot(accuracy_data,latency_data,"x--",label="model")
-    for index,l_d in enumerate(latency_data): datafile.write("%f,%f,\n"%(l_d,accuracy_data[index]))
+    for index,l_d in enumerate(latency_data): datafile.write("%d,%f,%f,\n"%(paths[index],l_d,accuracy_data[index]))
     datafile.write("\n")
     
     #Generating the Test data
@@ -46,7 +47,7 @@ if(len(sys.argv)>4):
     
     actual_latency_data = []
     actual_accuracy_data = []
-    for p in [10**i for i in range(start,end)]: #Log spacing
+    for p in paths: #Log spacing
       actual_latency_data.append([])
       actual_accuracy_data.append([])
       mc_solver.solver_metadata["paths"] = p

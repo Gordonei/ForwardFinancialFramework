@@ -41,8 +41,8 @@ class MonteCarlo:
     
     def __setstate__(self,state):
       self.__dict__.update(state)
-      self.setup_underlyings(self.reduce_underlyings)
       self.generate_name()
+      self.setup_underlyings(self.reduce_underlyings)
       
       #self.generate()
       #self.compile()

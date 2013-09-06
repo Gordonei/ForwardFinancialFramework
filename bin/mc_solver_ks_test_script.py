@@ -16,7 +16,7 @@ if( __name__ == '__main__' and len(sys.argv)>3):
   if(platform_name=="GPU"):
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
     platform = OpenCLGPU.OpenCLGPU()
-    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform,reduce_underlyings=False) #,reduce_underlyings=False
+    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform) #,reduce_underlyings=False
     
   elif(platform_name=="CPU"):
     from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
