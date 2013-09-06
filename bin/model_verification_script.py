@@ -14,7 +14,7 @@ if(len(sys.argv)>4):
   
   start = int(numpy.log(paths)/numpy.log(10))
   end = start+steps
-  paths = [10**i for i in range(start,end+2)]
+  paths = [10**i for i in range(start,end+1)]
   
   pickle_file_names = sys.argv[4:]
   
