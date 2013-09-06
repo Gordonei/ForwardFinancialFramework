@@ -220,9 +220,9 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     for index,d in enumerate(self.derivative):
         output_list.append("option_price_%d = option_price_%d/paths;//Calculate final value and return value as well as timing"%(index,index))
         output_list.append("option_price_%d_confidence_interval = 1.96*pow((option_price_%d_confidence_interval-paths*pow(option_price_%d,2)),0.5)/paths; //Calculate final confidence interval" % (index,index,index))
-        for u_index,u in enumerate(d.underlying): 
-	  output_list.append("option_price_%d = option_price_%d*discount_%d_%d;"%(index,index,index,u_index))
-	  output_list.append("option_price_%d_confidence_interval = option_price_%d_confidence_interval*discount_%d_%d;" % (index,index,index,u_index))
+        for u in d.underlying: 
+	  output_list.append("option_price_%d = option_price_%d*discount_%d_%d;"%(index,index,index,self.underlying.index(u)))
+	  output_list.append("option_price_%d_confidence_interval = option_price_%d_confidence_interval*discount_%d_%d;" % (index,index,index,self.underlying.index(u)))
 	  #output_list.append("option_price_%d_confidence_interval = option_price_%d_confidence_interval*pow(discount_%d_%d,2);"%(index,index,index,u_index))
         
         #output_list.append("option_price_%d_confidence_interval = 1.96*pow((option_price_%d_confidence_interval-paths*pow(option_price_%d,2)),0.5)/paths; //Calculate final confidence interval" % (index,index,index))
