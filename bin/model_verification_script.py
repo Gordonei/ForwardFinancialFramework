@@ -29,7 +29,7 @@ if(len(sys.argv)>4):
       from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
     
     #Generating the Model data
-    mc_solver = pickle.load(open("%s"%p_f_n,"rb"))
+    mc_solver = pickle.Unpickler(open("%s"%p_f_n,"rb")).load()
     datafile = open("%s_model_verfication.csv"%p_f_n[:-2],"w")
     mc_solver.latency_model = mc_solver.generate_aggregate_latency_model()
     mc_solver.accuracy_model = mc_solver.generate_aggregate_accuracy_model()
