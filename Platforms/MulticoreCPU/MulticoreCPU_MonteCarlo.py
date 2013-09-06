@@ -219,8 +219,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("//**Calculating Final Option Value and Return**")
     for index,d in enumerate(self.derivative):
         output_list.append("option_price_%d = option_price_%d/paths;//Calculate final value and return value as well as timing"%(self.derivative.index(d),self.derivative.index(d)))
-        output_list.append("FP_t temp_std_dev_%d=pow((option_price_%d_confidence_interval/paths-pow(option_price_%d,2)),0.5);"%(self.derivative.index(d),self.derivative.index(d),self.derivative.index(d)))
         for u in d.underlying: output_list.append("option_price_%d = option_price_%d*discount_%d_%d;"%(index,index,index,self.underlying.index(u)))
+        output_list.append("FP_t temp_std_dev_%d=pow((option_price_%d_confidence_interval/paths-pow(option_price_%d,2)),0.5);"%(self.derivative.index(d),self.derivative.index(d),self.derivative.index(d)))
         output_list.append("option_price_%d_confidence_interval = 1.96*temp_std_dev_%d/pow(paths,0.5);//Calculate standard error and final confidence interval"%(self.derivative.index(d),self.derivative.index(d)))
         output_list.append("printf(\"\%f\\n\"")
         output_list.append(",option_price_%d);"%self.derivative.index(d))
