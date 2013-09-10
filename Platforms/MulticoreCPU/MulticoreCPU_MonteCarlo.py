@@ -11,7 +11,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     self.solver_metadata["threads"] = self.platform.threads #Number of threads set by the platform
     self.solver_metadata["default_points"] = 10
     
-    self.utility_libraries = ["math.h","pthread.h","stdint.h","stdlib.h","stdio.h","sys/time.h","sys/resource.h","unistd.h","string.h"]
+    self.utility_libraries = ["math.h","pthread.h","stdint.h","stdlib.h","stdio.h","time.h","sys/resource.h","unistd.h","string.h"]
     self.activity_thread_name = "multicore_montecarlo_activity_thread"
     
     self.floating_point_format = "float"
