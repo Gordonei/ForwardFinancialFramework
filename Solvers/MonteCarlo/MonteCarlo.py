@@ -306,22 +306,23 @@ class MonteCarlo:
       return [accuracy,latency]
       
     def generate_latency_prediction_function_coefficients(self,base_speculative_paths,data_points,latencies,degree=2,redudancy=10):
-      """speculative_matrix = numpy.zeros((data_points*redudancy,degree))
+      speculative_matrix = numpy.zeros((data_points*redudancy,degree))
       
       for i in range(data_points*redudancy):
 	  speculative_matrix[i][0] = (int(i/redudancy)+1)*base_speculative_paths
 	  speculative_matrix[i][1] = 1.0 
 	  
-      predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,latencies)[0]"""
+      #predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,latencies)[0]
       
       temp_setup = 0.0
-      temp_activity = 0.0
+      temp_activity = []
       for i in range(data_points):
 	for j in range(redudancy):
-	  temp_setup = temp_setup + latencies[i*redudancy+j][0]/((i+1.0)*base_speculative_paths)
-	  temp_activity = temp_activity + latencies[i*redudancy+j][1]/((i+1.0)*base_speculative_paths)
-
-      predicition_function_coefficients = (temp_activity/(redudancy*data_points),temp_setup/(redudancy*data_points))
+	  temp_setup = temp_setup + latencies[i*redudancy+j][0]
+	  temp_activity.append(latencies[i*redudancy+j][1])
+	  
+      temp_activity_coefficients = numpy.linalg.lstsq(speculative_matrix,temp_activity)[0]
+      predicition_function_coefficients = (temp_activity_coefficients[0],temp_setup/(redudancy*data_points) + temp_activity_coefficients[1])
 
       return predicition_function_coefficients
 
