@@ -114,10 +114,11 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       
       #Performance Monitoring Variables
       output_list.append("//*Performance Monitoring Variables*")
-      output_list.append("FP_t system_time,user_time,cpu_time,wall_time;")
-      output_list.append("struct timeval start, end;")
+      #output_list.append("FP_t system_time,user_time,cpu_time,wall_time;")
+      output_list.append("FP_t setup_time,activity_time;")
+      output_list.append("struct timespec start, setup_end, end;")
       output_list.append("int ret,ret_2;")
-      output_list.append("struct rusage usage,usage_2;")
+      #output_list.append("struct rusage usage,usage_2;")
       
       return output_list
   
@@ -127,6 +128,13 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     #Declare Main Function
     output_list.append("//*Main Function*")
     output_list.append("int main(int argc,char* argv[]){")
+    
+    #Starting timers
+    output_list.append("//**Starting Timers**")
+    #output_list.append("int who = RUSAGE_SELF;")
+    #output_list.append("gettimeofday(&start,NULL);")
+    output_list.append("clock_gettime(CLOCK_MONOTONIC,&start);")
+    #output_list.append("ret=getrusage(who,&usage);")
     ##Commented out diagnostic tool
     #output_file.write("/*for(i=0;i<argc;i++){//For diagnostic Purposes\nprintf(\"%s \",argv[i]);\n}*/\n")
     
@@ -139,25 +147,18 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         temp += 1
     
     output_list.append("//***Underlying Attributes***")
-    index = 0
-    for u_a in self.underlying_attributes:
+    for i,u_a in enumerate(self.underlying_attributes):
         for a in u_a:
-            output_list.append("%s_%d_%s = strtod(argv[%d],NULL);"%(self.underlying[index].name,index,a,temp))
+            output_list.append("%s_%d_%s = strtod(argv[%d],NULL);"%(self.underlying[i].name,i,a,temp))
             temp += 1
-        index += 1
+        i += 1
     
     output_list.append("//***Derivative Attributes***")
-    index = 0
-    for o_a in self.derivative_attributes:
+    for i,o_a in enumerate(self.derivative_attributes):
         for a in o_a:
-            output_list.append("%s_%d_%s = strtod(argv[%d],NULL);"%(self.derivative[index].name,index,a,temp))
+            output_list.append("%s_%d_%s = strtod(argv[%d],NULL);"%(self.derivative[i].name,i,a,temp))
             temp += 1
-        index += 1
-        
-    output_list.append("//**Starting Timers**")
-    output_list.append("int who = RUSAGE_SELF;")
-    output_list.append("gettimeofday(&start,NULL);")
-    output_list.append("ret=getrusage(who,&usage);")
+        i += 1
     
     ##Calculate Discount Factor
     output_list.append("//**Calculating Discount Factor**")
@@ -195,6 +196,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     #output_list.append("temp_data[i].thread_result = thread_results[i];")
     output_list.append("pthread_create(&pthreads[i],&attr,%s,&temp_data[i]);"%self.activity_thread_name)
     output_list.append("}")
+    
+    #This is the end of the setup
+    output_list.append("clock_gettime(CLOCK_MONOTONIC,&setup_end);")
+    
     ##Join Threads, aggregate results
     output_list.append("//**Waiting for threads to join**")
     output_list.append("void *status;")
@@ -219,13 +224,13 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("//**Calculating Final Option Value and Return**")
     for index,d in enumerate(self.derivative):
         output_list.append("option_price_%d = option_price_%d/paths;//Calculate final value and return value as well as timing"%(index,index))
-        output_list.append("option_price_%d_confidence_interval = 1.96*pow((option_price_%d_confidence_interval-paths*pow(option_price_%d,2)),0.5)/paths; //Calculate final confidence interval" % (index,index,index))
+        #output_list.append("option_price_%d_confidence_interval = 1.96*pow((option_price_%d_confidence_interval-paths*pow(option_price_%d,2)),0.5)/paths; //Calculate final confidence interval" % (index,index,index))
         for u in d.underlying: 
 	  output_list.append("option_price_%d = option_price_%d*discount_%d_%d;"%(index,index,index,self.underlying.index(u)))
-	  output_list.append("option_price_%d_confidence_interval = option_price_%d_confidence_interval*discount_%d_%d;" % (index,index,index,self.underlying.index(u)))
-	  #output_list.append("option_price_%d_confidence_interval = option_price_%d_confidence_interval*pow(discount_%d_%d,2);"%(index,index,index,u_index))
+	  #output_list.append("option_price_%d_confidence_interval = option_price_%d_confidence_interval*discount_%d_%d;" % (index,index,index,self.underlying.index(u)))
+	  output_list.append("option_price_%d_confidence_interval = option_price_%d_confidence_interval*pow(discount_%d_%d,2);"%(index,index,index,self.underlying.index(u)))
         
-        #output_list.append("option_price_%d_confidence_interval = 1.96*pow((option_price_%d_confidence_interval-paths*pow(option_price_%d,2)),0.5)/paths; //Calculate final confidence interval" % (index,index,index))
+        output_list.append("option_price_%d_confidence_interval = 1.96*pow((option_price_%d_confidence_interval-paths*pow(option_price_%d,2)),0.5)/paths; //Calculate final confidence interval" % (index,index,index))
         output_list.append("printf(\"\%f\\n\"")
         output_list.append(",option_price_%d);"%index)
         output_list.append("printf(\"\%f\\n\"")
@@ -233,16 +238,18 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     ##Return Performance evaluation
     output_list.append("//**Performance Monitoring Calculation and Return**")
-    output_list.append("gettimeofday(&end,NULL);")
-    output_list.append("ret_2=getrusage(who,&usage_2);")
+    #output_list.append("gettimeofday(&end,NULL);")
+    output_list.append("clock_gettime(CLOCK_MONOTONIC,&end);")
+    #output_list.append("ret_2=getrusage(who,&usage_2);")
     
-    output_list.append("user_time = usage_2.ru_utime.tv_sec*1000000+usage_2.ru_utime.tv_usec-(usage.ru_utime.tv_sec*1000000+usage.ru_utime.tv_usec);")
-    output_list.append("system_time = usage_2.ru_stime.tv_sec*1000000+usage_2.ru_stime.tv_usec-(usage.ru_stime.tv_sec*1000000+usage.ru_stime.tv_usec);")
-    output_list.append("cpu_time = (user_time + system_time);")
-    output_list.append("wall_time = 1000000*(end.tv_sec-start.tv_sec)+end.tv_usec-start.tv_usec;")
+    #output_list.append("user_time = usage_2.ru_utime.tv_sec*1000000+usage_2.ru_utime.tv_usec-(usage.ru_utime.tv_sec*1000000+usage.ru_utime.tv_usec);")
+    #output_list.append("system_time = usage_2.ru_stime.tv_sec*1000000+usage_2.ru_stime.tv_usec-(usage.ru_stime.tv_sec*1000000+usage.ru_stime.tv_usec);")
+    #output_list.append("cpu_time = (user_time + system_time);")
+    output_list.append("setup_time = 1000000*(setup_end.tv_sec-start.tv_sec)+(setup_end.tv_nsec-start.tv_nsec)/1000;")
+    output_list.append("activity_time = 1000000*(end.tv_sec-setup_end.tv_sec)+(end.tv_nsec-setup_end.tv_nsec)/1000;")
     
-    output_list.append("printf(\"\%f\\n\",cpu_time);")
-    output_list.append("printf(\"\%f\\n\",wall_time);")
+    output_list.append("printf(\"\%f\\n\",setup_time);")
+    output_list.append("printf(\"\%f\\n\",activity_time);")
     #output_list.append("printf(\"\%d\\n\",(MemoryUsed()));")
     output_list.append("}")
     

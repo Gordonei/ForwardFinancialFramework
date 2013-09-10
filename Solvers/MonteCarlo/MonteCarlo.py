@@ -289,7 +289,7 @@ class MonteCarlo:
 	for i in range(redudancy):
 	  execution_output = solver.execute()
 	  
-	  latency.append(float(execution_output[-1]))
+	  latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2])))
 	  
 	  value = 0.0
 	  std_error = 0.0
@@ -298,7 +298,7 @@ class MonteCarlo:
 	    if(not index%2): value = float(e_o)+0.00000000000001
 	    else: 
 	      std_error = float(e_o) 
-	      error_prop = std_error/value*100
+	      error_prop = std_error #/value*100
 	      if(error_prop>max_value): max_value = error_prop
 	
 	  accuracy.append(max_value)
@@ -306,18 +306,22 @@ class MonteCarlo:
       return [accuracy,latency]
       
     def generate_latency_prediction_function_coefficients(self,base_speculative_paths,data_points,latencies,degree=2,redudancy=10):
-      speculative_matrix = numpy.zeros((data_points*redudancy,degree))
+      """speculative_matrix = numpy.zeros((data_points*redudancy,degree))
       
       for i in range(data_points*redudancy):
 	  speculative_matrix[i][0] = (int(i/redudancy)+1)*base_speculative_paths
 	  speculative_matrix[i][1] = 1.0 
-	
-      #for i in range(data_points-1,-1,-1): #Creating NxN speculative matrix
-      #for j in range(degree-1,-1,-1): 
-	  #speculative_matrix[data_points-1-i, j] = ((data_points-i)*base_speculative_paths)**(degree-1-j)
 	  
-      #predicition_function_coefficients = gauss(speculative_matrix,latencies)
-      predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,latencies)[0]
+      predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,latencies)[0]"""
+      
+      temp_setup = 0.0
+      temp_activity = 0.0
+      for i in range(data_points):
+	for j in range(redudancy):
+	  temp_setup = temp_setup + latencies[i*redudancy+j][0]/((i+1.0)*base_speculative_paths)
+	  temp_activity = temp_activity + latencies[i*redudancy+j][1]/((i+1.0)*base_speculative_paths)
+
+      predicition_function_coefficients = (temp_activity/(redudancy*data_points),temp_setup/(redudancy*data_points))
 
       return predicition_function_coefficients
 

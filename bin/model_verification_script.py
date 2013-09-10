@@ -61,8 +61,10 @@ if(len(sys.argv)>4):
 	temp_accuracy = []
 	for index,t_r in enumerate(temp_result[:-3]):
 	  if(index%2):
-	    if(float(temp_result[index-1])): temp_accuracy.append(float(t_r)/float(temp_result[index-1])*100)
+	    if(float(temp_result[index-1])): temp_accuracy.append(float(t_r)) #/float(temp_result[index-1])*100
 	  
+	print temp_accuracy
+	print max(temp_accuracy)
 	actual_accuracy_data[-1].append(max(temp_accuracy)) #selecting the most inaccurate of the results
 
       if(gui=="yes"):
