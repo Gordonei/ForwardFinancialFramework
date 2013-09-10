@@ -489,12 +489,16 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         #Linking pthread library
         compile_cmd.append("-lpthread")
         
+         #RT
+         compile_cmd.append("-lrt")
+        
         #Optimisation Level 3
         compile_cmd.append("-O3")
         compile_cmd.append("-w")
         
         #SSE
         #compile_cmd.append("-msse3")
+        
         
         #Fast Math
         compile_cmd.append("-ffast-math")
