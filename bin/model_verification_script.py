@@ -1,20 +1,19 @@
 '''
 Created on 4 September 2013
 '''
-import sys,numpy,pickle
+import sys,numpy,pickle,copy
 
 sys.path.append("../..")
 
 if(len(sys.argv)>4):
   gui = sys.argv[1].lower()
   if(gui=="yes"): import matplotlib.pyplot as plt
-  paths = int(sys.argv[2])
+  start_power = int(sys.argv[2])
   steps = int(sys.argv[3])
   redudancy = 10
   
-  start = int(numpy.log(paths)/numpy.log(10))
-  end = start+steps
-  paths = [10**i for i in range(start,end+1)]
+  end = start_power+steps
+  paths = [10**i for i in range(start_power,end+1)]
   
   pickle_file_names = sys.argv[4:]
   
@@ -34,6 +33,24 @@ if(len(sys.argv)>4):
     mc_solver.latency_model = mc_solver.generate_aggregate_latency_model()
     mc_solver.accuracy_model = mc_solver.generate_aggregate_accuracy_model()
     
+    derivatives = [[d] for d in mc_solver.derivative[:]]
+    if(len(derivatives)>len(mc_solver.underlying)):
+      underlying_dict = {}
+      for d in derivatives:
+	for u in d[0].underlying:
+	  if(u not in underlying_dict.keys()): underlying_dict[u] = d
+	  else: underlying_dict[u].extend(d)
+	  
+      derivatives = [underlying_dict[u] for u in underlying_dict.keys()]
+      
+    solvers = []
+    for d in derivatives: #making sure that all of required code is available
+      solvers.append(copy.deepcopy(mc_solver))
+      solvers[-1].derivative = d
+      solvers[-1].setup_underlyings(True)
+      solvers[-1].generate()
+      solvers[-1].compile()
+    
     latency_data = map(mc_solver.latency_model,paths)
     accuracy_data = map(mc_solver.accuracy_model,paths)
     if(gui=="yes"):plt.plot(accuracy_data,latency_data,"x--",label="model")
@@ -41,9 +58,9 @@ if(len(sys.argv)>4):
     datafile.write("\n")
     
     #Generating the Test data
-    if("FPGA" not in p_f_n.upper()):
-      mc_solver.generate()
-      mc_solver.compile()
+    #if("FPGA" not in p_f_n.upper()):
+      #mc_solver.generate()
+      #mc_solver.compile()
     
     actual_latency_data = []
     actual_accuracy_data = []
@@ -52,23 +69,28 @@ if(len(sys.argv)>4):
     for p in paths: #Log spacing
       actual_latency_data.append([])
       actual_accuracy_data.append([])
-      mc_solver.solver_metadata["paths"] = p
+      
+      for s in solvers: s.solver_metadata["paths"] = p
       
       for i in range(redudancy):
-	if("FPGA" in p_f_n.upper()): mc_solver.dummy_run() #This is to clear the FPGA
-	temp_result = mc_solver.execute()
-	print temp_result
-	actual_latency_data[-1].append(temp_result[-1])
+	#if("FPGA" in p_f_n.upper()): mc_solver.dummy_run() #This is to clear the FPGA
 	
+	actual_latency_data[-1].append(0.0)
 	temp_accuracy = []
-	for index,t_r in enumerate(temp_result[:-3]):
-	  if(index%2):
-	    if(float(temp_result[index-1])): temp_accuracy.append(float(t_r)) #/float(temp_result[index-1])*100
+	for s in solvers: #iterating over all of the derivatives
+	  temp_result = s.execute()
+	  actual_latency_data[-1][-1] = actual_latency_data[-1][-1] + temp_result[-1]
 	  
+	  for i,t_r in enumerate(temp_result[:-3]):
+	    if(i%2):
+	      if(float(temp_result[i-1])): temp_accuracy.append(float(t_r)) #/float(temp_result[index-1])*100
+	    
 	actual_accuracy_data[-1].append(max(temp_accuracy)) #selecting the most inaccurate of the results
 
       mean_latency.append(numpy.mean(actual_latency_data[-1]))
       mean_accuracy.append(numpy.mean(actual_accuracy_data[-1]))
+      print "%f uS vs %f uS (mean actual vs model)"%(mean_latency[-1],latency_data[len(actual_latency_data)-1])
+      print "$%f vs $%f (mean actual vs model)"%(mean_accuracy[-1],accuracy_data[len(actual_accuracy_data)-1])
 
       if(gui=="yes"):
 	plt.scatter(actual_accuracy_data[-1],actual_latency_data[-1])
@@ -88,4 +110,4 @@ if(len(sys.argv)>4):
   datafile.close()
   
 elif(__name__ == '__main__'):
-  print "usage: python pickle_model_verification_script.py [GUI:Yes|No] [Number of  Test Paths] [Number of Test Steps] [Pickle File Name 1] [Pickle File Name 2] ... [Pickle File Name N]"
+  print "usage: python pickle_model_verification_script.py [GUI:Yes|No] [Starting power of 10] [Number of Test Steps] [Pickle File Name 1] [Pickle File Name 2] ... [Pickle File Name N]"
