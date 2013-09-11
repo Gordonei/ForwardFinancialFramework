@@ -67,7 +67,7 @@ if(len(sys.argv)>4):
 	  
 	actual_accuracy_data[-1].append(max(temp_accuracy)) #selecting the most inaccurate of the results
 
-      mean_latency.append(numpy.mean(actual_latency_data[-1])
+      mean_latency.append(numpy.mean(actual_latency_data[-1]))
       mean_accuracy.append(numpy.mean(actual_accuracy_data[-1]))
 
       if(gui=="yes"):
