@@ -42,5 +42,5 @@ class Underlying:
       else: return 0.0      
 
     def accuracy_model(self,tasks,paths): 
-      if(paths>0): return self.accuracy_model_coefficients[tasks][0]*paths**-0.5 + self.accuracy_model_coefficients[tasks][1]
+      if(paths>0): return self.accuracy_model_coefficients[tasks][0]*paths**-0.5 #+ self.accuracy_model_coefficients[tasks][1]
       else: return 100.0
