@@ -47,6 +47,8 @@ if(len(sys.argv)>4):
     
     actual_latency_data = []
     actual_accuracy_data = []
+    mean_latency = []
+    mean_accuracy = []
     for p in paths: #Log spacing
       actual_latency_data.append([])
       actual_accuracy_data.append([])
@@ -63,15 +65,18 @@ if(len(sys.argv)>4):
 	  if(index%2):
 	    if(float(temp_result[index-1])): temp_accuracy.append(float(t_r)) #/float(temp_result[index-1])*100
 	  
-	print temp_accuracy
-	print max(temp_accuracy)
 	actual_accuracy_data[-1].append(max(temp_accuracy)) #selecting the most inaccurate of the results
+
+      mean_latency.append(numpy.mean(actual_latency_data[-1])
+      mean_accuracy.append(numpy.mean(actual_accuracy_data[-1]))
 
       if(gui=="yes"):
 	plt.scatter(actual_accuracy_data[-1],actual_latency_data[-1])
-	plt.scatter(numpy.mean(actual_accuracy_data[-1]),numpy.mean(actual_latency_data[-1]),color='r')
+	plt.scatter(mean_accuracy[-1],mean_latency[-1]),color='r')
 	
-      for index,a_l_d in enumerate(actual_latency_data[-1]): datafile.write("%d,%f,%f,\n"%(p,a_l_d,actual_accuracy_data[-1][index]))
+      for i,a_l_d in enumerate(actual_latency_data[-1]): 
+	if(i==0): datafile.write("%d,%f,%f,%f,%f,\n"%(p,a_l_d,actual_accuracy_data[-1][i],mean_latency[-1]),mean_accuracy[-1]))
+	else: datafile.write("%d,%f,%f,\n"%(p,a_l_d,actual_accuracy_data[-1][i]))
       datafile.write("\n")
     
   if(gui=="yes"):
