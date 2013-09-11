@@ -82,15 +82,14 @@ if(len(sys.argv)>4):
 	  actual_latency_data[-1][-1] = actual_latency_data[-1][-1] + temp_result[-1]
 	  
 	  for i,t_r in enumerate(temp_result[:-3]):
-	    if(i%2):
-	      if(float(temp_result[i-1])): temp_accuracy.append(float(t_r)) #/float(temp_result[index-1])*100
+	    if(i%2):temp_accuracy.append(float(t_r)) #/float(temp_result[index-1])*100
 	    
 	actual_accuracy_data[-1].append(max(temp_accuracy)) #selecting the most inaccurate of the results
 
       mean_latency.append(numpy.mean(actual_latency_data[-1]))
       mean_accuracy.append(numpy.mean(actual_accuracy_data[-1]))
-      print "%f uS vs %f uS (mean actual vs model)"%(mean_latency[-1],latency_data[len(actual_latency_data)-1])
-      print "$%f vs $%f (mean actual vs model)"%(mean_accuracy[-1],accuracy_data[len(actual_accuracy_data)-1])
+      print "%f uS vs %f uS (mean actual vs model) - %f%% Error"%(mean_latency[-1],latency_data[len(actual_latency_data)-1],100*abs(mean_latency[-1]-latency_data[len(actual_latency_data)-1])/latency_data[len(actual_latency_data)-1])
+      print "$%f vs $%f (mean actual vs model) - %f%% Error"%(mean_accuracy[-1],accuracy_data[len(actual_accuracy_data)-1],100*abs(accuracy_data[len(actual_accuracy_data)-1]-mean_accuracy[-1])/accuracy_data[len(actual_accuracy_data)-1])
 
       if(gui=="yes"):
 	plt.scatter(actual_accuracy_data[-1],actual_latency_data[-1])

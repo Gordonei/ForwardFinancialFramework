@@ -132,36 +132,35 @@ class MonteCarlo:
 	for u in underlying_backup:
 	    temp_derivatives = []
 	    for d in derivative_backup:
-		if(d.underlying[0]==u): temp_derivatives.append(d)
+		if(u in d.underlying): temp_derivatives.append(d)
 		    
-	    if(len(temp_derivatives)>1):
-		for d in temp_derivatives: derivatives_with_shared_underlyings.append(d)
+	    if(len(temp_derivatives)>1): #This underlying has multiple derivatives that depend on it
+		for d in temp_derivatives: derivatives_with_shared_underlyings.append(d) #recording the derivatives as ones which share underlyings
 		
-		for i in range(2**len(temp_derivatives)):
+		"""for i in range(2**len(temp_derivatives)): #iterating over the permutations to capture
 		    count = 0
 		    for b in bin(i)[2:]:
 			if(b=="1"): count = count+1
 			
 		    derivatives=[]
-		    if(count>1):
-			#for index in range(count): derivatives.append(temp_derivatives[index])
-			self.derivative = temp_derivatives
-			self.setup_underlyings(True)
-			self.generate()
-			self.compile()
-			
-			trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
-			accuracy = trial_run_results[0]
-			latency = trial_run_results[1]
-	
-			latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
-			accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
-	
-			name = "%s"%temp_derivatives[0].name[:2]
-			for t_d in temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
-	
-			u.latency_model_coefficients["%s"%name] = latency_coefficients
-			u.accuracy_model_coefficients["%s"%name] = accuracy_coefficients
+		    if(count>1):"""
+		self.derivative = temp_derivatives
+		self.setup_underlyings(True)
+		self.generate()
+		self.compile()
+		
+		trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
+		accuracy = trial_run_results[0]
+		latency = trial_run_results[1]
+
+		latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
+		accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
+
+		name = "%s"%temp_derivatives[0].name[:2]
+		for t_d in temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
+
+		u.latency_model_coefficients["%s"%name] = latency_coefficients
+		u.accuracy_model_coefficients["%s"%name] = accuracy_coefficients
       
       for d in derivative_backup:
 	if(d not in derivatives_with_shared_underlyings):
@@ -295,8 +294,8 @@ class MonteCarlo:
 	  value = 0.0
 	  std_error = 0.0
 	  max_value = 0.0
-	  for index,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
-	    if(not index%2): value = float(e_o)+0.00000000000001
+	  for i,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
+	    if(not i%2): value = float(e_o)+0.00000000000001
 	    else: 
 	      std_error = float(e_o) 
 	      error_prop = std_error #/value*100
