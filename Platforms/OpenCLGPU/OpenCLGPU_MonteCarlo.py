@@ -564,7 +564,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("\tconstant uint *chunk_size,")
     output_list.append("\tconstant uint *chunk_number,")
     for index,u in enumerate(self.underlying):
-      output_list.append("\tlocal mwc64x_state_t *local_seed_%d,"%(index))
+      #output_list.append("\tlocal mwc64x_state_t *local_seed_%d,"%(index))
       output_list.append("\tglobal mwc64x_state_t *seed_%d,"%(index))
       
     output_list[-1] = "%s){" % (output_list[-1][:-1])
@@ -579,9 +579,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("time = (int)times(&buffer);")
     
     output_list.append("//**Initiating the Path for each underlying**")
-    for index,u in enumerate(self.underlying):
-	output_list.append("mwc64x_state_t temp_seed_%d;"%(index))
-        output_list.append("MWC64X_SeedStreams(&(temp_seed_%d),time,%d*4096*2*(chunk_size[0]*chunk_number[0]+1)*(%d+1));"%(index,self.kernel_loops,index))
+    for i,u in enumerate(self.underlying):
+	output_list.append("mwc64x_state_t temp_seed_%d;"%(i))
+        output_list.append("MWC64X_SeedStreams(&(temp_seed_%d),0,%d*4096*2*(chunk_size[0]*chunk_number[0]+1)*(%d+1));"%(i,self.kernel_loops,i))
         """output_list.append("if(j==0){")
         output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*(chunk_size[0]*chunk_number[0]+1));"%index)
         output_list.append("local_u_v_%d[j] = temp_u_v_%d;"%(index,index))
@@ -591,7 +591,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         output_list.append("temp_u_v_%d=local_u_v_%d[0];"%(index,index))
         output_list.append("MWC64X_Skip( &(temp_u_v_%d), 4096*2);"%index)
         output_list.append("}")"""
-        output_list.append("seed_%d[i] = temp_seed_%d;"%(index,index))
+        output_list.append("seed_%d[i] = temp_seed_%d;"%(i,i))
         
     output_list.append("}") #End of Kernel
     
