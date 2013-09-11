@@ -397,6 +397,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.platform_directory())
     
     if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("#define AMD_GPU")
+    else: output_list.append("#include <sys/times.h>")
     #else: output_list.append("#define M_PI 3.141592653589793238")
     output_list.append("#define %s"%self.platform.name.upper())
     output_list.append("#define FP_t %s"%self.floating_point_format)
@@ -451,6 +452,12 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**getting unique ID**")
     output_list.append("int i = get_global_id(0);")
     
+    if not(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+      output_list.append("//**Generating time offset**")
+      output_list.append("clock_t time;")
+      output_list.append("struct tms buffer;")
+      output_list.append("time = (int)times(&buffer);")
+    
     output_list.append("//**reading parameters from host**")
     output_list.append("int local_path_points=path_points[0];")
       
@@ -458,8 +465,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,u in enumerate(self.underlying):
       output_list.append("%s_attributes temp_u_a_%d = u_a_%d[0];"%(u.name,index,index))
       output_list.append("%s_variables temp_u_v_%d;"%(u.name,index))
-      if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU) and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): output_list.append("temp_u_v_%d.rng_state = seed_%d[i];"%(index,index))
-      elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name): output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),0,%d*4096*2*(chunk_size[0]*chunk_number[0]+1));"%(index,self.kernel_loops))
+      if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU) and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): 
+	output_list.append("temp_u_v_%d.rng_state = seed_%d[i];"%(index,index))
+      elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
+	output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),time,%d*4096*2*(chunk_size[0]*chunk_number[0]+1));"%(index,self.kernel_loops))
     
       output_list.append("FP_t spot_price_%d,time_%d;"%(index,index))
     
@@ -536,6 +545,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("#define %s"%self.platform.name.upper())
     output_list.append("#define FP_t %s"%self.floating_point_format)
     
+    output_list.append("#include <sys/times.h>")
+    
     path_string = "mwc64x/cl/mwc64x.cl"
     if('Darwin' in plat.system()): path_string = "%s/%s"%(os.getcwd(),path_string)
     output_list.append("#include \"%s\""%path_string)
@@ -562,10 +573,15 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("int i = get_global_id(0);")
     output_list.append("int j = get_local_id(0);")
     
+    output_list.append("//**Generating time offset**")
+    output_list.append("clock_t time;")
+    output_list.append("struct tms buffer;")
+    output_list.append("time = (int)times(&buffer);")
+    
     output_list.append("//**Initiating the Path for each underlying**")
     for i,u in enumerate(self.underlying):
 	output_list.append("mwc64x_state_t temp_seed_%d;"%(i))
-        output_list.append("MWC64X_SeedStreams(&(temp_seed_%d),0,%d*4096*2*(chunk_size[0]*chunk_number[0]+1)*(%d+1));"%(i,self.kernel_loops,index))
+        output_list.append("MWC64X_SeedStreams(&(temp_seed_%d),0,%d*4096*2*(chunk_size[0]*chunk_number[0]+1)*(%d+1));"%(i,self.kernel_loops,i))
         """output_list.append("if(j==0){")
         output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*(chunk_size[0]*chunk_number[0]+1));"%index)
         output_list.append("local_u_v_%d[j] = temp_u_v_%d;"%(index,index))

@@ -326,12 +326,12 @@ class MonteCarlo:
 
       return predicition_function_coefficients
 
-    def generate_accuracy_prediction_function_coefficients(self,base_speculative_paths,data_points,accuracy_data,degree=2,redudancy=10):
+    def generate_accuracy_prediction_function_coefficients(self,base_speculative_paths,data_points,accuracy_data,degree=1,redudancy=10):
       speculative_matrix = numpy.zeros((data_points*redudancy,degree))
       
       for i in range(data_points*redudancy): #Creating NxN speculative matrix
 	speculative_matrix[i][0] = ((int(i/redudancy)+1)*base_speculative_paths)**-0.5
-	speculative_matrix[i][1] = 1.0
+	#speculative_matrix[i][1] = 1.0
 
       predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,accuracy_data)[0]
 
