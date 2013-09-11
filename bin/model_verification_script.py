@@ -72,7 +72,7 @@ if(len(sys.argv)>4):
 
       if(gui=="yes"):
 	plt.scatter(actual_accuracy_data[-1],actual_latency_data[-1])
-	plt.scatter(mean_accuracy[-1],mean_latency[-1]),color='r')
+	plt.scatter(mean_accuracy[-1],mean_latency[-1],color='r')
 	
       for i,a_l_d in enumerate(actual_latency_data[-1]): 
 	if(i==0): datafile.write("%d,%f,%f,%f,%f,\n"%(p,a_l_d,actual_accuracy_data[-1][i],mean_latency[-1]),mean_accuracy[-1]))
