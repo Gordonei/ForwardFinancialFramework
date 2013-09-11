@@ -289,7 +289,7 @@ class MonteCarlo:
 	for i in range(redudancy):
 	  execution_output = solver.execute()
 	  
-	  latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2])))
+	  latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
 	  
 	  value = 0.0
 	  std_error = 0.0
