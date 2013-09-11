@@ -22,8 +22,8 @@ class MonteCarlo:
     underlying_variables = []
     underlying_dependencies = []
     
-    latency_model = None
-    accuracy_model = None
+    #latency_model = None
+    #accuracy_model = None
     
     def __init__(self,derivative,paths,platform,reduce_underlyings=True):
         name = "monte_carlo_solver"
@@ -61,21 +61,28 @@ class MonteCarlo:
 	self.underlying = []
 	
 	underlying_list = []
-        for d in self.derivative:
-            for u in d.underlying:
+        for i,d in enumerate(self.derivative):
+            for j,u in enumerate(d.underlying):
                 if(u.__dict__ not in underlying_list and reduce_underlyings):  
 		  self.underlying.append(u) #Extracting unique underlyings from derivatives
 		  underlying_list.append(u.__dict__)
                 
                 elif(reduce_underlyings):  #Making sure that equal underlyings are merged - TODO make this check stronger
-                    index = self.derivative.index(d)
-                    u_index = d.underlying.index(u)
-                    new_u_index = underlying_list.index(u.__dict__)
-                    d.underlying[u_index] = self.underlying[new_u_index]
-                
-                    #u_index = self.underlying.index(uu)
+                  new_u_index = underlying_list.index(u.__dict__)
+                  d.underlying[j] = self.underlying[new_u_index]
                     
-                if((len(self.underlying)==0) or not reduce_underlyings): self.underlying.append(u)
+                else: self.underlying.append(u)
+                    
+                #if((len(self.underlying)==0) or not reduce_underlyings): 
+		  #self.underlying.append(u)
+		  #underlying_list.append(u)
+	
+	"""for d in self.derivative:
+            for u in d.underlying:
+	      print d
+	      print u
+	      print "\n"
+        print self.underlying"""
          
         temp = [] #Generating Filename - based on underlyings,derivatives and platforms used
         self.generate_name()
@@ -127,6 +134,7 @@ class MonteCarlo:
       derivative_backup = self.derivative[:]
       underlying_backup = self.underlying[:]
       
+      names = []
       derivatives_with_shared_underlyings = []
       if(len(derivative_backup)>len(underlying_backup)): #Checking to see if there are any shared underlyings
 	for u in underlying_backup:
@@ -156,11 +164,15 @@ class MonteCarlo:
 		latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
 		accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
 
-		name = "%s"%temp_derivatives[0].name[:2]
-		for t_d in temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
+		u.latency_model_coefficients = latency_coefficients
+		u.accuracy_model_coefficients = accuracy_coefficients
 
-		u.latency_model_coefficients["%s"%name] = latency_coefficients
-		u.accuracy_model_coefficients["%s"%name] = accuracy_coefficients
+		"""temp_name = "%s"%temp_derivatives[0].name[:2]
+		for t_d in temp_derivatives[1:]: temp_name = "%s_%s"%(temp_name,t_d.name[:2])
+		names.append(copy.copy(temp_name))
+
+		u.latency_model_coefficients["%s"%names[-1]] = latency_coefficients
+		u.accuracy_model_coefficients["%s"%names[-1]] = accuracy_coefficients"""
       
       for d in derivative_backup:
 	if(d not in derivatives_with_shared_underlyings):
@@ -182,8 +194,8 @@ class MonteCarlo:
       self.derivative = derivative_backup
       self.underlying = underlying_backup
       
-      self.latency_model = self.generate_aggregate_latency_model()
-      self.accuracy_model = self.generate_aggregate_accuracy_model()
+      #self.latency_model = self.generate_aggregate_latency_model()
+      #self.accuracy_model = self.generate_aggregate_accuracy_model()
       
     """def latency_model(self,paths):
       latency_sum = [lambda x: 0.0]
@@ -213,8 +225,63 @@ class MonteCarlo:
       
       return lambda x: max([a(x) for a in accuracies])"""
     
+    def latency_model(self,paths):
+      latency_sum = []
     
-    def generate_aggregate_latency_model(self):
+      temp_derivatives = self.derivative[:]
+      if(len(self.derivative)>len(self.underlying)):
+	for u in self.underlying:
+	    temp_temp_derivatives = []
+	    for d in self.derivative:
+		if(u in d.underlying):
+		    temp_temp_derivatives.append(d)
+	    
+	    if(len(temp_temp_derivatives)>1): 
+	      latency_sum.append(u.latency_model(paths))
+	      for d in temp_temp_derivatives: temp_derivatives.remove(d)
+	    """name = "%s"%temp_temp_derivatives[0].name[:2]
+		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])"""
+		#temp_u = copy.deepcopy(u)
+		#latency_sum.append(lambda x: u.latency_model("%s"%name[:],x))
+		
+      
+      for d in temp_derivatives: latency_sum.append(d.latency_model(paths))
+      
+      return sum(latency_sum)
+      
+    def accuracy_model(self,paths):
+      accuracies = []
+      
+      temp_derivatives = self.derivative[:]
+      names = []
+	
+      if(len(self.derivative)>len(self.underlying)): #Are there shared underlyings?
+	for i,u in enumerate(self.underlying):
+	    temp_temp_derivatives = []
+	    for d in self.derivative:
+		if(u in d.underlying): temp_temp_derivatives.append(d)
+	    
+	    if(len(temp_temp_derivatives)>1): 
+	      accuracies.append(u.accuracy_model(paths))
+	      for d in temp_temp_derivatives: temp_derivatives.remove(d)
+	      #for a in accuracies: print "accuracy %f"%a(10)
+	      #for d in temp_temp_derivatives: temp_derivatives.remove(d)
+	    """for d in temp_temp_derivatives: temp_derivatives.remove(d)
+		name = "%s"%temp_temp_derivatives[0].name[:2]
+		for d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,d.name[:2])
+		#temp_u = copy.deepcopy(u)
+		names.append(copy.deepcopy(name))
+		accuracies.append(lambda x: u.accuracy_model("%s"%names[i],x))"""
+		#for k in u.accuracy_model_coefficients.keys(): accuracies.append(lambda x: u.accuracy_model(k,x))
+		
+      #for u in self.underlying: print u.accuracy_model(u.accuracy_model_coefficients.keys()[0],10)
+      
+      #print len(temp_derivatives)
+      for d in temp_derivatives: accuracies.append(d.accuracy_model(paths))
+      
+      return max(accuracies)
+    
+    """def generate_aggregate_latency_model(self):
       latency_sum = [lambda x: 0.0]
     
       temp_derivatives = self.derivative[:]
@@ -225,44 +292,54 @@ class MonteCarlo:
 		if(u in d.underlying):
 		    temp_temp_derivatives.append(d)
 	    
-	    if(len(temp_temp_derivatives)>1):
-		for d in temp_temp_derivatives: temp_derivatives.remove(d)
-		name = "%s"%temp_temp_derivatives[0].name[:2]
+	    if(len(temp_temp_derivatives)>1): 
+	      latency_sum.append(lambda x: u.latency_model(x))
+	      for d in temp_temp_derivatives: temp_derivatives.remove(d)
+	    name = "%s"%temp_temp_derivatives[0].name[:2]
 		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
-		temp_u = copy.copy(u)
-		#print "%d - %s"%(self.underlying.index(u)+1,name)
-		latency_sum.append(lambda x: temp_u.latency_model("%s"%name[:],x))
+		#temp_u = copy.deepcopy(u)
+		#latency_sum.append(lambda x: u.latency_model("%s"%name[:],x))
+		
       
       for d in temp_derivatives: latency_sum.append(lambda x: d.latency_model(x))
       
-      return lambda x: sum([l_s(x) for l_s in latency_sum])
+      return lambda x: sum([l_s(x) for l_s in latency_sum])"""
       
-    def generate_aggregate_accuracy_model(self):
+    """def generate_aggregate_accuracy_model(self):
       accuracies = []
       
       temp_derivatives = self.derivative[:]
-      if(len(self.derivative)>len(self.underlying)):
-	for u in self.underlying:
+      names = []
+      for u in self.underlying: print u.accuracy_model_coefficients
+	
+      if(len(self.derivative)>len(self.underlying)): #Are there shared underlyings?
+	for i,u in enumerate(self.underlying):
 	    temp_temp_derivatives = []
 	    for d in self.derivative:
-		if(u in d.underlying):
-		    temp_temp_derivatives.append(d)
+		if(u in d.underlying): temp_temp_derivatives.append(d)
 	    
-	    if(len(temp_temp_derivatives)>1):
-		for d in temp_temp_derivatives: temp_derivatives.remove(d)
+	    if(len(temp_temp_derivatives)>1): 
+	      accuracies.append(lambda x: u.accuracy_model(x))
+	      for a in accuracies: print "accuracy %f"%a(10)
+	      for d in temp_temp_derivatives: temp_derivatives.remove(d)
+	    for d in temp_temp_derivatives: temp_derivatives.remove(d)
 		name = "%s"%temp_temp_derivatives[0].name[:2]
-		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
-		temp_u = copy.copy(u)
-		accuracies.append(lambda x: temp_u.accuracy_model("%s"%name,x))	
+		for d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,d.name[:2])
+		#temp_u = copy.deepcopy(u)
+		names.append(copy.deepcopy(name))
+		accuracies.append(lambda x: u.accuracy_model("%s"%names[i],x))
+		#for k in u.accuracy_model_coefficients.keys(): accuracies.append(lambda x: u.accuracy_model(k,x))
+		
+      #for u in self.underlying: print u.accuracy_model(u.accuracy_model_coefficients.keys()[0],10)
       
       #print len(temp_derivatives)
-      for d in temp_derivatives: accuracies.append(lambda x: d.accuracy_model(x))
+      #for d in temp_derivatives: accuracies.append(lambda x: d.accuracy_model(x))
       
-      return lambda x: max([a(x) for a in accuracies])
+      return lambda x: max([a(x) for a in accuracies])"""
     
     def generate_pickle(self,file_name=""):
-      self.latency_model = None
-      self.accuracy_model = None
+      #self.latency_model = None
+      #self.accuracy_model = None
       if(file_name==""): pickle.dump(self,open("%s.p"%self.output_file_name,"wb"))
       else: pickle.dump(self,open("%s.p"%file_name,"wb"))
       

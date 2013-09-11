@@ -16,8 +16,8 @@ class Underlying:
     time = 0.0
     
     #Dictionary of model functions, only used if there are shared underlyings for a given solver
-    latency_model_coefficients = {}
-    accuracy_model_coefficients = {}
+    latency_model_coefficients = []
+    accuracy_model_coefficients = []
 
     def __init__(self,rfir,current_price):
         '''
@@ -26,8 +26,8 @@ class Underlying:
         self.rfir = rfir
         self.current_price = current_price
         
-        self.latency_model_coefficients = {}
-	self.accuracy_model_coefficients = {}
+        self.latency_model_coefficients = []
+	self.accuracy_model_coefficients = []
         
     def path_init(self):
         self.gamma = 0.0
@@ -37,10 +37,13 @@ class Underlying:
         self.gamma += delta_time*self.rfir
         self.time += delta_time
         
-    def latency_model(self,tasks,paths):
-      if(paths>0): return self.latency_model_coefficients[tasks][0]*paths + self.latency_model_coefficients[tasks][1]
+    def latency_model(self,paths):
+      #if(paths>0): return self.latency_model_coefficients[tasks][0]*paths + self.latency_model_coefficients[tasks][1]
+      if(paths>0): return self.latency_model_coefficients[0]*paths + self.latency_model_coefficients[1]
       else: return 0.0      
 
-    def accuracy_model(self,tasks,paths): 
-      if(paths>0): return self.accuracy_model_coefficients[tasks][0]*paths**-0.5 #+ self.accuracy_model_coefficients[tasks][1]
+    def accuracy_model(self,paths):
+      #print self.accuracy_model_coefficients[0]
+      #if(paths>0): return self.accuracy_model_coefficients[tasks][0]*paths**-0.5 #+ self.accuracy_model_coefficients[tasks][1]
+      if(paths>0): return self.accuracy_model_coefficients[0]*paths**-0.5 #+ self.accuracy_model_coefficients[tasks][1]
       else: return 100.0

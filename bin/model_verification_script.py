@@ -30,8 +30,14 @@ if(len(sys.argv)>4):
     #Generating the Model data
     mc_solver = pickle.Unpickler(open("%s"%p_f_n,"rb")).load()
     datafile = open("%s_model_verfication.csv"%p_f_n[:-2],"w")
-    mc_solver.latency_model = mc_solver.generate_aggregate_latency_model()
-    mc_solver.accuracy_model = mc_solver.generate_aggregate_accuracy_model()
+    #mc_solver.latency_model = mc_solver.generate_aggregate_latency_model()
+    #mc_solver.accuracy_model = mc_solver.generate_aggregate_accuracy_model()
+    
+    latency_data=[]
+    accuracy_data=[]
+    for p in paths:
+      latency_data.append(mc_solver.latency_model(p))
+      accuracy_data.append(mc_solver.accuracy_model(p))
     
     derivatives = [[d] for d in mc_solver.derivative[:]]
     if(len(derivatives)>len(mc_solver.underlying)):
@@ -51,8 +57,6 @@ if(len(sys.argv)>4):
       solvers[-1].generate()
       solvers[-1].compile()
     
-    latency_data = map(mc_solver.latency_model,paths)
-    accuracy_data = map(mc_solver.accuracy_model,paths)
     if(gui=="yes"):plt.plot(accuracy_data,latency_data,"x--",label="model")
     for index,l_d in enumerate(latency_data): datafile.write("%d,%f,%f,\n"%(paths[index],l_d,accuracy_data[index]))
     datafile.write("\n")
@@ -79,6 +83,7 @@ if(len(sys.argv)>4):
 	temp_accuracy = []
 	for s in solvers: #iterating over all of the derivatives
 	  temp_result = s.execute()
+	  #print temp_result
 	  actual_latency_data[-1][-1] = actual_latency_data[-1][-1] + temp_result[-1]
 	  
 	  for i,t_r in enumerate(temp_result[:-3]):
@@ -88,8 +93,8 @@ if(len(sys.argv)>4):
 
       mean_latency.append(numpy.mean(actual_latency_data[-1]))
       mean_accuracy.append(numpy.mean(actual_accuracy_data[-1]))
-      print "%f uS vs %f uS (mean actual vs model) - %f%% Error"%(mean_latency[-1],latency_data[len(actual_latency_data)-1],100*abs(mean_latency[-1]-latency_data[len(actual_latency_data)-1])/latency_data[len(actual_latency_data)-1])
-      print "$%f vs $%f (mean actual vs model) - %f%% Error"%(mean_accuracy[-1],accuracy_data[len(actual_accuracy_data)-1],100*abs(accuracy_data[len(actual_accuracy_data)-1]-mean_accuracy[-1])/accuracy_data[len(actual_accuracy_data)-1])
+      print "%f uS vs %f uS (mean actual vs model) - %.2f%% Error"%(mean_latency[-1],latency_data[len(actual_latency_data)-1],100*abs(mean_latency[-1]-latency_data[len(actual_latency_data)-1])/latency_data[len(actual_latency_data)-1])
+      print "$%f vs $%f (mean actual vs model) - %.2f%% Error"%(mean_accuracy[-1],accuracy_data[len(actual_accuracy_data)-1],100*abs(accuracy_data[len(actual_accuracy_data)-1]-mean_accuracy[-1])/accuracy_data[len(actual_accuracy_data)-1])
 
       if(gui=="yes"):
 	plt.scatter(actual_accuracy_data[-1],actual_latency_data[-1])
