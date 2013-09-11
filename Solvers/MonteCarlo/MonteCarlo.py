@@ -59,18 +59,21 @@ class MonteCarlo:
     
     def setup_underlyings(self,reduce_underlyings):
 	self.underlying = []
+	
+	underlying_list = []
         for d in self.derivative:
             for u in d.underlying:
-                temp_underlying_dict = []
-                for uu in self.underlying: temp_underlying_dict.append(uu.__dict__)
-                if(u.__dict__ not in temp_underlying_dict and reduce_underlyings):  self.underlying.append(u) #Extracting unique underlyings from derivatives
+                if(u.__dict__ not in underlying_list and reduce_underlyings):  
+		  self.underlying.append(u) #Extracting unique underlyings from derivatives
+		  underlying_list.append(u.__dict__)
+                
                 elif(reduce_underlyings):  #Making sure that equal underlyings are merged - TODO make this check stronger
                     index = self.derivative.index(d)
                     u_index = d.underlying.index(u)
-                    new_u_index = temp_underlying_dict.index(u.__dict__)
+                    new_u_index = underlying_list.index(u.__dict__)
                     d.underlying[u_index] = self.underlying[new_u_index]
                 
-                    u_index = self.underlying.index(uu)
+                    #u_index = self.underlying.index(uu)
                     
                 if((len(self.underlying)==0) or not reduce_underlyings): self.underlying.append(u)
          
@@ -218,14 +221,12 @@ class MonteCarlo:
       temp_derivatives = self.derivative[:]
       if(len(self.derivative)>len(self.underlying)):
 	for u in self.underlying:
-	    count = 0
 	    temp_temp_derivatives = []
 	    for d in self.derivative:
-		if(d.underlying[0]==u):
+		if(u in d.underlying):
 		    temp_temp_derivatives.append(d)
-		    count = count + 1
 	    
-	    if(count>1):
+	    if(len(temp_temp_derivatives)>1):
 		for d in temp_temp_derivatives: temp_derivatives.remove(d)
 		name = "%s"%temp_temp_derivatives[0].name[:2]
 		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
@@ -243,14 +244,12 @@ class MonteCarlo:
       temp_derivatives = self.derivative[:]
       if(len(self.derivative)>len(self.underlying)):
 	for u in self.underlying:
-	    count = 0
 	    temp_temp_derivatives = []
 	    for d in self.derivative:
-		if(d.underlying[0]==u):
+		if(u in d.underlying):
 		    temp_temp_derivatives.append(d)
-		    count = count + 1
 	    
-	    if(count>1):
+	    if(len(temp_temp_derivatives)>1):
 		for d in temp_temp_derivatives: temp_derivatives.remove(d)
 		name = "%s"%temp_temp_derivatives[0].name[:2]
 		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
