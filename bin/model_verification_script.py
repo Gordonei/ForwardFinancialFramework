@@ -51,7 +51,7 @@ if(len(sys.argv)>4):
       
     solvers = []
     for d in derivatives: #making sure that all of required code is available
-      solvers.append(copy.deepcopy(mc_solver))
+      solvers.append(pickle.Unpickler(open("%s"%p_f_n,"rb")).load())
       solvers[-1].derivative = d
       solvers[-1].setup_underlyings(True)
       solvers[-1].generate()

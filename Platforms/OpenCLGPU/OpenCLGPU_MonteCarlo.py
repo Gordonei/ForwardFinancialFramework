@@ -157,7 +157,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("fclose(fp);")
       output_list.append("cl_program program = clCreateProgramWithSource(context, 1, (const char **)&source_str, (const size_t *)&source_size, &ret);")
       path_string = "mwc64x/cl"
-      if('Darwin' in plat.system()): path_string = "%s/%s"%(os.getcwd(),path_string)
+      if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
       output_list.append("const char* buildOption =\"-I . -I %s\";"%path_string) #-x clc++
       output_list.append("ret = clBuildProgram(program, 1, &device, buildOption, NULL, NULL);")
       #output_list.append("clBuildProgram(program, 1, &device, NULL, NULL, NULL);")"""
@@ -397,12 +397,13 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.platform_directory())
     
     if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("#define AMD_GPU")
-    else: output_list.append("#include <sys/times.h>")
-    #else: output_list.append("#define M_PI 3.141592653589793238")
+    elif("darwin" not in sys.platform): output_list.append("#include <sys/times.h>")
+    #else: output_list.append("#include <mach/mach_time.h>")
+    output_list.append("#define M_PI 3.141592653589793238")
     output_list.append("#define %s"%self.platform.name.upper())
     output_list.append("#define FP_t %s"%self.floating_point_format)
     path_string = "mwc64x/cl/mwc64x.cl"
-    if('Darwin' in plat.system()): path_string = "%s/%s"%(os.getcwd(),path_string)
+    if('darwin' in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
     output_list.append("#include \"%s\""%path_string)
     #Checking that the source code for the derivative and underlying required is avaliable
     for u in self.underlying: 
@@ -452,11 +453,15 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**getting unique ID**")
     output_list.append("int i = get_global_id(0);")
     
-    if not(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+    if (not(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)) and ("darwin" not in sys.platform)):
       output_list.append("//**Generating time offset**")
       output_list.append("clock_t time;")
       output_list.append("struct tms buffer;")
       output_list.append("time = (int)times(&buffer);")
+    """elif(not(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)) and ("darwin" in sys.platform)):
+      output_list.append("//**Generating time offset**")
+      output_list.append("int time;")
+      output_list.append("time = (int)mach_absolute_time();")"""
     
     output_list.append("//**reading parameters from host**")
     output_list.append("int local_path_points=path_points[0];")
@@ -468,7 +473,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU) and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): 
 	output_list.append("temp_u_v_%d.rng_state = seed_%d[i];"%(index,index))
       elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-	output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),time,%d*4096*2*(chunk_size[0]*chunk_number[0]+1));"%(index,self.kernel_loops))
+	if("darwin" not in sys.platform): output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),time,%d*4096*2*(chunk_size[0]*chunk_number[0]+1));"%(index,self.kernel_loops))
+        else: output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),0,%d*4096*2*(chunk_size[0]*chunk_number[0]+1));"%(index,self.kernel_loops))
     
       output_list.append("FP_t spot_price_%d,time_%d;"%(index,index))
     
@@ -548,7 +554,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("#include <sys/times.h>")
     
     path_string = "mwc64x/cl/mwc64x.cl"
-    if('Darwin' in plat.system()): path_string = "%s/%s"%(os.getcwd(),path_string)
+    if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
     output_list.append("#include \"%s\""%path_string)
     
     #Checking that the source code for the derivative and underlying required is avaliable
@@ -613,7 +619,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     compile_flags = ["-lOpenCL","-I/opt/AMDAPP/include","-fpermissive"]
     if(debug): compile_flags.append("-ggdb")
-    if('Darwin' in plat.system()):
+    if("darwin" in sys.platform):
       compile_flags.remove("-lOpenCL")
       compile_flags.append("-framework")
       compile_flags.append("OpenCL")
@@ -623,7 +629,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.platform_directory())
     
     path_string = "mwc64x/cl"
-    if('Darwin' in plat.system()): path_string = "%s/%s"%(os.getcwd(),path_string)
+    if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
     
     self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build(["-I . -I %s"%path_string]) #Creating OpenCL program based upon Kernel
     
