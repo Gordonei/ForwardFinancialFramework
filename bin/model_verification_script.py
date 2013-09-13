@@ -55,7 +55,8 @@ if(len(sys.argv)>4):
       solvers[-1].derivative = d
       solvers[-1].setup_underlyings(True)
       solvers[-1].generate()
-      solvers[-1].compile()
+      if("FPGA" not in solvers[-1].platform.name.upper()):
+	solvers[-1].compile()
     
     if(gui=="yes"):plt.plot(accuracy_data,latency_data,"x--",label="model")
     for index,l_d in enumerate(latency_data): datafile.write("%d,%f,%f,\n"%(paths[index],l_d,accuracy_data[index]))

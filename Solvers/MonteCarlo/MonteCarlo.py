@@ -155,7 +155,7 @@ class MonteCarlo:
 		self.derivative = temp_derivatives
 		self.setup_underlyings(True)
 		self.generate()
-		if("FPGA" not in self.platform.name): self.compile()
+		if("FPGA" not in (self.platform.name).upper()):self.compile()
 		
 		trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
 		accuracy = trial_run_results[0]
@@ -179,7 +179,7 @@ class MonteCarlo:
 	  self.derivative = [d]
 	  self.setup_underlyings(True)
 	  self.generate()
-	  if("FPGA" not in self.platform.name): self.compile()
+	  if("FPGA" not in (self.platform.name).upper()): self.compile()
 	  
 	  trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
 	  accuracy = trial_run_results[0]
