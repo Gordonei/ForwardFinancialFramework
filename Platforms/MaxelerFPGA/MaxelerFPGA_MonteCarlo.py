@@ -426,7 +426,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       return (hw_result,sw_result)
       
   
-  def populate_model(self,base_trial_paths,trial_steps):
+  """def populate_model(self,base_trial_paths,trial_steps):
       derivative_backup = self.derivative[:]
       underlying_backup = self.underlying[:]
       
@@ -486,7 +486,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       self.underlying = underlying_backup
       
       self.latency_model = self.generate_aggregate_latency_model()
-      self.accuracy_model = self.generate_aggregate_accuracy_model()
+      self.accuracy_model = self.generate_aggregate_accuracy_model()"""
       
   """def populate_model(self,base_trial_paths,trial_steps):
       derivative_backup = self.derivative[:]
