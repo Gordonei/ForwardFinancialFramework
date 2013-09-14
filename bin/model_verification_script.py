@@ -49,14 +49,21 @@ if(len(sys.argv)>4):
 	  
       derivatives = [underlying_dict[u] for u in underlying_dict.keys()]
       
+    model_output = ""
     solvers = []
     for d in derivatives: #making sure that all of required code is available
       solvers.append(pickle.Unpickler(open("%s"%p_f_n,"rb")).load())
       solvers[-1].derivative = d
       solvers[-1].setup_underlyings(True)
       solvers[-1].generate()
-      if("FPGA" not in solvers[-1].platform.name.upper()):
-	solvers[-1].compile()
+      if("FPGA" not in solvers[-1].platform.name.upper()): solvers[-1].compile()
+      
+    for p in paths:
+      model_output = "%s%d"%(model_output,p)
+      for s in solvers: model_output = "%s,%f,%f"%(model_output,s.latency_model(p),s.accuracy_model(p))
+      model_output = "%s\n"%(model_output)
+      
+    print model_output
     
     if(gui=="yes"):plt.plot(accuracy_data,latency_data,"x--",label="model")
     for index,l_d in enumerate(latency_data): datafile.write("%d,%f,%f,\n"%(paths[index],l_d,accuracy_data[index]))
