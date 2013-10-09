@@ -73,65 +73,88 @@ def platform_safe_decrease(greater,latencies,allocations):
     while flag:
       flag = False
       platform_latencies = calculate_platform_latencies(latencies,new_allocations)
-      greater_platform_latencies = calculate_task_latencies(latencies[greater,:],new_allocations[greater,:])
-      starting_latency = sum(greater_platform_latencies)
-      greater_platform_latencies = list(greater_platform_latencies)
+      starting_latency = max(platform_latencies)
       
-      tried_index = -1
+      greater_platform_latencies = list(calculate_task_latencies(latencies[greater,:],new_allocations[greater,:]))
+      greater_platform_latencies = list(greater_platform_latencies)
+      greater_platform_latencies_ordering = sorted(range(len(greater_platform_latencies)),key=lambda k: greater_platform_latencies[k])
+      
+      """tried_index = -1
       flag_2 = True
       while(flag_2):
 	max_task_latency = sorted(greater_platform_latencies)[tried_index] #Choose the max task on the greater platform
-	max_task = greater_platform_latencies.index(max_task_latency)
-	if(max_task in tried_tasks): tried_index = tried_index-1
+	max_task = greater_platform_latencies[search_offset:].index(max_task_latency)
+	print max_task
+        if(max_task in tried_tasks):
+            tried_index = tried_index-1
 	else: 
 	  tried_tasks.append(max_task)
-	  flag_2=False
+	  flag_2=False"""
+          
+      max_task_index = 0
+      while(greater_platform_latencies_ordering[max_task_index] in tried_tasks): max_task_index = max_task_index+1
+        
+      max_task = greater_platform_latencies_ordering[max_task_index]
+      max_task_latency = greater_platform_latencies[max_task]
+      tried_tasks.append(max_task)
       
-      max_platform_latency = platform_latencies[greater]
-      slacks = sorted(calculate_platform_slack(latencies,new_allocations)) #max_platform_latency - sorted(platform_latencies)[-2] #slack is the difference between the biggest platform and the rest
-      #slack = slacks[-1]
+      slacks = calculate_platform_slack(latencies,new_allocations) #max_platform_latency - sorted(platform_latencies)[-2] #slack is the difference between the biggest platform and the rest
+      
+      slack = sys.maxint
       for s in slacks:
-	if(s>0.5):
+	if(s>0.5 and s<slack): #take the lowest slack greater than 0.5, the stopping threshhold
 	  slack = s
 	  break
+      
       print "slack - %f"%slack
       diff = min(slack,max_task_latency)
       #diff = max(diff,0.0)
       
       task_sum = sum(latencies[:,max_task])
+      for i,s in enumerate(slacks):
+        if(s<0.5 and i!=greater): task_sum = task_sum - latencies[i,max_task]
       print "task sum - %f"%task_sum
       
-      denominator = sum(task_sum*1.0/latencies[:,max_task])
+      denominator = 0.0#sum(task_sum*1.0/latencies[:,max_task])
+      for i,s in enumerate(slacks):
+        if(s>0.5 or i==greater):
+            denominator = denominator + task_sum*1.0/latencies[i,max_task]
       print "denominator - %f"%denominator
       
       print "slack - %f"%diff
-      print "latencies: %s"%str(latencies)
-      greater_prop = 1.0-(task_sum*1.0/latencies[greater][max_task])/denominator
+      #print "latencies: %s"%str(latencies)
+      greater_prop = 1.0-(task_sum*1.0/latencies[greater,max_task])/denominator
       print greater_prop
       new_greater_latency = max_task_latency - diff*(greater_prop)
       print new_greater_latency
       allocation_diff = new_greater_latency*1.0/latencies[greater][max_task]
       #print allocation_diff
       
-      #temp = copy.deepcopy(new_allocations)
-      new_allocations[greater][max_task] = allocation_diff
-      
-      platform_latencies = calculate_platform_latencies(latencies,new_allocations)
+      temp = copy.deepcopy(new_allocations)
+      temp[greater][max_task] = allocation_diff
       
       new_other_latency = diff*(1-greater_prop)
-      for i in range(len(platform_latencies)):
+      for i,s in enumerate(slacks):
 	  #print i
-	  if(i!=greater):
+	  if(i!=greater and s>0.5):
 	      new_temp_latency = latencies[i,max_task]*(new_allocations[i,max_task]) + new_other_latency
-	      new_allocations[i,max_task] = new_temp_latency*1.0/latencies[i,max_task]
+	      temp[i,max_task] = new_temp_latency*1.0/latencies[i,max_task]
       
-      #new_allocations = temp
-      print new_allocations
       
-      greater_platform_latencies = calculate_task_latencies(latencies[greater,:],new_allocations[greater,:])
-      end_latency = sum(greater_platform_latencies)
-      if(end_latency<starting_latency): flag = True
-      if(len(tried_tasks)==(len(greater_platform_latencies))): flag = False
+      #old_latency = max(calculate_platform_latencies(latencies,new_allocations))
+      end_latency = max(calculate_platform_latencies(latencies,temp))
+      
+      if((end_latency-starting_latency)<0.5):
+        #tried_tasks = [] #reset the tasks that have been tried
+        new_allocations = temp
+        
+      if(len(tried_tasks)<(len(new_allocations[greater,:]))): flag = True #if all of the tasks have been tried, leave the loop
+      
+        #flag = False
+      #print temp
+      
+      #greater_platform_latencies = calculate_task_latencies(latencies[greater,:],new_allocations[greater,:])
+      
     
     return new_allocations
 
@@ -159,6 +182,8 @@ platform_latencies = calculate_platform_latencies(latencies,allocations)
         
 plt.bar(range(len(platforms)),platform_latencies)
 plt.show()
+
+lowest_latency = sys.float_info.max
 
 max_latency = sys.float_info.min
 min_latency = sys.float_info.max
@@ -200,9 +225,11 @@ while(abs(max_latency-min_latency)>0.5):
     
     max_latency = max(platform_latencies) #Which platform has the greatest latency?
     if(new_max_platform!=max_platform): tried_platforms = []
+    
+    if(lowest_latency>max_latency): lowest_latency = max_latency
         
     print allocations
     #plt.bar(platforms,platform_latencies)
     #plt.show()
 
-#if(min_latency!=total_latency): print "min was *not* found (%f vs %f)"%(min_latency,total_latency)
+if(max_latency!=lowest_latency): print "min was *not* found (%f vs %f)"%(max_latency,lowest_latency)
