@@ -305,7 +305,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     #output_list.append("for(unsigned int j=1;j<(chunks+1);++j){")
     output_list.append("unsigned int j = 1;")
-    output_list.append("unsigned int remaining_paths = temp_data->thread_paths;")
+    output_list.append("unsigned int remaining_paths = chunk_paths*kernel_loops*chunks;")
     output_list.append("while(remaining_paths>0){")
     output_list.append("clFinish(command_queue);")
     output_list.append("chunk_number_array[0] = j;")
