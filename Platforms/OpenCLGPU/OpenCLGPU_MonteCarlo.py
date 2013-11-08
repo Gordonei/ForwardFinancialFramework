@@ -349,10 +349,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #output_list.append("else{printf(\"%d-%%d is a nan!\\n\",i);}"%index)
     output_list.append("}")
     
+    output_list.append("j++;")
     output_list.append("}")
     output_list.append("clFinish(command_queue);")
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
-      output_list.append("clFinish(cpu_command_queue);")
+    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("clFinish(cpu_command_queue);")
     
     output_list.append("//**Returning Result**")
     #output_list.append("printf(\"path_points_array[0]=%d\\n\",path_points_array[0]);")
