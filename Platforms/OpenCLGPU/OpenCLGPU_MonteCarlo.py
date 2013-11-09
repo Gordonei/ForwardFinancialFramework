@@ -302,7 +302,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
     #output_list.append("chunks = !(chunks)? 1: chunks;")
     #output_list.append("chunks = (temp_data->thread_paths%%(chunk_paths*kernel_loops))? chunks : chunks;")
-    output_list.append("for(unsigned int j=1;j<(chunks+1);++j){")
+    
+    #output_list.append("for(unsigned int j=1;j<(chunks+1);++j){")
+    output_list.append("unsigned int j = 1;")
+    output_list.append("unsigned int remaining_paths = chunk_paths*kernel_loops*chunks;")
+    output_list.append("while(remaining_paths>0){")
     output_list.append("clFinish(command_queue);")
     output_list.append("chunk_number_array[0] = j;")
     
@@ -340,11 +344,15 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("if(!(isnan(value_%d[i])||isinf(value_%d[i]))){"%(index,index))
       output_list.append("temp_total_%d += value_%d[i];"%(index,index))
       output_list.append("temp_value_sqrd_%d += value_sqrd_%d[i];"%(index,index))
+      output_list.append("remaining_paths--;")
       output_list.append("}")
       #output_list.append("else{printf(\"%d-%%d is a nan!\\n\",i);}"%index)
     output_list.append("}")
     
+    output_list.append("j++;")
     output_list.append("}")
+    output_list.append("clFinish(command_queue);")
+    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("clFinish(cpu_command_queue);")
     
     output_list.append("//**Returning Result**")
     #output_list.append("printf(\"path_points_array[0]=%d\\n\",path_points_array[0]);")
