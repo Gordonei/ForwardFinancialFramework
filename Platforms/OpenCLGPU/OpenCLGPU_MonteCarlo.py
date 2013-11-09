@@ -295,7 +295,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     output_list.append("//**Run the kernel for the 1st Time**")
     output_list.append("const size_t kernel_paths = chunk_paths;")
-    output_list.append("const size_t local_kernel_paths = %d;"%self.solver_metadata["local_work_items"])
+    output_list.append("const size_t local_kernel_paths = local_work_items;")#%self.solver_metadata["local_work_items"])
     #output_list.append("const size_t local_kernel_paths = NULL;")
     output_list.append("clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, NULL);"%(self.output_file_name))
     
@@ -645,7 +645,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)
     #self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.WORK_GROUP_SIZE,self.platform.device)
     
-    self.solver_metadata["local_work_items"] = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)
+    self.solver_metadata["local_work_items"] = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)*self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.WORK_GROUP_SIZE,self.platform.device)/self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)
     self.set_chunk_paths()
     
     binary_kernel = self.program.get_info(pyopencl.program_info.BINARIES)[0] #Getting the binary code for the OpenCL code
@@ -667,7 +667,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return result
  
   def execute(self,cleanup=False,debug=False):
-    while(self.solver_metadata["paths"]<(self.solver_metadata["chunk_paths"]*self.solver_metadata["kernel_loops"])):
+    self.set_chunk_paths() #just making sure this has been set...
+    while(self.solver_metadata["paths"]<(self.solver_metadata["chunk_paths"]*self.solver_metadata["kernel_loops"])): #if one chunk is bigger than the total number of paths
       if(self.work_groups_per_compute_unit>=2):
         self.work_groups_per_compute_unit = self.work_groups_per_compute_unit/2
         self.set_chunk_paths()
@@ -681,7 +682,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return result
   
   def set_chunk_paths(self):
-    self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.get_info(pyopencl.device_info.MAX_COMPUTE_UNITS)*self.work_groups_per_compute_unit #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
+    self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.max_compute_units*self.work_groups_per_compute_unit #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
     #self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]
     self.chunk_paths = self.solver_metadata["chunk_paths"]
     
