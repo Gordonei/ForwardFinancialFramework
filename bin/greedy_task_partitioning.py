@@ -78,83 +78,50 @@ def platform_safe_decrease(greater,latencies,allocations):
       greater_platform_latencies = list(calculate_task_latencies(latencies[greater,:],new_allocations[greater,:]))
       greater_platform_latencies = list(greater_platform_latencies)
       greater_platform_latencies_ordering = sorted(range(len(greater_platform_latencies)),key=lambda k: greater_platform_latencies[k])
-      
-      """tried_index = -1
-      flag_2 = True
-      while(flag_2):
-	max_task_latency = sorted(greater_platform_latencies)[tried_index] #Choose the max task on the greater platform
-	max_task = greater_platform_latencies[search_offset:].index(max_task_latency)
-	print max_task
-        if(max_task in tried_tasks):
-            tried_index = tried_index-1
-	else: 
-	  tried_tasks.append(max_task)
-	  flag_2=False"""
           
-      max_task_index = 0
+      max_task_index = 0 #finding the task with the greatest latency on this platform which hasn't been balanced during this loop yet
       while(greater_platform_latencies_ordering[max_task_index] in tried_tasks): max_task_index = max_task_index+1
         
       max_task = greater_platform_latencies_ordering[max_task_index]
       max_task_latency = greater_platform_latencies[max_task]
       tried_tasks.append(max_task)
       
-      slacks = calculate_platform_slack(latencies,new_allocations) #max_platform_latency - sorted(platform_latencies)[-2] #slack is the difference between the biggest platform and the rest
-      
+      slacks = calculate_platform_slack(latencies,new_allocations)
       slack = sys.maxint
       for s in slacks:
 	if(s>0.5 and s<slack): #take the lowest slack greater than 0.5, the stopping threshhold
 	  slack = s
 	  break
       
-      print "slack - %f"%slack
       diff = min(slack,max_task_latency)
-      #diff = max(diff,0.0)
       
-      task_sum = sum(latencies[:,max_task])
+      task_sum = sum(latencies[:,max_task]) #Initially use all of the tasks
       for i,s in enumerate(slacks):
-        if(s<0.5 and i!=greater): task_sum = task_sum - latencies[i,max_task]
-      print "task sum - %f"%task_sum
+        if(s<0.5 and i!=greater): task_sum = task_sum - latencies[i,max_task] #Take away those tasks which don't have any slack
       
-      denominator = 0.0#sum(task_sum*1.0/latencies[:,max_task])
+      denominator = 0.0
       for i,s in enumerate(slacks):
         if(s>0.5 or i==greater):
-            denominator = denominator + task_sum*1.0/latencies[i,max_task]
-      print "denominator - %f"%denominator
+            denominator = denominator + task_sum*1.0/latencies[i,max_task] #Only add those tasks which have slack or are the greater task
       
-      print "slack - %f"%diff
-      #print "latencies: %s"%str(latencies)
-      greater_prop = 1.0-(task_sum*1.0/latencies[greater,max_task])/denominator
-      print greater_prop
+      greater_prop = 1.0-(task_sum*1.0/latencies[greater,max_task])/denominator #Calculate the proportion by which the greater task may be reduced
       new_greater_latency = max_task_latency - diff*(greater_prop)
-      print new_greater_latency
-      allocation_diff = new_greater_latency*1.0/latencies[greater][max_task]
-      #print allocation_diff
+      allocation_diff = new_greater_latency*1.0/latencies[greater][max_task] #Calculate what the new task allocation will be after the adjustment down
       
       temp = copy.deepcopy(new_allocations)
       temp[greater][max_task] = allocation_diff
       
       new_other_latency = diff*(1-greater_prop)
       for i,s in enumerate(slacks):
-	  #print i
 	  if(i!=greater and s>0.5):
-	      new_temp_latency = latencies[i,max_task]*(new_allocations[i,max_task]) + new_other_latency
-	      temp[i,max_task] = new_temp_latency*1.0/latencies[i,max_task]
+	      new_temp_latency = latencies[i,max_task]*(new_allocations[i,max_task]) + new_other_latency #Increasing those tasks with slack by the same amount as the other
+	      temp[i,max_task] = new_temp_latency*1.0/latencies[i,max_task] #Calculating its new proportion
       
+      end_latency = max(calculate_platform_latencies(latencies,temp)) #Calculating new max latency
       
-      #old_latency = max(calculate_platform_latencies(latencies,new_allocations))
-      end_latency = max(calculate_platform_latencies(latencies,temp))
-      
-      if((end_latency-starting_latency)<0.5):
-        #tried_tasks = [] #reset the tasks that have been tried
-        new_allocations = temp
+      if((end_latency-starting_latency)<0.5): new_allocations = temp #Only accept the new allocation if it actually improves things. Effectively limits the loop to equalising the LRP to the 2nd LRP
         
       if(len(tried_tasks)<(len(new_allocations[greater,:]))): flag = True #if all of the tasks have been tried, leave the loop
-      
-        #flag = False
-      #print temp
-      
-      #greater_platform_latencies = calculate_task_latencies(latencies[greater,:],new_allocations[greater,:])
-      
     
     return new_allocations
 
@@ -199,27 +166,10 @@ while(abs(max_latency-min_latency)>0.5):
     max_task = list(task_latencies).index(max_task_latency)
     
     print "Platform with the highest latency: %d (%f)"%(max_platform,max_latency)
-    print "Task with the highest latency: %d"%max_task
-    #print "Tried platforms - %s"%tried_platforms
+    #print "Task with the highest latency: %d"%max_task
     
-    #platform_slacks = calculate_platform_slack(latencies,allocations)
-    #print "slacks: %s" % platform_slacks
-    #platform_slacks = list(platform_slacks)
-    #max_slack = max(platform_slacks)
-    #max_slack_platform = platform_slacks.index(max_slack)
-    
-    #if(max_slack_platform in tried_platforms):
-        #max_slack = 0.0
-        #for i,p in enumerate(platform_slacks):
-            #if((i not in tried_platforms) and (p>max_slack)):
-                #max_slack_platform = i
-                #max_slack = p
-    
-    #allocations = platform_equalise(max_platform,max_slack_platform,latencies,allocations)
     allocations = platform_safe_decrease(max_platform,latencies,allocations)
-    #if(max_slack_platform not in tried_platforms): tried_platforms.append(max_slack_platform)
     platform_latencies = calculate_platform_latencies(latencies,allocations)
-    #total_latency = max(platform_latencies)
     min_latency = min(platform_latencies)
     new_max_platform = list(platform_latencies).index(max(platform_latencies))
     
@@ -228,8 +178,11 @@ while(abs(max_latency-min_latency)>0.5):
     
     if(lowest_latency>max_latency): lowest_latency = max_latency
         
-    print allocations
+    
     #plt.bar(platforms,platform_latencies)
     #plt.show()
 
+#checking...
+for i in tasks:
+    if(0.99>sum(allocations[:,i])>1.01): print "task i has %f allocation"%sum(allocations[:,i])
 if(max_latency!=lowest_latency): print "min was *not* found (%f vs %f)"%(max_latency,lowest_latency)

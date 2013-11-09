@@ -74,6 +74,7 @@ if(len(sys.argv)>4):
       #mc_solver.generate()
       #mc_solver.compile()
     
+    actual_output = ""
     actual_latency_data = []
     actual_accuracy_data = []
     mean_latency = []
@@ -101,8 +102,8 @@ if(len(sys.argv)>4):
 
       mean_latency.append(numpy.mean(actual_latency_data[-1]))
       mean_accuracy.append(numpy.mean(actual_accuracy_data[-1]))
-      print "%f uS vs %f uS (mean actual vs model) - %.2f%% Error"%(mean_latency[-1],latency_data[len(actual_latency_data)-1],100*abs(mean_latency[-1]-latency_data[len(actual_latency_data)-1])/latency_data[len(actual_latency_data)-1])
-      print "$%f vs $%f (mean actual vs model) - %.2f%% Error"%(mean_accuracy[-1],accuracy_data[len(actual_accuracy_data)-1],100*abs(accuracy_data[len(actual_accuracy_data)-1]-mean_accuracy[-1])/accuracy_data[len(actual_accuracy_data)-1])
+      #print "%f uS vs %f uS (mean actual vs model) - %.2f%% Error"%(mean_latency[-1],latency_data[len(actual_latency_data)-1],100*abs(mean_latency[-1]-latency_data[len(actual_latency_data)-1])/latency_data[len(actual_latency_data)-1])
+      #print "$%f vs $%f (mean actual vs model) - %.2f%% Error"%(mean_accuracy[-1],accuracy_data[len(actual_accuracy_data)-1],100*abs(accuracy_data[len(actual_accuracy_data)-1]-mean_accuracy[-1])/accuracy_data[len(actual_accuracy_data)-1])
 
       if(gui=="yes"):
 	plt.scatter(actual_accuracy_data[-1],actual_latency_data[-1])
