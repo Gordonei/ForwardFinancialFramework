@@ -405,7 +405,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.platform_directory())
     
     if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("#define AMD_GPU")
-    elif("darwin" not in sys.platform): output_list.append("#include <sys/times.h>")
+    #elif("darwin" not in sys.platform): output_list.append("#include <sys/times.h>")
     #else: output_list.append("#include <mach/mach_time.h>")
     output_list.append("#define M_PI 3.141592653589793238")
     output_list.append("#define %s"%self.platform.name.upper())
@@ -463,9 +463,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     if (not(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)) and ("darwin" not in sys.platform)):
       output_list.append("//**Generating time offset**")
-      output_list.append("clock_t time;")
-      output_list.append("struct tms buffer;")
-      output_list.append("time = (int)times(&buffer);")
+      #output_list.append("clock_t time;")
+      #output_list.append("struct tms buffer;")
+      #output_list.append("time = (int)times(&buffer);")
+      output_list.append("int time = 0;")
     """elif(not(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)) and ("darwin" in sys.platform)):
       output_list.append("//**Generating time offset**")
       output_list.append("int time;")
@@ -640,10 +641,6 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
     
     self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build(["-I . -I %s"%path_string]) #Creating OpenCL program based upon Kernel
-    
-    
-    #self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)
-    #self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.WORK_GROUP_SIZE,self.platform.device)
     
     self.solver_metadata["local_work_items"] = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)*self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.WORK_GROUP_SIZE,self.platform.device)/self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)
     self.set_chunk_paths()

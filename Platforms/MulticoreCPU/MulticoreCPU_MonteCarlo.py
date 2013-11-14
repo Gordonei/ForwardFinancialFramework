@@ -132,7 +132,6 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     #Declare Main Function
     output_list.append("//*Main Function*")
     output_list.append("int main(int argc,char* argv[]){")
-    
     #Starting timers
     output_list.append("//**Starting Timers**")
     #output_list.append("int who = RUSAGE_SELF;")
