@@ -53,6 +53,7 @@ class OpenCLGPU:
 	if(flag): break
       
     self.platform_name = self.platform.get_info(pyopencl.platform_info.VENDOR)
+    if("Advanced Micro Devices" in self.platform_name): self.platform_name = self.platform.get_info(pyopencl.platform_info.NAME)
     self.device = self.platform.get_devices(self.device_type)[0] #Takes the first device available for the specified platform and type
     #except: #If the preferred device type isn't available, just take the first available CPU to that platform
       #self.device_type = pyopencl.device_type.CPU

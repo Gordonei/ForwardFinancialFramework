@@ -560,7 +560,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("#define %s"%self.platform.name.upper())
     output_list.append("#define FP_t %s"%self.floating_point_format)
     
-    output_list.append("#include <sys/times.h>")
+    #output_list.append("#include <sys/times.h>")
     
     path_string = "mwc64x/cl/mwc64x.cl"
     if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
@@ -589,9 +589,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("int j = get_local_id(0);")
     
     output_list.append("//**Generating time offset**")
-    output_list.append("clock_t time;")
-    output_list.append("struct tms buffer;")
-    output_list.append("time = (int)times(&buffer);")
+    #output_list.append("clock_t time;")
+    #output_list.append("struct tms buffer;")
+    #output_list.append("time = (int)times(&buffer);")
     
     output_list.append("//**Initiating the Path for each underlying**")
     for i,u in enumerate(self.underlying):
