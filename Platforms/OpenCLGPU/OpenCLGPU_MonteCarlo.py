@@ -41,7 +41,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     else: self.solver_metadata["path_points"] = self.solver_metadata["default_points"]
     
     self.solver_metadata["local_work_items"] = 64
-    self.work_groups_per_compute_unit = 1
+    self.work_groups_per_compute_unit = 4
     self.set_chunk_paths()
     
     #self.solver_metadata["kernel_loops"] = self.paths/self.chunk_paths #Setting how many loops are done within each kernel
@@ -648,7 +648,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     preferred_wg_size_multiple = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)
     max_wg_size = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.WORK_GROUP_SIZE,self.platform.device)
-    num_wg = math.floor(max_wg_size/preferred_wg_size_multiple)
+    num_wg = math.floor(max_wg_size/preferred_wg_size_multiple/self.work_groups_per_compute_unit)
     
     self.solver_metadata["local_work_items"] = max([preferred_wg_size_multiple*num_wg,1])
     self.set_chunk_paths()
