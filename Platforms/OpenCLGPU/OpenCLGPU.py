@@ -30,11 +30,9 @@ class OpenCLGPU:
 	
 	if(flag): break
     
-    if(not self.platform): #If the preferred platform isn't available, just take the first one with the preferred device type
+    if not(self.platform): #If the preferred platform isn't available, just take the first one with the preferred device type
       for p in pyopencl.get_platforms():
 	for d in p.get_devices():
-	  print d.get_info(pyopencl.device_info.TYPE)
-	  print device_type
 	  if(d.get_info(pyopencl.device_info.TYPE)==device_type):
 	    self.platform = p
 	    self.device_type = device_type
@@ -43,7 +41,7 @@ class OpenCLGPU:
 	
 	if(flag): break
 	  
-    elif(not self.platform): #Failing that, just take the first one that has a CPU and use that
+    if not(self.platform): #Failing that, just take the first one that has a CPU and use that
       for p in pyopencl.get_platforms():
 	for d in p.get_devices():
 	  if(d.get_info(pyopencl.device_info.TYPE)==pyopencl.device_type.CPU):
