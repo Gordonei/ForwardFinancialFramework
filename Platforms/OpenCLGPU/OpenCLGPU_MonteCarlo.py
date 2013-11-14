@@ -305,8 +305,12 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     #output_list.append("for(unsigned int j=1;j<(chunks+1);++j){")
     output_list.append("unsigned int j = 1;")
-    output_list.append("long long remaining_paths = temp_data->thread_paths;")
-    output_list.append("while(remaining_paths>0){")
+    for index,d in enumerate(self.derivative):
+      output_list.append("long long remaining_paths_%d = temp_data->thread_paths;"%index)
+      
+    output_list.append("while(")
+    for index,d in enumerate(self.derivative): output_list.append("remaining_paths_%d>0 &&"%index)
+    output_list.append("1){")
     output_list.append("clFinish(command_queue);")
     output_list.append("chunk_number_array[0] = j;")
     
@@ -341,10 +345,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,d in enumerate(self.derivative):
       #output_list.append("printf(\"%%f\\n\",o_a_%d[0].time_period);"%index)
       #output_list.append("printf(\"%%d:%%d - %%f - %%f\\n\",j,i,value_%d[i],value_sqrd_%d[i]);"%(index,index))
-      output_list.append("if((remaining_paths>0) && !(isnan(value_%d[i])||isinf(value_%d[i]))){"%(index,index))
+      output_list.append("if((remaining_paths_%d>0) && !(isnan(value_%d[i])||isinf(value_%d[i]))){"%(index,index,index))
       output_list.append("temp_total_%d += value_%d[i];"%(index,index))
       output_list.append("temp_value_sqrd_%d += value_sqrd_%d[i];"%(index,index))
-      output_list.append("remaining_paths = remaining_paths - kernel_loops;")
+      output_list.append("remaining_paths_%d = remaining_paths_%d - kernel_loops;"%(index,index))
       output_list.append("}")
       #output_list.append("else{printf(\"%d-%%d is a nan!\\n\",i);}"%index)
     output_list.append("}")
