@@ -41,7 +41,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     else: self.solver_metadata["path_points"] = self.solver_metadata["default_points"]
     
     self.solver_metadata["local_work_items"] = 64
-    self.work_groups_per_compute_unit = 4
+    self.work_groups_per_compute_unit = 1
     self.set_chunk_paths()
     
     #self.solver_metadata["kernel_loops"] = self.paths/self.chunk_paths #Setting how many loops are done within each kernel
