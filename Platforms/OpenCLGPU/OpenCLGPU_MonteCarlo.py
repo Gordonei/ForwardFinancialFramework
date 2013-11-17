@@ -12,7 +12,14 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=10):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     
-    #mwc64x_path_string = "mwc64x/cl/mwc64x.cl"
+    """os.chdir("..")
+    os.chdir(self.platform.platform_directory())
+    mwc_path_string = "mwc64x/cl/mwc64x.cl"
+    if('darwin' in sys.platform): mwc_path_string = "%s/%s"%(os.getcwd(),mwc_path_string)
+    os.chdir(self.platform.root_directory())
+    os.chdir("bin")
+    
+    self.utility_libraries.append(mwc_path_string)"""
     
     if("Darwin" in plat.system()):
       self.utility_libraries.extend(["OpenCL/opencl.h"])
@@ -409,7 +416,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.platform_directory())
     
     if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("#define AMD_GPU")
-    #elif("darwin" not in sys.platform): output_list.append("#include <sys/times.h>")
+    elif("darwin" not in sys.platform): output_list.append("#include <sys/times.h>")
     #else: output_list.append("#include <mach/mach_time.h>")
     output_list.append("#define M_PI 3.141592653589793238")
     output_list.append("#define %s"%self.platform.name.upper())
@@ -467,14 +474,15 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     if (not(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)) and ("darwin" not in sys.platform)):
       output_list.append("//**Generating time offset**")
-      #output_list.append("clock_t time;")
-      #output_list.append("struct tms buffer;")
-      #output_list.append("time = (int)times(&buffer);")
-      output_list.append("int time = 0;")
-    """elif(not(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)) and ("darwin" in sys.platform)):
+      output_list.append("ulong time;")
+      output_list.append("struct tms buffer;")
+      output_list.append("times(&buffer);")
+      output_list.append("time = (ulong)(buffer.tms_utime + buffer.tms_stime);")
+    elif(not(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)) and ("darwin" in sys.platform)):
       output_list.append("//**Generating time offset**")
-      output_list.append("int time;")
-      output_list.append("time = (int)mach_absolute_time();")"""
+      output_list.append("ulong time;")
+      output_list.append("time = 0;")
+      #output_list.append("time = (ulong)mach_absolute_time();")
     
     output_list.append("//**reading parameters from host**")
     output_list.append("int local_path_points=path_points[0];")
@@ -487,7 +495,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	output_list.append("temp_u_v_%d.rng_state = seed_%d[i];"%(index,index))
       elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
 	if("darwin" not in sys.platform): output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(chunk_size[0]*chunk_number[0]+1)*time,%d*4096*2*i);"%(index,self.kernel_loops))
-        else: output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(chunk_size[0]*chunk_number[0]+1),%d*4096*2*i);"%(index,self.kernel_loops))
+        else: output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(chunk_size[0]*chunk_number[0]+1)*time,%d*4096*2*i);"%(index,self.kernel_loops))
     
       output_list.append("FP_t spot_price_%d,time_%d;"%(index,index))
     
@@ -593,9 +601,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("int j = get_local_id(0);")
     
     output_list.append("//**Generating time offset**")
-    #output_list.append("clock_t time;")
-    #output_list.append("struct tms buffer;")
-    #output_list.append("time = (int)times(&buffer);")
+    output_list.append("ulong time;")
+    output_list.append("struct tms buffer;")
+    output_list.append("times(&buffer);")
+    output_list.append("time = (ulong)(buffer.tms_utime + buffer.tms_stime);")
     
     output_list.append("//**Initiating the Path for each underlying**")
     for i,u in enumerate(self.underlying):
@@ -631,7 +640,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   
   def compile(self,override=True,cleanup=True,debug=False):
     
-    compile_flags = ["-lOpenCL","-I/opt/AMDAPP/include","-fpermissive"]
+    compile_flags = ["-lOpenCL","-I/opt/AMDAPP/include","-fpermissive"] #,"-Dulong=unsigned long","-Duint=unsigned int","-Duint2=unsigned int","-Duint4=unsigned int"
     if(debug): compile_flags.append("-ggdb")
     if("darwin" in sys.platform):
       compile_flags.remove("-lOpenCL")
