@@ -417,7 +417,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("#define AMD_GPU")
     elif("darwin" not in sys.platform): output_list.append("#include <sys/times.h>")
-    #else: output_list.append("#include <mach/mach_time.h>")
+    else: output_list.append("#include <mach/mach_time.h>")
     output_list.append("#ifndef M_PI")
     output_list.append("#define M_PI 3.141592653589793238")
     output_list.append("#endif")
