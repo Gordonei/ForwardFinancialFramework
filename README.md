@@ -47,12 +47,12 @@ Installation
 ------------
 
 F^3 requires:  
-# A *nix-based Operating System  
-# GCC (http://gcc.gnu.org/) 
-# Python >= 2.7 (http://www.python.org/getit/releases/2.7.3/)  
-# Numpy (http://numpy.scipy.org/)  
-# Maxcompiler version 12.1 (For Maxeler code)  
-# PyOpenCL (https://pypi.python.org/pypi/pyopencl)  
+1. A *nix-based Operating System  
+1. GCC (http://gcc.gnu.org/) 
+1. Python >= 2.7 (http://www.python.org/getit/releases/2.7.3/)  
+1. Numpy (http://numpy.scipy.org/)  
+1. Maxcompiler version 12.1 (For Maxeler code)  
+1. PyOpenCL (https://pypi.python.org/pypi/pyopencl)  
 
 Getting Started
 ---------------
