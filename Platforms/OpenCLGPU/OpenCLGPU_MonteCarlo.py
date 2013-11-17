@@ -631,7 +631,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**Initiating the Path for each underlying**")
     for i,u in enumerate(self.underlying):
 	output_list.append("mwc64x_state_t temp_seed_%d;"%(i))
-        output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(local_chunk_size*local_chunk_number+ local_seed),%d*4096*2*i);"%(index,self.kernel_loops))
+        output_list.append("MWC64X_SeedStreams(temp_seed_%d,(local_chunk_size*local_chunk_number + local_seed),%d*4096*2*i);"%(index,self.kernel_loops))
         
         """output_list.append("if(j==0){")
         output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*(chunk_size[0]*chunk_number[0]+1));"%index)
