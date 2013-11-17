@@ -497,9 +497,6 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     output_list.append("//**reading parameters from host**")
     output_list.append("int local_path_points=path_points[0];")
-    output_list.append("uint local_seed = seed[0];")
-    output_list.append("uint local_chunk_size = chunk_size[0];")
-    output_list.append("uint local_chunk_number = chunk_number[0];")
       
     output_list.append("//**Creating Kernel variables and Copying parameters from host**")
     for index,u in enumerate(self.underlying):
@@ -508,6 +505,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU) and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): 
 	output_list.append("temp_u_v_%d.rng_state = seed_%d[i];"%(index,index))
       elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
+        output_list.append("uint local_seed = seed[0];")
+        output_list.append("uint local_chunk_size = chunk_size[0];")
+        output_list.append("uint local_chunk_number = chunk_number[0];")
         output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),local_seed + 4096*2*local_chunk_size*(local_chunk_number*%d + %d),4096*2*i);"%(index,len(self.underlying),index))
 	#if("darwin" not in sys.platform): output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(chunk_size[0]*chunk_number[0]+1)*time,%d*4096*2*i);"%(index,self.kernel_loops))
         #else: output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(chunk_size[0]*chunk_number[0]+1)*local_seed,%d*4096*2*i);"%(index,self.kernel_loops))
