@@ -227,14 +227,16 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,4 + index*3 + 2 + 2*len(self.underlying),index))
       
     if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+      output_list.append("cl_mem seed_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
       output_list.append("cl_mem chunk_size_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
       output_list.append("cl_mem chunk_number_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
       
-      output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 0, sizeof(cl_mem), (void *)&chunk_size_cpu_buff);"%(self.output_file_name))
-      output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 1, sizeof(cl_mem), (void *)&chunk_number_cpu_buff);"%(self.output_file_name))
+      output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 0, sizeof(cl_mem), (void *)&seed_cpu_buff);"%(self.output_file_name))
+      output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 1, sizeof(cl_mem), (void *)&chunk_size_cpu_buff);"%(self.output_file_name))
+      output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 2, sizeof(cl_mem), (void *)&chunk_number_cpu_buff);"%(self.output_file_name))
       for index,u in enumerate(self.underlying):
-        output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(mwc64x_state_t)*chunk_paths, NULL);"%(self.output_file_name,2*index+2))
-        output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(cl_mem), (void *)&seed_%d_cpu_buff);"%(self.output_file_name,1 + 2*index+2,index))
+        output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(mwc64x_state_t)*chunk_paths, NULL);"%(self.output_file_name,2*index+3))
+        output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(cl_mem), (void *)&seed_%d_cpu_buff);"%(self.output_file_name,1 + 2*index+3,index))
         
     ##Creating the Command Queue for the Kernel
     output_list.append("//**Creating OpenCL Command Queue**")
@@ -276,6 +278,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
       ###Writing Control Parameter
+      output_list.append("clEnqueueWriteBuffer(command_queue, seed_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), seed_array, 0, NULL, NULL);")
       output_list.append("clEnqueueWriteBuffer(command_queue, chunk_size_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_size_array, 0, NULL, NULL);")
       output_list.append("clEnqueueWriteBuffer(command_queue, chunk_number_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, NULL);")
       output_list.append("clFinish(cpu_command_queue);")
@@ -586,7 +589,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("#define %s"%self.platform.name.upper())
     output_list.append("#define FP_t %s"%self.floating_point_format)
     
-    output_list.append("#include <sys/times.h>")
+    #output_list.append("#include <sys/times.h>")
     
     path_string = "mwc64x/cl/mwc64x.cl"
     if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
@@ -602,6 +605,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("bin")
     
     output_list.append("kernel void %s_cpu_seed_kernel("%self.output_file_name)
+    output_list.append("\tconstant uint *seed,")
     output_list.append("\tconstant uint *chunk_size,")
     output_list.append("\tconstant uint *chunk_number,")
     for index,u in enumerate(self.underlying):
@@ -614,16 +618,20 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("int i = get_global_id(0);")
     output_list.append("int j = get_local_id(0);")
     
-    output_list.append("//**Generating time offset**")
+    output_list.append("uint local_seed = seed[0];")
+    output_list.append("uint local_chunk_size = chunk_size[0];")
+    output_list.append("uint local_chunk_number = chunk_number[0];")
+    
+    """output_list.append("//**Generating time offset**")
     output_list.append("ulong time;")
     output_list.append("struct tms buffer;")
     output_list.append("times(&buffer);")
-    output_list.append("time = (ulong)(buffer.tms_utime + buffer.tms_stime);")
+    output_list.append("time = (ulong)(buffer.tms_utime + buffer.tms_stime);")"""
     
     output_list.append("//**Initiating the Path for each underlying**")
     for i,u in enumerate(self.underlying):
 	output_list.append("mwc64x_state_t temp_seed_%d;"%(i))
-        output_list.append("MWC64X_SeedStreams(&(temp_seed_%d),time*(chunk_size[0]*chunk_number[0]+1),%d*4096*2*i*(%d+1));"%(i,self.kernel_loops,i))
+        output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(local_chunk_size*local_chunk_number+ local_seed),%d*4096*2*i);"%(index,self.kernel_loops))
         
         """output_list.append("if(j==0){")
         output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*(chunk_size[0]*chunk_number[0]+1));"%index)
