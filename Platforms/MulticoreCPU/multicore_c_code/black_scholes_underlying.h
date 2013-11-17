@@ -19,6 +19,9 @@
 
 #ifdef OPENCL_GPU
 #include "../../OpenCLGPU/opencl_code/mwc64x/cl/mwc64x.cl"
+#if FP_t==double
+#pragma OPENCL EXTENSION cl_khr_fp64 : enable"
+#endif
 #endif
 
 typedef struct {
