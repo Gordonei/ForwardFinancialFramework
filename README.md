@@ -37,7 +37,7 @@ Framework Layout
 ----------------
 
 * ForwardFinancialFramework  
-  * bin - the experimental scripts for Multicore CPU implementations for various portfolios 
+  * bin - the experimental scripts for various portfolios 
   * Derivatives - the financial derivatives classes  
   * Platforms - the platform classes   
   * Solvers - the solver alogrithms  
@@ -47,19 +47,19 @@ Installation
 ------------
 
 F^3 requires:  
-1. A *nix-based Operating System  
-2. GCC (http://gcc.gnu.org/) 
-3. Python >= 2.7 (http://www.python.org/getit/releases/2.7.3/)  
-4. Numpy (http://numpy.scipy.org/)  
-5. Maxcompiler version 12.1 (For Maxeler code)  
-6. PyOpenCL (https://pypi.python.org/pypi/pyopencl)  
+# A *nix-based Operating System  
+# GCC (http://gcc.gnu.org/) 
+# Python >= 2.7 (http://www.python.org/getit/releases/2.7.3/)  
+# Numpy (http://numpy.scipy.org/)  
+# Maxcompiler version 12.1 (For Maxeler code)  
+# PyOpenCL (https://pypi.python.org/pypi/pyopencl)  
 
 Getting Started
 ---------------
 
 1. Change to the script directory (i.e. ForwardFinancialFramework/bin)  
-2. Run the following command:  
-        "python \<script file name\>" "script options"  
+2. Run the following command in the script directory:  
+        "python \<script file name\> script options"  
 i.e.  
         "python mc_solver_test_script.py CPU Execute"  
 would run a very basic, CPU-based bond valuation.  
