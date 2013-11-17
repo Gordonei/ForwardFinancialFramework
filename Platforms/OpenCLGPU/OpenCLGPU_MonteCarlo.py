@@ -430,6 +430,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("#endif")
     output_list.append("#define %s"%self.platform.name.upper())
     output_list.append("#define FP_t %s"%self.floating_point_format)
+    if(self.floating_point_format.lower()=="double"): output_list.append("#pragma OPENCL EXTENSION cl_khr_fp64 : enable") 
     path_string = "mwc64x/cl/mwc64x.cl"
     if('darwin' in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
     output_list.append("#include \"%s\""%path_string)
