@@ -481,8 +481,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU) and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): 
 	output_list.append("temp_u_v_%d.rng_state = seed_%d[i];"%(index,index))
       elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-	if("darwin" not in sys.platform): output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),time,%d*4096*2*(chunk_size[0]*chunk_number[0]+1));"%(index,self.kernel_loops))
-        else: output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),0,%d*4096*2*(chunk_size[0]*chunk_number[0]+1));"%(index,self.kernel_loops))
+	if("darwin" not in sys.platform): output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(chunk_size[0]*chunk_number[0]+1)*time,%d*4096*2*i);"%(index,self.kernel_loops))
+        else: output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(chunk_size[0]*chunk_number[0]+1),%d*4096*2*i);"%(index,self.kernel_loops))
     
       output_list.append("FP_t spot_price_%d,time_%d;"%(index,index))
     
@@ -595,7 +595,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**Initiating the Path for each underlying**")
     for i,u in enumerate(self.underlying):
 	output_list.append("mwc64x_state_t temp_seed_%d;"%(i))
-        output_list.append("MWC64X_SeedStreams(&(temp_seed_%d),0,%d*4096*2*(chunk_size[0]*chunk_number[0]+1)*(%d+1));"%(i,self.kernel_loops,i))
+        output_list.append("MWC64X_SeedStreams(&(temp_seed_%d),time*(chunk_size[0]*chunk_number[0]+1),%d*4096*2*i*(%d+1));"%(i,self.kernel_loops,i))
+        
         """output_list.append("if(j==0){")
         output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*(chunk_size[0]*chunk_number[0]+1));"%index)
         output_list.append("local_u_v_%d[j] = temp_u_v_%d;"%(index,index))
