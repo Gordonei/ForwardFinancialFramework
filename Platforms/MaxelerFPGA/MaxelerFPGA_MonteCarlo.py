@@ -61,16 +61,22 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     seeds_in = math.ceil(float(len(self.underlying))/4) #Making sure seeds in is in increments of 128 bits (groups of 4 x 32 bit variables)
     values_out = math.ceil(float(len(self.derivative))/4) #Making sure values are in increments of 128 bits
   
-    output_list.append("seeds_in = malloc(paths/instance_paths*%d*sizeof(uint32_t));"%(int(seeds_in*4)))
-    output_list.append("values_out = malloc(paths/instance_paths*%d*sizeof(float));"%(int(values_out*4*self.solver_metadata["instance_paths"])))
+    output_list.append("seeds_in = malloc(%d*sizeof(uint32_t));"%(int(seeds_in*4)*instance_paths))
+    output_list.append("values_out = malloc(%d*sizeof(float));"%(int(values_out*4)*instance_paths))
     #output_list.append("posix_memalign(&seeds_in,%d,sizeof(uint32_t)*%d);"%(seeds_in*4,self.iterations*seeds_in*4))
     #output_list.append("posix_memalign(&values_out,%d,sizeof(float)*%d);"%(values_out*4,self.iterations*values_out*4))
     
+    for d in range(len(self.derivative)): 
+      output_list.append("double temp_total_%d=0;"%d)
+      output_list.append("double temp_value_sqrd_%d=0;"%d)
+    
     output_list.append("//**Generating initial random seed**")
     output_list.append("uint32_t initial_seed = ((uint32_t)lrand48());") #%%((uint32_t)pow(2,31)-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
+    
+    output_list.append("for (i=0;i<(paths/instance_paths/instances);++i){")
     output_list.append("//**Populating Seed Array**")
-    output_list.append("for (i=0;i<(paths/instance_paths*%d);i++){"%(seeds_in)) #Quick way of creating many different seeds
-    output_list.append("seeds_in[i] = initial_seed+i;")
+    output_list.append("for (j=0;j<(instance_paths*%d);++j){"%(seeds_in)) #Quick way of creating many different seeds
+    output_list.append("seeds_in[i] = initial_seed + instance*i + j;")
     output_list.append("}")
     
     output_list.append("//**Streaming data to/from FPGA**")
@@ -93,32 +99,27 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         
     output_list.append("//***Streaming IO Data to FPGA and Running Kernel***")
     output_list.append("max_run(device,")
-    output_list.append("max_input(\"seeds_in\",seeds_in,paths/instance_paths*%d*sizeof(uint32_t)),"%(4*seeds_in))
-    output_list.append("max_output(\"values_out\", values_out, paths/instances*%d*sizeof(float)),"%(4*values_out))
-    output_list.append("max_runfor(\"%s_Kernel\",paths/instances*(path_points+1)),"%(self.output_file_name))
+    output_list.append("max_input(\"seeds_in\",seeds_in,%d*sizeof(uint32_t)),"%(instance_paths*4*seeds_in))
+    output_list.append("max_output(\"values_out\", values_out, %d*sizeof(float)),"%(instances_paths*4*values_out))
+    output_list.append("max_runfor(\"%s_Kernel\",instances*(path_points+1)),"%(self.output_file_name))
     output_list.append("max_end());")
     
     output_list.append("//**Post-Kernel Calculations**")
-    for d in range(len(self.derivative)): 
-      output_list.append("double temp_total_%d=0;"%d)
-      output_list.append("double temp_value_sqrd_%d=0;"%d)
-    output_list.append("for(int i=0;i<paths;i++){")
-    for d in self.derivative:
-      index = self.derivative.index(d)
-      output_list.append("temp_total_%d += values_out[i*%d+%d];"%(index,values_out*4,index))
-      output_list.append("temp_value_sqrd_%d += pow(values_out[i*%d+%d]/instances,2);"%(index,values_out*4,index))
+    for index,d in self.derivative:
+      output_list.append("temp_total_%d += values_out[%d+%d];"%(index,values_out*4,index))
+      output_list.append("temp_value_sqrd_%d += pow(values_out[%d+%d],2);"%(index,values_out*4,index))
       #output_list.append("if(values_out[i*%d+%d]){printf(\"%%d - %%f\\n\",i,values_out[i*%d+%d]);}"%(values_out*4,index,values_out*4,index))
-    output_list.append("}")
     
     #for d in self.derivative:
       #index = self.derivative.index(d)
       #output_list.append("double temp_sample_std_dev_%d = pow((temp_value_sqrd_%d/temp_data->thread_paths-pow(temp_total_%d/temp_data->thread_paths,2))/(temp_data->thread_paths-1),0.5);"%(index,index,index))
       #output_list.append("double temp_sample_std_error_%d = temp_sample_std_dev_%d/pow(temp_data->thread_paths,0.5);"%(index,index))
       
+    output_list.append("}")
     output_list.append("//**Returning Result**")
     #output_list.append("printf(\"temp_total=%f\",temp_total_0);")
     for d in self.derivative: 
-      output_list.append("temp_data->thread_result[%d] = temp_total_%d/instances;"%(self.derivative.index(d),self.derivative.index(d)))
+      output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
       output_list.append("temp_data->thread_result_sqrd[%d] = temp_value_sqrd_%d;"%(self.derivative.index(d),self.derivative.index(d)))
     output_list.append("}")
     
