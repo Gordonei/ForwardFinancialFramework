@@ -17,9 +17,10 @@
 #define native_log log
 #define native_powr pow
 #endif
-//#ifdef OPENCL_GPU
-//#include "mwc64x.cl"
-//#endif
+
+#ifdef OPENCL_GPU
+#include "../../OpenCLGPU/opencl_code/mwc64x/cl/mwc64x.cl"
+#endif
 
 typedef struct {
 FP_t gamma;
