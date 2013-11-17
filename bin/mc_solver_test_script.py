@@ -49,7 +49,7 @@ if( __name__ == '__main__' and len(sys.argv)>1):
     
   if((platform_name=="FPGA" and fpga_option=="Compile") or (platform_name!="FPGA")):
     mc_solver.generate()
-    compile_output = mc_solver.compile()
+    compile_output = mc_solver.compile(debug=True)
   else: compile_output = ""
   
   for c_o in compile_output:
