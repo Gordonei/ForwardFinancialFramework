@@ -11,7 +11,7 @@ public class black_scholes_underlying extends underlying {
 
 	private MersenneTwister mt,mt2;// = new MersenneTwister(this);
 	private KernelMath.Range rangeU,rangeS;
-	protected DFEVar mt_carried,mt2_carried,U1,U2,x,R,A;
+	protected DFEVar mt_carried,mt2_carried,U1,U2,x,R,A,seed,seed2;
 	//private final int seed,seed2;
 
 
