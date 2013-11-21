@@ -1,15 +1,15 @@
 package mc_solver_maxeler;
 
-import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
 
 public class asian_option extends european_option {
 	String name = "asian_option";
 
 	asian_option_parameters parameters;
 
-	protected HWVar average,carried_average,new_average,temp_average_contribution;
+	protected DFEVar average,carried_average,new_average,temp_average_contribution;
 
-	public asian_option(MC_Solver_Maxeler_Base_Kernel kernel,HWVar pp,HWVar p,HWVar enable,asian_option_parameters aop){
+	public asian_option(MC_Solver_Maxeler_Base_Kernel kernel,DFEVar pp,DFEVar p,DFEVar enable,asian_option_parameters aop){
 		super(kernel,pp,p,enable,aop);
 
 		this.parameters = aop;
@@ -28,7 +28,7 @@ public class asian_option extends european_option {
 	}
 
 	@Override
-	public void path(HWVar temp_price,HWVar time){
+	public void path(DFEVar temp_price,DFEVar time){
 		super.path(temp_price,time);
 		this.new_delta_time = this.enable.eq(true)?this.parameters.time_period/this.parameters.points:0.0;
 		this.temp_average_contribution = (temp_price/this.parameters.points).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType);
@@ -42,7 +42,7 @@ public class asian_option extends european_option {
 	}
 
 	@Override
-	public HWVar payoff(HWVar end_price){
+	public DFEVar payoff(DFEVar end_price){
 		return super.payoff(this.new_average);
 	}
 

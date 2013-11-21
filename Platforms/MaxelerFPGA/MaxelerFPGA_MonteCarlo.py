@@ -61,8 +61,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     seeds_in = math.ceil(float(len(self.underlying))/4) #Making sure seeds in is in increments of 128 bits (groups of 4 x 32 bit variables)
     values_out = math.ceil(float(len(self.derivative))/4) #Making sure values are in increments of 128 bits
   
-    output_list.append("seeds_in = malloc(%d*sizeof(uint32_t));"%(int(seeds_in*4)*instance_paths))
-    output_list.append("values_out = malloc(%d*sizeof(float));"%(int(values_out*4)*instance_paths))
+    output_list.append("seeds_in = malloc(%d*instance_paths*sizeof(uint32_t));"%(int(seeds_in*4)))
+    output_list.append("values_out = malloc(%d*instance_paths*sizeof(float));"%(int(values_out*4)))
     #output_list.append("posix_memalign(&seeds_in,%d,sizeof(uint32_t)*%d);"%(seeds_in*4,self.iterations*seeds_in*4))
     #output_list.append("posix_memalign(&values_out,%d,sizeof(float)*%d);"%(values_out*4,self.iterations*values_out*4))
     
@@ -99,13 +99,13 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         
     output_list.append("//***Streaming IO Data to FPGA and Running Kernel***")
     output_list.append("max_run(device,")
-    output_list.append("max_input(\"seeds_in\",seeds_in,%d*sizeof(uint32_t)),"%(instance_paths*4*seeds_in))
-    output_list.append("max_output(\"values_out\", values_out, %d*sizeof(float)),"%(instances_paths*4*values_out))
+    output_list.append("max_input(\"seeds_in\",seeds_in,%d*instance_paths*sizeof(uint32_t)),"%(4*seeds_in))
+    output_list.append("max_output(\"values_out\", values_out, %d*instance_paths*sizeof(float)),"%(4*values_out))
     output_list.append("max_runfor(\"%s_Kernel\",instances*(path_points+1)),"%(self.output_file_name))
     output_list.append("max_end());")
     
     output_list.append("//**Post-Kernel Calculations**")
-    for index,d in self.derivative:
+    for index,d in enumerate(self.derivative):
       output_list.append("temp_total_%d += values_out[%d+%d];"%(index,values_out*4,index))
       output_list.append("temp_value_sqrd_%d += pow(values_out[%d+%d],2);"%(index,values_out*4,index))
       #output_list.append("if(values_out[i*%d+%d]){printf(\"%%d - %%f\\n\",i,values_out[i*%d+%d]);}"%(values_out*4,index,values_out*4,index))
@@ -154,31 +154,31 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("package mc_solver_maxeler;")
     
     #Maxeler Library Imports
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.Kernel;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.KernelParameters;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.Accumulator;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.KernelMath;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.Reductions;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.core.CounterChain;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWFix;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWFix.SignMode;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWFloat;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.composite.KArray;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.types.composite.KArrayType;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.Accumulator;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.Reductions;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix.SignMode;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFloat;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEArray;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEArrayType;")
     
     #Class Declaration
     output_list.append("public class %s_Kernel extends MC_Solver_Maxeler_Base_Kernel {"%self.output_file_name)
     
     #Type Declarations
     output_list.append("//*Type Decleration*\n")
-    #output_list.append("HWFloat inputFloatType = Kernel.hwFloat(8, 24);")
-    #output_list.append("HWFloat inputDoubleType = Kernel.hwFloat(8, 24);")
-    #output_list.append("HWFix accumType = Kernel.hwFix(32,32,SignMode.TWOSCOMPLEMENT);")
+    #output_list.append("dfeFloat inputFloatType = Kernel.hwFloat(8, 24);")
+    #output_list.append("dfeFloat inputDoubleType = Kernel.hwFloat(8, 24);")
+    #output_list.append("dfeFix accumType = Kernel.hwFix(32,32,SignMode.TWOSCOMPLEMENT);")
     seeds_in = math.ceil(float(len(self.underlying))/4)*4 #Making sure seeds_in is in increments of 128 bits
-    output_list.append("KArrayType<HWVar> inputArrayType = new KArrayType<HWVar>(Kernel.hwUInt(32),%d);"%seeds_in)
+    output_list.append("DFEArrayType<DFEVar> inputArrayType = new DFEArrayType<DFEVar>(Kernel.dfeUInt(32),%d);"%seeds_in)
     values_out = math.ceil(float(len(self.derivative))/4)*4 #Making sure values_out are in increments of 128 bits
-    output_list.append("KArrayType<HWVar> outputArrayType = new KArrayType<HWVar>(inputFloatType,%d);"%values_out)
+    output_list.append("DFEArrayType<DFEVar> outputArrayType = new DFEArrayType<DFEVar>(inputFloatType,%d);"%values_out)
     
     #Class Parameters
     """output_list.append("//*Class Parameters*\n")
@@ -198,8 +198,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Counters
     output_list.append("//**Counters**\n")
     output_list.append("CounterChain chain = control.count.makeCounterChain();")
-    output_list.append("HWVar pp = chain.addCounter(this.path_points+1,1);") #Path Points is the outer loop so as to implement a C-Slow architecture
-    output_list.append("HWVar p = chain.addCounter(this.instance_paths,1);")
+    output_list.append("DFEVar pp = chain.addCounter(this.path_points+1,1);") #Path Points is the outer loop so as to implement a C-Slow architecture
+    output_list.append("DFEVar p = chain.addCounter(this.instance_paths,1);")
     
     #Scaler Inputs
     output_list.append("//**Scaler Inputs**\n")
@@ -208,7 +208,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for u_a in self.underlying_attributes:
         for a in u_a:
             temp_attribute_name = "%s_%d_%s" % (self.underlying[index].name,index,a)
-            output_list.append("HWVar %s = (io.scalarInput(\"%s\", inputFloatType));"%(temp_attribute_name,temp_attribute_name))
+            output_list.append("DFEVar %s = (io.scalarInput(\"%s\", inputFloatType));"%(temp_attribute_name,temp_attribute_name))
         index += 1
     
     output_list.append("//***Derivative Attributes***")
@@ -216,21 +216,21 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for o_a in self.derivative_attributes:
         for a in o_a:
             temp_attribute_name = "%s_%d_%s" % (self.derivative[index].name,index,a)
-            output_list.append("HWVar %s = (io.scalarInput(\"%s\", inputFloatType));"%(temp_attribute_name,temp_attribute_name))
+            output_list.append("DFEVar %s = (io.scalarInput(\"%s\", inputFloatType));"%(temp_attribute_name,temp_attribute_name))
         index += 1
         
     output_list.append("//**Random Seed Input**\n")
-    output_list.append("KArray<HWVar> input_array = io.input(\"seeds_in\",inputArrayType,(p.eq(0)&pp.eq(0)));")
+    output_list.append("DFEArray<DFEVar> input_array = io.input(\"seeds_in\",inputArrayType,(p.eq(0)&pp.eq(0)));")
     for u in self.underlying:
       index = self.underlying.index(u)
-      output_list.append("HWVar seeds_in_%d = input_array[%d];"% (index,index))
+      output_list.append("DFEVar seeds_in_%d = input_array[%d];"% (index,index))
     
     #output_list.append("//**Creating Accumulators**\n")
     #output_list.append("Accumulator accum = Reductions.accumulator;")
     #output_list.append("Accumulator.Params ap = accum.makeAccumulatorConfig(accumType).withClear(pp.eq(0));")
-    #for d in self.derivative: output_list.append("HWVar accumulate_%d = this.constant.var(accumType,0.0);"%self.derivative.index(d))
+    #for d in self.derivative: output_list.append("DFEVar accumulate_%d = this.constant.var(accumType,0.0);"%self.derivative.index(d))
     
-    for d in self.derivative: output_list.append("HWVar accumulate_%d = this.constant.var(this.inputDoubleType,0.0);"%self.derivative.index(d))
+    for d in self.derivative: output_list.append("DFEVar accumulate_%d = this.constant.var(this.inputDoubleType,0.0);"%self.derivative.index(d))
     output_list.append("//**Parallelism Loop**")
     output_list.append("for (int i=0;i<this.instances;i++){")
     
@@ -259,7 +259,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append(temp_string)
       output_list.append("%s %s_%d = new %s(this,pp,p,this.constant.var(true),%s_%d_parameters);"%(d.name,d.name,index,d.name,d.name,index))
       output_list.append("%s_%d.path_init();"%(d.name,index)) #path initialisation
-      #output_list.append("HWVar delta_time_%d = %s_%d.delta_time;"%(index,d.name,index))
+      #output_list.append("DFEVar delta_time_%d = %s_%d.delta_time;"%(index,d.name,index))
       
     output_list.append("//***Path Initialisation, Path, Payoff Calls and Accumulation***")
     
@@ -274,18 +274,18 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
           output_list.append("%s_%d.connect_path();"%(u.name,u_index))
           temp_path_call.append("%s_%d"%(u.name,u_index))
     
-          output_list.append("HWVar temp_price_%d = (%s_%d.parameters.current_price*KernelMath.exp(%s_%d.gamma));"%(u_index,u.name,u_index,u.name,u_index))
+          output_list.append("DFEVar temp_price_%d = (%s_%d.parameters.current_price*KernelMath.exp(%s_%d.gamma));"%(u_index,u.name,u_index,u.name,u_index))
         
         output_list.append("%s_%d.path(temp_price_%d,%s_%d.time);"%(d.name,d_index,u_index,u.name,u_index))
         output_list.append("%s_%d.connect_path();"%(d.name,d_index))
-        output_list.append("HWVar payoff_%d = pp.eq(this.path_points) ? (%s_%d.payoff(temp_price_%d)) : 0.0;"%(d_index,d.name,d_index,u_index))
-        #output_list.append("HWVar loopAccumulate_%d = accum.makeAccumulator(payoff_%d.cast(accumType), ap);"%(d_index,d_index))
+        output_list.append("DFEVar payoff_%d = pp.eq(this.path_points) ? (%s_%d.payoff(temp_price_%d)) : 0.0;"%(d_index,d.name,d_index,u_index))
+        #output_list.append("DFEVar loopAccumulate_%d = accum.makeAccumulator(payoff_%d.cast(accumType), ap);"%(d_index,d_index))
         output_list.append("accumulate_%d += payoff_%d;"%(d_index,d_index))
     
     output_list.append("}") #End of parallelism loop
     
     output_list.append("//**Copying Outputs to Output array and outputing it**")
-    output_list.append("KArray<HWVar> output_array = outputArrayType.newInstance(this);")
+    output_list.append("DFEArray<DFEVar> output_array = outputArrayType.newInstance(this);")
     for d in self.derivative:
       index = self.derivative.index(d)
       #output_list.append("output_array[%d] <== (accumulate_%d.cast(inputFloatType));"%(index,index))
@@ -316,10 +316,10 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     #Maxeler Library imports
     output_list.append("import static config.BoardModel.BOARDMODEL;")
-    output_list.append("import com.maxeler.maxcompiler.v1.kernelcompiler.Kernel;")
-    output_list.append("import com.maxeler.maxcompiler.v1.managers.BuildConfig;")
-    output_list.append("import com.maxeler.maxcompiler.v1.managers.standard.Manager;")
-    output_list.append("import com.maxeler.maxcompiler.v1.managers.standard.Manager.IOType;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;")
+    output_list.append("import com.maxeler.maxcompiler.v2.managers.BuildConfig;")
+    output_list.append("import com.maxeler.maxcompiler.v2.managers.standard.Manager;")
+    output_list.append("import com.maxeler.maxcompiler.v2.managers.standard.Manager.IOType;")
     
     #Class declaration
     output_list.append("public class %s_HW_Builder {"%self.output_file_name)
@@ -346,7 +346,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("c.setBuildEffort(BuildConfig.Effort.MEDIUM);")  #LOW,MEDIUM,HIGH,VERY_HIGH
     output_list.append("c.setEnableTimingAnalysis(true);")
     output_list.append("c.setMPPRCostTableSearchRange(1,100);")
-    output_list.append("c.setMPPRParallelism(%d);"%int(math.ceil(multiprocessing.cpu_count()*0.8))) #Why not take up most of the cores available?
+    output_list.append("c.setMPPRParallelism(%d);"%int(math.ceil(multiprocessing.cpu_count()*0.5))) #Why not take up most of the cores available?
     output_list.append("m.setBuildConfig(c);")
     output_list.append("m.build();")
     output_list.append("}")#Closing off Main Method

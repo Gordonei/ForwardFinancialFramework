@@ -1,21 +1,21 @@
 package mc_solver_maxeler;
 
-import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.KernelMath;
-import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
 
 public class black_scholes_underlying extends underlying {
 	String name = "black_scholes_underlying";
 
-	//private HWVar volatility;
+	//private DFEVar volatility;
 	protected final black_scholes_underlying_parameters parameters;
 
 	private MersenneTwister mt,mt2;// = new MersenneTwister(this);
 	private KernelMath.Range rangeU,rangeS;
-	protected HWVar mt_carried,mt2_carried,U1,U2,x,R,A;
+	protected DFEVar mt_carried,mt2_carried,U1,U2,x,R,A;
 	//private final int seed,seed2;
 
 
-	public black_scholes_underlying(MC_Solver_Maxeler_Base_Kernel kernel,HWVar pp,HWVar p,black_scholes_underlying_parameters bsp){
+	public black_scholes_underlying(MC_Solver_Maxeler_Base_Kernel kernel,DFEVar pp,DFEVar p,black_scholes_underlying_parameters bsp){
 		super(kernel,pp,p,bsp);
 
 		this.parameters = bsp;
@@ -33,12 +33,12 @@ public class black_scholes_underlying extends underlying {
 		this.mt2 = new MersenneTwister(this.kernel);
 		this.rangeU = new KernelMath.Range(0.0, 1.0);
 		//this.rangeS = new KernelMath.Range(0.0, 100.0);
-		this.mt_carried = hwUInt(32).newInstance(this);
-		this.mt2_carried = hwUInt(32).newInstance(this);
+		this.mt_carried = dfeUInt(32).newInstance(this);
+		this.mt2_carried = dfeUInt(32).newInstance(this);
 		}
 
 	@Override
-	public void path(HWVar delta_time){
+	public void path(DFEVar delta_time){
 		this.U1 = (mt_carried+1).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType)*(this.kernel.constant.var(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType,1.0/4294967296.0));
 		this.U2 = (mt2_carried+1).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType)*(this.kernel.constant.var(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType,1.0/4294967296.0));
 

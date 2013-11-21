@@ -1,24 +1,24 @@
 package mc_solver_maxeler;
-import com.maxeler.maxcompiler.v1.kernelcompiler.Kernel;
-import com.maxeler.maxcompiler.v1.kernelcompiler.KernelParameters;
-import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.Accumulator;
-import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.KernelMath;
-import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.Reductions;
-import com.maxeler.maxcompiler.v1.kernelcompiler.stdlib.core.CounterChain;
-import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWFix;
-import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWFix.SignMode;
-import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWFloat;
-import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
-import com.maxeler.maxcompiler.v1.kernelcompiler.types.composite.KArray;
-import com.maxeler.maxcompiler.v1.kernelcompiler.types.composite.KArrayType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.Accumulator;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.Reductions;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix.SignMode;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFloat;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEArray;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEArrayType;
 
 public class MC_Solver_Maxeler_Base_Kernel extends Kernel {
 
 	//*Type Decleration*
 
-	HWFloat inputFloatType = Kernel.hwFloat(8, 24);
-	HWFloat inputDoubleType = Kernel.hwFloat(8, 24);
-	HWFix accumType = Kernel.hwFix(32,32,SignMode.TWOSCOMPLEMENT);
+	DFEFloat inputFloatType = Kernel.dfeFloat(8, 24);
+	DFEFloat inputDoubleType = Kernel.dfeFloat(8, 24);
+	DFEFix accumType = Kernel.dfeFix(32,32,SignMode.TWOSCOMPLEMENT);
 
 	//*Class Parameters*
 

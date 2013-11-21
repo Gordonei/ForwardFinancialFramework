@@ -1,30 +1,30 @@
 package mc_solver_maxeler;
 
-import com.maxeler.maxcompiler.v1.kernelcompiler.Kernel;
-import com.maxeler.maxcompiler.v1.kernelcompiler.KernelLib;
-import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelLib;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
 
 public class underlying extends KernelLib {
 
 	String name = "underlying";
 
 	protected Kernel kernel;
-	protected HWVar point;
-	protected HWVar path;
+	protected DFEVar point;
+	protected DFEVar path;
 
 	protected underlying_parameters parameters;
 
-	protected HWVar gamma;
-	protected HWVar carried_gamma;
-	protected HWVar new_gamma;
-	protected HWVar time;
-	protected HWVar carried_time;
-	protected HWVar new_time;
+	protected DFEVar gamma;
+	protected DFEVar carried_gamma;
+	protected DFEVar new_gamma;
+	protected DFEVar time;
+	protected DFEVar carried_time;
+	protected DFEVar new_time;
 
-	//protected HWVar temp_price;
-	//protected HWVar delta_time;
+	//protected DFEVar temp_price;
+	//protected DFEVar delta_time;
 
-	public underlying(MC_Solver_Maxeler_Base_Kernel k,HWVar pp,HWVar p,underlying_parameters up){
+	public underlying(MC_Solver_Maxeler_Base_Kernel k,DFEVar pp,DFEVar p,underlying_parameters up){
 		super(k);
 		this.point = pp;
 		this.path = p;
@@ -43,7 +43,7 @@ public class underlying extends KernelLib {
 
 	}
 
-	public HWVar getCurrentPrice(){
+	public DFEVar getCurrentPrice(){
 		return this.parameters.current_price;
 	}
 
@@ -55,7 +55,7 @@ public class underlying extends KernelLib {
 		this.time = this.point.eq(0) ? 0.0 : carried_time;
 	}
 
-	public void path(HWVar delta_time){
+	public void path(DFEVar delta_time){
 		this.new_gamma = this.gamma + delta_time*this.parameters.rfir;
 		this.new_time = this.time + delta_time;
 		//this.temp_price = this.parameters.current_price*(KernelMath.exp(this.new_gamma.cast(this.kernel.expType)));
@@ -70,28 +70,28 @@ public class underlying extends KernelLib {
 		return this.parameters;
 	}
 
-	/*public HWVar path(HWVar delta_time){
+	/*public DFEVar path(DFEVar delta_time){
 		//this.gamma = this.carried_gamma + this.rfir*delta_time;// + this.rfir*delta_time;
 		this.time = this.carried_time + delta_time;
 
 		return this.new_gamma;
 	}*/
 
-	/*public HWVar getGamma(){
+	/*public DFEVar getGamma(){
 		return this.gamma;
 	}
 
 
 
-	public HWVar getTime(){
+	public DFEVar getTime(){
 		return this.time;
 	}
 
-	public void setGamma(HWVar g){
+	public void setGamma(DFEVar g){
 		this.gamma = g;
 	}
 
-	public HWVar getRfir(){
+	public DFEVar getRfir(){
 		return this.rfir;
 	}*/
 
