@@ -17,7 +17,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     self.solver_metadata["path_points"] = points
     self.iterations = int(self.solver_metadata["paths"]/self.solver_metadata["instance_paths"]) #calculating the number of iterations required of the kernel
     
-    self.utility_libraries = ["stdio.h","stdlib.h","stdint.h","pthread.h","MaxCompilerRT.h","sys/time.h","sys/resource.h"]
+    self.utility_libraries = ["stdio.h","stdlib.h","stdint.h","pthread.h","MaxCompilerRT.h","sys/time.h","sys/resource.h","mersenne_twister_seeding.h"]
     
     self.activity_thread_name = "maxeler_montecarlo_activity_thread"
     self.floating_point_format = "float"
@@ -77,10 +77,10 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("for (i=0;i<(paths/instance_paths/instances);++i){")
     
     output_list.append("initial_seed = (uint32_t)(drand48()*pow(2,32));");
-    output_list.append("seeds_in[0] = initial_seed;")
+    output_list.append("seeds_in = getSeeds(initial_seed);")
     output_list.append("//**Populating Seed Array**")
-    output_list.append("for (j=1;j<(instance_paths*%d);++j){"%(seeds_in*4)) #Quick way of creating many different seeds
-    output_list.append("seeds_in[j] = seeds_in[j-1]+1;")
+    output_list.append("for (j=624;j<(instance_paths*%d);++j){"%(seeds_in*4)) #Padding out the rest of the values
+    output_list.append("seeds_in[j] = 0;")
     output_list.append("}")
     
     output_list.append("//**Streaming data to/from FPGA**")
