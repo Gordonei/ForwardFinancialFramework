@@ -75,12 +75,13 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("srand48(start.tv_nsec);")
     
     output_list.append("for (i=0;i<(paths/instance_paths/instances);++i){")
-    #output_list.append("//**Populating Seed Array**")
-    #output_list.append("for (j=0;j<(instance_paths*%d);++j){"%(seeds_in)) #Quick way of creating many different seeds
-    #output_list.append("seeds_in[i] = initial_seed + instances*i + j;")
-    #output_list.append("}")
+    
     output_list.append("initial_seed = (uint32_t)(drand48()*pow(2,32));");
     output_list.append("seeds_in[0] = initial_seed;")
+    output_list.append("//**Populating Seed Array**")
+    output_list.append("for (j=1;j<(instance_paths*%d);++j){"%(seeds_in*4)) #Quick way of creating many different seeds
+    output_list.append("seeds_in[j] = seeds_in[j-1]+1;")
+    output_list.append("}")
     
     output_list.append("//**Streaming data to/from FPGA**")
     output_list.append("//***Setting Scaler(Parameters) Values***")
@@ -102,7 +103,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         
     output_list.append("//***Streaming IO Data to FPGA and Running Kernel***")
     output_list.append("max_run(device,")
-    output_list.append("max_input(\"seeds_in\",seeds_in,%d*sizeof(uint32_t)),"%(4*seeds_in))
+    output_list.append("max_input(\"seeds_in\",seeds_in,%d*instance_paths*sizeof(uint32_t)),"%(4*seeds_in))
     output_list.append("max_output(\"values_out\", values_out, %d*sizeof(float)),"%(4*values_out))
     output_list.append("max_runfor(\"%s_Kernel\",instance_paths*(path_points+1)),"%(self.output_file_name))
     output_list.append("max_end());")
@@ -174,29 +175,19 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("public class %s_Kernel extends MC_Solver_Maxeler_Base_Kernel {"%self.output_file_name)
     
     #Type Declarations
-    output_list.append("//*Type Decleration*\n")
+    output_list.append("//*Type Declarations*\n")
     #output_list.append("dfeFloat inputFloatType = Kernel.hwFloat(8, 24);")
     #output_list.append("dfeFloat inputDoubleType = Kernel.hwFloat(8, 24);")
     #output_list.append("dfeFix accumType = Kernel.hwFix(32,32,SignMode.TWOSCOMPLEMENT);")
     seeds_in = math.ceil(float(len(self.underlying))/4)*4 #Making sure seeds_in is in increments of 128 bits
-    output_list.append("DFEArrayType<DFEVar> inputArrayType = new DFEArrayType<DFEVar>(Kernel.dfeUInt(32),%d);"%seeds_in)
+    output_list.append("DFEArrayType<DFEVar> inputArrayType = new DFEArrayType<DFEVar>(Kernel.dfeUInt(32),%d);"% (int(seeds_in)))
     values_out = math.ceil(float(len(self.derivative))/4)*4 #Making sure values_out are in increments of 128 bits
-    output_list.append("DFEArrayType<DFEVar> outputArrayType = new DFEArrayType<DFEVar>(inputFloatType,%d);"%values_out)
-    
-    #Class Parameters
-    """output_list.append("//*Class Parameters*\n")
-    output_list.append("protected int instance_paths;")
-    output_list.append("protected int path_points;")
-    output_list.append("protected int instances;")
-    #output_list.append("Accumulator.Params ap;")"""
+    output_list.append("DFEArrayType<DFEVar> outputArrayType = new DFEArrayType<DFEVar>(inputFloatType,%d);" % values_out)
     
     #Class Constructor Declaration and call to parent class constructor
     output_list.append("//*Kernel Class*\n")
     output_list.append("public %s_Kernel(KernelParameters parameters,int instance_paths,int path_points,int instances){"%self.output_file_name)
     output_list.append("super(parameters,instance_paths,path_points,instances);")
-    """output_list.append("this.instance_paths=instance_paths;")
-    output_list.append("this.path_points=path_points;")
-    output_list.append("this.instances=instances;")"""
     
     #Counters
     output_list.append("//**Counters**\n")
@@ -207,31 +198,22 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Scaler Inputs
     output_list.append("//**Scaler Inputs**\n")
     output_list.append("//***Underlying Attributes***\n")
-    index = 0
-    for u_a in self.underlying_attributes:
+    for index,u_a in enumerate(self.underlying_attributes):
         for a in u_a:
             temp_attribute_name = "%s_%d_%s" % (self.underlying[index].name,index,a)
             output_list.append("DFEVar %s = (io.scalarInput(\"%s\", inputFloatType));"%(temp_attribute_name,temp_attribute_name))
         index += 1
     
     output_list.append("//***Derivative Attributes***")
-    index = 0
-    for o_a in self.derivative_attributes:
+    for index,o_a in enumerate(self.derivative_attributes):
         for a in o_a:
             temp_attribute_name = "%s_%d_%s" % (self.derivative[index].name,index,a)
             output_list.append("DFEVar %s = (io.scalarInput(\"%s\", inputFloatType));"%(temp_attribute_name,temp_attribute_name))
-        index += 1
         
     output_list.append("//**Random Seed Input**\n")
-    output_list.append("DFEArray<DFEVar> input_array = io.input(\"seeds_in\",inputArrayType,(p.eq(0)&pp.eq(0)));")
-    for u in self.underlying:
-      index = self.underlying.index(u)
-      output_list.append("DFEVar seeds_in_%d = input_array[%d];"% (index,index))
-    
-    #output_list.append("//**Creating Accumulators**\n")
-    #output_list.append("Accumulator accum = Reductions.accumulator;")
-    #output_list.append("Accumulator.Params ap = accum.makeAccumulatorConfig(accumType).withClear(pp.eq(0));")
-    #for d in self.derivative: output_list.append("DFEVar accumulate_%d = this.constant.var(accumType,0.0);"%self.derivative.index(d))
+    output_list.append("DFEArray<DFEVar> input_array = io.input(\"seeds_in\",inputArrayType,(pp.eq(0)));")
+    #for index,u in enumerate(self.underlying):
+      #output_list.append("DFEVar seeds_in_%d = input_array[%d];"% (index,index))
     
     for d in self.derivative: output_list.append("DFEVar accumulate_%d = this.constant.var(this.inputDoubleType,0.0);"%self.derivative.index(d))
     output_list.append("//**Parallelism Loop**")
@@ -248,8 +230,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append(temp_string)
       output_list.append("%s %s_%d = new %s(this,pp,p,%s_%d_parameters);"%(u.name,u.name,index,u.name,u.name,index))
       if("heston" in u.name or "black_scholes" in u.name):
-	output_list.append("%s_%d_parameters.seed = seeds_in_%d + (p).cast(Kernel.dfeUInt(32));"%(u.name,index,index))
-	output_list.append("%s_%d_parameters.seed2 = seeds_in_%d + (p).cast(Kernel.dfeUInt(32)) + 1;"%(u.name,index,index))
+	output_list.append("%s_%d_parameters.seed = input_array[%d];"%(u.name,index,index))
+	output_list.append("%s_%d_parameters.seed2 = input_array[%d] + 1;"%(u.name,index,index))
       output_list.append("%s_%d.path_init();"%(u.name,index))
       
     output_list.append("//***Derivative Declaration(s)***")
