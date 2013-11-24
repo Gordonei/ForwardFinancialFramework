@@ -1,14 +1,14 @@
 #ifndef MERSENNE_TWISTER_SEEDING_H
 #define MERSENNE_TWISTER_SEEDING_H
 
-static long* init_genrand(long s);
+long* init_genrand(long s);
 
-static long* init_by_array(long *init_key, int key_length);
+long* init_by_array(long *init_key, int key_length);
 
-static long* getSeeds(long seed);
+long* getSeeds(long seed);
 
-static long* init_genrand(long s) {
-    static long mt[624];
+long* init_genrand(long s){
+    long mt[624];
     mt[0] = s & 0xffffffffL;
     for (int mti = 1; mti < 624; mti++) {
         mt[mti] = (1812433253L * (mt[mti - 1] ^ (mt[mti - 1] >> 30)) + mti);
@@ -23,7 +23,7 @@ static long* init_genrand(long s) {
 }
 
 
-static long* init_by_array(long* init_key, int key_length) {
+long* init_by_array(long* init_key, int key_length){
     int i, j, k;
     int N = 624;
     long* mt = init_genrand(19650218L);
@@ -58,7 +58,7 @@ static long* init_by_array(long* init_key, int key_length) {
     return mt;
 }
 
-static long* getSeeds(long seed) {
+long* getSeeds(long seed){
     long init []={0x123+seed, 0x234+seed, 0x345+seed, 0x456+seed};
     int length=4;
     return init_by_array(init, length);
