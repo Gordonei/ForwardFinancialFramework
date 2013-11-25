@@ -287,8 +287,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	#output_list.append("clFinish(command_queue);")
     
     for d in range(len(self.derivative)): 
-      output_list.append("FP_t temp_total_%d=0;"%d)
-      output_list.append("FP_t temp_value_sqrd_%d=0;"%d)
+      output_list.append("double temp_total_%d=0;"%d)
+      output_list.append("double temp_value_sqrd_%d=0;"%d)
       
     ##Running the actual kernel for the first time
     if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
