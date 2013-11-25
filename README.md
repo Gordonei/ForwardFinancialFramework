@@ -9,7 +9,7 @@ Introduction
 
 The vision of F^3 is to allow financial engineers to express valuation computations naturally while taking advantage of the plethora of new computing platforms available.
 
-The application framework also serves as a test case for research into domain-orienteted heterogeneous computing.
+The application framework also serves as a test case for research into domain-oriented heterogeneous computing.
 
 Current Underlyings and Derivatives Supported:
  * Black-Scholes Stochastic Underlyings
@@ -17,7 +17,7 @@ Current Underlyings and Derivatives Supported:
  * European Options
  * European Single and Double Barrier Options
  * European Double Digital Barrier Options
- * Asian Options
+ * European Asian Options
  
 Platforms:
  * Multicore CPUs (via C and Posix threads)
@@ -25,9 +25,11 @@ Platforms:
  * GPUs (via OpenCL)
  
 In Progress:
- * Library for loading pricing problems from Kaiserslautarn Option Pricing Benchmark (http://www.uni-kl.de/en/benchmarking/option-pricing/)
+* Automatic scheduling of tasks across a range of platforms
  
 Coming Soon:
+ * Derivatives with American exercise properties
+ * Interest-rate derivatives
  * IP-based Network execution
  * Lattice-based Solvers
 
@@ -35,7 +37,7 @@ Framework Layout
 ----------------
 
 * ForwardFinancialFramework  
-  * bin - the experimental scripts for Multicore CPU implementations for various portfolios 
+  * bin - the experimental scripts for various portfolios 
   * Derivatives - the financial derivatives classes  
   * Platforms - the platform classes   
   * Solvers - the solver alogrithms  
@@ -45,28 +47,28 @@ Installation
 ------------
 
 F^3 requires:  
-1. A *nix-based Operating System  
-2. GCC (http://gcc.gnu.org/)  
+1. A *nix-based Operating System    
+2. GCC (http://gcc.gnu.org/)    
 3. Python >= 2.7 (http://www.python.org/getit/releases/2.7.3/)  
 4. Numpy (http://numpy.scipy.org/)  
 5. Maxcompiler version 12.1 (For Maxeler code)  
-6. PyOpenCL bindings (https://pypi.python.org/pypi/pyopencl)  
+6. PyOpenCL (https://pypi.python.org/pypi/pyopencl) 
 
 Getting Started
 ---------------
 
 1. Change to the script directory (i.e. ForwardFinancialFramework/bin)  
-2. Run the following command:  
-        "python \<script file name\>"  
+2. Run the following command in the script directory:  
+        "python \<script file name\> script options"  
 i.e.  
-        "python mc_solver_fully_connected_portfolio.py"  
-would run the fully connected portfolio experiment script.  
+        "python mc_solver_test_script.py CPU Execute"  
+would run a very basic, CPU-based bond valuation.  
 
 Extending the Framework
 -----------------------
 
 * To add a new derivative or underlying, look at the existing derivatives and underlyings as an example. The basic procedure:
- 1. Create a new class in the correct directory, inheirting from Option.py or Underlying.py respectively.
+ 1. Create a new class in the correct directory, inheriting from Option.py or Underlying.py respectively.
  2. Overload or add the required methods and variables for the solver(s) being targetted to the new class being created.
  3. Create the required supporting libraries for generating the platform-solver code.
  
@@ -75,4 +77,4 @@ Extending the Framework
 Contact Info
 ------------
 
-Please, feel free to get in touch with me (gordon.inggs (at) gmail.com).
+Please, feel free to get in touch with me (gordon.inggs (at) gmail.com). I'm particularly happy to provide comparison data for your option evaluations.

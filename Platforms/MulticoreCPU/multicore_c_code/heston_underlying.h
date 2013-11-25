@@ -20,17 +20,11 @@
 
 #ifdef OPENCL_GPU
 #include "../../OpenCLGPU/opencl_code/mwc64x/cl/mwc64x.cl"
-#if FP_t==double
-#if defined(cl_amd_fp64) || defined(cl_khr_fp64)
- 
+#if FP_t==double 
 #if defined(cl_amd_fp64)
 #pragma OPENCL EXTENSION cl_amd_fp64 : enable
 #elif defined(cl_khr_fp64)
 #pragma OPENCL EXTENSION cl_khr_fp64 : enable
-#endif
- 
-// function declarations/definitions using double precision floating-point arithmetic
- 
 #endif
 #endif
 #endif
