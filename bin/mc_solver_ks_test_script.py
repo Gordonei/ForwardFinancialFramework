@@ -25,7 +25,7 @@ if( __name__ == '__main__' and len(sys.argv)>3):
     
   elif(platform_name=="FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
-    platform = MaxelerFPGA.MaxelerFPGA()
+    platform = MaxelerFPGA.MaxelerFPGA(instances=10)
     mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform)
     
   else:

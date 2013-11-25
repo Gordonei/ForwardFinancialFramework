@@ -13,7 +13,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     
     self.solver_metadata["instances"] = self.platform.instances #Number of instances set by the platform
-    self.solver_metadata["instance_paths"] = 1000 #setting the number of paths per instance
+    self.solver_metadata["instance_paths"] = 10000 #setting the number of paths per instance
     self.solver_metadata["path_points"] = points
     self.iterations = int(self.solver_metadata["paths"]/self.solver_metadata["instance_paths"]) #calculating the number of iterations required of the kernel
     
