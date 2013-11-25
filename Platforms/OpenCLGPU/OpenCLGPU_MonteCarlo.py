@@ -9,7 +9,7 @@ from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
-  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=10):
+  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=8):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     
     """os.chdir("..")
@@ -50,7 +50,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     self.solver_metadata["kernel_loops"] = kernel_path_max
     self.kernel_loops = self.solver_metadata["kernel_loops"]
     
-    self.solver_metadata["local_work_items"] = 64
+    self.solver_metadata["local_work_items"] = 1
     self.work_groups_per_compute_unit = 1
     self.set_chunk_paths()
     
@@ -232,8 +232,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 1, sizeof(cl_mem), (void *)&chunk_size_cpu_buff);"%(self.output_file_name))
       output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 2, sizeof(cl_mem), (void *)&chunk_number_cpu_buff);"%(self.output_file_name))
       for index,u in enumerate(self.underlying):
-        output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(mwc64x_state_t)*chunk_paths, NULL);"%(self.output_file_name,2*index+3))
-        output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(cl_mem), (void *)&seed_%d_cpu_buff);"%(self.output_file_name,1 + 2*index+3,index))
+        #output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(cl_mem), NULL);"%(self.output_file_name,2*index+3))
+        output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(cl_mem), (void *)&seed_%d_cpu_buff);"%(self.output_file_name,2*index+3,index))
         
     ##Creating the Command Queue for the Kernel
     output_list.append("//**Creating OpenCL Command Queue**")
@@ -252,7 +252,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("seed_array[0] = (unsigned int)time(&seed_timer);")
     output_list.append("clEnqueueWriteBuffer(command_queue, seed_buff, CL_TRUE, 0, sizeof(cl_uint), seed_array, 0, NULL, NULL);")
     output_list.append("cl_uint *chunk_size_array = (cl_uint*)malloc(sizeof(cl_uint));")
-    output_list.append("chunk_size_array[0] = chunk_paths;")
+    output_list.append("chunk_size_array[0] = chunk_paths*kernel_loops;")
     output_list.append("clEnqueueWriteBuffer(command_queue, chunk_size_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_size_array, 0, NULL, NULL);")
     output_list.append("cl_uint *chunk_number_array = (cl_uint*)malloc(sizeof(cl_uint));")
     output_list.append("chunk_number_array[0] = 0;")
@@ -661,7 +661,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   
   def generate_variable_declaration(self):
     output_list = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate_variable_declaration(self)
-    output_list.append("typedef struct{ unsigned int x; unsigned int c; } mwc64x_state_t;")
+    output_list.append("typedef struct{ cl_uint x; cl_uint c; } mwc64x_state_t;")
   
     return output_list
   
@@ -714,9 +714,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       if(self.work_groups_per_compute_unit>=2):
         self.work_groups_per_compute_unit = self.work_groups_per_compute_unit/2
         self.set_chunk_paths()
-      else:
-        self.work_groups_per_compute_unit = 1
+      elif(self.kernel_loops>=2):
+        self.kernel_loops = self.kernel_loops/2
         self.set_chunk_paths()
+      else: #well, we've tried everything...
         break
     
     result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.execute(self,cleanup,debug)
@@ -724,7 +725,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return result
   
   def set_chunk_paths(self):
-    self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.max_compute_units*self.work_groups_per_compute_unit*self.solver_metadata["kernel_loops"] #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
+    self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.max_compute_units*self.work_groups_per_compute_unit #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
     #self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]
     self.chunk_paths = self.solver_metadata["chunk_paths"]
     
