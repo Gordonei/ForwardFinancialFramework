@@ -75,7 +75,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("uint32_t initial_seed;") #%%((uint32_t)pow(2,31)-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
     output_list.append("srand48(start.tv_nsec);")
     
-    output_list.append("for (i=0;i<(paths/instance_paths/instances);++i){")
+    output_list.append("for (i=0;i<ceil(paths/instance_paths/instances);++i){")
     
     output_list.append("//**Populating Seed Array(s)**")
     for index,u in enumerate(self.underlying):
