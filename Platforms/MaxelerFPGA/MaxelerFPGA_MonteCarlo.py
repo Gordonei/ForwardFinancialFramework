@@ -59,9 +59,9 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("long *temp_seeds,*temp_seeds2;")
     output_list.append("float *values_out;")
     
-    seeds_in = math.ceil(float(len(self.underlying))/4) #Making sure seeds in is in increments of 128 bits (groups of 4 x 32 bit variables)
-    values_out = math.ceil(float(len(self.derivative))/4) #Making sure values are in increments of 128 bits
-  
+    seeds_in = math.ceil(float(len(self.underlying))/2) #Making sure seeds in is in increments of 128 bits (groups of 4 x 32 bit variables)
+    values_out = math.ceil(float(len(self.derivative))/2) #Making sure values are in increments of 128 bits
+
     output_list.append("seeds_in = malloc(%d*instance_paths*sizeof(uint32_t));"%(int(seeds_in*4)))
     output_list.append("values_out = malloc(%d*instance_paths*sizeof(float));"%(int(values_out*4)))
     #output_list.append("posix_memalign(&seeds_in,%d,sizeof(uint32_t)*%d);"%(seeds_in*4,self.iterations*seeds_in*4))
@@ -75,7 +75,9 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("uint32_t initial_seed;") #%%((uint32_t)pow(2,31)-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
     output_list.append("srand48(start.tv_nsec);")
     
-    output_list.append("for (i=0;i<ceil(paths/instance_paths/instances);++i){")
+    output_list.append("int loops = ceil(paths/instance_paths/instances);");
+    output_list.append("if(loops==0) loops = 1;")
+    output_list.append("for (i=0;i < loops;++i){")
     
     output_list.append("//**Populating Seed Array(s)**")
     for index,u in enumerate(self.underlying):
@@ -112,7 +114,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("max_end());")
     
     output_list.append("//**Post-Kernel Aggregation**")
-    output_list.append("for (j=0;j<(instance_paths*%d);j = j + %d){"%(values_out*4,values_out*4))
+    output_list.append("for (j=0;(j<(instance_paths*%d))&&((j<paths*%d));j = j + %d){"%(values_out*4,values_out*4,values_out*4))
     for index,d in enumerate(self.derivative):
       output_list.append("temp_total_%d += values_out[j+2*%d];"%(index,index))
       output_list.append("temp_value_sqrd_%d += values_out[j+2*%d+1];"%(index,index))
@@ -125,6 +127,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #output_list.append("double temp_sample_std_error_%d = temp_sample_std_dev_%d/pow(temp_data->thread_paths,0.5);"%(index,index))
       
     output_list.append("}")
+
     output_list.append("//**Returning Result**")
     #output_list.append("printf(\"temp_total=%f\",temp_total_0);")
     for d in self.derivative: 
