@@ -6,7 +6,6 @@ sys.path.append("../..")
 import KS_ProblemSet, numpy.linalg, mc_solver_ks_test
 
 if( __name__ == '__main__' and len(sys.argv)>4):
-  import matplotlib.pyplot as plt
   platform_name = sys.argv[1]
   
   paths = int(sys.argv[2])
@@ -55,7 +54,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
       data_file.write("Benchmark,%d,%f,%f,\n"%(p,accuracy,latency))
       print "Benchmarked Latency for %d paths: %f"%(p,latency)
       print "Benchmarked Accuracy for %d paths: %f"%(p,accuracy)
-    else: 
+    if(p>=(paths*benchmark_steps)): 
       data_file.write("Projection,%d,%f,%f,\n"%(p,accuracy,latency))
       print "Projected Latency for %d paths: %f"%(p,latency)
       print "Projected Accuracy for %d paths: %f"%(p,accuracy)
@@ -78,9 +77,9 @@ if( __name__ == '__main__' and len(sys.argv)>4):
 	
       accuracy.append(max(temp_95CI))
     
-    data_file.write("Min Verification,%d,%f,%f,\n"%(p,min(accuracy),min(latency)))
+    #data_file.write("Min Verification,%d,%f,%f,\n"%(p,min(accuracy),min(latency)))
     data_file.write("Mean Verification,%d,%f,%f,\n"%(p,numpy.mean(accuracy),numpy.mean(latency)))
-    data_file.write("Max Verification,%d,%f,%f,\n"%(p,max(accuracy),max(latency)))
+    data_file.write("Std Verification,%d,%f,%f,\n"%(p,numpy.std(accuracy),numpy.std(latency)))
     
     data_file.flush()
     
