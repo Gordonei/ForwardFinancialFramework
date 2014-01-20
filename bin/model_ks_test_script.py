@@ -10,9 +10,10 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   platform_name = sys.argv[1]
   
   paths = int(sys.argv[2])
-  steps = int(sys.argv[3])
+  benchmark_steps = int(sys.argv[3])
+  model_steps = int(sys.argv[4])
   
-  options = map(str,sys.argv[4:]) #range(1,14)
+  options = map(str,range(1,14)) #range(1,14)
   
   options = KS_ProblemSet.KS_Options(options)
  
@@ -35,7 +36,15 @@ if( __name__ == '__main__' and len(sys.argv)>4):
     print "incorrect platform type!"
     sys.exit()
     
-  mc_solver.generate()
+  #Generating the Model Data
+  mc_solver.populate_model(paths,benchmark_steps)
+  for p in range(paths,paths*(model_steps+1),paths):
+    latency = mc_solver.latency_model(p)
+    accuracy = mc_solver.accuracy_model(p)
+    
+    print "Latency for %d paths: %f"%(p,latency)
+    print "Latency for %d paths: %f"%(p,accuracy)
+  """mc_solver.generate()
   compile_output = mc_solver.compile()
   
   trial_run_results = mc_solver.trial_run(paths,steps,mc_solver)
@@ -70,7 +79,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   
   plt.legend(loc="best")
   plt.ylabel("Latency (Microseconds)")
-  plt.show()
+  plt.show()"""
     
 elif(__name__ == '__main__'):
-  print "usage: python model_ks_test_script.py [CPU|GPU|FPGA] [Number of  Test Paths] [Number of Test Steps] [Option 1] [Option 2] ... [Option N]"
+  print "usage: python model_ks_test_script.py [CPU|GPU|FPGA] [Number of Benchmark Paths] [Number of Benchmark Steps] [Number of Model Steps]"

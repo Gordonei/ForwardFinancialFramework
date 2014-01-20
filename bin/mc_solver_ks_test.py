@@ -60,7 +60,7 @@ if(__name__ == '__main__' and len(sys.argv)>3):
     
   if(len(results[1].keys())>3):
     for k in sorted(results[1].keys()): 
-      if("time" not in k): print "%s -\t%s"%(k,results[1][k])
+      if("time" not in k): print "%s - %s"%(k,results[1][k])
       
     print "Latency: %s uS (%s uS User Time + %s uS Kernel Time)"%(results[1]["Total time"],results[1]["User time"],results[1]["Kernel time"])
     
