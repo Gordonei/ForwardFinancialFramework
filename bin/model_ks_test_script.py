@@ -63,19 +63,24 @@ if( __name__ == '__main__' and len(sys.argv)>4):
     
   #Verifying the Data
   for p in range(paths*benchmark_steps,paths*(model_steps+1),paths):
-    results = []
-    for i in range(redundancy): results.append(mc_solver_ks_test.run_ks_solver(platform_name,p,"",option_numbers)[1])
-    
     latency = []
     accuracy = []
-    for r in results: #Aggregating results
-      latency.append(r["Total time"])
-      temp_95CI = []
-      for rk in r.keys():
-	if("CI" in rk):
-	  temp_95CI.append(float(r[rk]))
+    
+    for i in range(redundancy):
+      temp_latency = 0.0
+      temp_accuracy = 0.0
+      results = []
+      for o in [["1","2"],["3","6","12"],["4"],["5","9","11"],["7"],["8","10"],["13"]]: results.append(mc_solver_ks_test.run_ks_solver(platform_name,p,"",o)[1])
+      for r in results: #Aggregating results
+	temp_latency += r["Total time"]
+	temp_95CI = []
+	for rk in r.keys():
+	  if("CI" in rk): temp_95CI.append(float(r[rk]))
+      
+	if(temp_accuracy<max(temp_95CI)): temp_accuracy = max(temp_95CI)
 	
-      accuracy.append(max(temp_95CI))
+      latency.append(temp_latency)
+      accuracy.append(temp_accuracy)
     
     #data_file.write("Min Verification,%d,%f,%f,\n"%(p,min(accuracy),min(latency)))
     data_file.write("Mean Verification,%d,%f,%f,\n"%(p,numpy.mean(accuracy),numpy.mean(latency)))
