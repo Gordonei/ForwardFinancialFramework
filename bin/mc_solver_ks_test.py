@@ -5,7 +5,7 @@ import sys
 sys.path.append("../..")
 import KS_ProblemSet
 
-def run_ks_solver(platform_name,paths,fpga_option,options):  
+def run_ks_solver(platform_name,paths,fpga_option,options,debug=False):  
   option = KS_ProblemSet.KS_Options(options)
  
   if(platform_name=="GPU"):
@@ -29,9 +29,9 @@ def run_ks_solver(platform_name,paths,fpga_option,options):
     
   mc_solver.generate()
   compile_output = [""]
-  if ((platform_name=="FPGA" and "Compile"==fpga_option) or (platform_name!="FPGA")): compile_output = mc_solver.compile(debug=True)
+  if ((platform_name=="FPGA" and "Compile"==fpga_option) or (platform_name!="FPGA")): compile_output = mc_solver.compile(debug=debug)
   execution_output=[""]
-  if ((platform_name=="FPGA" and "Execute"==fpga_option) or (platform_name!="FPGA")): execution_output = mc_solver.execute(debug=True)
+  if ((platform_name=="FPGA" and "Execute"==fpga_option) or (platform_name!="FPGA")): execution_output = mc_solver.execute(debug=debug)
   
   execution_output_dict = {}
   
@@ -52,7 +52,7 @@ if(__name__ == '__main__' and len(sys.argv)>3):
   fpga_option = sys.argv[2]
   options = sys.argv[4:]
   
-  results = run_ks_solver(platform_name,paths,fpga_option,options)
+  results = run_ks_solver(platform_name,paths,fpga_option,options,True)
   
   if(len(results[0])>0):
     print "compiler output:"
