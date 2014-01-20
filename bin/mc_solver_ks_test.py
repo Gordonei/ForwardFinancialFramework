@@ -20,7 +20,7 @@ def run_ks_solver(platform_name,paths,fpga_option,options):
     
   elif(platform_name=="FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
-    platform = MaxelerFPGA.MaxelerFPGA(instances=1)
+    platform = MaxelerFPGA.MaxelerFPGA(instances=9)
     mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform)
     
   else:
