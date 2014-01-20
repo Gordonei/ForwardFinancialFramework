@@ -55,8 +55,8 @@ public class black_scholes_underlying extends underlying {
 	@Override
 	public void connect_path(){
 		super.connect_path();
-		this.mt_carried <== this.mt.createTwister(); //this.parameters.seed
-		this.mt2_carried <== this.mt2.createTwister(); //this.parameters.seed2
+		this.mt_carried <== this.mt.createTwister(this.parameters.seed); //this.parameters.seed
+		this.mt2_carried <== this.mt2.createTwister(this.parameters.seed); //this.parameters.seed2
 
 	}
 
