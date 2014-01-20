@@ -6,11 +6,7 @@ sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Underlying
 from ForwardFinancialFramework.Derivatives import Option
 
-if( __name__ == '__main__' and len(sys.argv)>1):
-  platform_name = sys.argv[1]
-  fpga_option = ""
-  if(platform_name=="FPGA"): fpga_option = sys.argv[2]
-  
+def run_program(platform_name,fpga_option):
   #Test Parameters  
   ##Underlying Parameters
   rfir = 0.1
@@ -52,14 +48,25 @@ if( __name__ == '__main__' and len(sys.argv)>1):
     compile_output = mc_solver.compile(debug=True)
   else: compile_output = ""
   
-  for c_o in compile_output:
-    print c_o
+  #for c_o in compile_output:
+    #print c_o
   
-  if ((platform_name=="FPGA" and fpga_option=="Execute") or (platform_name!="FPGA")):
-    execution_output = mc_solver.execute(debug=True)
-    for e_o in execution_output: print execution_output
+  if ((platform_name=="FPGA" and fpga_option=="Execute") or (platform_name!="FPGA")): execution_output = mc_solver.execute(debug=True)
+    #for e_o in execution_output: print execution_output
 
   else: execution_output = ""
+  
+  return (compile_output,execution_output)
+  
+if( __name__ == '__main__' and len(sys.argv)>1):
+  platform_name = sys.argv[1]
+  fpga_option = ""
+  if(platform_name=="FPGA"): fpga_option = sys.argv[2]
+  
+  result = run_program(platform_name,fpga_option)
+  
+  print result[0]
+  print result[1]  
     
-else:
+elif(__name__ == '__main__'):
   print "usage: python mc_solver_test_script [CPU|GPU|FPGA] [Compile|Execute]"
