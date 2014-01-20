@@ -6,7 +6,7 @@ sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Underlying
 from ForwardFinancialFramework.Derivatives import Option
 
-def run_program(platform_name,fpga_option):
+def run_test_solver(platform_name,fpga_option):
   #Test Parameters  
   ##Underlying Parameters
   rfir = 0.1
@@ -63,7 +63,7 @@ if( __name__ == '__main__' and len(sys.argv)>1):
   fpga_option = ""
   if(platform_name=="FPGA"): fpga_option = sys.argv[2]
   
-  result = run_program(platform_name,fpga_option)
+  result = run_test_solver(platform_name,fpga_option)
   
   print result[0]
   print result[1]  
