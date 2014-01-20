@@ -5,7 +5,7 @@ import sys
 sys.path.append("../..")
 import KS_ProblemSet
 
-def run_ks_solver(platform_name,paths,fpga_option,options,debug=False):  
+def run_ks_solver(platform_name,paths,fpga_option,options,debug=False,threads=0):  
   option = KS_ProblemSet.KS_Options(options)
  
   if(platform_name=="GPU"):
@@ -15,7 +15,8 @@ def run_ks_solver(platform_name,paths,fpga_option,options,debug=False):
     
   elif(platform_name=="CPU"):
     from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
-    platform = MulticoreCPU.MulticoreCPU()
+    if(threads): platform = MulticoreCPU.MulticoreCPU(threads=threads)
+    else: platform = MulticoreCPU.MulticoreCPU()
     mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform)
     
   elif(platform_name=="FPGA"):
@@ -31,6 +32,8 @@ def run_ks_solver(platform_name,paths,fpga_option,options,debug=False):
   compile_output = [""]
   if ((platform_name=="FPGA" and "Compile"==fpga_option) or (platform_name!="FPGA")): compile_output = mc_solver.compile(debug=debug)
   execution_output=[""]
+  
+  if (platform_name=="FPGA" and "Execute"==fpga_option): mc_solver.dummy_run() #Make sure the FPGA is clear
   if ((platform_name=="FPGA" and "Execute"==fpga_option) or (platform_name!="FPGA")): execution_output = mc_solver.execute(debug=debug)
   
   execution_output_dict = {}
