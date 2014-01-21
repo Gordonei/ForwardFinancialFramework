@@ -20,10 +20,10 @@ def option_grouping(option_numbers):
     options.remove(["12"])
     options.append(["3","6","12"])
     
-  if("4" in option_numbers and "5" in option_numbers and "9" in option_numbers):
-    options.remove(["4"])
+  if("5" in option_numbers and "9" in option_numbers and "11" in option_numbers):
     options.remove(["5"])
     options.remove(["9"])
+    options.remove(["11"])
     options.append(["4","5","9"])
     
   if("8" in option_numbers and "10" in option_numbers):
