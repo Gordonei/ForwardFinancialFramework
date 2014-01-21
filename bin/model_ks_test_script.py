@@ -24,7 +24,7 @@ def option_grouping(option_numbers):
     options.remove(["5"])
     options.remove(["9"])
     options.remove(["11"])
-    options.append(["4","5","9"])
+    options.append(["5","9","11"])
     
   if("8" in option_numbers and "10" in option_numbers):
     options.remove(["8"])
