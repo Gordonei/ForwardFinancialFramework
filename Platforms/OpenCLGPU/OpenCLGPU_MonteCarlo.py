@@ -384,6 +384,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("clReleaseCommandQueue(command_queue);")
     output_list.append("clReleaseContext(context);")
     output_list.append("clReleaseMemObject(path_points_buff);")
+    output_list.append("clReleaseMemObject(seed_buff);")
+    output_list.append("clReleaseMemObject(chunk_size_buff);")
+    output_list.append("clReleaseMemObject(chunk_number_buff);")
     
     for index,u in enumerate(self.underlying):
         output_list.append("clReleaseMemObject(u_a_%d_buff);" % (index))
@@ -392,6 +395,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,d in enumerate(self.derivative):
 	output_list.append("clReleaseMemObject(o_a_%d_buff);" % (index))
         output_list.append("clReleaseMemObject(value_%d_buff);" % (index))
+        output_list.append("clReleaseMemObject(value_sqrd_%d_buff);" % (index))
     
     output_list.append("}")
     
