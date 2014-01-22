@@ -21,7 +21,7 @@ def run_ks_solver(platform_name,paths,fpga_option,options,debug=False,threads=0)
     
   elif(platform_name=="FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
-    platform = MaxelerFPGA.MaxelerFPGA(instances=9)
+    platform = MaxelerFPGA.MaxelerFPGA(instances=8)
     mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform)
     
   else:
@@ -36,16 +36,18 @@ def run_ks_solver(platform_name,paths,fpga_option,options,debug=False,threads=0)
   if (platform_name=="FPGA" and "Execute"==fpga_option): mc_solver.dummy_run() #Make sure the FPGA is clear
   if ((platform_name=="FPGA" and "Execute"==fpga_option) or (platform_name!="FPGA")): execution_output = mc_solver.execute(debug=debug)
   
+ 
   execution_output_dict = {}
   
-  for i,r in enumerate(execution_output[:-3]):
-      if not(i%2): 
-	execution_output_dict["Option %s"%options[i/2]] = r
-	execution_output_dict["Option %s 95%%CI"%options[i/2]] = execution_output[i+1]
+  if(fpga_options!="Compile")
+    for i,r in enumerate(execution_output[:-3]):
+        if not(i%2): 
+          execution_output_dict["Option %s"%options[i/2]] = r
+	  execution_output_dict["Option %s 95%%CI"%options[i/2]] = execution_output[i+1]
       
-  execution_output_dict["Total time"] = execution_output[-1]
-  execution_output_dict["User time"] = execution_output[-3]
-  execution_output_dict["Kernel time"] = execution_output[-2]
+    execution_output_dict["Total time"] = execution_output[-1]
+    execution_output_dict["User time"] = execution_output[-3]
+    execution_output_dict["Kernel time"] = execution_output[-2]
   
   return (compile_output,execution_output_dict)
     
