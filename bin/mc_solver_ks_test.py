@@ -39,7 +39,7 @@ def run_ks_solver(platform_name,paths,fpga_option,options,debug=False,threads=0)
  
   execution_output_dict = {}
   
-  if(fpga_options!="Compile"):
+  if(fpga_option!="Compile"):
     for i,r in enumerate(execution_output[:-3]):
         if not(i%2): 
           execution_output_dict["Option %s"%options[i/2]] = r
