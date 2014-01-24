@@ -5,6 +5,35 @@ import sys,os
 sys.path.append("../..")
 import KS_ProblemSet, numpy.linalg, mc_solver_ks_test
 
+def option_grouping(option_numbers):
+  options = [[o] for o in option_numbers]
+  #1,2 3,6,12, 4 5,9,11 7 8,10 13
+  
+  if("1" in option_numbers and "2" in option_numbers):
+    options.remove(["1"])
+    options.remove(["2"])
+    options.append(["1","2"])
+    
+  if("3" in option_numbers and "6" in option_numbers and "12" in option_numbers):
+    options.remove(["3"])
+    options.remove(["6"])
+    options.remove(["12"])
+    options.append(["3","6","12"])
+    
+  if("5" in option_numbers and "9" in option_numbers and "11" in option_numbers):
+    options.remove(["5"])
+    options.remove(["9"])
+    options.remove(["11"])
+    options.append(["5","9","11"])
+    
+  if("8" in option_numbers and "10" in option_numbers):
+    options.remove(["8"])
+    options.remove(["10"])
+    options.append(["8","10"])
+    
+  return options
+    
+
 if( __name__ == '__main__' and len(sys.argv)>4):
   platform_name = sys.argv[1]
   
@@ -21,7 +50,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   data_file.write("%s,%s,\n"%(platform_name,hostname))
   data_file.write("Type,Simulation Paths,Accuracy,Latency,\n")
   
-  option_numbers = map(str,range(1,14))
+  option_numbers = sys.argv[5:] #map(str,range(1,14))
   
   options = KS_ProblemSet.KS_Options(option_numbers)
  
@@ -62,6 +91,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
     data_file.flush()
     
   #Verifying the Data
+  options = option_grouping(option_numbers)
   for p in range(paths*benchmark_steps,paths*(model_steps+1),paths):
     latency = []
     accuracy = []
@@ -70,7 +100,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
       temp_latency = 0.0
       temp_accuracy = 0.0
       results = []
-      for o in [["1","2"],["3","6","12"],["4"],["5","9","11"],["7"],["8","10"],["13"]]: results.append(mc_solver_ks_test.run_ks_solver(platform_name,p,"",o)[1])
+      for o in options: results.append(mc_solver_ks_test.run_ks_solver(platform_name,p,"Execute",o)[1])
       for r in results: #Aggregating results
 	temp_latency += r["Total time"]
 	temp_95CI = []
@@ -94,4 +124,4 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   data_file.close()
     
 elif(__name__ == '__main__'):
-  print "usage: python model_ks_test_script.py [CPU|GPU|FPGA] [Number of Benchmark Paths] [Number of Benchmark Steps] [Number of Model Steps]"
+  print "usage: python model_ks_test_script.py [CPU|GPU|FPGA] [Number of Benchmark Paths] [Number of Benchmark Steps] [Number of Model Steps] [Option Number 1] [Option Number 2] ... [Option Number N]"

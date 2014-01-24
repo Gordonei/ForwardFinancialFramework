@@ -549,31 +549,31 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return results
   
   def trial_run(self,paths,steps,solver,redudancy=10):
-      accuracy = []
-      latency = []
+    accuracy = []
+    latency = []
 
-      path_set = numpy.arange(paths,paths*(steps+1),paths)
-      for p in path_set: #Trial Runs to generate data needed for predicition functions
-	solver.solver_metadata["paths"] = p
-	for i in range(redudancy):
-	  self.dummy_run()
-	  execution_output = solver.execute()
-	  
-	  latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
-	  
-	  value = 0.0
-	  std_error = 0.0
-	  max_value = 0.0
-	  for i,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
-	    if(not i%2): value = float(e_o)+0.00000000000001
-	    else: 
-	      std_error = float(e_o) 
-	      error_prop = std_error #/value*100
-	      if(error_prop>max_value): max_value = error_prop
+    path_set = numpy.arange(paths,paths*(steps+1),paths)
+    for p in path_set: #Trial Runs to generate data needed for predicition functions
+      solver.solver_metadata["paths"] = p
+      for i in range(redudancy):
+	self.dummy_run()
+	execution_output = solver.execute()
 	
-	  accuracy.append(max_value)
+	latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
+	
+	value = 0.0
+	std_error = 0.0
+	max_value = 0.0
+	for i,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
+	  if(not i%2): value = float(e_o)+0.00000000000001
+	  else: 
+	    std_error = float(e_o) 
+	    error_prop = std_error #/value*100
+	    if(error_prop>max_value): max_value = error_prop
+      
+	accuracy.append(max_value)
 
-      return [accuracy,latency]
+    return [accuracy,latency]
     
   def dummy_run(self):
       rfir = 0.1
