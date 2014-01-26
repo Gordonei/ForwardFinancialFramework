@@ -6,11 +6,11 @@ import pyopencl
 
 class OpenCLGPU:
   name = "opencl_gpu"
-  threads = 1
+  threads = 0
   platform_directory_string = ""
   root_directory_string = ""
   
-  def __init__(self,threads=1,platform_directory_string="Platforms/OpenCLGPU/opencl_code/",root_directory_string="../../..",platform_name="",device_type=pyopencl.device_type.GPU):
+  def __init__(self,threads=0,platform_directory_string="Platforms/OpenCLGPU/opencl_code/",root_directory_string="../../..",platform_name="",device_type=pyopencl.device_type.GPU):
     self.threads = threads
     self.platform_directory_string = platform_directory_string
     self.root_directory_string = root_directory_string
