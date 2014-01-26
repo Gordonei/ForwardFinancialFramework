@@ -26,7 +26,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   for p in range(paths,paths*(path_steps+1),paths):
     for t in range(threads,threads+thread_steps+1): #Threads increase in powers of 2
       for o in options:
-	execution_output = mc_solver_ks_test.run_ks_solver(platform_name,p,fpga_option,[o],threads=t**2)[1]
+	execution_output = mc_solver_ks_test.run_ks_solver(platform_name,p,"Execute",[o],threads=t**2)[1]
 	
 	result_string = "%s,%d,%d,%s,%s,%s,%s,%s,\n"%(o,p,t,execution_output["Option %s"%o],execution_output["Option %s 95%%CI"%o],execution_output["User time"],execution_output["Kernel time"],execution_output["Total time"])
 	print result_string
