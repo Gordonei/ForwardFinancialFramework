@@ -11,7 +11,7 @@ from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=8):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
-    
+    self.solver_metadata["threads"] = 1 #In this context this means something different
     """os.chdir("..")
     os.chdir(self.platform.platform_directory())
     mwc_path_string = "mwc64x/cl/mwc64x.cl"
@@ -721,7 +721,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         self.set_chunk_paths()
       else: #well, we've tried everything...
         break
-    
+      
     result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.execute(self,cleanup,debug)
   
     return result
