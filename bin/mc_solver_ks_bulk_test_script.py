@@ -5,7 +5,7 @@ import sys,os
 sys.path.append("../..")
 import KS_ProblemSet, mc_solver_ks_test
 
-if( __name__ == '__main__' and len(sys.argv)>4):
+if( __name__ == '__main__' and len(sys.argv)>6):
   platform_name = sys.argv[1]
   paths = int(sys.argv[2])
   path_steps = int(sys.argv[3])
@@ -24,11 +24,11 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   data_file.write("Option Number,Simulation Paths,Threads,Option Value,95%% CI,User Time,CPU Time,Total Time,\n")
   
   for p in range(paths,paths*(path_steps+1),paths):
-    for t in range(threads,threads+thread_steps+1): #Threads increase in powers of 2
+    for t in range(threads,threads+thread_steps): #Threads increase in powers of 2
       for o in options:
-	execution_output = mc_solver_ks_test.run_ks_solver(platform_name,p,"Execute",[o],threads=t**2)[1]
+	execution_output = mc_solver_ks_test.run_ks_solver(platform_name,p,"Execute",[o],threads=2**t)[1]
 	
-	result_string = "%s,%d,%d,%s,%s,%s,%s,%s,\n"%(o,p,t,execution_output["Option %s"%o],execution_output["Option %s 95%%CI"%o],execution_output["User time"],execution_output["Kernel time"],execution_output["Total time"])
+	result_string = "%s,%d,%d,%s,%s,%s,%s,%s,\n"%(o,p,2**t,execution_output["Option %s"%o],execution_output["Option %s 95%%CI"%o],execution_output["User time"],execution_output["Kernel time"],execution_output["Total time"])
 	print result_string
 	data_file.write(result_string)
 	data_file.flush()
