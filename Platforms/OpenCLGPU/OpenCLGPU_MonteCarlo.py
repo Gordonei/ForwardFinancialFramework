@@ -727,7 +727,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return result
   
   def set_chunk_paths(self):
-    self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.max_compute_units*self.work_groups_per_compute_unit #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
+    self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.max_compute_units*self.work_groups_per_compute_unit
+    if(0<self.platform.threads<self.solver_metadata["chunk_paths"]): self.solver_metadata["chunk_paths"] = self.platform.threads
+    if(0<self.platform.threads<self.solver_metadata["local_work_items"]): self.solver_metadata["local_work_items"] = self.platform.threads
+    #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
     #self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]
     self.chunk_paths = self.solver_metadata["chunk_paths"]
     
