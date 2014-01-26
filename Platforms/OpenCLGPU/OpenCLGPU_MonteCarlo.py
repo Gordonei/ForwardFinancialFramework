@@ -11,7 +11,7 @@ from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=8):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
-    
+    self.solver_metadata["threads"] = 1 #In this context this means something different
     """os.chdir("..")
     os.chdir(self.platform.platform_directory())
     mwc_path_string = "mwc64x/cl/mwc64x.cl"
@@ -721,13 +721,16 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         self.set_chunk_paths()
       else: #well, we've tried everything...
         break
-    
+      
     result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.execute(self,cleanup,debug)
   
     return result
   
   def set_chunk_paths(self):
-    self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.max_compute_units*self.work_groups_per_compute_unit #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
+    self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.max_compute_units*self.work_groups_per_compute_unit
+    if(0<self.platform.threads<self.solver_metadata["chunk_paths"]): self.solver_metadata["chunk_paths"] = self.platform.threads
+    if(0<self.platform.threads<self.solver_metadata["local_work_items"]): self.solver_metadata["local_work_items"] = self.platform.threads
+    #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
     #self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]
     self.chunk_paths = self.solver_metadata["chunk_paths"]
     
