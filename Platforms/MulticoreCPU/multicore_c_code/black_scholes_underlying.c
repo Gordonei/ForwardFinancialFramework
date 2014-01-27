@@ -19,9 +19,9 @@ void black_scholes_underlying_underlying_path_init(black_scholes_underlying_vari
 	u_v->x = 0.0;
 	
 	#ifdef MULTICORE_CPU
-	(u_v->rng_state).s1 = 2;//+ (unsigned int)pthread_self(); //+ (unsigned int)pthread_self();
-	(u_v->rng_state).s2 = 8;
-	(u_v->rng_state).s3 = 16 + ((unsigned int) clock());
+	//(u_v->rng_state).s1 = 2; This is done in the kernel proper now
+	//(u_v->rng_state).s2 = 8;
+	//(u_v->rng_state).s3 = 16;
 	
 	int temp;
 	for(int i=0;i<100;++i){
