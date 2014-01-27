@@ -369,16 +369,12 @@ class MonteCarlo:
 	  latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
 	  
 	  value = 0.0
-	  std_error = 0.0
-	  max_value = 0.0
+	  temp_error = []
 	  for i,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
 	    if(not i%2): value = float(e_o)+0.00000000000001
-	    else: 
-	      std_error = float(e_o) 
-	      error_prop = std_error #/value*100
-	      if(error_prop>max_value): max_value = error_prop
+	    else: temp_error.append(float(e_o)) #temp_error.append(float(e_o)/value*100) #percentage relative error
 	
-	  accuracy.append(max_value)
+	  accuracy.append(max(temp_error))
 
       return [accuracy,latency]
       
