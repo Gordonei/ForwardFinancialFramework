@@ -279,8 +279,9 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     ##Declare Loop Data Structures
     output_list.append("//**Loop Data Structures**")
-    output_list.append("struct thread_data* temp_data;")
-    output_list.append("temp_data = (struct thread_data*) thread_arg;")
+    #output_list.append("struct thread_data* temp_data;")
+    #output_list.append("temp_data = (struct thread_data*) thread_arg;")
+    output_list.append("unsigned int thread_paths = ((struct thread_data*) thread_arg)->thread_paths;")
     
     for u in self.underlying:
         index = self.underlying.index(u)
@@ -339,7 +340,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       #if(index<(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d,"%(output_list[-1],index))
       #elif(index==(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d;"%(output_list[-1],index))
       
-    output_list.append("for(l=0;l<temp_data->thread_paths;l++){")
+    output_list.append("for(l=0;l<thread_paths;l++){")
     
     output_list.append("//***Underlying and Derivative Path Initiation***")
     for u in self.underlying: 
@@ -440,8 +441,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     ##Return result to main loop
     output_list.append("//**Returning Result**")
     for d in self.derivative: 
-      output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
-      output_list.append("temp_data->thread_result_sqrd[%d] = temp_total_sqrd_%d;"%(self.derivative.index(d),self.derivative.index(d)))
+      output_list.append("((struct thread_data*) thread_arg)->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
+      output_list.append("((struct thread_data*) thread_arg)->thread_result_sqrd[%d] = temp_total_sqrd_%d;"%(self.derivative.index(d),self.derivative.index(d)))
     output_list.append("}")
     
       
