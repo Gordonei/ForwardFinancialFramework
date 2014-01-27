@@ -10,7 +10,8 @@ def run_ks_solver(platform_name,paths,fpga_option,options,debug=False,threads=0)
  
   if(platform_name=="GPU"):
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
-    platform = OpenCLGPU.OpenCLGPU()
+    if(threads): platform = OpenCLGPU.OpenCLGPU(threads=threads)
+    else: platform = OpenCLGPU.OpenCLGPU()
     mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform) #,reduce_underlyings=False
     
   elif(platform_name=="CPU"):
@@ -57,7 +58,7 @@ if(__name__ == '__main__' and len(sys.argv)>3):
   fpga_option = sys.argv[2]
   options = sys.argv[4:]
   
-  results = run_ks_solver(platform_name,paths,fpga_option,options,True)
+  results = run_ks_solver(platform_name,paths,fpga_option,options,debug=True,threads=0)
   
   if(len(results[0])>0):
     print "compiler output:"
@@ -67,7 +68,7 @@ if(__name__ == '__main__' and len(sys.argv)>3):
     for k in sorted(results[1].keys()): 
       if("time" not in k): print "%s - %s"%(k,results[1][k])
       
-    print "Latency: %s uS (%s uS User Time + %s uS Kernel Time)"%(results[1]["Total time"],results[1]["User time"],results[1]["Kernel time"])
+    print "Latency: %s uS (%s uS Setup Time + %s uS Activity Time)"%(results[1]["Total time"],results[1]["User time"],results[1]["Kernel time"])
     
 elif(__name__ == '__main__'):
   print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] {Compile|Execute} [Number of Paths] [KS Option Number 1] [KS Option Number 2] [...] [KS Option Number N]"
