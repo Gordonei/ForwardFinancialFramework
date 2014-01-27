@@ -279,8 +279,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     ##Declare Loop Data Structures
     output_list.append("//**Loop Data Structures**")
-    output_list.append("struct thread_data* temp_data;")
-    output_list.append("temp_data = (struct thread_data*) thread_arg;")
+    #output_list.append("struct thread_data* temp_data;")
+    #output_list.append("temp_data = (struct thread_data*) thread_arg;")
+    output_list.append("unsigned int thread_paths = ((struct thread_data*) thread_arg)->thread_paths;")
+    output_list.append("unsigned int rng_seed = clock();")
     
     for u in self.underlying:
         index = self.underlying.index(u)
@@ -339,19 +341,21 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       #if(index<(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d,"%(output_list[-1],index))
       #elif(index==(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d;"%(output_list[-1],index))
       
-    output_list.append("for(l=0;l<temp_data->thread_paths;l++){")
+    output_list.append("for(l=0;l<thread_paths;l++){")
     
     output_list.append("//***Underlying and Derivative Path Initiation***")
-    for u in self.underlying: 
-        index = self.underlying.index(u)
+    for index,u in enumerate(self.underlying):
+	if("heston" in u.name or "black_scholes" in u.name):
+	  output_list.append("(u_v_%d.rng_state).s1 = 2;"%index)
+	  output_list.append("(u_v_%d.rng_state).s2 = 8;"%index)
+	  output_list.append("(u_v_%d.rng_state).s3 = %d+rng_seed;" % (index,16+index))
+	  
         output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
     
     
-    for d in self.derivative:
-        index = self.derivative.index(d)
+    for index,d in enumerate(self.derivative):
         output_list.append("%s_derivative_path_init(&o_v_%d,&o_a_%d);" % (d.name,index,index))
-        for u in d.underlying:
-            u_index = self.underlying.index(u)
+        for u_index,u in enumerate(d.underlying):
             output_list.append("next_time_%d_%d = 0;"%(index,u_index))
             output_list.append("price_%d_%d = u_a_%d.current_price*exp(u_v_%d.gamma);"%(index,u_index,u_index,u_index))
     
@@ -440,8 +444,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     ##Return result to main loop
     output_list.append("//**Returning Result**")
     for d in self.derivative: 
-      output_list.append("temp_data->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
-      output_list.append("temp_data->thread_result_sqrd[%d] = temp_total_sqrd_%d;"%(self.derivative.index(d),self.derivative.index(d)))
+      output_list.append("((struct thread_data*) thread_arg)->thread_result[%d] = temp_total_%d;"%(self.derivative.index(d),self.derivative.index(d)))
+      output_list.append("((struct thread_data*) thread_arg)->thread_result_sqrd[%d] = temp_total_sqrd_%d;"%(self.derivative.index(d),self.derivative.index(d)))
     output_list.append("}")
     
       

@@ -12,6 +12,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=8):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     self.solver_metadata["threads"] = 1 #In this context this means something different
+    
     """os.chdir("..")
     os.chdir(self.platform.platform_directory())
     mwc_path_string = "mwc64x/cl/mwc64x.cl"
@@ -712,6 +713,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
  
   def execute(self,cleanup=False,debug=False):
     self.set_chunk_paths() #just making sure this has been set...
+    
     while(self.solver_metadata["paths"]<(self.solver_metadata["chunk_paths"]*self.solver_metadata["kernel_loops"])): #if one chunk is bigger than the total number of paths
       if(self.work_groups_per_compute_unit>=2):
         self.work_groups_per_compute_unit = self.work_groups_per_compute_unit/2
@@ -728,10 +730,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   
   def set_chunk_paths(self):
     self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]*self.platform.device.max_compute_units*self.work_groups_per_compute_unit
+    
     if(0<self.platform.threads<self.solver_metadata["chunk_paths"]): self.solver_metadata["chunk_paths"] = self.platform.threads
     if(0<self.platform.threads<self.solver_metadata["local_work_items"]): self.solver_metadata["local_work_items"] = self.platform.threads
-    #128, self.paths/kernel_loops self.platform.device.get_info(pyopencl.device_info.MAX_WORK_GROUP_SIZE), 
-    #self.solver_metadata["chunk_paths"] = self.solver_metadata["local_work_items"]
+    
     self.chunk_paths = self.solver_metadata["chunk_paths"]
     
   def generate_pickle(self,file_name=""):
