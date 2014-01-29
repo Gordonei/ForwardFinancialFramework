@@ -249,9 +249,17 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("path_points_array[0] = path_points;")
     output_list.append("clEnqueueWriteBuffer(command_queue, path_points_buff, CL_TRUE, 0, sizeof(cl_int), path_points_array, 0, NULL, NULL);")
     output_list.append("cl_uint *seed_array = (cl_uint*)malloc(sizeof(cl_uint));")
-    #output_list.append("clock_t seed_timer;")
-    #output_list.append("seed_array[0] = (unsigned int)time(&seed_timer);")
-    output_list.append("seed_array[0] = (unsigned int)clock();")
+    output_list.append("time_t seed_timer;")
+    output_list.append("time(&seed_timer);")
+    
+    output_list.append("struct tm y2k;")
+    output_list.append("double seconds;")
+
+    output_list.append("y2k.tm_hour = 0;   y2k.tm_min = 0; y2k.tm_sec = 0;")
+    output_list.append("y2k.tm_year = 100; y2k.tm_mon = 0; y2k.tm_mday = 1;")
+    
+    output_list.append("seed_array[0] = (unsigned int)difftime(seed_timer,mktime(&y2k));") #difftime(timer,mktime(&y2k))
+    #output_list.append("seed_array[0] = (unsigned int)clock();")
     output_list.append("clEnqueueWriteBuffer(command_queue, seed_buff, CL_TRUE, 0, sizeof(cl_uint), seed_array, 0, NULL, NULL);")
     output_list.append("cl_uint *chunk_size_array = (cl_uint*)malloc(sizeof(cl_uint));")
     output_list.append("chunk_size_array[0] = chunk_paths*kernel_loops;")
