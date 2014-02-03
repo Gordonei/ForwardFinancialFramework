@@ -124,4 +124,4 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   data_file.close()
     
 elif(__name__ == '__main__'):
-  print "usage: python model_ks_test_script.py [CPU|GPU|FPGA] [Number of Benchmark Paths] [Number of Benchmark Steps] [Number of Model Steps] [Option Number 1] [Option Number 2] ... [Option Number N]"
+  print "usage: python model_ks_test_script.py [CPU|GPU|FPGA] [Number of Benchmark Paths] [Number of Benchmark Steps] [Number of Verification Steps] [Option Number 1] [Option Number 2] ... [Option Number N]"
