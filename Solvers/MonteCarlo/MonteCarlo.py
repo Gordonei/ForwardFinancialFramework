@@ -356,7 +356,7 @@ class MonteCarlo:
       
       return tuple(variables)
       
-    def trial_run(self,paths,steps,solver,redudancy=10):
+    def trial_run(self,paths,steps,solver,redudancy=1):
       accuracy = []
       latency = []
 
@@ -378,7 +378,7 @@ class MonteCarlo:
 
       return [accuracy,latency]
       
-    def generate_latency_prediction_function_coefficients(self,base_speculative_paths,data_points,latencies,degree=2,redudancy=10):
+    def generate_latency_prediction_function_coefficients(self,base_speculative_paths,data_points,latencies,degree=2,redudancy=1):
       speculative_matrix = numpy.zeros((data_points*redudancy,degree))
       
       for i in range(data_points*redudancy):
@@ -399,7 +399,7 @@ class MonteCarlo:
 
       return predicition_function_coefficients
 
-    def generate_accuracy_prediction_function_coefficients(self,base_speculative_paths,data_points,accuracy_data,degree=1,redudancy=10):
+    def generate_accuracy_prediction_function_coefficients(self,base_speculative_paths,data_points,accuracy_data,degree=1,redudancy=1):
       speculative_matrix = numpy.zeros((data_points*redudancy,degree))
       
       for i in range(data_points*redudancy): #Creating NxN speculative matrix
