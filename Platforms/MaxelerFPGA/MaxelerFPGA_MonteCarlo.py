@@ -555,21 +555,27 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     path_set = numpy.arange(paths,paths*(steps+1),paths)
     for p in path_set: #Trial Runs to generate data needed for predicition functions
       solver.solver_metadata["paths"] = p
+      temp_latency = []
+      temp_error = []
+      temp_temp_error = []
       for i in range(redudancy):
 	self.dummy_run()
 	execution_output = solver.execute()
 	
-	latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
+	#latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
+	temp_latency.append(float(execution_output[-1]))
 	
 	value = 0.0
-	  temp_error = []
-	  for i,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
-	    if(not i%2): value = float(e_o)+0.00000000000001
-	    else: temp_error.append(float(e_o)) #temp_error.append(float(e_o)/value*100) #percentage relative error
-	
-	  accuracy.append(max(temp_error))
+	for i,e_o in enumerate(execution_output[:-3]):
+	  if(not i%2): value = float(e_o)+0.00000000000001
+	  else: temp_temp_error.append(float(e_o)) #temp_error.append(float(e_o)/value*100) #percentage relative error
+	  
+	temp_error.append(max(temp_temp_error))
+      
+      accuracy.append(numpy.mean(numpy.array(temp_error)))
+      latency.append(numpy.mean(numpy.array(temp_latency)))
 
-    return [accuracy,latency]
+      return [accuracy,latency]
     
   def dummy_run(self):
       rfir = 0.1

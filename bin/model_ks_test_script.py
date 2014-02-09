@@ -41,7 +41,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   benchmark_steps = int(sys.argv[3])
   model_steps = int(sys.argv[4])
   
-  redundancy = 10
+  redundancy = 1
   
   hostname = os.uname()[1]
   data_file = open("%s_%s_ks_model_data.csv"%(hostname,platform_name),"w")
@@ -100,7 +100,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
       temp_latency = 0.0
       temp_accuracy = 0.0
       results = []
-      for o in options: results.append(mc_solver_ks_test.run_ks_solver(platform_name,p,"Execute",o)[1])
+      for o in options: results.append(mc_solver_ks_test.run_ks_solver(platform_name,p,"Execute",o,generate_and_compile=False)[1])
       for r in results: #Aggregating results
 	temp_latency += r["Total time"]
 	temp_95CI = []

@@ -5,7 +5,7 @@ import sys
 sys.path.append("../..")
 import KS_ProblemSet
 
-def run_ks_solver(platform_name,paths,fpga_option,options,debug=False,threads=0):  
+def run_ks_solver(platform_name,paths,fpga_option,options,debug=False,threads=0,generate_and_compile=True):  
   option = KS_ProblemSet.KS_Options(options)
  
   if(platform_name=="GPU"):
@@ -29,9 +29,9 @@ def run_ks_solver(platform_name,paths,fpga_option,options,debug=False,threads=0)
     print "incorrect platform type!"
     sys.exit()
     
-  mc_solver.generate()
+  if(generate_and_compile): mc_solver.generate()
   compile_output = [""]
-  if ((platform_name=="FPGA" and "Compile"==fpga_option) or (platform_name!="FPGA")): compile_output = mc_solver.compile(debug=debug)
+  if (((platform_name=="FPGA" and "Compile"==fpga_option) or (platform_name!="FPGA")) and generate_and_compile): compile_output = mc_solver.compile(debug=debug)
   execution_output=[""]
   
   if (platform_name=="FPGA" and "Execute"==fpga_option): mc_solver.dummy_run() #Make sure the FPGA is clear
