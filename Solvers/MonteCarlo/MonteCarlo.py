@@ -152,10 +152,11 @@ class MonteCarlo:
 			
 		    derivatives=[]
 		    if(count>1):"""
+		    
 		self.derivative = temp_derivatives
 		self.setup_underlyings(True)
 		self.generate()
-		if("FPGA" not in (self.platform.name).upper()):self.compile()
+		if("FPGA" not in (self.platform.name).upper()): self.compile()
 		
 		trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
 		accuracy = trial_run_results[0]
@@ -363,50 +364,50 @@ class MonteCarlo:
       path_set = numpy.arange(paths,paths*(steps+1),paths)
       for p in path_set: #Trial Runs to generate data needed for predicition functions
 	solver.solver_metadata["paths"] = p
+	temp_latency = []
+	temp_error = []
+	temp_temp_error = []
 	for i in range(redudancy):
 	  execution_output = solver.execute()
 	  
-	  latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
+	  #latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
+	  temp_latency.append(float(execution_output[-1]))
 	  
 	  value = 0.0
-	  temp_error = []
-	  for i,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
+	  for i,e_o in enumerate(execution_output[:-3]):
 	    if(not i%2): value = float(e_o)+0.00000000000001
-	    else: temp_error.append(float(e_o)) #temp_error.append(float(e_o)/value*100) #percentage relative error
+	    else: temp_temp_error.append(float(e_o)) #temp_error.append(float(e_o)/value*100) #percentage relative error
+	    
+	  temp_error.append(max(temp_temp_error))
 	
-	  accuracy.append(max(temp_error))
+	accuracy.append(numpy.mean(numpy.array(temp_error)))
+	latency.append(numpy.mean(numpy.array(temp_latency)))
 
       return [accuracy,latency]
       
-    def generate_latency_prediction_function_coefficients(self,base_speculative_paths,data_points,latencies,degree=2,redudancy=10):
-      speculative_matrix = numpy.zeros((data_points*redudancy,degree))
+    def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,degree=1):
+      benchmark_matrix = numpy.zeros((data_points,degree+1))
       
-      for i in range(data_points*redudancy):
-	  speculative_matrix[i][0] = (int(i/redudancy)+1)*base_speculative_paths
-	  speculative_matrix[i][1] = 1.0 
-	  
-      #predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,latencies)[0]
-      
-      temp_setup = 0.0
-      temp_activity = []
       for i in range(data_points):
-	for j in range(redudancy):
-	  temp_setup = temp_setup + latencies[i*redudancy+j][0]
-	  temp_activity.append(latencies[i*redudancy+j][1])
+	benchmark_matrix[i][0] = 1.0
+	for j in range(1,degree+1):
+	  benchmark_matrix[i][j] = ((i+1)*benchmark_paths)**j
 	  
-      temp_activity_coefficients = numpy.linalg.lstsq(speculative_matrix,temp_activity)[0]
-      predicition_function_coefficients = (temp_activity_coefficients[0],temp_setup/(redudancy*data_points) + temp_activity_coefficients[1])
+      temp_coefficients = numpy.linalg.lstsq(benchmark_matrix,latencies)[0]
+      predicition_function_coefficients = temp_coefficients[:]
 
       return predicition_function_coefficients
 
-    def generate_accuracy_prediction_function_coefficients(self,base_speculative_paths,data_points,accuracy_data,degree=1,redudancy=10):
-      speculative_matrix = numpy.zeros((data_points*redudancy,degree))
+    def generate_accuracy_prediction_function_coefficients(self,benchmark_paths,data_points,accuracy_data,degree=2):
+      benchmark_matrix = numpy.zeros((data_points,degree+1))
       
-      for i in range(data_points*redudancy): #Creating NxN speculative matrix
-	speculative_matrix[i][0] = ((int(i/redudancy)+1)*base_speculative_paths)**-0.5
-	#speculative_matrix[i][1] = 1.0
-
-      predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,accuracy_data)[0]
-
+      for i in range(data_points):
+	benchmark_matrix[i][0] = 1.0
+	for j in range(1,degree+1):
+	  benchmark_matrix[i][j] = ((i+1)*benchmark_paths)**-(1.0/j)
+    
+      temp_coefficients = numpy.linalg.lstsq(benchmark_matrix,accuracy_data)[0]
+      predicition_function_coefficients = temp_coefficients[:]
+      
       return predicition_function_coefficients
     
