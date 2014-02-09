@@ -358,9 +358,14 @@ class MonteCarlo:
       for i in range(data_points):
 	benchmark_matrix[i][0] = 1.0
 	for j in range(1,degree+1):
-	  benchmark_matrix[i][j] = ((i+1)*benchmark_paths)**-(1.0/j)
+	  if(j%2): benchmark_matrix[i][j] = 0.0
+	  else: benchmark_matrix[i][j] = ((i+1)*benchmark_paths)**-(1.0/j)
+	  
+      #print benchmark_matrix
+      #print accuracy_data
     
       temp_coefficients = numpy.linalg.lstsq(benchmark_matrix,accuracy_data)[0]
+      #print temp_coefficients
       predicition_function_coefficients = temp_coefficients[:]
 
       return predicition_function_coefficients
