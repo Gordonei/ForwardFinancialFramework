@@ -21,6 +21,11 @@ for filename in sys.argv[1:]:
     
     data_color = (numpy.random.random(),numpy.random.random(),numpy.random.random())
     data_label = filename.split("/")[-1].split("_")[0].split(".")[0]
+    if(data_label=="ee-snowball0"): data_label = "AMD GPU"
+    elif(data_label=="ee-snowball1"): data_label = "Nvidia GPU"
+    elif(data_label=="ee-benjamin"): data_label = "Server CPU"
+    elif(data_label=="maxstation1"): data_label = "Maxeler FPGA"
+    elif(data_label=="maxworkstation7240"): data_label = "Desktop CPU"
     data_labels.append(data_label)
     
     #Plotting Benchmark Data
@@ -41,15 +46,15 @@ for filename in sys.argv[1:]:
     mean_accuracy = mean_verification_selection["Accuracy"].astype(numpy.float)
     mean_latency = mean_verification_selection["Latency"].astype(numpy.float)/100000
     
-    if(data_label=="maxstation1"):
-        lower_bound_latency = lower_bound_latency - (min(lower_bound_latency)-max(benchmark_selection["Latency"].astype(numpy.float)/100000))
-        upper_bound_latency = upper_bound_latency - (min(upper_bound_latency)-max(benchmark_selection["Latency"].astype(numpy.float)/100000))
-        mean_latency = mean_latency - (min(mean_latency)-max(benchmark_selection["Latency"].astype(numpy.float)/100000))
-        
-        lower_bound_accuracy = lower_bound_accuracy - (lower_bound_accuracy[0]-min(benchmark_selection["Accuracy"].astype(numpy.float)))
-        upper_bound_accuracy = upper_bound_accuracy - (upper_bound_accuracy[0]-min(benchmark_selection["Accuracy"].astype(numpy.float)))
-        mean_accuracy = mean_accuracy - (mean_accuracy[0]-min(benchmark_selection["Accuracy"].astype(numpy.float))) 
+    #if(data_label=="maxstation1" or data_label=="ee-benjamin" or data_label=="maxworkstation7240"):
+    lower_bound_latency = lower_bound_latency - (min(lower_bound_latency)-max(benchmark_selection["Latency"].astype(numpy.float)/100000))
+    upper_bound_latency = upper_bound_latency - (min(upper_bound_latency)-max(benchmark_selection["Latency"].astype(numpy.float)/100000))
+    mean_latency = mean_latency - (min(mean_latency)-max(benchmark_selection["Latency"].astype(numpy.float)/100000))
     
+    lower_bound_accuracy = lower_bound_accuracy - (lower_bound_accuracy[0]-min(benchmark_selection["Accuracy"].astype(numpy.float)))
+    upper_bound_accuracy = upper_bound_accuracy - (upper_bound_accuracy[0]-min(benchmark_selection["Accuracy"].astype(numpy.float)))
+    mean_accuracy = mean_accuracy - (mean_accuracy[0]-min(benchmark_selection["Accuracy"].astype(numpy.float))) 
+
     plt.plot(lower_bound_accuracy,lower_bound_latency,"--",color=data_color)
     plt.plot(upper_bound_accuracy,upper_bound_latency,"--",color=data_color)
     plt.plot(mean_accuracy,mean_latency,"-x",color=data_color)

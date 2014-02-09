@@ -293,12 +293,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("double temp_value_sqrd_%d=0;"%d)
       
     ##Running the actual kernel for the first time
-    output_list.append("const size_t kernel_paths = chunk_paths;")
-    output_list.append("const size_t local_kernel_paths = local_work_items;")#%self.solver_metadata["local_work_items"])
     if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
       output_list.append("//**Run the CPU Seed kernel for the 1st 2 Times**")
       output_list.append("const size_t cpu_kernel_paths = chunk_paths;")
-      output_list.append("clEnqueueNDRangeKernel(cpu_command_queue, %s_cpu_seed_kernel, (cl_uint) 1, NULL, &cpu_kernel_paths, &local_kernel_paths, 0, NULL, NULL);"%(self.output_file_name))
+      output_list.append("clEnqueueNDRangeKernel(cpu_command_queue, %s_cpu_seed_kernel, (cl_uint) 1, NULL, &cpu_kernel_paths, NULL, 0, NULL, NULL);"%(self.output_file_name))
       output_list.append("clFinish(cpu_command_queue);")
       for index,u in enumerate(self.underlying): output_list.append("clEnqueueReadBuffer(cpu_command_queue, seed_%d_cpu_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t),seed_%d, 0, NULL, NULL);"%(index,index))
       output_list.append("clFinish(cpu_command_queue);")
@@ -306,12 +304,13 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("clEnqueueWriteBuffer(cpu_command_queue, chunk_number_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, NULL);")
       
       output_list.append("clFinish(command_queue);")
-      output_list.append("clEnqueueNDRangeKernel(cpu_command_queue, %s_cpu_seed_kernel, (cl_uint) 1, NULL, &cpu_kernel_paths, &local_kernel_paths, 0, NULL, NULL);"%(self.output_file_name))
+      output_list.append("clEnqueueNDRangeKernel(cpu_command_queue, %s_cpu_seed_kernel, (cl_uint) 1, NULL, &cpu_kernel_paths, NULL, 0, NULL, NULL);"%(self.output_file_name))
       for index,u in enumerate(self.underlying): output_list.append("clEnqueueWriteBuffer(command_queue, seed_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t), seed_%d, 0, NULL, NULL);"%(index,index))
       output_list.append("clFinish(command_queue);")
     
     output_list.append("//**Run the kernel for the 1st Time**")
-    #output_list.append("const size_t local_kernel_paths = NULL;")
+    output_list.append("const size_t kernel_paths = chunk_paths;")
+    output_list.append("const size_t local_kernel_paths = local_work_items;")#%self.solver_metadata["local_work_items"])
     output_list.append("clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, NULL);"%(self.output_file_name))
     
     output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
@@ -337,7 +336,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("clEnqueueWriteBuffer(cpu_command_queue, chunk_number_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, NULL);")
       output_list.append("clFinish(cpu_command_queue);")
       
-      output_list.append("clEnqueueNDRangeKernel(cpu_command_queue, %s_cpu_seed_kernel, (cl_uint) 1, NULL, &cpu_kernel_paths, &local_kernel_paths, 0, NULL, NULL);"%(self.output_file_name))
+      output_list.append("clEnqueueNDRangeKernel(cpu_command_queue, %s_cpu_seed_kernel, (cl_uint) 1, NULL, &cpu_kernel_paths, NULL, 0, NULL, NULL);"%(self.output_file_name))
       
       for index,u in enumerate(self.underlying): output_list.append("clEnqueueWriteBuffer(command_queue, seed_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t), seed_%d, 0, NULL, NULL);"%(index,index))
       #output_list.append("clFinish(command_queue);")

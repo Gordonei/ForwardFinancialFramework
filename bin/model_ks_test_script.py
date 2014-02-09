@@ -41,7 +41,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   benchmark_steps = int(sys.argv[3])
   model_steps = int(sys.argv[4])
   
-  redundancy = 10
+  redundancy = 1
   
   hostname = os.uname()[1]
   data_file = open("%s_%s_ks_model_data.csv"%(hostname,platform_name),"w")
@@ -74,7 +74,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
     sys.exit()
   
   #Generating the Benchmark and Model Data
-  mc_solver.populate_model(paths,benchmark_steps)
+  """mc_solver.populate_model(paths,benchmark_steps)
   for p in range(paths,paths*(model_steps+1),paths):
     latency = mc_solver.latency_model(p)
     accuracy = mc_solver.accuracy_model(p)
@@ -88,7 +88,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
       print "Projected Latency for %d paths: %f"%(p,latency)
       print "Projected Accuracy for %d paths: %f"%(p,accuracy)
     
-    data_file.flush()
+    data_file.flush()"""
     
   #Verifying the Data
   options = option_grouping(option_numbers)

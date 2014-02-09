@@ -357,7 +357,7 @@ class MonteCarlo:
       
       return tuple(variables)
       
-    def trial_run(self,paths,steps,solver,redudancy=10):
+    def trial_run(self,paths,steps,solver,redudancy=1):
       accuracy = []
       latency = []
 
@@ -385,7 +385,7 @@ class MonteCarlo:
 
       return [accuracy,latency]
       
-    def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,degree=1):
+def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,degree=1):
       benchmark_matrix = numpy.zeros((data_points,degree+1))
       
       for i in range(data_points):
@@ -398,7 +398,7 @@ class MonteCarlo:
 
       return predicition_function_coefficients
 
-    def generate_accuracy_prediction_function_coefficients(self,benchmark_paths,data_points,accuracy_data,degree=2):
+def generate_accuracy_prediction_function_coefficients(self,benchmark_paths,data_points,accuracy_data,degree=2):
       benchmark_matrix = numpy.zeros((data_points,degree+1))
       
       for i in range(data_points):
@@ -408,6 +408,6 @@ class MonteCarlo:
     
       temp_coefficients = numpy.linalg.lstsq(benchmark_matrix,accuracy_data)[0]
       predicition_function_coefficients = temp_coefficients[:]
-      
+
       return predicition_function_coefficients
     

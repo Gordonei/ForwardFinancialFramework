@@ -26,10 +26,21 @@ for filename in sys.argv[1:]:
     data_color = (numpy.random.random(),numpy.random.random(),numpy.random.random())
     
     plot_label = filename.split("/")[-1].split("_")[0].split(".")[0]
-    if(plot_label=="ee-snowball0" or plot_label=="ee-snowball1"): paths = "10000"
-    elif(plot_label=="maxworkstation7240"): paths = "100000"
-    elif(plot_label=="ee-benjamin"): paths = "1000000"
-    elif(plot_label=="maxstation1"): paths = "10000000"
+    if(plot_label=="ee-snowball0"):
+        plot_label = "AMD GPU"
+        paths = "10000"
+    elif(plot_label=="ee-snowball1"):
+        plot_label = "Nvidia GPU"
+        paths = "10000"
+    elif(plot_label=="maxworkstation7240"):
+        plot_label = "Desktop CPU"
+        paths = "100000"
+    elif(plot_label=="ee-benjamin"):
+        plot_label = "Server CPU"
+        paths = "1000000"
+    elif(plot_label=="maxstation1"):
+        plot_label = "Maxeler FPGA"
+        paths = "10000000"
     
     #Plotting Benchmark Data
     thread_selection = data_matrix[data_matrix["Threads"].astype(numpy.int)<=threads,:]
