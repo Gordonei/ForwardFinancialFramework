@@ -74,7 +74,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
     sys.exit()
   
   #Generating the Benchmark and Model Data
-  """mc_solver.populate_model(paths,benchmark_steps)
+  mc_solver.populate_model(paths,benchmark_steps)
   for p in range(paths,paths*(model_steps+1),paths):
     latency = mc_solver.latency_model(p)
     accuracy = mc_solver.accuracy_model(p)
@@ -88,7 +88,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
       print "Projected Latency for %d paths: %f"%(p,latency)
       print "Projected Accuracy for %d paths: %f"%(p,accuracy)
     
-    data_file.flush()"""
+    data_file.flush()
     
   #Verifying the Data
   options = option_grouping(option_numbers)
@@ -100,7 +100,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
       temp_latency = 0.0
       temp_accuracy = 0.0
       results = []
-      for o in options: results.append(mc_solver_ks_test.run_ks_solver(platform_name,p,"Execute",o)[1])
+      for o in options: results.append(mc_solver_ks_test.run_ks_solver(platform_name,p,"Execute",o,generate_and_compile=False)[1])
       for r in results: #Aggregating results
 	temp_latency += r["Total time"]
 	temp_95CI = []

@@ -144,14 +144,6 @@ class MonteCarlo:
 		    
 	    if(len(temp_derivatives)>1): #This underlying has multiple derivatives that depend on it
 		for d in temp_derivatives: derivatives_with_shared_underlyings.append(d) #recording the derivatives as ones which share underlyings
-		
-		"""for i in range(2**len(temp_derivatives)): #iterating over the permutations to capture
-		    count = 0
-		    for b in bin(i)[2:]:
-			if(b=="1"): count = count+1
-			
-		    derivatives=[]
-		    if(count>1):"""
 		    
 		self.derivative = temp_derivatives
 		self.setup_underlyings(True)
@@ -167,13 +159,6 @@ class MonteCarlo:
 
 		u.latency_model_coefficients = latency_coefficients
 		u.accuracy_model_coefficients = accuracy_coefficients
-
-		"""temp_name = "%s"%temp_derivatives[0].name[:2]
-		for t_d in temp_derivatives[1:]: temp_name = "%s_%s"%(temp_name,t_d.name[:2])
-		names.append(copy.copy(temp_name))
-
-		u.latency_model_coefficients["%s"%names[-1]] = latency_coefficients
-		u.accuracy_model_coefficients["%s"%names[-1]] = accuracy_coefficients"""
       
       for d in derivative_backup:
 	if(d not in derivatives_with_shared_underlyings):
@@ -192,39 +177,8 @@ class MonteCarlo:
 	  d.latency_model_coefficients.extend(latency_coefficients)
 	  d.accuracy_model_coefficients.extend(accuracy_coefficients)    
     
-      self.derivative = derivative_backup
-      self.underlying = underlying_backup
-      
-      #self.latency_model = self.generate_aggregate_latency_model()
-      #self.accuracy_model = self.generate_aggregate_accuracy_model()
-      
-    """def latency_model(self,paths):
-      latency_sum = [lambda x: 0.0]
-      #latency_sum = lambda x: 0.0
-    
-      temp_derivatives = self.derivative[:]
-      if(len(self.derivative)>len(self.underlying)):
-	for u in self.underlying:
-	    count = 0
-	    temp_temp_derivatives = []
-	    for d in self.derivative:
-		if(d.underlying[0]==u):
-		    temp_temp_derivatives.append(d)
-		    count = count + 1
-	    
-	    if(count>1):
-		for d in temp_temp_derivatives: temp_derivatives.remove(d)
-		name = "%s"%temp_temp_derivatives[0].name[:2]
-		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
-		latency_sum.append(lambda x: u.latency_models["%s"%self.platform.name]["%s"%(name)](x))
-      
-      for d in temp_derivatives: latency_sum.append(lambda x: d.latency_model[self.platform.name](x))
-      
-      return lambda x: sum([l_s(x) for l_s in latency_sum])
-    
-    def accuracy_model(self,paths):
-      
-      return lambda x: max([a(x) for a in accuracies])"""
+      self.derivative = derivative_backup[:]
+      self.underlying = underlying_backup[:]
     
     def latency_model(self,paths):
       latency_sum = []
@@ -357,7 +311,7 @@ class MonteCarlo:
       
       return tuple(variables)
       
-    def trial_run(self,paths,steps,solver,redudancy=1):
+    def trial_run(self,paths,steps,solver,redudancy=10):
       accuracy = []
       latency = []
 
@@ -385,7 +339,7 @@ class MonteCarlo:
 
       return [accuracy,latency]
       
-def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,degree=1):
+    def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,degree=1):
       benchmark_matrix = numpy.zeros((data_points,degree+1))
       
       for i in range(data_points):
@@ -398,7 +352,7 @@ def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_
 
       return predicition_function_coefficients
 
-def generate_accuracy_prediction_function_coefficients(self,benchmark_paths,data_points,accuracy_data,degree=2):
+    def generate_accuracy_prediction_function_coefficients(self,benchmark_paths,data_points,accuracy_data,degree=2):
       benchmark_matrix = numpy.zeros((data_points,degree+1))
       
       for i in range(data_points):
