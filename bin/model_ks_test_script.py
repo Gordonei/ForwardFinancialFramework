@@ -101,7 +101,10 @@ if( __name__ == '__main__' and len(sys.argv)>4):
     
     for i,o in enumerate(options):
       temp_options = KS_ProblemSet.KS_Options(o)
-      if(platform_name=="GPU"): temp_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(temp_options,p,platform)
+      if(platform_name=="GPU"):
+        temp_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(temp_options,p,platform)
+        temp_solver.generate()
+        temp_solver.compile()
       elif(platform_name=="CPU"): temp_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(temp_options,p,platform)
       elif(platform_name=="FPGA"): temp_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(temp_options,p,platform)
       
