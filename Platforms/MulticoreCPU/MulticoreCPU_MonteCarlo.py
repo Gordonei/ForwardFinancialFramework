@@ -279,10 +279,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     ##Declare Loop Data Structures
     output_list.append("//**Loop Data Structures**")
-    #output_list.append("struct thread_data* temp_data;")
-    #output_list.append("temp_data = (struct thread_data*) thread_arg;")
     output_list.append("unsigned int thread_paths = ((struct thread_data*) thread_arg)->thread_paths;")
-    output_list.append("unsigned int rng_seed = clock();")
+    output_list.append("unsigned int rng_seed = ((unsigned int)time(NULL)) + getpid();")
     
     for u in self.underlying:
         index = self.underlying.index(u)

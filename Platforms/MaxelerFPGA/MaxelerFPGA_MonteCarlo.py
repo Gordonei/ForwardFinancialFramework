@@ -557,7 +557,6 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       solver.solver_metadata["paths"] = p
       temp_latency = []
       temp_error = []
-      temp_temp_error = []
       for i in range(redudancy):
 	self.dummy_run()
 	execution_output = solver.execute()
@@ -565,6 +564,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	#latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
 	temp_latency.append(float(execution_output[-1]))
 	
+	temp_temp_error = []
 	value = 0.0
 	for i,e_o in enumerate(execution_output[:-3]):
 	  if(not i%2): value = float(e_o)+0.00000000000001
