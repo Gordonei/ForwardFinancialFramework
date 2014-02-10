@@ -41,7 +41,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   benchmark_steps = int(sys.argv[3])
   model_steps = int(sys.argv[4])
   
-  redundancy = 1
+  redundancy = 10
   
   hostname = os.uname()[1]
   data_file = open("%s_%s_ks_model_data.csv"%(hostname,platform_name),"w")
@@ -112,7 +112,6 @@ if( __name__ == '__main__' and len(sys.argv)>4):
       latency.append(temp_latency)
       accuracy.append(temp_accuracy)
     
-    #data_file.write("Min Verification,%d,%f,%f,\n"%(p,min(accuracy),min(latency)))
     data_file.write("Mean Verification,%d,%f,%f,\n"%(p,numpy.mean(accuracy),numpy.mean(latency)))
     data_file.write("Std Verification,%d,%f,%f,\n"%(p,numpy.std(accuracy),numpy.std(latency)))
     
