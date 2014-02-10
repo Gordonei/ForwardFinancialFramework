@@ -100,7 +100,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
       temp_latency = 0.0
       temp_accuracy = 0.0
       results = []
-      for o in options: results.append(mc_solver_ks_test.run_ks_solver(platform_name,p,"Execute",o)[1])
+      for o in options: results.append(mc_solver_ks_test.run_ks_solver(platform_name,p,"Execute",o,generate_and_compile=False)[1])
       for r in results: #Aggregating results
 	temp_latency += r["Total time"]
 	temp_95CI = []
@@ -112,7 +112,6 @@ if( __name__ == '__main__' and len(sys.argv)>4):
       latency.append(temp_latency)
       accuracy.append(temp_accuracy)
     
-    #data_file.write("Min Verification,%d,%f,%f,\n"%(p,min(accuracy),min(latency)))
     data_file.write("Mean Verification,%d,%f,%f,\n"%(p,numpy.mean(accuracy),numpy.mean(latency)))
     data_file.write("Std Verification,%d,%f,%f,\n"%(p,numpy.std(accuracy),numpy.std(latency)))
     

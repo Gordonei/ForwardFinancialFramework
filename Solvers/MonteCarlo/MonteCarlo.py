@@ -144,18 +144,11 @@ class MonteCarlo:
 		    
 	    if(len(temp_derivatives)>1): #This underlying has multiple derivatives that depend on it
 		for d in temp_derivatives: derivatives_with_shared_underlyings.append(d) #recording the derivatives as ones which share underlyings
-		
-		"""for i in range(2**len(temp_derivatives)): #iterating over the permutations to capture
-		    count = 0
-		    for b in bin(i)[2:]:
-			if(b=="1"): count = count+1
-			
-		    derivatives=[]
-		    if(count>1):"""
+		    
 		self.derivative = temp_derivatives
 		self.setup_underlyings(True)
 		self.generate()
-		if("FPGA" not in (self.platform.name).upper()):self.compile()
+		if("FPGA" not in (self.platform.name).upper()): self.compile()
 		
 		trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
 		accuracy = trial_run_results[0]
@@ -166,13 +159,6 @@ class MonteCarlo:
 
 		u.latency_model_coefficients = latency_coefficients
 		u.accuracy_model_coefficients = accuracy_coefficients
-
-		"""temp_name = "%s"%temp_derivatives[0].name[:2]
-		for t_d in temp_derivatives[1:]: temp_name = "%s_%s"%(temp_name,t_d.name[:2])
-		names.append(copy.copy(temp_name))
-
-		u.latency_model_coefficients["%s"%names[-1]] = latency_coefficients
-		u.accuracy_model_coefficients["%s"%names[-1]] = accuracy_coefficients"""
       
       for d in derivative_backup:
 	if(d not in derivatives_with_shared_underlyings):
@@ -191,39 +177,8 @@ class MonteCarlo:
 	  d.latency_model_coefficients.extend(latency_coefficients)
 	  d.accuracy_model_coefficients.extend(accuracy_coefficients)    
     
-      self.derivative = derivative_backup
-      self.underlying = underlying_backup
-      
-      #self.latency_model = self.generate_aggregate_latency_model()
-      #self.accuracy_model = self.generate_aggregate_accuracy_model()
-      
-    """def latency_model(self,paths):
-      latency_sum = [lambda x: 0.0]
-      #latency_sum = lambda x: 0.0
-    
-      temp_derivatives = self.derivative[:]
-      if(len(self.derivative)>len(self.underlying)):
-	for u in self.underlying:
-	    count = 0
-	    temp_temp_derivatives = []
-	    for d in self.derivative:
-		if(d.underlying[0]==u):
-		    temp_temp_derivatives.append(d)
-		    count = count + 1
-	    
-	    if(count>1):
-		for d in temp_temp_derivatives: temp_derivatives.remove(d)
-		name = "%s"%temp_temp_derivatives[0].name[:2]
-		for t_d in temp_temp_derivatives[1:]: name = "%s_%s"%(name,t_d.name[:2])
-		latency_sum.append(lambda x: u.latency_models["%s"%self.platform.name]["%s"%(name)](x))
-      
-      for d in temp_derivatives: latency_sum.append(lambda x: d.latency_model[self.platform.name](x))
-      
-      return lambda x: sum([l_s(x) for l_s in latency_sum])
-    
-    def accuracy_model(self,paths):
-      
-      return lambda x: max([a(x) for a in accuracies])"""
+      self.derivative = derivative_backup[:]
+      self.underlying = underlying_backup[:]
     
     def latency_model(self,paths):
       latency_sum = []
@@ -363,50 +318,55 @@ class MonteCarlo:
       path_set = numpy.arange(paths,paths*(steps+1),paths)
       for p in path_set: #Trial Runs to generate data needed for predicition functions
 	solver.solver_metadata["paths"] = p
+	temp_latency = []
+	temp_error = []
+	temp_temp_error = []
 	for i in range(redudancy):
 	  execution_output = solver.execute()
 	  
-	  latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
+	  #latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
+	  temp_latency.append(float(execution_output[-1]))
 	  
 	  value = 0.0
-	  temp_error = []
-	  for i,e_o in enumerate(execution_output[:-3]): #Selecting the highest relative error
+	  for i,e_o in enumerate(execution_output[:-3]):
 	    if(not i%2): value = float(e_o)+0.00000000000001
-	    else: temp_error.append(float(e_o)) #temp_error.append(float(e_o)/value*100) #percentage relative error
+	    else: temp_temp_error.append(float(e_o)) #temp_error.append(float(e_o)/value*100) #percentage relative error
+	    
+	  temp_error.append(max(temp_temp_error))
 	
-	  accuracy.append(max(temp_error))
+	accuracy.append(numpy.mean(numpy.array(temp_error)))
+	latency.append(numpy.mean(numpy.array(temp_latency)))
 
       return [accuracy,latency]
       
-    def generate_latency_prediction_function_coefficients(self,base_speculative_paths,data_points,latencies,degree=2,redudancy=10):
-      speculative_matrix = numpy.zeros((data_points*redudancy,degree))
+    def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,degree=1):
+      benchmark_matrix = numpy.zeros((data_points,degree+1))
       
-      for i in range(data_points*redudancy):
-	  speculative_matrix[i][0] = (int(i/redudancy)+1)*base_speculative_paths
-	  speculative_matrix[i][1] = 1.0 
-	  
-      #predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,latencies)[0]
-      
-      temp_setup = 0.0
-      temp_activity = []
       for i in range(data_points):
-	for j in range(redudancy):
-	  temp_setup = temp_setup + latencies[i*redudancy+j][0]
-	  temp_activity.append(latencies[i*redudancy+j][1])
+	benchmark_matrix[i][0] = 1.0
+	for j in range(1,degree+1):
+	  benchmark_matrix[i][j] = ((i+1)*benchmark_paths)**j
 	  
-      temp_activity_coefficients = numpy.linalg.lstsq(speculative_matrix,temp_activity)[0]
-      predicition_function_coefficients = (temp_activity_coefficients[0],temp_setup/(redudancy*data_points) + temp_activity_coefficients[1])
+      temp_coefficients = numpy.linalg.lstsq(benchmark_matrix,latencies)[0]
+      predicition_function_coefficients = temp_coefficients[:]
 
       return predicition_function_coefficients
 
-    def generate_accuracy_prediction_function_coefficients(self,base_speculative_paths,data_points,accuracy_data,degree=1,redudancy=10):
-      speculative_matrix = numpy.zeros((data_points*redudancy,degree))
+    def generate_accuracy_prediction_function_coefficients(self,benchmark_paths,data_points,accuracy_data,degree=2):
+      benchmark_matrix = numpy.zeros((data_points,degree+1))
       
-      for i in range(data_points*redudancy): #Creating NxN speculative matrix
-	speculative_matrix[i][0] = ((int(i/redudancy)+1)*base_speculative_paths)**-0.5
-	#speculative_matrix[i][1] = 1.0
-
-      predicition_function_coefficients = numpy.linalg.lstsq(speculative_matrix,accuracy_data)[0]
+      for i in range(data_points):
+	benchmark_matrix[i][0] = 1.0
+	for j in range(1,degree+1):
+	  if(j%2): benchmark_matrix[i][j] = 0.0
+	  else: benchmark_matrix[i][j] = ((i+1)*benchmark_paths)**-(1.0/j)
+	  
+      #print benchmark_matrix
+      #print accuracy_data
+    
+      temp_coefficients = numpy.linalg.lstsq(benchmark_matrix,accuracy_data)[0]
+      #print temp_coefficients
+      predicition_function_coefficients = temp_coefficients[:]
 
       return predicition_function_coefficients
     

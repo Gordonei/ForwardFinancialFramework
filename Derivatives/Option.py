@@ -46,11 +46,12 @@ class Option:
         if(call): return end_price - strike_price
         else: return strike_price - end_price
         
-    def latency_model(self,paths): 
-      if(paths>0): return self.latency_model_coefficients[0]*paths + self.latency_model_coefficients[1]
-      else: return 0.0
-      #else: return self.latency_model_coefficients[1]
-      
-    def accuracy_model(self,paths): #return self.accuracy_model_coefficients[0]*paths**-0.5 + self.accuracy_model_coefficients[1]
-      if(paths>0): return self.accuracy_model_coefficients[0]*paths**-0.5 #+ self.accuracy_model_coefficients[1]
-      else: return 100.0
+    def latency_model(self,paths):
+      value = self.latency_model_coefficients[0]
+      for i,coeff in enumerate(self.latency_model_coefficients[1:]): value += coeff*paths**(i+1)
+      return value
+
+    def accuracy_model(self,paths):
+      value = self.accuracy_model_coefficients[0]
+      for i,coeff in enumerate(self.accuracy_model_coefficients[1:]): value += coeff*paths**-(1.0/(i+1))
+      return value

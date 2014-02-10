@@ -558,15 +558,12 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     run_cmd = ["./%s"%self.output_file_name]
     for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k])) 
     
-    index = 0
-    for u_a in self.underlying_attributes:
+    for index,u_a in enumerate(self.underlying_attributes):
         for a in u_a: run_cmd.append(str(self.underlying[index].__dict__[a])) #mirrors generation code to preserve order of variable loading
-        index += 1
     
-    index = 0
-    for o_a in self.derivative_attributes: 
-        for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
-        index +=1
+    for index,o_a in enumerate(self.derivative_attributes): 
+        for a in o_a:
+	  run_cmd.append(str(self.derivative[index].__dict__[a]))
         
     run_string = ""
     for r_c in run_cmd: run_string = "%s %s"%(run_string,r_c)
