@@ -1,7 +1,7 @@
 '''
 Created on 23 May 2013
 '''
-import sys,os
+import sys,os,copy
 sys.path.append("../..")
 import KS_ProblemSet, numpy.linalg, mc_solver_ks_test
 
@@ -41,7 +41,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   benchmark_steps = int(sys.argv[3])
   model_steps = int(sys.argv[4])
   
-  redundancy = 10
+  redudancy = 10
   
   hostname = os.uname()[1]
   data_file = open("%s_%s_ks_model_data.csv"%(hostname,platform_name),"w")
@@ -92,11 +92,40 @@ if( __name__ == '__main__' and len(sys.argv)>4):
     
   #Verifying the Data
   options = option_grouping(option_numbers)
+  
   for p in range(paths*benchmark_steps,paths*(model_steps+1),paths):
+    latencies = numpy.zeros((len(options)))
+    latencies_var = numpy.zeros((len(options)))
+    accuracies = numpy.zeros((len(options)))
+    accuracies_var = numpy.zeros((len(options)))
+    
+    for i,o in enumerate(options):
+      temp_options = KS_ProblemSet.KS_Options(o)
+      if(platform_name=="GPU"): temp_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(temp_options,p,platform)
+      elif(platform_name=="CPU"): temp_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(temp_options,p,platform)
+      elif(platform_name=="FPGA"): temp_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(temp_options,p,platform)
+      
+      temp_result = temp_solver.trial_run(paths,1,redudancy=redudancy,paths_start=p)
+      latencies[i] = numpy.sum(numpy.array(map(float,temp_result[1])))
+      latencies_var[i] = numpy.sum(numpy.array(map(float,temp_result[3])))
+      accuracies[i] = numpy.max(numpy.array(map(float,temp_result[0])))
+      accuracies_var[i] = numpy.max(numpy.array(map(float,temp_result[2])))
+      
+    data_file.write("Mean Verification,%d,%f,%f,\n"%(p,numpy.max(accuracies),numpy.sum(latencies)))
+    data_file.write("Std Verification,%d,%f,%f,\n"%(p,(numpy.max(accuracies_var))**0.5,(numpy.sum(latencies_var))**0.5))
+    
+    data_file.flush()
+    
+    print "Verification Latency for %d paths: %f"%(p,numpy.sum(latencies))
+    print "Verification Accuracy for %d paths: %f"%(p,numpy.max(accuracies))
+    
+    
+  
+  """for p in range(paths*benchmark_steps,paths*(model_steps+1),paths):
     latency = []
     accuracy = []
     
-    for i in range(redundancy):
+    for i in range(redudancy):
       temp_latency = 0.0
       temp_accuracy = 0.0
       results = []
@@ -118,7 +147,7 @@ if( __name__ == '__main__' and len(sys.argv)>4):
     data_file.flush()
     
     print "Verification Latency for %d paths: %f"%(p,numpy.mean(latency))
-    print "Verification Accuracy for %d paths: %f"%(p,numpy.mean(accuracy))
+    print "Verification Accuracy for %d paths: %f"%(p,numpy.mean(accuracy))"""
     
   data_file.close()
     

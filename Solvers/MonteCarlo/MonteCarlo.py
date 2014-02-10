@@ -150,7 +150,7 @@ class MonteCarlo:
 		self.generate()
 		if("FPGA" not in (self.platform.name).upper()): self.compile()
 		
-		trial_run_results = self.trial_run(base_trial_paths,trial_steps,self,redudancy)
+		trial_run_results = self.trial_run(base_trial_paths,trial_steps,redudancy)
 		accuracy = trial_run_results[0]
 		latency = trial_run_results[1]
 
@@ -167,7 +167,7 @@ class MonteCarlo:
 	  self.generate()
 	  if("FPGA" not in (self.platform.name).upper()): self.compile()
 	  
-	  trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
+	  trial_run_results = self.trial_run(base_trial_paths,trial_steps,redudancy)
 	  accuracy = trial_run_results[0]
 	  latency = trial_run_results[1]
 	  
@@ -311,13 +311,15 @@ class MonteCarlo:
       
       return tuple(variables)
       
-    def trial_run(self,paths,steps,solver,redudancy=10):
+    def trial_run(self,paths,steps,redudancy=10,paths_start=0):
       accuracy = []
       latency = []
+      accuracy_var = []
+      latency_var = []
 
-      path_set = numpy.arange(paths,paths*(steps+1),paths)
+      path_set = numpy.arange(max(paths_start,paths),max(paths_start,paths)+paths*steps,paths)
       for p in path_set: #Trial Runs to generate data needed for predicition functions
-	solver.solver_metadata["paths"] = p
+	self.solver_metadata["paths"] = p
 	temp_latency = []
 	temp_error = []
 	for i in range(redudancy):
@@ -340,9 +342,11 @@ class MonteCarlo:
 	#print numpy.mean(temp_error)
 	#print "\n"
 	accuracy.append(numpy.mean(temp_error))
+	accuracy_var.append(numpy.var(temp_error))
 	latency.append(numpy.mean(temp_latency))
+	latency_var.append(numpy.var(temp_latency))
 
-      return [accuracy,latency]
+      return [accuracy,latency,accuracy_var,latency_var]
       
     def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,degree=1):
       benchmark_matrix = numpy.zeros((data_points,degree+1))
@@ -370,7 +374,6 @@ class MonteCarlo:
       #print accuracy_data
     
       temp_coefficients = numpy.linalg.lstsq(benchmark_matrix,accuracy_data)[0]
-      #print temp_coefficients
       predicition_function_coefficients = temp_coefficients[:]
 
       return predicition_function_coefficients
