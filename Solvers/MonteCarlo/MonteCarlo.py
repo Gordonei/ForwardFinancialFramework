@@ -130,7 +130,7 @@ class MonteCarlo:
       self.output_file_name = "mc_solver"  
       self.output_file_name = ("%s_%s"%(self.output_file_name,self.platform.name))
     
-    def populate_model(self,base_trial_paths,trial_steps):
+    def populate_model(self,base_trial_paths,trial_steps,redudancy=10):
       derivative_backup = self.derivative[:]
       underlying_backup = self.underlying[:]
       
@@ -150,7 +150,7 @@ class MonteCarlo:
 		self.generate()
 		if("FPGA" not in (self.platform.name).upper()): self.compile()
 		
-		trial_run_results = self.trial_run(base_trial_paths,trial_steps,self)
+		trial_run_results = self.trial_run(base_trial_paths,trial_steps,self,redudancy)
 		accuracy = trial_run_results[0]
 		latency = trial_run_results[1]
 
@@ -320,22 +320,27 @@ class MonteCarlo:
 	solver.solver_metadata["paths"] = p
 	temp_latency = []
 	temp_error = []
-	temp_temp_error = []
 	for i in range(redudancy):
-	  execution_output = solver.execute()
+	  execution_output = self.execute()#solver.execute()
 	  
 	  #latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
 	  temp_latency.append(float(execution_output[-1]))
 	  
 	  value = 0.0
+	  temp_temp_error = []
 	  for i,e_o in enumerate(execution_output[:-3]):
 	    if(not i%2): value = float(e_o)+0.00000000000001
 	    else: temp_temp_error.append(float(e_o)) #temp_error.append(float(e_o)/value*100) #percentage relative error
 	    
+	  #print execution_output[:-3]
 	  temp_error.append(max(temp_temp_error))
 	
-	accuracy.append(numpy.mean(numpy.array(temp_error)))
-	latency.append(numpy.mean(numpy.array(temp_latency)))
+	#print p
+	#print temp_error
+	#print numpy.mean(temp_error)
+	#print "\n"
+	accuracy.append(numpy.mean(temp_error))
+	latency.append(numpy.mean(temp_latency))
 
       return [accuracy,latency]
       
