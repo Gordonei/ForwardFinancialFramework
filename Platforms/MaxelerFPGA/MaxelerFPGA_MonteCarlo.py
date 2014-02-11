@@ -561,7 +561,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       temp_error = []
       for i in range(redudancy):
 	self.dummy_run()
-	execution_output = solver.execute()
+	execution_output = self.execute()
 	
 	#latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
 	temp_latency.append(float(execution_output[-1]))
