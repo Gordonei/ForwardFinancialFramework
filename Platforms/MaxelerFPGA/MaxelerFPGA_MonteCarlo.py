@@ -549,37 +549,43 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return results
   
   def trial_run(self,paths,steps,redudancy=10,paths_start=0):
-    accuracy = []
-    latency = []
-    accuracy_var = []
-    latency_var = []
+      accuracy = []
+      latency = []
+      accuracy_var = []
+      latency_var = []
 
-    path_set = numpy.arange(max(paths_start,paths),max(paths_start,paths)+paths*steps,paths)
-    for p in path_set: #Trial Runs to generate data needed for predicition functions
-      self.solver_metadata["paths"] = p
-      temp_latency = []
-      temp_error = []
-      for i in range(redudancy):
-	self.dummy_run()
-	execution_output = solver.execute()
-	
-	#latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
-	temp_latency.append(float(execution_output[-1]))
-	
-	temp_temp_error = []
-	value = 0.0
-	for i,e_o in enumerate(execution_output[:-3]):
-	  if(not i%2): value = float(e_o)+0.00000000000001
-	  else: temp_temp_error.append(float(e_o)) #temp_error.append(float(e_o)/value*100) #percentage relative error
+      path_set = numpy.arange(max(paths_start,paths),max(paths_start,paths)+paths*steps,paths)
+      for p in path_set: #Trial Runs to generate data needed for predicition functions
+	self.solver_metadata["paths"] = p
+	temp_latency = []
+	temp_error = []
+	for i in range(redudancy):
+	  self.dummy_run()
+	  execution_output = self.execute()#solver.execute()
 	  
-	temp_error.append(max(temp_temp_error))
-      
-      accuracy.append(numpy.mean(temp_error))
-      accuracy_var.append(numpy.var(temp_error))
-      latency.append(numpy.mean(temp_latency))
-      latency_var.append(numpy.var(temp_latency))
+	  #latency.append((float(execution_output[-1])-float(execution_output[-2]),float(execution_output[-2]))) #(setup_time,activity_time)
+	  temp_latency.append(float(execution_output[-1]))
+	  
+	  value = 0.0
+	  temp_temp_error = []
+	  for i,e_o in enumerate(execution_output[:-3]):
+	    if(not i%2): value = float(e_o) + 0.00000000000001
+	    else: temp_temp_error.append(float(e_o)) #temp_error.append(float(e_o)/value*100) #percentage relative error
+	    
+	  #print execution_output[:-3]
+	  temp_error.append(max(temp_temp_error))
+	
+	#print p
+	#print temp_error
+	#print temp_latency
+	#print numpy.mean(temp_error)
+	#print "\n"
+	accuracy.append(numpy.mean(temp_error))
+	accuracy_var.append(numpy.var(temp_error))
+	latency.append(numpy.mean(temp_latency))
+	latency_var.append(numpy.var(temp_latency))
 
-    return [accuracy,latency,accuracy_var,latency_var]
+      return [accuracy,latency,accuracy_var,latency_var]
     
   def dummy_run(self):
       rfir = 0.1
