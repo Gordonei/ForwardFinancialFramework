@@ -11,7 +11,7 @@ if( __name__ == '__main__' and len(sys.argv)>3):
   
   underlying_I = Black_Scholes.Black_Scholes(rfir=0.12,current_price=52,volatility=0.30)
   underlying_II = Black_Scholes.Black_Scholes(rfir=0.06,current_price=90,volatility=0.20)
-  options = [European_Option.European_Option([underlying_I],call=1.0,strike_price=50,time_period=0.25),European_Option.European_Option([underlying_II],call=1.0,strike_price=95,time_period=1.00),Barrier_Option.Barrier_Option([underlying_I],call=True,strike_price=50,time_period=0.25,barrier=100,out=True,down=False,points=int(252*0.25)),Barrier_Option.Barrier_Option([underlying_II],call=True,strike_price=95,time_period=1.00,barrier=300,out=1.0,down=0.0,points=252)]
+  options = [European_Option.European_Option([underlying_I],call=1.0,strike_price=50,time_period=0.25),European_Option.European_Option([underlying_II],call=1.0,strike_price=95,time_period=1.00),Barrier_Option.Barrier_Option([underlying_I],call=1.0,strike_price=50,time_period=0.25,barrier=100,out=1.0,down=0.0,points=int(252*0.25)),Barrier_Option.Barrier_Option([underlying_II],call=True,strike_price=95,time_period=1.00,barrier=300,out=1.0,down=0.0,points=252)]
  
   results = []
   for o in options:
