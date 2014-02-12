@@ -38,5 +38,5 @@ if( __name__ == '__main__' and len(sys.argv)>3):
       o_result = mc_solver.execute()
       results.append(o_result)
       
-  print "Hostname,Platform Type,Simulation Paths,Value,95%% Confidence Interval of Value,Execution Latency,"
-  for r in results: print "%s,%s,%d,%f,%f,%f," % (os.uname()[1].split(".")[0],platform_name,paths,float(r[0]),float(r[1]),r[-1])
+  print "Hostname,Platform Type,Option Number,Simulation Paths,Value,95%% Confidence Interval of Value,Execution Latency,"
+  for i,r in enumerate(results): print "%s,%s,%d,%d,%f,%f,%f," % (os.uname()[1].split(".")[0],platform_name,i,paths,float(r[0]),float(r[1]),r[-1])
