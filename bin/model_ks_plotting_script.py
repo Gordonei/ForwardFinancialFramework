@@ -25,7 +25,7 @@ for filename in sys.argv[1:]:
     elif(data_label=="ee-snowball1"): data_label = "Nvidia GPU"
     elif(data_label=="ee-benjamin"): data_label = "Server CPU"
     elif(data_label=="maxstation1"): data_label = "Maxeler FPGA"
-    elif(data_label=="maxworkstation7240"): data_label = "Desktop CPU"
+    elif(data_label=="maxworkstation7240" or data_label=="ee-mollie"): data_label = "Desktop CPU"
     data_labels.append(data_label)
     
     #Plotting Benchmark Data
@@ -47,16 +47,16 @@ for filename in sys.argv[1:]:
     mean_latency = mean_verification_selection["Latency"].astype(numpy.float)/1000000
     
     #if(data_label=="maxstation1" or data_label=="ee-benjamin" or data_label=="maxworkstation7240"):
-    lower_bound_latency = lower_bound_latency - (min(lower_bound_latency)-max(benchmark_selection["Latency"].astype(numpy.float)/1000000))
+    """lower_bound_latency = lower_bound_latency - (min(lower_bound_latency)-max(benchmark_selection["Latency"].astype(numpy.float)/1000000))
     upper_bound_latency = upper_bound_latency - (min(upper_bound_latency)-max(benchmark_selection["Latency"].astype(numpy.float)/1000000))
     mean_latency = mean_latency - (min(mean_latency)-max(benchmark_selection["Latency"].astype(numpy.float)/1000000))
     
     lower_bound_accuracy = lower_bound_accuracy - (lower_bound_accuracy[0]-min(benchmark_selection["Accuracy"].astype(numpy.float)))
     upper_bound_accuracy = upper_bound_accuracy - (upper_bound_accuracy[0]-min(benchmark_selection["Accuracy"].astype(numpy.float)))
-    mean_accuracy = mean_accuracy - (mean_accuracy[0]-min(benchmark_selection["Accuracy"].astype(numpy.float)))
+    mean_accuracy = mean_accuracy - (mean_accuracy[0]-min(benchmark_selection["Accuracy"].astype(numpy.float)))"""
 
-    plt.plot(lower_bound_accuracy,lower_bound_latency,"--",color=data_color)
-    plt.plot(upper_bound_accuracy,upper_bound_latency,"--",color=data_color)
+    #plt.plot(lower_bound_accuracy,lower_bound_latency,"--",color=data_color)
+    #plt.plot(upper_bound_accuracy,upper_bound_latency,"--",color=data_color)
     plt.plot(mean_accuracy,mean_latency,"-x",color=data_color)
     
     verification_length = len(mean_verification_selection["Accuracy"].astype(numpy.float))
@@ -64,6 +64,11 @@ for filename in sys.argv[1:]:
     #Plotting Projection Data
     projection_selection = data_matrix[data_matrix["Type"]=="Projection",:]
     plt.plot(projection_selection["Accuracy"][:verification_length],projection_selection["Latency"][:verification_length].astype(numpy.float)/1000000,".",color=data_color)
+    
+    print "Prediction Data"
+    for i in range(verification_length): print "%s,%f"%(projection_selection["Accuracy"][i],projection_selection["Latency"][i].astype(numpy.float)/1000000)
+    print "\nVerification Data:"
+    for i in range(verification_length): print "%s,%f"%(mean_accuracy[i],mean_latency[i])
     
     print "Final Point: %.12f S/$ vs %.12f S/$ (Model vs Mean Verification)"%(projection_selection["Accuracy"].astype(numpy.float)[:verification_length][-1]/projection_selection["Latency"].astype(numpy.float)[:verification_length][-1]*1000000,mean_accuracy[-1]/mean_latency[-1])
     
