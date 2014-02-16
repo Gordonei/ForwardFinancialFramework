@@ -548,13 +548,17 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     return results
   
-  def trial_run(self,paths,steps,redudancy=10,paths_start=0):
+  def trial_run(self,paths,steps,redudancy=10,paths_start=0,stepping="linear"):
       accuracy = []
       latency = []
       accuracy_var = []
       latency_var = []
 
       path_set = numpy.arange(max(paths_start,paths),max(paths_start,paths)+paths*steps,paths)
+      if(stepping=="power"):
+	multiplier = (steps)**(1.0/(steps))
+	path_set = paths*(multiplier**numpy.arange(1,steps+1))
+    
       for p in path_set: #Trial Runs to generate data needed for predicition functions
 	self.solver_metadata["paths"] = p
 	temp_latency = []
@@ -585,7 +589,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	latency.append(numpy.mean(temp_latency))
 	latency_var.append(numpy.var(temp_latency))
 
-      return [accuracy,latency,accuracy_var,latency_var]
+      return [accuracy,latency,accuracy_var,latency_var,path_set]
     
   def dummy_run(self):
       rfir = 0.1
