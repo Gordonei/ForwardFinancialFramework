@@ -130,7 +130,7 @@ class MonteCarlo:
       self.output_file_name = "mc_solver"  
       self.output_file_name = ("%s_%s"%(self.output_file_name,self.platform.name))
     
-    def populate_model(self,base_trial_paths,trial_steps,redudancy=10):
+    def populate_model(self,base_trial_paths,trial_steps,redudancy=10,stepping="linear"):
       derivative_backup = self.derivative[:]
       underlying_backup = self.underlying[:]
       
@@ -150,12 +150,13 @@ class MonteCarlo:
 		self.generate()
 		if("FPGA" not in (self.platform.name).upper()): self.compile()
 		
-		trial_run_results = self.trial_run(base_trial_paths,trial_steps,redudancy)
+		trial_run_results = self.trial_run(base_trial_paths,trial_steps,redudancy,stepping=stepping)
 		accuracy = trial_run_results[0]
 		latency = trial_run_results[1]
-
-		latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
-		accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
+		paths = trial_run_results[4]
+		
+		latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency,paths)
+		accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy,paths)
 
 		u.latency_model_coefficients = latency_coefficients
 		u.accuracy_model_coefficients = accuracy_coefficients
@@ -167,18 +168,20 @@ class MonteCarlo:
 	  self.generate()
 	  if("FPGA" not in (self.platform.name).upper()): self.compile()
 	  
-	  trial_run_results = self.trial_run(base_trial_paths,trial_steps,redudancy)
+	  trial_run_results = self.trial_run(base_trial_paths,trial_steps,redudancy,stepping=stepping)
 	  accuracy = trial_run_results[0]
 	  latency = trial_run_results[1]
+	  paths = trial_run_results[4]
 	  
-	  latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
-	  accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
+	  latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency,paths)
+	  accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy,paths)
 	  
-	  d.latency_model_coefficients.extend(latency_coefficients)
-	  d.accuracy_model_coefficients.extend(accuracy_coefficients)    
+	  d.latency_model_coefficients = latency_coefficients
+	  d.accuracy_model_coefficients = accuracy_coefficients    
     
       self.derivative = derivative_backup[:]
       self.underlying = underlying_backup[:]
+	
     
     def latency_model(self,paths):
       latency_sum = []
@@ -311,13 +314,17 @@ class MonteCarlo:
       
       return tuple(variables)
       
-    def trial_run(self,paths,steps,redudancy=10,paths_start=0):
+    def trial_run(self,paths,steps,redudancy=10,paths_start=0,stepping="linear"):
       accuracy = []
       latency = []
       accuracy_var = []
       latency_var = []
 
       path_set = numpy.arange(max(paths_start,paths),max(paths_start,paths)+paths*steps,paths)
+      if(stepping=="power"):
+	multiplier = (steps)**(1.0/(steps))
+	path_set = paths*(multiplier**numpy.arange(1,steps+1))
+    
       for p in path_set: #Trial Runs to generate data needed for predicition functions
 	self.solver_metadata["paths"] = p
 	temp_latency = []
@@ -331,7 +338,7 @@ class MonteCarlo:
 	  value = 0.0
 	  temp_temp_error = []
 	  for i,e_o in enumerate(execution_output[:-3]):
-	    if(not i%2): value = float(e_o)+0.00000000000001
+	    if(not i%2): value = float(e_o) + 0.00000000000001
 	    else: temp_temp_error.append(float(e_o)) #temp_error.append(float(e_o)/value*100) #percentage relative error
 	    
 	  #print execution_output[:-3]
@@ -339,6 +346,7 @@ class MonteCarlo:
 	
 	#print p
 	#print temp_error
+	#print temp_latency
 	#print numpy.mean(temp_error)
 	#print "\n"
 	accuracy.append(numpy.mean(temp_error))
@@ -346,29 +354,28 @@ class MonteCarlo:
 	latency.append(numpy.mean(temp_latency))
 	latency_var.append(numpy.var(temp_latency))
 
-      return [accuracy,latency,accuracy_var,latency_var]
-      
-    def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,degree=1):
+      return [accuracy,latency,accuracy_var,latency_var,path_set]
+    
+    def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,paths,degree=1):
       benchmark_matrix = numpy.zeros((data_points,degree+1))
       
       for i in range(data_points):
 	benchmark_matrix[i][0] = 1.0
-	for j in range(1,degree+1):
-	  benchmark_matrix[i][j] = ((i+1)*benchmark_paths)**j
+	for j in range(1,degree+1): benchmark_matrix[i][j] = paths[i]**j
 	  
       temp_coefficients = numpy.linalg.lstsq(benchmark_matrix,latencies)[0]
       predicition_function_coefficients = temp_coefficients[:]
 
       return predicition_function_coefficients
 
-    def generate_accuracy_prediction_function_coefficients(self,benchmark_paths,data_points,accuracy_data,degree=2):
+    def generate_accuracy_prediction_function_coefficients(self,benchmark_paths,data_points,accuracy_data,paths,degree=2):
       benchmark_matrix = numpy.zeros((data_points,degree+1))
       
       for i in range(data_points):
 	benchmark_matrix[i][0] = 1.0
 	for j in range(1,degree+1):
-	  if(j%2): benchmark_matrix[i][j] = 0.0
-	  else: benchmark_matrix[i][j] = ((i+1)*benchmark_paths)**-(1.0/j)
+	  #if(j%2): benchmark_matrix[i][j] = 0.0
+	  benchmark_matrix[i][j] = paths[i]**-(1.0/j)
 	  
       #print benchmark_matrix
       #print accuracy_data
