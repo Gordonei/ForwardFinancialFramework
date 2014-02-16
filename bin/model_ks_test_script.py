@@ -34,21 +34,22 @@ def option_grouping(option_numbers):
   return options
     
 
-if( __name__ == '__main__' and len(sys.argv)>4):
+if( __name__ == '__main__' and len(sys.argv)>5):
   platform_name = sys.argv[1]
   
   paths = int(sys.argv[2])
   benchmark_steps = int(sys.argv[3])
   model_steps = int(sys.argv[4])
   
-  redudancy = 10
+  model_redudancy = 10
+  verification_redudancy = 10
   
   hostname = os.uname()[1]
   data_file = open("%s_%s_ks_model_data.csv"%(hostname,platform_name),"w")
   
   data_file.write("Forward Financial Framework Kaiserslatuarn+ Model Experiments Results,\n")
   data_file.write("%s,%s,\n"%(platform_name,hostname))
-  data_file.write("Type,Simulation Paths,Accuracy,Latency,\n")
+  data_file.write("Type,Stepping,Simulation Paths,Accuracy,Latency,\n")
   
   option_numbers = sys.argv[5:] #map(str,range(1,14))
   
@@ -73,22 +74,32 @@ if( __name__ == '__main__' and len(sys.argv)>4):
     print "incorrect platform type!"
     sys.exit()
   
-  #Generating the Benchmark and Model Data
-  mc_solver.populate_model(paths,benchmark_steps)
-  for p in range(paths,paths*(model_steps+1),paths):
-    latency = mc_solver.latency_model(p)
-    accuracy = mc_solver.accuracy_model(p)
+  #Generating the Benchmark and Model Data for both linear and power benchmarked code
+  for stepping in ["linear","power"]:
+    mc_solver.populate_model(paths,benchmark_steps,stepping=stepping)
     
-    if(p<=(paths*benchmark_steps)): 
-      data_file.write("Benchmark,%d,%f,%f,\n"%(p,accuracy,latency))
-      print "Benchmarked Latency for %d paths: %f"%(p,latency)
-      print "Benchmarked Accuracy for %d paths: %f"%(p,accuracy)
-    if(p>=(paths*benchmark_steps)): 
-      data_file.write("Projection,%d,%f,%f,\n"%(p,accuracy,latency))
-      print "Projected Latency for %d paths: %f"%(p,latency)
-      print "Projected Accuracy for %d paths: %f"%(p,accuracy)
+    path_set = range(paths,paths*(model_steps+1),paths) #linear model
+    if(stepping=="power"): #power model
+      multiplier = benchmark_steps**(1.0/(benchmark_steps))
+      path_set = paths*(multiplier**numpy.arange(1,benchmark_steps+1))
+      path_set = list(path_set)
+      path_set.extend(range(paths*(benchmark_steps+1),paths*(model_steps+1),paths))
     
-    data_file.flush()
+    for p in path_set:
+      latency = mc_solver.latency_model(p)
+      accuracy = mc_solver.accuracy_model(p)
+      
+      if((p<=(paths*benchmark_steps))): 
+        data_file.write("Benchmark,%s,%d,%f,%f,\n"%(stepping,p,accuracy,latency))
+        print "%s benchmarked Latency for %d paths: %f"%(stepping,p,latency)
+        print "%s benchmarked Accuracy for %d paths: %f"%(stepping,p,accuracy)  
+      
+      else: 
+        data_file.write("Projection,%s,%d,%f,%f,\n"%(stepping,p,accuracy,latency))
+        print "Projected Latency for %d paths: %f"%(p,latency)
+        print "Projected Accuracy for %d paths: %f"%(p,accuracy)
+      
+      data_file.flush()
     
   #Verifying the Data
   options = option_grouping(option_numbers)
@@ -101,14 +112,11 @@ if( __name__ == '__main__' and len(sys.argv)>4):
     
     for i,o in enumerate(options):
       temp_options = KS_ProblemSet.KS_Options(o)
-      if(platform_name=="GPU"):
-        temp_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(temp_options,p,platform)
-        temp_solver.generate()
-        temp_solver.compile()
+      if(platform_name=="GPU"): temp_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(temp_options,p,platform)
       elif(platform_name=="CPU"): temp_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(temp_options,p,platform)
       elif(platform_name=="FPGA"): temp_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(temp_options,p,platform)
       
-      temp_result = temp_solver.trial_run(paths,1,redudancy=redudancy,paths_start=p)
+      temp_result = temp_solver.trial_run(paths,1,redudancy=verification_redudancy,paths_start=p,stepping="linear")
       latencies[i] = numpy.sum(numpy.array(map(float,temp_result[1])))
       latencies_var[i] = numpy.sum(numpy.array(map(float,temp_result[3])))
       accuracies[i] = numpy.max(numpy.array(map(float,temp_result[0])))
@@ -155,4 +163,4 @@ if( __name__ == '__main__' and len(sys.argv)>4):
   data_file.close()
     
 elif(__name__ == '__main__'):
-  print "usage: python model_ks_test_script.py [CPU|GPU|FPGA] [Number of Benchmark Paths] [Number of Benchmark Steps] [Number of Verification Steps] [Option Number 1] [Option Number 2] ... [Option Number N]"
+  print "usage: python model_ks_test_script.py [CPU|GPU|FPGA] [Number of Benchmark Paths] [Number of Verification Steps] [Option Number 1] [Option Number 2] ... [Option Number N]"
