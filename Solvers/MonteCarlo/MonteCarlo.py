@@ -153,9 +153,10 @@ class MonteCarlo:
 		trial_run_results = self.trial_run(base_trial_paths,trial_steps,redudancy,stepping=stepping)
 		accuracy = trial_run_results[0]
 		latency = trial_run_results[1]
+		paths = trial_run_results[4]
 		
-		latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
-		accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
+		latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency,paths)
+		accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy,paths)
 
 		u.latency_model_coefficients = latency_coefficients
 		u.accuracy_model_coefficients = accuracy_coefficients
@@ -170,12 +171,13 @@ class MonteCarlo:
 	  trial_run_results = self.trial_run(base_trial_paths,trial_steps,redudancy,stepping=stepping)
 	  accuracy = trial_run_results[0]
 	  latency = trial_run_results[1]
+	  paths = trial_run_results[4]
 	  
-	  latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency)
-	  accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy)
+	  latency_coefficients = self.generate_latency_prediction_function_coefficients(base_trial_paths,trial_steps,latency,paths)
+	  accuracy_coefficients = self.generate_accuracy_prediction_function_coefficients(base_trial_paths,trial_steps,accuracy,paths)
 	  
-	  d.latency_model_coefficients.extend(latency_coefficients)
-	  d.accuracy_model_coefficients.extend(accuracy_coefficients)    
+	  d.latency_model_coefficients = latency_coefficients
+	  d.accuracy_model_coefficients = accuracy_coefficients    
     
       self.derivative = derivative_backup[:]
       self.underlying = underlying_backup[:]
@@ -320,9 +322,9 @@ class MonteCarlo:
 
       path_set = numpy.arange(max(paths_start,paths),max(paths_start,paths)+paths*steps,paths)
       if(stepping=="power"):
-	path_set = paths**numpy.arange(1,steps+1)
-	if(paths_start in paths): path_set = path_set[list(path_set).index(paths_start):]
-	
+	multiplier = (steps)**(1.0/(steps))
+	path_set = paths*(multiplier**numpy.arange(1,steps+1))
+    
       for p in path_set: #Trial Runs to generate data needed for predicition functions
 	self.solver_metadata["paths"] = p
 	temp_latency = []
@@ -352,29 +354,28 @@ class MonteCarlo:
 	latency.append(numpy.mean(temp_latency))
 	latency_var.append(numpy.var(temp_latency))
 
-      return [accuracy,latency,accuracy_var,latency_var]
+      return [accuracy,latency,accuracy_var,latency_var,path_set]
     
-    def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,degree=1):
+    def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,paths,degree=1):
       benchmark_matrix = numpy.zeros((data_points,degree+1))
       
       for i in range(data_points):
 	benchmark_matrix[i][0] = 1.0
-	for j in range(1,degree+1):
-	  benchmark_matrix[i][j] = ((i+1)*benchmark_paths)**j
+	for j in range(1,degree+1): benchmark_matrix[i][j] = paths[i]**j
 	  
       temp_coefficients = numpy.linalg.lstsq(benchmark_matrix,latencies)[0]
       predicition_function_coefficients = temp_coefficients[:]
 
       return predicition_function_coefficients
 
-    def generate_accuracy_prediction_function_coefficients(self,benchmark_paths,data_points,accuracy_data,degree=2):
+    def generate_accuracy_prediction_function_coefficients(self,benchmark_paths,data_points,accuracy_data,paths,degree=2):
       benchmark_matrix = numpy.zeros((data_points,degree+1))
       
       for i in range(data_points):
 	benchmark_matrix[i][0] = 1.0
 	for j in range(1,degree+1):
-	  if(j%2): benchmark_matrix[i][j] = 0.0
-	  else: benchmark_matrix[i][j] = ((i+1)*benchmark_paths)**-(1.0/j)
+	  #if(j%2): benchmark_matrix[i][j] = 0.0
+	  benchmark_matrix[i][j] = paths[i]**-(1.0/j)
 	  
       #print benchmark_matrix
       #print accuracy_data
