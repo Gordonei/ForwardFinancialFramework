@@ -1,7 +1,5 @@
 #define MULTICORE_CPU 1
 #define FP_t double
-#define native_sqrt sqrt
-#define exp exp
 //Libraries
 #include "math.h"
 //#include "pthread.h";
@@ -117,8 +115,8 @@ void opencl_montecarlo_activity_thread(struct thread_data * thread_arg){
 	underlying_variables u_v_0;
 	option_attributes o_a_0 = temp_data->o_a_0;
 	option_variables o_v_0;
-
-	//**Initialising Loop Attributes
+	
+	//**Initialising Loop Attributes*
 	FP_t temp_total_0=0,temp_total_sqrd_0=0,spot_price_0,time_0;
 	int j,k;
 	//**Thread Calculation Loop**
@@ -137,7 +135,6 @@ void opencl_montecarlo_activity_thread(struct thread_data * thread_arg){
 			spot_price_0 = u_a_0.current_price*exp(u_v_0.gamma);
 			time_0 = u_v_0.time;
 			}
-		
 			
 		//**Calculating payoff(s)**
 		option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
