@@ -59,9 +59,9 @@ for filename in sys.argv[1:]:
     #Generating multiple degrees
     latency_degree_error = []
     accuracy_degree_error = []
-    for point in range(len(benchmark_paths)/2,len(benchmark_paths)):
-        accuracy_model = generate_accuracy_model(accuracy_benchmark_data[:point],benchmark_paths[:point],2)
-        latency_model = generate_latency_model(latency_benchmark_data[:point],benchmark_paths[:point],1)
+    for degree in range(max_degree):
+        accuracy_model = generate_accuracy_model(accuracy_benchmark_data,benchmark_paths,degree)
+        latency_model = generate_latency_model(latency_benchmark_data,benchmark_paths,degree)
     
         accuracy_model_data = accuracy_model(verification_path) + (accuracy_model(verification_path) - accuracy_verification_data[0]) #numpy.array([accuracy_model(p) for p in benchmark_paths])
         latency_model_data = latency_model(verification_path) #+ (latency_model(verification_path) - latency_verification_data[0]) #numpy.array([latency_model(p) for p in benchmark_paths])
@@ -75,7 +75,7 @@ for filename in sys.argv[1:]:
         temp_index = 0
         accuracy_verification_model_data = 0.0
         latency_verification_model_data = latency_verification_data[temp_index]
-        while(latency_verification_model_data*benchmark_ratio <= latency_benchmark_data[point]):
+        while(latency_verification_model_data*benchmark_ratio <= latency_benchmark_data[-1]):
             accuracy_verification_model_data = accuracy_verification_data[temp_index]
             latency_verification_model_data = latency_verification_data[temp_index]
             temp_index += 1
@@ -94,13 +94,13 @@ for filename in sys.argv[1:]:
     
     
     plt.plot([],"-",color=data_color,label=data_label)
-    plt.plot(latency_benchmark_data[len(benchmark_paths)/2:],latency_degree_error,"-o",color=data_color)
-    plt.plot(latency_benchmark_data[len(benchmark_paths)/2:],accuracy_degree_error,"-x",color=data_color)
+    plt.plot(range(max_degree),latency_degree_error,"-o",color=data_color)
+    plt.plot(range(max_degree),accuracy_degree_error,"-x",color=data_color)
     
     print "Latency Error:"
-    for i,lde in enumerate(latency_degree_error): print "%f,%f"%(latency_benchmark_data[i],lde)
+    for i,lde in enumerate(latency_degree_error): print "%d,%f"%(i,lde)
     print "Accuracy Error:"
-    for i,ade in enumerate(accuracy_degree_error): print "%f,%f"%(latency_benchmark_data[i],ade)
+    for i,ade in enumerate(accuracy_degree_error): print "%d,%f"%(i,ade)
     #plt.scatter(accuracy_benchmark_data,latency_benchmark_data,color=data_color)
     
 plt.plot([],color=(1,1,1),label=" ")
@@ -108,9 +108,9 @@ plt.plot([],"-o",color=(0,0,0),label="latency model")
 plt.plot([],"-x",color=(0,0,0),label="accuracy model")
 plt.legend(loc="best",fancybox=True)
 
-plt.title("Prediction Model Error with constant Runtime-Benchmark Ratio (%.1f)"%benchmark_ratio,size=22)
-plt.ylabel("Relative Model Error",size=20)
-plt.xlabel("Benchmark Latency (S)",size=20)
+plt.title("Prediction Model Basis Function Degree Selection",size=22)
+plt.ylabel("Relative Model Error (%)",size=20)
+plt.xlabel("Degree",size=20)
 plt.grid(True,which="Major")
 
 ax = plt.gca()
