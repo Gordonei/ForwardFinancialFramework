@@ -277,9 +277,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     if(self.platform.amd_gpu_flag):
       ###Writing Control Parameter
-      output_list.append("clEnqueueWriteBuffer(command_queue, seed_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), seed_array, 0, NULL, NULL);")
-      output_list.append("clEnqueueWriteBuffer(command_queue, chunk_size_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_size_array, 0, NULL, NULL);")
-      output_list.append("clEnqueueWriteBuffer(command_queue, chunk_number_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, NULL);")
+      output_list.append("clEnqueueWriteBuffer(cpu_command_queue, seed_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), seed_array, 0, NULL, NULL);")
+      output_list.append("clEnqueueWriteBuffer(cpu_command_queue, chunk_size_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_size_array, 0, NULL, NULL);")
+      output_list.append("clEnqueueWriteBuffer(cpu_command_queue, chunk_number_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, NULL);")
       output_list.append("clFinish(cpu_command_queue);")
     
     output_list.append("clFinish(command_queue);")
