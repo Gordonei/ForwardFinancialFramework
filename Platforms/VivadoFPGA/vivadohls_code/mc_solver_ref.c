@@ -143,8 +143,9 @@ void opencl_montecarlo_activity_thread(struct thread_data * thread_arg){
 		}
 
 	//**Returning Result**
-	temp_data->thread_result[0] = temp_total_0;
+	//temp_data->thread_result[0] = temp_total_0;
 	temp_data->thread_result_sqrd[0] = temp_total_sqrd_0;
+	temp_data->thread_result[0] = spot_price_0;
 	}
 
 //*Main Function*
