@@ -76,7 +76,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     self.generate_source(self.kernel_code_list,".cl")
     
     #If using an AMD Platform, Generate OpenCL Kernel Code for seeding using the Host CPU
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+    if(self.platform.amd_gpu_flag):
       self.cpu_seed_kernel_code_list = self.generate_cpu_seed_kernel()
       self.generate_source(self.cpu_seed_kernel_code_list,"_cpu_seed.cl")
   
@@ -111,7 +111,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("cl_context_properties cps[3] = { CL_CONTEXT_PLATFORM, (cl_context_properties)platform, 0 };")
     output_list.append("cl_context context = clCreateContextFromType(cps, CL_DEVICE_TYPE_%s, NULL, NULL, NULL);"%pyopencl.device_type.to_string(self.platform.device_type))
     
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+    if(self.platform.amd_gpu_flag):
       ###Creating OpenCL CPU Context
       output_list.append("//***Creating CPU Context***")
       output_list.append("cl_context_properties cpu_cps[3] = { CL_CONTEXT_PLATFORM, (cl_context_properties)platform, 0 };")
@@ -125,7 +125,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("clGetContextInfo(context, CL_CONTEXT_DEVICES, deviceListSize,devices,NULL);")
     output_list.append("cl_device_id device = devices[0];")
     
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+    if(self.platform.amd_gpu_flag):
       output_list.append("//***Creating CPU Device***")
       output_list.append("clGetContextInfo(cpu_context,CL_CONTEXT_DEVICES,0, NULL,&deviceListSize);")
       output_list.append("cl_device_id *cpu_devices = (cl_device_id *)malloc(deviceListSize);")
@@ -142,7 +142,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("cl_program program = clCreateProgramWithBinary(context, 1, &device, (const size_t *)&binary_size,(const unsigned char **)&binary_buf, NULL, NULL);")
       output_list.append("clBuildProgram(program, 1, &device, NULL, NULL, NULL);")
       
-      if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+      if(self.platform.amd_gpu_flag):
         ###Creating the OpenCL CPU Program from the precompiled binary
         output_list.append("//***Creating CPU Program***")
         output_list.append("FILE *cpu_fp=fopen(\"%s_cpu_seed.clbin\", \"r\");"%self.output_file_name)
@@ -179,7 +179,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//***Creating Kernel Object***")
     output_list.append("cl_kernel %s_kernel = clCreateKernel(program,\"%s_kernel\",&ret);"%(self.output_file_name,self.output_file_name))
     
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("cl_kernel %s_cpu_seed_kernel = clCreateKernel(cpu_program,\"%s_cpu_seed_kernel\",&ret);"%(self.output_file_name,self.output_file_name))
+    if(self.platform.amd_gpu_flag): output_list.append("cl_kernel %s_cpu_seed_kernel = clCreateKernel(cpu_program,\"%s_cpu_seed_kernel\",&ret);"%(self.output_file_name,self.output_file_name))
       
     ###Creating the Memory Objects for each underlying and derivative
     #TODO Maybe there should an attribute memory object for each path, instead of one shared between all?
@@ -193,7 +193,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         output_list.append("%s_attributes u_a_%d[1];" % (u.name,index))
         output_list.append("cl_mem u_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,NULL);" % (index,u.name))
         output_list.append("cl_mem seed_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,chunk_paths*sizeof(mwc64x_state_t),NULL,NULL);" % (index))
-        if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+        if(self.platform.amd_gpu_flag):
           output_list.append("mwc64x_state_t *seed_%d = (mwc64x_state_t*) malloc(chunk_paths*sizeof(mwc64x_state_t));" % (index))
           output_list.append("cl_mem seed_%d_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(mwc64x_state_t),NULL,NULL);" % (index))
     
@@ -224,7 +224,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_%d_buff);"%(self.output_file_name,4 + index*3 + 1 + 2*len(self.underlying),index))
       output_list.append("clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,4 + index*3 + 2 + 2*len(self.underlying),index))
       
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+    if(self.platform.amd_gpu_flag):
       output_list.append("cl_mem seed_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
       output_list.append("cl_mem chunk_size_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
       output_list.append("cl_mem chunk_number_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
@@ -238,20 +238,20 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**Creating OpenCL Command Queue**")
     output_list.append("cl_command_queue command_queue = clCreateCommandQueue(context, device, 0, &ret);")
     
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("cl_command_queue cpu_command_queue = clCreateCommandQueue(cpu_context, cpu_device, 0, &ret);")
+    if(self.platform.amd_gpu_flag): output_list.append("cl_command_queue cpu_command_queue = clCreateCommandQueue(cpu_context, cpu_device, 0, &ret);")
       
-    output_list.append("//**Initialising Attributes and writing to OpenCL Memory Object**")
+    output_list.append("//**Initialising Attributes and writing to OpenCL Memory Objects**")
     ###Writing Control Parameters
     output_list.append("cl_int *path_points_array = (cl_int*)malloc(sizeof(cl_int));")
     output_list.append("path_points_array[0] = path_points;")
     output_list.append("clEnqueueWriteBuffer(command_queue, path_points_buff, CL_TRUE, 0, sizeof(cl_int), path_points_array, 0, NULL, NULL);")
     output_list.append("cl_uint *seed_array = (cl_uint*)malloc(sizeof(cl_uint));")
-    output_list.append("time_t seed_timer;")
-    output_list.append("time(&seed_timer);")
-    output_list.append("struct tm y2k;")
-    output_list.append("y2k.tm_hour = 0; y2k.tm_min = 0; y2k.tm_sec = 0; y2k.tm_year = 100; y2k.tm_mon = 0; y2k.tm_mday = 1;")
-    output_list.append("seed_array[0] = (unsigned int)difftime(seed_timer,mktime(&y2k));") #time since 1 January, 2000
-    #output_list.append("seed_array[0] = (unsigned int)clock();")
+    #output_list.append("time_t seed_timer;")
+    #output_list.append("time(&seed_timer);")
+    #output_list.append("struct tm y2k;")
+    #output_list.append("y2k.tm_hour = 0; y2k.tm_min = 0; y2k.tm_sec = 0; y2k.tm_year = 100; y2k.tm_mon = 0; y2k.tm_mday = 1;")
+    #output_list.append("seed_array[0] = (unsigned int)difftime(seed_timer,mktime(&y2k));") #time since 1 January, 2000
+    output_list.append("seed_array[0] = (unsigned int) temp_data->thread_rng_seed;")
     output_list.append("clEnqueueWriteBuffer(command_queue, seed_buff, CL_TRUE, 0, sizeof(cl_uint), seed_array, 0, NULL, NULL);")
     output_list.append("cl_uint *chunk_size_array = (cl_uint*)malloc(sizeof(cl_uint));")
     output_list.append("chunk_size_array[0] = chunk_paths*kernel_loops;")
@@ -275,11 +275,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         output_list.append(temp)
         output_list.append("clEnqueueWriteBuffer(command_queue, o_a_%d_buff, CL_TRUE, 0, sizeof(%s_attributes), o_a_%d, 0, NULL, NULL);"%(d_index,d.name,d_index))
     
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+    if(self.platform.amd_gpu_flag):
       ###Writing Control Parameter
-      output_list.append("clEnqueueWriteBuffer(command_queue, seed_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), seed_array, 0, NULL, NULL);")
-      output_list.append("clEnqueueWriteBuffer(command_queue, chunk_size_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_size_array, 0, NULL, NULL);")
-      output_list.append("clEnqueueWriteBuffer(command_queue, chunk_number_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, NULL);")
+      output_list.append("clEnqueueWriteBuffer(cpu_command_queue, seed_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), seed_array, 0, NULL, NULL);")
+      output_list.append("clEnqueueWriteBuffer(cpu_command_queue, chunk_size_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_size_array, 0, NULL, NULL);")
+      output_list.append("clEnqueueWriteBuffer(cpu_command_queue, chunk_number_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, NULL);")
       output_list.append("clFinish(cpu_command_queue);")
     
     output_list.append("clFinish(command_queue);")
@@ -293,24 +293,24 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("double temp_value_sqrd_%d=0;"%d)
       
     ##Running the actual kernel for the first time
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+    if(self.platform.amd_gpu_flag):
       output_list.append("//**Run the CPU Seed kernel for the 1st 2 Times**")
       output_list.append("const size_t cpu_kernel_paths = chunk_paths;")
       output_list.append("clEnqueueNDRangeKernel(cpu_command_queue, %s_cpu_seed_kernel, (cl_uint) 1, NULL, &cpu_kernel_paths, NULL, 0, NULL, NULL);"%(self.output_file_name))
       output_list.append("clFinish(cpu_command_queue);")
       for index,u in enumerate(self.underlying): output_list.append("clEnqueueReadBuffer(cpu_command_queue, seed_%d_cpu_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t),seed_%d, 0, NULL, NULL);"%(index,index))
-      output_list.append("clFinish(cpu_command_queue);")
+      #output_list.append("clFinish(cpu_command_queue);")
       output_list.append("chunk_number_array[0] = 1;")
       output_list.append("clEnqueueWriteBuffer(cpu_command_queue, chunk_number_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, NULL);")
       
-      output_list.append("clFinish(command_queue);")
+      output_list.append("clFinish(cpu_command_queue);")
       output_list.append("clEnqueueNDRangeKernel(cpu_command_queue, %s_cpu_seed_kernel, (cl_uint) 1, NULL, &cpu_kernel_paths, NULL, 0, NULL, NULL);"%(self.output_file_name))
       for index,u in enumerate(self.underlying): output_list.append("clEnqueueWriteBuffer(command_queue, seed_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t), seed_%d, 0, NULL, NULL);"%(index,index))
-      output_list.append("clFinish(command_queue);")
+      #output_list.append("clFinish(command_queue);")
     
     output_list.append("//**Run the kernel for the 1st Time**")
     output_list.append("const size_t kernel_paths = chunk_paths;")
-    output_list.append("const size_t local_kernel_paths = local_work_items;")#%self.solver_metadata["local_work_items"])
+    output_list.append("const size_t local_kernel_paths = local_work_items;")
     output_list.append("clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, NULL);"%(self.output_file_name))
     
     output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
@@ -328,7 +328,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("clFinish(command_queue);")
     output_list.append("chunk_number_array[0] = j;")
     
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+    if(self.platform.amd_gpu_flag):
       output_list.append("clFinish(cpu_command_queue);")
       for index,u in enumerate(self.underlying): output_list.append("clEnqueueReadBuffer(cpu_command_queue, seed_%d_cpu_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t),seed_%d, 0, NULL, NULL);"%(index,index))
       output_list.append("clFinish(cpu_command_queue);")
@@ -370,7 +370,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("j++;")
     output_list.append("}")
     output_list.append("clFinish(command_queue);")
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("clFinish(cpu_command_queue);")
+    if(self.platform.amd_gpu_flag): output_list.append("clFinish(cpu_command_queue);")
     
     output_list.append("//**Returning Result**")
     #output_list.append("printf(\"path_points_array[0]=%d\\n\",path_points_array[0]);")
@@ -426,7 +426,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
     
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)): output_list.append("#define AMD_GPU")
+    if(self.platform.amd_gpu_flag): output_list.append("#define AMD_GPU")
     #elif("darwin" not in sys.platform): output_list.append("#include <sys/times.h>")
     #else: output_list.append("#include \"mach/mach_time.h\"")
     
@@ -493,13 +493,13 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**getting unique ID**")
     output_list.append("int i = get_global_id(0);")
     
-    """if (not(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)) and ("darwin" not in sys.platform)):
+    """if (not(self.platform.amd_gpu_flag) and ("darwin" not in sys.platform)):
       output_list.append("//**Generating time offset**")
       output_list.append("ulong time;")
       output_list.append("struct tms buffer;")
       output_list.append("times(&buffer);")
       output_list.append("time = (ulong)(buffer.tms_utime + buffer.tms_stime);")
-    elif(not(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)) and ("darwin" in sys.platform)):
+    elif(not(self.platform.amd_gpu_flag) and ("darwin" in sys.platform)):
       output_list.append("//**Generating time offset**")
       output_list.append("ulong time;")
       output_list.append("time = 0;")
@@ -507,18 +507,19 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     output_list.append("//**reading parameters from host**")
     output_list.append("int local_path_points=path_points[0];")
+    output_list.append("uint local_chunk_size = chunk_size[0];")
+    output_list.append("uint local_chunk_number = chunk_number[0];")
+    output_list.append("uint local_seed = seed[0];")
       
     output_list.append("//**Creating Kernel variables and Copying parameters from host**")
     for index,u in enumerate(self.underlying):
       output_list.append("%s_attributes temp_u_a_%d = u_a_%d[0];"%(u.name,index,index))
       output_list.append("%s_variables temp_u_v_%d;"%(u.name,index))
-      if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU) and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): 
-	output_list.append("temp_u_v_%d.rng_state = seed_%d[i];"%(index,index))
+      if(self.platform.amd_gpu_flag and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): 
+	output_list.append("temp_u_v_%d.rng_state.x = seed_%d[i].x;"%(index,index))
+	output_list.append("temp_u_v_%d.rng_state.c = seed_%d[i].c;"%(index,index))
       elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-        output_list.append("uint local_seed = seed[0];")
-        output_list.append("uint local_chunk_size = chunk_size[0];")
-        output_list.append("uint local_chunk_number = chunk_number[0];")
-        output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),local_seed + 4096*2*local_chunk_size*(local_chunk_number*%d + %d),4096*2*i);"%(index,len(self.underlying),index))
+        output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),local_seed + 4096*2*local_chunk_size*(local_chunk_number*%d + %d),4096*2);"%(index,len(self.underlying),index))
 	#if("darwin" not in sys.platform): output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(chunk_size[0]*chunk_number[0]+1)*time,%d*4096*2*i);"%(index,self.kernel_loops))
         #else: output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(chunk_size[0]*chunk_number[0]+1)*local_seed,%d*4096*2*i);"%(index,self.kernel_loops))
     
@@ -613,9 +614,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("bin")
     
     output_list.append("kernel void %s_cpu_seed_kernel("%self.output_file_name)
-    output_list.append("\tconstant uint *seed,")
-    output_list.append("\tconstant uint *chunk_size,")
-    output_list.append("\tconstant uint *chunk_number,")
+    output_list.append("\tglobal uint *seed,")
+    output_list.append("\tglobal uint *chunk_size,")
+    output_list.append("\tglobal uint *chunk_number,")
     for index,u in enumerate(self.underlying):
       #output_list.append("\tlocal mwc64x_state_t *local_seed_%d,"%(index))
       output_list.append("\tglobal mwc64x_state_t *seed_%d,"%(index))
@@ -624,7 +625,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     output_list.append("//**getting unique ID**")
     output_list.append("int i = get_global_id(0);")
-    output_list.append("int j = get_local_id(0);")
+    #output_list.append("int j = get_local_id(0);")
     
     output_list.append("uint local_seed = seed[0];")
     output_list.append("uint local_chunk_size = chunk_size[0];")
@@ -638,8 +639,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     output_list.append("//**Initiating the Path for each underlying**")
     for i,u in enumerate(self.underlying):
-	output_list.append("mwc64x_state_t temp_seed_%d;"%(i))
-        output_list.append("MWC64X_SeedStreams(&temp_seed_%d,local_seed + 4096*2*local_chunk_size*(local_chunk_number*%d + %d),4096*2*i);"%(index,len(self.underlying),index))
+	output_list.append("mwc64x_state_t temp_seed_%d;"%(i)) 
+        output_list.append("MWC64X_SeedStreams(&(temp_seed_%d),local_seed + 4096*2*local_chunk_size*(local_chunk_number*%d + %d),4096*2);"%(i,len(self.underlying),i))
         
         """output_list.append("if(j==0){")
         output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d),0,4096*2*(chunk_size[0]*chunk_number[0]+1));"%index)
@@ -650,7 +651,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         output_list.append("temp_u_v_%d=local_u_v_%d[0];"%(index,index))
         output_list.append("MWC64X_Skip( &(temp_u_v_%d), 4096*2);"%index)
         output_list.append("}")"""
-        output_list.append("seed_%d[i] = temp_seed_%d;"%(i,i))
+        output_list.append("seed_%d[i].x = temp_seed_%d.x;"%(i,i))
+        output_list.append("seed_%d[i].c = temp_seed_%d.c;"%(i,i))
         
     output_list.append("}") #End of Kernel
     
@@ -664,6 +666,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   
   def generate_variable_declaration(self):
     output_list = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate_variable_declaration(self)
+    #output_list.append("typedef struct{ cl_uint x; cl_uint c; } mwc64x_state_t;")
     output_list.append("typedef struct{ cl_uint x; cl_uint c; } mwc64x_state_t;")
   
     return output_list
@@ -699,7 +702,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     binary_kernel_file.close()
     
     #If using an AMD Platform, Compile OpenCL Kernel Code for seeding using the Host CPU
-    if(("AMD" in self.platform.platform_name) and (self.platform.device_type==pyopencl.device_type.GPU)):
+    if(self.platform.amd_gpu_flag):
       self.cpu_seed_program = pyopencl.Program(self.platform.cpu_context,self.cpu_seed_kernel_code_string).build(["-I . -I %s"%path_string]) #Creating OpenCL program based upon Kernel
       binary_kernel = self.cpu_seed_program.get_info(pyopencl.program_info.BINARIES)[0] #Getting the binary code for the OpenCL code
       binary_kernel_file = open("%s_cpu_seed.clbin"%self.output_file_name,"w") #Writing the binary code to a file to be read by the Host C Code
