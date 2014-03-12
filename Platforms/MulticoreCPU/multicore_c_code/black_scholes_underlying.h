@@ -9,7 +9,8 @@
 
 #ifdef MULTICORE_CPU
 #include "gauss.h"
-#include "math.h"
+#include <math.h>
+#include <stdlib.h>
 #define native_sqrt sqrt
 #define native_exp exp
 #define native_log log

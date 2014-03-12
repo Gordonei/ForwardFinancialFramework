@@ -198,9 +198,11 @@ typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;unsigned int offset;} rng_st
 
 uint32_t __random32(rng_state_t *rng_state);
 
-double __drandom32(rng_state_t *rng_state);
+FP_t __drandom32(rng_state_t *rng_state);
 
-double taus_ran_gaussian_ziggurat (double sigma, rng_state_t *rng_state);
+FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state);
+
+void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_state);
 //End of modified code that uses the Combined TAUSWORTHE RNG
 
 #endif

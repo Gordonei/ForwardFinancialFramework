@@ -30,7 +30,7 @@
 
 uint32_t __random32(rng_state_t *rng_state)
 {
-#define TAUSWORTHE(s,a,b,c,d) ((s&c)<<d) ^ (((s <<a) ^ s)>>b)
+    #define TAUSWORTHE(s,a,b,c,d) ((s&c)<<d) ^ (((s <<a) ^ s)>>b)
 
     rng_state->s1 = TAUSWORTHE(rng_state->s1, 13, 19, 4294967294UL, 12);
     rng_state->s2 = TAUSWORTHE(rng_state->s2, 2, 25, 4294967288UL, 4);
@@ -41,12 +41,12 @@ uint32_t __random32(rng_state_t *rng_state)
     return (rng_state->s1 ^ rng_state->s2 ^ rng_state->s3);
 }
 
-double __drandom32(rng_state_t *rng_state)
+FP_t __drandom32(rng_state_t *rng_state)
 {
     return (__random32(rng_state)/(pow(2,32)));
 }
 
-double taus_ran_gaussian_ziggurat (double sigma, rng_state_t *rng_state)
+FP_t taus_ran_gaussian_ziggurat (double sigma, rng_state_t *rng_state)
 {
   unsigned long  U, sign, i, j;
   double  x, y;
@@ -72,4 +72,20 @@ double taus_ran_gaussian_ziggurat (double sigma, rng_state_t *rng_state)
     if (y < exp(-0.5*x*x))  break;
   }
   return  sign ? sigma*x : -sigma*x;
+}
+
+void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_state)
+{
+  FP_t t_x,t_y,u,v;
+  
+  u = __drandom32(rng_state);
+  v = __drandom32(rng_state);
+  
+  t_x = sqrt(-2*log(u))*cos(2*M_PI*v);
+  t_y = sqrt(-2*log(u))*sin(2*M_PI*v);
+  t_y = t_x*rho+sqrt(1.0-pow(rho,2))*t_y;
+  
+  *x = t_x;
+  *y = t_y;
+  
 }
