@@ -1,10 +1,10 @@
 // Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2013.3 (lin64) Build 329390 Wed Oct 16 18:26:55 MDT 2013
-// Date        : Wed Mar 12 08:22:04 2014
-// Host        : ganymede running 64-bit Ubuntu 12.04.3 LTS
+// Tool Version: Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
+// Date        : Wed Mar 12 09:46:41 2014
+// Host        : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 // Command     : write_verilog -force -mode funcsim
-//               /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_funcsim.v
+//               /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_funcsim.v
 // Design      : vivado_activity_thread_ap_fcmp_1_no_dsp
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,8 +12,8 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "floating_point_v7_0,Vivado 2013.3" *) (* CHECK_LICENSE_TYPE = "vivado_activity_thread_ap_fcmp_1_no_dsp,floating_point_v7_0,{}" *) 
-(* core_generation_info = "vivado_activity_thread_ap_fcmp_1_no_dsp,floating_point_v7_0,{x_ipProduct=Vivado 2013.3,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=floating_point,x_ipVersion=7.0,x_ipCoreRevision=2,x_ipLanguage=VERILOG,C_XDEVICEFAMILY=zynq,C_HAS_ADD=0,C_HAS_SUBTRACT=0,C_HAS_MULTIPLY=0,C_HAS_DIVIDE=0,C_HAS_SQRT=0,C_HAS_COMPARE=1,C_HAS_FIX_TO_FLT=0,C_HAS_FLT_TO_FIX=0,C_HAS_FLT_TO_FLT=0,C_HAS_RECIP=0,C_HAS_RECIP_SQRT=0,C_HAS_ABSOLUTE=0,C_HAS_LOGARITHM=0,C_HAS_EXPONENTIAL=0,C_HAS_FMA=0,C_HAS_FMS=0,C_HAS_ACCUMULATOR_A=0,C_HAS_ACCUMULATOR_S=0,C_A_WIDTH=32,C_A_FRACTION_WIDTH=24,C_B_WIDTH=32,C_B_FRACTION_WIDTH=24,C_C_WIDTH=32,C_C_FRACTION_WIDTH=24,C_RESULT_WIDTH=1,C_RESULT_FRACTION_WIDTH=0,C_COMPARE_OPERATION=8,C_LATENCY=1,C_OPTIMIZATION=1,C_MULT_USAGE=0,C_BRAM_USAGE=0,C_RATE=1,C_ACCUM_INPUT_MSB=32,C_ACCUM_MSB=32,C_ACCUM_LSB=-31,C_HAS_UNDERFLOW=0,C_HAS_OVERFLOW=0,C_HAS_INVALID_OP=0,C_HAS_DIVIDE_BY_ZERO=0,C_HAS_ACCUM_OVERFLOW=0,C_HAS_ACCUM_INPUT_OVERFLOW=0,C_HAS_ACLKEN=1,C_HAS_ARESETN=0,C_THROTTLE_SCHEME=3,C_HAS_A_TUSER=0,C_HAS_A_TLAST=0,C_HAS_B=1,C_HAS_B_TUSER=0,C_HAS_B_TLAST=0,C_HAS_C=0,C_HAS_C_TUSER=0,C_HAS_C_TLAST=0,C_HAS_OPERATION=1,C_HAS_OPERATION_TUSER=0,C_HAS_OPERATION_TLAST=0,C_HAS_RESULT_TUSER=0,C_HAS_RESULT_TLAST=0,C_TLAST_RESOLUTION=0,C_A_TDATA_WIDTH=32,C_A_TUSER_WIDTH=1,C_B_TDATA_WIDTH=32,C_B_TUSER_WIDTH=1,C_C_TDATA_WIDTH=32,C_C_TUSER_WIDTH=1,C_OPERATION_TDATA_WIDTH=8,C_OPERATION_TUSER_WIDTH=1,C_RESULT_TDATA_WIDTH=8,C_RESULT_TUSER_WIDTH=1}" *) 
+(* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "floating_point_v7_0,Vivado 2013.4" *) (* CHECK_LICENSE_TYPE = "vivado_activity_thread_ap_fcmp_1_no_dsp,floating_point_v7_0,{}" *) 
+(* core_generation_info = "vivado_activity_thread_ap_fcmp_1_no_dsp,floating_point_v7_0,{x_ipProduct=Vivado 2013.4,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=floating_point,x_ipVersion=7.0,x_ipCoreRevision=3,x_ipLanguage=VHDL,C_XDEVICEFAMILY=zynq,C_HAS_ADD=0,C_HAS_SUBTRACT=0,C_HAS_MULTIPLY=0,C_HAS_DIVIDE=0,C_HAS_SQRT=0,C_HAS_COMPARE=1,C_HAS_FIX_TO_FLT=0,C_HAS_FLT_TO_FIX=0,C_HAS_FLT_TO_FLT=0,C_HAS_RECIP=0,C_HAS_RECIP_SQRT=0,C_HAS_ABSOLUTE=0,C_HAS_LOGARITHM=0,C_HAS_EXPONENTIAL=0,C_HAS_FMA=0,C_HAS_FMS=0,C_HAS_ACCUMULATOR_A=0,C_HAS_ACCUMULATOR_S=0,C_A_WIDTH=32,C_A_FRACTION_WIDTH=24,C_B_WIDTH=32,C_B_FRACTION_WIDTH=24,C_C_WIDTH=32,C_C_FRACTION_WIDTH=24,C_RESULT_WIDTH=1,C_RESULT_FRACTION_WIDTH=0,C_COMPARE_OPERATION=8,C_LATENCY=1,C_OPTIMIZATION=1,C_MULT_USAGE=0,C_BRAM_USAGE=0,C_RATE=1,C_ACCUM_INPUT_MSB=32,C_ACCUM_MSB=32,C_ACCUM_LSB=-31,C_HAS_UNDERFLOW=0,C_HAS_OVERFLOW=0,C_HAS_INVALID_OP=0,C_HAS_DIVIDE_BY_ZERO=0,C_HAS_ACCUM_OVERFLOW=0,C_HAS_ACCUM_INPUT_OVERFLOW=0,C_HAS_ACLKEN=1,C_HAS_ARESETN=0,C_THROTTLE_SCHEME=3,C_HAS_A_TUSER=0,C_HAS_A_TLAST=0,C_HAS_B=1,C_HAS_B_TUSER=0,C_HAS_B_TLAST=0,C_HAS_C=0,C_HAS_C_TUSER=0,C_HAS_C_TLAST=0,C_HAS_OPERATION=1,C_HAS_OPERATION_TUSER=0,C_HAS_OPERATION_TLAST=0,C_HAS_RESULT_TUSER=0,C_HAS_RESULT_TLAST=0,C_TLAST_RESOLUTION=0,C_A_TDATA_WIDTH=32,C_A_TUSER_WIDTH=1,C_B_TDATA_WIDTH=32,C_B_TUSER_WIDTH=1,C_C_TDATA_WIDTH=32,C_C_TUSER_WIDTH=1,C_OPERATION_TDATA_WIDTH=8,C_OPERATION_TUSER_WIDTH=1,C_RESULT_TDATA_WIDTH=8,C_RESULT_TUSER_WIDTH=1}" *) 
 (* NotValidForBitStream *)
 module vivado_activity_thread_ap_fcmp_1_no_dsp
    (aclk,
@@ -129,7 +129,7 @@ GND GND
    (* C_XDEVICEFAMILY = "zynq" *) 
    (* DONT_TOUCH *) 
    (* downgradeipidentifiedwarnings = "yes" *) 
-   vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 U0
+   vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0 U0
        (.aclk(aclk),
         .aclken(aclken),
         .aresetn(\<const1> ),
@@ -162,31 +162,31 @@ VCC VCC
        (.P(\<const1> ));
 endmodule
 
-(* C_XDEVICEFAMILY = "zynq" *) (* C_HAS_ADD = "0" *) (* C_HAS_SUBTRACT = "0" *) 
-(* C_HAS_MULTIPLY = "0" *) (* C_HAS_DIVIDE = "0" *) (* C_HAS_SQRT = "0" *) 
-(* C_HAS_COMPARE = "1" *) (* C_HAS_FIX_TO_FLT = "0" *) (* C_HAS_FLT_TO_FIX = "0" *) 
-(* C_HAS_FLT_TO_FLT = "0" *) (* C_HAS_RECIP = "0" *) (* C_HAS_RECIP_SQRT = "0" *) 
-(* C_HAS_ABSOLUTE = "0" *) (* C_HAS_LOGARITHM = "0" *) (* C_HAS_EXPONENTIAL = "0" *) 
-(* C_HAS_FMA = "0" *) (* C_HAS_FMS = "0" *) (* C_HAS_ACCUMULATOR_A = "0" *) 
-(* C_HAS_ACCUMULATOR_S = "0" *) (* C_A_WIDTH = "32" *) (* C_A_FRACTION_WIDTH = "24" *) 
-(* C_B_WIDTH = "32" *) (* C_B_FRACTION_WIDTH = "24" *) (* C_C_WIDTH = "32" *) 
-(* C_C_FRACTION_WIDTH = "24" *) (* C_RESULT_WIDTH = "1" *) (* C_RESULT_FRACTION_WIDTH = "0" *) 
-(* C_COMPARE_OPERATION = "8" *) (* C_LATENCY = "1" *) (* C_OPTIMIZATION = "1" *) 
-(* C_MULT_USAGE = "0" *) (* C_BRAM_USAGE = "0" *) (* C_RATE = "1" *) 
-(* C_ACCUM_INPUT_MSB = "32" *) (* C_ACCUM_MSB = "32" *) (* C_ACCUM_LSB = "-31" *) 
-(* C_HAS_UNDERFLOW = "0" *) (* C_HAS_OVERFLOW = "0" *) (* C_HAS_INVALID_OP = "0" *) 
-(* C_HAS_DIVIDE_BY_ZERO = "0" *) (* C_HAS_ACCUM_OVERFLOW = "0" *) (* C_HAS_ACCUM_INPUT_OVERFLOW = "0" *) 
-(* C_HAS_ACLKEN = "1" *) (* C_HAS_ARESETN = "0" *) (* C_THROTTLE_SCHEME = "3" *) 
-(* C_HAS_A_TUSER = "0" *) (* C_HAS_A_TLAST = "0" *) (* C_HAS_B = "1" *) 
-(* C_HAS_B_TUSER = "0" *) (* C_HAS_B_TLAST = "0" *) (* C_HAS_C = "0" *) 
-(* C_HAS_C_TUSER = "0" *) (* C_HAS_C_TLAST = "0" *) (* C_HAS_OPERATION = "1" *) 
-(* C_HAS_OPERATION_TUSER = "0" *) (* C_HAS_OPERATION_TLAST = "0" *) (* C_HAS_RESULT_TUSER = "0" *) 
-(* C_HAS_RESULT_TLAST = "0" *) (* C_TLAST_RESOLUTION = "0" *) (* C_A_TDATA_WIDTH = "32" *) 
-(* C_A_TUSER_WIDTH = "1" *) (* C_B_TDATA_WIDTH = "32" *) (* C_B_TUSER_WIDTH = "1" *) 
-(* C_C_TDATA_WIDTH = "32" *) (* C_C_TUSER_WIDTH = "1" *) (* C_OPERATION_TDATA_WIDTH = "8" *) 
-(* C_OPERATION_TUSER_WIDTH = "1" *) (* C_RESULT_TDATA_WIDTH = "8" *) (* C_RESULT_TUSER_WIDTH = "1" *) 
-(* downgradeipidentifiedwarnings = "yes" *) 
-module vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0
+(* ORIG_REF_NAME = "floating_point_v7_0" *) (* C_XDEVICEFAMILY = "zynq" *) (* C_HAS_ADD = "0" *) 
+(* C_HAS_SUBTRACT = "0" *) (* C_HAS_MULTIPLY = "0" *) (* C_HAS_DIVIDE = "0" *) 
+(* C_HAS_SQRT = "0" *) (* C_HAS_COMPARE = "1" *) (* C_HAS_FIX_TO_FLT = "0" *) 
+(* C_HAS_FLT_TO_FIX = "0" *) (* C_HAS_FLT_TO_FLT = "0" *) (* C_HAS_RECIP = "0" *) 
+(* C_HAS_RECIP_SQRT = "0" *) (* C_HAS_ABSOLUTE = "0" *) (* C_HAS_LOGARITHM = "0" *) 
+(* C_HAS_EXPONENTIAL = "0" *) (* C_HAS_FMA = "0" *) (* C_HAS_FMS = "0" *) 
+(* C_HAS_ACCUMULATOR_A = "0" *) (* C_HAS_ACCUMULATOR_S = "0" *) (* C_A_WIDTH = "32" *) 
+(* C_A_FRACTION_WIDTH = "24" *) (* C_B_WIDTH = "32" *) (* C_B_FRACTION_WIDTH = "24" *) 
+(* C_C_WIDTH = "32" *) (* C_C_FRACTION_WIDTH = "24" *) (* C_RESULT_WIDTH = "1" *) 
+(* C_RESULT_FRACTION_WIDTH = "0" *) (* C_COMPARE_OPERATION = "8" *) (* C_LATENCY = "1" *) 
+(* C_OPTIMIZATION = "1" *) (* C_MULT_USAGE = "0" *) (* C_BRAM_USAGE = "0" *) 
+(* C_RATE = "1" *) (* C_ACCUM_INPUT_MSB = "32" *) (* C_ACCUM_MSB = "32" *) 
+(* C_ACCUM_LSB = "-31" *) (* C_HAS_UNDERFLOW = "0" *) (* C_HAS_OVERFLOW = "0" *) 
+(* C_HAS_INVALID_OP = "0" *) (* C_HAS_DIVIDE_BY_ZERO = "0" *) (* C_HAS_ACCUM_OVERFLOW = "0" *) 
+(* C_HAS_ACCUM_INPUT_OVERFLOW = "0" *) (* C_HAS_ACLKEN = "1" *) (* C_HAS_ARESETN = "0" *) 
+(* C_THROTTLE_SCHEME = "3" *) (* C_HAS_A_TUSER = "0" *) (* C_HAS_A_TLAST = "0" *) 
+(* C_HAS_B = "1" *) (* C_HAS_B_TUSER = "0" *) (* C_HAS_B_TLAST = "0" *) 
+(* C_HAS_C = "0" *) (* C_HAS_C_TUSER = "0" *) (* C_HAS_C_TLAST = "0" *) 
+(* C_HAS_OPERATION = "1" *) (* C_HAS_OPERATION_TUSER = "0" *) (* C_HAS_OPERATION_TLAST = "0" *) 
+(* C_HAS_RESULT_TUSER = "0" *) (* C_HAS_RESULT_TLAST = "0" *) (* C_TLAST_RESOLUTION = "0" *) 
+(* C_A_TDATA_WIDTH = "32" *) (* C_A_TUSER_WIDTH = "1" *) (* C_B_TDATA_WIDTH = "32" *) 
+(* C_B_TUSER_WIDTH = "1" *) (* C_C_TDATA_WIDTH = "32" *) (* C_C_TUSER_WIDTH = "1" *) 
+(* C_OPERATION_TDATA_WIDTH = "8" *) (* C_OPERATION_TUSER_WIDTH = "1" *) (* C_RESULT_TDATA_WIDTH = "8" *) 
+(* C_RESULT_TUSER_WIDTH = "1" *) (* downgradeipidentifiedwarnings = "yes" *) 
+module vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0
    (aclk,
     aclken,
     aresetn,
@@ -343,7 +343,7 @@ module vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0
    (* C_TLAST_RESOLUTION = "0" *) 
    (* C_XDEVICEFAMILY = "zynq" *) 
    (* downgradeipidentifiedwarnings = "yes" *) 
-   vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv i_synth
+   vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0 i_synth
        (.aclk(aclk),
         .aclken(aclken),
         .aresetn(aresetn),
@@ -374,31 +374,31 @@ module vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0
         .s_axis_operation_tvalid(s_axis_operation_tvalid));
 endmodule
 
-(* C_XDEVICEFAMILY = "zynq" *) (* C_HAS_ADD = "0" *) (* C_HAS_SUBTRACT = "0" *) 
-(* C_HAS_MULTIPLY = "0" *) (* C_HAS_DIVIDE = "0" *) (* C_HAS_SQRT = "0" *) 
-(* C_HAS_COMPARE = "1" *) (* C_HAS_FIX_TO_FLT = "0" *) (* C_HAS_FLT_TO_FIX = "0" *) 
-(* C_HAS_FLT_TO_FLT = "0" *) (* C_HAS_RECIP = "0" *) (* C_HAS_RECIP_SQRT = "0" *) 
-(* C_HAS_ABSOLUTE = "0" *) (* C_HAS_LOGARITHM = "0" *) (* C_HAS_EXPONENTIAL = "0" *) 
-(* C_HAS_FMA = "0" *) (* C_HAS_FMS = "0" *) (* C_HAS_ACCUMULATOR_A = "0" *) 
-(* C_HAS_ACCUMULATOR_S = "0" *) (* C_A_WIDTH = "32" *) (* C_A_FRACTION_WIDTH = "24" *) 
-(* C_B_WIDTH = "32" *) (* C_B_FRACTION_WIDTH = "24" *) (* C_C_WIDTH = "32" *) 
-(* C_C_FRACTION_WIDTH = "24" *) (* C_RESULT_WIDTH = "1" *) (* C_RESULT_FRACTION_WIDTH = "0" *) 
-(* C_COMPARE_OPERATION = "8" *) (* C_LATENCY = "1" *) (* C_OPTIMIZATION = "1" *) 
-(* C_MULT_USAGE = "0" *) (* C_BRAM_USAGE = "0" *) (* C_RATE = "1" *) 
-(* C_ACCUM_INPUT_MSB = "32" *) (* C_ACCUM_MSB = "32" *) (* C_ACCUM_LSB = "-31" *) 
-(* C_HAS_UNDERFLOW = "0" *) (* C_HAS_OVERFLOW = "0" *) (* C_HAS_INVALID_OP = "0" *) 
-(* C_HAS_DIVIDE_BY_ZERO = "0" *) (* C_HAS_ACCUM_OVERFLOW = "0" *) (* C_HAS_ACCUM_INPUT_OVERFLOW = "0" *) 
-(* C_HAS_ACLKEN = "1" *) (* C_HAS_ARESETN = "0" *) (* C_THROTTLE_SCHEME = "3" *) 
-(* C_HAS_A_TUSER = "0" *) (* C_HAS_A_TLAST = "0" *) (* C_HAS_B = "1" *) 
-(* C_HAS_B_TUSER = "0" *) (* C_HAS_B_TLAST = "0" *) (* C_HAS_C = "0" *) 
-(* C_HAS_C_TUSER = "0" *) (* C_HAS_C_TLAST = "0" *) (* C_HAS_OPERATION = "1" *) 
-(* C_HAS_OPERATION_TUSER = "0" *) (* C_HAS_OPERATION_TLAST = "0" *) (* C_HAS_RESULT_TUSER = "0" *) 
-(* C_HAS_RESULT_TLAST = "0" *) (* C_TLAST_RESOLUTION = "0" *) (* C_A_TDATA_WIDTH = "32" *) 
-(* C_A_TUSER_WIDTH = "1" *) (* C_B_TDATA_WIDTH = "32" *) (* C_B_TUSER_WIDTH = "1" *) 
-(* C_C_TDATA_WIDTH = "32" *) (* C_C_TUSER_WIDTH = "1" *) (* C_OPERATION_TDATA_WIDTH = "8" *) 
-(* C_OPERATION_TUSER_WIDTH = "1" *) (* C_RESULT_TDATA_WIDTH = "8" *) (* C_RESULT_TUSER_WIDTH = "1" *) 
-(* downgradeipidentifiedwarnings = "yes" *) 
-module vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv
+(* ORIG_REF_NAME = "floating_point_v7_0_viv" *) (* C_XDEVICEFAMILY = "zynq" *) (* C_HAS_ADD = "0" *) 
+(* C_HAS_SUBTRACT = "0" *) (* C_HAS_MULTIPLY = "0" *) (* C_HAS_DIVIDE = "0" *) 
+(* C_HAS_SQRT = "0" *) (* C_HAS_COMPARE = "1" *) (* C_HAS_FIX_TO_FLT = "0" *) 
+(* C_HAS_FLT_TO_FIX = "0" *) (* C_HAS_FLT_TO_FLT = "0" *) (* C_HAS_RECIP = "0" *) 
+(* C_HAS_RECIP_SQRT = "0" *) (* C_HAS_ABSOLUTE = "0" *) (* C_HAS_LOGARITHM = "0" *) 
+(* C_HAS_EXPONENTIAL = "0" *) (* C_HAS_FMA = "0" *) (* C_HAS_FMS = "0" *) 
+(* C_HAS_ACCUMULATOR_A = "0" *) (* C_HAS_ACCUMULATOR_S = "0" *) (* C_A_WIDTH = "32" *) 
+(* C_A_FRACTION_WIDTH = "24" *) (* C_B_WIDTH = "32" *) (* C_B_FRACTION_WIDTH = "24" *) 
+(* C_C_WIDTH = "32" *) (* C_C_FRACTION_WIDTH = "24" *) (* C_RESULT_WIDTH = "1" *) 
+(* C_RESULT_FRACTION_WIDTH = "0" *) (* C_COMPARE_OPERATION = "8" *) (* C_LATENCY = "1" *) 
+(* C_OPTIMIZATION = "1" *) (* C_MULT_USAGE = "0" *) (* C_BRAM_USAGE = "0" *) 
+(* C_RATE = "1" *) (* C_ACCUM_INPUT_MSB = "32" *) (* C_ACCUM_MSB = "32" *) 
+(* C_ACCUM_LSB = "-31" *) (* C_HAS_UNDERFLOW = "0" *) (* C_HAS_OVERFLOW = "0" *) 
+(* C_HAS_INVALID_OP = "0" *) (* C_HAS_DIVIDE_BY_ZERO = "0" *) (* C_HAS_ACCUM_OVERFLOW = "0" *) 
+(* C_HAS_ACCUM_INPUT_OVERFLOW = "0" *) (* C_HAS_ACLKEN = "1" *) (* C_HAS_ARESETN = "0" *) 
+(* C_THROTTLE_SCHEME = "3" *) (* C_HAS_A_TUSER = "0" *) (* C_HAS_A_TLAST = "0" *) 
+(* C_HAS_B = "1" *) (* C_HAS_B_TUSER = "0" *) (* C_HAS_B_TLAST = "0" *) 
+(* C_HAS_C = "0" *) (* C_HAS_C_TUSER = "0" *) (* C_HAS_C_TLAST = "0" *) 
+(* C_HAS_OPERATION = "1" *) (* C_HAS_OPERATION_TUSER = "0" *) (* C_HAS_OPERATION_TLAST = "0" *) 
+(* C_HAS_RESULT_TUSER = "0" *) (* C_HAS_RESULT_TLAST = "0" *) (* C_TLAST_RESOLUTION = "0" *) 
+(* C_A_TDATA_WIDTH = "32" *) (* C_A_TUSER_WIDTH = "1" *) (* C_B_TDATA_WIDTH = "32" *) 
+(* C_B_TUSER_WIDTH = "1" *) (* C_C_TDATA_WIDTH = "32" *) (* C_C_TUSER_WIDTH = "1" *) 
+(* C_OPERATION_TDATA_WIDTH = "8" *) (* C_OPERATION_TUSER_WIDTH = "1" *) (* C_RESULT_TDATA_WIDTH = "8" *) 
+(* C_RESULT_TUSER_WIDTH = "1" *) (* downgradeipidentifiedwarnings = "yes" *) 
+module vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0
    (aclk,
     aclken,
     aresetn,

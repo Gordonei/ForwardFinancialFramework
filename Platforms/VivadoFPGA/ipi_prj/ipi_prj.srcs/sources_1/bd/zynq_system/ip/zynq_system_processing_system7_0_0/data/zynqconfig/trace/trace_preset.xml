@@ -2,7 +2,7 @@
 <!DOCTYPE parameters PUBLIC "presets" "presets.dtd" >
 <presets>
 
-  <preset param="pcw_trace_peripheral_enable" name="0" strength="7">
+  <preset param="pcw_trace_peripheral_enable" name="0" strength="8">
       <set param="pcw_tpiu_peripheral_freqmhz" value="200"/>
       <disable param="pcw_trace_grp_32bit_enable"/>
       <disable param="pcw_trace_grp_16bit_enable"/>
@@ -12,7 +12,7 @@
       <disable param="pcw_tpiu_peripheral_freqmhz"/>
       <disable param="pcw_trace_trace_io"/>
   </preset>
-  <preset param="pcw_trace_peripheral_enable" name="" strength="7">
+  <preset param="pcw_trace_peripheral_enable" name="" strength="8">
       <set param="pcw_tpiu_peripheral_freqmhz" value="200"/>
       <disable param="pcw_trace_grp_32bit_enable"/>
       <disable param="pcw_trace_grp_16bit_enable"/>
@@ -34,11 +34,11 @@
       <set param="pcw_tpiu_peripheral_clksrc" value="External" />
   </preset>
 
-  <preset param="pcw_trace_grp_2bit_enable" name="0" strength="7">
+  <preset param="pcw_trace_grp_2bit_enable" name="0" strength="8">
     <disable param="pcw_trace_grp_2bit_io" />
     <disable param="pcw_trace_grp_4bit_enable"/>
   </preset>
-  <preset param="pcw_trace_grp_2bit_enable" name="" strength="7">
+  <preset param="pcw_trace_grp_2bit_enable" name="" strength="8">
     <disable param="pcw_trace_grp_2bit_io" />
     <disable param="pcw_trace_grp_4bit_enable"/>
   </preset>
@@ -47,11 +47,11 @@
       <set param="pcw_trace_internal_width" value="2" />
   </preset>
 
-  <preset param="pcw_trace_grp_4bit_enable" name="0" strength="7">
+  <preset param="pcw_trace_grp_4bit_enable" name="0" strength="8">
     <disable param="pcw_trace_grp_4bit_io" />
     <disable param="pcw_trace_grp_8bit_enable"/>
   </preset>
-  <preset param="pcw_trace_grp_4bit_enable" name="" strength="7">
+  <preset param="pcw_trace_grp_4bit_enable" name="" strength="8">
     <disable param="pcw_trace_grp_4bit_io" />
     <disable param="pcw_trace_grp_8bit_enable"/>
   </preset>
@@ -60,11 +60,11 @@
       <set param="pcw_trace_internal_width" value="4" />
   </preset>
   
-  <preset param="pcw_trace_grp_8bit_enable" name="0" strength="7">
+  <preset param="pcw_trace_grp_8bit_enable" name="0" strength="8">
     <disable param="pcw_trace_grp_8bit_io" />
     <disable param="pcw_trace_grp_16bit_enable"/>
   </preset>
-  <preset param="pcw_trace_grp_8bit_enable" name="" strength="7">
+  <preset param="pcw_trace_grp_8bit_enable" name="" strength="8">
     <disable param="pcw_trace_grp_8bit_io" />
     <disable param="pcw_trace_grp_16bit_enable"/>
   </preset>
@@ -73,11 +73,11 @@
       <set param="pcw_trace_internal_width" value="8" />
   </preset>
 
-  <preset param="pcw_trace_grp_16bit_enable" name="0" strength="7">
+  <preset param="pcw_trace_grp_16bit_enable" name="0" strength="8">
     <disable param="pcw_trace_grp_16bit_io" />
     <disable param="pcw_trace_grp_32bit_enable"/>
   </preset>
-  <preset param="pcw_trace_grp_16bit_enable" name="" strength="7">
+  <preset param="pcw_trace_grp_16bit_enable" name="" strength="8">
     <disable param="pcw_trace_grp_16bit_io" />
     <disable param="pcw_trace_grp_32bit_enable"/>
   </preset>
@@ -86,47 +86,54 @@
       <set param="pcw_trace_internal_width" value="16" />
   </preset>
 
-  <preset param="pcw_trace_grp_32bit_enable" name="0" strength="7">
+  <preset param="pcw_trace_grp_32bit_enable" name="0" strength="8">
     <disable param="pcw_trace_grp_32bit_io" />
   </preset>
-  <preset param="pcw_trace_grp_32bit_enable" name="" strength="7">
+  <preset param="pcw_trace_grp_32bit_enable" name="" strength="8">
     <disable param="pcw_trace_grp_32bit_io" />
   </preset>
   <preset param="pcw_trace_grp_32bit_enable" name="1" strength="6">
+      <set param="pcw_trace_grp_32bit_io" value="EMIO"/>
       <set param="pcw_trace_internal_width" value="32" />
   </preset>
 
 
+  <preset param="pcw_trace_internal_width" name="2" strength="5">
+       <set param="ps7_debug_tpiu_CurrentSize_a" value="2" />
+  </preset>
+  <preset param="pcw_trace_internal_width" name="4" strength="5">
+       <set param="ps7_debug_tpiu_CurrentSize_a" value="8"/>
+  </preset>
+  <preset param="pcw_trace_internal_width" name="8" strength="5">
+       <set param="ps7_debug_tpiu_CurrentSize_a" value="128"/>
+  </preset>
+  <preset param="pcw_trace_internal_width" name="16" strength="5">
+       <set param="ps7_debug_tpiu_CurrentSize_a" value="32768"/>
+  </preset>
+  <preset param="pcw_trace_internal_width" name="32" strength="5">
+       <set param="ps7_debug_tpiu_CurrentSize_a" value="2147483648"/>
+  </preset>
 
   <preset param="pcw_trace_trace_io" name="EMIO" strength="7">
       <set param="pcw_trace_trace_clk_io" value="EMIO" />
       <set param="pcw_trace_trace_ctl_io" value="EMIO" />
 
-      <set param="pcw_trace_grp_32bit_io" value="EMIO" />
-      <set param="pcw_trace_grp_16bit_io" value="EMIO" />
-      <set param="pcw_trace_grp_8bit_io" value="EMIO" />
-      <set param="pcw_trace_grp_4bit_io" value="EMIO" />
-      <set param="pcw_trace_grp_2bit_io" value="EMIO" />
-
-      <set param="pcw_trace_grp_32bit_enable" value="1" />
-      <set param="pcw_trace_grp_16bit_enable" value="1" />
-      <set param="pcw_trace_grp_8bit_enable" value="1" />
-      <set param="pcw_trace_grp_4bit_enable" value="1" />
-      <set param="pcw_trace_grp_2bit_enable" value="1" />
-
-      <disable param="pcw_trace_grp_32bit_io"  />
-      <disable param="pcw_trace_grp_16bit_io"  />
-      <disable param="pcw_trace_grp_8bit_io"  />
-      <disable param="pcw_trace_grp_4bit_io"  />
-      <disable param="pcw_trace_grp_2bit_io"  />
-
-      <disable param="pcw_trace_grp_32bit_enable"  />
-      <disable param="pcw_trace_grp_16bit_enable"  />
-      <disable param="pcw_trace_grp_8bit_enable"  />
-      <disable param="pcw_trace_grp_4bit_enable" />
-      <disable param="pcw_trace_grp_2bit_enable"  />
-
-
+      <set param="pcw_trace_grp_2bit_io" value="EMIO"/>
+      <set param="pcw_trace_grp_4bit_io" value="EMIO"/>
+      <set param="pcw_trace_grp_8bit_io" value="EMIO"/>
+      <set param="pcw_trace_grp_16bit_io" value="EMIO"/>
+      <set param="pcw_trace_grp_32bit_io" value="EMIO"/>
+      <dischoice param="pcw_trace_grp_16bit_io" value="MIO 2 .. 9" />
+      <dischoice param="pcw_trace_grp_8bit_io" value="MIO 16 .. 19" />
+      <dischoice param="pcw_trace_grp_4bit_io" value="MIO 10 .. 11" />
+      <dischoice param="pcw_trace_grp_4bit_io" value="MIO 22 .. 23" />
+      <dischoice param="pcw_trace_grp_2bit_io" value="MIO 14 .. 15" />
+      <dischoice param="pcw_trace_grp_2bit_io" value="MIO 26 .. 27" />
+      <disable param="pcw_trace_grp_2bit_io" />
+      <disable param="pcw_trace_grp_4bit_io" />
+      <disable param="pcw_trace_grp_8bit_io" />
+      <disable param="pcw_trace_grp_16bit_io" />
+      <disable param="pcw_trace_grp_32bit_io" />
       <set param="pcw_EN_EMIO_TRACE" value="1" />
       <set param="pcw_trace_internal_clksrc" value="1" />
   </preset>
@@ -190,7 +197,13 @@
       <set param="pcw_mio_mio[13]_peripheral" value="Trace" />
       <set param="pcw_mio_mio[13]_signalgroup" value="Trace" />
       <set param="pcw_preset_mio_13" value="trace" />
+      <set param="pcw_trace_grp_32bit_enable" value="0"/>
       <disable param="pcw_trace_grp_32bit_enable"/>
+      <disable param="pcw_trace_grp_32bit_io"/>
+      <dischoice param="pcw_trace_grp_16bit_io" value="EMIO" />
+      <dischoice param="pcw_trace_grp_8bit_io" value="EMIO" />
+      <dischoice param="pcw_trace_grp_4bit_io" value="EMIO" />
+      <dischoice param="pcw_trace_grp_2bit_io" value="EMIO" />
 
   </preset>
 
@@ -207,7 +220,12 @@
       <set param="pcw_mio_mio[25]_peripheral" value="Trace" />
       <set param="pcw_mio_mio[25]_signalgroup" value="Trace" />
       <set param="pcw_preset_mio_25" value="trace" />
+      <set param="pcw_trace_grp_32bit_enable" value="0"/>
       <disable param="pcw_trace_grp_32bit_enable"/>
+      <dischoice param="pcw_trace_grp_16bit_io" value="EMIO" />
+      <dischoice param="pcw_trace_grp_8bit_io" value="EMIO" />
+      <dischoice param="pcw_trace_grp_4bit_io" value="EMIO" />
+      <dischoice param="pcw_trace_grp_2bit_io" value="EMIO" />
 
   </preset>
 

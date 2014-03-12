@@ -198,8 +198,8 @@ USE ieee.std_logic_1164.ALL;
 library fifo_generator_v11_0;
 use fifo_generator_v11_0.all;
 
-library blk_mem_gen_v8_0;
-use blk_mem_gen_v8_0.all;
+library blk_mem_gen_v8_1;
+use blk_mem_gen_v8_1.all;
 
 PACKAGE coregen_comp_defs IS
 
@@ -773,14 +773,14 @@ END COMPONENT;
    
    
 -------------------------------------------------------------------------------------
--- Start Block Memory Generator Component for blk_mem_gen_v8_0
--- Component declaration for blk_mem_gen_v8_0 pulled from the 
+-- Start Block Memory Generator Component for blk_mem_gen_v8_1
+-- Component declaration for blk_mem_gen_v8_1 pulled from the 
 -- /proj/xbuilds/ids_14.4_P.49d.2.0/lin64/14.4/ISE_DS/ISE/vhdl/src/XilinxCoreLib
--- file: blk_mem_gen_v8_0.v
+-- file: blk_mem_gen_v8_1.v
 -- Verilog file used to match paramter order for NCSIM compatibility
 -------------------------------------------------------------------------------------
 
-component blk_mem_gen_v8_0 IS
+component blk_mem_gen_v8_1 IS
 GENERIC (
   C_FAMILY                  : STRING  := "virtex6";
   C_XDEVICEFAMILY           : STRING  := "virtex6";
@@ -919,16 +919,16 @@ PORT (
   S_AXI_RDADDRECC                  : OUT STD_LOGIC_VECTOR(C_ADDRB_WIDTH-1 DOWNTO 0) := (OTHERS => '0')
 
 );
-END COMPONENT; --blk_mem_gen_v8_0
+END COMPONENT; --blk_mem_gen_v8_1
 
--- The following tells XST that blk_mem_gen_v8_0 is a black box which  
+-- The following tells XST that blk_mem_gen_v8_1 is a black box which  
   -- should be generated command given by the value of this attribute 
   -- Note the fully qualified SIM (JAVA class) name that forms the 
   -- basis of the core
 
---  ATTRIBUTE box_type OF blk_mem_gen_v8_0 : COMPONENT IS "black_box";
---  ATTRIBUTE generator_default OF blk_mem_gen_v8_0 : COMPONENT IS
---    "generatecore com.xilinx.ip.blk_mem_gen_v8_0.blk_mem_gen_v8_0 -a map_qvirtex_to=virtex map_qrvirtex_to=virtex map_virtexe_to=virtex map_qvirtex2_to=virtex2 map_qrvirtex2_to=virtex2 map_spartan2_to=virtex map_spartan2e_to=virtex map_virtex5_to=virtex4 map_spartan3a_to=spartan3e spartan3an_to=spartan3e spartan3adsp_to=spartan3e ";
+--  ATTRIBUTE box_type OF blk_mem_gen_v8_1 : COMPONENT IS "black_box";
+--  ATTRIBUTE generator_default OF blk_mem_gen_v8_1 : COMPONENT IS
+--    "generatecore com.xilinx.ip.blk_mem_gen_v8_1.blk_mem_gen_v8_1 -a map_qvirtex_to=virtex map_qrvirtex_to=virtex map_virtexe_to=virtex map_qvirtex2_to=virtex2 map_qrvirtex2_to=virtex2 map_spartan2_to=virtex map_spartan2e_to=virtex map_virtex5_to=virtex4 map_spartan3a_to=spartan3e spartan3an_to=spartan3e spartan3adsp_to=spartan3e ";
 -- End Block Memory Generator Component for v7_1 -------------------------------
 
 

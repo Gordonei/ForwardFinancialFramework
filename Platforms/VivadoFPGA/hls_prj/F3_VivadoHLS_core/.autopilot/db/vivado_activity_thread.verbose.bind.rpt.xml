@@ -1,9 +1,9 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'vivado_activity_thread'" level="0">
-<item name = "Date">Wed Mar 12 08:21:05 2014
+<item name = "Date">Wed Mar 12 09:45:15 2014
 </item>
-<item name = "Version">2013.3 (build date: Wed Oct 16 18:12:55 PM 2013)</item>
+<item name = "Version">2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)</item>
 <item name = "Project">hls_prj</item>
 <item name = "Solution">F3_VivadoHLS_core</item>
 <item name = "Product family">zynq zynq_fpv6 </item>

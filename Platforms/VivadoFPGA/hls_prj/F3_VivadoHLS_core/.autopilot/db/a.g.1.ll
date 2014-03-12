@@ -1,4 +1,4 @@
-; ModuleID = '/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core/.autopilot/db/a.g.1.bc'
+; ModuleID = '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/hls_prj/F3_VivadoHLS_core/.autopilot/db/a.g.1.bc'
 target datalayout = "e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
@@ -6,9 +6,7 @@ target triple = "x86_64-unknown-linux-gnu"
 %struct._IO_marker.0 = type { %struct._IO_marker.0*, %struct._IO_FILE.1*, i32 }
 %struct.option_variables.3 = type { float, float }
 %struct.option_attributes.2 = type { float, float, float }
-%struct.underlying_variables.5 = type { float, float }
-%struct.underlying_attributes.4 = type { float, float }
-%struct.thread_data_t.6 = type { i32, i32, float, float, %struct.underlying_attributes.4, %struct.option_attributes.2 }
+%struct.thread_data_t.4 = type { i32, i32, float, float, %struct.option_variables.3, %struct.option_attributes.2 }
 
 @.str = private unnamed_addr constant [12 x i8] c"member_name\00", align 1 ; [#uses=1 type=[12 x i8]*]
 @.str1 = private unnamed_addr constant [14 x i8] c"stderr._flags\00", align 1 ; [#uses=1 type=[14 x i8]*]
@@ -181,31 +179,31 @@ define internal fastcc void @option_derivative_payoff(float %end_price, %struct.
 }
 
 ; [#uses=1]
-define internal fastcc void @underlying_underlying_path_init(%struct.underlying_variables.5* %u_v, %struct.underlying_attributes.4* %u_a) nounwind uwtable {
-  call void @llvm.dbg.value(metadata !{%struct.underlying_variables.5* %u_v}, i64 0, metadata !123), !dbg !124 ; [debug line = 17:60] [debug variable = u_v]
-  call void @llvm.dbg.value(metadata !{%struct.underlying_attributes.4* %u_a}, i64 0, metadata !125), !dbg !126 ; [debug line = 17:87] [debug variable = u_a]
-  %u_v.addr = getelementptr inbounds %struct.underlying_variables.5* %u_v, i64 0, i32 0, !dbg !127 ; [#uses=1 type=float*] [debug line = 18:2]
+define internal fastcc void @underlying_underlying_path_init(%struct.option_variables.3* %u_v, %struct.option_variables.3* %u_a) nounwind uwtable {
+  call void @llvm.dbg.value(metadata !{%struct.option_variables.3* %u_v}, i64 0, metadata !123), !dbg !124 ; [debug line = 17:60] [debug variable = u_v]
+  call void @llvm.dbg.value(metadata !{%struct.option_variables.3* %u_a}, i64 0, metadata !125), !dbg !126 ; [debug line = 17:87] [debug variable = u_a]
+  %u_v.addr = getelementptr inbounds %struct.option_variables.3* %u_v, i64 0, i32 0, !dbg !127 ; [#uses=1 type=float*] [debug line = 18:2]
   store float 0.000000e+00, float* %u_v.addr, align 4, !dbg !127 ; [debug line = 18:2]
-  %u_v.addr.1 = getelementptr inbounds %struct.underlying_variables.5* %u_v, i64 0, i32 1, !dbg !129 ; [#uses=1 type=float*] [debug line = 19:2]
+  %u_v.addr.1 = getelementptr inbounds %struct.option_variables.3* %u_v, i64 0, i32 1, !dbg !129 ; [#uses=1 type=float*] [debug line = 19:2]
   store float 0.000000e+00, float* %u_v.addr.1, align 4, !dbg !129 ; [debug line = 19:2]
   ret void, !dbg !130                             ; [debug line = 20:1]
 }
 
 ; [#uses=1]
-define internal fastcc void @underlying_underlying_path(float %delta_time, %struct.underlying_variables.5* %u_v, %struct.underlying_attributes.4* %u_a) nounwind uwtable {
+define internal fastcc void @underlying_underlying_path(float %delta_time, %struct.option_variables.3* %u_v, %struct.option_variables.3* %u_a) nounwind uwtable {
   call void @llvm.dbg.value(metadata !{float %delta_time}, i64 0, metadata !131), !dbg !132 ; [debug line = 22:39] [debug variable = delta_time]
-  call void @llvm.dbg.value(metadata !{%struct.underlying_variables.5* %u_v}, i64 0, metadata !133), !dbg !134 ; [debug line = 22:72] [debug variable = u_v]
-  call void @llvm.dbg.value(metadata !{%struct.underlying_attributes.4* %u_a}, i64 0, metadata !135), !dbg !136 ; [debug line = 22:99] [debug variable = u_a]
-  %u_a.addr = getelementptr inbounds %struct.underlying_attributes.4* %u_a, i64 0, i32 0, !dbg !137 ; [#uses=1 type=float*] [debug line = 23:2]
+  call void @llvm.dbg.value(metadata !{%struct.option_variables.3* %u_v}, i64 0, metadata !133), !dbg !134 ; [debug line = 22:72] [debug variable = u_v]
+  call void @llvm.dbg.value(metadata !{%struct.option_variables.3* %u_a}, i64 0, metadata !135), !dbg !136 ; [debug line = 22:99] [debug variable = u_a]
+  %u_a.addr = getelementptr inbounds %struct.option_variables.3* %u_a, i64 0, i32 0, !dbg !137 ; [#uses=1 type=float*] [debug line = 23:2]
   %u_a.load = load float* %u_a.addr, align 4, !dbg !137 ; [#uses=2 type=float] [debug line = 23:2]
   call void (...)* @_ssdm_SpecKeepArrayLoad(float %u_a.load) nounwind
   %tmp = fmul float %u_a.load, %delta_time, !dbg !137 ; [#uses=1 type=float] [debug line = 23:2]
-  %u_v.addr = getelementptr inbounds %struct.underlying_variables.5* %u_v, i64 0, i32 0, !dbg !137 ; [#uses=2 type=float*] [debug line = 23:2]
+  %u_v.addr = getelementptr inbounds %struct.option_variables.3* %u_v, i64 0, i32 0, !dbg !137 ; [#uses=2 type=float*] [debug line = 23:2]
   %u_v.load = load float* %u_v.addr, align 4, !dbg !137 ; [#uses=2 type=float] [debug line = 23:2]
   call void (...)* @_ssdm_SpecKeepArrayLoad(float %u_v.load) nounwind
   %tmp.3 = fadd float %u_v.load, %tmp, !dbg !137  ; [#uses=1 type=float] [debug line = 23:2]
   store float %tmp.3, float* %u_v.addr, align 4, !dbg !137 ; [debug line = 23:2]
-  %u_v.addr.2 = getelementptr inbounds %struct.underlying_variables.5* %u_v, i64 0, i32 1, !dbg !139 ; [#uses=2 type=float*] [debug line = 24:2]
+  %u_v.addr.2 = getelementptr inbounds %struct.option_variables.3* %u_v, i64 0, i32 1, !dbg !139 ; [#uses=2 type=float*] [debug line = 24:2]
   %u_v.load.1 = load float* %u_v.addr.2, align 4, !dbg !139 ; [#uses=2 type=float] [debug line = 24:2]
   call void (...)* @_ssdm_SpecKeepArrayLoad(float %u_v.load.1) nounwind
   %tmp.4 = fadd float %u_v.load.1, %delta_time, !dbg !139 ; [#uses=1 type=float] [debug line = 24:2]
@@ -214,13 +212,13 @@ define internal fastcc void @underlying_underlying_path(float %delta_time, %stru
 }
 
 ; [#uses=0]
-define void @vivado_activity_thread(%struct.thread_data_t.6* %thread_arg) nounwind uwtable {
+define void @vivado_activity_thread(%struct.thread_data_t.4* %thread_arg) nounwind uwtable {
   call void (...)* @_ssdm_op_SpecTopModule([23 x i8]* @str) nounwind
-  %u_a_0 = alloca %struct.underlying_attributes.4, align 4 ; [#uses=4 type=%struct.underlying_attributes.4*]
-  %u_v_0 = alloca %struct.underlying_variables.5, align 4 ; [#uses=4 type=%struct.underlying_variables.5*]
+  %u_a_0 = alloca %struct.option_variables.3, align 4 ; [#uses=4 type=%struct.option_variables.3*]
+  %u_v_0 = alloca %struct.option_variables.3, align 4 ; [#uses=4 type=%struct.option_variables.3*]
   %o_a_0 = alloca %struct.option_attributes.2, align 4 ; [#uses=6 type=%struct.option_attributes.2*]
   %o_v_0 = alloca %struct.option_variables.3, align 4 ; [#uses=5 type=%struct.option_variables.3*]
-  call void @llvm.dbg.value(metadata !{%struct.thread_data_t.6* %thread_arg}, i64 0, metadata !141), !dbg !142 ; [debug line = 21:45] [debug variable = thread_arg]
+  call void @llvm.dbg.value(metadata !{%struct.thread_data_t.4* %thread_arg}, i64 0, metadata !141), !dbg !142 ; [debug line = 21:45] [debug variable = thread_arg]
   %stderr.load = load %struct._IO_FILE.1** @stderr, align 8, !dbg !143 ; [#uses=29 type=%struct._IO_FILE.1*] [debug line = 22:2]
   %stderr.load.addr = getelementptr inbounds %struct._IO_FILE.1* %stderr.load, i64 0, i32 0, !dbg !143 ; [#uses=1 type=i32*] [debug line = 22:2]
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([14 x i8]* @.str1, i64 0, i64 0), i32* %stderr.load.addr) nounwind, !dbg !143 ; [debug line = 22:2]
@@ -416,37 +414,37 @@ define void @vivado_activity_thread(%struct.thread_data_t.6* %thread_arg) nounwi
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([12 x i8]* @.str92, i64 0, i64 0), i32* %stdin.load.addr.27) nounwind, !dbg !148 ; [debug line = 22:0]
   %stdin.load.addr.28 = getelementptr inbounds %struct._IO_FILE.1* %stdin.load, i64 0, i32 28, !dbg !148 ; [#uses=1 type=[20 x i8]*] [debug line = 22:0]
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([15 x i8]* @.str93, i64 0, i64 0), [20 x i8]* %stdin.load.addr.28) nounwind, !dbg !148 ; [debug line = 22:0]
-  %thread_arg.addr = getelementptr inbounds %struct.thread_data_t.6* %thread_arg, i64 0, i32 0, !dbg !148 ; [#uses=1 type=i32*] [debug line = 22:0]
+  %thread_arg.addr = getelementptr inbounds %struct.thread_data_t.4* %thread_arg, i64 0, i32 0, !dbg !148 ; [#uses=1 type=i32*] [debug line = 22:0]
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([24 x i8]* @.str94, i64 0, i64 0), i32* %thread_arg.addr) nounwind, !dbg !148 ; [debug line = 22:0]
-  %thread_arg.addr.1 = getelementptr inbounds %struct.thread_data_t.6* %thread_arg, i64 0, i32 1, !dbg !148 ; [#uses=2 type=i32*] [debug line = 22:0]
+  %thread_arg.addr.1 = getelementptr inbounds %struct.thread_data_t.4* %thread_arg, i64 0, i32 1, !dbg !148 ; [#uses=2 type=i32*] [debug line = 22:0]
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([23 x i8]* @.str95, i64 0, i64 0), i32* %thread_arg.addr.1) nounwind, !dbg !148 ; [debug line = 22:0]
-  %thread_arg.addr.2 = getelementptr inbounds %struct.thread_data_t.6* %thread_arg, i64 0, i32 2, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
+  %thread_arg.addr.2 = getelementptr inbounds %struct.thread_data_t.4* %thread_arg, i64 0, i32 2, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([25 x i8]* @.str96, i64 0, i64 0), float* %thread_arg.addr.2) nounwind, !dbg !148 ; [debug line = 22:0]
-  %thread_arg.addr.3 = getelementptr inbounds %struct.thread_data_t.6* %thread_arg, i64 0, i32 3, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
+  %thread_arg.addr.3 = getelementptr inbounds %struct.thread_data_t.4* %thread_arg, i64 0, i32 3, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([30 x i8]* @.str97, i64 0, i64 0), float* %thread_arg.addr.3) nounwind, !dbg !148 ; [debug line = 22:0]
-  %thread_arg.addr.4 = getelementptr inbounds %struct.thread_data_t.6* %thread_arg, i64 0, i32 4, i32 0, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
+  %thread_arg.addr.4 = getelementptr inbounds %struct.thread_data_t.4* %thread_arg, i64 0, i32 4, i32 0, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([22 x i8]* @.str98, i64 0, i64 0), float* %thread_arg.addr.4) nounwind, !dbg !148 ; [debug line = 22:0]
-  %thread_arg.addr.5 = getelementptr inbounds %struct.thread_data_t.6* %thread_arg, i64 0, i32 4, i32 1, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
+  %thread_arg.addr.5 = getelementptr inbounds %struct.thread_data_t.4* %thread_arg, i64 0, i32 4, i32 1, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([31 x i8]* @.str99, i64 0, i64 0), float* %thread_arg.addr.5) nounwind, !dbg !148 ; [debug line = 22:0]
-  %thread_arg.addr.6 = getelementptr inbounds %struct.thread_data_t.6* %thread_arg, i64 0, i32 5, i32 0, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
+  %thread_arg.addr.6 = getelementptr inbounds %struct.thread_data_t.4* %thread_arg, i64 0, i32 5, i32 0, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([30 x i8]* @.str100, i64 0, i64 0), float* %thread_arg.addr.6) nounwind, !dbg !148 ; [debug line = 22:0]
-  %thread_arg.addr.7 = getelementptr inbounds %struct.thread_data_t.6* %thread_arg, i64 0, i32 5, i32 1, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
+  %thread_arg.addr.7 = getelementptr inbounds %struct.thread_data_t.4* %thread_arg, i64 0, i32 5, i32 1, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([29 x i8]* @.str101, i64 0, i64 0), float* %thread_arg.addr.7) nounwind, !dbg !148 ; [debug line = 22:0]
-  %thread_arg.addr.8 = getelementptr inbounds %struct.thread_data_t.6* %thread_arg, i64 0, i32 5, i32 2, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
+  %thread_arg.addr.8 = getelementptr inbounds %struct.thread_data_t.4* %thread_arg, i64 0, i32 5, i32 2, !dbg !148 ; [#uses=2 type=float*] [debug line = 22:0]
   call void (...)* @_ssdm_op_SpecExt(i8* getelementptr inbounds ([12 x i8]* @.str, i64 0, i64 0), i8* getelementptr inbounds ([22 x i8]* @.str102, i64 0, i64 0), float* %thread_arg.addr.8) nounwind, !dbg !148 ; [debug line = 22:0]
-  call void (...)* @_ssdm_op_SpecResource(%struct.thread_data_t.6* %thread_arg, i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([10 x i8]* @.str104, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([20 x i8]* @.str105, i64 0, i64 0)) nounwind, !dbg !149 ; [debug line = 24:1]
+  call void (...)* @_ssdm_op_SpecResource(%struct.thread_data_t.4* %thread_arg, i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([10 x i8]* @.str104, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([20 x i8]* @.str105, i64 0, i64 0)) nounwind, !dbg !149 ; [debug line = 24:1]
   call void (...)* @_ssdm_op_SpecResource(i32 0, i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([10 x i8]* @.str104, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str103, i64 0, i64 0), i8* getelementptr inbounds ([20 x i8]* @.str105, i64 0, i64 0)) nounwind, !dbg !150 ; [debug line = 25:1]
-  call void @llvm.dbg.value(metadata !{%struct.thread_data_t.6* %thread_arg}, i64 0, metadata !151), !dbg !152 ; [debug line = 31:5] [debug variable = temp_data]
-  call void @llvm.dbg.declare(metadata !{%struct.underlying_attributes.4* %u_a_0}, metadata !153), !dbg !154 ; [debug line = 32:27] [debug variable = u_a_0]
-  %u_a_0.addr = getelementptr inbounds %struct.underlying_attributes.4* %u_a_0, i64 0, i32 0, !dbg !155 ; [#uses=1 type=float*] [debug line = 32:51]
+  call void @llvm.dbg.value(metadata !{%struct.thread_data_t.4* %thread_arg}, i64 0, metadata !151), !dbg !152 ; [debug line = 31:5] [debug variable = temp_data]
+  call void @llvm.dbg.declare(metadata !{%struct.option_variables.3* %u_a_0}, metadata !153), !dbg !154 ; [debug line = 32:27] [debug variable = u_a_0]
+  %u_a_0.addr = getelementptr inbounds %struct.option_variables.3* %u_a_0, i64 0, i32 0, !dbg !155 ; [#uses=1 type=float*] [debug line = 32:51]
   %thread_arg.load = load float* %thread_arg.addr.4, align 4, !dbg !155 ; [#uses=2 type=float] [debug line = 32:51]
   call void (...)* @_ssdm_SpecKeepArrayLoad(float %thread_arg.load) nounwind
   store float %thread_arg.load, float* %u_a_0.addr, align 4, !dbg !155 ; [debug line = 32:51]
-  %u_a_0.addr.1 = getelementptr inbounds %struct.underlying_attributes.4* %u_a_0, i64 0, i32 1, !dbg !155 ; [#uses=3 type=float*] [debug line = 32:51]
+  %u_a_0.addr.1 = getelementptr inbounds %struct.option_variables.3* %u_a_0, i64 0, i32 1, !dbg !155 ; [#uses=3 type=float*] [debug line = 32:51]
   %thread_arg.load.1 = load float* %thread_arg.addr.5, align 4, !dbg !155 ; [#uses=2 type=float] [debug line = 32:51]
   call void (...)* @_ssdm_SpecKeepArrayLoad(float %thread_arg.load.1) nounwind
   store float %thread_arg.load.1, float* %u_a_0.addr.1, align 4, !dbg !155 ; [debug line = 32:51]
-  call void @llvm.dbg.declare(metadata !{%struct.underlying_variables.5* %u_v_0}, metadata !156), !dbg !162 ; [debug line = 33:26] [debug variable = u_v_0]
+  call void @llvm.dbg.declare(metadata !{%struct.option_variables.3* %u_v_0}, metadata !156), !dbg !162 ; [debug line = 33:26] [debug variable = u_v_0]
   call void @llvm.dbg.declare(metadata !{%struct.option_attributes.2* %o_a_0}, metadata !163), !dbg !164 ; [debug line = 34:23] [debug variable = o_a_0]
   %o_a_0.addr = getelementptr inbounds %struct.option_attributes.2* %o_a_0, i64 0, i32 0, !dbg !165 ; [#uses=1 type=float*] [debug line = 34:47]
   %thread_arg.load.2 = load float* %thread_arg.addr.6, align 4, !dbg !165 ; [#uses=2 type=float] [debug line = 34:47]
@@ -462,8 +460,8 @@ define void @vivado_activity_thread(%struct.thread_data_t.6* %thread_arg) nounwi
   store float %thread_arg.load.4, float* %o_a_0.addr.2, align 4, !dbg !165 ; [debug line = 34:47]
   call void @llvm.dbg.declare(metadata !{%struct.option_variables.3* %o_v_0}, metadata !166), !dbg !172 ; [debug line = 35:22] [debug variable = o_v_0]
   store i32 1, i32* %thread_arg.addr.1, align 4, !dbg !173 ; [debug line = 36:5]
-  %u_v_0.addr = getelementptr inbounds %struct.underlying_variables.5* %u_v_0, i64 0, i32 0, !dbg !174 ; [#uses=2 type=float*] [debug line = 47:44]
-  %u_v_0.addr.1 = getelementptr inbounds %struct.underlying_variables.5* %u_v_0, i64 0, i32 1, !dbg !177 ; [#uses=2 type=float*] [debug line = 48:9]
+  %u_v_0.addr = getelementptr inbounds %struct.option_variables.3* %u_v_0, i64 0, i32 0, !dbg !174 ; [#uses=2 type=float*] [debug line = 47:44]
+  %u_v_0.addr.1 = getelementptr inbounds %struct.option_variables.3* %u_v_0, i64 0, i32 1, !dbg !177 ; [#uses=2 type=float*] [debug line = 48:9]
   %o_v_0.addr = getelementptr inbounds %struct.option_variables.3* %o_v_0, i64 0, i32 0, !dbg !178 ; [#uses=1 type=float*] [debug line = 54:13]
   %o_v_0.addr.1 = getelementptr inbounds %struct.option_variables.3* %o_v_0, i64 0, i32 1, !dbg !181 ; [#uses=1 type=float*] [debug line = 62:9]
   br label %1, !dbg !182                          ; [debug line = 43:9]
@@ -476,7 +474,7 @@ define void @vivado_activity_thread(%struct.thread_data_t.6* %thread_arg) nounwi
   br i1 %exitcond1, label %6, label %2, !dbg !182 ; [debug line = 43:9]
 
 ; <label>:2                                       ; preds = %1
-  call fastcc void @underlying_underlying_path_init(%struct.underlying_variables.5* %u_v_0, %struct.underlying_attributes.4* %u_a_0), !dbg !183 ; [debug line = 46:9]
+  call fastcc void @underlying_underlying_path_init(%struct.option_variables.3* %u_v_0, %struct.option_variables.3* %u_a_0), !dbg !183 ; [debug line = 46:9]
   %u_a_0.load = load float* %u_a_0.addr.1, align 4, !dbg !184 ; [#uses=2 type=float] [debug line = 47:9]
   call void (...)* @_ssdm_SpecKeepArrayLoad(float %u_a_0.load) nounwind
   %u_v_0.load = load float* %u_v_0.addr, align 4, !dbg !174 ; [#uses=2 type=float] [debug line = 47:44]
@@ -503,7 +501,7 @@ define void @vivado_activity_thread(%struct.thread_data_t.6* %thread_arg) nounwi
   call void (...)* @_ssdm_SpecKeepArrayLoad(float %o_a_0.load) nounwind
   store float %o_a_0.load, float* %o_v_0.addr, align 4, !dbg !178 ; [debug line = 54:13]
   call void (...)* @_ssdm_SpecKeepArrayLoad(float %o_a_0.load) nounwind
-  call fastcc void @underlying_underlying_path(float %o_a_0.load, %struct.underlying_variables.5* %u_v_0, %struct.underlying_attributes.4* %u_a_0), !dbg !190 ; [debug line = 55:13]
+  call fastcc void @underlying_underlying_path(float %o_a_0.load, %struct.option_variables.3* %u_v_0, %struct.option_variables.3* %u_a_0), !dbg !190 ; [debug line = 55:13]
   %u_a_0.load.1 = load float* %u_a_0.addr.1, align 4, !dbg !191 ; [#uses=2 type=float] [debug line = 56:13]
   call void (...)* @_ssdm_SpecKeepArrayLoad(float %u_a_0.load.1) nounwind
   %u_v_0.load.2 = load float* %u_v_0.addr, align 4, !dbg !192 ; [#uses=2 type=float] [debug line = 56:48]
@@ -547,9 +545,6 @@ declare void @_ssdm_op_SpecResource(...) nounwind
 ; [#uses=0]
 declare float @expf(float) nounwind
 
-; [#uses=0]
-declare float @powf(float, float) nounwind readnone
-
 ; [#uses=23]
 declare void @llvm.dbg.value(metadata, i64, metadata) nounwind readnone
 
@@ -563,7 +558,7 @@ declare void @_ssdm_op_SpecTopModule(...)
 declare void @option_derivative_init(float, float, float, %struct.option_attributes.2*) nounwind uwtable
 
 ; [#uses=0]
-declare void @underlying_underlying_init(float, float, %struct.underlying_attributes.4*) nounwind uwtable
+declare void @underlying_underlying_init(float, float, %struct.option_variables.3*) nounwind uwtable
 
 ; [#uses=0]
 declare i32 @_ssdm_op_SpecLoopBegin(...)
@@ -582,20 +577,20 @@ declare i32 @_ssdm_op_SpecRegionEnd.restore(...)
 
 !llvm.dbg.cu = !{!0, !35, !61}
 
-!0 = metadata !{i32 786449, i32 0, i32 1, metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core/.autopilot/db/option.pragma.2.c", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", metadata !"clang version 3.1 ", i1 true, i1 false, metadata !"", i32 0, metadata !1, metadata !1, metadata !3, metadata !1} ; [ DW_TAG_compile_unit ]
+!0 = metadata !{i32 786449, i32 0, i32 1, metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/hls_prj/F3_VivadoHLS_core/.autopilot/db/option.pragma.2.c", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", metadata !"clang version 3.1 ", i1 true, i1 false, metadata !"", i32 0, metadata !1, metadata !1, metadata !3, metadata !1} ; [ DW_TAG_compile_unit ]
 !1 = metadata !{metadata !2}
 !2 = metadata !{i32 0}
 !3 = metadata !{metadata !4}
 !4 = metadata !{metadata !5, metadata !20, metadata !29, metadata !32}
 !5 = metadata !{i32 786478, i32 0, metadata !6, metadata !"option_derivative_init", metadata !"option_derivative_init", metadata !"", metadata !6, i32 9, metadata !7, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (float, float, float, %struct.option_attributes.2*)* @option_derivative_init, null, null, metadata !18, i32 9} ; [ DW_TAG_subprogram ]
-!6 = metadata !{i32 786473, metadata !"srcs/option.c", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!6 = metadata !{i32 786473, metadata !"srcs/option.c", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !7 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !8, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !8 = metadata !{null, metadata !9, metadata !9, metadata !9, metadata !10}
 !9 = metadata !{i32 786468, null, metadata !"float", null, i32 0, i64 32, i64 32, i64 0, i32 0, i32 4} ; [ DW_TAG_base_type ]
 !10 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !11} ; [ DW_TAG_pointer_type ]
 !11 = metadata !{i32 786454, null, metadata !"option_attributes", metadata !6, i32 25, i64 0, i64 0, i64 0, i32 0, metadata !12} ; [ DW_TAG_typedef ]
 !12 = metadata !{i32 786451, null, metadata !"", metadata !13, i32 21, i64 96, i64 32, i32 0, i32 0, null, metadata !14, i32 0, i32 0} ; [ DW_TAG_structure_type ]
-!13 = metadata !{i32 786473, metadata !"srcs/option.h", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!13 = metadata !{i32 786473, metadata !"srcs/option.h", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !14 = metadata !{metadata !15, metadata !16, metadata !17}
 !15 = metadata !{i32 786445, metadata !12, metadata !"strike_price", metadata !13, i32 22, i64 32, i64 32, i64 0, i32 0, metadata !9} ; [ DW_TAG_member ]
 !16 = metadata !{i32 786445, metadata !12, metadata !"time_period", metadata !13, i32 23, i64 32, i64 32, i64 32, i32 0, metadata !9} ; [ DW_TAG_member ]
@@ -617,21 +612,21 @@ declare i32 @_ssdm_op_SpecRegionEnd.restore(...)
 !32 = metadata !{i32 786478, i32 0, metadata !6, metadata !"option_derivative_payoff", metadata !"option_derivative_payoff", metadata !"", metadata !6, i32 25, metadata !33, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (float, %struct.option_variables.3*, %struct.option_attributes.2*)* @option_derivative_payoff, null, null, metadata !18, i32 25} ; [ DW_TAG_subprogram ]
 !33 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !34, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !34 = metadata !{null, metadata !9, metadata !23, metadata !10}
-!35 = metadata !{i32 786449, i32 0, i32 1, metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core/.autopilot/db/underlying.pragma.2.c", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", metadata !"clang version 3.1 ", i1 true, i1 false, metadata !"", i32 0, metadata !1, metadata !1, metadata !36, metadata !1} ; [ DW_TAG_compile_unit ]
+!35 = metadata !{i32 786449, i32 0, i32 1, metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/hls_prj/F3_VivadoHLS_core/.autopilot/db/underlying.pragma.2.c", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", metadata !"clang version 3.1 ", i1 true, i1 false, metadata !"", i32 0, metadata !1, metadata !1, metadata !36, metadata !1} ; [ DW_TAG_compile_unit ]
 !36 = metadata !{metadata !37}
 !37 = metadata !{metadata !38, metadata !49, metadata !58}
-!38 = metadata !{i32 786478, i32 0, metadata !39, metadata !"underlying_underlying_init", metadata !"underlying_underlying_init", metadata !"", metadata !39, i32 12, metadata !40, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (float, float, %struct.underlying_attributes.4*)* @underlying_underlying_init, null, null, metadata !18, i32 12} ; [ DW_TAG_subprogram ]
-!39 = metadata !{i32 786473, metadata !"srcs/underlying.c", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!38 = metadata !{i32 786478, i32 0, metadata !39, metadata !"underlying_underlying_init", metadata !"underlying_underlying_init", metadata !"", metadata !39, i32 12, metadata !40, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (float, float, %struct.option_variables.3*)* @underlying_underlying_init, null, null, metadata !18, i32 12} ; [ DW_TAG_subprogram ]
+!39 = metadata !{i32 786473, metadata !"srcs/underlying.c", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !40 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !41, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !41 = metadata !{null, metadata !9, metadata !9, metadata !42}
 !42 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !43} ; [ DW_TAG_pointer_type ]
 !43 = metadata !{i32 786454, null, metadata !"underlying_attributes", metadata !39, i32 24, i64 0, i64 0, i64 0, i32 0, metadata !44} ; [ DW_TAG_typedef ]
 !44 = metadata !{i32 786451, null, metadata !"", metadata !45, i32 21, i64 64, i64 32, i32 0, i32 0, null, metadata !46, i32 0, i32 0} ; [ DW_TAG_structure_type ]
-!45 = metadata !{i32 786473, metadata !"srcs/underlying.h", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!45 = metadata !{i32 786473, metadata !"srcs/underlying.h", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !46 = metadata !{metadata !47, metadata !48}
 !47 = metadata !{i32 786445, metadata !44, metadata !"rfir", metadata !45, i32 22, i64 32, i64 32, i64 0, i32 0, metadata !9} ; [ DW_TAG_member ]
 !48 = metadata !{i32 786445, metadata !44, metadata !"current_price", metadata !45, i32 23, i64 32, i64 32, i64 32, i32 0, metadata !9} ; [ DW_TAG_member ]
-!49 = metadata !{i32 786478, i32 0, metadata !39, metadata !"underlying_underlying_path_init", metadata !"underlying_underlying_path_init", metadata !"", metadata !39, i32 17, metadata !50, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (%struct.underlying_variables.5*, %struct.underlying_attributes.4*)* @underlying_underlying_path_init, null, null, metadata !18, i32 17} ; [ DW_TAG_subprogram ]
+!49 = metadata !{i32 786478, i32 0, metadata !39, metadata !"underlying_underlying_path_init", metadata !"underlying_underlying_path_init", metadata !"", metadata !39, i32 17, metadata !50, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (%struct.option_variables.3*, %struct.option_variables.3*)* @underlying_underlying_path_init, null, null, metadata !18, i32 17} ; [ DW_TAG_subprogram ]
 !50 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !51, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !51 = metadata !{null, metadata !52, metadata !42}
 !52 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !53} ; [ DW_TAG_pointer_type ]
@@ -640,20 +635,20 @@ declare i32 @_ssdm_op_SpecRegionEnd.restore(...)
 !55 = metadata !{metadata !56, metadata !57}
 !56 = metadata !{i32 786445, metadata !54, metadata !"gamma", metadata !45, i32 17, i64 32, i64 32, i64 0, i32 0, metadata !9} ; [ DW_TAG_member ]
 !57 = metadata !{i32 786445, metadata !54, metadata !"time", metadata !45, i32 18, i64 32, i64 32, i64 32, i32 0, metadata !9} ; [ DW_TAG_member ]
-!58 = metadata !{i32 786478, i32 0, metadata !39, metadata !"underlying_underlying_path", metadata !"underlying_underlying_path", metadata !"", metadata !39, i32 22, metadata !59, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (float, %struct.underlying_variables.5*, %struct.underlying_attributes.4*)* @underlying_underlying_path, null, null, metadata !18, i32 22} ; [ DW_TAG_subprogram ]
+!58 = metadata !{i32 786478, i32 0, metadata !39, metadata !"underlying_underlying_path", metadata !"underlying_underlying_path", metadata !"", metadata !39, i32 22, metadata !59, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (float, %struct.option_variables.3*, %struct.option_variables.3*)* @underlying_underlying_path, null, null, metadata !18, i32 22} ; [ DW_TAG_subprogram ]
 !59 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !60, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !60 = metadata !{null, metadata !9, metadata !52, metadata !42}
-!61 = metadata !{i32 786449, i32 0, i32 1, metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core/.autopilot/db/vivado_core.pragma.2.c", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", metadata !"clang version 3.1 ", i1 true, i1 false, metadata !"", i32 0, metadata !1, metadata !1, metadata !62, metadata !1} ; [ DW_TAG_compile_unit ]
+!61 = metadata !{i32 786449, i32 0, i32 1, metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/hls_prj/F3_VivadoHLS_core/.autopilot/db/vivado_core.pragma.2.c", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", metadata !"clang version 3.1 ", i1 true, i1 false, metadata !"", i32 0, metadata !1, metadata !1, metadata !62, metadata !1} ; [ DW_TAG_compile_unit ]
 !62 = metadata !{metadata !63}
 !63 = metadata !{metadata !64}
-!64 = metadata !{i32 786478, i32 0, metadata !65, metadata !"vivado_activity_thread", metadata !"vivado_activity_thread", metadata !"", metadata !65, i32 21, metadata !66, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (%struct.thread_data_t.6*)* @vivado_activity_thread, null, null, metadata !18, i32 22} ; [ DW_TAG_subprogram ]
-!65 = metadata !{i32 786473, metadata !"srcs/vivado_core.c", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!64 = metadata !{i32 786478, i32 0, metadata !65, metadata !"vivado_activity_thread", metadata !"vivado_activity_thread", metadata !"", metadata !65, i32 21, metadata !66, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (%struct.thread_data_t.4*)* @vivado_activity_thread, null, null, metadata !18, i32 22} ; [ DW_TAG_subprogram ]
+!65 = metadata !{i32 786473, metadata !"srcs/vivado_core.c", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !66 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !67, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !67 = metadata !{null, metadata !68}
 !68 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !69} ; [ DW_TAG_pointer_type ]
 !69 = metadata !{i32 786454, null, metadata !"thread_data_t", metadata !65, i32 8, i64 0, i64 0, i64 0, i32 0, metadata !70} ; [ DW_TAG_typedef ]
 !70 = metadata !{i32 786451, null, metadata !"", metadata !71, i32 1, i64 288, i64 32, i32 0, i32 0, null, metadata !72, i32 0, i32 0} ; [ DW_TAG_structure_type ]
-!71 = metadata !{i32 786473, metadata !"srcs/vivado_core.h", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!71 = metadata !{i32 786473, metadata !"srcs/vivado_core.h", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !72 = metadata !{metadata !73, metadata !75, metadata !76, metadata !77, metadata !78, metadata !84}
 !73 = metadata !{i32 786445, metadata !70, metadata !"thread_paths", metadata !71, i32 2, i64 32, i64 32, i64 0, i32 0, metadata !74} ; [ DW_TAG_member ]
 !74 = metadata !{i32 786468, null, metadata !"int", null, i32 0, i64 32, i64 32, i64 0, i32 0, i32 5} ; [ DW_TAG_base_type ]

@@ -233,36 +233,6 @@
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<node id="23" bw="32" op_0_bw="32" op_1_bw="32">
-<![CDATA[
-:13  %u_a_0_current_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_u_a_0_current_price)
-
-]]></node>
-<StgValue><ssdm name="u_a_0_current_price"/></StgValue>
-</operation>
-
-<operation id="35" st_id="1" stage="1" lat="1">
-<core>AXI4LiteS</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="0">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<node id="24" bw="32" op_0_bw="32" op_1_bw="32">
-<![CDATA[
-:14  %o_a_0_strike_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_o_a_0_strike_price)
-
-]]></node>
-<StgValue><ssdm name="o_a_0_strike_price"/></StgValue>
-</operation>
-
-<operation id="36" st_id="1" stage="1" lat="1">
-<core>AXI4LiteS</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="0">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
 <node id="25" bw="32" op_0_bw="32" op_1_bw="32">
 <![CDATA[
 :15  %o_a_0_time_period = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_o_a_0_time_period)
@@ -271,22 +241,7 @@
 <StgValue><ssdm name="o_a_0_time_period"/></StgValue>
 </operation>
 
-<operation id="37" st_id="1" stage="1" lat="1">
-<core>AXI4LiteS</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="0">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<node id="26" bw="32" op_0_bw="32" op_1_bw="32">
-<![CDATA[
-:16  %o_a_0_call = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_o_a_0_call)
-
-]]></node>
-<StgValue><ssdm name="o_a_0_call"/></StgValue>
-</operation>
-
-<operation id="38" st_id="1" stage="4" lat="4">
+<operation id="35" st_id="1" stage="4" lat="4">
 <core>FMul</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -300,26 +255,26 @@
 ]]></node>
 <StgValue><ssdm name="tmp_i"/></StgValue>
 </operation>
-
-<operation id="39" st_id="1" stage="3" lat="3">
-<core>FCmp</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="0">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<node id="29" bw="1" op_0_bw="32" op_1_bw="32">
-<![CDATA[
-:19  %tmp = fcmp oeq float %o_a_0_call, 0.000000e+00
-
-]]></node>
-<StgValue><ssdm name="tmp"/></StgValue>
-</operation>
 </state>
 
 <state id="2" st_id="2">
 
-<operation id="40" st_id="2" stage="3" lat="4">
+<operation id="36" st_id="2" stage="1" lat="1">
+<core>AXI4LiteS</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="26" bw="32" op_0_bw="32" op_1_bw="32">
+<![CDATA[
+:16  %o_a_0_call = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_o_a_0_call)
+
+]]></node>
+<StgValue><ssdm name="o_a_0_call"/></StgValue>
+</operation>
+
+<operation id="37" st_id="2" stage="3" lat="4">
 <core>FMul</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="1">
@@ -334,7 +289,7 @@
 <StgValue><ssdm name="tmp_i"/></StgValue>
 </operation>
 
-<operation id="41" st_id="2" stage="2" lat="3">
+<operation id="38" st_id="2" stage="3" lat="3">
 <core>FCmp</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="1">
@@ -352,7 +307,7 @@
 
 <state id="3" st_id="3">
 
-<operation id="42" st_id="3" stage="2" lat="4">
+<operation id="39" st_id="3" stage="2" lat="4">
 <core>FMul</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="2">
@@ -367,7 +322,7 @@
 <StgValue><ssdm name="tmp_i"/></StgValue>
 </operation>
 
-<operation id="43" st_id="3" stage="1" lat="3">
+<operation id="40" st_id="3" stage="2" lat="3">
 <core>FCmp</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="2">
@@ -385,7 +340,7 @@
 
 <state id="4" st_id="4">
 
-<operation id="44" st_id="4" stage="1" lat="1">
+<operation id="41" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -400,7 +355,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="45" st_id="4" stage="1" lat="1">
+<operation id="42" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -415,7 +370,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="46" st_id="4" stage="1" lat="1">
+<operation id="43" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -430,7 +385,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="47" st_id="4" stage="1" lat="1">
+<operation id="44" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -445,7 +400,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="48" st_id="4" stage="1" lat="1">
+<operation id="45" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -460,7 +415,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="49" st_id="4" stage="1" lat="1">
+<operation id="46" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -475,7 +430,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="50" st_id="4" stage="1" lat="1">
+<operation id="47" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -490,7 +445,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="51" st_id="4" stage="1" lat="1">
+<operation id="48" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -505,7 +460,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="52" st_id="4" stage="1" lat="1">
+<operation id="49" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -520,7 +475,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="53" st_id="4" stage="1" lat="1">
+<operation id="50" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -535,7 +490,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="54" st_id="4" stage="1" lat="1">
+<operation id="51" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -550,7 +505,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="55" st_id="4" stage="1" lat="1">
+<operation id="52" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -565,7 +520,37 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="56" st_id="4" stage="1" lat="1">
+<operation id="53" st_id="4" stage="1" lat="1">
+<core>AXI4LiteS</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="3">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="23" bw="32" op_0_bw="32" op_1_bw="32">
+<![CDATA[
+:13  %u_a_0_current_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_u_a_0_current_price)
+
+]]></node>
+<StgValue><ssdm name="u_a_0_current_price"/></StgValue>
+</operation>
+
+<operation id="54" st_id="4" stage="1" lat="1">
+<core>AXI4LiteS</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="3">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="24" bw="32" op_0_bw="32" op_1_bw="32">
+<![CDATA[
+:14  %o_a_0_strike_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_o_a_0_strike_price)
+
+]]></node>
+<StgValue><ssdm name="o_a_0_strike_price"/></StgValue>
+</operation>
+
+<operation id="55" st_id="4" stage="1" lat="1">
 <core>AXI4LiteS</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -580,7 +565,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="57" st_id="4" stage="1" lat="4">
+<operation id="56" st_id="4" stage="1" lat="4">
 <core>FMul</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -593,6 +578,21 @@
 
 ]]></node>
 <StgValue><ssdm name="tmp_i"/></StgValue>
+</operation>
+
+<operation id="57" st_id="4" stage="1" lat="3">
+<core>FCmp</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="3">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="29" bw="1" op_0_bw="32" op_1_bw="32">
+<![CDATA[
+:19  %tmp = fcmp oeq float %o_a_0_call, 0.000000e+00
+
+]]></node>
+<StgValue><ssdm name="tmp"/></StgValue>
 </operation>
 
 <operation id="58" st_id="4" stage="1" lat="1">
@@ -1527,150 +1527,150 @@ _ifconv:4  br label %1
 </dataflow>
 <dataflow id="156" from="thread_arg_u_a_0_rfir" to="u_a_0_rfir" fromId="149" toId="33">
 </dataflow>
-<dataflow id="157" from="_ssdm_op_Read.ap_auto.floatP" to="u_a_0_current_price" fromId="154" toId="34">
+<dataflow id="157" from="_ssdm_op_Read.ap_auto.floatP" to="o_a_0_time_period" fromId="154" toId="34">
 </dataflow>
-<dataflow id="158" from="thread_arg_u_a_0_current_price" to="u_a_0_current_price" fromId="150" toId="34">
+<dataflow id="158" from="thread_arg_o_a_0_time_period" to="o_a_0_time_period" fromId="152" toId="34">
 </dataflow>
-<dataflow id="159" from="_ssdm_op_Read.ap_auto.floatP" to="o_a_0_strike_price" fromId="154" toId="35">
+<dataflow id="159" from="u_a_0_rfir" to="tmp_i" fromId="33" toId="35">
 </dataflow>
-<dataflow id="160" from="thread_arg_o_a_0_strike_price" to="o_a_0_strike_price" fromId="151" toId="35">
+<dataflow id="160" from="o_a_0_time_period" to="tmp_i" fromId="34" toId="35">
 </dataflow>
-<dataflow id="161" from="_ssdm_op_Read.ap_auto.floatP" to="o_a_0_time_period" fromId="154" toId="36">
+<dataflow id="161" from="_ssdm_op_Read.ap_auto.floatP" to="o_a_0_call" fromId="154" toId="36">
 </dataflow>
-<dataflow id="162" from="thread_arg_o_a_0_time_period" to="o_a_0_time_period" fromId="152" toId="36">
+<dataflow id="162" from="thread_arg_o_a_0_call" to="o_a_0_call" fromId="153" toId="36">
 </dataflow>
-<dataflow id="163" from="_ssdm_op_Read.ap_auto.floatP" to="o_a_0_call" fromId="154" toId="37">
+<dataflow id="163" from="u_a_0_rfir" to="tmp_i" fromId="33" toId="37">
 </dataflow>
-<dataflow id="164" from="thread_arg_o_a_0_call" to="o_a_0_call" fromId="153" toId="37">
+<dataflow id="164" from="o_a_0_time_period" to="tmp_i" fromId="34" toId="37">
 </dataflow>
-<dataflow id="165" from="u_a_0_rfir" to="tmp_i" fromId="33" toId="38">
+<dataflow id="165" from="o_a_0_call" to="tmp" fromId="36" toId="38">
 </dataflow>
-<dataflow id="166" from="o_a_0_time_period" to="tmp_i" fromId="36" toId="38">
+<dataflow id="167" from="stg_166" to="tmp" fromId="166" toId="38">
 </dataflow>
-<dataflow id="167" from="o_a_0_call" to="tmp" fromId="37" toId="39">
+<dataflow id="168" from="u_a_0_rfir" to="tmp_i" fromId="33" toId="39">
 </dataflow>
-<dataflow id="169" from="stg_168" to="tmp" fromId="168" toId="39">
+<dataflow id="169" from="o_a_0_time_period" to="tmp_i" fromId="34" toId="39">
 </dataflow>
-<dataflow id="170" from="u_a_0_rfir" to="tmp_i" fromId="33" toId="40">
+<dataflow id="170" from="o_a_0_call" to="tmp" fromId="36" toId="40">
 </dataflow>
-<dataflow id="171" from="o_a_0_time_period" to="tmp_i" fromId="36" toId="40">
+<dataflow id="171" from="stg_166" to="tmp" fromId="166" toId="40">
 </dataflow>
-<dataflow id="172" from="o_a_0_call" to="tmp" fromId="37" toId="41">
+<dataflow id="173" from="_ssdm_op_SpecBitsMap" to="stg_41" fromId="172" toId="41">
 </dataflow>
-<dataflow id="173" from="stg_168" to="tmp" fromId="168" toId="41">
+<dataflow id="174" from="thread_arg_thread_paths" to="stg_41" fromId="145" toId="41">
 </dataflow>
-<dataflow id="174" from="u_a_0_rfir" to="tmp_i" fromId="33" toId="42">
+<dataflow id="175" from="_ssdm_op_SpecBitsMap" to="stg_42" fromId="172" toId="42">
 </dataflow>
-<dataflow id="175" from="o_a_0_time_period" to="tmp_i" fromId="36" toId="42">
+<dataflow id="176" from="thread_arg_path_points" to="stg_42" fromId="146" toId="42">
 </dataflow>
-<dataflow id="176" from="o_a_0_call" to="tmp" fromId="37" toId="43">
+<dataflow id="177" from="_ssdm_op_SpecBitsMap" to="stg_43" fromId="172" toId="43">
 </dataflow>
-<dataflow id="177" from="stg_168" to="tmp" fromId="168" toId="43">
+<dataflow id="178" from="thread_arg_thread_result" to="stg_43" fromId="147" toId="43">
 </dataflow>
-<dataflow id="179" from="_ssdm_op_SpecBitsMap" to="stg_44" fromId="178" toId="44">
+<dataflow id="179" from="_ssdm_op_SpecBitsMap" to="stg_44" fromId="172" toId="44">
 </dataflow>
-<dataflow id="180" from="thread_arg_thread_paths" to="stg_44" fromId="145" toId="44">
+<dataflow id="180" from="thread_arg_thread_result_sqrd" to="stg_44" fromId="148" toId="44">
 </dataflow>
-<dataflow id="181" from="_ssdm_op_SpecBitsMap" to="stg_45" fromId="178" toId="45">
+<dataflow id="181" from="_ssdm_op_SpecBitsMap" to="stg_45" fromId="172" toId="45">
 </dataflow>
-<dataflow id="182" from="thread_arg_path_points" to="stg_45" fromId="146" toId="45">
+<dataflow id="182" from="thread_arg_u_a_0_rfir" to="stg_45" fromId="149" toId="45">
 </dataflow>
-<dataflow id="183" from="_ssdm_op_SpecBitsMap" to="stg_46" fromId="178" toId="46">
+<dataflow id="183" from="_ssdm_op_SpecBitsMap" to="stg_46" fromId="172" toId="46">
 </dataflow>
-<dataflow id="184" from="thread_arg_thread_result" to="stg_46" fromId="147" toId="46">
+<dataflow id="184" from="thread_arg_u_a_0_current_price" to="stg_46" fromId="150" toId="46">
 </dataflow>
-<dataflow id="185" from="_ssdm_op_SpecBitsMap" to="stg_47" fromId="178" toId="47">
+<dataflow id="185" from="_ssdm_op_SpecBitsMap" to="stg_47" fromId="172" toId="47">
 </dataflow>
-<dataflow id="186" from="thread_arg_thread_result_sqrd" to="stg_47" fromId="148" toId="47">
+<dataflow id="186" from="thread_arg_o_a_0_strike_price" to="stg_47" fromId="151" toId="47">
 </dataflow>
-<dataflow id="187" from="_ssdm_op_SpecBitsMap" to="stg_48" fromId="178" toId="48">
+<dataflow id="187" from="_ssdm_op_SpecBitsMap" to="stg_48" fromId="172" toId="48">
 </dataflow>
-<dataflow id="188" from="thread_arg_u_a_0_rfir" to="stg_48" fromId="149" toId="48">
+<dataflow id="188" from="thread_arg_o_a_0_time_period" to="stg_48" fromId="152" toId="48">
 </dataflow>
-<dataflow id="189" from="_ssdm_op_SpecBitsMap" to="stg_49" fromId="178" toId="49">
+<dataflow id="189" from="_ssdm_op_SpecBitsMap" to="stg_49" fromId="172" toId="49">
 </dataflow>
-<dataflow id="190" from="thread_arg_u_a_0_current_price" to="stg_49" fromId="150" toId="49">
+<dataflow id="190" from="thread_arg_o_a_0_call" to="stg_49" fromId="153" toId="49">
 </dataflow>
-<dataflow id="191" from="_ssdm_op_SpecBitsMap" to="stg_50" fromId="178" toId="50">
+<dataflow id="192" from="_ssdm_op_SpecTopModule" to="stg_50" fromId="191" toId="50">
 </dataflow>
-<dataflow id="192" from="thread_arg_o_a_0_strike_price" to="stg_50" fromId="151" toId="50">
+<dataflow id="194" from="str" to="stg_50" fromId="193" toId="50">
 </dataflow>
-<dataflow id="193" from="_ssdm_op_SpecBitsMap" to="stg_51" fromId="178" toId="51">
+<dataflow id="196" from="_ssdm_op_SpecIFCore" to="stg_51" fromId="195" toId="51">
 </dataflow>
-<dataflow id="194" from="thread_arg_o_a_0_time_period" to="stg_51" fromId="152" toId="51">
+<dataflow id="197" from="thread_arg_thread_paths" to="stg_51" fromId="145" toId="51">
 </dataflow>
-<dataflow id="195" from="_ssdm_op_SpecBitsMap" to="stg_52" fromId="178" toId="52">
+<dataflow id="198" from="thread_arg_path_points" to="stg_51" fromId="146" toId="51">
 </dataflow>
-<dataflow id="196" from="thread_arg_o_a_0_call" to="stg_52" fromId="153" toId="52">
+<dataflow id="199" from="thread_arg_thread_result" to="stg_51" fromId="147" toId="51">
 </dataflow>
-<dataflow id="198" from="_ssdm_op_SpecTopModule" to="stg_53" fromId="197" toId="53">
+<dataflow id="200" from="thread_arg_thread_result_sqrd" to="stg_51" fromId="148" toId="51">
 </dataflow>
-<dataflow id="200" from="str" to="stg_53" fromId="199" toId="53">
+<dataflow id="201" from="thread_arg_u_a_0_rfir" to="stg_51" fromId="149" toId="51">
 </dataflow>
-<dataflow id="202" from="_ssdm_op_SpecIFCore" to="stg_54" fromId="201" toId="54">
+<dataflow id="202" from="thread_arg_u_a_0_current_price" to="stg_51" fromId="150" toId="51">
 </dataflow>
-<dataflow id="203" from="thread_arg_thread_paths" to="stg_54" fromId="145" toId="54">
+<dataflow id="203" from="thread_arg_o_a_0_strike_price" to="stg_51" fromId="151" toId="51">
 </dataflow>
-<dataflow id="204" from="thread_arg_path_points" to="stg_54" fromId="146" toId="54">
+<dataflow id="204" from="thread_arg_o_a_0_time_period" to="stg_51" fromId="152" toId="51">
 </dataflow>
-<dataflow id="205" from="thread_arg_thread_result" to="stg_54" fromId="147" toId="54">
+<dataflow id="205" from="thread_arg_o_a_0_call" to="stg_51" fromId="153" toId="51">
 </dataflow>
-<dataflow id="206" from="thread_arg_thread_result_sqrd" to="stg_54" fromId="148" toId="54">
+<dataflow id="207" from="p_str103" to="stg_51" fromId="206" toId="51">
 </dataflow>
-<dataflow id="207" from="thread_arg_u_a_0_rfir" to="stg_54" fromId="149" toId="54">
+<dataflow id="209" from="p_str104" to="stg_51" fromId="208" toId="51">
 </dataflow>
-<dataflow id="208" from="thread_arg_u_a_0_current_price" to="stg_54" fromId="150" toId="54">
+<dataflow id="210" from="p_str103" to="stg_51" fromId="206" toId="51">
 </dataflow>
-<dataflow id="209" from="thread_arg_o_a_0_strike_price" to="stg_54" fromId="151" toId="54">
+<dataflow id="211" from="p_str103" to="stg_51" fromId="206" toId="51">
 </dataflow>
-<dataflow id="210" from="thread_arg_o_a_0_time_period" to="stg_54" fromId="152" toId="54">
+<dataflow id="212" from="p_str103" to="stg_51" fromId="206" toId="51">
 </dataflow>
-<dataflow id="211" from="thread_arg_o_a_0_call" to="stg_54" fromId="153" toId="54">
+<dataflow id="214" from="p_str105" to="stg_51" fromId="213" toId="51">
 </dataflow>
-<dataflow id="213" from="p_str103" to="stg_54" fromId="212" toId="54">
+<dataflow id="215" from="_ssdm_op_SpecIFCore" to="stg_52" fromId="195" toId="52">
 </dataflow>
-<dataflow id="215" from="p_str104" to="stg_54" fromId="214" toId="54">
+<dataflow id="217" from="stg_216" to="stg_52" fromId="216" toId="52">
 </dataflow>
-<dataflow id="216" from="p_str103" to="stg_54" fromId="212" toId="54">
+<dataflow id="218" from="p_str103" to="stg_52" fromId="206" toId="52">
 </dataflow>
-<dataflow id="217" from="p_str103" to="stg_54" fromId="212" toId="54">
+<dataflow id="219" from="p_str104" to="stg_52" fromId="208" toId="52">
 </dataflow>
-<dataflow id="218" from="p_str103" to="stg_54" fromId="212" toId="54">
+<dataflow id="220" from="p_str103" to="stg_52" fromId="206" toId="52">
 </dataflow>
-<dataflow id="220" from="p_str105" to="stg_54" fromId="219" toId="54">
+<dataflow id="221" from="p_str103" to="stg_52" fromId="206" toId="52">
 </dataflow>
-<dataflow id="221" from="_ssdm_op_SpecIFCore" to="stg_55" fromId="201" toId="55">
+<dataflow id="222" from="p_str103" to="stg_52" fromId="206" toId="52">
 </dataflow>
-<dataflow id="223" from="stg_222" to="stg_55" fromId="222" toId="55">
+<dataflow id="223" from="p_str105" to="stg_52" fromId="213" toId="52">
 </dataflow>
-<dataflow id="224" from="p_str103" to="stg_55" fromId="212" toId="55">
+<dataflow id="224" from="_ssdm_op_Read.ap_auto.floatP" to="u_a_0_current_price" fromId="154" toId="53">
 </dataflow>
-<dataflow id="225" from="p_str104" to="stg_55" fromId="214" toId="55">
+<dataflow id="225" from="thread_arg_u_a_0_current_price" to="u_a_0_current_price" fromId="150" toId="53">
 </dataflow>
-<dataflow id="226" from="p_str103" to="stg_55" fromId="212" toId="55">
+<dataflow id="226" from="_ssdm_op_Read.ap_auto.floatP" to="o_a_0_strike_price" fromId="154" toId="54">
 </dataflow>
-<dataflow id="227" from="p_str103" to="stg_55" fromId="212" toId="55">
+<dataflow id="227" from="thread_arg_o_a_0_strike_price" to="o_a_0_strike_price" fromId="151" toId="54">
 </dataflow>
-<dataflow id="228" from="p_str103" to="stg_55" fromId="212" toId="55">
+<dataflow id="229" from="_ssdm_op_Write.ap_auto.i32P" to="stg_55" fromId="228" toId="55">
 </dataflow>
-<dataflow id="229" from="p_str105" to="stg_55" fromId="219" toId="55">
+<dataflow id="230" from="thread_arg_path_points" to="stg_55" fromId="146" toId="55">
 </dataflow>
-<dataflow id="231" from="_ssdm_op_Write.ap_auto.i32P" to="stg_56" fromId="230" toId="56">
+<dataflow id="232" from="stg_231" to="stg_55" fromId="231" toId="55">
 </dataflow>
-<dataflow id="232" from="thread_arg_path_points" to="stg_56" fromId="146" toId="56">
+<dataflow id="233" from="u_a_0_rfir" to="tmp_i" fromId="33" toId="56">
 </dataflow>
-<dataflow id="234" from="stg_233" to="stg_56" fromId="233" toId="56">
+<dataflow id="234" from="o_a_0_time_period" to="tmp_i" fromId="34" toId="56">
 </dataflow>
-<dataflow id="235" from="u_a_0_rfir" to="tmp_i" fromId="33" toId="57">
+<dataflow id="235" from="o_a_0_call" to="tmp" fromId="36" toId="57">
 </dataflow>
-<dataflow id="236" from="o_a_0_time_period" to="tmp_i" fromId="36" toId="57">
+<dataflow id="236" from="stg_166" to="tmp" fromId="166" toId="57">
 </dataflow>
-<dataflow id="237" from="tmp" to="tmp_1" fromId="43" toId="58">
+<dataflow id="237" from="tmp" to="tmp_1" fromId="57" toId="58">
 </dataflow>
 <dataflow id="239" from="stg_238" to="tmp_1" fromId="238" toId="58">
 </dataflow>
 <dataflow id="241" from="stg_240" to="spot_price_0" fromId="240" toId="60">
-<condition id="125">
+<condition id="119">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 </dataflow>
@@ -1678,15 +1678,15 @@ _ifconv:4  br label %1
 </dataflow>
 <dataflow id="243" from="spot_price_0_1" to="spot_price_0" fromId="74" toId="60">
 <BackEdge/>
-<condition id="126">
+<condition id="120">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 </dataflow>
 <dataflow id="244" from="stg_110" to="spot_price_0" fromId="110" toId="60">
 <BackEdge/>
 </dataflow>
-<dataflow id="245" from="stg_168" to="temp_total_0" fromId="168" toId="61">
-<condition id="127">
+<dataflow id="245" from="stg_166" to="temp_total_0" fromId="166" toId="61">
+<condition id="121">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 </dataflow>
@@ -1694,7 +1694,7 @@ _ifconv:4  br label %1
 </dataflow>
 <dataflow id="247" from="temp_total_0_1" to="temp_total_0" fromId="109" toId="61">
 <BackEdge/>
-<condition id="128">
+<condition id="122">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 </dataflow>
@@ -1702,14 +1702,14 @@ _ifconv:4  br label %1
 <BackEdge/>
 </dataflow>
 <dataflow id="250" from="stg_249" to="k" fromId="249" toId="62">
-<condition id="129">
+<condition id="123">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 </dataflow>
 <dataflow id="251" from="stg_59" to="k" fromId="59" toId="62">
 </dataflow>
 <dataflow id="252" from="stg_238" to="k" fromId="238" toId="62">
-<condition id="130">
+<condition id="124">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 </dataflow>
@@ -1740,7 +1740,7 @@ _ifconv:4  br label %1
 </dataflow>
 <dataflow id="268" from="tmp_8" to="tmp_pn" fromId="92" toId="68">
 <BackEdge/>
-<condition id="131">
+<condition id="125">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 </dataflow>
@@ -1748,36 +1748,36 @@ _ifconv:4  br label %1
 <BackEdge/>
 </dataflow>
 <dataflow id="271" from="stg_270" to="tmp_pn" fromId="270" toId="68">
-<condition id="132">
+<condition id="126">
 <or_exp><and_exp><literal name="k" val="0"/>
 </and_exp></or_exp>
 </condition>
 </dataflow>
 <dataflow id="272" from="stg_64" to="tmp_pn" fromId="64" toId="68">
 </dataflow>
-<dataflow id="273" from="u_a_0_current_price" to="spot_price_0_1" fromId="34" toId="69">
+<dataflow id="273" from="u_a_0_current_price" to="spot_price_0_1" fromId="53" toId="69">
 </dataflow>
 <dataflow id="274" from="tmp_pn" to="spot_price_0_1" fromId="68" toId="69">
 </dataflow>
-<dataflow id="275" from="u_a_0_current_price" to="spot_price_0_1" fromId="34" toId="70">
+<dataflow id="275" from="u_a_0_current_price" to="spot_price_0_1" fromId="53" toId="70">
 </dataflow>
 <dataflow id="276" from="tmp_pn" to="spot_price_0_1" fromId="68" toId="70">
 </dataflow>
-<dataflow id="277" from="u_a_0_current_price" to="spot_price_0_1" fromId="34" toId="71">
+<dataflow id="277" from="u_a_0_current_price" to="spot_price_0_1" fromId="53" toId="71">
 </dataflow>
 <dataflow id="278" from="tmp_pn" to="spot_price_0_1" fromId="68" toId="71">
 </dataflow>
 <dataflow id="279" from="u_v_0_gamma" to="u_v_gamma_read_assign" fromId="83" toId="72">
 <BackEdge/>
-<condition id="133">
+<condition id="127">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 </dataflow>
 <dataflow id="280" from="stg_93" to="u_v_gamma_read_assign" fromId="93" toId="72">
 <BackEdge/>
 </dataflow>
-<dataflow id="281" from="stg_168" to="u_v_gamma_read_assign" fromId="168" toId="72">
-<condition id="134">
+<dataflow id="281" from="stg_166" to="u_v_gamma_read_assign" fromId="166" toId="72">
+<condition id="128">
 <or_exp><and_exp><literal name="k" val="0"/>
 </and_exp></or_exp>
 </condition>
@@ -1786,7 +1786,7 @@ _ifconv:4  br label %1
 </dataflow>
 <dataflow id="283" from="j_1" to="j" fromId="77" toId="73">
 <BackEdge/>
-<condition id="135">
+<condition id="129">
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 </dataflow>
@@ -1794,14 +1794,14 @@ _ifconv:4  br label %1
 <BackEdge/>
 </dataflow>
 <dataflow id="286" from="stg_285" to="j" fromId="285" toId="73">
-<condition id="136">
+<condition id="130">
 <or_exp><and_exp><literal name="k" val="0"/>
 </and_exp></or_exp>
 </condition>
 </dataflow>
 <dataflow id="287" from="stg_64" to="j" fromId="64" toId="73">
 </dataflow>
-<dataflow id="288" from="u_a_0_current_price" to="spot_price_0_1" fromId="34" toId="74">
+<dataflow id="288" from="u_a_0_current_price" to="spot_price_0_1" fromId="53" toId="74">
 </dataflow>
 <dataflow id="289" from="tmp_pn" to="spot_price_0_1" fromId="68" toId="74">
 </dataflow>
@@ -1823,23 +1823,23 @@ _ifconv:4  br label %1
 </dataflow>
 <dataflow id="301" from="exitcond" to="stg_78" fromId="75" toId="78">
 </dataflow>
-<dataflow id="302" from="tmp_i" to="u_v_0_gamma" fromId="57" toId="79">
+<dataflow id="302" from="tmp_i" to="u_v_0_gamma" fromId="56" toId="79">
 </dataflow>
 <dataflow id="303" from="u_v_gamma_read_assign" to="u_v_0_gamma" fromId="72" toId="79">
 </dataflow>
-<dataflow id="304" from="tmp_i" to="u_v_0_gamma" fromId="57" toId="80">
+<dataflow id="304" from="tmp_i" to="u_v_0_gamma" fromId="56" toId="80">
 </dataflow>
 <dataflow id="305" from="u_v_gamma_read_assign" to="u_v_0_gamma" fromId="72" toId="80">
 </dataflow>
-<dataflow id="306" from="tmp_i" to="u_v_0_gamma" fromId="57" toId="81">
+<dataflow id="306" from="tmp_i" to="u_v_0_gamma" fromId="56" toId="81">
 </dataflow>
 <dataflow id="307" from="u_v_gamma_read_assign" to="u_v_0_gamma" fromId="72" toId="81">
 </dataflow>
-<dataflow id="308" from="tmp_i" to="u_v_0_gamma" fromId="57" toId="82">
+<dataflow id="308" from="tmp_i" to="u_v_0_gamma" fromId="56" toId="82">
 </dataflow>
 <dataflow id="309" from="u_v_gamma_read_assign" to="u_v_0_gamma" fromId="72" toId="82">
 </dataflow>
-<dataflow id="310" from="tmp_i" to="u_v_0_gamma" fromId="57" toId="83">
+<dataflow id="310" from="tmp_i" to="u_v_0_gamma" fromId="56" toId="83">
 </dataflow>
 <dataflow id="311" from="u_v_gamma_read_assign" to="u_v_0_gamma" fromId="72" toId="83">
 </dataflow>
@@ -1881,41 +1881,41 @@ _ifconv:4  br label %1
 </dataflow>
 <dataflow id="331" from="spot_price_0_1" to="tmp_1_i" fromId="74" toId="94">
 </dataflow>
-<dataflow id="332" from="o_a_0_strike_price" to="tmp_1_i" fromId="35" toId="94">
+<dataflow id="332" from="o_a_0_strike_price" to="tmp_1_i" fromId="54" toId="94">
 </dataflow>
-<dataflow id="333" from="o_a_0_strike_price" to="tmp_2_i" fromId="35" toId="95">
+<dataflow id="333" from="o_a_0_strike_price" to="tmp_2_i" fromId="54" toId="95">
 </dataflow>
 <dataflow id="334" from="spot_price_0_1" to="tmp_2_i" fromId="74" toId="95">
 </dataflow>
 <dataflow id="335" from="spot_price_0_1" to="tmp_1_i" fromId="74" toId="96">
 </dataflow>
-<dataflow id="336" from="o_a_0_strike_price" to="tmp_1_i" fromId="35" toId="96">
+<dataflow id="336" from="o_a_0_strike_price" to="tmp_1_i" fromId="54" toId="96">
 </dataflow>
-<dataflow id="337" from="o_a_0_strike_price" to="tmp_2_i" fromId="35" toId="97">
+<dataflow id="337" from="o_a_0_strike_price" to="tmp_2_i" fromId="54" toId="97">
 </dataflow>
 <dataflow id="338" from="spot_price_0_1" to="tmp_2_i" fromId="74" toId="97">
 </dataflow>
 <dataflow id="339" from="spot_price_0_1" to="tmp_1_i" fromId="74" toId="98">
 </dataflow>
-<dataflow id="340" from="o_a_0_strike_price" to="tmp_1_i" fromId="35" toId="98">
+<dataflow id="340" from="o_a_0_strike_price" to="tmp_1_i" fromId="54" toId="98">
 </dataflow>
-<dataflow id="341" from="o_a_0_strike_price" to="tmp_2_i" fromId="35" toId="99">
+<dataflow id="341" from="o_a_0_strike_price" to="tmp_2_i" fromId="54" toId="99">
 </dataflow>
 <dataflow id="342" from="spot_price_0_1" to="tmp_2_i" fromId="74" toId="99">
 </dataflow>
 <dataflow id="343" from="spot_price_0_1" to="tmp_1_i" fromId="74" toId="100">
 </dataflow>
-<dataflow id="344" from="o_a_0_strike_price" to="tmp_1_i" fromId="35" toId="100">
+<dataflow id="344" from="o_a_0_strike_price" to="tmp_1_i" fromId="54" toId="100">
 </dataflow>
-<dataflow id="345" from="o_a_0_strike_price" to="tmp_2_i" fromId="35" toId="101">
+<dataflow id="345" from="o_a_0_strike_price" to="tmp_2_i" fromId="54" toId="101">
 </dataflow>
 <dataflow id="346" from="spot_price_0_1" to="tmp_2_i" fromId="74" toId="101">
 </dataflow>
 <dataflow id="347" from="spot_price_0_1" to="tmp_1_i" fromId="74" toId="102">
 </dataflow>
-<dataflow id="348" from="o_a_0_strike_price" to="tmp_1_i" fromId="35" toId="102">
+<dataflow id="348" from="o_a_0_strike_price" to="tmp_1_i" fromId="54" toId="102">
 </dataflow>
-<dataflow id="349" from="o_a_0_strike_price" to="tmp_2_i" fromId="35" toId="103">
+<dataflow id="349" from="o_a_0_strike_price" to="tmp_2_i" fromId="54" toId="103">
 </dataflow>
 <dataflow id="350" from="spot_price_0_1" to="tmp_2_i" fromId="74" toId="103">
 </dataflow>

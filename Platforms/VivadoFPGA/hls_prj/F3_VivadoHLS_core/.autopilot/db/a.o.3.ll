@@ -1,4 +1,4 @@
-; ModuleID = '/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core/.autopilot/db/a.o.3.bc'
+; ModuleID = '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/hls_prj/F3_VivadoHLS_core/.autopilot/db/a.o.3.bc'
 target datalayout = "e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
@@ -208,13 +208,13 @@ entry:
 !38 = metadata !{i32 790531, metadata !39, metadata !"thread_arg.thread_paths", null, i32 21, metadata !72, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
 !39 = metadata !{i32 786689, metadata !40, metadata !"thread_arg", metadata !41, i32 16777237, metadata !44, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
 !40 = metadata !{i32 786478, i32 0, metadata !41, metadata !"vivado_activity_thread", metadata !"vivado_activity_thread", metadata !"", metadata !41, i32 21, metadata !42, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, null, metadata !70, i32 22} ; [ DW_TAG_subprogram ]
-!41 = metadata !{i32 786473, metadata !"srcs/vivado_core.c", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!41 = metadata !{i32 786473, metadata !"srcs/vivado_core.c", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !42 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !43, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !43 = metadata !{null, metadata !44}
 !44 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !45} ; [ DW_TAG_pointer_type ]
 !45 = metadata !{i32 786454, null, metadata !"thread_data_t", metadata !41, i32 8, i64 0, i64 0, i64 0, i32 0, metadata !46} ; [ DW_TAG_typedef ]
 !46 = metadata !{i32 786451, null, metadata !"", metadata !47, i32 1, i64 288, i64 32, i32 0, i32 0, null, metadata !48, i32 0, i32 0} ; [ DW_TAG_structure_type ]
-!47 = metadata !{i32 786473, metadata !"srcs/vivado_core.h", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!47 = metadata !{i32 786473, metadata !"srcs/vivado_core.h", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !48 = metadata !{metadata !49, metadata !51, metadata !52, metadata !54, metadata !55, metadata !62}
 !49 = metadata !{i32 786445, metadata !46, metadata !"thread_paths", metadata !47, i32 2, i64 32, i64 32, i64 0, i32 0, metadata !50} ; [ DW_TAG_member ]
 !50 = metadata !{i32 786468, null, metadata !"int", null, i32 0, i64 32, i64 32, i64 0, i32 0, i32 5} ; [ DW_TAG_base_type ]
@@ -225,14 +225,14 @@ entry:
 !55 = metadata !{i32 786445, metadata !46, metadata !"u_a_0", metadata !47, i32 6, i64 64, i64 32, i64 128, i32 0, metadata !56} ; [ DW_TAG_member ]
 !56 = metadata !{i32 786454, null, metadata !"underlying_attributes", metadata !47, i32 24, i64 0, i64 0, i64 0, i32 0, metadata !57} ; [ DW_TAG_typedef ]
 !57 = metadata !{i32 786451, null, metadata !"", metadata !58, i32 21, i64 64, i64 32, i32 0, i32 0, null, metadata !59, i32 0, i32 0} ; [ DW_TAG_structure_type ]
-!58 = metadata !{i32 786473, metadata !"srcs/underlying.h", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!58 = metadata !{i32 786473, metadata !"srcs/underlying.h", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !59 = metadata !{metadata !60, metadata !61}
 !60 = metadata !{i32 786445, metadata !57, metadata !"rfir", metadata !58, i32 22, i64 32, i64 32, i64 0, i32 0, metadata !53} ; [ DW_TAG_member ]
 !61 = metadata !{i32 786445, metadata !57, metadata !"current_price", metadata !58, i32 23, i64 32, i64 32, i64 32, i32 0, metadata !53} ; [ DW_TAG_member ]
 !62 = metadata !{i32 786445, metadata !46, metadata !"o_a_0", metadata !47, i32 7, i64 96, i64 32, i64 192, i32 0, metadata !63} ; [ DW_TAG_member ]
 !63 = metadata !{i32 786454, null, metadata !"option_attributes", metadata !47, i32 25, i64 0, i64 0, i64 0, i32 0, metadata !64} ; [ DW_TAG_typedef ]
 !64 = metadata !{i32 786451, null, metadata !"", metadata !65, i32 21, i64 96, i64 32, i32 0, i32 0, null, metadata !66, i32 0, i32 0} ; [ DW_TAG_structure_type ]
-!65 = metadata !{i32 786473, metadata !"srcs/option.h", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!65 = metadata !{i32 786473, metadata !"srcs/option.h", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !66 = metadata !{metadata !67, metadata !68, metadata !69}
 !67 = metadata !{i32 786445, metadata !64, metadata !"strike_price", metadata !65, i32 22, i64 32, i64 32, i64 0, i32 0, metadata !53} ; [ DW_TAG_member ]
 !68 = metadata !{i32 786445, metadata !64, metadata !"time_period", metadata !65, i32 23, i64 32, i64 32, i64 32, i32 0, metadata !53} ; [ DW_TAG_member ]
@@ -312,7 +312,7 @@ entry:
 !142 = metadata !{i32 23, i32 2, metadata !143, metadata !160}
 !143 = metadata !{i32 786443, metadata !144, i32 22, i32 103, metadata !145, i32 2} ; [ DW_TAG_lexical_block ]
 !144 = metadata !{i32 786478, i32 0, metadata !145, metadata !"underlying_underlying_path", metadata !"underlying_underlying_path", metadata !"", metadata !145, i32 22, metadata !146, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, null, metadata !70, i32 22} ; [ DW_TAG_subprogram ]
-!145 = metadata !{i32 786473, metadata !"srcs/underlying.c", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!145 = metadata !{i32 786473, metadata !"srcs/underlying.c", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !146 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !147, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !147 = metadata !{null, metadata !53, metadata !148, metadata !154}
 !148 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !149} ; [ DW_TAG_pointer_type ]
@@ -335,7 +335,7 @@ entry:
 !165 = metadata !{i32 26, i32 2, metadata !166, metadata !184}
 !166 = metadata !{i32 786443, metadata !167, i32 25, i32 92, metadata !168, i32 3} ; [ DW_TAG_lexical_block ]
 !167 = metadata !{i32 786478, i32 0, metadata !168, metadata !"option_derivative_payoff", metadata !"option_derivative_payoff", metadata !"", metadata !168, i32 25, metadata !169, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, null, metadata !70, i32 25} ; [ DW_TAG_subprogram ]
-!168 = metadata !{i32 786473, metadata !"srcs/option.c", metadata !"/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS", null} ; [ DW_TAG_file_type ]
+!168 = metadata !{i32 786473, metadata !"srcs/option.c", metadata !"/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA", null} ; [ DW_TAG_file_type ]
 !169 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !170, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !170 = metadata !{null, metadata !53, metadata !171, metadata !177}
 !171 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !172} ; [ DW_TAG_pointer_type ]

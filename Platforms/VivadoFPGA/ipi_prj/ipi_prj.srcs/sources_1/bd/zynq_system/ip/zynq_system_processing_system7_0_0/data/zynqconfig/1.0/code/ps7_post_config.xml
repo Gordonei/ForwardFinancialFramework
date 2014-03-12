@@ -9,29 +9,6 @@
        <force param="ps7_slcr_LVL_SHFTR_EN_USER_INP_ICT_EN_0" value="3"/>
        <force param="ps7_slcr_LVL_SHFTR_EN_USER_INP_ICT_EN_1" value="3"/>
      </group>   
-    <group cmt="FPGA resets to 1">
-      <force param="ps7_slcr_FPGA_RST_CTRL_reserved_3" value="127"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_ACP_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_AXDS3_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_AXDS2_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_AXDS1_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_AXDS0_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_reserved_2" value="3"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FSSW1_FPGA_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FSSW0_FPGA_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_reserved_1" value="15"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_FMSW1_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_FMSW0_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_DMA3_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_DMA2_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_DMA1_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_DMA0_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_reserved" value="15"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA3_OUT_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA2_OUT_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA1_OUT_RST" value="1"/>
-      <force param="ps7_slcr_FPGA_RST_CTRL_FPGA0_OUT_RST" value="1"/>
-    </group>
     <group cmt="FPGA resets to 0">
       <force param="ps7_slcr_FPGA_RST_CTRL_reserved_3" value="0"/>
       <force param="ps7_slcr_FPGA_RST_CTRL_FPGA_ACP_RST" value="0"/>

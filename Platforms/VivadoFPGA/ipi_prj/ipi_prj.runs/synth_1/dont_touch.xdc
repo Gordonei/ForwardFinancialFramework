@@ -16,22 +16,22 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==zynq_system_pro
 # IP: bd/zynq_system/ip/zynq_system_proc_sys_reset_0/zynq_system_proc_sys_reset_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==zynq_system_proc_sys_reset_0 || ORIG_REF_NAME==zynq_system_proc_sys_reset_0}]
 
-# IP: bd/zynq_system/ip/zynq_system_auto_pc_9/zynq_system_auto_pc_9.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==zynq_system_auto_pc_9 || ORIG_REF_NAME==zynq_system_auto_pc_9}]
+# IP: bd/zynq_system/ip/zynq_system_auto_pc_1/zynq_system_auto_pc_1.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==zynq_system_auto_pc_1 || ORIG_REF_NAME==zynq_system_auto_pc_1}]
 
 # XDC: bd/zynq_system/ip/zynq_system_processing_system7_0_0/zynq_system_processing_system7_0_0.xdc
 set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==zynq_system_processing_system7_0_0 || ORIG_REF_NAME==zynq_system_processing_system7_0_0}] {/U0 }]/U0 ]]
 
 # XDC: bd/zynq_system/ip/zynq_system_vivado_activity_thread_0_0/constraints/vivado_activity_thread_ooc.xdc
 
-# XDC: bd/zynq_system/ip/zynq_system_proc_sys_reset_0/zynq_system_proc_sys_reset_0_board.xdc
-set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==zynq_system_proc_sys_reset_0 || ORIG_REF_NAME==zynq_system_proc_sys_reset_0}] {/U0 }]/U0 ]]
-
 # XDC: bd/zynq_system/ip/zynq_system_proc_sys_reset_0/zynq_system_proc_sys_reset_0.xdc
-#dup# set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==zynq_system_proc_sys_reset_0 || ORIG_REF_NAME==zynq_system_proc_sys_reset_0}] {/U0 }]/U0 ]]
+set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==zynq_system_proc_sys_reset_0 || ORIG_REF_NAME==zynq_system_proc_sys_reset_0}] {/U0 }]/U0 ]]
 
 # XDC: bd/zynq_system/ip/zynq_system_proc_sys_reset_0/zynq_system_proc_sys_reset_0_ooc.xdc
 
-# XDC: bd/zynq_system/ip/zynq_system_auto_pc_9/zynq_system_auto_pc_9_ooc.xdc
+# XDC: bd/zynq_system/ip/zynq_system_proc_sys_reset_0/zynq_system_proc_sys_reset_0_board.xdc
+#dup# set_property DONT_TOUCH TRUE [get_cells [split [join [get_cells -hier -filter {REF_NAME==zynq_system_proc_sys_reset_0 || ORIG_REF_NAME==zynq_system_proc_sys_reset_0}] {/U0 }]/U0 ]]
+
+# XDC: bd/zynq_system/ip/zynq_system_auto_pc_1/zynq_system_auto_pc_1_ooc.xdc
 
 # XDC: bd/zynq_system/zynq_system_ooc.xdc

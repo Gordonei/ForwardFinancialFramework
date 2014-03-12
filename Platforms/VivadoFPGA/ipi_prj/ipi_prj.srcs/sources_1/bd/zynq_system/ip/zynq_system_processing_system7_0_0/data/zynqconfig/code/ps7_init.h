@@ -73,6 +73,7 @@ extern unsigned long  * ps7_peripherals_init_data;
 #define OPCODE_WRITE      2U
 #define OPCODE_MASKWRITE  3U
 #define OPCODE_MASKPOLL   4U
+#define OPCODE_MASKDELAY  5U
 #define NEW_PS7_ERR_CODE 1
 
 /* Encode number of arguments in last nibble */
@@ -81,8 +82,7 @@ extern unsigned long  * ps7_peripherals_init_data;
 #define EMIT_WRITE(addr,val)          ( (OPCODE_WRITE     << 4 ) | 2 ) , addr, val
 #define EMIT_MASKWRITE(addr,mask,val) ( (OPCODE_MASKWRITE << 4 ) | 3 ) , addr, mask, val
 #define EMIT_MASKPOLL(addr,mask)      ( (OPCODE_MASKPOLL  << 4 ) | 2 ) , addr, mask
-
-
+#define EMIT_MASKDELAY(addr,mask)      ( (OPCODE_MASKDELAY << 4 ) | 2 ) , addr, mask
 
 /* Returns codes  of PS7_Init */
 #define PS7_INIT_SUCCESS   (0)    // 0 is success in good old C
@@ -127,11 +127,23 @@ extern unsigned long  * ps7_peripherals_init_data;
 #define FPGA3_FREQ  % MHzToHz pcw_fpga3_peripheral_freqmhz %
 #define ECC_ENABLE  % PARAMEnable pcw_internal_ddr_ecc %
 
+/* For delay calculation using global registers*/
+#define SCU_GLOBAL_TIMER_COUNT_L32	0xF8F00200
+#define SCU_GLOBAL_TIMER_COUNT_U32	0xF8F00204
+#define SCU_GLOBAL_TIMER_CONTROL	0xF8F00208
+#define SCU_GLOBAL_TIMER_AUTO_INC	0xF8F00218
+
 int ps7_config( unsigned long*);
 int ps7_init();
 int ps7_post_config();
 char* getPS7MessageInfo(unsigned key);
 
+void perf_start_clock(void);
+void perf_disable_clock(void);
+void perf_reset_clock(void);
+void perf_reset_and_start_timer(); 
+int get_number_of_cycles_for_delay(unsigned int delay); 
 #ifdef __cplusplus
 }
 #endif
+

@@ -48,7 +48,7 @@ set_msg_config -id {HDL 9-1654} -limit 100000
 start_step write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  read_checkpoint zynq_system_wrapper_routed.dcp
+  open_checkpoint zynq_system_wrapper_routed.dcp
   write_bitstream -force zynq_system_wrapper.bit 
   close_msg_db -file write_bitstream.pb
 } RESULT]

@@ -1,10 +1,10 @@
 #-----------------------------------------------------------
-# Vivado v2013.3 (64-bit)
-# SW Build 329390 on Wed Oct 16 18:26:55 MDT 2013
-# IP Build 192953 on Wed Oct 16 08:44:02 MDT 2013
-# Start of session at: Wed Mar 12 08:40:38 2014
-# Process ID: 28092
-# Log file: /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/ipi_prj/ipi_prj.runs/impl_1/zynq_system_wrapper.rdi
-# Journal file: /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/ipi_prj/ipi_prj.runs/impl_1/vivado.jou
+# Vivado v2013.4 (64-bit)
+# SW Build 353583 on Mon Dec  9 17:26:26 MST 2013
+# IP Build 208076 on Mon Dec  2 12:38:17 MST 2013
+# Start of session at: Wed Mar 12 10:25:53 2014
+# Process ID: 20024
+# Log file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/ipi_prj/ipi_prj.runs/impl_1/zynq_system_wrapper.rdi
+# Journal file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/ipi_prj/ipi_prj.runs/impl_1/vivado.jou
 #-----------------------------------------------------------
 source zynq_system_wrapper.tcl -notrace

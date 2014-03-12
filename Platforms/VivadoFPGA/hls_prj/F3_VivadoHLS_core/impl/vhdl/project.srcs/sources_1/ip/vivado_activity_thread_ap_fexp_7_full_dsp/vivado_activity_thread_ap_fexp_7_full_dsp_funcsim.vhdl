@@ -1,10 +1,10 @@
 -- Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2013.3 (lin64) Build 329390 Wed Oct 16 18:26:55 MDT 2013
--- Date        : Wed Mar 12 08:24:27 2014
--- Host        : ganymede running 64-bit Ubuntu 12.04.3 LTS
+-- Tool Version: Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
+-- Date        : Wed Mar 12 09:50:14 2014
+-- Host        : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_funcsim.vhdl
+--               /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_funcsim.vhdl
 -- Design      : vivado_activity_thread_ap_fexp_7_full_dsp
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -28,7 +28,7 @@ entity vivado_activity_thread_ap_fexp_7_full_dspflt_exp_e2A is
   attribute C_RESULT_WIDTH : integer;
   attribute C_RESULT_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspflt_exp_e2A : entity is 27;
   attribute C_USE_BRAMS : string;
-  attribute C_USE_BRAMS of vivado_activity_thread_ap_fexp_7_full_dspflt_exp_e2A : entity is "false";
+  attribute C_USE_BRAMS of vivado_activity_thread_ap_fexp_7_full_dspflt_exp_e2A : entity is "FALSE";
   attribute REGISTERS : string;
   attribute REGISTERS of vivado_activity_thread_ap_fexp_7_full_dspflt_exp_e2A : entity is "200'b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
   attribute downgradeipidentifiedwarnings : string;
@@ -7598,7 +7598,7 @@ entity vivado_activity_thread_ap_fexp_7_full_dspflt_exp_e2zmzm1 is
   attribute C_RESULT_WIDTH : integer;
   attribute C_RESULT_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspflt_exp_e2zmzm1 : entity is 6;
   attribute C_USE_BRAMS : string;
-  attribute C_USE_BRAMS of vivado_activity_thread_ap_fexp_7_full_dspflt_exp_e2zmzm1 : entity is "false";
+  attribute C_USE_BRAMS of vivado_activity_thread_ap_fexp_7_full_dspflt_exp_e2zmzm1 : entity is "FALSE";
   attribute REGISTERS : string;
   attribute REGISTERS of vivado_activity_thread_ap_fexp_7_full_dspflt_exp_e2zmzm1 : entity is "200'b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
   attribute downgradeipidentifiedwarnings : string;
@@ -7688,7 +7688,7 @@ g0_b5: unisim.vcomponents.LUT6
 end STRUCTURE;
 library IEEE; use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM; use UNISIM.VCOMPONENTS.ALL; 
-entity vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv is
+entity \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ is
   port (
     aclk : in STD_LOGIC;
     aclken : in STD_LOGIC;
@@ -7719,149 +7719,151 @@ entity vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv is
     m_axis_result_tuser : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_result_tlast : out STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is "floating_point_v7_0_viv";
   attribute C_XDEVICEFAMILY : string;
-  attribute C_XDEVICEFAMILY of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is "zynq";
+  attribute C_XDEVICEFAMILY of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is "zynq";
   attribute C_HAS_ADD : integer;
-  attribute C_HAS_ADD of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ADD of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_SUBTRACT : integer;
-  attribute C_HAS_SUBTRACT of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_SUBTRACT of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_MULTIPLY : integer;
-  attribute C_HAS_MULTIPLY of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_MULTIPLY of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_DIVIDE : integer;
-  attribute C_HAS_DIVIDE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_DIVIDE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_SQRT : integer;
-  attribute C_HAS_SQRT of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_SQRT of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_COMPARE : integer;
-  attribute C_HAS_COMPARE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_COMPARE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FIX_TO_FLT : integer;
-  attribute C_HAS_FIX_TO_FLT of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FIX_TO_FLT of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FIX : integer;
-  attribute C_HAS_FLT_TO_FIX of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FLT_TO_FIX of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FLT : integer;
-  attribute C_HAS_FLT_TO_FLT of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FLT_TO_FLT of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP : integer;
-  attribute C_HAS_RECIP of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RECIP of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP_SQRT : integer;
-  attribute C_HAS_RECIP_SQRT of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RECIP_SQRT of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ABSOLUTE : integer;
-  attribute C_HAS_ABSOLUTE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ABSOLUTE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_LOGARITHM : integer;
-  attribute C_HAS_LOGARITHM of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_LOGARITHM of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_EXPONENTIAL : integer;
-  attribute C_HAS_EXPONENTIAL of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_HAS_EXPONENTIAL of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_HAS_FMA : integer;
-  attribute C_HAS_FMA of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FMA of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FMS : integer;
-  attribute C_HAS_FMS of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FMS of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_A : integer;
-  attribute C_HAS_ACCUMULATOR_A of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUMULATOR_A of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_S : integer;
-  attribute C_HAS_ACCUMULATOR_S of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUMULATOR_S of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_A_WIDTH : integer;
-  attribute C_A_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_A_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_A_FRACTION_WIDTH : integer;
-  attribute C_A_FRACTION_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 24;
+  attribute C_A_FRACTION_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 24;
   attribute C_B_WIDTH : integer;
-  attribute C_B_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_B_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_B_FRACTION_WIDTH : integer;
-  attribute C_B_FRACTION_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 24;
+  attribute C_B_FRACTION_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 24;
   attribute C_C_WIDTH : integer;
-  attribute C_C_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_C_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_C_FRACTION_WIDTH : integer;
-  attribute C_C_FRACTION_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 24;
+  attribute C_C_FRACTION_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 24;
   attribute C_RESULT_WIDTH : integer;
-  attribute C_RESULT_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_RESULT_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_RESULT_FRACTION_WIDTH : integer;
-  attribute C_RESULT_FRACTION_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 24;
+  attribute C_RESULT_FRACTION_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 24;
   attribute C_COMPARE_OPERATION : integer;
-  attribute C_COMPARE_OPERATION of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 8;
+  attribute C_COMPARE_OPERATION of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 8;
   attribute C_LATENCY : integer;
-  attribute C_LATENCY of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 7;
+  attribute C_LATENCY of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 7;
   attribute C_OPTIMIZATION : integer;
-  attribute C_OPTIMIZATION of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_OPTIMIZATION of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_MULT_USAGE : integer;
-  attribute C_MULT_USAGE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 2;
+  attribute C_MULT_USAGE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 2;
   attribute C_BRAM_USAGE : integer;
-  attribute C_BRAM_USAGE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_BRAM_USAGE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_RATE : integer;
-  attribute C_RATE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_RATE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_ACCUM_INPUT_MSB : integer;
-  attribute C_ACCUM_INPUT_MSB of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_ACCUM_INPUT_MSB of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_ACCUM_MSB : integer;
-  attribute C_ACCUM_MSB of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_ACCUM_MSB of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_ACCUM_LSB : integer;
-  attribute C_ACCUM_LSB of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is -31;
+  attribute C_ACCUM_LSB of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is -31;
   attribute C_HAS_UNDERFLOW : integer;
-  attribute C_HAS_UNDERFLOW of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_UNDERFLOW of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_OVERFLOW : integer;
-  attribute C_HAS_OVERFLOW of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_OVERFLOW of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_INVALID_OP : integer;
-  attribute C_HAS_INVALID_OP of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_INVALID_OP of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_DIVIDE_BY_ZERO : integer;
-  attribute C_HAS_DIVIDE_BY_ZERO of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_DIVIDE_BY_ZERO of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_OVERFLOW of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUM_OVERFLOW of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_INPUT_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_INPUT_OVERFLOW of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUM_INPUT_OVERFLOW of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACLKEN : integer;
-  attribute C_HAS_ACLKEN of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_HAS_ACLKEN of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_HAS_ARESETN : integer;
-  attribute C_HAS_ARESETN of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ARESETN of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_THROTTLE_SCHEME : integer;
-  attribute C_THROTTLE_SCHEME of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 3;
+  attribute C_THROTTLE_SCHEME of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 3;
   attribute C_HAS_A_TUSER : integer;
-  attribute C_HAS_A_TUSER of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_A_TUSER of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_A_TLAST : integer;
-  attribute C_HAS_A_TLAST of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_A_TLAST of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_B : integer;
-  attribute C_HAS_B of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_B of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_B_TUSER : integer;
-  attribute C_HAS_B_TUSER of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_B_TUSER of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_B_TLAST : integer;
-  attribute C_HAS_B_TLAST of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_B_TLAST of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_C : integer;
-  attribute C_HAS_C of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_C of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_C_TUSER : integer;
-  attribute C_HAS_C_TUSER of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_C_TUSER of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_C_TLAST : integer;
-  attribute C_HAS_C_TLAST of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_C_TLAST of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION : integer;
-  attribute C_HAS_OPERATION of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_OPERATION of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION_TUSER : integer;
-  attribute C_HAS_OPERATION_TUSER of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_OPERATION_TUSER of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION_TLAST : integer;
-  attribute C_HAS_OPERATION_TLAST of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_OPERATION_TLAST of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TUSER : integer;
-  attribute C_HAS_RESULT_TUSER of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RESULT_TUSER of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TLAST : integer;
-  attribute C_HAS_RESULT_TLAST of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RESULT_TLAST of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_TLAST_RESOLUTION : integer;
-  attribute C_TLAST_RESOLUTION of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_TLAST_RESOLUTION of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_A_TDATA_WIDTH : integer;
-  attribute C_A_TDATA_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_A_TDATA_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_A_TUSER_WIDTH : integer;
-  attribute C_A_TUSER_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_A_TUSER_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_B_TDATA_WIDTH : integer;
-  attribute C_B_TDATA_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_B_TDATA_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_B_TUSER_WIDTH : integer;
-  attribute C_B_TUSER_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_B_TUSER_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_C_TDATA_WIDTH : integer;
-  attribute C_C_TDATA_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_C_TDATA_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_C_TUSER_WIDTH : integer;
-  attribute C_C_TUSER_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_C_TUSER_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_OPERATION_TDATA_WIDTH : integer;
-  attribute C_OPERATION_TDATA_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 8;
+  attribute C_OPERATION_TDATA_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 8;
   attribute C_OPERATION_TUSER_WIDTH : integer;
-  attribute C_OPERATION_TUSER_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_OPERATION_TUSER_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_RESULT_TDATA_WIDTH : integer;
-  attribute C_RESULT_TDATA_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_RESULT_TDATA_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_RESULT_TUSER_WIDTH : integer;
-  attribute C_RESULT_TUSER_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_RESULT_TUSER_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute downgradeipidentifiedwarnings : string;
-  attribute downgradeipidentifiedwarnings of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv : entity is "yes";
-end vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv;
+  attribute downgradeipidentifiedwarnings of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ : entity is "yes";
+end \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\;
 
-architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv is
+architecture STRUCTURE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\ is
   signal \<const0>\ : STD_LOGIC;
   signal \<const1>\ : STD_LOGIC;
   signal \EXP_OP.OP/A\ : STD_LOGIC_VECTOR ( 41 downto 32 );
@@ -7926,8 +7928,8 @@ architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_poin
   signal \EXP_OP.OP/i_shift_to_fixed/ROUND/O\ : STD_LOGIC;
   signal \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\ : STD_LOGIC_VECTOR ( 35 downto 0 );
   signal \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\ : STD_LOGIC_VECTOR ( 33 downto 0 );
-  signal \EXP_OP.OP/i_shift_to_fixed/align_dist_p1\ : STD_LOGIC_VECTOR ( 9 to 9 );
   signal \EXP_OP.OP/i_shift_to_fixed/op_state_p1_updated\ : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal \EXP_OP.OP/i_shift_to_fixed/op_state_p1_updated1\ : STD_LOGIC;
   signal \EXP_OP.OP/i_shift_to_fixed/round_bit_mod_pr0\ : STD_LOGIC;
   signal \EXP_OP.OP/i_shift_to_fixed/zeros_pza\ : STD_LOGIC;
   signal \EXP_OP.OP/i_special_detect/detector/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q\ : STD_LOGIC;
@@ -8101,81 +8103,6 @@ architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_poin
   signal \n_0_CHAIN_GEN[9].C_MUX.CARRY_MUX_i_1\ : STD_LOGIC;
   signal \n_0_CHAIN_GEN[9].C_MUX.CARRY_MUX_i_2\ : STD_LOGIC;
   signal \n_0_CHAIN_GEN[9].C_MUX.CARRY_MUX_i_3\ : STD_LOGIC;
-  signal n_0_DSP_i_1 : STD_LOGIC;
-  signal n_0_DSP_i_10 : STD_LOGIC;
-  signal \n_0_DSP_i_10__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_10__1\ : STD_LOGIC;
-  signal n_0_DSP_i_11 : STD_LOGIC;
-  signal \n_0_DSP_i_11__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_11__1\ : STD_LOGIC;
-  signal n_0_DSP_i_12 : STD_LOGIC;
-  signal \n_0_DSP_i_12__0\ : STD_LOGIC;
-  signal n_0_DSP_i_13 : STD_LOGIC;
-  signal \n_0_DSP_i_13__0\ : STD_LOGIC;
-  signal n_0_DSP_i_14 : STD_LOGIC;
-  signal \n_0_DSP_i_14__0\ : STD_LOGIC;
-  signal n_0_DSP_i_15 : STD_LOGIC;
-  signal \n_0_DSP_i_15__0\ : STD_LOGIC;
-  signal n_0_DSP_i_16 : STD_LOGIC;
-  signal \n_0_DSP_i_16__0\ : STD_LOGIC;
-  signal n_0_DSP_i_17 : STD_LOGIC;
-  signal \n_0_DSP_i_17__0\ : STD_LOGIC;
-  signal n_0_DSP_i_18 : STD_LOGIC;
-  signal \n_0_DSP_i_18__0\ : STD_LOGIC;
-  signal n_0_DSP_i_19 : STD_LOGIC;
-  signal \n_0_DSP_i_19__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_1__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_1__1\ : STD_LOGIC;
-  signal \n_0_DSP_i_1__2\ : STD_LOGIC;
-  signal n_0_DSP_i_2 : STD_LOGIC;
-  signal n_0_DSP_i_20 : STD_LOGIC;
-  signal \n_0_DSP_i_20__0\ : STD_LOGIC;
-  signal n_0_DSP_i_21 : STD_LOGIC;
-  signal \n_0_DSP_i_21__0\ : STD_LOGIC;
-  signal n_0_DSP_i_22 : STD_LOGIC;
-  signal \n_0_DSP_i_22__0\ : STD_LOGIC;
-  signal n_0_DSP_i_23 : STD_LOGIC;
-  signal \n_0_DSP_i_23__0\ : STD_LOGIC;
-  signal n_0_DSP_i_24 : STD_LOGIC;
-  signal \n_0_DSP_i_24__0\ : STD_LOGIC;
-  signal n_0_DSP_i_25 : STD_LOGIC;
-  signal \n_0_DSP_i_25__0\ : STD_LOGIC;
-  signal n_0_DSP_i_26 : STD_LOGIC;
-  signal \n_0_DSP_i_26__0\ : STD_LOGIC;
-  signal n_0_DSP_i_27 : STD_LOGIC;
-  signal \n_0_DSP_i_27__0\ : STD_LOGIC;
-  signal n_0_DSP_i_28 : STD_LOGIC;
-  signal \n_0_DSP_i_28__0\ : STD_LOGIC;
-  signal n_0_DSP_i_29 : STD_LOGIC;
-  signal \n_0_DSP_i_29__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_2__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_2__1\ : STD_LOGIC;
-  signal \n_0_DSP_i_2__2\ : STD_LOGIC;
-  signal n_0_DSP_i_3 : STD_LOGIC;
-  signal \n_0_DSP_i_3__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_3__1\ : STD_LOGIC;
-  signal \n_0_DSP_i_3__2\ : STD_LOGIC;
-  signal n_0_DSP_i_4 : STD_LOGIC;
-  signal \n_0_DSP_i_4__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_4__1\ : STD_LOGIC;
-  signal \n_0_DSP_i_4__2\ : STD_LOGIC;
-  signal n_0_DSP_i_5 : STD_LOGIC;
-  signal \n_0_DSP_i_5__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_5__1\ : STD_LOGIC;
-  signal \n_0_DSP_i_5__2\ : STD_LOGIC;
-  signal n_0_DSP_i_6 : STD_LOGIC;
-  signal \n_0_DSP_i_6__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_6__1\ : STD_LOGIC;
-  signal \n_0_DSP_i_6__2\ : STD_LOGIC;
-  signal n_0_DSP_i_7 : STD_LOGIC;
-  signal \n_0_DSP_i_7__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_7__1\ : STD_LOGIC;
-  signal n_0_DSP_i_8 : STD_LOGIC;
-  signal \n_0_DSP_i_8__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_8__1\ : STD_LOGIC;
-  signal n_0_DSP_i_9 : STD_LOGIC;
-  signal \n_0_DSP_i_9__0\ : STD_LOGIC;
-  signal \n_0_DSP_i_9__1\ : STD_LOGIC;
   signal \n_0_EXP_OP.OP/g_Fr_sp_dsp.i_calculate_Fr/DSP\ : STD_LOGIC;
   signal \n_0_EXP_OP.OP/i_Sx_at_op/i_pipe/opt_has_pipe.i_pipe[2].pipe_reg[2][0]\ : STD_LOGIC;
   signal \n_0_EXP_OP.OP/i_Xi_at_op/i_pipe/opt_has_pipe.i_pipe[3].pipe_reg[3][0]_srl2\ : STD_LOGIC;
@@ -8314,6 +8241,81 @@ architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_poin
   signal \n_0_fabric.use_unisims.gen_addsub[0].prop_lut_i_1\ : STD_LOGIC;
   signal \n_0_fabric.use_unisims.gen_addsub[1].prop_lut_i_1\ : STD_LOGIC;
   signal \n_0_fabric.use_unisims.gen_addsub[7].prop_lut_i_1\ : STD_LOGIC;
+  signal n_0_g0_b0 : STD_LOGIC;
+  signal \n_0_g0_b0__0\ : STD_LOGIC;
+  signal \n_0_g0_b0__1\ : STD_LOGIC;
+  signal n_0_g0_b1 : STD_LOGIC;
+  signal n_0_g0_b10 : STD_LOGIC;
+  signal \n_0_g0_b10__0\ : STD_LOGIC;
+  signal \n_0_g0_b10__1\ : STD_LOGIC;
+  signal n_0_g0_b11 : STD_LOGIC;
+  signal \n_0_g0_b11__0\ : STD_LOGIC;
+  signal n_0_g0_b12 : STD_LOGIC;
+  signal \n_0_g0_b12__0\ : STD_LOGIC;
+  signal n_0_g0_b13 : STD_LOGIC;
+  signal n_0_g0_b14 : STD_LOGIC;
+  signal n_0_g0_b15 : STD_LOGIC;
+  signal n_0_g0_b16 : STD_LOGIC;
+  signal \n_0_g0_b16__0\ : STD_LOGIC;
+  signal n_0_g0_b17 : STD_LOGIC;
+  signal n_0_g0_b18 : STD_LOGIC;
+  signal n_0_g0_b19 : STD_LOGIC;
+  signal \n_0_g0_b1__0\ : STD_LOGIC;
+  signal \n_0_g0_b1__1\ : STD_LOGIC;
+  signal n_0_g0_b2 : STD_LOGIC;
+  signal n_0_g0_b20 : STD_LOGIC;
+  signal \n_0_g0_b20__0\ : STD_LOGIC;
+  signal n_0_g0_b21 : STD_LOGIC;
+  signal \n_0_g0_b21__0\ : STD_LOGIC;
+  signal n_0_g0_b22 : STD_LOGIC;
+  signal \n_0_g0_b22__0\ : STD_LOGIC;
+  signal n_0_g0_b23 : STD_LOGIC;
+  signal \n_0_g0_b23__0\ : STD_LOGIC;
+  signal n_0_g0_b24 : STD_LOGIC;
+  signal \n_0_g0_b24__0\ : STD_LOGIC;
+  signal n_0_g0_b25 : STD_LOGIC;
+  signal \n_0_g0_b25__0\ : STD_LOGIC;
+  signal n_0_g0_b26 : STD_LOGIC;
+  signal \n_0_g0_b26__0\ : STD_LOGIC;
+  signal n_0_g0_b27 : STD_LOGIC;
+  signal \n_0_g0_b27__0\ : STD_LOGIC;
+  signal n_0_g0_b28 : STD_LOGIC;
+  signal \n_0_g0_b28__0\ : STD_LOGIC;
+  signal n_0_g0_b29 : STD_LOGIC;
+  signal \n_0_g0_b29__0\ : STD_LOGIC;
+  signal \n_0_g0_b2__0\ : STD_LOGIC;
+  signal \n_0_g0_b2__1\ : STD_LOGIC;
+  signal n_0_g0_b3 : STD_LOGIC;
+  signal n_0_g0_b30 : STD_LOGIC;
+  signal \n_0_g0_b30__0\ : STD_LOGIC;
+  signal n_0_g0_b31 : STD_LOGIC;
+  signal \n_0_g0_b31__0\ : STD_LOGIC;
+  signal n_0_g0_b32 : STD_LOGIC;
+  signal n_0_g0_b33 : STD_LOGIC;
+  signal n_0_g0_b34 : STD_LOGIC;
+  signal n_0_g0_b35 : STD_LOGIC;
+  signal \n_0_g0_b3__0\ : STD_LOGIC;
+  signal \n_0_g0_b3__1\ : STD_LOGIC;
+  signal n_0_g0_b4 : STD_LOGIC;
+  signal \n_0_g0_b4__0\ : STD_LOGIC;
+  signal \n_0_g0_b4__1\ : STD_LOGIC;
+  signal \n_0_g0_b4__2\ : STD_LOGIC;
+  signal n_0_g0_b5 : STD_LOGIC;
+  signal \n_0_g0_b5__0\ : STD_LOGIC;
+  signal \n_0_g0_b5__1\ : STD_LOGIC;
+  signal \n_0_g0_b5__2\ : STD_LOGIC;
+  signal n_0_g0_b6 : STD_LOGIC;
+  signal \n_0_g0_b6__0\ : STD_LOGIC;
+  signal \n_0_g0_b6__1\ : STD_LOGIC;
+  signal n_0_g0_b7 : STD_LOGIC;
+  signal \n_0_g0_b7__0\ : STD_LOGIC;
+  signal \n_0_g0_b7__1\ : STD_LOGIC;
+  signal n_0_g0_b8 : STD_LOGIC;
+  signal \n_0_g0_b8__0\ : STD_LOGIC;
+  signal \n_0_g0_b8__1\ : STD_LOGIC;
+  signal n_0_g0_b9 : STD_LOGIC;
+  signal \n_0_g0_b9__0\ : STD_LOGIC;
+  signal \n_0_g0_b9__1\ : STD_LOGIC;
   signal \n_0_i_nd_to_rdy/opt_has_pipe.i_pipe[6].pipe_reg[6][0]_srl5\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[0]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[0]_i_1__0\ : STD_LOGIC;
@@ -8331,7 +8333,6 @@ architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_poin
   signal \n_0_opt_has_pipe.first_q[0]_i_2__2\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[0]_i_3\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[0]_i_3__0\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[0]_i_3__1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[0]_i_4\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[10]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[10]_i_1__0\ : STD_LOGIC;
@@ -8349,8 +8350,6 @@ architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_poin
   signal \n_0_opt_has_pipe.first_q[16]_i_1__0\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[17]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[17]_i_1__0\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[17]_i_2\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[17]_i_3\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[18]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[18]_i_1__0\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[19]_i_1\ : STD_LOGIC;
@@ -8360,37 +8359,38 @@ architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_poin
   signal \n_0_opt_has_pipe.first_q[1]_i_1__1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[1]_i_1__2\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[1]_i_1__3\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[1]_i_2\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[1]_i_4\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[1]_i_2__0\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[1]_i_3\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[1]_i_3__0\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[20]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[20]_i_1__0\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[21]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[21]_i_1__0\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[21]_i_2\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[22]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[22]_i_1__0\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[22]_i_2\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[22]_i_2__0\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[22]_i_3\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[22]_i_4\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[23]_i_1__0\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[23]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[23]_i_2\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[24]_i_1__0\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[24]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[24]_i_2\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[25]_i_1__0\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[25]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[25]_i_2\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[26]_i_1__0\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[26]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[26]_i_2\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[27]_i_1__0\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[27]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[27]_i_2\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[28]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[28]_i_1__0\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[28]_i_2\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[29]_i_1__0\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[28]_i_2__0\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[29]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[29]_i_2\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[29]_i_3\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[29]_i_4\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[2]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[2]_i_1__0\ : STD_LOGIC;
-  signal \n_0_opt_has_pipe.first_q[30]_i_1__0\ : STD_LOGIC;
+  signal \n_0_opt_has_pipe.first_q[30]_i_1\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[30]_i_2\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[30]_i_3\ : STD_LOGIC;
   signal \n_0_opt_has_pipe.first_q[3]_i_1\ : STD_LOGIC;
@@ -9326,8 +9326,8 @@ architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_poin
   attribute SOFT_HLUTNM : string;
   attribute SOFT_HLUTNM of \CHAIN_GEN[0].C_MUX.CARRY_MUX_i_5\ : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \CHAIN_GEN[0].C_MUX.CARRY_MUX_i_7\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \CHAIN_GEN[14].C_MUX.CARRY_MUX_i_2\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \CHAIN_GEN[18].C_MUX.CARRY_MUX_i_3\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \CHAIN_GEN[17].C_MUX.CARRY_MUX_i_2\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \CHAIN_GEN[18].C_MUX.CARRY_MUX_i_3\ : label is "soft_lutpair9";
   attribute SOFT_HLUTNM of \CHAIN_GEN[1].C_MUX.CARRY_MUX_i_4\ : label is "soft_lutpair9";
   attribute box_type : string;
   attribute box_type of \EXP_OP.OP/g_Fr_sp_dsp.i_calculate_Fr/DSP\ : label is "PRIMITIVE";
@@ -9358,7 +9358,7 @@ architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_poin
   attribute C_A_WIDTH of \EXP_OP.OP/i_calculate_e2A\ : label is 10;
   attribute C_RESULT_WIDTH of \EXP_OP.OP/i_calculate_e2A\ : label is 27;
   attribute C_USE_BRAMS : string;
-  attribute C_USE_BRAMS of \EXP_OP.OP/i_calculate_e2A\ : label is "false";
+  attribute C_USE_BRAMS of \EXP_OP.OP/i_calculate_e2A\ : label is "FALSE";
   attribute C_Wf : integer;
   attribute C_Wf of \EXP_OP.OP/i_calculate_e2A\ : label is 23;
   attribute C_XDEVICEFAMILY of \EXP_OP.OP/i_calculate_e2A\ : label is "zynq";
@@ -9369,7 +9369,7 @@ architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_poin
   attribute C_K of \EXP_OP.OP/i_calculate_e2zmzm1\ : label is 10;
   attribute C_MULT_USAGE of \EXP_OP.OP/i_calculate_e2zmzm1\ : label is 2;
   attribute C_RESULT_WIDTH of \EXP_OP.OP/i_calculate_e2zmzm1\ : label is 6;
-  attribute C_USE_BRAMS of \EXP_OP.OP/i_calculate_e2zmzm1\ : label is "false";
+  attribute C_USE_BRAMS of \EXP_OP.OP/i_calculate_e2zmzm1\ : label is "FALSE";
   attribute C_We : integer;
   attribute C_We of \EXP_OP.OP/i_calculate_e2zmzm1\ : label is 8;
   attribute C_Wf of \EXP_OP.OP/i_calculate_e2zmzm1\ : label is 23;
@@ -9504,26 +9504,22 @@ architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_poin
   attribute box_type of \EXP_OP.OP/i_unbiased_is_127/CARRY_ZERO_DET/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4\ : label is "PRIMITIVE";
   attribute XILINX_LEGACY_PRIM of \EXP_OP.OP/i_unbiased_lower_not_all_zeros/WIDE_NOR/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4\ : label is "(MUXCY,XORCY)";
   attribute box_type of \EXP_OP.OP/i_unbiased_lower_not_all_zeros/WIDE_NOR/CHAIN_GEN[0].C_MUX.CARRY_MUX_CARRY4\ : label is "PRIMITIVE";
-  attribute SOFT_HLUTNM of \MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_8\ : label is "soft_lutpair6";
   attribute keep of \i_nd_to_rdy/opt_has_pipe.first_q_reg[0]\ : label is "yes";
   attribute srl_bus_name of \i_nd_to_rdy/opt_has_pipe.i_pipe[6].pipe_reg[6][0]_srl5\ : label is "U0/i_synth/\i_nd_to_rdy/opt_has_pipe.i_pipe[6].pipe_reg[6] ";
   attribute srl_name of \i_nd_to_rdy/opt_has_pipe.i_pipe[6].pipe_reg[6][0]_srl5\ : label is "U0/i_synth/\i_nd_to_rdy/opt_has_pipe.i_pipe[6].pipe_reg[6][0]_srl5 ";
   attribute SOFT_HLUTNM of \opt_has_pipe.first_q[0]_i_1__0\ : label is "soft_lutpair13";
   attribute RETAIN_INVERTER : boolean;
   attribute RETAIN_INVERTER of \opt_has_pipe.first_q[0]_i_1__3\ : label is true;
-  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[0]_i_1__3\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[0]_i_1__4\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[0]_i_1__3\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[0]_i_1__4\ : label is "soft_lutpair10";
   attribute SOFT_HLUTNM of \opt_has_pipe.first_q[0]_i_2\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[0]_i_2__1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[17]_i_2\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[17]_i_3\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[1]_i_3\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[0]_i_2__0\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[0]_i_2__1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[1]_i_2\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[1]_i_2__0\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[1]_i_3\ : label is "soft_lutpair11";
   attribute SOFT_HLUTNM of \opt_has_pipe.first_q[22]_i_2__0\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[22]_i_3\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[22]_i_4\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[29]_i_2\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[29]_i_3\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[30]_i_3\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \opt_has_pipe.first_q[29]_i_3\ : label is "soft_lutpair11";
 begin
   m_axis_result_tlast <= \<const0>\;
   m_axis_result_tuser(0) <= \<const0>\;
@@ -11229,825 +11225,13 @@ begin
       I5 => \n_0_CHAIN_GEN[18].C_MUX.CARRY_MUX_i_4\,
       O => \n_0_CHAIN_GEN[9].C_MUX.CARRY_MUX_i_3\
     );
-DSP_i_1: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"A8888888"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(48),
-      I1 => \EXP_OP.OP/XFixTrunc\(47),
-      I2 => \EXP_OP.OP/XFixTrunc\(46),
-      I3 => \EXP_OP.OP/XFixTrunc\(44),
-      I4 => \EXP_OP.OP/XFixTrunc\(45),
-      O => n_0_DSP_i_1
-    );
-DSP_i_10: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"9998AE66"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(44),
-      I1 => \EXP_OP.OP/XFixTrunc\(48),
-      I2 => \EXP_OP.OP/XFixTrunc\(45),
-      I3 => \EXP_OP.OP/XFixTrunc\(46),
-      I4 => \EXP_OP.OP/XFixTrunc\(47),
-      O => n_0_DSP_i_10
-    );
-\DSP_i_10__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(48),
-      I1 => \EXP_OP.OP/Xi\(49),
-      I2 => \EXP_OP.OP/Xi\(46),
-      I3 => \EXP_OP.OP/Xi\(47),
-      O => \n_0_DSP_i_10__0\
-    );
-\DSP_i_10__1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"EA"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(45),
-      I1 => \EXP_OP.OP/Xi\(43),
-      I2 => \EXP_OP.OP/Xi\(44),
-      O => \n_0_DSP_i_10__1\
-    );
-DSP_i_11: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B99DD446"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(47),
-      I1 => \EXP_OP.OP/XFixTrunc\(48),
-      I2 => \EXP_OP.OP/XFixTrunc\(45),
-      I3 => \EXP_OP.OP/XFixTrunc\(44),
-      I4 => \EXP_OP.OP/XFixTrunc\(46),
-      O => n_0_DSP_i_11
-    );
-\DSP_i_11__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0F1E"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(47),
-      I1 => \EXP_OP.OP/Xi\(48),
-      I2 => \EXP_OP.OP/Xi\(49),
-      I3 => \EXP_OP.OP/Xi\(46),
-      O => \n_0_DSP_i_11__0\
-    );
-\DSP_i_11__1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"EA"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(45),
-      I1 => \EXP_OP.OP/Xi\(43),
-      I2 => \EXP_OP.OP/Xi\(44),
-      O => \n_0_DSP_i_11__1\
-    );
-DSP_i_12: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"36"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(47),
-      I1 => \EXP_OP.OP/Xi\(48),
-      I2 => \EXP_OP.OP/Xi\(46),
-      O => n_0_DSP_i_12
-    );
-\DSP_i_12__0\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"EA"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(45),
-      I1 => \EXP_OP.OP/Xi\(43),
-      I2 => \EXP_OP.OP/Xi\(44),
-      O => \n_0_DSP_i_12__0\
-    );
-DSP_i_13: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"6"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(46),
-      I1 => \EXP_OP.OP/Xi\(47),
-      O => n_0_DSP_i_13
-    );
-\DSP_i_13__0\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"6C"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(44),
-      I1 => \EXP_OP.OP/Xi\(45),
-      I2 => \EXP_OP.OP/Xi\(43),
-      O => \n_0_DSP_i_13__0\
-    );
-DSP_i_14: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"8"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(49),
-      I1 => \EXP_OP.OP/Xi\(48),
-      O => n_0_DSP_i_14
-    );
-\DSP_i_14__0\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"9"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(43),
-      I1 => \EXP_OP.OP/Xi\(44),
-      O => \n_0_DSP_i_14__0\
-    );
-DSP_i_15: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"38"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(47),
-      I1 => \EXP_OP.OP/Xi\(48),
-      I2 => \EXP_OP.OP/Xi\(49),
-      O => n_0_DSP_i_15
-    );
-\DSP_i_15__0\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"2"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(43),
-      I1 => \EXP_OP.OP/Xi\(42),
-      O => \n_0_DSP_i_15__0\
-    );
-DSP_i_16: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"B22C"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(46),
-      I1 => \EXP_OP.OP/Xi\(48),
-      I2 => \EXP_OP.OP/Xi\(49),
-      I3 => \EXP_OP.OP/Xi\(47),
-      O => n_0_DSP_i_16
-    );
-\DSP_i_16__0\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"8"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(45),
-      I1 => \EXP_OP.OP/Xi\(44),
-      O => \n_0_DSP_i_16__0\
-    );
-DSP_i_17: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"5886"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(47),
-      I1 => \EXP_OP.OP/Xi\(49),
-      I2 => \EXP_OP.OP/Xi\(48),
-      I3 => \EXP_OP.OP/Xi\(46),
-      O => n_0_DSP_i_17
-    );
-\DSP_i_17__0\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"38"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(43),
-      I1 => \EXP_OP.OP/Xi\(44),
-      I2 => \EXP_OP.OP/Xi\(45),
-      O => \n_0_DSP_i_17__0\
-    );
-DSP_i_18: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"29B4"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(47),
-      I1 => \EXP_OP.OP/Xi\(48),
-      I2 => \EXP_OP.OP/Xi\(49),
-      I3 => \EXP_OP.OP/Xi\(46),
-      O => n_0_DSP_i_18
-    );
-\DSP_i_18__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"B22C"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(42),
-      I1 => \EXP_OP.OP/Xi\(44),
-      I2 => \EXP_OP.OP/Xi\(45),
-      I3 => \EXP_OP.OP/Xi\(43),
-      O => \n_0_DSP_i_18__0\
-    );
-DSP_i_19: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"C43C"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(49),
-      I1 => \EXP_OP.OP/Xi\(48),
-      I2 => \EXP_OP.OP/Xi\(47),
-      I3 => \EXP_OP.OP/Xi\(46),
-      O => n_0_DSP_i_19
-    );
-\DSP_i_19__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"5886"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(43),
-      I1 => \EXP_OP.OP/Xi\(45),
-      I2 => \EXP_OP.OP/Xi\(44),
-      I3 => \EXP_OP.OP/Xi\(42),
-      O => \n_0_DSP_i_19__0\
-    );
-\DSP_i_1__0\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"A8"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(43),
-      I1 => \EXP_OP.OP/XFixTrunc\(41),
-      I2 => \EXP_OP.OP/XFixTrunc\(42),
-      O => \n_0_DSP_i_1__0\
-    );
-\DSP_i_1__1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"A888"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(49),
-      I1 => \EXP_OP.OP/Xi\(48),
-      I2 => \EXP_OP.OP/Xi\(47),
-      I3 => \EXP_OP.OP/Xi\(46),
-      O => \n_0_DSP_i_1__1\
-    );
-\DSP_i_1__2\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"9C"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(45),
-      I1 => \EXP_OP.OP/Xi\(43),
-      I2 => \EXP_OP.OP/Xi\(42),
-      O => \n_0_DSP_i_1__2\
-    );
-DSP_i_2: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"42626262"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(48),
-      I1 => \EXP_OP.OP/XFixTrunc\(47),
-      I2 => \EXP_OP.OP/XFixTrunc\(46),
-      I3 => \EXP_OP.OP/XFixTrunc\(45),
-      I4 => \EXP_OP.OP/XFixTrunc\(44),
-      O => n_0_DSP_i_2
-    );
-DSP_i_20: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"8F70"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(49),
-      I1 => \EXP_OP.OP/Xi\(48),
-      I2 => \EXP_OP.OP/Xi\(46),
-      I3 => \EXP_OP.OP/Xi\(47),
-      O => n_0_DSP_i_20
-    );
-\DSP_i_20__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"29B4"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(43),
-      I1 => \EXP_OP.OP/Xi\(44),
-      I2 => \EXP_OP.OP/Xi\(45),
-      I3 => \EXP_OP.OP/Xi\(42),
-      O => \n_0_DSP_i_20__0\
-    );
-DSP_i_21: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"6A"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(46),
-      I1 => \EXP_OP.OP/Xi\(48),
-      I2 => \EXP_OP.OP/Xi\(49),
-      O => n_0_DSP_i_21
-    );
-\DSP_i_21__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"C43C"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(45),
-      I1 => \EXP_OP.OP/Xi\(44),
-      I2 => \EXP_OP.OP/Xi\(43),
-      I3 => \EXP_OP.OP/Xi\(42),
-      O => \n_0_DSP_i_21__0\
-    );
-DSP_i_22: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"38"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(47),
-      I1 => \EXP_OP.OP/Xi\(48),
-      I2 => \EXP_OP.OP/Xi\(49),
-      O => n_0_DSP_i_22
-    );
-\DSP_i_22__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"8F70"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(45),
-      I1 => \EXP_OP.OP/Xi\(44),
-      I2 => \EXP_OP.OP/Xi\(42),
-      I3 => \EXP_OP.OP/Xi\(43),
-      O => \n_0_DSP_i_22__0\
-    );
-DSP_i_23: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"99E8"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(49),
-      I1 => \EXP_OP.OP/Xi\(47),
-      I2 => \EXP_OP.OP/Xi\(46),
-      I3 => \EXP_OP.OP/Xi\(48),
-      O => n_0_DSP_i_23
-    );
-\DSP_i_23__0\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"6A"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(42),
-      I1 => \EXP_OP.OP/Xi\(44),
-      I2 => \EXP_OP.OP/Xi\(45),
-      O => \n_0_DSP_i_23__0\
-    );
-DSP_i_24: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"2AD4"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(46),
-      I1 => \EXP_OP.OP/Xi\(47),
-      I2 => \EXP_OP.OP/Xi\(49),
-      I3 => \EXP_OP.OP/Xi\(48),
-      O => n_0_DSP_i_24
-    );
-\DSP_i_24__0\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"38"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(43),
-      I1 => \EXP_OP.OP/Xi\(44),
-      I2 => \EXP_OP.OP/Xi\(45),
-      O => \n_0_DSP_i_24__0\
-    );
-DSP_i_25: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"9D54"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(47),
-      I1 => \EXP_OP.OP/Xi\(49),
-      I2 => \EXP_OP.OP/Xi\(48),
-      I3 => \EXP_OP.OP/Xi\(46),
-      O => n_0_DSP_i_25
-    );
-\DSP_i_25__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"99E8"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(45),
-      I1 => \EXP_OP.OP/Xi\(43),
-      I2 => \EXP_OP.OP/Xi\(42),
-      I3 => \EXP_OP.OP/Xi\(44),
-      O => \n_0_DSP_i_25__0\
-    );
-DSP_i_26: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"A954"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(46),
-      I1 => \EXP_OP.OP/Xi\(47),
-      I2 => \EXP_OP.OP/Xi\(48),
-      I3 => \EXP_OP.OP/Xi\(49),
-      O => n_0_DSP_i_26
-    );
-\DSP_i_26__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"2AD4"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(42),
-      I1 => \EXP_OP.OP/Xi\(43),
-      I2 => \EXP_OP.OP/Xi\(45),
-      I3 => \EXP_OP.OP/Xi\(44),
-      O => \n_0_DSP_i_26__0\
-    );
-DSP_i_27: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"51AE"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(47),
-      I1 => \EXP_OP.OP/Xi\(46),
-      I2 => \EXP_OP.OP/Xi\(49),
-      I3 => \EXP_OP.OP/Xi\(48),
-      O => n_0_DSP_i_27
-    );
-\DSP_i_27__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"9D54"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(43),
-      I1 => \EXP_OP.OP/Xi\(45),
-      I2 => \EXP_OP.OP/Xi\(44),
-      I3 => \EXP_OP.OP/Xi\(42),
-      O => \n_0_DSP_i_27__0\
-    );
-DSP_i_28: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"9C"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(49),
-      I1 => \EXP_OP.OP/Xi\(47),
-      I2 => \EXP_OP.OP/Xi\(46),
-      O => n_0_DSP_i_28
-    );
-\DSP_i_28__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"A954"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(42),
-      I1 => \EXP_OP.OP/Xi\(43),
-      I2 => \EXP_OP.OP/Xi\(44),
-      I3 => \EXP_OP.OP/Xi\(45),
-      O => \n_0_DSP_i_28__0\
-    );
-DSP_i_29: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"6"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(46),
-      I1 => \EXP_OP.OP/Xi\(49),
-      O => n_0_DSP_i_29
-    );
-\DSP_i_29__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"51AE"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(43),
-      I1 => \EXP_OP.OP/Xi\(42),
-      I2 => \EXP_OP.OP/Xi\(45),
-      I3 => \EXP_OP.OP/Xi\(44),
-      O => \n_0_DSP_i_29__0\
-    );
-\DSP_i_2__0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"80F00FF0"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(40),
-      I1 => \EXP_OP.OP/XFixTrunc\(39),
-      I2 => \EXP_OP.OP/XFixTrunc\(42),
-      I3 => \EXP_OP.OP/XFixTrunc\(43),
-      I4 => \EXP_OP.OP/XFixTrunc\(41),
-      O => \n_0_DSP_i_2__0\
-    );
-\DSP_i_2__1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"2644"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(48),
-      I1 => \EXP_OP.OP/Xi\(49),
-      I2 => \EXP_OP.OP/Xi\(46),
-      I3 => \EXP_OP.OP/Xi\(47),
-      O => \n_0_DSP_i_2__1\
-    );
-\DSP_i_2__2\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"6"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(42),
-      I1 => \EXP_OP.OP/Xi\(45),
-      O => \n_0_DSP_i_2__2\
-    );
-DSP_i_3: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"F07E0FC0"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(44),
-      I1 => \EXP_OP.OP/XFixTrunc\(45),
-      I2 => \EXP_OP.OP/XFixTrunc\(46),
-      I3 => \EXP_OP.OP/XFixTrunc\(47),
-      I4 => \EXP_OP.OP/XFixTrunc\(48),
-      O => n_0_DSP_i_3
-    );
-DSP_i_30: unisim.vcomponents.LUT1
+DSP_i_1: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
     )
     port map (
       I0 => \EXP_OP.OP/i_Sx_at_Xi/i_pipe/first_q\,
       O => \EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/alumode\(1)
-    );
-\DSP_i_3__0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"65E5AE8A"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(43),
-      I1 => \EXP_OP.OP/XFixTrunc\(40),
-      I2 => \EXP_OP.OP/XFixTrunc\(42),
-      I3 => \EXP_OP.OP/XFixTrunc\(39),
-      I4 => \EXP_OP.OP/XFixTrunc\(41),
-      O => \n_0_DSP_i_3__0\
-    );
-\DSP_i_3__1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"9C62"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(48),
-      I1 => \EXP_OP.OP/Xi\(49),
-      I2 => \EXP_OP.OP/Xi\(46),
-      I3 => \EXP_OP.OP/Xi\(47),
-      O => \n_0_DSP_i_3__1\
-    );
-\DSP_i_3__2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"A888"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(45),
-      I1 => \EXP_OP.OP/Xi\(44),
-      I2 => \EXP_OP.OP/Xi\(43),
-      I3 => \EXP_OP.OP/Xi\(42),
-      O => \n_0_DSP_i_3__2\
-    );
-DSP_i_4: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"A6B665A4"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(47),
-      I1 => \EXP_OP.OP/XFixTrunc\(46),
-      I2 => \EXP_OP.OP/XFixTrunc\(45),
-      I3 => \EXP_OP.OP/XFixTrunc\(48),
-      I4 => \EXP_OP.OP/XFixTrunc\(44),
-      O => n_0_DSP_i_4
-    );
-\DSP_i_4__0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"1C8EE3F1"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(43),
-      I1 => \EXP_OP.OP/XFixTrunc\(41),
-      I2 => \EXP_OP.OP/XFixTrunc\(40),
-      I3 => \EXP_OP.OP/XFixTrunc\(39),
-      I4 => \EXP_OP.OP/XFixTrunc\(42),
-      O => \n_0_DSP_i_4__0\
-    );
-\DSP_i_4__1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"AA54"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(46),
-      I1 => \EXP_OP.OP/Xi\(47),
-      I2 => \EXP_OP.OP/Xi\(49),
-      I3 => \EXP_OP.OP/Xi\(48),
-      O => \n_0_DSP_i_4__1\
-    );
-\DSP_i_4__2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"2644"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(44),
-      I1 => \EXP_OP.OP/Xi\(45),
-      I2 => \EXP_OP.OP/Xi\(42),
-      I3 => \EXP_OP.OP/Xi\(43),
-      O => \n_0_DSP_i_4__2\
-    );
-DSP_i_5: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"17A8A05E"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(45),
-      I1 => \EXP_OP.OP/XFixTrunc\(47),
-      I2 => \EXP_OP.OP/XFixTrunc\(48),
-      I3 => \EXP_OP.OP/XFixTrunc\(46),
-      I4 => \EXP_OP.OP/XFixTrunc\(44),
-      O => n_0_DSP_i_5
-    );
-\DSP_i_5__0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"778188EE"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(40),
-      I1 => \EXP_OP.OP/XFixTrunc\(43),
-      I2 => \EXP_OP.OP/XFixTrunc\(42),
-      I3 => \EXP_OP.OP/XFixTrunc\(39),
-      I4 => \EXP_OP.OP/XFixTrunc\(41),
-      O => \n_0_DSP_i_5__0\
-    );
-\DSP_i_5__1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"00FE"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(46),
-      I1 => \EXP_OP.OP/Xi\(49),
-      I2 => \EXP_OP.OP/Xi\(48),
-      I3 => \EXP_OP.OP/Xi\(47),
-      O => \n_0_DSP_i_5__1\
-    );
-\DSP_i_5__2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"9C62"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(44),
-      I1 => \EXP_OP.OP/Xi\(45),
-      I2 => \EXP_OP.OP/Xi\(42),
-      I3 => \EXP_OP.OP/Xi\(43),
-      O => \n_0_DSP_i_5__2\
-    );
-DSP_i_6: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"4AB5AB54"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(45),
-      I1 => \EXP_OP.OP/XFixTrunc\(46),
-      I2 => \EXP_OP.OP/XFixTrunc\(47),
-      I3 => \EXP_OP.OP/XFixTrunc\(48),
-      I4 => \EXP_OP.OP/XFixTrunc\(44),
-      O => n_0_DSP_i_6
-    );
-\DSP_i_6__0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"F81703F8"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(41),
-      I1 => \EXP_OP.OP/XFixTrunc\(42),
-      I2 => \EXP_OP.OP/XFixTrunc\(39),
-      I3 => \EXP_OP.OP/XFixTrunc\(40),
-      I4 => \EXP_OP.OP/XFixTrunc\(43),
-      O => \n_0_DSP_i_6__0\
-    );
-\DSP_i_6__1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"00FE"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(47),
-      I1 => \EXP_OP.OP/Xi\(49),
-      I2 => \EXP_OP.OP/Xi\(48),
-      I3 => \EXP_OP.OP/Xi\(46),
-      O => \n_0_DSP_i_6__1\
-    );
-\DSP_i_6__2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"AB54"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(42),
-      I1 => \EXP_OP.OP/Xi\(45),
-      I2 => \EXP_OP.OP/Xi\(43),
-      I3 => \EXP_OP.OP/Xi\(44),
-      O => \n_0_DSP_i_6__2\
-    );
-DSP_i_7: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"F00FAD4A"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(45),
-      I1 => \EXP_OP.OP/XFixTrunc\(48),
-      I2 => \EXP_OP.OP/XFixTrunc\(44),
-      I3 => \EXP_OP.OP/XFixTrunc\(47),
-      I4 => \EXP_OP.OP/XFixTrunc\(46),
-      O => n_0_DSP_i_7
-    );
-\DSP_i_7__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(48),
-      I1 => \EXP_OP.OP/Xi\(49),
-      I2 => \EXP_OP.OP/Xi\(46),
-      I3 => \EXP_OP.OP/Xi\(47),
-      O => \n_0_DSP_i_7__0\
-    );
-\DSP_i_7__1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0E1E"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(45),
-      I1 => \EXP_OP.OP/Xi\(42),
-      I2 => \EXP_OP.OP/Xi\(43),
-      I3 => \EXP_OP.OP/Xi\(44),
-      O => \n_0_DSP_i_7__1\
-    );
-DSP_i_8: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"5B55AA9A"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(46),
-      I1 => \EXP_OP.OP/XFixTrunc\(47),
-      I2 => \EXP_OP.OP/XFixTrunc\(44),
-      I3 => \EXP_OP.OP/XFixTrunc\(48),
-      I4 => \EXP_OP.OP/XFixTrunc\(45),
-      O => n_0_DSP_i_8
-    );
-\DSP_i_8__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(48),
-      I1 => \EXP_OP.OP/Xi\(49),
-      I2 => \EXP_OP.OP/Xi\(46),
-      I3 => \EXP_OP.OP/Xi\(47),
-      O => \n_0_DSP_i_8__0\
-    );
-\DSP_i_8__1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"556A"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(42),
-      I1 => \EXP_OP.OP/Xi\(44),
-      I2 => \EXP_OP.OP/Xi\(43),
-      I3 => \EXP_OP.OP/Xi\(45),
-      O => \n_0_DSP_i_8__1\
-    );
-DSP_i_9: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"CCC33C4C"
-    )
-    port map (
-      I0 => \EXP_OP.OP/XFixTrunc\(46),
-      I1 => \EXP_OP.OP/XFixTrunc\(45),
-      I2 => \EXP_OP.OP/XFixTrunc\(48),
-      I3 => \EXP_OP.OP/XFixTrunc\(47),
-      I4 => \EXP_OP.OP/XFixTrunc\(44),
-      O => n_0_DSP_i_9
-    );
-\DSP_i_9__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(48),
-      I1 => \EXP_OP.OP/Xi\(49),
-      I2 => \EXP_OP.OP/Xi\(46),
-      I3 => \EXP_OP.OP/Xi\(47),
-      O => \n_0_DSP_i_9__0\
-    );
-\DSP_i_9__1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"EA"
-    )
-    port map (
-      I0 => \EXP_OP.OP/Xi\(45),
-      I1 => \EXP_OP.OP/Xi\(43),
-      I2 => \EXP_OP.OP/Xi\(44),
-      O => \n_0_DSP_i_9__1\
     );
 \EXP_OP.OP/g_Fr_sp_dsp.i_calculate_Fr/DSP\: unisim.vcomponents.DSP48E1
     generic map(
@@ -12696,8 +11880,8 @@ DSP_i_9: unisim.vcomponents.LUT5
     )
     port map (
       C => aclk,
-      CE => aclken,
-      D => \EXP_OP.OP/XFixTrunc\(44),
+      CE => \<const1>\,
+      D => \n_0_opt_has_pipe.first_q[28]_i_1\,
       Q => \EXP_OP.OP/i_XFix_at_Xf/i_pipe/first_q\(28),
       R => \<const0>\
     );
@@ -13948,20 +13132,20 @@ DSP_i_9: unisim.vcomponents.LUT5
       A(16) => \<const0>\,
       A(15) => \<const0>\,
       A(14) => \<const0>\,
-      A(13) => \n_0_DSP_i_16__0\,
-      A(12) => \n_0_DSP_i_17__0\,
-      A(11) => \n_0_DSP_i_18__0\,
-      A(10) => \n_0_DSP_i_19__0\,
-      A(9) => \n_0_DSP_i_20__0\,
-      A(8) => \n_0_DSP_i_21__0\,
-      A(7) => \n_0_DSP_i_22__0\,
-      A(6) => \n_0_DSP_i_23__0\,
-      A(5) => \n_0_DSP_i_24__0\,
-      A(4) => \n_0_DSP_i_25__0\,
-      A(3) => \n_0_DSP_i_26__0\,
-      A(2) => \n_0_DSP_i_27__0\,
-      A(1) => \n_0_DSP_i_28__0\,
-      A(0) => \n_0_DSP_i_29__0\,
+      A(13) => \n_0_g0_b31__0\,
+      A(12) => \n_0_g0_b30__0\,
+      A(11) => \n_0_g0_b29__0\,
+      A(10) => \n_0_g0_b28__0\,
+      A(9) => \n_0_g0_b27__0\,
+      A(8) => \n_0_g0_b26__0\,
+      A(7) => \n_0_g0_b25__0\,
+      A(6) => \n_0_g0_b24__0\,
+      A(5) => \n_0_g0_b23__0\,
+      A(4) => \n_0_g0_b22__0\,
+      A(3) => \n_0_g0_b21__0\,
+      A(2) => \n_0_g0_b20__0\,
+      A(1) => n_0_g0_b19,
+      A(0) => n_0_g0_b18,
       ACIN(29) => \<const0>\,
       ACIN(28) => \<const0>\,
       ACIN(27) => \<const0>\,
@@ -14026,22 +13210,22 @@ DSP_i_9: unisim.vcomponents.LUT5
       ALUMODE(2) => \<const0>\,
       ALUMODE(1) => \EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/alumode\(1),
       ALUMODE(0) => \EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/alumode\(1),
-      B(17) => \n_0_DSP_i_1__2\,
-      B(16) => \n_0_DSP_i_2__2\,
+      B(17) => n_0_g0_b17,
+      B(16) => \n_0_g0_b16__0\,
       B(15 downto 13) => \EXP_OP.OP/Xi\(44 downto 42),
-      B(12) => \n_0_DSP_i_3__2\,
-      B(11) => \n_0_DSP_i_4__2\,
-      B(10) => \n_0_DSP_i_5__2\,
-      B(9) => \n_0_DSP_i_6__2\,
-      B(8) => \n_0_DSP_i_7__1\,
-      B(7) => \n_0_DSP_i_8__1\,
-      B(6) => \n_0_DSP_i_9__1\,
-      B(5) => \n_0_DSP_i_10__1\,
-      B(4) => \n_0_DSP_i_11__1\,
-      B(3) => \n_0_DSP_i_12__0\,
-      B(2) => \n_0_DSP_i_13__0\,
-      B(1) => \n_0_DSP_i_14__0\,
-      B(0) => \n_0_DSP_i_15__0\,
+      B(12) => \n_0_g0_b12__0\,
+      B(11) => \n_0_g0_b11__0\,
+      B(10) => \n_0_g0_b10__1\,
+      B(9) => \n_0_g0_b9__1\,
+      B(8) => \n_0_g0_b8__1\,
+      B(7) => \n_0_g0_b7__1\,
+      B(6) => \n_0_g0_b6__1\,
+      B(5) => \n_0_g0_b5__2\,
+      B(4) => \n_0_g0_b4__2\,
+      B(3) => \n_0_g0_b3__1\,
+      B(2) => \n_0_g0_b2__1\,
+      B(1) => \n_0_g0_b1__1\,
+      B(0) => \n_0_g0_b0__1\,
       BCIN(17) => \<const0>\,
       BCIN(16) => \<const0>\,
       BCIN(15) => \<const0>\,
@@ -14137,11 +13321,11 @@ DSP_i_9: unisim.vcomponents.LUT5
       CARRYOUT(1) => \n_56_EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP\,
       CARRYOUT(0) => \n_57_EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP\,
       CEA1 => \<const0>\,
-      CEA2 => \<const1>\,
+      CEA2 => \<const0>\,
       CEAD => \<const0>\,
       CEALUMODE => \<const0>\,
       CEB1 => \<const0>\,
-      CEB2 => \<const1>\,
+      CEB2 => \<const0>\,
       CEC => \<const0>\,
       CECARRYIN => \<const0>\,
       CECTRL => \<const0>\,
@@ -14347,34 +13531,34 @@ DSP_i_9: unisim.vcomponents.LUT5
       USE_SIMD => "ONE48"
     )
     port map (
-      A(29) => n_0_DSP_i_14,
-      A(28) => n_0_DSP_i_14,
-      A(27) => n_0_DSP_i_14,
-      A(26) => n_0_DSP_i_14,
-      A(25) => n_0_DSP_i_14,
-      A(24) => n_0_DSP_i_14,
-      A(23) => n_0_DSP_i_14,
-      A(22) => n_0_DSP_i_14,
-      A(21) => n_0_DSP_i_14,
-      A(20) => n_0_DSP_i_14,
-      A(19) => n_0_DSP_i_14,
-      A(18) => n_0_DSP_i_14,
-      A(17) => n_0_DSP_i_14,
-      A(16) => n_0_DSP_i_15,
-      A(15) => n_0_DSP_i_16,
-      A(14) => n_0_DSP_i_17,
-      A(13) => n_0_DSP_i_18,
-      A(12) => n_0_DSP_i_19,
-      A(11) => n_0_DSP_i_20,
-      A(10) => n_0_DSP_i_21,
-      A(9) => n_0_DSP_i_22,
-      A(8) => n_0_DSP_i_23,
-      A(7) => n_0_DSP_i_24,
-      A(6) => n_0_DSP_i_25,
-      A(5) => n_0_DSP_i_26,
-      A(4) => n_0_DSP_i_27,
-      A(3) => n_0_DSP_i_28,
-      A(2) => n_0_DSP_i_29,
+      A(29) => n_0_g0_b35,
+      A(28) => n_0_g0_b35,
+      A(27) => n_0_g0_b35,
+      A(26) => n_0_g0_b35,
+      A(25) => n_0_g0_b35,
+      A(24) => n_0_g0_b35,
+      A(23) => n_0_g0_b35,
+      A(22) => n_0_g0_b35,
+      A(21) => n_0_g0_b35,
+      A(20) => n_0_g0_b35,
+      A(19) => n_0_g0_b35,
+      A(18) => n_0_g0_b35,
+      A(17) => n_0_g0_b35,
+      A(16) => n_0_g0_b34,
+      A(15) => n_0_g0_b33,
+      A(14) => n_0_g0_b32,
+      A(13) => n_0_g0_b31,
+      A(12) => n_0_g0_b30,
+      A(11) => n_0_g0_b29,
+      A(10) => n_0_g0_b28,
+      A(9) => n_0_g0_b27,
+      A(8) => n_0_g0_b26,
+      A(7) => n_0_g0_b25,
+      A(6) => n_0_g0_b24,
+      A(5) => n_0_g0_b23,
+      A(4) => n_0_g0_b22,
+      A(3) => n_0_g0_b21,
+      A(2) => n_0_g0_b20,
       A(1 downto 0) => \EXP_OP.OP/Xi\(48 downto 47),
       ACIN(29) => \<const0>\,
       ACIN(28) => \<const0>\,
@@ -14441,19 +13625,19 @@ DSP_i_9: unisim.vcomponents.LUT5
       ALUMODE(1) => \EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/alumode\(1),
       ALUMODE(0) => \EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/alumode\(1),
       B(17) => \EXP_OP.OP/Xi\(46),
-      B(16) => \n_0_DSP_i_1__1\,
-      B(15) => \n_0_DSP_i_2__1\,
-      B(14) => \n_0_DSP_i_3__1\,
-      B(13) => \n_0_DSP_i_4__1\,
-      B(12) => \n_0_DSP_i_5__1\,
-      B(11) => \n_0_DSP_i_6__1\,
-      B(10) => \n_0_DSP_i_7__0\,
-      B(9) => \n_0_DSP_i_8__0\,
-      B(8) => \n_0_DSP_i_9__0\,
-      B(7) => \n_0_DSP_i_10__0\,
-      B(6) => \n_0_DSP_i_11__0\,
-      B(5) => n_0_DSP_i_12,
-      B(4) => n_0_DSP_i_13,
+      B(16) => n_0_g0_b16,
+      B(15) => n_0_g0_b15,
+      B(14) => n_0_g0_b14,
+      B(13) => n_0_g0_b13,
+      B(12) => n_0_g0_b12,
+      B(11) => n_0_g0_b11,
+      B(10) => \n_0_g0_b10__0\,
+      B(9) => \n_0_g0_b9__0\,
+      B(8) => \n_0_g0_b8__0\,
+      B(7) => \n_0_g0_b7__0\,
+      B(6) => \n_0_g0_b6__0\,
+      B(5) => \n_0_g0_b5__1\,
+      B(4) => \n_0_g0_b4__1\,
       B(3) => \EXP_OP.OP/Xi\(46),
       B(2) => \<const0>\,
       B(1) => \<const0>\,
@@ -14518,11 +13702,11 @@ DSP_i_9: unisim.vcomponents.LUT5
       CARRYOUT(1) => \n_56_EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP\,
       CARRYOUT(0) => \n_57_EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP\,
       CEA1 => \<const0>\,
-      CEA2 => \<const1>\,
+      CEA2 => \<const0>\,
       CEAD => \<const0>\,
       CEALUMODE => \<const0>\,
       CEB1 => \<const0>\,
-      CEB2 => \<const1>\,
+      CEB2 => \<const0>\,
       CEC => \<const0>\,
       CECARRYIN => \<const0>\,
       CECTRL => \<const0>\,
@@ -14836,12 +14020,12 @@ DSP_i_9: unisim.vcomponents.LUT5
       B(8) => \<const0>\,
       B(7) => \<const0>\,
       B(6) => \<const0>\,
-      B(5) => \n_0_DSP_i_1__0\,
-      B(4) => \n_0_DSP_i_2__0\,
-      B(3) => \n_0_DSP_i_3__0\,
-      B(2) => \n_0_DSP_i_4__0\,
-      B(1) => \n_0_DSP_i_5__0\,
-      B(0) => \n_0_DSP_i_6__0\,
+      B(5) => \n_0_g0_b5__0\,
+      B(4) => \n_0_g0_b4__0\,
+      B(3) => \n_0_g0_b3__0\,
+      B(2) => \n_0_g0_b2__0\,
+      B(1) => \n_0_g0_b1__0\,
+      B(0) => \n_0_g0_b0__0\,
       BCIN(17) => \<const0>\,
       BCIN(16) => \<const0>\,
       BCIN(15) => \<const0>\,
@@ -14937,11 +14121,11 @@ DSP_i_9: unisim.vcomponents.LUT5
       CARRYOUT(1) => \n_56_EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP\,
       CARRYOUT(0) => \n_57_EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP\,
       CEA1 => \<const0>\,
-      CEA2 => \<const1>\,
+      CEA2 => \<const0>\,
       CEAD => \<const0>\,
       CEALUMODE => \<const0>\,
       CEB1 => \<const0>\,
-      CEB2 => \<const1>\,
+      CEB2 => \<const0>\,
       CEC => \<const0>\,
       CECARRYIN => \<const0>\,
       CECTRL => \<const0>\,
@@ -15172,36 +14356,36 @@ DSP_i_9: unisim.vcomponents.LUT5
       USE_SIMD => "ONE48"
     )
     port map (
-      A(29) => n_0_DSP_i_1,
-      A(28) => n_0_DSP_i_1,
-      A(27) => n_0_DSP_i_1,
-      A(26) => n_0_DSP_i_1,
-      A(25) => n_0_DSP_i_1,
-      A(24) => n_0_DSP_i_1,
-      A(23) => n_0_DSP_i_1,
-      A(22) => n_0_DSP_i_1,
-      A(21) => n_0_DSP_i_1,
-      A(20) => n_0_DSP_i_1,
-      A(19) => n_0_DSP_i_1,
-      A(18) => n_0_DSP_i_1,
-      A(17) => n_0_DSP_i_1,
-      A(16) => n_0_DSP_i_1,
-      A(15) => n_0_DSP_i_1,
-      A(14) => n_0_DSP_i_1,
-      A(13) => n_0_DSP_i_1,
-      A(12) => n_0_DSP_i_1,
-      A(11) => n_0_DSP_i_1,
-      A(10) => n_0_DSP_i_1,
-      A(9) => n_0_DSP_i_1,
-      A(8) => n_0_DSP_i_1,
-      A(7) => n_0_DSP_i_1,
-      A(6) => n_0_DSP_i_1,
-      A(5) => n_0_DSP_i_1,
-      A(4) => n_0_DSP_i_1,
-      A(3) => n_0_DSP_i_1,
-      A(2) => n_0_DSP_i_1,
-      A(1) => n_0_DSP_i_1,
-      A(0) => n_0_DSP_i_1,
+      A(29) => n_0_g0_b10,
+      A(28) => n_0_g0_b10,
+      A(27) => n_0_g0_b10,
+      A(26) => n_0_g0_b10,
+      A(25) => n_0_g0_b10,
+      A(24) => n_0_g0_b10,
+      A(23) => n_0_g0_b10,
+      A(22) => n_0_g0_b10,
+      A(21) => n_0_g0_b10,
+      A(20) => n_0_g0_b10,
+      A(19) => n_0_g0_b10,
+      A(18) => n_0_g0_b10,
+      A(17) => n_0_g0_b10,
+      A(16) => n_0_g0_b10,
+      A(15) => n_0_g0_b10,
+      A(14) => n_0_g0_b10,
+      A(13) => n_0_g0_b10,
+      A(12) => n_0_g0_b10,
+      A(11) => n_0_g0_b10,
+      A(10) => n_0_g0_b10,
+      A(9) => n_0_g0_b10,
+      A(8) => n_0_g0_b10,
+      A(7) => n_0_g0_b10,
+      A(6) => n_0_g0_b10,
+      A(5) => n_0_g0_b10,
+      A(4) => n_0_g0_b10,
+      A(3) => n_0_g0_b10,
+      A(2) => n_0_g0_b10,
+      A(1) => n_0_g0_b10,
+      A(0) => n_0_g0_b10,
       ACIN(29) => \<const0>\,
       ACIN(28) => \<const0>\,
       ACIN(27) => \<const0>\,
@@ -15266,24 +14450,24 @@ DSP_i_9: unisim.vcomponents.LUT5
       ALUMODE(2) => \<const0>\,
       ALUMODE(1) => \<const0>\,
       ALUMODE(0) => \<const0>\,
-      B(17) => n_0_DSP_i_1,
-      B(16) => n_0_DSP_i_1,
-      B(15) => n_0_DSP_i_1,
-      B(14) => n_0_DSP_i_1,
-      B(13) => n_0_DSP_i_1,
-      B(12) => n_0_DSP_i_1,
-      B(11) => n_0_DSP_i_1,
-      B(10) => n_0_DSP_i_1,
-      B(9) => n_0_DSP_i_2,
-      B(8) => n_0_DSP_i_3,
-      B(7) => n_0_DSP_i_4,
-      B(6) => n_0_DSP_i_5,
-      B(5) => n_0_DSP_i_6,
-      B(4) => n_0_DSP_i_7,
-      B(3) => n_0_DSP_i_8,
-      B(2) => n_0_DSP_i_9,
-      B(1) => n_0_DSP_i_10,
-      B(0) => n_0_DSP_i_11,
+      B(17) => n_0_g0_b10,
+      B(16) => n_0_g0_b10,
+      B(15) => n_0_g0_b10,
+      B(14) => n_0_g0_b10,
+      B(13) => n_0_g0_b10,
+      B(12) => n_0_g0_b10,
+      B(11) => n_0_g0_b10,
+      B(10) => n_0_g0_b10,
+      B(9) => n_0_g0_b9,
+      B(8) => n_0_g0_b8,
+      B(7) => n_0_g0_b7,
+      B(6) => n_0_g0_b6,
+      B(5) => n_0_g0_b5,
+      B(4) => n_0_g0_b4,
+      B(3) => n_0_g0_b3,
+      B(2) => n_0_g0_b2,
+      B(1) => n_0_g0_b1,
+      B(0) => n_0_g0_b0,
       BCIN(17) => \<const0>\,
       BCIN(16) => \<const0>\,
       BCIN(15) => \<const0>\,
@@ -15369,11 +14553,11 @@ DSP_i_9: unisim.vcomponents.LUT5
       CARRYOUT(1) => \n_56_EXP_OP.OP/i_ccm_recip_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP\,
       CARRYOUT(0) => \n_57_EXP_OP.OP/i_ccm_recip_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP\,
       CEA1 => \<const0>\,
-      CEA2 => \<const1>\,
+      CEA2 => \<const0>\,
       CEAD => \<const0>\,
       CEALUMODE => \<const0>\,
       CEB1 => \<const0>\,
-      CEB2 => \<const1>\,
+      CEB2 => \<const0>\,
       CEC => \<const0>\,
       CECARRYIN => \<const0>\,
       CECTRL => \<const0>\,
@@ -15580,7 +14764,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     port map (
       C => aclk,
       CE => \<const1>\,
-      D => \n_0_opt_has_pipe.first_q[0]_i_1__7\,
+      D => \n_0_opt_has_pipe.first_q[0]_i_1__8\,
       Q => \EXP_OP.OP/i_recombination/divide_by_zero_delay/i_pipe/first_q\(0),
       R => \<const0>\
     );
@@ -15602,7 +14786,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     port map (
       C => aclk,
       CE => \<const1>\,
-      D => \n_0_opt_has_pipe.first_q[0]_i_1__8\,
+      D => \n_0_opt_has_pipe.first_q[0]_i_1__7\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(0),
       R => \<const0>\
     );
@@ -15700,7 +14884,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     )
     port map (
       C => aclk,
-      CE => aclken,
+      CE => \<const1>\,
       D => \n_0_opt_has_pipe.first_q[18]_i_1__0\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(18),
       R => \<const0>\
@@ -15711,7 +14895,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     )
     port map (
       C => aclk,
-      CE => aclken,
+      CE => \<const1>\,
       D => \n_0_opt_has_pipe.first_q[19]_i_1__0\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(19),
       R => \<const0>\
@@ -15733,7 +14917,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     )
     port map (
       C => aclk,
-      CE => aclken,
+      CE => \<const1>\,
       D => \n_0_opt_has_pipe.first_q[20]_i_1__0\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(20),
       R => \<const0>\
@@ -15744,7 +14928,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     )
     port map (
       C => aclk,
-      CE => aclken,
+      CE => \<const1>\,
       D => \n_0_opt_has_pipe.first_q[21]_i_1__0\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(21),
       R => \<const0>\
@@ -15767,7 +14951,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     port map (
       C => aclk,
       CE => \<const1>\,
-      D => \n_0_opt_has_pipe.first_q[23]_i_1__0\,
+      D => \n_0_opt_has_pipe.first_q[23]_i_1\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(23),
       R => \<const0>\
     );
@@ -15778,7 +14962,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     port map (
       C => aclk,
       CE => \<const1>\,
-      D => \n_0_opt_has_pipe.first_q[24]_i_1__0\,
+      D => \n_0_opt_has_pipe.first_q[24]_i_1\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(24),
       R => \<const0>\
     );
@@ -15789,7 +14973,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     port map (
       C => aclk,
       CE => \<const1>\,
-      D => \n_0_opt_has_pipe.first_q[25]_i_1__0\,
+      D => \n_0_opt_has_pipe.first_q[25]_i_1\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(25),
       R => \<const0>\
     );
@@ -15800,7 +14984,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     port map (
       C => aclk,
       CE => \<const1>\,
-      D => \n_0_opt_has_pipe.first_q[26]_i_1__0\,
+      D => \n_0_opt_has_pipe.first_q[26]_i_1\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(26),
       R => \<const0>\
     );
@@ -15811,7 +14995,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     port map (
       C => aclk,
       CE => \<const1>\,
-      D => \n_0_opt_has_pipe.first_q[27]_i_1__0\,
+      D => \n_0_opt_has_pipe.first_q[27]_i_1\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(27),
       R => \<const0>\
     );
@@ -15833,7 +15017,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     port map (
       C => aclk,
       CE => \<const1>\,
-      D => \n_0_opt_has_pipe.first_q[29]_i_1__0\,
+      D => \n_0_opt_has_pipe.first_q[29]_i_1\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(29),
       R => \<const0>\
     );
@@ -15855,7 +15039,7 @@ DSP_i_9: unisim.vcomponents.LUT5
     port map (
       C => aclk,
       CE => \<const1>\,
-      D => \n_0_opt_has_pipe.first_q[30]_i_1__0\,
+      D => \n_0_opt_has_pipe.first_q[30]_i_1\,
       Q => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(30),
       R => \<const0>\
     );
@@ -16164,11 +15348,11 @@ DSP_i_9: unisim.vcomponents.LUT5
       CARRYOUT(1) => \n_56_EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP\,
       CARRYOUT(0) => \n_57_EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP\,
       CEA1 => \<const0>\,
-      CEA2 => \<const1>\,
+      CEA2 => \<const0>\,
       CEAD => \<const0>\,
       CEALUMODE => \<const0>\,
       CEB1 => \<const0>\,
-      CEB2 => \<const1>\,
+      CEB2 => \<const0>\,
       CEC => \<const0>\,
       CECARRYIN => \<const0>\,
       CECTRL => \<const0>\,
@@ -19023,52 +18207,51 @@ GND_1: unisim.vcomponents.GND
     );
 \MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_10\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00000000FFFF1011"
+      INIT => X"7F7F7F7FFFFFFF7F"
     )
     port map (
-      I0 => s_axis_a_tdata(5),
-      I1 => s_axis_a_tdata(4),
-      I2 => s_axis_a_tdata(23),
-      I3 => s_axis_a_tdata(6),
-      I4 => s_axis_a_tdata(24),
-      I5 => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_12\,
+      I0 => s_axis_a_tdata(26),
+      I1 => s_axis_a_tdata(25),
+      I2 => \EXP_OP.OP/i_shift_to_fixed/ALIGN_Z_D/p_0_in10_in\,
+      I3 => s_axis_a_tdata(12),
+      I4 => s_axis_a_tdata(13),
+      I5 => s_axis_a_tdata(24),
       O => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_10\
     );
-\MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_11\: unisim.vcomponents.LUT6
+\MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_11\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFFFFFFFFFF7775"
+      INIT => X"0000ABEF"
     )
     port map (
-      I0 => \EXP_OP.OP/i_shift_to_fixed/ALIGN_Z_D/p_0_in13_in\,
+      I0 => s_axis_a_tdata(23),
       I1 => s_axis_a_tdata(24),
-      I2 => s_axis_a_tdata(9),
-      I3 => s_axis_a_tdata(8),
-      I4 => s_axis_a_tdata(26),
-      I5 => s_axis_a_tdata(25),
+      I2 => s_axis_a_tdata(6),
+      I3 => s_axis_a_tdata(4),
+      I4 => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_12\,
       O => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_11\
     );
 \MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_12\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"DFFFDFDFDFDFDFDF"
+      INIT => X"DFDFDFDFFFFFFFDF"
     )
     port map (
       I0 => s_axis_a_tdata(25),
       I1 => s_axis_a_tdata(26),
       I2 => \EXP_OP.OP/i_shift_to_fixed/ALIGN_Z_D/p_0_in16_in\,
-      I3 => s_axis_a_tdata(23),
-      I4 => s_axis_a_tdata(4),
+      I3 => s_axis_a_tdata(4),
+      I4 => s_axis_a_tdata(5),
       I5 => s_axis_a_tdata(24),
       O => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_12\
     );
 \MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFFAAAAFBBB"
+      INIT => X"FFFFFFFFAAAAFEFF"
     )
     port map (
       I0 => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_4\,
-      I1 => s_axis_a_tdata(0),
-      I2 => s_axis_a_tdata(24),
-      I3 => s_axis_a_tdata(23),
+      I1 => s_axis_a_tdata(24),
+      I2 => s_axis_a_tdata(23),
+      I3 => s_axis_a_tdata(2),
       I4 => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_5\,
       I5 => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_6\,
       O => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_2\
@@ -19091,37 +18274,37 @@ GND_1: unisim.vcomponents.GND
       INIT => X"0000FF47"
     )
     port map (
-      I0 => s_axis_a_tdata(12),
+      I0 => s_axis_a_tdata(8),
       I1 => s_axis_a_tdata(24),
-      I2 => s_axis_a_tdata(14),
+      I2 => s_axis_a_tdata(10),
       I3 => s_axis_a_tdata(23),
       I4 => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_9\,
       O => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_4\
     );
 \MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFF00F4FFFFFFFF"
+      INIT => X"FFFF32F2FFFFFFFF"
     )
     port map (
-      I0 => s_axis_a_tdata(23),
-      I1 => s_axis_a_tdata(2),
-      I2 => s_axis_a_tdata(1),
-      I3 => s_axis_a_tdata(24),
+      I0 => s_axis_a_tdata(1),
+      I1 => s_axis_a_tdata(24),
+      I2 => s_axis_a_tdata(0),
+      I3 => s_axis_a_tdata(23),
       I4 => s_axis_a_tdata(25),
       I5 => s_axis_a_tdata(26),
       O => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_5\
     );
 \MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_6\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"BBBBBBBBABABAABB"
+      INIT => X"FFFFFFFF55551105"
     )
     port map (
       I0 => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_10\,
-      I1 => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_11\,
-      I2 => s_axis_a_tdata(8),
-      I3 => s_axis_a_tdata(10),
-      I4 => s_axis_a_tdata(24),
-      I5 => s_axis_a_tdata(23),
+      I1 => s_axis_a_tdata(12),
+      I2 => s_axis_a_tdata(14),
+      I3 => s_axis_a_tdata(24),
+      I4 => s_axis_a_tdata(23),
+      I5 => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_11\,
       O => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_6\
     );
 \MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_7\: unisim.vcomponents.LUT6
@@ -19151,15 +18334,15 @@ GND_1: unisim.vcomponents.GND
     );
 \MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_9\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7775FFFFFFFFFFFF"
+      INIT => X"FFFFFF0EFFFFFFFF"
     )
     port map (
-      I0 => \EXP_OP.OP/i_shift_to_fixed/ALIGN_Z_D/p_0_in10_in\,
-      I1 => s_axis_a_tdata(24),
-      I2 => s_axis_a_tdata(13),
-      I3 => s_axis_a_tdata(12),
-      I4 => s_axis_a_tdata(26),
-      I5 => s_axis_a_tdata(25),
+      I0 => s_axis_a_tdata(8),
+      I1 => s_axis_a_tdata(9),
+      I2 => s_axis_a_tdata(24),
+      I3 => s_axis_a_tdata(26),
+      I4 => s_axis_a_tdata(25),
+      I5 => \EXP_OP.OP/i_shift_to_fixed/ALIGN_Z_D/p_0_in13_in\,
       O => \n_0_MUX_LOOP[2].OTHER_LEVELS.DO_CHUNKS[0].LUT6_STRUCT_MUX.MUX0_i_9\
     );
 VCC: unisim.vcomponents.VCC
@@ -19192,6 +18375,948 @@ VCC: unisim.vcomponents.VCC
       I0 => \EXP_OP.OP/round_overflowed\,
       I1 => \EXP_OP.OP/i_Fr_less_than_one_at_res_exp/i_pipe/first_q\,
       O => \n_0_fabric.use_unisims.gen_addsub[7].prop_lut_i_1\
+    );
+g0_b0: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"F81F81F8"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(44),
+      I1 => \EXP_OP.OP/XFixTrunc\(45),
+      I2 => \EXP_OP.OP/XFixTrunc\(46),
+      I3 => \EXP_OP.OP/XFixTrunc\(47),
+      I4 => \EXP_OP.OP/XFixTrunc\(48),
+      O => n_0_g0_b0
+    );
+\g0_b0__0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"C99B3266"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(39),
+      I1 => \EXP_OP.OP/XFixTrunc\(40),
+      I2 => \EXP_OP.OP/XFixTrunc\(41),
+      I3 => \EXP_OP.OP/XFixTrunc\(42),
+      I4 => \EXP_OP.OP/XFixTrunc\(43),
+      O => \n_0_g0_b0__0\
+    );
+\g0_b0__0_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"7777447477770070"
+    )
+    port map (
+      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
+      I1 => aclken,
+      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
+      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
+      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(23),
+      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      O => \EXP_OP.OP/XFixTrunc\(39)
+    );
+\g0_b0__0_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"7777447477770070"
+    )
+    port map (
+      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
+      I1 => aclken,
+      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
+      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
+      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(24),
+      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      O => \EXP_OP.OP/XFixTrunc\(40)
+    );
+\g0_b0__0_i_3\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"7777447477770070"
+    )
+    port map (
+      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
+      I1 => aclken,
+      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
+      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
+      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(25),
+      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      O => \EXP_OP.OP/XFixTrunc\(41)
+    );
+\g0_b0__0_i_4\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"7777447477770070"
+    )
+    port map (
+      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
+      I1 => aclken,
+      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
+      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
+      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(26),
+      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      O => \EXP_OP.OP/XFixTrunc\(42)
+    );
+\g0_b0__0_i_5\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"7777447477770070"
+    )
+    port map (
+      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
+      I1 => aclken,
+      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
+      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
+      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(27),
+      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      O => \EXP_OP.OP/XFixTrunc\(43)
+    );
+\g0_b0__1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"4"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      O => \n_0_g0_b0__1\
+    );
+g0_b0_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000CFCCEFEECFCC"
+    )
+    port map (
+      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      I1 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(28),
+      I2 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
+      I3 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
+      I4 => aclken,
+      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
+      O => \EXP_OP.OP/XFixTrunc\(44)
+    );
+g0_b0_i_2: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"7777447477770070"
+    )
+    port map (
+      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
+      I1 => aclken,
+      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
+      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
+      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(29),
+      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      O => \EXP_OP.OP/XFixTrunc\(45)
+    );
+g0_b0_i_3: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"7777447477770070"
+    )
+    port map (
+      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
+      I1 => aclken,
+      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
+      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
+      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(30),
+      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      O => \EXP_OP.OP/XFixTrunc\(46)
+    );
+g0_b0_i_4: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"7777447477770070"
+    )
+    port map (
+      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
+      I1 => aclken,
+      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
+      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
+      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(31),
+      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      O => \EXP_OP.OP/XFixTrunc\(47)
+    );
+g0_b0_i_5: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0AEA0AEA0FFF0AEA"
+    )
+    port map (
+      I0 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(32),
+      I1 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      I2 => aclken,
+      I3 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
+      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
+      I5 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
+      O => \EXP_OP.OP/XFixTrunc\(48)
+    );
+g0_b1: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"AAB554AA"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(44),
+      I1 => \EXP_OP.OP/XFixTrunc\(45),
+      I2 => \EXP_OP.OP/XFixTrunc\(46),
+      I3 => \EXP_OP.OP/XFixTrunc\(47),
+      I4 => \EXP_OP.OP/XFixTrunc\(48),
+      O => n_0_g0_b1
+    );
+g0_b10: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FF800000"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(44),
+      I1 => \EXP_OP.OP/XFixTrunc\(45),
+      I2 => \EXP_OP.OP/XFixTrunc\(46),
+      I3 => \EXP_OP.OP/XFixTrunc\(47),
+      I4 => \EXP_OP.OP/XFixTrunc\(48),
+      O => n_0_g0_b10
+    );
+\g0_b10__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => \n_0_g0_b10__0\
+    );
+\g0_b10__1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"C638"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b10__1\
+    );
+g0_b11: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"5554"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b11
+    );
+\g0_b11__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"07C0"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b11__0\
+    );
+g0_b12: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"3332"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b12
+    );
+\g0_b12__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"F800"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b12__0\
+    );
+g0_b13: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A5A4"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b13
+    );
+g0_b14: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"C638"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b14
+    );
+g0_b15: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"07C0"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b15
+    );
+g0_b16: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"F800"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b16
+    );
+\g0_b16__0\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"6"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b16__0\
+    );
+g0_b17: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"C6"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(45),
+      O => n_0_g0_b17
+    );
+g0_b18: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"3C1E"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => n_0_g0_b18
+    );
+g0_b19: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A954"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => n_0_g0_b19
+    );
+\g0_b1__0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"6D2DA4B4"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(39),
+      I1 => \EXP_OP.OP/XFixTrunc\(40),
+      I2 => \EXP_OP.OP/XFixTrunc\(41),
+      I3 => \EXP_OP.OP/XFixTrunc\(42),
+      I4 => \EXP_OP.OP/XFixTrunc\(43),
+      O => \n_0_g0_b1__0\
+    );
+\g0_b1__1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"9"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(43),
+      I1 => \EXP_OP.OP/Xi\(44),
+      O => \n_0_g0_b1__1\
+    );
+g0_b2: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"998CCC66"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(44),
+      I1 => \EXP_OP.OP/XFixTrunc\(45),
+      I2 => \EXP_OP.OP/XFixTrunc\(46),
+      I3 => \EXP_OP.OP/XFixTrunc\(47),
+      I4 => \EXP_OP.OP/XFixTrunc\(48),
+      O => n_0_g0_b2
+    );
+g0_b20: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"6"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b20
+    );
+\g0_b20__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"9B32"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b20__0\
+    );
+g0_b21: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"C6"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b21
+    );
+\g0_b21__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"2DA4"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b21__0\
+    );
+g0_b22: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"3C1E"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b22
+    );
+\g0_b22__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"CE38"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b22__0\
+    );
+g0_b23: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A954"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b23
+    );
+\g0_b23__0\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"38"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(43),
+      I1 => \EXP_OP.OP/Xi\(44),
+      I2 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b23__0\
+    );
+g0_b24: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"9B32"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b24
+    );
+\g0_b24__0\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"6A"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(44),
+      I2 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b24__0\
+    );
+g0_b25: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"2DA4"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b25
+    );
+\g0_b25__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"C666"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b25__0\
+    );
+g0_b26: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"CE38"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b26
+    );
+\g0_b26__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"94B4"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b26__0\
+    );
+g0_b27: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"38"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(47),
+      I1 => \EXP_OP.OP/Xi\(48),
+      I2 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b27
+    );
+\g0_b27__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"4D92"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b27__0\
+    );
+g0_b28: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"6A"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(48),
+      I2 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b28
+    );
+\g0_b28__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"6924"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b28__0\
+    );
+g0_b29: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"C666"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b29
+    );
+\g0_b29__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"8E38"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b29__0\
+    );
+\g0_b2__0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"71CE38C7"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(39),
+      I1 => \EXP_OP.OP/XFixTrunc\(40),
+      I2 => \EXP_OP.OP/XFixTrunc\(41),
+      I3 => \EXP_OP.OP/XFixTrunc\(42),
+      I4 => \EXP_OP.OP/XFixTrunc\(43),
+      O => \n_0_g0_b2__0\
+    );
+\g0_b2__1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"78"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(43),
+      I1 => \EXP_OP.OP/Xi\(44),
+      I2 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b2__1\
+    );
+g0_b3: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"787C3C1E"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(44),
+      I1 => \EXP_OP.OP/XFixTrunc\(45),
+      I2 => \EXP_OP.OP/XFixTrunc\(46),
+      I3 => \EXP_OP.OP/XFixTrunc\(47),
+      I4 => \EXP_OP.OP/XFixTrunc\(48),
+      O => n_0_g0_b3
+    );
+g0_b30: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"94B4"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b30
+    );
+\g0_b30__0\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"38"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(43),
+      I1 => \EXP_OP.OP/Xi\(44),
+      I2 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b30__0\
+    );
+g0_b31: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"4D92"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b31
+    );
+\g0_b31__0\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"8"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(44),
+      I1 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b31__0\
+    );
+g0_b32: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"6924"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b32
+    );
+g0_b33: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"8E38"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b33
+    );
+g0_b34: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"38"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(47),
+      I1 => \EXP_OP.OP/Xi\(48),
+      I2 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b34
+    );
+g0_b35: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"8"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(48),
+      I1 => \EXP_OP.OP/Xi\(49),
+      O => n_0_g0_b35
+    );
+\g0_b3__0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"7E0FC0F8"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(39),
+      I1 => \EXP_OP.OP/XFixTrunc\(40),
+      I2 => \EXP_OP.OP/XFixTrunc\(41),
+      I3 => \EXP_OP.OP/XFixTrunc\(42),
+      I4 => \EXP_OP.OP/XFixTrunc\(43),
+      O => \n_0_g0_b3__0\
+    );
+\g0_b3__1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"F8"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(43),
+      I1 => \EXP_OP.OP/Xi\(44),
+      I2 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b3__1\
+    );
+g0_b4: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"AD56A954"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(44),
+      I1 => \EXP_OP.OP/XFixTrunc\(45),
+      I2 => \EXP_OP.OP/XFixTrunc\(46),
+      I3 => \EXP_OP.OP/XFixTrunc\(47),
+      I4 => \EXP_OP.OP/XFixTrunc\(48),
+      O => n_0_g0_b4
+    );
+\g0_b4__0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"800FFF00"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(39),
+      I1 => \EXP_OP.OP/XFixTrunc\(40),
+      I2 => \EXP_OP.OP/XFixTrunc\(41),
+      I3 => \EXP_OP.OP/XFixTrunc\(42),
+      I4 => \EXP_OP.OP/XFixTrunc\(43),
+      O => \n_0_g0_b4__0\
+    );
+\g0_b4__1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"6"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      O => \n_0_g0_b4__1\
+    );
+\g0_b4__2\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"F8"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(43),
+      I1 => \EXP_OP.OP/Xi\(44),
+      I2 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b4__2\
+    );
+g0_b5: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"64CD9B32"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(44),
+      I1 => \EXP_OP.OP/XFixTrunc\(45),
+      I2 => \EXP_OP.OP/XFixTrunc\(46),
+      I3 => \EXP_OP.OP/XFixTrunc\(47),
+      I4 => \EXP_OP.OP/XFixTrunc\(48),
+      O => n_0_g0_b5
+    );
+\g0_b5__0\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"E0"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(41),
+      I1 => \EXP_OP.OP/XFixTrunc\(42),
+      I2 => \EXP_OP.OP/XFixTrunc\(43),
+      O => \n_0_g0_b5__0\
+    );
+\g0_b5__1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"1E"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      O => \n_0_g0_b5__1\
+    );
+\g0_b5__2\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"F8"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(43),
+      I1 => \EXP_OP.OP/Xi\(44),
+      I2 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b5__2\
+    );
+g0_b6: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"49692DA4"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(44),
+      I1 => \EXP_OP.OP/XFixTrunc\(45),
+      I2 => \EXP_OP.OP/XFixTrunc\(46),
+      I3 => \EXP_OP.OP/XFixTrunc\(47),
+      I4 => \EXP_OP.OP/XFixTrunc\(48),
+      O => n_0_g0_b6
+    );
+\g0_b6__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"01FE"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => \n_0_g0_b6__0\
+    );
+\g0_b6__1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"F8"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(43),
+      I1 => \EXP_OP.OP/Xi\(44),
+      I2 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b6__1\
+    );
+g0_b7: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"8E71CE38"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(44),
+      I1 => \EXP_OP.OP/XFixTrunc\(45),
+      I2 => \EXP_OP.OP/XFixTrunc\(46),
+      I3 => \EXP_OP.OP/XFixTrunc\(47),
+      I4 => \EXP_OP.OP/XFixTrunc\(48),
+      O => n_0_g0_b7
+    );
+\g0_b7__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => \n_0_g0_b7__0\
+    );
+\g0_b7__1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"556A"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b7__1\
+    );
+g0_b8: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"F07E0FC0"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(44),
+      I1 => \EXP_OP.OP/XFixTrunc\(45),
+      I2 => \EXP_OP.OP/XFixTrunc\(46),
+      I3 => \EXP_OP.OP/XFixTrunc\(47),
+      I4 => \EXP_OP.OP/XFixTrunc\(48),
+      O => n_0_g0_b8
+    );
+\g0_b8__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => \n_0_g0_b8__0\
+    );
+\g0_b8__1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"3326"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b8__1\
+    );
+g0_b9: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"007FF000"
+    )
+    port map (
+      I0 => \EXP_OP.OP/XFixTrunc\(44),
+      I1 => \EXP_OP.OP/XFixTrunc\(45),
+      I2 => \EXP_OP.OP/XFixTrunc\(46),
+      I3 => \EXP_OP.OP/XFixTrunc\(47),
+      I4 => \EXP_OP.OP/XFixTrunc\(48),
+      O => n_0_g0_b9
+    );
+\g0_b9__0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(46),
+      I1 => \EXP_OP.OP/Xi\(47),
+      I2 => \EXP_OP.OP/Xi\(48),
+      I3 => \EXP_OP.OP/Xi\(49),
+      O => \n_0_g0_b9__0\
+    );
+\g0_b9__1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A5B4"
+    )
+    port map (
+      I0 => \EXP_OP.OP/Xi\(42),
+      I1 => \EXP_OP.OP/Xi\(43),
+      I2 => \EXP_OP.OP/Xi\(44),
+      I3 => \EXP_OP.OP/Xi\(45),
+      O => \n_0_g0_b9__1\
     );
 i_0: unisim.vcomponents.LUT1
     generic map(
@@ -19494,19 +19619,19 @@ i_9: unisim.vcomponents.LUT1
       I1 => aclken,
       I2 => s_axis_a_tdata(22),
       I3 => \EXP_OP.OP/i_shift_to_fixed/ALIGN_Z_D/EQ_ZERO/chunk_det\(0),
-      I4 => \n_0_opt_has_pipe.first_q[0]_i_2\,
-      I5 => \n_0_opt_has_pipe.first_q[0]_i_3__0\,
+      I4 => \n_0_opt_has_pipe.first_q[0]_i_2__0\,
+      I5 => \n_0_opt_has_pipe.first_q[0]_i_3\,
       O => \n_0_opt_has_pipe.first_q[0]_i_1\
     );
 \opt_has_pipe.first_q[0]_i_1__0\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"00FF3010"
+      INIT => X"00FF4404"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[0]_i_1__1\,
-      I1 => \n_0_opt_has_pipe.first_q[0]_i_4\,
-      I2 => s_axis_a_tdata(30),
-      I3 => \n_0_opt_has_pipe.first_q[0]_i_3\,
+      I0 => \n_0_opt_has_pipe.first_q[0]_i_4\,
+      I1 => s_axis_a_tdata(30),
+      I2 => \n_0_opt_has_pipe.first_q[0]_i_1__1\,
+      I3 => \n_0_opt_has_pipe.first_q[0]_i_2\,
       I4 => \n_0_opt_has_pipe.first_q[0]_i_1__2\,
       O => \n_0_opt_has_pipe.first_q[0]_i_1__0\
     );
@@ -19577,7 +19702,18 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[0]_i_1__6\
     );
-\opt_has_pipe.first_q[0]_i_1__7\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[0]_i_1__7\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"4F44"
+    )
+    port map (
+      I0 => aclken,
+      I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(0),
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
+      I3 => \EXP_OP.OP/res_mant_at_recomb\(0),
+      O => \n_0_opt_has_pipe.first_q[0]_i_1__7\
+    );
+\opt_has_pipe.first_q[0]_i_1__8\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"F200FFFFF200F200"
     )
@@ -19585,56 +19721,43 @@ i_9: unisim.vcomponents.LUT1
       I0 => \EXP_OP.OP/input_is_overflow\,
       I1 => \EXP_OP.OP/input_sign\,
       I2 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
-      I3 => \n_0_opt_has_pipe.first_q[0]_i_3__1\,
+      I3 => \n_0_opt_has_pipe.first_q[1]_i_3\,
       I4 => aclken,
       I5 => \EXP_OP.OP/i_recombination/divide_by_zero_delay/i_pipe/first_q\(0),
-      O => \n_0_opt_has_pipe.first_q[0]_i_1__7\
-    );
-\opt_has_pipe.first_q[0]_i_1__8\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"4F444444"
-    )
-    port map (
-      I0 => aclken,
-      I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(0),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
-      I3 => \EXP_OP.OP/res_mant_at_recomb\(0),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[0]_i_1__8\
     );
 \opt_has_pipe.first_q[0]_i_1__9\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FDFCFFFD5D0CFF5D"
+      INIT => X"B8FFB8B8FFFFB8FF"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[0]_i_2__0\,
-      I1 => \n_0_opt_has_pipe.first_q[0]_i_1__1\,
-      I2 => \n_0_opt_has_pipe.first_q[0]_i_3\,
-      I3 => \n_0_opt_has_pipe.first_q[0]_i_4\,
-      I4 => s_axis_a_tdata(30),
-      I5 => \n_0_opt_has_pipe.first_q[0]_i_1__2\,
+      I0 => \n_0_opt_has_pipe.first_q[0]_i_1__2\,
+      I1 => \n_0_opt_has_pipe.first_q[0]_i_2\,
+      I2 => \n_0_opt_has_pipe.first_q[0]_i_1__1\,
+      I3 => \n_0_opt_has_pipe.first_q[0]_i_3__0\,
+      I4 => \n_0_opt_has_pipe.first_q[0]_i_4\,
+      I5 => s_axis_a_tdata(30),
       O => \EXP_OP.OP/i_shift_to_fixed/op_state_p1_updated\(0)
     );
-\opt_has_pipe.first_q[0]_i_2\: unisim.vcomponents.LUT2
+\opt_has_pipe.first_q[0]_i_2\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FEFFFFFF"
+    )
+    port map (
+      I0 => s_axis_a_tdata(21),
+      I1 => s_axis_a_tdata(20),
+      I2 => s_axis_a_tdata(22),
+      I3 => \EXP_OP.OP/i_shift_to_fixed/ALIGN_Z_D/EQ_ZERO/chunk_det\(0),
+      I4 => \n_0_opt_has_pipe.first_q[0]_i_3\,
+      O => \n_0_opt_has_pipe.first_q[0]_i_2\
+    );
+\opt_has_pipe.first_q[0]_i_2__0\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"1"
     )
     port map (
       I0 => s_axis_a_tdata(20),
       I1 => s_axis_a_tdata(21),
-      O => \n_0_opt_has_pipe.first_q[0]_i_2\
-    );
-\opt_has_pipe.first_q[0]_i_2__0\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"A0A0A081A0A1A081"
-    )
-    port map (
-      I0 => s_axis_a_tdata(29),
-      I1 => s_axis_a_tdata(27),
-      I2 => s_axis_a_tdata(28),
-      I3 => s_axis_a_tdata(26),
-      I4 => s_axis_a_tdata(25),
-      I5 => s_axis_a_tdata(24),
       O => \n_0_opt_has_pipe.first_q[0]_i_2__0\
     );
 \opt_has_pipe.first_q[0]_i_2__1\: unisim.vcomponents.LUT2
@@ -19659,19 +19782,7 @@ i_9: unisim.vcomponents.LUT1
       I5 => \EXP_OP.OP/i_res_exp/cin_prop\,
       O => \n_0_opt_has_pipe.first_q[0]_i_2__2\
     );
-\opt_has_pipe.first_q[0]_i_3\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FEFFFFFF"
-    )
-    port map (
-      I0 => s_axis_a_tdata(21),
-      I1 => s_axis_a_tdata(20),
-      I2 => s_axis_a_tdata(22),
-      I3 => \EXP_OP.OP/i_shift_to_fixed/ALIGN_Z_D/EQ_ZERO/chunk_det\(0),
-      I4 => \n_0_opt_has_pipe.first_q[0]_i_3__0\,
-      O => \n_0_opt_has_pipe.first_q[0]_i_3\
-    );
-\opt_has_pipe.first_q[0]_i_3__0\: unisim.vcomponents.LUT4
+\opt_has_pipe.first_q[0]_i_3\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"8000"
     )
@@ -19680,17 +19791,20 @@ i_9: unisim.vcomponents.LUT1
       I1 => \EXP_OP.OP/i_shift_to_fixed/ALIGN_Z_D/EQ_ZERO/chunk_det\(3),
       I2 => \EXP_OP.OP/i_shift_to_fixed/ALIGN_Z_D/EQ_ZERO/chunk_det\(4),
       I3 => \EXP_OP.OP/i_shift_to_fixed/ALIGN_Z_D/EQ_ZERO/chunk_det\(1),
-      O => \n_0_opt_has_pipe.first_q[0]_i_3__0\
+      O => \n_0_opt_has_pipe.first_q[0]_i_3\
     );
-\opt_has_pipe.first_q[0]_i_3__1\: unisim.vcomponents.LUT3
+\opt_has_pipe.first_q[0]_i_3__0\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"02"
+      INIT => X"A0A0A081A0A1A081"
     )
     port map (
-      I0 => aclken,
-      I1 => \EXP_OP.OP/special_case\(1),
-      I2 => \EXP_OP.OP/special_case\(0),
-      O => \n_0_opt_has_pipe.first_q[0]_i_3__1\
+      I0 => s_axis_a_tdata(29),
+      I1 => s_axis_a_tdata(27),
+      I2 => s_axis_a_tdata(28),
+      I3 => s_axis_a_tdata(26),
+      I4 => s_axis_a_tdata(25),
+      I5 => s_axis_a_tdata(24),
+      O => \n_0_opt_has_pipe.first_q[0]_i_3__0\
     );
 \opt_has_pipe.first_q[0]_i_4\: unisim.vcomponents.LUT6
     generic map(
@@ -19717,16 +19831,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[10]_i_1\
     );
-\opt_has_pipe.first_q[10]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[10]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(10),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(10),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[10]_i_1__0\
     );
 \opt_has_pipe.first_q[11]_i_1\: unisim.vcomponents.LUT5
@@ -19741,16 +19854,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[11]_i_1\
     );
-\opt_has_pipe.first_q[11]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[11]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(11),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(11),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[11]_i_1__0\
     );
 \opt_has_pipe.first_q[12]_i_1\: unisim.vcomponents.LUT5
@@ -19765,16 +19877,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[12]_i_1\
     );
-\opt_has_pipe.first_q[12]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[12]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(12),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(12),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[12]_i_1__0\
     );
 \opt_has_pipe.first_q[13]_i_1\: unisim.vcomponents.LUT5
@@ -19789,16 +19900,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[13]_i_1\
     );
-\opt_has_pipe.first_q[13]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[13]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(13),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(13),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[13]_i_1__0\
     );
 \opt_has_pipe.first_q[14]_i_1\: unisim.vcomponents.LUT5
@@ -19813,16 +19923,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[14]_i_1\
     );
-\opt_has_pipe.first_q[14]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[14]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(14),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(14),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[14]_i_1__0\
     );
 \opt_has_pipe.first_q[15]_i_1\: unisim.vcomponents.LUT5
@@ -19837,16 +19946,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[15]_i_1\
     );
-\opt_has_pipe.first_q[15]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[15]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(15),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(15),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[15]_i_1__0\
     );
 \opt_has_pipe.first_q[16]_i_1\: unisim.vcomponents.LUT5
@@ -19861,16 +19969,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[16]_i_1\
     );
-\opt_has_pipe.first_q[16]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[16]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(16),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(16),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[16]_i_1__0\
     );
 \opt_has_pipe.first_q[17]_i_1\: unisim.vcomponents.LUT5
@@ -19885,40 +19992,16 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[17]_i_1\
     );
-\opt_has_pipe.first_q[17]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[17]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"2222F222"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(17),
-      I1 => aclken,
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_2\,
-      I3 => \EXP_OP.OP/res_mant_at_recomb\(17),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_3\,
-      O => \n_0_opt_has_pipe.first_q[17]_i_1__0\
-    );
-\opt_has_pipe.first_q[17]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00080808"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
-      I1 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I2 => \EXP_OP.OP/special_case\(0),
-      I3 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I4 => \EXP_OP.OP/i_res_exp/cin_prop\,
-      O => \n_0_opt_has_pipe.first_q[17]_i_2\
-    );
-\opt_has_pipe.first_q[17]_i_3\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"EA00"
-    )
-    port map (
-      I0 => \EXP_OP.OP/input_is_overflow\,
-      I1 => \EXP_OP.OP/special_case\(0),
-      I2 => \EXP_OP.OP/special_case\(1),
-      I3 => \EXP_OP.OP/input_sign\,
-      O => \n_0_opt_has_pipe.first_q[17]_i_3\
+      I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(17),
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
+      I3 => \EXP_OP.OP/res_mant_at_recomb\(17),
+      O => \n_0_opt_has_pipe.first_q[17]_i_1__0\
     );
 \opt_has_pipe.first_q[18]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -19932,17 +20015,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[18]_i_1\
     );
-\opt_has_pipe.first_q[18]_i_1__0\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[18]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0000002000200020"
+      INIT => X"4F44"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I1 => \n_0_opt_has_pipe.first_q[17]_i_3\,
-      I2 => \EXP_OP.OP/res_mant_at_recomb\(18),
-      I3 => \EXP_OP.OP/special_case\(0),
-      I4 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I5 => \EXP_OP.OP/i_res_exp/cin_prop\,
+      I0 => aclken,
+      I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(18),
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
+      I3 => \EXP_OP.OP/res_mant_at_recomb\(18),
       O => \n_0_opt_has_pipe.first_q[18]_i_1__0\
     );
 \opt_has_pipe.first_q[19]_i_1\: unisim.vcomponents.LUT5
@@ -19957,30 +20038,27 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[19]_i_1\
     );
-\opt_has_pipe.first_q[19]_i_1__0\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[19]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0000002000200020"
+      INIT => X"4F44"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I1 => \n_0_opt_has_pipe.first_q[17]_i_3\,
-      I2 => \EXP_OP.OP/res_mant_at_recomb\(19),
-      I3 => \EXP_OP.OP/special_case\(0),
-      I4 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I5 => \EXP_OP.OP/i_res_exp/cin_prop\,
+      I0 => aclken,
+      I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(19),
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
+      I3 => \EXP_OP.OP/res_mant_at_recomb\(19),
       O => \n_0_opt_has_pipe.first_q[19]_i_1__0\
     );
-\opt_has_pipe.first_q[1]_i_1\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[1]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"04F404F4FFFF0000"
+      INIT => X"AEAEFF00"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[1]_i_2\,
-      I1 => \EXP_OP.OP/i_shift_to_fixed/align_dist_p1\(9),
-      I2 => \n_0_opt_has_pipe.first_q[0]_i_1__2\,
-      I3 => \n_0_opt_has_pipe.first_q[1]_i_4\,
-      I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
-      I5 => aclken,
+      I0 => \EXP_OP.OP/i_shift_to_fixed/op_state_p1_updated1\,
+      I1 => \n_0_opt_has_pipe.first_q[0]_i_1__2\,
+      I2 => \n_0_opt_has_pipe.first_q[1]_i_3__0\,
+      I3 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      I4 => aclken,
       O => \n_0_opt_has_pipe.first_q[1]_i_1\
     );
 \opt_has_pipe.first_q[1]_i_1__0\: unisim.vcomponents.LUT3
@@ -20007,56 +20085,68 @@ i_9: unisim.vcomponents.LUT1
     );
 \opt_has_pipe.first_q[1]_i_1__2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"1110FFFF11100000"
+      INIT => X"EA00FFFFEA00EA00"
     )
     port map (
-      I0 => \EXP_OP.OP/special_case\(1),
-      I1 => \EXP_OP.OP/special_case\(0),
-      I2 => \n_0_opt_has_pipe.first_q[22]_i_2__0\,
-      I3 => \n_0_opt_has_pipe.first_q[22]_i_3\,
+      I0 => \n_0_opt_has_pipe.first_q[1]_i_2__0\,
+      I1 => \EXP_OP.OP/input_is_overflow\,
+      I2 => \EXP_OP.OP/input_sign\,
+      I3 => \n_0_opt_has_pipe.first_q[1]_i_3\,
       I4 => aclken,
       I5 => \EXP_OP.OP/i_recombination/divide_by_zero_delay/i_pipe/first_q\(1),
       O => \n_0_opt_has_pipe.first_q[1]_i_1__2\
     );
-\opt_has_pipe.first_q[1]_i_1__3\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[1]_i_1__3\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(1),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(1),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[1]_i_1__3\
     );
-\opt_has_pipe.first_q[1]_i_2\: unisim.vcomponents.LUT2
+\opt_has_pipe.first_q[1]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"2"
+      INIT => X"000000D0"
     )
     port map (
       I0 => \n_0_opt_has_pipe.first_q[0]_i_1__1\,
-      I1 => \n_0_opt_has_pipe.first_q[0]_i_3\,
-      O => \n_0_opt_has_pipe.first_q[1]_i_2\
+      I1 => \n_0_opt_has_pipe.first_q[0]_i_2\,
+      I2 => s_axis_a_tdata(30),
+      I3 => \n_0_opt_has_pipe.first_q[0]_i_4\,
+      I4 => \n_0_opt_has_pipe.first_q[0]_i_1__2\,
+      O => \EXP_OP.OP/i_shift_to_fixed/op_state_p1_updated1\
     );
-\opt_has_pipe.first_q[1]_i_3\: unisim.vcomponents.LUT2
+\opt_has_pipe.first_q[1]_i_2__0\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"2"
+      INIT => X"8"
     )
     port map (
-      I0 => s_axis_a_tdata(30),
-      I1 => \n_0_opt_has_pipe.first_q[0]_i_4\,
-      O => \EXP_OP.OP/i_shift_to_fixed/align_dist_p1\(9)
+      I0 => \EXP_OP.OP/i_res_exp/cin_prop\,
+      I1 => \EXP_OP.OP/Xi_gt_bias_sub1\,
+      O => \n_0_opt_has_pipe.first_q[1]_i_2__0\
     );
-\opt_has_pipe.first_q[1]_i_4\: unisim.vcomponents.LUT3
+\opt_has_pipe.first_q[1]_i_3\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"02"
+    )
+    port map (
+      I0 => aclken,
+      I1 => \EXP_OP.OP/special_case\(1),
+      I2 => \EXP_OP.OP/special_case\(0),
+      O => \n_0_opt_has_pipe.first_q[1]_i_3\
+    );
+\opt_has_pipe.first_q[1]_i_3__0\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"4D"
     )
     port map (
       I0 => s_axis_a_tdata(30),
       I1 => \n_0_opt_has_pipe.first_q[0]_i_4\,
-      I2 => \n_0_opt_has_pipe.first_q[0]_i_2__0\,
-      O => \n_0_opt_has_pipe.first_q[1]_i_4\
+      I2 => \n_0_opt_has_pipe.first_q[0]_i_3__0\,
+      O => \n_0_opt_has_pipe.first_q[1]_i_3__0\
     );
 \opt_has_pipe.first_q[20]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -20070,17 +20160,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[20]_i_1\
     );
-\opt_has_pipe.first_q[20]_i_1__0\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[20]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0000002000200020"
+      INIT => X"4F44"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I1 => \n_0_opt_has_pipe.first_q[17]_i_3\,
-      I2 => \EXP_OP.OP/res_mant_at_recomb\(20),
-      I3 => \EXP_OP.OP/special_case\(0),
-      I4 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I5 => \EXP_OP.OP/i_res_exp/cin_prop\,
+      I0 => aclken,
+      I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(20),
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
+      I3 => \EXP_OP.OP/res_mant_at_recomb\(20),
       O => \n_0_opt_has_pipe.first_q[20]_i_1__0\
     );
 \opt_has_pipe.first_q[21]_i_1\: unisim.vcomponents.LUT5
@@ -20095,18 +20183,29 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[21]_i_1\
     );
-\opt_has_pipe.first_q[21]_i_1__0\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[21]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0000002000200020"
+      INIT => X"4F44"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I1 => \n_0_opt_has_pipe.first_q[17]_i_3\,
-      I2 => \EXP_OP.OP/res_mant_at_recomb\(21),
-      I3 => \EXP_OP.OP/special_case\(0),
-      I4 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I5 => \EXP_OP.OP/i_res_exp/cin_prop\,
+      I0 => aclken,
+      I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(21),
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
+      I3 => \EXP_OP.OP/res_mant_at_recomb\(21),
       O => \n_0_opt_has_pipe.first_q[21]_i_1__0\
+    );
+\opt_has_pipe.first_q[21]_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFFBFFFBFFFB"
+    )
+    port map (
+      I0 => \n_0_opt_has_pipe.first_q[22]_i_2__0\,
+      I1 => aclken,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \EXP_OP.OP/special_case\(0),
+      I4 => \EXP_OP.OP/input_is_overflow\,
+      I5 => \EXP_OP.OP/input_sign\,
+      O => \n_0_opt_has_pipe.first_q[21]_i_2\
     );
 \opt_has_pipe.first_q[22]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -20120,17 +20219,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[22]_i_1\
     );
-\opt_has_pipe.first_q[22]_i_1__0\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[22]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4444445444444444"
+      INIT => X"0B0A"
     )
     port map (
-      I0 => \EXP_OP.OP/special_case\(1),
-      I1 => \EXP_OP.OP/special_case\(0),
-      I2 => \EXP_OP.OP/res_mant_at_recomb\(22),
-      I3 => \n_0_opt_has_pipe.first_q[22]_i_2__0\,
-      I4 => \n_0_opt_has_pipe.first_q[22]_i_3\,
-      I5 => \n_0_opt_has_pipe.first_q[22]_i_4\,
+      I0 => \EXP_OP.OP/special_case\(0),
+      I1 => \n_0_opt_has_pipe.first_q[22]_i_2__0\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \EXP_OP.OP/res_mant_at_recomb\(22),
       O => \n_0_opt_has_pipe.first_q[22]_i_1__0\
     );
 \opt_has_pipe.first_q[22]_i_2\: unisim.vcomponents.LUT5
@@ -20145,283 +20242,225 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[22]_i_2\
     );
-\opt_has_pipe.first_q[22]_i_2__0\: unisim.vcomponents.LUT2
+\opt_has_pipe.first_q[22]_i_2__0\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"8"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_res_exp/cin_prop\,
-      I1 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      O => \n_0_opt_has_pipe.first_q[22]_i_2__0\
-    );
-\opt_has_pipe.first_q[22]_i_3\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"8"
-    )
-    port map (
-      I0 => \EXP_OP.OP/input_sign\,
-      I1 => \EXP_OP.OP/input_is_overflow\,
-      O => \n_0_opt_has_pipe.first_q[22]_i_3\
-    );
-\opt_has_pipe.first_q[22]_i_4\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"01"
+      INIT => X"FFFEFEFE"
     )
     port map (
       I0 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
-      I1 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
-      I2 => \EXP_OP.OP/input_is_overflow\,
-      O => \n_0_opt_has_pipe.first_q[22]_i_4\
+      I1 => \EXP_OP.OP/input_is_overflow\,
+      I2 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
+      I3 => \EXP_OP.OP/i_res_exp/cin_prop\,
+      I4 => \EXP_OP.OP/Xi_gt_bias_sub1\,
+      O => \n_0_opt_has_pipe.first_q[22]_i_2__0\
     );
 \opt_has_pipe.first_q[23]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7777447477770070"
+      INIT => X"1FF1FFFF1FF11111"
     )
     port map (
-      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
-      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
-      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(23),
-      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
-      O => \EXP_OP.OP/XFixTrunc\(39)
+      I0 => \n_0_opt_has_pipe.first_q[23]_i_2\,
+      I1 => \n_0_opt_has_pipe.first_q[29]_i_3\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \EXP_OP.OP/special_case\(0),
+      I4 => aclken,
+      I5 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(23),
+      O => \n_0_opt_has_pipe.first_q[23]_i_1\
     );
-\opt_has_pipe.first_q[23]_i_1__0\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[23]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00007F55FFFFFFFF"
+      INIT => X"000000000000000D"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I1 => \EXP_OP.OP/i_res_exp/cin_prop\,
-      I2 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I3 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[0].cyxor\,
-      I4 => \n_0_opt_has_pipe.first_q[29]_i_2\,
-      I5 => \n_0_opt_has_pipe.first_q[23]_i_2\,
-      O => \n_0_opt_has_pipe.first_q[23]_i_1__0\
-    );
-\opt_has_pipe.first_q[23]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"D11D"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(23),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/special_case\(0),
-      I3 => \EXP_OP.OP/special_case\(1),
+      I0 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[0].cyxor\,
+      I1 => \n_0_opt_has_pipe.first_q[1]_i_2__0\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
+      I4 => \EXP_OP.OP/input_is_overflow\,
+      I5 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
       O => \n_0_opt_has_pipe.first_q[23]_i_2\
     );
 \opt_has_pipe.first_q[24]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7777447477770070"
+      INIT => X"1FF1FFFF1FF11111"
     )
     port map (
-      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
-      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
-      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(24),
-      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
-      O => \EXP_OP.OP/XFixTrunc\(40)
+      I0 => \n_0_opt_has_pipe.first_q[24]_i_2\,
+      I1 => \n_0_opt_has_pipe.first_q[29]_i_3\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \EXP_OP.OP/special_case\(0),
+      I4 => aclken,
+      I5 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(24),
+      O => \n_0_opt_has_pipe.first_q[24]_i_1\
     );
-\opt_has_pipe.first_q[24]_i_1__0\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[24]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00007F55FFFFFFFF"
+      INIT => X"000000000000000D"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I1 => \EXP_OP.OP/i_res_exp/cin_prop\,
-      I2 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I3 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[1].cyxor\,
-      I4 => \n_0_opt_has_pipe.first_q[29]_i_2\,
-      I5 => \n_0_opt_has_pipe.first_q[24]_i_2\,
-      O => \n_0_opt_has_pipe.first_q[24]_i_1__0\
-    );
-\opt_has_pipe.first_q[24]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"D11D"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(24),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/special_case\(0),
-      I3 => \EXP_OP.OP/special_case\(1),
+      I0 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[1].cyxor\,
+      I1 => \n_0_opt_has_pipe.first_q[1]_i_2__0\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
+      I4 => \EXP_OP.OP/input_is_overflow\,
+      I5 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
       O => \n_0_opt_has_pipe.first_q[24]_i_2\
     );
 \opt_has_pipe.first_q[25]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7777447477770070"
+      INIT => X"1FF1FFFF1FF11111"
     )
     port map (
-      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
-      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
-      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(25),
-      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
-      O => \EXP_OP.OP/XFixTrunc\(41)
+      I0 => \n_0_opt_has_pipe.first_q[25]_i_2\,
+      I1 => \n_0_opt_has_pipe.first_q[29]_i_3\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \EXP_OP.OP/special_case\(0),
+      I4 => aclken,
+      I5 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(25),
+      O => \n_0_opt_has_pipe.first_q[25]_i_1\
     );
-\opt_has_pipe.first_q[25]_i_1__0\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[25]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00007F55FFFFFFFF"
+      INIT => X"000000000000000D"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I1 => \EXP_OP.OP/i_res_exp/cin_prop\,
-      I2 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I3 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[2].cyxor\,
-      I4 => \n_0_opt_has_pipe.first_q[29]_i_2\,
-      I5 => \n_0_opt_has_pipe.first_q[25]_i_2\,
-      O => \n_0_opt_has_pipe.first_q[25]_i_1__0\
-    );
-\opt_has_pipe.first_q[25]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"D11D"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(25),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/special_case\(0),
-      I3 => \EXP_OP.OP/special_case\(1),
+      I0 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[2].cyxor\,
+      I1 => \n_0_opt_has_pipe.first_q[1]_i_2__0\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
+      I4 => \EXP_OP.OP/input_is_overflow\,
+      I5 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
       O => \n_0_opt_has_pipe.first_q[25]_i_2\
     );
 \opt_has_pipe.first_q[26]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7777447477770070"
+      INIT => X"1FF1FFFF1FF11111"
     )
     port map (
-      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
-      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
-      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(26),
-      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
-      O => \EXP_OP.OP/XFixTrunc\(42)
+      I0 => \n_0_opt_has_pipe.first_q[26]_i_2\,
+      I1 => \n_0_opt_has_pipe.first_q[29]_i_3\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \EXP_OP.OP/special_case\(0),
+      I4 => aclken,
+      I5 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(26),
+      O => \n_0_opt_has_pipe.first_q[26]_i_1\
     );
-\opt_has_pipe.first_q[26]_i_1__0\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[26]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00007F55FFFFFFFF"
+      INIT => X"000000000000000D"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I1 => \EXP_OP.OP/i_res_exp/cin_prop\,
-      I2 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I3 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[3].cyxor\,
-      I4 => \n_0_opt_has_pipe.first_q[29]_i_2\,
-      I5 => \n_0_opt_has_pipe.first_q[26]_i_2\,
-      O => \n_0_opt_has_pipe.first_q[26]_i_1__0\
-    );
-\opt_has_pipe.first_q[26]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"D11D"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(26),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/special_case\(0),
-      I3 => \EXP_OP.OP/special_case\(1),
+      I0 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[3].cyxor\,
+      I1 => \n_0_opt_has_pipe.first_q[1]_i_2__0\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
+      I4 => \EXP_OP.OP/input_is_overflow\,
+      I5 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
       O => \n_0_opt_has_pipe.first_q[26]_i_2\
     );
 \opt_has_pipe.first_q[27]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7777447477770070"
+      INIT => X"1FF1FFFF1FF11111"
     )
     port map (
-      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
-      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
-      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(27),
-      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
-      O => \EXP_OP.OP/XFixTrunc\(43)
+      I0 => \n_0_opt_has_pipe.first_q[27]_i_2\,
+      I1 => \n_0_opt_has_pipe.first_q[29]_i_3\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \EXP_OP.OP/special_case\(0),
+      I4 => aclken,
+      I5 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(27),
+      O => \n_0_opt_has_pipe.first_q[27]_i_1\
     );
-\opt_has_pipe.first_q[27]_i_1__0\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[27]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00007F55FFFFFFFF"
+      INIT => X"000000000000000D"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I1 => \EXP_OP.OP/i_res_exp/cin_prop\,
-      I2 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I3 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[4].cyxor\,
-      I4 => \n_0_opt_has_pipe.first_q[29]_i_2\,
-      I5 => \n_0_opt_has_pipe.first_q[27]_i_2\,
-      O => \n_0_opt_has_pipe.first_q[27]_i_1__0\
-    );
-\opt_has_pipe.first_q[27]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"D11D"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(27),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/special_case\(0),
-      I3 => \EXP_OP.OP/special_case\(1),
+      I0 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[4].cyxor\,
+      I1 => \n_0_opt_has_pipe.first_q[1]_i_2__0\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
+      I4 => \EXP_OP.OP/input_is_overflow\,
+      I5 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
       O => \n_0_opt_has_pipe.first_q[27]_i_2\
     );
 \opt_has_pipe.first_q[28]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7777447477770070"
+      INIT => X"5554FFFF55540000"
     )
     port map (
       I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
-      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
-      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(28),
-      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
-      O => \EXP_OP.OP/XFixTrunc\(44)
+      I1 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
+      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(28),
+      I3 => \n_0_opt_has_pipe.first_q[28]_i_2\,
+      I4 => aclken,
+      I5 => \EXP_OP.OP/i_XFix_at_Xf/i_pipe/first_q\(28),
+      O => \n_0_opt_has_pipe.first_q[28]_i_1\
     );
 \opt_has_pipe.first_q[28]_i_1__0\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00007F55FFFFFFFF"
+      INIT => X"1FF1FFFF1FF11111"
     )
     port map (
-      I0 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I1 => \EXP_OP.OP/i_res_exp/cin_prop\,
-      I2 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I3 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[5].cyxor\,
-      I4 => \n_0_opt_has_pipe.first_q[29]_i_2\,
-      I5 => \n_0_opt_has_pipe.first_q[28]_i_2\,
+      I0 => \n_0_opt_has_pipe.first_q[28]_i_2__0\,
+      I1 => \n_0_opt_has_pipe.first_q[29]_i_3\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \EXP_OP.OP/special_case\(0),
+      I4 => aclken,
+      I5 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(28),
       O => \n_0_opt_has_pipe.first_q[28]_i_1__0\
     );
 \opt_has_pipe.first_q[28]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"D11D"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(28),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/special_case\(0),
-      I3 => \EXP_OP.OP/special_case\(1),
-      O => \n_0_opt_has_pipe.first_q[28]_i_2\
-    );
-\opt_has_pipe.first_q[29]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"7777447477770070"
+      INIT => X"0070"
     )
     port map (
       I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       I1 => aclken,
       I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
       I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
-      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(29),
-      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
-      O => \EXP_OP.OP/XFixTrunc\(45)
+      O => \n_0_opt_has_pipe.first_q[28]_i_2\
     );
-\opt_has_pipe.first_q[29]_i_1__0\: unisim.vcomponents.LUT6
+\opt_has_pipe.first_q[28]_i_2__0\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"15551111FFFFFFFF"
+      INIT => X"000000000000000D"
+    )
+    port map (
+      I0 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[5].cyxor\,
+      I1 => \n_0_opt_has_pipe.first_q[1]_i_2__0\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
+      I4 => \EXP_OP.OP/input_is_overflow\,
+      I5 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
+      O => \n_0_opt_has_pipe.first_q[28]_i_2__0\
+    );
+\opt_has_pipe.first_q[29]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"1FF1FFFF1FF11111"
     )
     port map (
       I0 => \n_0_opt_has_pipe.first_q[29]_i_2\,
       I1 => \n_0_opt_has_pipe.first_q[29]_i_3\,
-      I2 => \EXP_OP.OP/i_res_exp/cin_prop\,
-      I3 => \EXP_OP.OP/Xi_gt_bias_sub1\,
-      I4 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[6].cyxor\,
-      I5 => \n_0_opt_has_pipe.first_q[29]_i_4\,
-      O => \n_0_opt_has_pipe.first_q[29]_i_1__0\
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \EXP_OP.OP/special_case\(0),
+      I4 => aclken,
+      I5 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(29),
+      O => \n_0_opt_has_pipe.first_q[29]_i_1\
     );
-\opt_has_pipe.first_q[29]_i_2\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[29]_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"000000000000000D"
+    )
+    port map (
+      I0 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[6].cyxor\,
+      I1 => \n_0_opt_has_pipe.first_q[1]_i_2__0\,
+      I2 => \EXP_OP.OP/special_case\(1),
+      I3 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
+      I4 => \EXP_OP.OP/input_is_overflow\,
+      I5 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
+      O => \n_0_opt_has_pipe.first_q[29]_i_2\
+    );
+\opt_has_pipe.first_q[29]_i_3\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"DF55D555"
     )
@@ -20431,29 +20470,7 @@ i_9: unisim.vcomponents.LUT1
       I2 => \EXP_OP.OP/special_case\(1),
       I3 => \EXP_OP.OP/input_sign\,
       I4 => \EXP_OP.OP/input_is_overflow\,
-      O => \n_0_opt_has_pipe.first_q[29]_i_2\
-    );
-\opt_has_pipe.first_q[29]_i_3\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0001"
-    )
-    port map (
-      I0 => \EXP_OP.OP/input_is_overflow\,
-      I1 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
-      I2 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
-      I3 => \EXP_OP.OP/special_case\(1),
       O => \n_0_opt_has_pipe.first_q[29]_i_3\
-    );
-\opt_has_pipe.first_q[29]_i_4\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"D11D"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(29),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/special_case\(0),
-      I3 => \EXP_OP.OP/special_case\(1),
-      O => \n_0_opt_has_pipe.first_q[29]_i_4\
     );
 \opt_has_pipe.first_q[2]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -20467,34 +20484,20 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[2]_i_1\
     );
-\opt_has_pipe.first_q[2]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[2]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(2),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(2),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[2]_i_1__0\
     );
 \opt_has_pipe.first_q[30]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7777447477770070"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
-      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
-      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(30),
-      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
-      O => \EXP_OP.OP/XFixTrunc\(46)
-    );
-\opt_has_pipe.first_q[30]_i_1__0\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0CCCAAAA0FCFAAAA"
+      INIT => X"3FFFAAAA0000AAAA"
     )
     port map (
       I0 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(30),
@@ -20503,55 +20506,33 @@ i_9: unisim.vcomponents.LUT1
       I3 => \EXP_OP.OP/input_sign\,
       I4 => aclken,
       I5 => \n_0_opt_has_pipe.first_q[30]_i_2\,
-      O => \n_0_opt_has_pipe.first_q[30]_i_1__0\
+      O => \n_0_opt_has_pipe.first_q[30]_i_1\
     );
 \opt_has_pipe.first_q[30]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"A8AAA8A8A8AAA8AA"
+      INIT => X"FFFFFFFF0000555D"
     )
     port map (
       I0 => \n_0_opt_has_pipe.first_q[30]_i_3\,
-      I1 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
-      I3 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
-      I4 => \n_0_opt_has_pipe.first_q[22]_i_2__0\,
-      I5 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[7].cyxor\,
+      I1 => \n_0_opt_has_pipe.first_q[0]_i_2__2\,
+      I2 => \EXP_OP.OP/input_is_overflow\,
+      I3 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
+      I4 => \EXP_OP.OP/special_case\(1),
+      I5 => \EXP_OP.OP/special_case\(0),
       O => \n_0_opt_has_pipe.first_q[30]_i_2\
     );
-\opt_has_pipe.first_q[30]_i_3\: unisim.vcomponents.LUT2
+\opt_has_pipe.first_q[30]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"B"
+      INIT => X"AAAAFFC0AAAAFFFF"
     )
     port map (
       I0 => \EXP_OP.OP/input_sign\,
-      I1 => \EXP_OP.OP/input_is_overflow\,
+      I1 => \EXP_OP.OP/Xi_gt_bias_sub1\,
+      I2 => \EXP_OP.OP/i_res_exp/cin_prop\,
+      I3 => \n_0_EXP_OP.OP/i_special_detect/range_underflow_detect/C_CHAIN/CHAIN_GEN[3].CARRYS_DEL.NEED_DEL.CARRYS_DEL/i_pipe/opt_has_pipe.i_pipe[5].pipe_reg[5][0]\,
+      I4 => \EXP_OP.OP/input_is_overflow\,
+      I5 => \n_0_EXP_OP.OP/i_res_exp/fabric.use_unisims.gen_addsub[7].cyxor\,
       O => \n_0_opt_has_pipe.first_q[30]_i_3\
-    );
-\opt_has_pipe.first_q[31]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"7777447477770070"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
-      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
-      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(31),
-      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
-      O => \EXP_OP.OP/XFixTrunc\(47)
-    );
-\opt_has_pipe.first_q[32]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"7777447477770070"
-    )
-    port map (
-      I0 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
-      I1 => aclken,
-      I2 => \EXP_OP.OP/i_shift_to_fixed/ROUND/Q_DEL/i_pipe/first_q\(34),
-      I3 => \EXP_OP.OP/i_shift_to_fixed/DEL_SIGN/i_pipe/first_q\,
-      I4 => \EXP_OP.OP/i_shift_to_fixed/ROUND_BYPASS_DEL/i_pipe/first_q\(32),
-      I5 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(1),
-      O => \EXP_OP.OP/XFixTrunc\(48)
     );
 \opt_has_pipe.first_q[3]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -20565,16 +20546,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[3]_i_1\
     );
-\opt_has_pipe.first_q[3]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[3]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(3),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(3),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[3]_i_1__0\
     );
 \opt_has_pipe.first_q[4]_i_1\: unisim.vcomponents.LUT5
@@ -20589,16 +20569,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[4]_i_1\
     );
-\opt_has_pipe.first_q[4]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[4]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(4),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(4),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[4]_i_1__0\
     );
 \opt_has_pipe.first_q[5]_i_1\: unisim.vcomponents.LUT5
@@ -20613,16 +20592,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[5]_i_1\
     );
-\opt_has_pipe.first_q[5]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[5]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(5),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(5),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[5]_i_1__0\
     );
 \opt_has_pipe.first_q[6]_i_1\: unisim.vcomponents.LUT5
@@ -20637,16 +20615,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[6]_i_1\
     );
-\opt_has_pipe.first_q[6]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[6]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(6),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(6),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[6]_i_1__0\
     );
 \opt_has_pipe.first_q[7]_i_1\: unisim.vcomponents.LUT5
@@ -20661,16 +20638,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[7]_i_1\
     );
-\opt_has_pipe.first_q[7]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[7]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(7),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(7),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[7]_i_1__0\
     );
 \opt_has_pipe.first_q[8]_i_1\: unisim.vcomponents.LUT5
@@ -20685,16 +20661,15 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[8]_i_1\
     );
-\opt_has_pipe.first_q[8]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[8]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(8),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(8),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[8]_i_1__0\
     );
 \opt_has_pipe.first_q[9]_i_1\: unisim.vcomponents.LUT5
@@ -20709,22 +20684,21 @@ i_9: unisim.vcomponents.LUT1
       I4 => \EXP_OP.OP/i_shift_to_fixed/OP_STATE_P1_REG/i_pipe/first_q\(0),
       O => \n_0_opt_has_pipe.first_q[9]_i_1\
     );
-\opt_has_pipe.first_q[9]_i_1__0\: unisim.vcomponents.LUT5
+\opt_has_pipe.first_q[9]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4F444444"
+      INIT => X"4F44"
     )
     port map (
       I0 => aclken,
       I1 => \EXP_OP.OP/i_recombination/result_delay/i_pipe/first_q\(9),
-      I2 => \n_0_opt_has_pipe.first_q[17]_i_3\,
+      I2 => \n_0_opt_has_pipe.first_q[21]_i_2\,
       I3 => \EXP_OP.OP/res_mant_at_recomb\(9),
-      I4 => \n_0_opt_has_pipe.first_q[17]_i_2\,
       O => \n_0_opt_has_pipe.first_q[9]_i_1__0\
     );
 end STRUCTURE;
 library IEEE; use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM; use UNISIM.VCOMPONENTS.ALL; 
-entity vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 is
+entity \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ is
   port (
     aclk : in STD_LOGIC;
     aclken : in STD_LOGIC;
@@ -20755,149 +20729,151 @@ entity vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 is
     m_axis_result_tuser : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_result_tlast : out STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is "floating_point_v7_0";
   attribute C_XDEVICEFAMILY : string;
-  attribute C_XDEVICEFAMILY of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is "zynq";
+  attribute C_XDEVICEFAMILY of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is "zynq";
   attribute C_HAS_ADD : integer;
-  attribute C_HAS_ADD of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ADD of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_SUBTRACT : integer;
-  attribute C_HAS_SUBTRACT of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_SUBTRACT of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_MULTIPLY : integer;
-  attribute C_HAS_MULTIPLY of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_MULTIPLY of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_DIVIDE : integer;
-  attribute C_HAS_DIVIDE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_DIVIDE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_SQRT : integer;
-  attribute C_HAS_SQRT of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_SQRT of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_COMPARE : integer;
-  attribute C_HAS_COMPARE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_COMPARE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FIX_TO_FLT : integer;
-  attribute C_HAS_FIX_TO_FLT of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FIX_TO_FLT of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FIX : integer;
-  attribute C_HAS_FLT_TO_FIX of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FLT_TO_FIX of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FLT : integer;
-  attribute C_HAS_FLT_TO_FLT of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FLT_TO_FLT of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP : integer;
-  attribute C_HAS_RECIP of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RECIP of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP_SQRT : integer;
-  attribute C_HAS_RECIP_SQRT of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RECIP_SQRT of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ABSOLUTE : integer;
-  attribute C_HAS_ABSOLUTE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ABSOLUTE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_LOGARITHM : integer;
-  attribute C_HAS_LOGARITHM of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_LOGARITHM of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_EXPONENTIAL : integer;
-  attribute C_HAS_EXPONENTIAL of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 1;
+  attribute C_HAS_EXPONENTIAL of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_HAS_FMA : integer;
-  attribute C_HAS_FMA of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FMA of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FMS : integer;
-  attribute C_HAS_FMS of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FMS of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_A : integer;
-  attribute C_HAS_ACCUMULATOR_A of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUMULATOR_A of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_S : integer;
-  attribute C_HAS_ACCUMULATOR_S of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUMULATOR_S of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_A_WIDTH : integer;
-  attribute C_A_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 32;
+  attribute C_A_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_A_FRACTION_WIDTH : integer;
-  attribute C_A_FRACTION_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 24;
+  attribute C_A_FRACTION_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 24;
   attribute C_B_WIDTH : integer;
-  attribute C_B_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 32;
+  attribute C_B_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_B_FRACTION_WIDTH : integer;
-  attribute C_B_FRACTION_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 24;
+  attribute C_B_FRACTION_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 24;
   attribute C_C_WIDTH : integer;
-  attribute C_C_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 32;
+  attribute C_C_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_C_FRACTION_WIDTH : integer;
-  attribute C_C_FRACTION_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 24;
+  attribute C_C_FRACTION_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 24;
   attribute C_RESULT_WIDTH : integer;
-  attribute C_RESULT_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 32;
+  attribute C_RESULT_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_RESULT_FRACTION_WIDTH : integer;
-  attribute C_RESULT_FRACTION_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 24;
+  attribute C_RESULT_FRACTION_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 24;
   attribute C_COMPARE_OPERATION : integer;
-  attribute C_COMPARE_OPERATION of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 8;
+  attribute C_COMPARE_OPERATION of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 8;
   attribute C_LATENCY : integer;
-  attribute C_LATENCY of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 7;
+  attribute C_LATENCY of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 7;
   attribute C_OPTIMIZATION : integer;
-  attribute C_OPTIMIZATION of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 1;
+  attribute C_OPTIMIZATION of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_MULT_USAGE : integer;
-  attribute C_MULT_USAGE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 2;
+  attribute C_MULT_USAGE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 2;
   attribute C_BRAM_USAGE : integer;
-  attribute C_BRAM_USAGE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_BRAM_USAGE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_RATE : integer;
-  attribute C_RATE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 1;
+  attribute C_RATE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_ACCUM_INPUT_MSB : integer;
-  attribute C_ACCUM_INPUT_MSB of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 32;
+  attribute C_ACCUM_INPUT_MSB of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_ACCUM_MSB : integer;
-  attribute C_ACCUM_MSB of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 32;
+  attribute C_ACCUM_MSB of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_ACCUM_LSB : integer;
-  attribute C_ACCUM_LSB of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is -31;
+  attribute C_ACCUM_LSB of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is -31;
   attribute C_HAS_UNDERFLOW : integer;
-  attribute C_HAS_UNDERFLOW of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_UNDERFLOW of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_OVERFLOW : integer;
-  attribute C_HAS_OVERFLOW of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_OVERFLOW of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_INVALID_OP : integer;
-  attribute C_HAS_INVALID_OP of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_INVALID_OP of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_DIVIDE_BY_ZERO : integer;
-  attribute C_HAS_DIVIDE_BY_ZERO of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_DIVIDE_BY_ZERO of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_OVERFLOW of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUM_OVERFLOW of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_INPUT_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_INPUT_OVERFLOW of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUM_INPUT_OVERFLOW of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACLKEN : integer;
-  attribute C_HAS_ACLKEN of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 1;
+  attribute C_HAS_ACLKEN of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_HAS_ARESETN : integer;
-  attribute C_HAS_ARESETN of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ARESETN of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_THROTTLE_SCHEME : integer;
-  attribute C_THROTTLE_SCHEME of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 3;
+  attribute C_THROTTLE_SCHEME of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 3;
   attribute C_HAS_A_TUSER : integer;
-  attribute C_HAS_A_TUSER of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_A_TUSER of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_A_TLAST : integer;
-  attribute C_HAS_A_TLAST of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_A_TLAST of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_B : integer;
-  attribute C_HAS_B of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_B of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_B_TUSER : integer;
-  attribute C_HAS_B_TUSER of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_B_TUSER of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_B_TLAST : integer;
-  attribute C_HAS_B_TLAST of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_B_TLAST of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_C : integer;
-  attribute C_HAS_C of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_C of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_C_TUSER : integer;
-  attribute C_HAS_C_TUSER of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_C_TUSER of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_C_TLAST : integer;
-  attribute C_HAS_C_TLAST of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_C_TLAST of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION : integer;
-  attribute C_HAS_OPERATION of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_OPERATION of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION_TUSER : integer;
-  attribute C_HAS_OPERATION_TUSER of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_OPERATION_TUSER of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION_TLAST : integer;
-  attribute C_HAS_OPERATION_TLAST of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_OPERATION_TLAST of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TUSER : integer;
-  attribute C_HAS_RESULT_TUSER of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RESULT_TUSER of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TLAST : integer;
-  attribute C_HAS_RESULT_TLAST of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RESULT_TLAST of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_TLAST_RESOLUTION : integer;
-  attribute C_TLAST_RESOLUTION of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 0;
+  attribute C_TLAST_RESOLUTION of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_A_TDATA_WIDTH : integer;
-  attribute C_A_TDATA_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 32;
+  attribute C_A_TDATA_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_A_TUSER_WIDTH : integer;
-  attribute C_A_TUSER_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 1;
+  attribute C_A_TUSER_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_B_TDATA_WIDTH : integer;
-  attribute C_B_TDATA_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 32;
+  attribute C_B_TDATA_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_B_TUSER_WIDTH : integer;
-  attribute C_B_TUSER_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 1;
+  attribute C_B_TUSER_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_C_TDATA_WIDTH : integer;
-  attribute C_C_TDATA_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 32;
+  attribute C_C_TDATA_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_C_TUSER_WIDTH : integer;
-  attribute C_C_TUSER_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 1;
+  attribute C_C_TUSER_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_OPERATION_TDATA_WIDTH : integer;
-  attribute C_OPERATION_TDATA_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 8;
+  attribute C_OPERATION_TDATA_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 8;
   attribute C_OPERATION_TUSER_WIDTH : integer;
-  attribute C_OPERATION_TUSER_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 1;
+  attribute C_OPERATION_TUSER_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_RESULT_TDATA_WIDTH : integer;
-  attribute C_RESULT_TDATA_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 32;
+  attribute C_RESULT_TDATA_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_RESULT_TUSER_WIDTH : integer;
-  attribute C_RESULT_TUSER_WIDTH of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is 1;
+  attribute C_RESULT_TUSER_WIDTH of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute downgradeipidentifiedwarnings : string;
-  attribute downgradeipidentifiedwarnings of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 : entity is "yes";
-end vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0;
+  attribute downgradeipidentifiedwarnings of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ : entity is "yes";
+end \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\;
 
-architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0 is
+architecture STRUCTURE of \vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\ is
   attribute C_ACCUM_INPUT_MSB of i_synth : label is 32;
   attribute C_ACCUM_LSB of i_synth : label is -31;
   attribute C_ACCUM_MSB of i_synth : label is 32;
@@ -20969,7 +20945,7 @@ architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dspfloating_poin
   attribute C_XDEVICEFAMILY of i_synth : label is "zynq";
   attribute downgradeipidentifiedwarnings of i_synth : label is "yes";
 begin
-i_synth: entity work.vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv
+i_synth: entity work.\vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0_viv__parameterized0\
     port map (
       aclk => aclk,
       aclken => aclken,
@@ -21017,11 +20993,11 @@ entity vivado_activity_thread_ap_fexp_7_full_dsp is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of vivado_activity_thread_ap_fexp_7_full_dsp : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of vivado_activity_thread_ap_fexp_7_full_dsp : entity is "floating_point_v7_0,Vivado 2013.3";
+  attribute x_core_info of vivado_activity_thread_ap_fexp_7_full_dsp : entity is "floating_point_v7_0,Vivado 2013.4";
   attribute CHECK_LICENSE_TYPE : string;
   attribute CHECK_LICENSE_TYPE of vivado_activity_thread_ap_fexp_7_full_dsp : entity is "vivado_activity_thread_ap_fexp_7_full_dsp,floating_point_v7_0,{}";
   attribute core_generation_info : string;
-  attribute core_generation_info of vivado_activity_thread_ap_fexp_7_full_dsp : entity is "vivado_activity_thread_ap_fexp_7_full_dsp,floating_point_v7_0,{x_ipProduct=Vivado 2013.3,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=floating_point,x_ipVersion=7.0,x_ipCoreRevision=2,x_ipLanguage=VERILOG,C_XDEVICEFAMILY=zynq,C_HAS_ADD=0,C_HAS_SUBTRACT=0,C_HAS_MULTIPLY=0,C_HAS_DIVIDE=0,C_HAS_SQRT=0,C_HAS_COMPARE=0,C_HAS_FIX_TO_FLT=0,C_HAS_FLT_TO_FIX=0,C_HAS_FLT_TO_FLT=0,C_HAS_RECIP=0,C_HAS_RECIP_SQRT=0,C_HAS_ABSOLUTE=0,C_HAS_LOGARITHM=0,C_HAS_EXPONENTIAL=1,C_HAS_FMA=0,C_HAS_FMS=0,C_HAS_ACCUMULATOR_A=0,C_HAS_ACCUMULATOR_S=0,C_A_WIDTH=32,C_A_FRACTION_WIDTH=24,C_B_WIDTH=32,C_B_FRACTION_WIDTH=24,C_C_WIDTH=32,C_C_FRACTION_WIDTH=24,C_RESULT_WIDTH=32,C_RESULT_FRACTION_WIDTH=24,C_COMPARE_OPERATION=8,C_LATENCY=7,C_OPTIMIZATION=1,C_MULT_USAGE=2,C_BRAM_USAGE=0,C_RATE=1,C_ACCUM_INPUT_MSB=32,C_ACCUM_MSB=32,C_ACCUM_LSB=-31,C_HAS_UNDERFLOW=0,C_HAS_OVERFLOW=0,C_HAS_INVALID_OP=0,C_HAS_DIVIDE_BY_ZERO=0,C_HAS_ACCUM_OVERFLOW=0,C_HAS_ACCUM_INPUT_OVERFLOW=0,C_HAS_ACLKEN=1,C_HAS_ARESETN=0,C_THROTTLE_SCHEME=3,C_HAS_A_TUSER=0,C_HAS_A_TLAST=0,C_HAS_B=0,C_HAS_B_TUSER=0,C_HAS_B_TLAST=0,C_HAS_C=0,C_HAS_C_TUSER=0,C_HAS_C_TLAST=0,C_HAS_OPERATION=0,C_HAS_OPERATION_TUSER=0,C_HAS_OPERATION_TLAST=0,C_HAS_RESULT_TUSER=0,C_HAS_RESULT_TLAST=0,C_TLAST_RESOLUTION=0,C_A_TDATA_WIDTH=32,C_A_TUSER_WIDTH=1,C_B_TDATA_WIDTH=32,C_B_TUSER_WIDTH=1,C_C_TDATA_WIDTH=32,C_C_TUSER_WIDTH=1,C_OPERATION_TDATA_WIDTH=8,C_OPERATION_TUSER_WIDTH=1,C_RESULT_TDATA_WIDTH=32,C_RESULT_TUSER_WIDTH=1}";
+  attribute core_generation_info of vivado_activity_thread_ap_fexp_7_full_dsp : entity is "vivado_activity_thread_ap_fexp_7_full_dsp,floating_point_v7_0,{x_ipProduct=Vivado 2013.4,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=floating_point,x_ipVersion=7.0,x_ipCoreRevision=3,x_ipLanguage=VHDL,C_XDEVICEFAMILY=zynq,C_HAS_ADD=0,C_HAS_SUBTRACT=0,C_HAS_MULTIPLY=0,C_HAS_DIVIDE=0,C_HAS_SQRT=0,C_HAS_COMPARE=0,C_HAS_FIX_TO_FLT=0,C_HAS_FLT_TO_FIX=0,C_HAS_FLT_TO_FLT=0,C_HAS_RECIP=0,C_HAS_RECIP_SQRT=0,C_HAS_ABSOLUTE=0,C_HAS_LOGARITHM=0,C_HAS_EXPONENTIAL=1,C_HAS_FMA=0,C_HAS_FMS=0,C_HAS_ACCUMULATOR_A=0,C_HAS_ACCUMULATOR_S=0,C_A_WIDTH=32,C_A_FRACTION_WIDTH=24,C_B_WIDTH=32,C_B_FRACTION_WIDTH=24,C_C_WIDTH=32,C_C_FRACTION_WIDTH=24,C_RESULT_WIDTH=32,C_RESULT_FRACTION_WIDTH=24,C_COMPARE_OPERATION=8,C_LATENCY=7,C_OPTIMIZATION=1,C_MULT_USAGE=2,C_BRAM_USAGE=0,C_RATE=1,C_ACCUM_INPUT_MSB=32,C_ACCUM_MSB=32,C_ACCUM_LSB=-31,C_HAS_UNDERFLOW=0,C_HAS_OVERFLOW=0,C_HAS_INVALID_OP=0,C_HAS_DIVIDE_BY_ZERO=0,C_HAS_ACCUM_OVERFLOW=0,C_HAS_ACCUM_INPUT_OVERFLOW=0,C_HAS_ACLKEN=1,C_HAS_ARESETN=0,C_THROTTLE_SCHEME=3,C_HAS_A_TUSER=0,C_HAS_A_TLAST=0,C_HAS_B=0,C_HAS_B_TUSER=0,C_HAS_B_TLAST=0,C_HAS_C=0,C_HAS_C_TUSER=0,C_HAS_C_TLAST=0,C_HAS_OPERATION=0,C_HAS_OPERATION_TUSER=0,C_HAS_OPERATION_TLAST=0,C_HAS_RESULT_TUSER=0,C_HAS_RESULT_TLAST=0,C_TLAST_RESOLUTION=0,C_A_TDATA_WIDTH=32,C_A_TUSER_WIDTH=1,C_B_TDATA_WIDTH=32,C_B_TUSER_WIDTH=1,C_C_TDATA_WIDTH=32,C_C_TUSER_WIDTH=1,C_OPERATION_TDATA_WIDTH=8,C_OPERATION_TUSER_WIDTH=1,C_RESULT_TDATA_WIDTH=32,C_RESULT_TUSER_WIDTH=1}";
 end vivado_activity_thread_ap_fexp_7_full_dsp;
 
 architecture STRUCTURE of vivado_activity_thread_ap_fexp_7_full_dsp is
@@ -21179,7 +21155,7 @@ GND: unisim.vcomponents.GND
     port map (
       G => \<const0>\
     );
-U0: entity work.vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0
+U0: entity work.\vivado_activity_thread_ap_fexp_7_full_dspfloating_point_v7_0__parameterized0\
     port map (
       aclk => aclk,
       aclken => aclken,

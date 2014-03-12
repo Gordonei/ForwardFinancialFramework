@@ -6,7 +6,7 @@ F
 opt_design2default:defaultZ4-113
 š
 @Attempting to get a license for feature '%s' and/or device '%s'
-308*common2"
+308*common2"
 Implementation2default:default2
 xc7z0202default:defaultZ17-347
 Š
@@ -39,18 +39,12 @@ BPlease refer to the DRC report (report_drc) for more information.
 
 %s
 *constraints2v
-bTime (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.08 . Memory (MB): peak = 1275.824 ; gain = 11.0232default:default
+bTime (s): cpu = 00:00:00.18 ; elapsed = 00:00:00.17 . Memory (MB): peak = 1381.441 ; gain = 10.0232default:default
 X
 
 Starting %s Task
 103*constraints2&
 Logic Optimization2default:defaultZ18-103
-4
-(Logic Optimization | Checksum: 3e8431b6
-*common
-<
-%Done setting XDC timing constraints.
-35*timingZ38-35
 <
 %Done setting XDC timing constraints.
 35*timingZ38-35
@@ -60,6 +54,12 @@ Phase %s%s
 101*constraints2
 1 2default:default2
 Retarget2default:defaultZ18-101
+†
+´Driverless net %s is driving LUT input pin I%s which is used by the LUT equation. If the LUT is not removed or a driver added, this warning will become an error. LUT cell name: %s
+113*opt2Š
+yvivado_activity_thread_fcmp_32ns_32ns_1_3_U3/vivado_activity_thread_ap_fcmp_1_no_dsp_u/U0/i_synth/s_axis_operation_tvalidyvivado_activity_thread_fcmp_32ns_32ns_1_3_U3/vivado_activity_thread_ap_fcmp_1_no_dsp_u/U0/i_synth/s_axis_operation_tvalid2default:default2
+12default:default2’
+}vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/vivado_activity_thread_ap_fcmp_1_no_dsp_u/U0/i_synth/opt_has_pipe.first_q[0]_i_1	}vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/vivado_activity_thread_ap_fcmp_1_no_dsp_u/U0/i_synth/opt_has_pipe.first_q[0]_i_12default:default8Z31-155
 C
 Pushed %s inverter(s).
 98*opt2
@@ -68,14 +68,14 @@ B
 Retargeted %s cell(s).
 49*opt2
 02default:defaultZ31-49
-2
-&Phase 1 Retarget | Checksum: 2a2caae3
+3
+'Phase 1 Retarget | Checksum: 1937552b8
 *common
-Š
+
 
 %s
-*constraints2s
-_Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.93 . Memory (MB): peak = 1299.816 ; gain = 23.9922default:default
+*constraints2v
+bTime (s): cpu = 00:00:00.84 ; elapsed = 00:00:00.74 . Memory (MB): peak = 1404.426 ; gain = 22.9842default:default
 l
 
 Phase %s%s
@@ -89,15 +89,15 @@ C
 B
 Eliminated %s cells.
 10*opt2
-1112default:defaultZ31-10
->
-2Phase 2 Constant Propagation | Checksum: 9e1a6bdc
+1122default:defaultZ31-10
+?
+3Phase 2 Constant Propagation | Checksum: 1d1847563
 *common
 ‡
 
 %s
 *constraints2p
-\Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1299.816 ; gain = 23.9922default:default
+\Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1404.426 ; gain = 22.9842default:default
 ]
 
 Phase %s%s
@@ -107,43 +107,46 @@ Phase %s%s
 N
  Eliminated %s unconnected nets.
 12*opt2
-15852default:defaultZ31-12
+15872default:defaultZ31-12
 N
 !Eliminated %s unconnected cells.
 11*opt2
-1932default:defaultZ31-11
-/
-#Phase 3 Sweep | Checksum: 07576ccf
+1942default:defaultZ31-11
+0
+$Phase 3 Sweep | Checksum: 109aa42f5
 *common
 ‡
 
 %s
 *constraints2p
-\Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1299.816 ; gain = 23.9922default:default
-@
-4Ending Logic Optimization Task | Checksum: 07576ccf
+\Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1404.426 ; gain = 22.9842default:default
+A
+5Ending Logic Optimization Task | Checksum: 109aa42f5
 *common
 ‡
 
 %s
 *constraints2p
-\Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1299.816 ; gain = 23.9922default:default
-7
-+Implement Debug Cores | Checksum: 3e8431b6
+\Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1404.426 ; gain = 22.9842default:default
+8
+,Implement Debug Cores | Checksum: 2415b384e
+*common
+5
+)Logic Optimization | Checksum: 2415b384e
 *common
 X
 
 Starting %s Task
 103*constraints2&
 Power Optimization2default:defaultZ18-103
-@
-4Ending Power Optimization Task | Checksum: 07576ccf
+A
+5Ending Power Optimization Task | Checksum: 109aa42f5
 *common
 †
 
 %s
 *constraints2o
-[Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1299.816 ; gain = 0.0002default:default
+[Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1404.426 ; gain = 0.0002default:default
 Q
 Releasing license: %s
 83*common2"
@@ -151,7 +154,7 @@ Q
 ½
 G%s Infos, %s Warnings, %s Critical Warnings and %s Errors encountered.
 28*	vivadotcl2
-212default:default2
+192default:default2
 42default:default2
 02default:default2
 02default:defaultZ4-41

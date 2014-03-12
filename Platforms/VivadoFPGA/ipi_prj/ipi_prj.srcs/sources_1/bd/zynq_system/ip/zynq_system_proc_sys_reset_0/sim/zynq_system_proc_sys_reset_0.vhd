@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:ip:proc_sys_reset:5.0
--- IP Revision: 2
+-- IP Revision: 3
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;

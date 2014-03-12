@@ -12,9 +12,9 @@ var WshShell = new ActiveXObject( "WScript.Shell" );
 var ProcEnv = WshShell.Environment( "Process" );
 var PathVal = ProcEnv("PATH");
 if ( PathVal.length == 0 ) {
-  PathVal = "/opt/Xilinx/2013.3/Vivado/2013.3/ids_lite/EDK/bin/lin64:/opt/Xilinx/2013.3/Vivado/2013.3/ids_lite/ISE/bin/lin64;/opt/Xilinx/2013.3/Vivado/2013.3/ids_lite/EDK/lib/lin64:/opt/Xilinx/2013.3/Vivado/2013.3/ids_lite/ISE/lib/lin64;/opt/Xilinx/2013.3/Vivado/2013.3/bin;";
+  PathVal = "/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/EDK/bin/lin64:/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/ISE/bin/lin64;/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/EDK/lib/lin64:/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/ISE/lib/lin64;/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/bin;";
 } else {
-  PathVal = "/opt/Xilinx/2013.3/Vivado/2013.3/ids_lite/EDK/bin/lin64:/opt/Xilinx/2013.3/Vivado/2013.3/ids_lite/ISE/bin/lin64;/opt/Xilinx/2013.3/Vivado/2013.3/ids_lite/EDK/lib/lin64:/opt/Xilinx/2013.3/Vivado/2013.3/ids_lite/ISE/lib/lin64;/opt/Xilinx/2013.3/Vivado/2013.3/bin;" + PathVal;
+  PathVal = "/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/EDK/bin/lin64:/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/ISE/bin/lin64;/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/EDK/lib/lin64:/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/ISE/lib/lin64;/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/bin;" + PathVal;
 }
 
 ProcEnv("PATH") = PathVal;

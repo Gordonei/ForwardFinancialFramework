@@ -1,10 +1,10 @@
 #-----------------------------------------------------------
-# Vivado v2013.3 (64-bit)
-# SW Build 329390 on Wed Oct 16 18:26:55 MDT 2013
-# IP Build 192953 on Wed Oct 16 08:44:02 MDT 2013
-# Start of session at: Wed Mar 12 08:21:23 2014
-# Process ID: 26483
-# Log file: /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1/vivado_activity_thread_ap_fcmp_1_no_dsp.rds
-# Journal file: /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1/vivado.jou
+# Vivado v2013.4 (64-bit)
+# SW Build 353583 on Mon Dec  9 17:26:26 MST 2013
+# IP Build 208076 on Mon Dec  2 12:38:17 MST 2013
+# Start of session at: Wed Mar 12 09:45:41 2014
+# Process ID: 17175
+# Log file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1/vivado_activity_thread_ap_fcmp_1_no_dsp.rds
+# Journal file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1/vivado.jou
 #-----------------------------------------------------------
 source vivado_activity_thread_ap_fcmp_1_no_dsp.tcl

@@ -638,11 +638,7 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogsynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/verilog/vivado_activity_thread_CORE_IO_if.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.v</spirit:name>
+        <spirit:name>hdl/verilog/vivado_activity_thread_fcmp_32ns_32ns_1_3.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -650,7 +646,7 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/vivado_activity_thread.v</spirit:name>
+        <spirit:name>hdl/verilog/vivado_activity_thread_ap_rst_if.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -658,7 +654,11 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/vivado_activity_thread_ap_rst_if.v</spirit:name>
+        <spirit:name>hdl/verilog/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/vivado_activity_thread.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -666,16 +666,8 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/vivado_activity_thread_fcmp_32ns_32ns_1_3.v</spirit:name>
+        <spirit:name>hdl/verilog/vivado_activity_thread_CORE_IO_if.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/ip/vivado_activity_thread_ap_fcmp_1_no_dsp.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/ip/vivado_activity_thread_ap_fexp_7_full_dsp.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp.vhd</spirit:name>
@@ -683,6 +675,14 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/ip/vivado_activity_thread_ap_fmul_2_max_dsp.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/ip/vivado_activity_thread_ap_fcmp_1_no_dsp.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/ip/vivado_activity_thread_ap_fexp_7_full_dsp.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -704,11 +704,7 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/verilog/vivado_activity_thread_CORE_IO_if.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/verilog/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.v</spirit:name>
+        <spirit:name>hdl/verilog/vivado_activity_thread_fcmp_32ns_32ns_1_3.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -716,7 +712,7 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/vivado_activity_thread.v</spirit:name>
+        <spirit:name>hdl/verilog/vivado_activity_thread_ap_rst_if.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -724,7 +720,11 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/vivado_activity_thread_ap_rst_if.v</spirit:name>
+        <spirit:name>hdl/verilog/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/vivado_activity_thread.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -732,16 +732,8 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/vivado_activity_thread_fcmp_32ns_32ns_1_3.v</spirit:name>
+        <spirit:name>hdl/verilog/vivado_activity_thread_CORE_IO_if.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/ip/vivado_activity_thread_ap_fcmp_1_no_dsp.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/ip/vivado_activity_thread_ap_fexp_7_full_dsp.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp.vhd</spirit:name>
@@ -749,6 +741,14 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>hdl/ip/vivado_activity_thread_ap_fmul_2_max_dsp.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/ip/vivado_activity_thread_ap_fcmp_1_no_dsp.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/ip/vivado_activity_thread_ap_fexp_7_full_dsp.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -763,15 +763,15 @@
     <spirit:fileSet>
       <spirit:name>xilinx_softwaredriver_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread.c</spirit:name>
-        <spirit:fileType>cSource</spirit:fileType>
+        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/data/vivado_activity_thread_top_v2_1_0.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread_linux.c</spirit:name>
-        <spirit:fileType>cSource</spirit:fileType>
+        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/data/vivado_activity_thread_top_v2_1_0.mdd</spirit:name>
+        <spirit:userFileType>mdd</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread_sinit.c</spirit:name>
+        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread_hw.h</spirit:name>
         <spirit:fileType>cSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -779,20 +779,20 @@
         <spirit:fileType>unknown</spirit:fileType>
       </spirit:file>
       <spirit:file>
+        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread_sinit.c</spirit:name>
+        <spirit:fileType>cSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread.h</spirit:name>
         <spirit:fileType>cSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread_hw.h</spirit:name>
+        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread.c</spirit:name>
         <spirit:fileType>cSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/data/vivado_activity_thread_top_v2_1_0.mdd</spirit:name>
-        <spirit:userFileType>mdd</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/data/vivado_activity_thread_top_v2_1_0.tcl</spirit:name>
-        <spirit:fileType>tclSource</spirit:fileType>
+        <spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread_linux.c</spirit:name>
+        <spirit:fileType>cSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -847,10 +847,11 @@
         <xilinx:taxonomy>/VIVADO_HLS_IP</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>Vivado_activity_thread</xilinx:displayName>
-      <xilinx:coreCreationDateTime>2014-03-12T08:21:13Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>1403120945</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2014-03-12T09:45:27Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2013.3</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2013.4</xilinx:xilinxVersion>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

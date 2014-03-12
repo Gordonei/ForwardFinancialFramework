@@ -1,9 +1,9 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'vivado_activity_thread'" level="0">
-<item name = "Date">Wed Mar 12 08:21:05 2014
+<item name = "Date">Wed Mar 12 09:45:15 2014
 </item>
-<item name = "Version">2013.3 (build date: Wed Oct 16 18:12:55 PM 2013)</item>
+<item name = "Version">2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)</item>
 <item name = "Project">hls_prj</item>
 <item name = "Solution">F3_VivadoHLS_core</item>
 <item name = "Product family">zynq zynq_fpv6 </item>
@@ -53,7 +53,7 @@
 <column name="Instance">-, 12, 691, 1874</column>
 <column name="Memory">-, -, -, -</column>
 <column name="Multiplexer">-, -, -, 230</column>
-<column name="Register">-, -, 272, -</column>
+<column name="Register">-, -, 271, -</column>
 <column name="ShiftMemory">-, -, -, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
 <specialColumn name="Utilization (%)">0, 5, ~0, 4</specialColumn>
@@ -83,9 +83,9 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="j_1_fu_227_p2">+, 0, 0, 4, 4, 1</column>
-<column name="o_v_0_value_fu_233_p3">Select, 0, 0, 32, 1, 32</column>
-<column name="exitcond_fu_221_p2">icmp, 0, 0, 4, 4, 4</column>
+<column name="j_1_fu_228_p2">+, 0, 0, 4, 4, 1</column>
+<column name="o_v_0_value_fu_234_p3">Select, 0, 0, 32, 1, 32</column>
+<column name="exitcond_fu_222_p2">icmp, 0, 0, 4, 4, 4</column>
 <column name="tmp_1_fu_216_p2">xor, 0, 0, 2, 1, 2</column>
 </table>
 </item>
@@ -105,18 +105,17 @@
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="4">Name, FF, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">5, 5, 0</column>
-<column name="j_1_reg_291">4, 4, 0</column>
+<column name="j_1_reg_287">4, 4, 0</column>
 <column name="j_reg_180">4, 4, 0</column>
 <column name="k_reg_143">1, 1, 0</column>
-<column name="o_v_0_value_reg_307">32, 32, 0</column>
-<column name="spot_price_0_1_reg_281">32, 32, 0</column>
+<column name="o_v_0_value_reg_303">32, 32, 0</column>
+<column name="spot_price_0_1_reg_277">32, 32, 0</column>
 <column name="spot_price_0_reg_118">32, 32, 0</column>
 <column name="temp_total_0_reg_130">32, 32, 0</column>
-<column name="tmp_1_reg_276">1, 1, 0</column>
-<column name="tmp_i_reg_271">32, 32, 0</column>
+<column name="tmp_1_reg_272">1, 1, 0</column>
+<column name="tmp_i_reg_267">32, 32, 0</column>
 <column name="tmp_pn_reg_156">32, 32, 0</column>
-<column name="tmp_reg_266">1, 1, 0</column>
-<column name="u_v_0_gamma_reg_296">32, 32, 0</column>
+<column name="u_v_0_gamma_reg_292">32, 32, 0</column>
 <column name="u_v_gamma_read_assign_reg_168">32, 32, 0</column>
 </table>
 </item>
