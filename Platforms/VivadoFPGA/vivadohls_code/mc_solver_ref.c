@@ -44,7 +44,7 @@ int ret,ret_2;
 
 //*MC Multicore Activity Thread Function*
 //void * multicore_montecarlo_activity_thread(void* thread_arg){
-void multicore_montecarlo_activity_thread(struct thread_data * thread_arg){
+void multicore_montecarlo_activity_thread(thread_data_t * thread_arg){
 	//**Loop Data Structures**
 	struct thread_data* temp_data;
 	temp_data = (struct thread_data*) thread_arg;
@@ -119,6 +119,7 @@ void opencl_montecarlo_activity_thread(struct thread_data * thread_arg){
 	//**Initialising Loop Attributes*
 	FP_t temp_total_0=0,temp_total_sqrd_0=0,spot_price_0,time_0;
 	int j,k;
+    //o_v_0.delta_time = o_a_0.time_period/default_points;
 	//**Thread Calculation Loop**
 	for(k=0;k<temp_data->thread_paths;++k){
 		//**Initiating the Path and creating path variables**
@@ -130,7 +131,8 @@ void opencl_montecarlo_activity_thread(struct thread_data * thread_arg){
 		//**Running the path**
 		for(j=0;j<temp_data->path_points;++j){
 			option_derivative_path(spot_price_0,time_0,&o_v_0,&o_a_0);
-			o_v_0.delta_time = o_a_0.time_period/default_points;
+			//o_v_0.delta_time = o_a_0.time_period/default_points;
+            
 			underlying_underlying_path(o_v_0.delta_time,&u_v_0,&u_a_0);
 			spot_price_0 = u_a_0.current_price*exp(u_v_0.gamma);
 			time_0 = u_v_0.time;
@@ -140,8 +142,9 @@ void opencl_montecarlo_activity_thread(struct thread_data * thread_arg){
 		option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
 		temp_total_0 += o_v_0.value;
 		temp_total_sqrd_0 += pow(o_v_0.value,2);
-		}
+    }
 
+    printf("spot_price: %f\n", spot_price_0);
 	//**Returning Result**
 	//temp_data->thread_result[0] = temp_total_0;
 	temp_data->thread_result_sqrd[0] = temp_total_sqrd_0;

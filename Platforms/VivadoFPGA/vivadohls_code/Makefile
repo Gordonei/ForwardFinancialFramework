@@ -24,7 +24,7 @@ opencl_ref: $(OBJS)
 
 test: all
 	./c_ref 1000 1 10 0.1 100 1.0 1.0 100
-	./opencl_ref 1000 1 10 0.1 100 1.0 1.0 100
+	./opencl_ref 1 1 10 0.1 100 1.0 1.0 100
 
 clean:
 	rm -f *.o c_ref opencl_ref
