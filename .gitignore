@@ -30,7 +30,7 @@ pip-log.txt
 mc_solver_multicore_*
 mc_solver_maxeler_fpga_*
 mc_solver_opencl_*
-Makefile
+#Makefile
 
 #Example Code
 MC_Solver_Test_*
