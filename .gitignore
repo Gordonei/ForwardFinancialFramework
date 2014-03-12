@@ -51,4 +51,4 @@ MC_Solver_prototype_maxeler
  *.sdk/
  *.jou
  *.log
- 
+ *.autopilot/
