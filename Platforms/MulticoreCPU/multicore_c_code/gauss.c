@@ -43,7 +43,7 @@ uint32_t __random32(rng_state_t *rng_state)
 
 double __drandom32(rng_state_t *rng_state)
 {
-    return (__random32(rng_state)/(pow(2,32)-1));
+    return (__random32(rng_state)/(pow(2,32)));
 }
 
 double taus_ran_gaussian_ziggurat (double sigma, rng_state_t *rng_state)
