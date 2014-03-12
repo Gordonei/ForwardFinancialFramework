@@ -350,7 +350,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 	if("heston" in u.name or "black_scholes" in u.name):
 	  output_list.append("(u_v_%d.rng_state).s1 = 2;"%index)
 	  output_list.append("(u_v_%d.rng_state).s2 = 8;"%index)
-	  output_list.append("(u_v_%d.rng_state).s3 = 16 + rng_seed*thread_paths*%d;" % (index,index))
+	  output_list.append("(u_v_%d.rng_state).s3 = 16 + rng_seed*thread_paths*%d;" % (index,index+1))
 	  
         output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
     
