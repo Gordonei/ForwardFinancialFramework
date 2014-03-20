@@ -37,10 +37,10 @@ typedef struct {
 FP_t gamma;
 FP_t time;
 FP_t x;
-#ifdef MULTICORE_CPU
+#if defined (TAUS_BOXMULLER) || defined (TAUS_ZIGGURAT)
 rng_state_t rng_state;
 #endif
-#ifdef OPENCL_GPU
+#ifdef MWC64X_BOXMULLER
 mwc64x_state_t rng_state;
 #endif
 } black_scholes_underlying_variables;

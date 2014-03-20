@@ -46,10 +46,10 @@ FP_t u;
 FP_t volatility_approx;
 FP_t theta_v_approx;
 FP_t moment_difference;
-#ifdef MULTICORE_CPU
+#if defined (TAUS_BOXMULLER) || defined (TAUS_ZIGGURAT)
 rng_state_t rng_state;
 #endif
-#ifdef OPENCL_GPU
+#ifdef MWC64X_BOXMULLER
 mwc64x_state_t rng_state;
 #endif
 } heston_underlying_variables;
