@@ -9,8 +9,8 @@ from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
-  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=8,random_number_generator="mwc64x_boxmuller"):
-    MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
+  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=8,random_number_generator="mwc64x_boxmuller",floating_point_format="float"):
+    MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings,random_number_generator=random_number_generator,floating_point_format=floating_point_format)
     self.solver_metadata["threads"] = 1 #In this context this means something different
     
     """os.chdir("..")
@@ -162,7 +162,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("source_size = fread(source_str, 1, 0x100000, fp);")
       output_list.append("fclose(fp);")
       output_list.append("cl_program program = clCreateProgramWithSource(context, 1, (const char **)&source_str, (const size_t *)&source_size, &ret);")
-      path_string = "mwc64x/cl"
+      path_string = "."
+      if(self.random_number_generator=="mwc64x_boxmuller"): path_string = "mwc64x/cl"
+      #elif(self.random_number_generator=="taus_boxmuller"): path_string = ""
       if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
       output_list.append("const char* buildOption =\"-I . -I %s\";"%path_string) #-x clc++
       output_list.append("ret = clBuildProgram(program, 1, &device, buildOption, NULL, NULL);")
@@ -685,11 +687,21 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
     
-    path_string = "mwc64x/cl"
+    
+    opencl_compile_flags = ""
+    path_string = ""
+    if(self.random_number_generator=="mwc64x_boxmuller"):
+      path_string = "mwc64x/cl"
+      open_compile_flags = "%s -DMWC64X_BOXMULLER"%opencl_compile_flags
+    
+    elif(self.random_number_generator=="taus_boxmuller"):
+      path_string = "."
+      open_compile_flags = "%s -DTAUS_BOXMULLER"%opencl_compile_flags
+    
     if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
     
-    opencl_compile_flags = "-I . -I %s"%path_string
-    if(self.random_number_generator=="mwc64x_boxmuller"): open_compile_flags = "%s -DMWC64X_BOXMULLER"%opencl_compile_flags
+    opencl_compile_flags = "-I . -I %s %s"% (path_string,opencl_compile_flags)
+    print opencl_compile_flags
     self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build([open_compile_flags]) #Creating OpenCL program based upon Kernel
     
     preferred_wg_size_multiple = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)
