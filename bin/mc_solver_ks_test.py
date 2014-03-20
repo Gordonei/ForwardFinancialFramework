@@ -12,13 +12,13 @@ def run_ks_solver(platform_name,paths,fpga_option,options,debug=False,threads=0,
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
     if(threads): platform = OpenCLGPU.OpenCLGPU(threads=threads)
     else: platform = OpenCLGPU.OpenCLGPU()
-    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform) #,reduce_underlyings=False
+    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform,random_number_generator="taus_boxmuller") #,reduce_underlyings=False
     
   elif(platform_name=="CPU"):
     from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
     if(threads): platform = MulticoreCPU.MulticoreCPU(threads=threads)
     else: platform = MulticoreCPU.MulticoreCPU()
-    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform)
+    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform,random_number_generator="taus_boxmuller",floating_point_format="float")
     
   elif(platform_name=="FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
