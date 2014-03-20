@@ -7,7 +7,7 @@
 #ifndef HESTON_H_
 #define HESTON_H_
 
-#if defined (TAUS_BOXMULLER) || defined (TAUS_ZIGGURAT)
+#if defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT)
 #include "gauss.h"
 #endif
 
@@ -46,7 +46,7 @@ FP_t u;
 FP_t volatility_approx;
 FP_t theta_v_approx;
 FP_t moment_difference;
-#if defined (TAUS_BOXMULLER) || defined (TAUS_ZIGGURAT)
+#if defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT)
 rng_state_t rng_state;
 #endif
 #ifdef MWC64X_BOXMULLER

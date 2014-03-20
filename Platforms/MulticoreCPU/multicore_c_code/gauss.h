@@ -29,9 +29,21 @@
 #ifndef GAUSS_H_
 #define GAUSS_H_
 
-#include <math.h>
+
 //#include <assert.h>
-#include <stdint.h>
+
+#ifdef MULTICORE_CPU
+#include "stdint.h"
+#include "math.h"
+#define native_sqrt sqrt
+#define native_exp exp
+#define native_log log
+#define native_powr pow
+#endif
+
+#ifdef OPENCL_GPU
+#define uint32_t uint
+#endif
 
 //#include <gsl/gsl_rng.h>
 
