@@ -444,7 +444,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("#elif defined(cl_khr_fp64)")
       output_list.append("#pragma OPENCL EXTENSION cl_khr_fp64 : enable")
       output_list.append("#endif")
-    path_string = "mwc64x/cl/mwc64x.cl"
+    if(self.random_number_generator=="mwc64x_boxmuller"): path_string = "mwc64x/cl/mwc64x.cl"
     if('darwin' in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
     output_list.append("#include \"%s\""%path_string)
     #Checking that the source code for the derivative and underlying required is avaliable
