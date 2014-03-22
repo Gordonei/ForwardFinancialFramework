@@ -7,8 +7,11 @@
 #ifndef BLACK_SCHOLES_H_
 #define BLACK_SCHOLES_H_
 
-#ifdef MULTICORE_CPU
+#if defined (TAUS_BOXMULLER) || defined (TAUS_ZIGGURAT)
 #include "gauss.h"
+#endif
+
+#ifdef MULTICORE_CPU
 #include <math.h>
 #include <stdlib.h>
 #define native_sqrt sqrt
@@ -18,12 +21,16 @@
 #endif
 
 #ifdef OPENCL_GPU
+#ifdef MWC64X_BOXMULLER
 #include "../../OpenCLGPU/opencl_code/mwc64x/cl/mwc64x.cl"
+#endif
+
 #if FP_t==double
 #if defined(cl_amd_fp64)
 #pragma OPENCL EXTENSION cl_amd_fp64 : enable
 #elif defined(cl_khr_fp64)
 #pragma OPENCL EXTENSION cl_khr_fp64 : enable
+
 #endif
 #endif
 #endif
@@ -32,10 +39,10 @@ typedef struct {
 FP_t gamma;
 FP_t time;
 FP_t x;
-#ifdef MULTICORE_CPU
+#if defined (TAUS_BOXMULLER) || defined (TAUS_ZIGGURAT)
 rng_state_t rng_state;
 #endif
-#ifdef OPENCL_GPU
+#ifdef MWC64X_BOXMULLER
 mwc64x_state_t rng_state;
 #endif
 } black_scholes_underlying_variables;

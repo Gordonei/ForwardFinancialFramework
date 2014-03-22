@@ -43,13 +43,13 @@ uint32_t __random32(rng_state_t *rng_state)
 
 FP_t __drandom32(rng_state_t *rng_state)
 {
-    return (__random32(rng_state)/(pow(2,32)));
+     return (__random32(rng_state)/4294967296.0);
 }
 
-FP_t taus_ran_gaussian_ziggurat (double sigma, rng_state_t *rng_state)
+FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state)
 {
   unsigned long  U, sign, i, j;
-  double  x, y;
+  FP_t  x, y;
 
   while (1) {
     U = __random32(rng_state);
@@ -61,15 +61,15 @@ FP_t taus_ran_gaussian_ziggurat (double sigma, rng_state_t *rng_state)
     if (j < ktab[i])  break;
 
     if (i<127) {
-      double  y0, y1;
+      FP_t  y0, y1;
       y0 = ytab[i];
       y1 = ytab[i+1];
       y = y1+(y0-y1)*__drandom32(rng_state);
     } else {
       x = PARAM_R - log(1.0-__drandom32(rng_state))/PARAM_R;
-      y = exp(-PARAM_R*(x-0.5*PARAM_R))*__drandom32(rng_state);
+      y = native_exp((FP_t)(-PARAM_R*(x-0.5*PARAM_R)))*__drandom32(rng_state);
     }
-    if (y < exp(-0.5*x*x))  break;
+    if (y < (native_exp((FP_t)-0.5*x*x)))  break;
   }
   return  sign ? sigma*x : -sigma*x;
 }
@@ -81,9 +81,9 @@ void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_stat
   u = __drandom32(rng_state);
   v = __drandom32(rng_state);
   
-  t_x = sqrt(-2*log(u))*cos(2*M_PI*v);
-  t_y = sqrt(-2*log(u))*sin(2*M_PI*v);
-  t_y = t_x*rho+sqrt(1.0-pow(rho,2))*t_y;
+  t_x = sqrt(-2*native_log(u))*cos(2*M_PI*v);
+  t_y = sqrt(-2*native_log(u))*sin(2*M_PI*v);
+  t_y = t_x*rho+native_sqrt(1.0-native_powr(rho,2))*t_y;
   
   *x = t_x;
   *y = t_y;
