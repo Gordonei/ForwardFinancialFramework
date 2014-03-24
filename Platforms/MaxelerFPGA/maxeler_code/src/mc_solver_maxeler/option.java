@@ -25,12 +25,14 @@ public class option extends KernelLib{
 	Kernel kernel;
 	DFEVar path;
 	DFEVar point;
+	DFEVar delay;
 
-	public option(MC_Solver_Maxeler_Base_Kernel kernel,DFEVar pp,DFEVar p,DFEVar enable,option_parameters op) {
+	public option(MC_Solver_Maxeler_Base_Kernel kernel,DFEVar pp,DFEVar p,DFEVar d,DFEVar enable,option_parameters op) {
 		super(kernel);
 		this.kernel = kernel;
 		this.point = pp;
 		this.path = p;
+		this.delay = d;
 		this.enable = enable;
 
 		//this.temp_price = temp_price;

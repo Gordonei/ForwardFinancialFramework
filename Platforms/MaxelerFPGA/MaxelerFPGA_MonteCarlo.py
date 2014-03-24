@@ -318,7 +318,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       temp_string = "%s,%s_%d_%s);"%(temp_string,d.name,index,self.derivative_attributes[index][-1])
       
       output_list.append(temp_string)
-      output_list.append("%s %s_%d = new %s(this,pp,p,this.constant.var(true),%s_%d_parameters);"%(d.name,d.name,index,d.name,d.name,index))
+      output_list.append("%s %s_%d = new %s(this,pp,p,d,this.constant.var(true),%s_%d_parameters);"%(d.name,d.name,index,d.name,d.name,index))
       output_list.append("%s_%d.path_init();"%(d.name,index)) #path initialisation
       #output_list.append("DFEVar delta_time_%d = %s_%d.delta_time;"%(index,d.name,index))
       

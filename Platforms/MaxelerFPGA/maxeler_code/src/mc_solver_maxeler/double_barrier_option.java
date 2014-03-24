@@ -6,8 +6,8 @@ public class double_barrier_option extends barrier_option {
 
 	double_barrier_option_parameters parameters;
 
-	public double_barrier_option(MC_Solver_Maxeler_Base_Kernel kernel, DFEVar pp,DFEVar p, DFEVar enable,double_barrier_option_parameters dbop) {
-		super(kernel, pp, p, enable,dbop);
+	public double_barrier_option(MC_Solver_Maxeler_Base_Kernel kernel, DFEVar pp,DFEVar p,DFEVar d,DFEVar enable,double_barrier_option_parameters dbop) {
+		super(kernel, pp, p, d, enable,dbop);
 		this.parameters = dbop;
 	}
 	

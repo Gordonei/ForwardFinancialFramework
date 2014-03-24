@@ -9,8 +9,8 @@ public class asian_option extends european_option {
 
 	protected DFEVar average,carried_average,new_average,temp_average_contribution;
 
-	public asian_option(MC_Solver_Maxeler_Base_Kernel kernel,DFEVar pp,DFEVar p,DFEVar enable,asian_option_parameters aop){
-		super(kernel,pp,p,enable,aop);
+	public asian_option(MC_Solver_Maxeler_Base_Kernel kernel,DFEVar pp,DFEVar p,DFEVar d,DFEVar enable,asian_option_parameters aop){
+		super(kernel,pp,p,d,enable,aop);
 
 		this.parameters = aop;
 
