@@ -31,7 +31,7 @@ public class asian_option extends european_option {
 	public void path(DFEVar temp_price,DFEVar time){
 		//super.path(temp_price,time);
 		
-		this.new_delta_time = this.parameters.time_period/this.parameters.points;
+		//this.new_delta_time = this.parameters.time_period/this.parameters.points;
 		this.temp_average_contribution = temp_price/this.parameters.points;
 		this.new_average = this.average + this.temp_average_contribution;
 	}

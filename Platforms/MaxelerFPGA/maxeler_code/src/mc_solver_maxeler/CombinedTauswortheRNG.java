@@ -15,13 +15,13 @@ public class CombinedTauswortheRNG extends KernelLib{
   protected Kernel kernel;
   public DFEVar s1,s2,s3,offset,count;
 
-  public CombinedTauswortheRNG(Kernel kernel,int delay,DFEVar s1,DFEVar s2,DFEVar s3,DFEVar offset){    
+  public CombinedTauswortheRNG(Kernel kernel,int period,DFEVar s1,DFEVar s2,DFEVar s3,DFEVar offset){    
       super(kernel);
       
       this.kernel = kernel;
       
-      int period = delay; //can at most be 2**88
-      Count.Params countParams = control.count.makeParams(MathUtils.bitsToRepresent(period))
+      
+      Count.Params countParams = control.count.makeParams(MathUtils.bitsToRepresent(period)) //can at most be 2**88
         .withWrapMode(WrapMode.COUNT_LT_MAX_THEN_WRAP)
         .withMax(period+1);
       count = control.count.makeCounter(countParams).getCount();

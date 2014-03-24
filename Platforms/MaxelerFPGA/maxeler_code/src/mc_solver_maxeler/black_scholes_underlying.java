@@ -17,8 +17,8 @@ public class black_scholes_underlying extends underlying {
 	//private final int seed,seed2;
 
 
-	public black_scholes_underlying(MC_Solver_Maxeler_Base_Kernel kernel,CombinedTauswortheRNG u,CombinedTauswortheRNG v,DFEVar pp,DFEVar p,black_scholes_underlying_parameters bsp){
-		super(kernel,pp,p,bsp);
+	public black_scholes_underlying(MC_Solver_Maxeler_Base_Kernel kernel,CombinedTauswortheRNG u,CombinedTauswortheRNG v,DFEVar pp,DFEVar p,DFEVar d,black_scholes_underlying_parameters bsp){
+		super(kernel,pp,p,d,bsp);
 
 		this.parameters = bsp;
 		this.gauss = new GaussianBoxMuller(this.kernel,this.kernel.constant.var(this.kernel.dfeFloat(8, 24),0.0),u,v,false);

@@ -23,8 +23,8 @@ public class heston_underlying extends underlying {
 
 	protected DFEVar theta_v_approx,moment_1,moment_2,moment_difference;
 
-	public heston_underlying(MC_Solver_Maxeler_Base_Kernel k,CombinedTauswortheRNG u,CombinedTauswortheRNG v,DFEVar pp,DFEVar p,heston_underlying_parameters hup){
-		super(k,pp,p,hup);
+	public heston_underlying(MC_Solver_Maxeler_Base_Kernel k,CombinedTauswortheRNG u,CombinedTauswortheRNG v,DFEVar pp,DFEVar p,DFEVar d,heston_underlying_parameters hup){
+		super(k,pp,p,d,hup);
 
 		this.parameters = hup;
 		this.gauss = new GaussianBoxMuller(this.kernel,this.parameters.rho,u,v,true);

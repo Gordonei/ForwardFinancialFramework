@@ -164,6 +164,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("temp_total_%d += values_out[j+2*%d];"%(index,index))
       output_list.append("temp_value_sqrd_%d += values_out[j+2*%d+1];"%(index,index))
     output_list.append("}")
+    
       #output_list.append("if(values_out[i*%d+%d]){printf(\"%%d - %%f\\n\",i,values_out[i*%d+%d]);}"%(values_out*4,index,values_out*4,index))
     
     #for d in self.derivative:
@@ -245,9 +246,15 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Counters
     output_list.append("//**Counters**\n")
     output_list.append("CounterChain chain = control.count.makeCounterChain();")
-    output_list.append("DFEVar pp = chain.addCounter(this.path_points+1,1).cast(dfeUInt(32));") #Path Points is the outer loop so as to implement a C-Slow architecture
-    output_list.append("DFEVar p = chain.addCounter(this.instance_paths,1).cast(dfeUInt(32));")
-    if not(self.c_slow): output_list.append("DFEVar d = chain.addCounter(this.delay,1);")
+    
+    if(self.c_slow):
+      output_list.append("DFEVar pp = chain.addCounter(this.path_points+1,1).cast(dfeUInt(32));") #Path Points is the outer loop so as to implement a C-Slow architecture
+      output_list.append("DFEVar p = chain.addCounter(this.instance_paths,1).cast(dfeUInt(32));")
+      output_list.append("DFEVar d = p;")
+    else:
+      output_list.append("DFEVar p = chain.addCounter(this.instance_paths,1).cast(dfeUInt(32));")
+      output_list.append("DFEVar pp = chain.addCounter(this.path_points+1,1).cast(dfeUInt(32));") #Path Points is the outer loop so as to implement a C-Slow architecture
+      output_list.append("DFEVar d = chain.addCounter(this.delay,1);")
     
     #Scaler Inputs
     output_list.append("//**Scaler Inputs**\n")
@@ -273,6 +280,9 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,d in enumerate(self.derivative): 
 	output_list.append("DFEVar accumulate_%d = this.constant.var(this.inputDoubleType,0.0);"%index)
 	output_list.append("DFEVar accumulate_sqrd_%d = this.constant.var(this.inputDoubleType,0.0);"%index)
+	
+	output_list.append("DFEVar delta_time_%d = %s_%d_time_period/this.path_points;"%(index,d.name,index))
+	
     output_list.append("//**Parallelism Loop**")
     output_list.append("for (int i=0;i<this.instances;i++){")
     
@@ -291,11 +301,11 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       if("heston" in u.name or "black_scholes" in u.name):
 	#output_list.append("%s_%d_parameters.seed = input_array[%d*2];"%(u.name,index,rng_index))
 	#output_list.append("%s_%d_parameters.seed2 = input_array[%d*2+1];"%(u.name,index,rng_index))
-	output_list.append("CombinedTauswortheRNG %s_%d_x = new CombinedTauswortheRNG(this,this.delay,input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2],input_array[%d*8+3]);"%(u.name,index,index,index,index,index));
-	output_list.append("CombinedTauswortheRNG %s_%d_y = new CombinedTauswortheRNG(this,this.delay,input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6],input_array[%d*8+7]);"%(u.name,index,index,index,index,index));
-	output_list.append("%s %s_%d = new %s(this,%s_%d_x,%s_%d_y,pp,p,%s_%d_parameters);"%(u.name,u.name,index,u.name,u.name,index,u.name,index,u.name,index))
+	output_list.append("CombinedTauswortheRNG %s_%d_x = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2],input_array[%d*8+3]);"%(u.name,index,index,index,index,index));
+	output_list.append("CombinedTauswortheRNG %s_%d_y = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6],input_array[%d*8+7]);"%(u.name,index,index,index,index,index));
+	output_list.append("%s %s_%d = new %s(this,%s_%d_x,%s_%d_y,pp,p,d,%s_%d_parameters);"%(u.name,u.name,index,u.name,u.name,index,u.name,index,u.name,index))
       
-      else: output_list.append("%s %s_%d = new %s(this,pp,p,%s_%d_parameters);"%(u.name,u.name,index,u.name,u.name,index))
+      else: output_list.append("%s %s_%d = new %s(this,pp,p,d,%s_%d_parameters);"%(u.name,u.name,index,u.name,u.name,index))
       
       output_list.append("%s_%d.path_init();"%(u.name,index))
       
@@ -315,13 +325,12 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//***Path Initialisation, Path, Payoff Calls and Accumulation***")
     
     temp_path_call = []
-    for d in self.derivative:
-      d_index = self.derivative.index(d)
-      for u in d.underlying:
-        u_index = self.underlying.index(u)
+    for d_index,d in enumerate(self.derivative):
+      for u_index,u in enumerate(d.underlying):
         if("%s_%d"%(u.name,u_index) not in temp_path_call): #checking to see if this path has not been called already
-          if("points" in self.derivative_attributes[d_index]): output_list.append("%s_%d.path(%s_%d.delta_time);"%(u.name,u_index,d.name,d_index)) #Calling the path function
-	  else: output_list.append("%s_%d.path(%s_%d.delta_time/%d);"%(u.name,u_index,d.name,d_index,self.solver_metadata["path_points"])) #Calling the path function
+          #if("points" in self.derivative_attributes[d_index]): output_list.append("%s_%d.path(%s_%d.delta_time);"%(u.name,u_index,d.name,d_index)) #Calling the path function
+	  #else: output_list.append("%s_%d.path(%s_%d.delta_time/%d);"%(u.name,u_index,d.name,d_index,self.solver_metadata["path_points"])) #Calling the path function
+	  output_list.append("%s_%d.path(delta_time_%d);"%(u.name,u_index,d_index)) #Calling the path function
           output_list.append("%s_%d.connect_path();"%(u.name,u_index))
           temp_path_call.append("%s_%d"%(u.name,u_index))
     
@@ -345,8 +354,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for i in range(len(self.derivative)*2,int(values_out)): output_list.append("output_array[%d] <== this.constant.var(inputFloatType,0.0);"%i)
     
     #output_list.append("io.output(\"values_out\", output_array ,outputArrayType,p.eq(this.instance_paths-1)&pp.eq(this.path_points-1));")
-    if(self.c_slow): output_list.append("io.output(\"values_out\", output_array ,outputArrayType,pp.eq(this.path_points));")
-    else: output_list.append("io.output(\"values_out\", output_array ,outputArrayType,pp.eq(this.path_points)&d.eq(0));")
+    #if(self.c_slow): output_list.append("io.output(\"values_out\", output_array ,outputArrayType,pp.eq(this.path_points));")
+    output_list.append("io.output(\"values_out\", output_array ,outputArrayType,pp.eq(this.path_points)&d.eq(0));")
     output_list.append("}")
     output_list.append("}")
     
