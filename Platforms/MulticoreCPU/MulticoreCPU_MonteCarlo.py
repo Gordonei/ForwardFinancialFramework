@@ -51,7 +51,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list = []
     output_list.append(self.header_string)
     #output_list.append("#define %s 1"%self.platform.name.upper())
-    output_list.append("#define MULTICORE_CPU 1")
+    output_list.append("#define MULTICORE_CPU")
     output_list.append("#define FP_t %s"%self.floating_point_format)
     output_list.append("#define native_sqrt sqrt")
     output_list.append("#define native_exp exp")
@@ -468,8 +468,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         compile_cmd = ["g++","%s.c"%self.output_file_name]
         #compile_cmd.append("-D%s"%self.platform.name.upper())
         compile_cmd.append("-DMULTICORE_CPU")
-        
-        if(self.random_number_generator=="taus_ziggurat"):
+
+	if(self.random_number_generator=="taus_ziggurat"):
 	  compile_cmd.append("-DTAUS_ZIGGURAT")
 	elif(self.random_number_generator=="drand48_boxmuller"):
 	  compile_cmd.append("-DDRAND48_BOXMULLER")
