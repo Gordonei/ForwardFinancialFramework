@@ -28,9 +28,19 @@
 
 #include "gauss.h"
 
+void ctrng_seed(int index,uint32_t initial_seed,rng_state_t *rng_state){
+    rng_state->s1 = initial_seed + 2;
+    rng_state->s2 = initial_seed + 8;
+    rng_state->s3 = initial_seed + 16;
+    rng_state->offset = 0;
+    
+    int i;
+    for(i=0;i<index;++i) __random32(rng_state);
+}
+
 uint32_t __random32(rng_state_t *rng_state)
 {
-#define TAUSWORTHE(s,a,b,c,d) ((s&c)<<d) ^ (((s <<a) ^ s)>>b)
+    #define TAUSWORTHE(s,a,b,c,d) ((s&c)<<d) ^ (((s <<a) ^ s)>>b)
 
     rng_state->s1 = TAUSWORTHE(rng_state->s1, 13, 19, 4294967294UL, 12);
     rng_state->s2 = TAUSWORTHE(rng_state->s2, 2, 25, 4294967288UL, 4);
@@ -41,15 +51,15 @@ uint32_t __random32(rng_state_t *rng_state)
     return (rng_state->s1 ^ rng_state->s2 ^ rng_state->s3);
 }
 
-double __drandom32(rng_state_t *rng_state)
+FP_t __drandom32(rng_state_t *rng_state)
 {
-    return (__random32(rng_state)/(pow(2,32)-1));
+     return (__random32(rng_state)/4294967296.0);
 }
 
-double taus_ran_gaussian_ziggurat (double sigma, rng_state_t *rng_state)
+FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state)
 {
   unsigned long  U, sign, i, j;
-  double  x, y;
+  FP_t  x, y;
 
   while (1) {
     U = __random32(rng_state);
@@ -61,15 +71,31 @@ double taus_ran_gaussian_ziggurat (double sigma, rng_state_t *rng_state)
     if (j < ktab[i])  break;
 
     if (i<127) {
-      double  y0, y1;
+      FP_t  y0, y1;
       y0 = ytab[i];
       y1 = ytab[i+1];
       y = y1+(y0-y1)*__drandom32(rng_state);
     } else {
       x = PARAM_R - log(1.0-__drandom32(rng_state))/PARAM_R;
-      y = exp(-PARAM_R*(x-0.5*PARAM_R))*__drandom32(rng_state);
+      y = native_exp((FP_t)(-PARAM_R*(x-0.5*PARAM_R)))*__drandom32(rng_state);
     }
-    if (y < exp(-0.5*x*x))  break;
+    if (y < (native_exp((FP_t)-0.5*x*x)))  break;
   }
   return  sign ? sigma*x : -sigma*x;
+}
+
+void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_state)
+{
+  FP_t t_x,t_y,u,v;
+  
+  u = __drandom32(rng_state);
+  v = __drandom32(rng_state);
+  
+  t_x = sqrt(-2*native_log(u))*cos(2*M_PI*v);
+  t_y = sqrt(-2*native_log(u))*sin(2*M_PI*v);
+  t_y = t_x*rho+native_sqrt(1.0-native_powr(rho,2))*t_y;
+  
+  *x = t_x;
+  *y = t_y;
+  
 }

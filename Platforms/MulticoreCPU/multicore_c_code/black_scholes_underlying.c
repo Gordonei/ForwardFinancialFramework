@@ -18,7 +18,7 @@ void black_scholes_underlying_underlying_path_init(black_scholes_underlying_vari
 	u_v->time = 0.0;
 	u_v->x = 0.0;
 	
-	#ifdef MULTICORE_CPU
+	#if defined (TAUS_BOXMULLER) || defined (TAUS_ZIGGURAT)
 	//(u_v->rng_state).s1 = 2; This is done in the kernel proper now
 	//(u_v->rng_state).s2 = 8;
 	//(u_v->rng_state).s3 = 16;
@@ -35,18 +35,24 @@ void black_scholes_underlying_underlying_path_init(black_scholes_underlying_vari
 }
 
 void black_scholes_underlying_underlying_path(FP_t delta_time,black_scholes_underlying_variables* u_v,black_scholes_underlying_attributes* u_a){
-	//FP_t u = drand48();
-	//FP_t v = drand48();
-	//FP_t x = sqrt(-2*log(u))*cos(2*PI*v); //FP_t y = sqrt(-2*log(u))*sin(2*PI*v);
-  
-	#ifdef OPENCL_GPU
-	FP_t u = ((FP_t)MWC64X_NextUint(&u_v->rng_state)/4294967296);///4294967296;
-	FP_t v = ((FP_t)MWC64X_NextUint(&u_v->rng_state)/4294967296);///4294967296;
+	#ifdef MWC64X_BOXMULLER
+	FP_t u = ((FP_t)MWC64X_NextUint(&u_v->rng_state)/4294967296);
+	FP_t v = ((FP_t)MWC64X_NextUint(&u_v->rng_state)/4294967296);
 	u_v->x = native_sqrt(-2*native_log(u))*native_cos((FP_t)(2*M_PI*v)); //native_sqrt, native_log, native_cos
-	
 	#endif
-  
-	#ifdef MULTICORE_CPU
+	
+	#ifdef DRAND48_BOXMULLER
+	FP_t u = drand48();
+	FP_t v = drand48();
+	FP_t x = sqrt(-2*log(u))*cos(2*PI*v);
+	#endif
+	
+	#ifdef TAUS_BOXMULLER
+	FP_t dummy;
+	taus_ran_gaussian_boxmuller(&u_v->x,&dummy,0.0,&u_v->rng_state);
+	#endif
+	
+	#ifdef TAUS_ZIGGURAT
 	u_v->x = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
 	#endif
 

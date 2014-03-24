@@ -27,7 +27,7 @@ void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,hes
 	u_v->time = 0.0;
 	u_v->volatility = sqrt(u_a->initial_volatility);
 	
-	#ifdef MULTICORE_CPU
+	#if (defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT))
 	//(u_v->rng_state).s1 = 2; //this is done in the kernel proper now
 	//(u_v->rng_state).s2 = 8;
 	//(u_v->rng_state).s3 = 16 + ((unsigned int) clock());
@@ -44,15 +44,7 @@ void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,hes
 }
 
 void heston_underlying_underlying_path(FP_t delta_time,heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
-	#ifdef MULTICORE_CPU
-	u_v->w = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
-	u_v->v = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
-	
-	u_v->x = u_a->correlation_matrix_0_0*u_v->w + u_a->correlation_matrix_1_0*u_v->v;
-	u_v->y = u_a->correlation_matrix_0_1*u_v->w + u_a->correlation_matrix_1_1*u_v->v; //u_a->correlation_matrix_0_1 should always be 0
-	#endif
-	
-	#ifdef OPENCL_GPU
+	#ifdef MWC64X_BOXMULLER
 	u_v->w = ((FP_t)MWC64X_NextUint(&(u_v->rng_state))/4294967296);
 	u_v->v = ((FP_t)MWC64X_NextUint(&(u_v->rng_state))/4294967296);
 	
@@ -63,12 +55,26 @@ void heston_underlying_underlying_path(FP_t delta_time,heston_underlying_variabl
 	u_v->y = u_v->x*u_a->rho+native_sqrt(1.0f-pow(u_a->rho,2))*u_v->y; //native_sqrt
 	#endif
 	
-	/*u_v->w = drand48();
+	#ifdef DRAND48_BOXMULLER
+	u_v->w = drand48();
 	u_v->v = drand48();
 	u_v->x = sqrt(-2*log(u_v->w))*cos(2*PI*u_v->v);
 	
 	u_v->y = sqrt(-2*log(u_v->w))*sin(2*PI*u_v->v);
-	u_v->y = u_v->x*u_a->rho+sqrt(1.0-pow(u_a->rho,2))*u_v->y;*/
+	u_v->y = u_v->x*u_a->rho+sqrt(1.0-pow(u_a->rho,2))*u_v->y;
+	#endif
+	
+	#ifdef TAUS_BOXMULLER
+	taus_ran_gaussian_boxmuller(&u_v->x,&u_v->y,u_a->rho,&u_v->rng_state);
+	#endif
+	
+	#ifdef TAUS_ZIGGURAT
+	u_v->w = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
+	u_v->v = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
+	
+	u_v->x = u_a->correlation_matrix_0_0*u_v->w + u_a->correlation_matrix_1_0*u_v->v;
+	u_v->y = u_a->correlation_matrix_0_1*u_v->w + u_a->correlation_matrix_1_1*u_v->v; //u_a->correlation_matrix_0_1 should always be 0*/
+	#endif
         
 	//central discretisation
 	u_v->theta_v = (u_a->theta-pow(u_a->volatility_volatility,2)/4/u_a->kappa)/u_v->volatility; 

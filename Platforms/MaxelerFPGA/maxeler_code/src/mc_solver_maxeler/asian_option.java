@@ -20,25 +20,26 @@ public class asian_option extends european_option {
 	public void path_init(){
 		super.path_init();
 
-		this.delta_time = this.point.eq(0) ? ((this.parameters.time_period/this.parameters.points)).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType) : this.carried_delta_time;
+		//this.delta_time = this.point.eq(0) ? this.parameters.time_period/this.parameters.points : this.carried_delta_time;
 
-		carried_average = ((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType.newInstance(this);
+		this.carried_average = ((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType.newInstance(this);
 
 		this.average = this.point.eq(0) ? 0.0 : this.carried_average;
 	}
 
 	@Override
 	public void path(DFEVar temp_price,DFEVar time){
-		super.path(temp_price,time);
-		this.new_delta_time = this.enable.eq(true)?this.parameters.time_period/this.parameters.points:0.0;
-		this.temp_average_contribution = (temp_price/this.parameters.points).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType);
+		//super.path(temp_price,time);
+		
+		this.new_delta_time = this.parameters.time_period/this.parameters.points;
+		this.temp_average_contribution = temp_price/this.parameters.points;
 		this.new_average = this.average + this.temp_average_contribution;
 	}
 
 	@Override
 	public void connect_path(){
 		super.connect_path();
-		this.carried_average <== this.kernel.stream.offset(this.new_average,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).instance_paths);
+		this.carried_average <== this.kernel.stream.offset(this.new_average,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
 	}
 
 	@Override

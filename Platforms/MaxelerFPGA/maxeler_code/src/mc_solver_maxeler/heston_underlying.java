@@ -9,10 +9,13 @@ public class heston_underlying extends underlying {
 	String name = "heston_underlying";
 
 	protected heston_underlying_parameters parameters;
-
-	private MersenneTwister mt,mt2;// = new MersenneTwister(this);
+	
+	protected GaussianBoxMuller gauss;
+	DFEVar x,y;
+	
+	/*private MersenneTwister mt,mt2;// = new MersenneTwister(this);
 	private KernelMath.Range rangeU,rangeS;
-	protected DFEVar mt_carried,mt2_carried,U1,U2,R,A,rand1,rand2,x,y;
+	protected DFEVar mt_carried,mt2_carried,U1,U2,R,A,rand1,rand2,x,y;*/
 
 	protected DFEVar volatility;
 	protected DFEVar carried_volatility;
@@ -20,24 +23,25 @@ public class heston_underlying extends underlying {
 
 	protected DFEVar theta_v_approx,moment_1,moment_2,moment_difference;
 
-	public heston_underlying(MC_Solver_Maxeler_Base_Kernel k,DFEVar pp,DFEVar p,heston_underlying_parameters hup){
+	public heston_underlying(MC_Solver_Maxeler_Base_Kernel k,CombinedTauswortheRNG u,CombinedTauswortheRNG v,DFEVar pp,DFEVar p,heston_underlying_parameters hup){
 		super(k,pp,p,hup);
 
 		this.parameters = hup;
+		this.gauss = new GaussianBoxMuller(this.kernel,this.parameters.rho,u,v,true);
 	}
 
 	@Override
 	public void path_init(){
 		super.path_init();
 
-		this.mt = new MersenneTwister(this.kernel);
+		/*this.mt = new MersenneTwister(this.kernel);
 		this.mt2 = new MersenneTwister(this.kernel);
 		this.rangeU = new KernelMath.Range(0.0, 1.0);
 		//this.rangeS = new KernelMath.Range(0.0, 1000000.0);
 		this.mt_carried = dfeUInt(32).newInstance(this);
-		this.mt2_carried = dfeUInt(32).newInstance(this);
+		this.mt2_carried = dfeUInt(32).newInstance(this);*/
 
-		this.carried_volatility = ((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType.newInstance(this);
+		this.carried_volatility = (Kernel.dfeFloat(8, 24)).newInstance(this);
 		DFEVar initial = KernelMath.sqrt(this.parameters.initial_volatility);
 		
 		this.volatility = this.point.eq(0)? initial : carried_volatility;
@@ -46,7 +50,7 @@ public class heston_underlying extends underlying {
 
 	@Override
 	public void path(DFEVar delta_time){
-		this.U1 = ((mt_carried+1).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType)*this.kernel.constant.var(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType,1.0/4294967296.0));
+		/*this.U1 = ((mt_carried+1).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType)*this.kernel.constant.var(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType,1.0/4294967296.0));
 		this.U2 = ((mt2_carried+1).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType)*(this.kernel.constant.var(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType,1.0/4294967296.0)));
 		//this.U1 = U1;
 		//this.U2 = U2;
@@ -57,10 +61,12 @@ public class heston_underlying extends underlying {
 
 		this.x = R*KernelMath.cos(this.A);
 		//this.y = R*KernelMath.sin(this.A);
-		this.y = this.x*this.parameters.rho + KernelMath.sqrt(1.0-this.parameters.rho*this.parameters.rho)*R*KernelMath.sin(this.A);
+		this.y = this.x*this.parameters.rho + KernelMath.sqrt(1.0-this.parameters.rho*this.parameters.rho)*R*KernelMath.sin(this.A);*/
+		this.x = this.gauss.x;
+		this.y = this.gauss.y;
 
 		DFEVar moment_denom = KernelMath.exp(-this.parameters.kappa*delta_time);
-		this.moment_1 = this.parameters.theta+(this.volatility*this.volatility-this.parameters.theta)*moment_denom;
+		this.moment_1 = this.parameters.theta + (this.volatility*this.volatility-this.parameters.theta)*moment_denom;
 		this.moment_2 = this.parameters.volatility_volatility*this.parameters.volatility_volatility/4/this.parameters.kappa*(1-moment_denom);
 		DFEVar moment_difference_value = this.moment_1-this.moment_2;
 		this.moment_difference = (moment_difference_value).lt(0.0) ? 0.0 : moment_difference_value;
@@ -76,8 +82,6 @@ public class heston_underlying extends underlying {
 		DFEVar con_volatility_evolution = 0.5*this.parameters.kappa*(this.theta_v_approx-this.volatility)*delta_time;
 		DFEVar vol_volatility_evolution = 0.5*this.parameters.volatility_volatility*this.y*sqrt_delta_time;
 		this.new_volatility = this.volatility + con_volatility_evolution + vol_volatility_evolution;
-		//this.new_gamma = this.x;
-		//this.new_volatility = this.y;
 
 		this.new_time = this.time + delta_time;
 	}
@@ -85,10 +89,10 @@ public class heston_underlying extends underlying {
 	@Override
 	public void connect_path(){
 		super.connect_path();
-		this.mt_carried <== this.mt.createTwister(this.parameters.seed); //this.parameters.seed
-		this.mt2_carried <== this.mt2.createTwister(this.parameters.seed2); //this.parameters.seed2
+		//this.mt_carried <== this.mt.createTwister(this.parameters.seed); //this.parameters.seed
+		//this.mt2_carried <== this.mt2.createTwister(this.parameters.seed2); //this.parameters.seed2
 
-		this.carried_volatility <== this.stream.offset(this.new_volatility,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).instance_paths);
+		this.carried_volatility <== this.stream.offset(this.new_volatility,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
 	}
 
 }
