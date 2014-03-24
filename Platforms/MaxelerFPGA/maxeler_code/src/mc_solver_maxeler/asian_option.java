@@ -39,7 +39,7 @@ public class asian_option extends european_option {
 	@Override
 	public void connect_path(){
 		super.connect_path();
-		this.carried_average <== this.kernel.stream.offset(this.new_average,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).instance_paths);
+		this.carried_average <== this.kernel.stream.offset(this.new_average,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
 	}
 
 	@Override

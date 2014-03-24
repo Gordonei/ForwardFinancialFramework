@@ -62,8 +62,8 @@ public class underlying extends KernelLib {
 	}
 
 	public void connect_path(){
-		this.carried_gamma <== this.stream.offset(this.new_gamma,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).instance_paths);
-		this.carried_time <== this.stream.offset(this.new_time,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).instance_paths);
+		this.carried_gamma <== this.stream.offset(this.new_gamma,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+		this.carried_time <== this.stream.offset(this.new_time,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
 	}
 
 	public underlying_parameters getParameters(){

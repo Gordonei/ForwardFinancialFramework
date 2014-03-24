@@ -16,7 +16,7 @@ public class MC_Solver_Maxeler_Base_Kernel extends Kernel {
 
 	DFEFloat inputFloatType = Kernel.dfeFloat(8, 24);
 	DFEFloat inputDoubleType = Kernel.dfeFloat(8, 24);
-	DFEArrayType<DFEVar> inputArrayType = new DFEArrayType<DFEVar>(Kernel.dfeUInt(32),4);
+	DFEArrayType<DFEVar> inputArrayType = new DFEArrayType<DFEVar>(Kernel.dfeUInt(32),8);
 	//DFEFix accumType = Kernel.dfeFix(32,32,SignMode.TWOSCOMPLEMENT);
 
 	//*Class Parameters*

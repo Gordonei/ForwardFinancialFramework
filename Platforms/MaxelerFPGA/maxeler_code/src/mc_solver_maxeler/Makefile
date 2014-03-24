@@ -5,7 +5,10 @@ HWMAXFILE=$(APP).max
 HWBUILDER=$(APP)_HW_Builder.java
 HOSTCODE=$(APP)_Host_Code.c
 KERNELCODE=$(APP)_Kernel.java
+
 CFLAGS+=-DFP_t=float
+CFLAGS+=-DMULTICORE_CPU
+CFLAGS+=-D_XOPEN_SOURCE=600
 
 #include $(MAXCOMPILERDIR)/lib/Makefile.include
 ######################################################################
@@ -79,6 +82,8 @@ BUILD_RESULTS_SIM=`$(MAXGUESSBUILDDIR) -s $(basename $(HOSTSIMMAXFILE))`results
 
 BOARD_MODEL:=`java -cp $(BASEDIR)/bin:$(MAXCOMPILERDIR_QUOTE)/lib/MaxCompiler.jar config.BoardModel`
 
+
+OTHER_OBJECTS += gauss.o
 .PHONY: all clean app-sim app-hw run-sim run-hw java-sim java-compile build-sim build-hw $(APP)SimFPGA.o $(APP)FPGA.o
 
 all:
@@ -142,6 +147,9 @@ clean-maxfiles:
 	
 ################## Host Code for hardware .max files ################
 
+gauss.o:
+	$(CC) gauss.c -DMULTICORE_CPU -DFP_t=float -lm
+
 $(APP)FPGA.o:
 	$(MAXFILECOMPILE) "$(BUILD_RESULTS)/$(HWMAXFILE)" "$@" "$(APP)"
 
@@ -149,7 +157,7 @@ $(basename $(HOSTCODE)).o: $(HOSTCODE)
 	$(CC) $(HOSTCODE) $(CPPFLAGS) $(CFLAGS) -DDESIGN_NAME=$(APP) -c -o $(basename $(HOSTCODE)).o
 	
 $(APP)Run: $(basename $(HOSTCODE)).o $(APP)FPGA.o $(OTHER_OBJECTS)
-	$(CC) -o $(APP)Run $^ $(LDFLAGS)
+	$(CC) $^ $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) -o $(APP)Run
 
 app-hw: $(APP)Run
 	

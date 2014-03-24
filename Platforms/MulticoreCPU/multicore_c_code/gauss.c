@@ -28,6 +28,16 @@
 
 #include "gauss.h"
 
+void ctrng_seed(int index,uint32_t initial_seed,rng_state_t *rng_state){
+    rng_state->s1 = initial_seed + 2;
+    rng_state->s2 = initial_seed + 8;
+    rng_state->s3 = initial_seed + 16;
+    rng_state->offset = 0;
+    
+    int i;
+    for(i=0;i<index;++i) __random32(rng_state);
+}
+
 uint32_t __random32(rng_state_t *rng_state)
 {
     #define TAUSWORTHE(s,a,b,c,d) ((s&c)<<d) ^ (((s <<a) ^ s)>>b)
