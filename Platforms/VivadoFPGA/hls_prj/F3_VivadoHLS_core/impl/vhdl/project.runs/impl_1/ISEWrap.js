@@ -1,7 +1,7 @@
 //
-//  PlanAhead(TM)
-//  ISEWrap.js: ExploreAhead Script for WSH 5.1/5.6
-//  Copyright 1986-1999, 2001-2010 Xilinx, Inc. All Rights Reserved. 
+//  Vivado(TM)
+//  ISEWrap.js: Vivado Runs Script for WSH 5.1/5.6
+//  Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved. 
 //
 
 // GLOBAL VARIABLES

@@ -16,6 +16,8 @@
     
   </group>
   <group cmt="DDRIOB settings">
+
+    <param param="ps7_slcr_DDRIOB_ADDR0_reserved_INP_POWER"/>
     <param param="ps7_slcr_DDRIOB_ADDR0_INP_TYPE"/>
     <param param="ps7_slcr_DDRIOB_ADDR0_DCI_UPDATE_B"/>
     <param param="ps7_slcr_DDRIOB_ADDR0_TERM_EN"/>
@@ -24,6 +26,7 @@
     <param param="ps7_slcr_DDRIOB_ADDR0_TERM_DISABLE_MODE"/>
     <param param="ps7_slcr_DDRIOB_ADDR0_OUTPUT_EN"/>
     <param param="ps7_slcr_DDRIOB_ADDR0_PULLUP_EN"/>
+    <param param="ps7_slcr_DDRIOB_ADDR1_reserved_INP_POWER"/>
     <param param="ps7_slcr_DDRIOB_ADDR1_INP_TYPE"/>
     <param param="ps7_slcr_DDRIOB_ADDR1_DCI_UPDATE_B"/>
     <param param="ps7_slcr_DDRIOB_ADDR1_TERM_EN"/>
@@ -32,6 +35,7 @@
     <param param="ps7_slcr_DDRIOB_ADDR1_TERM_DISABLE_MODE"/>
     <param param="ps7_slcr_DDRIOB_ADDR1_OUTPUT_EN"/>
     <param param="ps7_slcr_DDRIOB_ADDR1_PULLUP_EN"/>
+    <param param="ps7_slcr_DDRIOB_DATA0_reserved_INP_POWER"/>
     <param param="ps7_slcr_DDRIOB_DATA0_INP_TYPE"/>
     <param param="ps7_slcr_DDRIOB_DATA0_DCI_UPDATE_B"/>
     <param param="ps7_slcr_DDRIOB_DATA0_TERM_EN"/>
@@ -40,6 +44,7 @@
     <force param="ps7_slcr_DDRIOB_DATA0_TERM_DISABLE_MODE" value="0"/>
     <param param="ps7_slcr_DDRIOB_DATA0_OUTPUT_EN"/>
     <param param="ps7_slcr_DDRIOB_DATA0_PULLUP_EN"/>
+    <param param="ps7_slcr_DDRIOB_DATA1_reserved_INP_POWER"/>
     <param param="ps7_slcr_DDRIOB_DATA1_INP_TYPE"/>
     <param param="ps7_slcr_DDRIOB_DATA1_DCI_UPDATE_B"/>
     <param param="ps7_slcr_DDRIOB_DATA1_TERM_EN"/>
@@ -48,6 +53,7 @@
     <force param="ps7_slcr_DDRIOB_DATA1_TERM_DISABLE_MODE" value="0"/>
     <param param="ps7_slcr_DDRIOB_DATA1_OUTPUT_EN"/>
     <param param="ps7_slcr_DDRIOB_DATA1_PULLUP_EN"/>
+    <param param="ps7_slcr_DDRIOB_DIFF0_reserved_INP_POWER"/>
     <param param="ps7_slcr_DDRIOB_DIFF0_INP_TYPE"/>
     <param param="ps7_slcr_DDRIOB_DIFF0_DCI_UPDATE_B"/>
     <param param="ps7_slcr_DDRIOB_DIFF0_TERM_EN"/>
@@ -56,6 +62,7 @@
     <force param="ps7_slcr_DDRIOB_DIFF0_TERM_DISABLE_MODE" value="0"/>
     <param param="ps7_slcr_DDRIOB_DIFF0_OUTPUT_EN"/>
     <param param="ps7_slcr_DDRIOB_DIFF0_PULLUP_EN"/>
+    <param param="ps7_slcr_DDRIOB_DIFF1_reserved_INP_POWER"/>
     <param param="ps7_slcr_DDRIOB_DIFF1_INP_TYPE"/>
     <param param="ps7_slcr_DDRIOB_DIFF1_DCI_UPDATE_B"/>
     <param param="ps7_slcr_DDRIOB_DIFF1_TERM_EN"/>
@@ -64,6 +71,7 @@
     <force param="ps7_slcr_DDRIOB_DIFF1_TERM_DISABLE_MODE" value="0"/>
     <param param="ps7_slcr_DDRIOB_DIFF1_OUTPUT_EN"/>
     <param param="ps7_slcr_DDRIOB_DIFF1_PULLUP_EN"/>
+    <param param="ps7_slcr_DDRIOB_CLOCK_reserved_INP_POWER"/>
     <param param="ps7_slcr_DDRIOB_CLOCK_INP_TYPE"/>
     <param param="ps7_slcr_DDRIOB_CLOCK_DCI_UPDATE_B"/>
     <param param="ps7_slcr_DDRIOB_CLOCK_TERM_EN"/>
@@ -72,24 +80,75 @@
     <param param="ps7_slcr_DDRIOB_CLOCK_TERM_DISABLE_MODE"/>
     <param param="ps7_slcr_DDRIOB_CLOCK_OUTPUT_EN"/>
     <param param="ps7_slcr_DDRIOB_CLOCK_PULLUP_EN"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_ADDR_reserved_DRIVE_P"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_ADDR_reserved_DRIVE_N"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_ADDR_reserved_SLEW_P"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_ADDR_reserved_SLEW_N"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_ADDR_reserved_GTL"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_ADDR_reserved_RTERM"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DATA_reserved_DRIVE_P"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DATA_reserved_DRIVE_N"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DATA_reserved_SLEW_P"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DATA_reserved_SLEW_N"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DATA_reserved_GTL"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DATA_reserved_RTERM"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DIFF_reserved_DRIVE_P"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DIFF_reserved_DRIVE_N"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DIFF_reserved_SLEW_P"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DIFF_reserved_SLEW_N"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DIFF_reserved_GTL"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_DIFF_reserved_RTERM"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_CLOCK_reserved_DRIVE_P"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_CLOCK_reserved_DRIVE_N"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_CLOCK_reserved_SLEW_P"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_CLOCK_reserved_SLEW_N"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_CLOCK_reserved_GTL"/>
+    <param param="ps7_slcr_DDRIOB_DRIVE_SLEW_CLOCK_reserved_RTERM"/>
     <param param="ps7_slcr_DDRIOB_DDR_CTRL_VREF_INT_EN"/>
     <param param="ps7_slcr_DDRIOB_DDR_CTRL_VREF_SEL"/>
     <param param="ps7_slcr_DDRIOB_DDR_CTRL_VREF_EXT_EN"/>
+    <param param="ps7_slcr_DDRIOB_DDR_CTRL_reserved_VREF_PULLUP_EN"/>
     <param param="ps7_slcr_DDRIOB_DDR_CTRL_REFIO_EN"/>
+    <param param="ps7_slcr_DDRIOB_DDR_CTRL_reserved_REFIO_TEST"/>
+    <param param="ps7_slcr_DDRIOB_DDR_CTRL_reserved_REFIO_PULLUP_EN"/>
+    <param param="ps7_slcr_DDRIOB_DDR_CTRL_reserved_DRST_B_PULLUP_EN"/>
+    <param param="ps7_slcr_DDRIOB_DDR_CTRL_reserved_CKE_PULLUP_EN"/>
     <group cmt="Assert Reset">
       <force param="ps7_slcr_DDRIOB_DCI_CTRL_RESET" value="1"/>
     </group>   
     <group cmt="DeAssert Reset">
       <force param="ps7_slcr_DDRIOB_DCI_CTRL_RESET" value="0"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_reserved_VRN_OUT"/>
     </group>   
     <param param="ps7_slcr_DDRIOB_DCI_CTRL_RESET"/>
     <param param="ps7_slcr_DDRIOB_DCI_CTRL_ENABLE"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_reserved_VRP_TRI"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_reserved_VRN_TRI"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_reserved_VRP_OUT"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_reserved_VRN_OUT"/>
     <param param="ps7_slcr_DDRIOB_DCI_CTRL_NREF_OPT1"/>
     <param param="ps7_slcr_DDRIOB_DCI_CTRL_NREF_OPT2"/>
     <param param="ps7_slcr_DDRIOB_DCI_CTRL_NREF_OPT4"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_PREF_OPT1"/>
     <param param="ps7_slcr_DDRIOB_DCI_CTRL_PREF_OPT2"/>
     <param param="ps7_slcr_DDRIOB_DCI_CTRL_UPDATE_CONTROL"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_reserved_INIT_COMPLETE"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_reserved_TST_CLK"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_reserved_TST_HLN"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_reserved_TST_HLP"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_reserved_TST_RST"/>
+    <param param="ps7_slcr_DDRIOB_DCI_CTRL_reserved_INT_DCI_EN"/>
     <param param="ps7_slcr_DDRIOB_DCI_STATUS_LOCK"/>
+    <param param="ps7_slcr_DDRIOB_DCI_STATUS_reserved_VRP_IN"/>
+    <param param="ps7_slcr_DDRIOB_DCI_STATUS_reserved_VRN_IN"/>
+    <param param="ps7_slcr_DDRIOB_DCI_STATUS_reserved_ADDR"/>
+    <param param="ps7_slcr_DDRIOB_DCI_STATUS_reserved_DATA"/>
+    <param param="ps7_slcr_DDRIOB_DCI_STATUS_reserved_IO_UPDATE"/>
+    <param param="ps7_slcr_DDRIOB_DCI_STATUS_reserved_NORP"/>
+    <param param="ps7_slcr_DDRIOB_DCI_STATUS_reserved_REFIO_UPDATE"/>
+    <param param="ps7_slcr_DDRIOB_DCI_STATUS_reserved_SCK"/>
+    <param param="ps7_slcr_DDRIOB_DCI_STATUS_reserved_HL_N_B_INIT"/>
+    <param param="ps7_slcr_DDRIOB_DCI_STATUS_reserved_HL_P_B_INIT"/>
     <param param="ps7_slcr_DDRIOB_DCI_STATUS_DONE"/>
   </group>
   <group cmt="MIO programming">

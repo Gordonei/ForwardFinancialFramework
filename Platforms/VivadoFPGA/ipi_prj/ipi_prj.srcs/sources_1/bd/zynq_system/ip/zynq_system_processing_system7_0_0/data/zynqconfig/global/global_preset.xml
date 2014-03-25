@@ -208,7 +208,7 @@
 
     <set param="pcw_internal_ddr_slew" value="FAST" />
 
-    <set param="pcw_uiparam_ddr_partno" value="Custom" />
+    <set param="pcw_uiparam_ddr_partno" value="MT41J128M8 JP-125" /> 
     
     <set param="pcw_sdio_pow_peripheral_valid" value="0" />
 

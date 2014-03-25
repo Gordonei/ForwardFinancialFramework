@@ -36,7 +36,7 @@ set SCTraceOption "all"
 set TargetInfo "xc7z020:clg484:-1"
 set SourceFiles {sc {} c {../../srcs/option.c ../../srcs/option.h ../../srcs/underlying.c ../../srcs/underlying.h ../../srcs/vivado_core.c ../../srcs/vivado_core.h}}
 set SourceFlags {sc {} c {{ } { } { } { } { } { }}}
-set DirectiveFile {/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core/F3_VivadoHLS_core.directive}
+set DirectiveFile {/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/hls_prj/F3_VivadoHLS_core/F3_VivadoHLS_core.directive}
 set TBFiles {verilog ../../srcs/tb.c bc ../../srcs/tb.c sc ../../srcs/tb.c vhdl ../../srcs/tb.c c {} cas ../../srcs/tb.c}
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

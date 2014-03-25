@@ -4,6 +4,7 @@
 <CType>
 <TypeName>int</TypeName>
 <TypeWidth>32</TypeWidth>
+<PhysicalWidth>32</PhysicalWidth>
 </CType>
 <CFractionWidth>0</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -13,6 +14,7 @@
 <CType>
 <TypeName>int</TypeName>
 <TypeWidth>32</TypeWidth>
+<PhysicalWidth>32</PhysicalWidth>
 </CType>
 <CFractionWidth>0</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -22,6 +24,7 @@
 <CType>
 <TypeName>float</TypeName>
 <TypeWidth>32</TypeWidth>
+<PhysicalWidth>32</PhysicalWidth>
 </CType>
 <CFractionWidth>24</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -31,6 +34,7 @@
 <CType>
 <TypeName>float</TypeName>
 <TypeWidth>32</TypeWidth>
+<PhysicalWidth>32</PhysicalWidth>
 </CType>
 <CFractionWidth>24</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -40,6 +44,7 @@
 <CType>
 <TypeName>float</TypeName>
 <TypeWidth>32</TypeWidth>
+<PhysicalWidth>32</PhysicalWidth>
 </CType>
 <CFractionWidth>24</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -49,6 +54,7 @@
 <CType>
 <TypeName>float</TypeName>
 <TypeWidth>32</TypeWidth>
+<PhysicalWidth>32</PhysicalWidth>
 </CType>
 <CFractionWidth>24</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -58,6 +64,7 @@
 <CType>
 <TypeName>float</TypeName>
 <TypeWidth>32</TypeWidth>
+<PhysicalWidth>32</PhysicalWidth>
 </CType>
 <CFractionWidth>24</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -67,6 +74,7 @@
 <CType>
 <TypeName>float</TypeName>
 <TypeWidth>32</TypeWidth>
+<PhysicalWidth>32</PhysicalWidth>
 </CType>
 <CFractionWidth>24</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -76,6 +84,7 @@
 <CType>
 <TypeName>float</TypeName>
 <TypeWidth>32</TypeWidth>
+<PhysicalWidth>32</PhysicalWidth>
 </CType>
 <CFractionWidth>24</CFractionWidth>
 <InvalidType>0</InvalidType>

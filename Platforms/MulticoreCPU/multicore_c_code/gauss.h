@@ -29,9 +29,21 @@
 #ifndef GAUSS_H_
 #define GAUSS_H_
 
-#include <math.h>
+
 //#include <assert.h>
-#include <stdint.h>
+
+#ifdef MULTICORE_CPU
+#include "stdint.h"
+#include "math.h"
+#define native_sqrt sqrt
+#define native_exp exp
+#define native_log log
+#define native_powr pow
+#endif
+
+#ifdef OPENCL_GPU
+#define uint32_t uint
+#endif
 
 //#include <gsl/gsl_rng.h>
 
@@ -193,14 +205,18 @@ static const double wtab[128] = {
 //}
 
 //Beginning of modified code that uses the Combined TAUSWORTHE RNG
-typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;unsigned int offset;} rng_state_t;
+typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;uint32_t offset;} rng_state_t;
 //uint32_t s1=2, s2=8, s3=16;
+
+void ctrng_seed(int index,uint32_t initial_seed,rng_state_t *rng_state);
 
 uint32_t __random32(rng_state_t *rng_state);
 
-double __drandom32(rng_state_t *rng_state);
+FP_t __drandom32(rng_state_t *rng_state);
 
-double taus_ran_gaussian_ziggurat (double sigma, rng_state_t *rng_state);
+FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state);
+
+void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_state);
 //End of modified code that uses the Combined TAUSWORTHE RNG
 
 #endif

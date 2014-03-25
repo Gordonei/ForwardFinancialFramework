@@ -65,7 +65,7 @@ entity s00_couplers_imp_156Q4UY is
 end s00_couplers_imp_156Q4UY;
 
 architecture STRUCTURE of s00_couplers_imp_156Q4UY is
-  component zynq_system_auto_pc_9 is
+  component zynq_system_auto_pc_1 is
   port (
     aclk : in STD_LOGIC;
     aresetn : in STD_LOGIC;
@@ -127,7 +127,9 @@ architecture STRUCTURE of s00_couplers_imp_156Q4UY is
     m_axi_rvalid : in STD_LOGIC;
     m_axi_rready : out STD_LOGIC
   );
-  end component zynq_system_auto_pc_9;
+  end component zynq_system_auto_pc_1;
+  signal S_ACLK_1 : STD_LOGIC;
+  signal S_ARESETN_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal auto_pc_to_s00_couplers_ARADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal auto_pc_to_s00_couplers_ARREADY : STD_LOGIC;
   signal auto_pc_to_s00_couplers_ARVALID : STD_LOGIC;
@@ -183,8 +185,6 @@ architecture STRUCTURE of s00_couplers_imp_156Q4UY is
   signal s00_couplers_to_auto_pc_WREADY : STD_LOGIC;
   signal s00_couplers_to_auto_pc_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal s00_couplers_to_auto_pc_WVALID : STD_LOGIC;
-  signal s_aclk_1 : STD_LOGIC;
-  signal s_aresetn_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_auto_pc_m_axi_arprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal NLW_auto_pc_m_axi_awprot_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
 begin
@@ -197,6 +197,8 @@ begin
   M_AXI_wdata(31 downto 0) <= auto_pc_to_s00_couplers_WDATA(31 downto 0);
   M_AXI_wstrb(3 downto 0) <= auto_pc_to_s00_couplers_WSTRB(3 downto 0);
   M_AXI_wvalid <= auto_pc_to_s00_couplers_WVALID;
+  S_ACLK_1 <= S_ACLK;
+  S_ARESETN_1(0) <= S_ARESETN(0);
   S_AXI_arready <= s00_couplers_to_auto_pc_ARREADY;
   S_AXI_awready <= s00_couplers_to_auto_pc_AWREADY;
   S_AXI_bid(11 downto 0) <= s00_couplers_to_auto_pc_BID(11 downto 0);
@@ -243,12 +245,10 @@ begin
   s00_couplers_to_auto_pc_WLAST <= S_AXI_wlast;
   s00_couplers_to_auto_pc_WSTRB(3 downto 0) <= S_AXI_wstrb(3 downto 0);
   s00_couplers_to_auto_pc_WVALID <= S_AXI_wvalid;
-  s_aclk_1 <= S_ACLK;
-  s_aresetn_1(0) <= S_ARESETN(0);
-auto_pc: component zynq_system_auto_pc_9
+auto_pc: component zynq_system_auto_pc_1
     port map (
-      aclk => s_aclk_1,
-      aresetn => s_aresetn_1(0),
+      aclk => S_ACLK_1,
+      aresetn => S_ARESETN_1(0),
       m_axi_araddr(31 downto 0) => auto_pc_to_s00_couplers_ARADDR(31 downto 0),
       m_axi_arprot(2 downto 0) => NLW_auto_pc_m_axi_arprot_UNCONNECTED(2 downto 0),
       m_axi_arready => auto_pc_to_s00_couplers_ARREADY,
@@ -377,6 +377,8 @@ entity zynq_system_processing_system7_0_axi_periph_0 is
 end zynq_system_processing_system7_0_axi_periph_0;
 
 architecture STRUCTURE of zynq_system_processing_system7_0_axi_periph_0 is
+  signal S00_ACLK_1 : STD_LOGIC;
+  signal S00_ARESETN_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal processing_system7_0_axi_periph_ACLK_net : STD_LOGIC;
   signal processing_system7_0_axi_periph_ARESETN_net : STD_LOGIC_VECTOR ( 0 to 0 );
   signal processing_system7_0_axi_periph_to_s00_couplers_ARADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -417,8 +419,6 @@ architecture STRUCTURE of zynq_system_processing_system7_0_axi_periph_0 is
   signal processing_system7_0_axi_periph_to_s00_couplers_WREADY : STD_LOGIC;
   signal processing_system7_0_axi_periph_to_s00_couplers_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal processing_system7_0_axi_periph_to_s00_couplers_WVALID : STD_LOGIC;
-  signal s00_aclk_1 : STD_LOGIC;
-  signal s00_aresetn_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal s00_couplers_to_processing_system7_0_axi_periph_ARADDR : STD_LOGIC_VECTOR ( 6 downto 0 );
   signal s00_couplers_to_processing_system7_0_axi_periph_ARREADY : STD_LOGIC;
   signal s00_couplers_to_processing_system7_0_axi_periph_ARVALID : STD_LOGIC;
@@ -446,6 +446,8 @@ begin
   M00_AXI_wdata(31 downto 0) <= s00_couplers_to_processing_system7_0_axi_periph_WDATA(31 downto 0);
   M00_AXI_wstrb(3 downto 0) <= s00_couplers_to_processing_system7_0_axi_periph_WSTRB(3 downto 0);
   M00_AXI_wvalid <= s00_couplers_to_processing_system7_0_axi_periph_WVALID;
+  S00_ACLK_1 <= S00_ACLK;
+  S00_ARESETN_1(0) <= S00_ARESETN(0);
   S00_AXI_arready <= processing_system7_0_axi_periph_to_s00_couplers_ARREADY;
   S00_AXI_awready <= processing_system7_0_axi_periph_to_s00_couplers_AWREADY;
   S00_AXI_bid(11 downto 0) <= processing_system7_0_axi_periph_to_s00_couplers_BID(11 downto 0);
@@ -486,8 +488,6 @@ begin
   processing_system7_0_axi_periph_to_s00_couplers_WLAST <= S00_AXI_wlast;
   processing_system7_0_axi_periph_to_s00_couplers_WSTRB(3 downto 0) <= S00_AXI_wstrb(3 downto 0);
   processing_system7_0_axi_periph_to_s00_couplers_WVALID <= S00_AXI_wvalid;
-  s00_aclk_1 <= S00_ACLK;
-  s00_aresetn_1(0) <= S00_ARESETN(0);
   s00_couplers_to_processing_system7_0_axi_periph_ARREADY <= M00_AXI_arready;
   s00_couplers_to_processing_system7_0_axi_periph_AWREADY <= M00_AXI_awready;
   s00_couplers_to_processing_system7_0_axi_periph_BRESP(1 downto 0) <= M00_AXI_bresp(1 downto 0);
@@ -517,8 +517,8 @@ s00_couplers: entity work.s00_couplers_imp_156Q4UY
       M_AXI_wready => s00_couplers_to_processing_system7_0_axi_periph_WREADY,
       M_AXI_wstrb(3 downto 0) => s00_couplers_to_processing_system7_0_axi_periph_WSTRB(3 downto 0),
       M_AXI_wvalid => s00_couplers_to_processing_system7_0_axi_periph_WVALID,
-      S_ACLK => s00_aclk_1,
-      S_ARESETN(0) => s00_aresetn_1(0),
+      S_ACLK => S00_ACLK_1,
+      S_ARESETN(0) => S00_ARESETN_1(0),
       S_AXI_araddr(31 downto 0) => processing_system7_0_axi_periph_to_s00_couplers_ARADDR(31 downto 0),
       S_AXI_arburst(1 downto 0) => processing_system7_0_axi_periph_to_s00_couplers_ARBURST(1 downto 0),
       S_AXI_arcache(3 downto 0) => processing_system7_0_axi_periph_to_s00_couplers_ARCACHE(3 downto 0),
@@ -665,6 +665,20 @@ architecture STRUCTURE of zynq_system is
     PS_PORB : inout STD_LOGIC
   );
   end component zynq_system_processing_system7_0_0;
+  component zynq_system_proc_sys_reset_0 is
+  port (
+    slowest_sync_clk : in STD_LOGIC;
+    ext_reset_in : in STD_LOGIC;
+    aux_reset_in : in STD_LOGIC;
+    mb_debug_sys_rst : in STD_LOGIC;
+    dcm_locked : in STD_LOGIC;
+    mb_reset : out STD_LOGIC;
+    bus_struct_reset : out STD_LOGIC_VECTOR ( 0 to 0 );
+    peripheral_reset : out STD_LOGIC_VECTOR ( 0 to 0 );
+    interconnect_aresetn : out STD_LOGIC_VECTOR ( 0 to 0 );
+    peripheral_aresetn : out STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  end component zynq_system_proc_sys_reset_0;
   component zynq_system_vivado_activity_thread_0_0 is
   port (
     s_axi_CORE_IO_AWADDR : in STD_LOGIC_VECTOR ( 6 downto 0 );
@@ -689,20 +703,6 @@ architecture STRUCTURE of zynq_system is
     aresetn : in STD_LOGIC
   );
   end component zynq_system_vivado_activity_thread_0_0;
-  component zynq_system_proc_sys_reset_0 is
-  port (
-    slowest_sync_clk : in STD_LOGIC;
-    ext_reset_in : in STD_LOGIC;
-    aux_reset_in : in STD_LOGIC;
-    mb_debug_sys_rst : in STD_LOGIC;
-    dcm_locked : in STD_LOGIC;
-    mb_reset : out STD_LOGIC;
-    bus_struct_reset : out STD_LOGIC_VECTOR ( 0 to 0 );
-    peripheral_reset : out STD_LOGIC_VECTOR ( 0 to 0 );
-    interconnect_aresetn : out STD_LOGIC_VECTOR ( 0 to 0 );
-    peripheral_aresetn : out STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  end component zynq_system_proc_sys_reset_0;
   signal GND_1 : STD_LOGIC;
   signal VCC_1 : STD_LOGIC;
   signal proc_sys_reset_interconnect_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );

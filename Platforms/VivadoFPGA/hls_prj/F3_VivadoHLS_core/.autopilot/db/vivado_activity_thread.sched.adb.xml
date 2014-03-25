@@ -233,36 +233,6 @@
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<node id="23" bw="32" op_0_bw="32" op_1_bw="32">
-<![CDATA[
-:13  %u_a_0_current_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_u_a_0_current_price)
-
-]]></node>
-<StgValue><ssdm name="u_a_0_current_price"/></StgValue>
-</operation>
-
-<operation id="35" st_id="1" stage="1" lat="1">
-<core>AXI4LiteS</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="0">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<node id="24" bw="32" op_0_bw="32" op_1_bw="32">
-<![CDATA[
-:14  %o_a_0_strike_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_o_a_0_strike_price)
-
-]]></node>
-<StgValue><ssdm name="o_a_0_strike_price"/></StgValue>
-</operation>
-
-<operation id="36" st_id="1" stage="1" lat="1">
-<core>AXI4LiteS</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="0">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
 <node id="25" bw="32" op_0_bw="32" op_1_bw="32">
 <![CDATA[
 :15  %o_a_0_time_period = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_o_a_0_time_period)
@@ -271,22 +241,7 @@
 <StgValue><ssdm name="o_a_0_time_period"/></StgValue>
 </operation>
 
-<operation id="37" st_id="1" stage="1" lat="1">
-<core>AXI4LiteS</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="0">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<node id="26" bw="32" op_0_bw="32" op_1_bw="32">
-<![CDATA[
-:16  %o_a_0_call = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_o_a_0_call)
-
-]]></node>
-<StgValue><ssdm name="o_a_0_call"/></StgValue>
-</operation>
-
-<operation id="38" st_id="1" stage="4" lat="4">
+<operation id="35" st_id="1" stage="4" lat="4">
 <core>FMul</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="0">
@@ -300,26 +255,26 @@
 ]]></node>
 <StgValue><ssdm name="tmp_i"/></StgValue>
 </operation>
-
-<operation id="39" st_id="1" stage="3" lat="3">
-<core>FCmp</core>
-<MemPortIdVec></MemPortIdVec>
-<condition id="0">
-<or_exp><and_exp></and_exp></or_exp>
-</condition>
-
-<node id="29" bw="1" op_0_bw="32" op_1_bw="32">
-<![CDATA[
-:19  %tmp = fcmp oeq float %o_a_0_call, 0.000000e+00
-
-]]></node>
-<StgValue><ssdm name="tmp"/></StgValue>
-</operation>
 </state>
 
 <state id="2" st_id="2">
 
-<operation id="40" st_id="2" stage="3" lat="4">
+<operation id="36" st_id="2" stage="1" lat="1">
+<core>AXI4LiteS</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="26" bw="32" op_0_bw="32" op_1_bw="32">
+<![CDATA[
+:16  %o_a_0_call = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_o_a_0_call)
+
+]]></node>
+<StgValue><ssdm name="o_a_0_call"/></StgValue>
+</operation>
+
+<operation id="37" st_id="2" stage="3" lat="4">
 <core>FMul</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="1">
@@ -334,7 +289,7 @@
 <StgValue><ssdm name="tmp_i"/></StgValue>
 </operation>
 
-<operation id="41" st_id="2" stage="2" lat="3">
+<operation id="38" st_id="2" stage="3" lat="3">
 <core>FCmp</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="1">
@@ -352,7 +307,7 @@
 
 <state id="3" st_id="3">
 
-<operation id="42" st_id="3" stage="2" lat="4">
+<operation id="39" st_id="3" stage="2" lat="4">
 <core>FMul</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="2">
@@ -367,7 +322,7 @@
 <StgValue><ssdm name="tmp_i"/></StgValue>
 </operation>
 
-<operation id="43" st_id="3" stage="1" lat="3">
+<operation id="40" st_id="3" stage="2" lat="3">
 <core>FCmp</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="2">
@@ -385,7 +340,7 @@
 
 <state id="4" st_id="4">
 
-<operation id="44" st_id="4" stage="1" lat="1">
+<operation id="41" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -400,7 +355,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="45" st_id="4" stage="1" lat="1">
+<operation id="42" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -415,7 +370,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="46" st_id="4" stage="1" lat="1">
+<operation id="43" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -430,7 +385,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="47" st_id="4" stage="1" lat="1">
+<operation id="44" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -445,7 +400,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="48" st_id="4" stage="1" lat="1">
+<operation id="45" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -460,7 +415,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="49" st_id="4" stage="1" lat="1">
+<operation id="46" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -475,7 +430,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="50" st_id="4" stage="1" lat="1">
+<operation id="47" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -490,7 +445,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="51" st_id="4" stage="1" lat="1">
+<operation id="48" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -505,7 +460,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="52" st_id="4" stage="1" lat="1">
+<operation id="49" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -520,7 +475,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="53" st_id="4" stage="1" lat="1">
+<operation id="50" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -535,7 +490,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="54" st_id="4" stage="1" lat="1">
+<operation id="51" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -550,7 +505,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="55" st_id="4" stage="1" lat="1">
+<operation id="52" st_id="4" stage="1" lat="1">
 <core>NULL</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -565,7 +520,37 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="56" st_id="4" stage="1" lat="1">
+<operation id="53" st_id="4" stage="1" lat="1">
+<core>AXI4LiteS</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="3">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="23" bw="32" op_0_bw="32" op_1_bw="32">
+<![CDATA[
+:13  %u_a_0_current_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_u_a_0_current_price)
+
+]]></node>
+<StgValue><ssdm name="u_a_0_current_price"/></StgValue>
+</operation>
+
+<operation id="54" st_id="4" stage="1" lat="1">
+<core>AXI4LiteS</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="3">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="24" bw="32" op_0_bw="32" op_1_bw="32">
+<![CDATA[
+:14  %o_a_0_strike_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %thread_arg_o_a_0_strike_price)
+
+]]></node>
+<StgValue><ssdm name="o_a_0_strike_price"/></StgValue>
+</operation>
+
+<operation id="55" st_id="4" stage="1" lat="1">
 <core>AXI4LiteS</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -580,7 +565,7 @@
 <StgValue><ssdm name=""/></StgValue>
 </operation>
 
-<operation id="57" st_id="4" stage="1" lat="4">
+<operation id="56" st_id="4" stage="1" lat="4">
 <core>FMul</core>
 <MemPortIdVec></MemPortIdVec>
 <condition id="3">
@@ -593,6 +578,21 @@
 
 ]]></node>
 <StgValue><ssdm name="tmp_i"/></StgValue>
+</operation>
+
+<operation id="57" st_id="4" stage="1" lat="3">
+<core>FCmp</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="3">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<node id="29" bw="1" op_0_bw="32" op_1_bw="32">
+<![CDATA[
+:19  %tmp = fcmp oeq float %o_a_0_call, 0.000000e+00
+
+]]></node>
+<StgValue><ssdm name="tmp"/></StgValue>
 </operation>
 
 <operation id="58" st_id="4" stage="1" lat="1">

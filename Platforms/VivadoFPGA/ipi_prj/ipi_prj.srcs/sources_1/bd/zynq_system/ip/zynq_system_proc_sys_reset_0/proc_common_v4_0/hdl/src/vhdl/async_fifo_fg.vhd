@@ -177,11 +177,11 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 
---library fifo_generator_v9_3;
---use fifo_generator_v9_3.fifo_generator_v9_3_xst_comp.all;
+library fifo_generator_v11_0;
+use fifo_generator_v11_0.all;
 library proc_common_v4_0;
 use proc_common_v4_0.proc_common_pkg.all;
-use proc_common_v4_0.coregen_comp_defs.all;
+--use proc_common_v4_0.coregen_comp_defs.all;
 use proc_common_v4_0.family_support.all;
 
 
@@ -328,6 +328,142 @@ architecture implementation of async_fifo_fg is
     
     
     
+  --Signals added to fix MTI and XSIM issues caused by fix for VCS issues not to use "LIBRARY_SCAN = TRUE"
+   signal PROG_FULL           : std_logic;                 
+   signal PROG_EMPTY          : std_logic;                 
+   signal SBITERR             : std_logic;                 
+   signal DBITERR             : std_logic;                  
+   signal S_AXI_AWREADY       : std_logic;
+   signal S_AXI_WREADY        : std_logic;
+   signal S_AXI_BID           : std_logic_vector(3 DOWNTO 0);
+   signal S_AXI_BRESP         : std_logic_vector(2-1 DOWNTO 0);
+   signal S_AXI_BUSER         : std_logic_vector(0 downto 0);
+   signal S_AXI_BVALID        : std_logic;
+
+   -- AXI Full/Lite Master Write Channel (Read side)
+   signal M_AXI_AWID          : std_logic_vector(3 DOWNTO 0);
+   signal M_AXI_AWADDR        : std_logic_vector(31 DOWNTO 0);
+   signal M_AXI_AWLEN         : std_logic_vector(8-1 DOWNTO 0);
+   signal M_AXI_AWSIZE        : std_logic_vector(3-1 DOWNTO 0);
+   signal M_AXI_AWBURST       : std_logic_vector(2-1 DOWNTO 0);
+   signal M_AXI_AWLOCK        : std_logic_vector(2-1 DOWNTO 0);
+   signal M_AXI_AWCACHE       : std_logic_vector(4-1 DOWNTO 0);
+   signal M_AXI_AWPROT        : std_logic_vector(3-1 DOWNTO 0);
+   signal M_AXI_AWQOS         : std_logic_vector(4-1 DOWNTO 0);
+   signal M_AXI_AWREGION      : std_logic_vector(4-1 DOWNTO 0);
+   signal M_AXI_AWUSER        : std_logic_vector(0 downto 0);
+   signal M_AXI_AWVALID       : std_logic;
+   signal M_AXI_WID           : std_logic_vector(3 DOWNTO 0);
+   signal M_AXI_WDATA         : std_logic_vector(63 DOWNTO 0);
+   signal M_AXI_WSTRB         : std_logic_vector(7 DOWNTO 0);
+   signal M_AXI_WLAST         : std_logic;
+   signal M_AXI_WUSER         : std_logic_vector(0 downto 0);
+   signal M_AXI_WVALID        : std_logic;
+   signal M_AXI_BREADY        : std_logic;
+
+   -- AXI Full/Lite Slave Read Channel (Write side)
+   signal S_AXI_ARREADY       : std_logic;
+   signal S_AXI_RID           : std_logic_vector(3 DOWNTO 0);       
+   signal S_AXI_RDATA         : std_logic_vector(63 DOWNTO 0); 
+   signal S_AXI_RRESP         : std_logic_vector(2-1 DOWNTO 0);
+   signal S_AXI_RLAST         : std_logic;
+   signal S_AXI_RUSER         : std_logic_vector(0 downto 0);
+   signal S_AXI_RVALID        : std_logic;
+
+   -- AXI Full/Lite Master Read Channel (Read side)
+   signal M_AXI_ARID          : std_logic_vector(3 DOWNTO 0);        
+   signal M_AXI_ARADDR        : std_logic_vector(31 DOWNTO 0);  
+   signal M_AXI_ARLEN         : std_logic_vector(8-1 DOWNTO 0);
+   signal M_AXI_ARSIZE        : std_logic_vector(3-1 DOWNTO 0);
+   signal M_AXI_ARBURST       : std_logic_vector(2-1 DOWNTO 0);
+   signal M_AXI_ARLOCK        : std_logic_vector(2-1 DOWNTO 0);
+   signal M_AXI_ARCACHE       : std_logic_vector(4-1 DOWNTO 0);
+   signal M_AXI_ARPROT        : std_logic_vector(3-1 DOWNTO 0);
+   signal M_AXI_ARQOS         : std_logic_vector(4-1 DOWNTO 0);
+   signal M_AXI_ARREGION      : std_logic_vector(4-1 DOWNTO 0);
+   signal M_AXI_ARUSER        : std_logic_vector(0 downto 0);
+   signal M_AXI_ARVALID       : std_logic;
+   signal M_AXI_RREADY        : std_logic;
+
+   -- AXI Streaming Slave Signals (Write side)
+   signal S_AXIS_TREADY       : std_logic;
+
+   -- AXI Streaming Master Signals (Read side)
+   signal M_AXIS_TVALID       : std_logic;
+   signal M_AXIS_TDATA        : std_logic_vector(63 DOWNTO 0);
+   signal M_AXIS_TSTRB        : std_logic_vector(3 DOWNTO 0);
+   signal M_AXIS_TKEEP        : std_logic_vector(3 DOWNTO 0);
+   signal M_AXIS_TLAST        : std_logic;
+   signal M_AXIS_TID          : std_logic_vector(7 DOWNTO 0);
+   signal M_AXIS_TDEST        : std_logic_vector(3 DOWNTO 0);
+   signal M_AXIS_TUSER        : std_logic_vector(3 DOWNTO 0);
+
+   -- AXI Full/Lite Write Address Channel Signals
+   signal AXI_AW_DATA_COUNT    : std_logic_vector(4 DOWNTO 0);
+   signal AXI_AW_WR_DATA_COUNT : std_logic_vector(4 DOWNTO 0);
+   signal AXI_AW_RD_DATA_COUNT : std_logic_vector(4 DOWNTO 0);
+   signal AXI_AW_SBITERR       : std_logic;
+   signal AXI_AW_DBITERR       : std_logic;
+   signal AXI_AW_OVERFLOW      : std_logic;
+   signal AXI_AW_UNDERFLOW     : std_logic;
+   signal AXI_AW_PROG_FULL     : STD_LOGIC;
+   signal AXI_AW_PROG_EMPTY    : STD_LOGIC;
+
+
+   -- AXI Full/Lite Write Data Channel Signals
+   signal AXI_W_DATA_COUNT     : std_logic_vector(10 DOWNTO 0);
+   signal AXI_W_WR_DATA_COUNT  : std_logic_vector(10 DOWNTO 0);
+   signal AXI_W_RD_DATA_COUNT  : std_logic_vector(10 DOWNTO 0);
+   signal AXI_W_SBITERR        : std_logic;
+   signal AXI_W_DBITERR        : std_logic;
+   signal AXI_W_OVERFLOW       : std_logic;
+   signal AXI_W_UNDERFLOW      : std_logic;
+   signal AXI_W_PROG_FULL      : STD_LOGIC;
+   signal AXI_W_PROG_EMPTY     : STD_LOGIC;
+
+   -- AXI Full/Lite Write Response Channel Signals
+   signal AXI_B_DATA_COUNT     : std_logic_vector(4 DOWNTO 0);
+   signal AXI_B_WR_DATA_COUNT  : std_logic_vector(4 DOWNTO 0);
+   signal AXI_B_RD_DATA_COUNT  : std_logic_vector(4 DOWNTO 0);
+   signal AXI_B_SBITERR        : std_logic;
+   signal AXI_B_DBITERR        : std_logic;
+   signal AXI_B_OVERFLOW       : std_logic;
+   signal AXI_B_UNDERFLOW      : std_logic;
+   signal AXI_B_PROG_FULL      : STD_LOGIC;
+   signal AXI_B_PROG_EMPTY     : STD_LOGIC;
+
+   -- AXI Full/Lite Read Address Channel Signals
+   signal AXI_AR_DATA_COUNT    : std_logic_vector(4 DOWNTO 0);
+   signal AXI_AR_WR_DATA_COUNT : std_logic_vector(4 DOWNTO 0);
+   signal AXI_AR_RD_DATA_COUNT : std_logic_vector(4 DOWNTO 0);
+   signal AXI_AR_SBITERR       : std_logic;
+   signal AXI_AR_DBITERR       : std_logic;
+   signal AXI_AR_OVERFLOW      : std_logic;
+   signal AXI_AR_UNDERFLOW     : std_logic;
+   signal AXI_AR_PROG_FULL     : STD_LOGIC;
+   signal AXI_AR_PROG_EMPTY    : STD_LOGIC;
+
+   -- AXI Full/Lite Read Data Channel Signals
+   signal AXI_R_DATA_COUNT     : std_logic_vector(10 DOWNTO 0);
+   signal AXI_R_WR_DATA_COUNT  : std_logic_vector(10 DOWNTO 0);
+   signal AXI_R_RD_DATA_COUNT  : std_logic_vector(10 DOWNTO 0);
+   signal AXI_R_SBITERR        : std_logic;
+   signal AXI_R_DBITERR        : std_logic;
+   signal AXI_R_OVERFLOW       : std_logic;
+   signal AXI_R_UNDERFLOW      : std_logic;
+   signal AXI_R_PROG_FULL      : STD_LOGIC;
+   signal AXI_R_PROG_EMPTY     : STD_LOGIC;
+
+   -- AXI Streaming FIFO Related Signals
+   signal AXIS_DATA_COUNT      : std_logic_vector(10 DOWNTO 0);
+   signal AXIS_WR_DATA_COUNT   : std_logic_vector(10 DOWNTO 0);
+   signal AXIS_RD_DATA_COUNT   : std_logic_vector(10 DOWNTO 0);
+   signal AXIS_SBITERR         : std_logic;
+   signal AXIS_DBITERR         : std_logic;
+   signal AXIS_OVERFLOW        : std_logic;
+   signal AXIS_UNDERFLOW       : std_logic;
+   signal AXIS_PROG_FULL       : STD_LOGIC;
+   signal AXIS_PROG_EMPTY      : STD_LOGIC;
 
 begin --(architecture implementation)
 
@@ -468,9 +604,9 @@ begin --(architecture implementation)
 
  
     -- Constant zeros for programmable threshold inputs
-    Constant PROG_RDTHRESH_ZEROS : std_logic_vector(ADJUSTED_RD_PNTR_WIDTH-1
+    signal PROG_RDTHRESH_ZEROS : std_logic_vector(ADJUSTED_RD_PNTR_WIDTH-1
                                    DOWNTO 0) := (OTHERS => '0');
-    Constant PROG_WRTHRESH_ZEROS : std_logic_vector(ADJUSTED_WR_PNTR_WIDTH-1 
+    signal PROG_WRTHRESH_ZEROS : std_logic_vector(ADJUSTED_WR_PNTR_WIDTH-1 
                                    DOWNTO 0) := (OTHERS => '0');
     
       
@@ -478,6 +614,9 @@ begin --(architecture implementation)
   
    Signal sig_full_fifo_rdcnt : std_logic_vector(ADJUSTED_RDCNT_WIDTH-1 DOWNTO 0);
    Signal sig_full_fifo_wrcnt : std_logic_vector(ADJUSTED_WRCNT_WIDTH-1 DOWNTO 0);
+
+  --Signals added to fix MTI and XSIM issues caused by fix for VCS issues not to use "LIBRARY_SCAN = TRUE"
+   signal DATA_COUNT          : std_logic_vector(ADJUSTED_WRCNT_WIDTH-1 DOWNTO 0);                 
 
 
  
@@ -515,7 +654,7 @@ begin --(architecture implementation)
          -- legacy BRAM implementations of an Async FIFo.
          --
          -------------------------------------------------------------------------------
-         I_ASYNC_FIFO_BRAM : fifo_generator_v11_0
+         I_ASYNC_FIFO_BRAM : entity fifo_generator_v11_0.fifo_generator_v11_0
             generic map(
               C_COMMON_CLOCK                 =>  0,   
               C_COUNT_TYPE                   =>  0,   
@@ -758,263 +897,263 @@ begin --(architecture implementation)
 
              )
             port map (
-              BACKUP                    =>  '0',                  
-              BACKUP_MARKER             =>  '0',                  
-              CLK                       =>  '0',                  
-              RST                       =>  Ainit,                
-              SRST                      =>  '0',                  
-              WR_CLK                    =>  Wr_clk,               
-              WR_RST                    =>  Ainit,                
-              RD_CLK                    =>  Rd_clk,               
-              RD_RST                    =>  Ainit,                
-              DIN                       =>  Din,                  
-              WR_EN                     =>  Wr_en,                
-              RD_EN                     =>  Rd_en,                
-              PROG_EMPTY_THRESH         =>  PROG_RDTHRESH_ZEROS,  
-              PROG_EMPTY_THRESH_ASSERT  =>  PROG_RDTHRESH_ZEROS,  
-              PROG_EMPTY_THRESH_NEGATE  =>  PROG_RDTHRESH_ZEROS,  
-              PROG_FULL_THRESH          =>  PROG_WRTHRESH_ZEROS,  
-              PROG_FULL_THRESH_ASSERT   =>  PROG_WRTHRESH_ZEROS,  
-              PROG_FULL_THRESH_NEGATE   =>  PROG_WRTHRESH_ZEROS,  
-              INT_CLK                   =>  '0',                  
-              INJECTDBITERR             =>  '0', -- new FG 5.1/5.2    
-              INJECTSBITERR             =>  '0', -- new FG 5.1/5.2    
+              backup                    =>  '0',                  
+              backup_marker             =>  '0',                  
+              clk                       =>  '0',                  
+              rst                       =>  Ainit,                
+              srst                      =>  '0',                  
+              wr_clk                    =>  Wr_clk,               
+              wr_rst                    =>  Ainit,                
+              rd_clk                    =>  Rd_clk,               
+              rd_rst                    =>  Ainit,                
+              din                       =>  Din,                  
+              wr_en                     =>  Wr_en,                
+              rd_en                     =>  Rd_en,                
+              prog_empty_thresh         =>  PROG_RDTHRESH_ZEROS,  
+              prog_empty_thresh_assert  =>  PROG_RDTHRESH_ZEROS,  
+              prog_empty_thresh_negate  =>  PROG_RDTHRESH_ZEROS,  
+              prog_full_thresh          =>  PROG_WRTHRESH_ZEROS,  
+              prog_full_thresh_assert   =>  PROG_WRTHRESH_ZEROS,  
+              prog_full_thresh_negate   =>  PROG_WRTHRESH_ZEROS,  
+              int_clk                   =>  '0',                  
+              injectdbiterr             =>  '0', -- new FG 5.1/5.2    
+              injectsbiterr             =>  '0', -- new FG 5.1/5.2    
 
-              DOUT                      =>  Dout,                 
-              FULL                      =>  Full,                 
-              ALMOST_FULL               =>  Almost_full,          
-              WR_ACK                    =>  Wr_ack,               
-              OVERFLOW                  =>  Wr_err,               
-              EMPTY                     =>  Empty,                
-              ALMOST_EMPTY              =>  Almost_empty,         
-              VALID                     =>  Rd_ack,               
-              UNDERFLOW                 =>  Rd_err,               
-              DATA_COUNT                =>  open,                 
-              RD_DATA_COUNT             =>  sig_full_fifo_rdcnt,  
-              WR_DATA_COUNT             =>  sig_full_fifo_wrcnt,  
-              PROG_FULL                 =>  open,                 
-              PROG_EMPTY                =>  open,                 
-              SBITERR                   =>  open,                 
-              DBITERR                   =>  open,                  
+              dout                      =>  Dout,                 
+              full                      =>  Full,                 
+              almost_full               =>  Almost_full,          
+              wr_ack                    =>  Wr_ack,               
+              overflow                  =>  Wr_err,               
+              empty                     =>  Empty,                
+              almost_empty              =>  Almost_empty,         
+              valid                     =>  Rd_ack,               
+              underflow                 =>  Rd_err,               
+              data_count                =>  DATA_COUNT,                 
+              rd_data_count             =>  sig_full_fifo_rdcnt,  
+              wr_data_count             =>  sig_full_fifo_wrcnt,  
+              prog_full                 =>  PROG_FULL,                 
+              prog_empty                =>  PROG_EMPTY,                 
+              sbiterr                   =>  SBITERR,                 
+              dbiterr                   =>  DBITERR,                  
              
     
               -- AXI Global Signal
-              M_ACLK                    =>  '0',                   --       : IN  std_logic := '0';
-              S_ACLK                    =>  '0',                   --       : IN  std_logic := '0';
-              S_ARESETN                 =>  '0',                   --       : IN  std_logic := '0';
-              M_ACLK_EN                 =>  '0',                   --       : IN  std_logic := '0';
-              S_ACLK_EN                 =>  '0',                   --       : IN  std_logic := '0';
+              m_aclk                    =>  '0',                   --       : IN  std_logic := '0';
+              s_aclk                    =>  '0',                   --       : IN  std_logic := '0';
+              s_aresetn                 =>  '0',                   --       : IN  std_logic := '0';
+              m_aclk_en                 =>  '0',                   --       : IN  std_logic := '0';
+              s_aclk_en                 =>  '0',                   --       : IN  std_logic := '0';
 
               -- AXI Full/Lite Slave Write Channel (write side)
-              S_AXI_AWID                =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWADDR              =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWLEN               =>  (others => '0'),      --      : IN  std_logic_vector(8-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWSIZE              =>  (others => '0'),      --      : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWBURST             =>  (others => '0'),      --      : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWLOCK              =>  (others => '0'),      --      : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWCACHE             =>  (others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWPROT              =>  (others => '0'),      --      : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWQOS               =>  (others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWREGION            =>  (others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWUSER              =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_AWUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWVALID             =>  '0',                  --      : IN  std_logic := '0';
-              S_AXI_AWREADY             =>  open,                 --      : OUT std_logic;
-              S_AXI_WID                 =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_WDATA               =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_WSTRB               =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_DATA_WIDTH/8-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_WLAST               =>  '0',                  --      : IN  std_logic := '0';
-              S_AXI_WUSER               =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_WUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_WVALID              =>  '0',                  --      : IN  std_logic := '0';
-              S_AXI_WREADY              =>  open,                 --      : OUT std_logic;
-              S_AXI_BID                 =>  open,                 --      : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_BRESP               =>  open,                 --      : OUT std_logic_vector(2-1 DOWNTO 0);
-              S_AXI_BUSER               =>  open,                 --      : OUT std_logic_vector(C_AXI_BUSER_WIDTH-1 DOWNTO 0);
-              S_AXI_BVALID              =>  open,                 --      : OUT std_logic;
-              S_AXI_BREADY              =>  '0',                  --      : IN  std_logic := '0';
+              s_axi_awid                =>  "0000",         --(others => '0'),      --      : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awaddr              =>  "00000000000000000000000000000000",   --(others => '0'),      --      : IN  std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awlen               =>  "00000000",          --(others => '0'),      --      : IN  std_logic_vector(8-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awsize              =>  "000",          --(others => '0'),      --      : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awburst             =>  "00",           --(others => '0'),      --      : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awlock              =>  "00",           --(others => '0'),      --      : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awcache             =>  "0000",         --(others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awprot              =>  "000",          --(others => '0'),      --      : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awqos               =>  "0000",         --(others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awregion            =>  "0000",         --(others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awuser              =>  "0",            --(others => '0'),      --      : IN  std_logic_vector(C_AXI_AWUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awvalid             =>  '0',                  --      : IN  std_logic := '0';
+              s_axi_awready             =>  S_AXI_AWREADY,        --      : OUT std_logic;
+              s_axi_wid                 =>  "0000",         --(others => '0'),      --      : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_wdata               =>  "0000000000000000000000000000000000000000000000000000000000000000", --(others => '0'),      --      : IN  std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_wstrb               =>  "00000000",          --(others => '0'),      --      : IN  std_logic_vector(C_AXI_DATA_WIDTH/8-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_wlast               =>  '0',                  --      : IN  std_logic := '0';
+              s_axi_wuser               =>  "0",            --(others => '0'),      --      : IN  std_logic_vector(C_AXI_WUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_wvalid              =>  '0',                  --      : IN  std_logic := '0';
+              s_axi_wready              =>  S_AXI_WREADY,         --      : OUT std_logic;
+              s_axi_bid                 =>  S_AXI_BID,            --      : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_bresp               =>  S_AXI_BRESP,          --      : OUT std_logic_vector(2-1 DOWNTO 0);
+              s_axi_buser               =>  S_AXI_BUSER,          --      : OUT std_logic_vector(C_AXI_BUSER_WIDTH-1 DOWNTO 0);
+              s_axi_bvalid              =>  S_AXI_BVALID,          --      : OUT std_logic;
+              s_axi_bready              =>  '0',                  --      : IN  std_logic := '0';
 
               -- AXI Full/Lite Master Write Channel (Read side)
-              M_AXI_AWID                =>  open,                 --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);
-              M_AXI_AWADDR              =>  open,                 --       : OUT std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0);
-              M_AXI_AWLEN               =>  open,                 --       : OUT std_logic_vector(8-1 DOWNTO 0);
-              M_AXI_AWSIZE              =>  open,                 --       : OUT std_logic_vector(3-1 DOWNTO 0);
-              M_AXI_AWBURST             =>  open,                 --       : OUT std_logic_vector(2-1 DOWNTO 0);
-              M_AXI_AWLOCK              =>  open,                 --       : OUT std_logic_vector(2-1 DOWNTO 0);
-              M_AXI_AWCACHE             =>  open,                 --       : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_AWPROT              =>  open,                 --       : OUT std_logic_vector(3-1 DOWNTO 0);
-              M_AXI_AWQOS               =>  open,                 --       : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_AWREGION            =>  open,                 --       : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_AWUSER              =>  open,                 --       : OUT std_logic_vector(C_AXI_AWUSER_WIDTH-1 DOWNTO 0);
-              M_AXI_AWVALID             =>  open,                 --       : OUT std_logic;
-              M_AXI_AWREADY             =>  '0',                  --       : IN  std_logic := '0';
-              M_AXI_WID                 =>  open,                 --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);
-              M_AXI_WDATA               =>  open,                 --       : OUT std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0);
-              M_AXI_WSTRB               =>  open,                 --       : OUT std_logic_vector(C_AXI_DATA_WIDTH/8-1 DOWNTO 0);
-              M_AXI_WLAST               =>  open,                 --       : OUT std_logic;
-              M_AXI_WUSER               =>  open,                 --       : OUT std_logic_vector(C_AXI_WUSER_WIDTH-1 DOWNTO 0);
-              M_AXI_WVALID              =>  open,                 --       : OUT std_logic;
-              M_AXI_WREADY              =>  '0',                  --       : IN  std_logic := '0';
-              M_AXI_BID                 =>  (others => '0'),      --       : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              M_AXI_BRESP               =>  (others => '0'),      --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              M_AXI_BUSER               =>  (others => '0'),      --       : IN  std_logic_vector(C_AXI_BUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              M_AXI_BVALID              =>  '0',                  --       : IN  std_logic := '0';
-              M_AXI_BREADY              =>  open,                 --       : OUT std_logic;
+              m_axi_awid                =>  M_AXI_AWID,           --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);
+              m_axi_awaddr              =>  M_AXI_AWADDR,         --       : OUT std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0);
+              m_axi_awlen               =>  M_AXI_AWLEN,          --       : OUT std_logic_vector(8-1 DOWNTO 0);
+              m_axi_awsize              =>  M_AXI_AWSIZE,         --       : OUT std_logic_vector(3-1 DOWNTO 0);
+              m_axi_awburst             =>  M_AXI_AWBURST,        --       : OUT std_logic_vector(2-1 DOWNTO 0);
+              m_axi_awlock              =>  M_AXI_AWLOCK,         --       : OUT std_logic_vector(2-1 DOWNTO 0);
+              m_axi_awcache             =>  M_AXI_AWCACHE,        --       : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_awprot              =>  M_AXI_AWPROT,         --       : OUT std_logic_vector(3-1 DOWNTO 0);
+              m_axi_awqos               =>  M_AXI_AWQOS,          --       : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_awregion            =>  M_AXI_AWREGION,       --       : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_awuser              =>  M_AXI_AWUSER,         --       : OUT std_logic_vector(C_AXI_AWUSER_WIDTH-1 DOWNTO 0);
+              m_axi_awvalid             =>  M_AXI_AWVALID,        --       : OUT std_logic;
+              m_axi_awready             =>  '0',                  --       : IN  std_logic := '0';
+              m_axi_wid                 =>  M_AXI_WID,            --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);
+              m_axi_wdata               =>  M_AXI_WDATA,          --       : OUT std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0);
+              m_axi_wstrb               =>  M_AXI_WSTRB,          --       : OUT std_logic_vector(C_AXI_DATA_WIDTH/8-1 DOWNTO 0);
+              m_axi_wlast               =>  M_AXI_WLAST,          --       : OUT std_logic;
+              m_axi_wuser               =>  M_AXI_WUSER,          --       : OUT std_logic_vector(C_AXI_WUSER_WIDTH-1 DOWNTO 0);
+              m_axi_wvalid              =>  M_AXI_WVALID,         --       : OUT std_logic;
+              m_axi_wready              =>  '0',                  --       : IN  std_logic := '0';
+              m_axi_bid                 =>  "0000",               --(others => '0'),      --       : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              m_axi_bresp               =>  "00",                 --(others => '0'),      --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              m_axi_buser               =>  "0",                  --(others => '0'),      --       : IN  std_logic_vector(C_AXI_BUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              m_axi_bvalid              =>  '0',                  --       : IN  std_logic := '0';
+              m_axi_bready              =>  M_AXI_BREADY,         --       : OUT std_logic;
 
               -- AXI Full/Lite Slave Read Channel (Write side)
-              S_AXI_ARID               =>  (others => '0'),       --       : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARADDR             =>  (others => '0'),       --       : IN  std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0) := (OTHERS => '0'); 
-              S_AXI_ARLEN              =>  (others => '0'),       --       : IN  std_logic_vector(8-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARSIZE             =>  (others => '0'),       --       : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARBURST            =>  (others => '0'),       --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARLOCK             =>  (others => '0'),       --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARCACHE            =>  (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARPROT             =>  (others => '0'),       --       : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARQOS              =>  (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARREGION           =>  (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARUSER             =>  (others => '0'),       --       : IN  std_logic_vector(C_AXI_ARUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARVALID            =>  '0',                   --       : IN  std_logic := '0';
-              S_AXI_ARREADY            =>  open,                  --       : OUT std_logic;
-              S_AXI_RID                =>  open,                  --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);       
-              S_AXI_RDATA              =>  open,                  --       : OUT std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0); 
-              S_AXI_RRESP              =>  open,                  --       : OUT std_logic_vector(2-1 DOWNTO 0);
-              S_AXI_RLAST              =>  open,                  --       : OUT std_logic;
-              S_AXI_RUSER              =>  open,                  --       : OUT std_logic_vector(C_AXI_RUSER_WIDTH-1 DOWNTO 0);
-              S_AXI_RVALID             =>  open,                  --       : OUT std_logic;
-              S_AXI_RREADY             =>  '0',                   --       : IN  std_logic := '0';
+              s_axi_arid               =>  "0000",         --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_araddr             =>  "00000000000000000000000000000000",   --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0) := (OTHERS => '0'); 
+              s_axi_arlen              =>  "00000000",          --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(8-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arsize             =>  "000",          --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arburst            =>  "00",           --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arlock             =>  "00",           --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arcache            =>  "0000",         --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arprot             =>  "000",          --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arqos              =>  "0000",         --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arregion           =>  "0000",         --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_aruser             =>  "0",            --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(C_AXI_ARUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arvalid            =>  '0',                   --       : IN  std_logic := '0';
+              s_axi_arready            =>  S_AXI_ARREADY,         --       : OUT std_logic;
+              s_axi_rid                =>  S_AXI_RID,             --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);       
+              s_axi_rdata              =>  S_AXI_RDATA,           --       : OUT std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0); 
+              s_axi_rresp              =>  S_AXI_RRESP,           --       : OUT std_logic_vector(2-1 DOWNTO 0);
+              s_axi_rlast              =>  S_AXI_RLAST,           --       : OUT std_logic;
+              s_axi_ruser              =>  S_AXI_RUSER,           --       : OUT std_logic_vector(C_AXI_RUSER_WIDTH-1 DOWNTO 0);
+              s_axi_rvalid             =>  S_AXI_RVALID,          --       : OUT std_logic;
+              s_axi_rready             =>  '0',                   --       : IN  std_logic := '0';
 
               -- AXI Full/Lite Master Read Channel (Read side)
-              M_AXI_ARID               =>  open,                 --        : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);        
-              M_AXI_ARADDR             =>  open,                 --        : OUT std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0);  
-              M_AXI_ARLEN              =>  open,                 --        : OUT std_logic_vector(8-1 DOWNTO 0);
-              M_AXI_ARSIZE             =>  open,                 --        : OUT std_logic_vector(3-1 DOWNTO 0);
-              M_AXI_ARBURST            =>  open,                 --        : OUT std_logic_vector(2-1 DOWNTO 0);
-              M_AXI_ARLOCK             =>  open,                 --        : OUT std_logic_vector(2-1 DOWNTO 0);
-              M_AXI_ARCACHE            =>  open,                 --        : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_ARPROT             =>  open,                 --        : OUT std_logic_vector(3-1 DOWNTO 0);
-              M_AXI_ARQOS              =>  open,                 --        : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_ARREGION           =>  open,                 --        : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_ARUSER             =>  open,                 --        : OUT std_logic_vector(C_AXI_ARUSER_WIDTH-1 DOWNTO 0);
-              M_AXI_ARVALID            =>  open,                 --        : OUT std_logic;
-              M_AXI_ARREADY            =>  '0',                  --        : IN  std_logic := '0';
-              M_AXI_RID                =>  (others => '0'),      --        : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');        
-              M_AXI_RDATA              =>  (others => '0'),      --        : IN  std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  
-              M_AXI_RRESP              =>  (others => '0'),      --        : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              M_AXI_RLAST              =>  '0',                  --        : IN  std_logic := '0';
-              M_AXI_RUSER              =>  (others => '0'),      --        : IN  std_logic_vector(C_AXI_RUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              M_AXI_RVALID             =>  '0',                  --        : IN  std_logic := '0';
-              M_AXI_RREADY             =>  open,                 --        : OUT std_logic;
+              m_axi_arid               =>  M_AXI_ARID,           --        : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);        
+              m_axi_araddr             =>  M_AXI_ARADDR,         --        : OUT std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0);  
+              m_axi_arlen              =>  M_AXI_ARLEN,          --        : OUT std_logic_vector(8-1 DOWNTO 0);
+              m_axi_arsize             =>  M_AXI_ARSIZE,         --        : OUT std_logic_vector(3-1 DOWNTO 0);
+              m_axi_arburst            =>  M_AXI_ARBURST,        --        : OUT std_logic_vector(2-1 DOWNTO 0);
+              m_axi_arlock             =>  M_AXI_ARLOCK,         --        : OUT std_logic_vector(2-1 DOWNTO 0);
+              m_axi_arcache            =>  M_AXI_ARCACHE,        --        : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_arprot             =>  M_AXI_ARPROT,         --        : OUT std_logic_vector(3-1 DOWNTO 0);
+              m_axi_arqos              =>  M_AXI_ARQOS,          --        : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_arregion           =>  M_AXI_ARREGION,       --        : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_aruser             =>  M_AXI_ARUSER,         --        : OUT std_logic_vector(C_AXI_ARUSER_WIDTH-1 DOWNTO 0);
+              m_axi_arvalid            =>  M_AXI_ARVALID,        --        : OUT std_logic;
+              m_axi_arready            =>  '0',                  --        : IN  std_logic := '0';
+              m_axi_rid                =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');        
+              m_axi_rdata              =>  "0000000000000000000000000000000000000000000000000000000000000000", --(others => '0'),      --        : IN  std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  
+              m_axi_rresp              =>  "00",                 --(others => '0'),      --        : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              m_axi_rlast              =>  '0',                  --        : IN  std_logic := '0';
+              m_axi_ruser              =>  "0",                  --(others => '0'),      --        : IN  std_logic_vector(C_AXI_RUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              m_axi_rvalid             =>  '0',                  --        : IN  std_logic := '0';
+              m_axi_rready             =>  M_AXI_RREADY,         --        : OUT std_logic;
 
               -- AXI Streaming Slave Signals (Write side)
-              S_AXIS_TVALID            =>  '0',                  --        : IN  std_logic := '0';
-              S_AXIS_TREADY            =>  open,                 --        : OUT std_logic;
-              S_AXIS_TDATA             =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TDATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXIS_TSTRB             =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TSTRB_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXIS_TKEEP             =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TKEEP_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXIS_TLAST             =>  '0',                  --        : IN  std_logic := '0';
-              S_AXIS_TID               =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXIS_TDEST             =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TDEST_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXIS_TUSER             =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tvalid            =>  '0',                  --        : IN  std_logic := '0';
+              s_axis_tready            =>  S_AXIS_TREADY,        --        : OUT std_logic;
+              s_axis_tdata             =>  "0000000000000000000000000000000000000000000000000000000000000000", --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TDATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tstrb             =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TSTRB_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tkeep             =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TKEEP_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tlast             =>  '0',                  --        : IN  std_logic := '0';
+              s_axis_tid               =>  "00000000",                 --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tdest             =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TDEST_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tuser             =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
 
               -- AXI Streaming Master Signals (Read side)
-              M_AXIS_TVALID            =>  open,                 --        : OUT std_logic;
-              M_AXIS_TREADY            =>  '0',                  --        : IN  std_logic := '0';
-              M_AXIS_TDATA             =>  open,                 --        : OUT std_logic_vector(C_AXIS_TDATA_WIDTH-1 DOWNTO 0);
-              M_AXIS_TSTRB             =>  open,                 --        : OUT std_logic_vector(C_AXIS_TSTRB_WIDTH-1 DOWNTO 0);
-              M_AXIS_TKEEP             =>  open,                 --        : OUT std_logic_vector(C_AXIS_TKEEP_WIDTH-1 DOWNTO 0);
-              M_AXIS_TLAST             =>  open,                 --        : OUT std_logic;
-              M_AXIS_TID               =>  open,                 --        : OUT std_logic_vector(C_AXIS_TID_WIDTH-1 DOWNTO 0);
-              M_AXIS_TDEST             =>  open,                 --        : OUT std_logic_vector(C_AXIS_TDEST_WIDTH-1 DOWNTO 0);
-              M_AXIS_TUSER             =>  open,                 --        : OUT std_logic_vector(C_AXIS_TUSER_WIDTH-1 DOWNTO 0);
+              m_axis_tvalid            =>  M_AXIS_TVALID,        --        : OUT std_logic;
+              m_axis_tready            =>  '0',                  --        : IN  std_logic := '0';
+              m_axis_tdata             =>  M_AXIS_TDATA,         --        : OUT std_logic_vector(C_AXIS_TDATA_WIDTH-1 DOWNTO 0);
+              m_axis_tstrb             =>  M_AXIS_TSTRB,         --        : OUT std_logic_vector(C_AXIS_TSTRB_WIDTH-1 DOWNTO 0);
+              m_axis_tkeep             =>  M_AXIS_TKEEP,         --        : OUT std_logic_vector(C_AXIS_TKEEP_WIDTH-1 DOWNTO 0);
+              m_axis_tlast             =>  M_AXIS_TLAST,         --        : OUT std_logic;
+              m_axis_tid               =>  M_AXIS_TID,           --        : OUT std_logic_vector(C_AXIS_TID_WIDTH-1 DOWNTO 0);
+              m_axis_tdest             =>  M_AXIS_TDEST,         --        : OUT std_logic_vector(C_AXIS_TDEST_WIDTH-1 DOWNTO 0);
+              m_axis_tuser             =>  M_AXIS_TUSER,         --        : OUT std_logic_vector(C_AXIS_TUSER_WIDTH-1 DOWNTO 0);
 
               -- AXI Full/Lite Write Address Channel Signals
-              AXI_AW_INJECTSBITERR     =>  '0',                  --        : IN  std_logic := '0';
-              AXI_AW_INJECTDBITERR     =>  '0',                  --        : IN  std_logic := '0';
-              AXI_AW_PROG_FULL_THRESH  =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WACH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_AW_PROG_EMPTY_THRESH =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WACH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_AW_DATA_COUNT        =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
-              AXI_AW_WR_DATA_COUNT     =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
-              AXI_AW_RD_DATA_COUNT     =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
-              AXI_AW_SBITERR           =>  open,                 --        : OUT std_logic;
-              AXI_AW_DBITERR           =>  open,                 --        : OUT std_logic;
-              AXI_AW_OVERFLOW          =>  open,                 --        : OUT std_logic;
-              AXI_AW_UNDERFLOW         =>  open,                 --        : OUT std_logic;
-              AXI_AW_PROG_FULL         =>  open,                 --        : OUT STD_LOGIC := '0';
-              AXI_AW_PROG_EMPTY        =>  open,                 --        : OUT STD_LOGIC := '1';
+              axi_aw_injectsbiterr     =>  '0',                  --        : IN  std_logic := '0';
+              axi_aw_injectdbiterr     =>  '0',                  --        : IN  std_logic := '0';
+              axi_aw_prog_full_thresh  =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WACH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_aw_prog_empty_thresh =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WACH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_aw_data_count        =>  AXI_AW_DATA_COUNT,    --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
+              axi_aw_wr_data_count     =>  AXI_AW_WR_DATA_COUNT, --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
+              axi_aw_rd_data_count     =>  AXI_AW_RD_DATA_COUNT, --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
+              axi_aw_sbiterr           =>  AXI_AW_SBITERR,       --        : OUT std_logic;
+              axi_aw_dbiterr           =>  AXI_AW_DBITERR,       --        : OUT std_logic;
+              axi_aw_overflow          =>  AXI_AW_OVERFLOW,      --        : OUT std_logic;
+              axi_aw_underflow         =>  AXI_AW_UNDERFLOW,     --        : OUT std_logic;
+              axi_aw_prog_full         =>  AXI_AW_PROG_FULL,     --        : OUT STD_LOGIC := '0';
+              axi_aw_prog_empty        =>  AXI_AW_PROG_EMPTY,    --        : OUT STD_LOGIC := '1';
 
 
               -- AXI Full/Lite Write Data Channel Signals
-              AXI_W_INJECTSBITERR      =>  '0',                  --        : IN  std_logic := '0';
-              AXI_W_INJECTDBITERR      =>  '0',                  --        : IN  std_logic := '0';
-              AXI_W_PROG_FULL_THRESH   =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WDCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_W_PROG_EMPTY_THRESH  =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WDCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_W_DATA_COUNT         =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
-              AXI_W_WR_DATA_COUNT      =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
-              AXI_W_RD_DATA_COUNT      =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
-              AXI_W_SBITERR            =>  open,                 --        : OUT std_logic;
-              AXI_W_DBITERR            =>  open,                 --        : OUT std_logic;
-              AXI_W_OVERFLOW           =>  open,                 --        : OUT std_logic;
-              AXI_W_UNDERFLOW          =>  open,                 --        : OUT std_logic;
-              AXI_W_PROG_FULL          =>  open,                 --        : OUT STD_LOGIC := '0';
-              AXI_W_PROG_EMPTY         =>  open,                 --        : OUT STD_LOGIC := '1';
+              axi_w_injectsbiterr      =>  '0',                  --        : IN  std_logic := '0';
+              axi_w_injectdbiterr      =>  '0',                  --        : IN  std_logic := '0';
+              axi_w_prog_full_thresh   =>  "0000000000",         --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WDCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_w_prog_empty_thresh  =>  "0000000000",         --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WDCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_w_data_count         =>  AXI_W_DATA_COUNT,     --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
+              axi_w_wr_data_count      =>  AXI_W_WR_DATA_COUNT,  --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
+              axi_w_rd_data_count      =>  AXI_W_RD_DATA_COUNT,  --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
+              axi_w_sbiterr            =>  AXI_W_SBITERR,        --        : OUT std_logic;
+              axi_w_dbiterr            =>  AXI_W_DBITERR,        --        : OUT std_logic;
+              axi_w_overflow           =>  AXI_W_OVERFLOW,       --        : OUT std_logic;
+              axi_w_underflow          =>  AXI_W_UNDERFLOW,      --        : OUT std_logic;
+              axi_w_prog_full          =>  AXI_W_PROG_FULL,      --        : OUT STD_LOGIC := '0';
+              axi_w_prog_empty         =>  AXI_W_PROG_EMPTY,     --        : OUT STD_LOGIC := '1';
 
               -- AXI Full/Lite Write Response Channel Signals
-              AXI_B_INJECTSBITERR      =>  '0',                  --        : IN  std_logic := '0';
-              AXI_B_INJECTDBITERR      =>  '0',                  --        : IN  std_logic := '0';
-              AXI_B_PROG_FULL_THRESH   =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WRCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_B_PROG_EMPTY_THRESH  =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WRCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_B_DATA_COUNT         =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
-              AXI_B_WR_DATA_COUNT      =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
-              AXI_B_RD_DATA_COUNT      =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
-              AXI_B_SBITERR            =>  open,                 --        : OUT std_logic;
-              AXI_B_DBITERR            =>  open,                 --        : OUT std_logic;
-              AXI_B_OVERFLOW           =>  open,                 --        : OUT std_logic;
-              AXI_B_UNDERFLOW          =>  open,                 --        : OUT std_logic;
-              AXI_B_PROG_FULL          =>  open,                 --        : OUT STD_LOGIC := '0';
-              AXI_B_PROG_EMPTY         =>  open,                 --        : OUT STD_LOGIC := '1';
+              axi_b_injectsbiterr      =>  '0',                  --        : IN  std_logic := '0';
+              axi_b_injectdbiterr      =>  '0',                  --        : IN  std_logic := '0';
+              axi_b_prog_full_thresh   =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WRCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_b_prog_empty_thresh  =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WRCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_b_data_count         =>  AXI_B_DATA_COUNT,     --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
+              axi_b_wr_data_count      =>  AXI_B_WR_DATA_COUNT,  --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
+              axi_b_rd_data_count      =>  AXI_B_RD_DATA_COUNT,  --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
+              axi_b_sbiterr            =>  AXI_B_SBITERR,        --        : OUT std_logic;
+              axi_b_dbiterr            =>  AXI_B_DBITERR,        --        : OUT std_logic;
+              axi_b_overflow           =>  AXI_B_OVERFLOW,       --        : OUT std_logic;
+              axi_b_underflow          =>  AXI_B_UNDERFLOW,      --        : OUT std_logic;
+              axi_b_prog_full          =>  AXI_B_PROG_FULL,      --        : OUT STD_LOGIC := '0';
+              axi_b_prog_empty         =>  AXI_B_PROG_EMPTY,     --        : OUT STD_LOGIC := '1';
 
               -- AXI Full/Lite Read Address Channel Signals
-              AXI_AR_INJECTSBITERR     =>  '0',                  --        : IN  std_logic := '0';
-              AXI_AR_INJECTDBITERR     =>  '0',                  --        : IN  std_logic := '0';
-              AXI_AR_PROG_FULL_THRESH  =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_RACH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_AR_PROG_EMPTY_THRESH =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_RACH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_AR_DATA_COUNT        =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
-              AXI_AR_WR_DATA_COUNT     =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
-              AXI_AR_RD_DATA_COUNT     =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
-              AXI_AR_SBITERR           =>  open,                 --        : OUT std_logic;
-              AXI_AR_DBITERR           =>  open,                 --        : OUT std_logic;
-              AXI_AR_OVERFLOW          =>  open,                 --        : OUT std_logic;
-              AXI_AR_UNDERFLOW         =>  open,                 --        : OUT std_logic;
-              AXI_AR_PROG_FULL         =>  open,                 --        : OUT STD_LOGIC := '0';
-              AXI_AR_PROG_EMPTY        =>  open,                 --        : OUT STD_LOGIC := '1';
+              axi_ar_injectsbiterr     =>  '0',                  --        : IN  std_logic := '0';
+              axi_ar_injectdbiterr     =>  '0',                  --        : IN  std_logic := '0';
+              axi_ar_prog_full_thresh  =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_RACH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_ar_prog_empty_thresh =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_RACH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_ar_data_count        =>  AXI_AR_DATA_COUNT,    --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
+              axi_ar_wr_data_count     =>  AXI_AR_WR_DATA_COUNT, --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
+              axi_ar_rd_data_count     =>  AXI_AR_RD_DATA_COUNT, --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
+              axi_ar_sbiterr           =>  AXI_AR_SBITERR,       --        : OUT std_logic;
+              axi_ar_dbiterr           =>  AXI_AR_DBITERR,       --        : OUT std_logic;
+              axi_ar_overflow          =>  AXI_AR_OVERFLOW,      --        : OUT std_logic;
+              axi_ar_underflow         =>  AXI_AR_UNDERFLOW,     --        : OUT std_logic;
+              axi_ar_prog_full         =>  AXI_AR_PROG_FULL,     --        : OUT STD_LOGIC := '0';
+              axi_ar_prog_empty        =>  AXI_AR_PROG_EMPTY,    --        : OUT STD_LOGIC := '1';
 
               -- AXI Full/Lite Read Data Channel Signals
-              AXI_R_INJECTSBITERR     =>  '0',                  --         : IN  std_logic := '0';
-              AXI_R_INJECTDBITERR     =>  '0',                  --         : IN  std_logic := '0';
-              AXI_R_PROG_FULL_THRESH  =>  (others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_RDCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_R_PROG_EMPTY_THRESH =>  (others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_RDCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_R_DATA_COUNT        =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
-              AXI_R_WR_DATA_COUNT     =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
-              AXI_R_RD_DATA_COUNT     =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
-              AXI_R_SBITERR           =>  open,                 --         : OUT std_logic;
-              AXI_R_DBITERR           =>  open,                 --         : OUT std_logic;
-              AXI_R_OVERFLOW          =>  open,                 --         : OUT std_logic;
-              AXI_R_UNDERFLOW         =>  open,                 --         : OUT std_logic;
-              AXI_R_PROG_FULL         =>  open,                 --         : OUT STD_LOGIC := '0';
-              AXI_R_PROG_EMPTY        =>  open,                 --         : OUT STD_LOGIC := '1';
+              axi_r_injectsbiterr     =>  '0',                  --         : IN  std_logic := '0';
+              axi_r_injectdbiterr     =>  '0',                  --         : IN  std_logic := '0';
+              axi_r_prog_full_thresh  =>  "0000000000",         --(others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_RDCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_r_prog_empty_thresh =>  "0000000000",         --(others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_RDCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_r_data_count        =>  AXI_R_DATA_COUNT,     --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
+              axi_r_wr_data_count     =>  AXI_R_WR_DATA_COUNT,  --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
+              axi_r_rd_data_count     =>  AXI_R_RD_DATA_COUNT,  --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
+              axi_r_sbiterr           =>  AXI_R_SBITERR,        --         : OUT std_logic;
+              axi_r_dbiterr           =>  AXI_R_DBITERR,        --         : OUT std_logic;
+              axi_r_overflow          =>  AXI_R_OVERFLOW,       --         : OUT std_logic;
+              axi_r_underflow         =>  AXI_R_UNDERFLOW,      --         : OUT std_logic;
+              axi_r_prog_full         =>  AXI_R_PROG_FULL,      --         : OUT STD_LOGIC := '0';
+              axi_r_prog_empty        =>  AXI_R_PROG_EMPTY,     --         : OUT STD_LOGIC := '1';
 
               -- AXI Streaming FIFO Related Signals
-              AXIS_INJECTSBITERR      =>  '0',                  --         : IN  std_logic := '0';
-              AXIS_INJECTDBITERR      =>  '0',                  --         : IN  std_logic := '0';
-              AXIS_PROG_FULL_THRESH   =>  (others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_AXIS-1 DOWNTO 0) := (OTHERS => '0');
-              AXIS_PROG_EMPTY_THRESH  =>  (others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_AXIS-1 DOWNTO 0) := (OTHERS => '0');
-              AXIS_DATA_COUNT         =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
-              AXIS_WR_DATA_COUNT      =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
-              AXIS_RD_DATA_COUNT      =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
-              AXIS_SBITERR            =>  open,                 --         : OUT std_logic;
-              AXIS_DBITERR            =>  open,                 --         : OUT std_logic;
-              AXIS_OVERFLOW           =>  open,                 --         : OUT std_logic;
-              AXIS_UNDERFLOW          =>  open,                 --         : OUT std_logic
-              AXIS_PROG_FULL          =>  open,                 --         : OUT STD_LOGIC := '0';
-              AXIS_PROG_EMPTY         =>  open                 --         : OUT STD_LOGIC := '1';
+              axis_injectsbiterr      =>  '0',                  --         : IN  std_logic := '0';
+              axis_injectdbiterr      =>  '0',                  --         : IN  std_logic := '0';
+              axis_prog_full_thresh   =>  "0000000000",         --(others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_AXIS-1 DOWNTO 0) := (OTHERS => '0');
+              axis_prog_empty_thresh  =>  "0000000000",         --(others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_AXIS-1 DOWNTO 0) := (OTHERS => '0');
+              axis_data_count         =>  AXIS_DATA_COUNT,      --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
+              axis_wr_data_count      =>  AXIS_WR_DATA_COUNT,   --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
+              axis_rd_data_count      =>  AXIS_RD_DATA_COUNT,   --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
+              axis_sbiterr            =>  AXIS_SBITERR,         --         : OUT std_logic;
+              axis_dbiterr            =>  AXIS_DBITERR,         --         : OUT std_logic;
+              axis_overflow           =>  AXIS_OVERFLOW,        --         : OUT std_logic;
+              axis_underflow          =>  AXIS_UNDERFLOW,       --         : OUT std_logic
+              axis_prog_full          =>  AXIS_PROG_FULL,       --         : OUT STD_LOGIC := '0';
+              axis_prog_empty         =>  AXIS_PROG_EMPTY       --         : OUT STD_LOGIC := '1';
 
              
              );
@@ -1067,9 +1206,9 @@ begin --(architecture implementation)
     
  
     -- Constant zeros for programmable threshold inputs
-    Constant PROG_RDTHRESH_ZEROS : std_logic_vector(RD_PNTR_WIDTH-1
+    signal PROG_RDTHRESH_ZEROS : std_logic_vector(RD_PNTR_WIDTH-1
                                    DOWNTO 0) := (OTHERS => '0');
-    Constant PROG_WRTHRESH_ZEROS : std_logic_vector(WR_PNTR_WIDTH-1 
+    signal PROG_WRTHRESH_ZEROS : std_logic_vector(WR_PNTR_WIDTH-1 
                                    DOWNTO 0) := (OTHERS => '0');
     
     
@@ -1081,6 +1220,8 @@ begin --(architecture implementation)
     Signal sig_full_fifo_rdcnt : std_logic_vector(C_RD_COUNT_WIDTH-1 DOWNTO 0);
     Signal sig_full_fifo_wrcnt : std_logic_vector(C_WR_COUNT_WIDTH-1 DOWNTO 0);
 
+  --Signals added to fix MTI and XSIM issues caused by fix for VCS issues not to use "LIBRARY_SCAN = TRUE"
+   signal DATA_COUNT          : std_logic_vector(C_WR_COUNT_WIDTH-1 DOWNTO 0);                 
 
     begin
     
@@ -1117,7 +1258,7 @@ begin --(architecture implementation)
          -- legacy BRAM implementations of an Async FIFo.
          --
          -------------------------------------------------------------------------------
-         I_ASYNC_FIFO_BRAM : fifo_generator_v11_0
+         I_ASYNC_FIFO_BRAM : entity fifo_generator_v11_0.fifo_generator_v11_0
             generic map(
               C_COMMON_CLOCK                 =>  0,                                              
               C_COUNT_TYPE                   =>  0,                                              
@@ -1356,262 +1497,263 @@ begin --(architecture implementation)
 
              )
             port map (
-              BACKUP                    =>  '0',                  -- : IN  std_logic := '0';
-              BACKUP_MARKER             =>  '0',                  -- : IN  std_logic := '0';
-              CLK                       =>  '0',                  -- : IN  std_logic := '0';
-              RST                       =>  Ainit,                -- : IN  std_logic := '0';
-              SRST                      =>  '0',                  -- : IN  std_logic := '0';
-              WR_CLK                    =>  Wr_clk,               -- : IN  std_logic := '0';
-              WR_RST                    =>  Ainit,                -- : IN  std_logic := '0';
-              RD_CLK                    =>  Rd_clk,               -- : IN  std_logic := '0';
-              RD_RST                    =>  Ainit,                -- : IN  std_logic := '0';
-              DIN                       =>  Din,                  -- : IN  std_logic_vector(C_DIN_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              WR_EN                     =>  Wr_en,                -- : IN  std_logic := '0';
-              RD_EN                     =>  Rd_en,                -- : IN  std_logic := '0';
-              PROG_EMPTY_THRESH         =>  PROG_RDTHRESH_ZEROS,  -- : IN  std_logic_vector(C_RD_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              PROG_EMPTY_THRESH_ASSERT  =>  PROG_RDTHRESH_ZEROS,  -- : IN  std_logic_vector(C_RD_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              PROG_EMPTY_THRESH_NEGATE  =>  PROG_RDTHRESH_ZEROS,  -- : IN  std_logic_vector(C_RD_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              PROG_FULL_THRESH          =>  PROG_WRTHRESH_ZEROS,  -- : IN  std_logic_vector(C_WR_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              PROG_FULL_THRESH_ASSERT   =>  PROG_WRTHRESH_ZEROS,  -- : IN  std_logic_vector(C_WR_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              PROG_FULL_THRESH_NEGATE   =>  PROG_WRTHRESH_ZEROS,  -- : IN  std_logic_vector(C_WR_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              INT_CLK                   =>  '0',                  -- : IN  std_logic := '0';
-              INJECTDBITERR             =>  '0', -- new FG 5.1    -- : IN  std_logic := '0';
-              INJECTSBITERR             =>  '0', -- new FG 5.1    -- : IN  std_logic := '0';
+              backup                    =>  '0',                  -- : IN  std_logic := '0';
+              backup_marker             =>  '0',                  -- : IN  std_logic := '0';
+              clk                       =>  '0',                  -- : IN  std_logic := '0';
+              rst                       =>  Ainit,                -- : IN  std_logic := '0';
+              srst                      =>  '0',                  -- : IN  std_logic := '0';
+              wr_clk                    =>  Wr_clk,               -- : IN  std_logic := '0';
+              wr_rst                    =>  Ainit,                -- : IN  std_logic := '0';
+              rd_clk                    =>  Rd_clk,               -- : IN  std_logic := '0';
+              rd_rst                    =>  Ainit,                -- : IN  std_logic := '0';
+              din                       =>  Din,                  -- : IN  std_logic_vector(C_DIN_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              wr_en                     =>  Wr_en,                -- : IN  std_logic := '0';
+              rd_en                     =>  Rd_en,                -- : IN  std_logic := '0';
+              prog_empty_thresh         =>  PROG_RDTHRESH_ZEROS,  -- : IN  std_logic_vector(C_RD_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              prog_empty_thresh_assert  =>  PROG_RDTHRESH_ZEROS,  -- : IN  std_logic_vector(C_RD_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              prog_empty_thresh_negate  =>  PROG_RDTHRESH_ZEROS,  -- : IN  std_logic_vector(C_RD_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              prog_full_thresh          =>  PROG_WRTHRESH_ZEROS,  -- : IN  std_logic_vector(C_WR_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              prog_full_thresh_assert   =>  PROG_WRTHRESH_ZEROS,  -- : IN  std_logic_vector(C_WR_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              prog_full_thresh_negate   =>  PROG_WRTHRESH_ZEROS,  -- : IN  std_logic_vector(C_WR_PNTR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              int_clk                   =>  '0',                  -- : IN  std_logic := '0';
+              injectdbiterr             =>  '0', -- new FG 5.1    -- : IN  std_logic := '0';
+              injectsbiterr             =>  '0', -- new FG 5.1    -- : IN  std_logic := '0';
 
-              DOUT                      =>  Dout,                 -- : OUT std_logic_vector(C_DOUT_WIDTH-1 DOWNTO 0);
-              FULL                      =>  Full,                 -- : OUT std_logic;
-              ALMOST_FULL               =>  Almost_full,          -- : OUT std_logic;
-              WR_ACK                    =>  Wr_ack,               -- : OUT std_logic;
-              OVERFLOW                  =>  Rd_err,               -- : OUT std_logic;
-              EMPTY                     =>  Empty,                -- : OUT std_logic;
-              ALMOST_EMPTY              =>  Almost_empty,         -- : OUT std_logic;
-              VALID                     =>  Rd_ack,               -- : OUT std_logic;
-              UNDERFLOW                 =>  Wr_err,               -- : OUT std_logic;
-              DATA_COUNT                =>  open,                 -- : OUT std_logic_vector(C_DATA_COUNT_WIDTH-1 DOWNTO 0);
-              RD_DATA_COUNT             =>  sig_full_fifo_rdcnt,  -- : OUT std_logic_vector(C_RD_DATA_COUNT_WIDTH-1 DOWNTO 0);
-              WR_DATA_COUNT             =>  sig_full_fifo_wrcnt,  -- : OUT std_logic_vector(C_WR_DATA_COUNT_WIDTH-1 DOWNTO 0);
-              PROG_FULL                 =>  open,                 -- : OUT std_logic;
-              PROG_EMPTY                =>  open,                 -- : OUT std_logic;
-              SBITERR                   =>  open,                 -- : OUT std_logic;
-              DBITERR                   =>  open,                 -- : OUT std_logic
+              dout                      =>  Dout,                 -- : OUT std_logic_vector(C_DOUT_WIDTH-1 DOWNTO 0);
+              full                      =>  Full,                 -- : OUT std_logic;
+              almost_full               =>  Almost_full,          -- : OUT std_logic;
+              wr_ack                    =>  Wr_ack,               -- : OUT std_logic;
+              overflow                  =>  Rd_err,               -- : OUT std_logic;
+              empty                     =>  Empty,                -- : OUT std_logic;
+              almost_empty              =>  Almost_empty,         -- : OUT std_logic;
+              valid                     =>  Rd_ack,               -- : OUT std_logic;
+              underflow                 =>  Wr_err,               -- : OUT std_logic;
+              data_count                =>  DATA_COUNT,           -- : OUT std_logic_vector(C_DATA_COUNT_WIDTH-1 DOWNTO 0);
+              rd_data_count             =>  sig_full_fifo_rdcnt,  -- : OUT std_logic_vector(C_RD_DATA_COUNT_WIDTH-1 DOWNTO 0);
+              wr_data_count             =>  sig_full_fifo_wrcnt,  -- : OUT std_logic_vector(C_WR_DATA_COUNT_WIDTH-1 DOWNTO 0);
+              prog_full                 =>  PROG_FULL,            -- : OUT std_logic;
+              prog_empty                =>  PROG_EMPTY,           -- : OUT std_logic;
+              sbiterr                   =>  SBITERR,              -- : OUT std_logic;
+              dbiterr                   =>  DBITERR,              -- : OUT std_logic
              
     
               -- AXI Global Signal
-              M_ACLK                    =>  '0',                   --       : IN  std_logic := '0';
-              S_ACLK                    =>  '0',                   --       : IN  std_logic := '0';
-              S_ARESETN                 =>  '0',                   --       : IN  std_logic := '0';
-              M_ACLK_EN                 =>  '0',                   --       : IN  std_logic := '0';
-              S_ACLK_EN                 =>  '0',                   --       : IN  std_logic := '0';
+              m_aclk                    =>  '0',                   --       : IN  std_logic := '0';
+              s_aclk                    =>  '0',                   --       : IN  std_logic := '0';
+              s_aresetn                 =>  '0',                   --       : IN  std_logic := '0';
+              m_aclk_en                 =>  '0',                   --       : IN  std_logic := '0';
+              s_aclk_en                 =>  '0',                   --       : IN  std_logic := '0';
 
               -- AXI Full/Lite Slave Write Channel (write side)
-              S_AXI_AWID                =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWADDR              =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWLEN               =>  (others => '0'),      --      : IN  std_logic_vector(8-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWSIZE              =>  (others => '0'),      --      : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWBURST             =>  (others => '0'),      --      : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWLOCK              =>  (others => '0'),      --      : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWCACHE             =>  (others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWPROT              =>  (others => '0'),      --      : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWQOS               =>  (others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWREGION            =>  (others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWUSER              =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_AWUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_AWVALID             =>  '0',                  --      : IN  std_logic := '0';
-              S_AXI_AWREADY             =>  open,                 --      : OUT std_logic;
-              S_AXI_WID                 =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_WDATA               =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_WSTRB               =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_DATA_WIDTH/8-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_WLAST               =>  '0',                  --      : IN  std_logic := '0';
-              S_AXI_WUSER               =>  (others => '0'),      --      : IN  std_logic_vector(C_AXI_WUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_WVALID              =>  '0',                  --      : IN  std_logic := '0';
-              S_AXI_WREADY              =>  open,                 --      : OUT std_logic;
-              S_AXI_BID                 =>  open,                 --      : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_BRESP               =>  open,                 --      : OUT std_logic_vector(2-1 DOWNTO 0);
-              S_AXI_BUSER               =>  open,                 --      : OUT std_logic_vector(C_AXI_BUSER_WIDTH-1 DOWNTO 0);
-              S_AXI_BVALID              =>  open,                 --      : OUT std_logic;
-              S_AXI_BREADY              =>  '0',                  --      : IN  std_logic := '0';
+              s_axi_awid                =>  "0000",         --(others => '0'),      --      : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awaddr              =>  "00000000000000000000000000000000",   --(others => '0'),      --      : IN  std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awlen               =>  "00000000",          --(others => '0'),      --      : IN  std_logic_vector(8-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awsize              =>  "000",          --(others => '0'),      --      : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awburst             =>  "00",           --(others => '0'),      --      : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awlock              =>  "00",           --(others => '0'),      --      : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awcache             =>  "0000",         --(others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awprot              =>  "000",          --(others => '0'),      --      : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awqos               =>  "0000",         --(others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awregion            =>  "0000",         --(others => '0'),      --      : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awuser              =>  "0",            --(others => '0'),      --      : IN  std_logic_vector(C_AXI_AWUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_awvalid             =>  '0',                  --      : IN  std_logic := '0';
+              s_axi_awready             =>  S_AXI_AWREADY,        --      : OUT std_logic;
+              s_axi_wid                 =>  "0000",         --(others => '0'),      --      : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_wdata               =>  "0000000000000000000000000000000000000000000000000000000000000000", --(others => '0'),      --      : IN  std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_wstrb               =>  "00000000",          --(others => '0'),      --      : IN  std_logic_vector(C_AXI_DATA_WIDTH/8-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_wlast               =>  '0',                  --      : IN  std_logic := '0';
+              s_axi_wuser               =>  "0",            --(others => '0'),      --      : IN  std_logic_vector(C_AXI_WUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_wvalid              =>  '0',                  --      : IN  std_logic := '0';
+              s_axi_wready              =>  S_AXI_WREADY,         --      : OUT std_logic;
+              s_axi_bid                 =>  S_AXI_BID,            --      : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_bresp               =>  S_AXI_BRESP,          --      : OUT std_logic_vector(2-1 DOWNTO 0);
+              s_axi_buser               =>  S_AXI_BUSER,          --      : OUT std_logic_vector(C_AXI_BUSER_WIDTH-1 DOWNTO 0);
+              s_axi_bvalid              =>  S_AXI_BVALID,         --      : OUT std_logic;
+              s_axi_bready              =>  '0',                  --      : IN  std_logic := '0';
 
               -- AXI Full/Lite Master Write Channel (Read side)
-              M_AXI_AWID                =>  open,                 --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);
-              M_AXI_AWADDR              =>  open,                 --       : OUT std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0);
-              M_AXI_AWLEN               =>  open,                 --       : OUT std_logic_vector(8-1 DOWNTO 0);
-              M_AXI_AWSIZE              =>  open,                 --       : OUT std_logic_vector(3-1 DOWNTO 0);
-              M_AXI_AWBURST             =>  open,                 --       : OUT std_logic_vector(2-1 DOWNTO 0);
-              M_AXI_AWLOCK              =>  open,                 --       : OUT std_logic_vector(2-1 DOWNTO 0);
-              M_AXI_AWCACHE             =>  open,                 --       : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_AWPROT              =>  open,                 --       : OUT std_logic_vector(3-1 DOWNTO 0);
-              M_AXI_AWQOS               =>  open,                 --       : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_AWREGION            =>  open,                 --       : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_AWUSER              =>  open,                 --       : OUT std_logic_vector(C_AXI_AWUSER_WIDTH-1 DOWNTO 0);
-              M_AXI_AWVALID             =>  open,                 --       : OUT std_logic;
-              M_AXI_AWREADY             =>  '0',                  --       : IN  std_logic := '0';
-              M_AXI_WID                 =>  open,                 --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);
-              M_AXI_WDATA               =>  open,                 --       : OUT std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0);
-              M_AXI_WSTRB               =>  open,                 --       : OUT std_logic_vector(C_AXI_DATA_WIDTH/8-1 DOWNTO 0);
-              M_AXI_WLAST               =>  open,                 --       : OUT std_logic;
-              M_AXI_WUSER               =>  open,                 --       : OUT std_logic_vector(C_AXI_WUSER_WIDTH-1 DOWNTO 0);
-              M_AXI_WVALID              =>  open,                 --       : OUT std_logic;
-              M_AXI_WREADY              =>  '0',                  --       : IN  std_logic := '0';
-              M_AXI_BID                 =>  (others => '0'),      --       : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              M_AXI_BRESP               =>  (others => '0'),      --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              M_AXI_BUSER               =>  (others => '0'),      --       : IN  std_logic_vector(C_AXI_BUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              M_AXI_BVALID              =>  '0',                  --       : IN  std_logic := '0';
-              M_AXI_BREADY              =>  open,                 --       : OUT std_logic;
+              m_axi_awid                =>  M_AXI_AWID,           --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);
+              m_axi_awaddr              =>  M_AXI_AWADDR,         --       : OUT std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0);
+              m_axi_awlen               =>  M_AXI_AWLEN,          --       : OUT std_logic_vector(8-1 DOWNTO 0);
+              m_axi_awsize              =>  M_AXI_AWSIZE,         --       : OUT std_logic_vector(3-1 DOWNTO 0);
+              m_axi_awburst             =>  M_AXI_AWBURST,        --       : OUT std_logic_vector(2-1 DOWNTO 0);
+              m_axi_awlock              =>  M_AXI_AWLOCK,         --       : OUT std_logic_vector(2-1 DOWNTO 0);
+              m_axi_awcache             =>  M_AXI_AWCACHE,        --       : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_awprot              =>  M_AXI_AWPROT,         --       : OUT std_logic_vector(3-1 DOWNTO 0);
+              m_axi_awqos               =>  M_AXI_AWQOS,          --       : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_awregion            =>  M_AXI_AWREGION,       --       : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_awuser              =>  M_AXI_AWUSER,         --       : OUT std_logic_vector(C_AXI_AWUSER_WIDTH-1 DOWNTO 0);
+              m_axi_awvalid             =>  M_AXI_AWVALID,        --       : OUT std_logic;
+              m_axi_awready             =>  '0',                  --       : IN  std_logic := '0';
+              m_axi_wid                 =>  M_AXI_WID,            --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);
+              m_axi_wdata               =>  M_AXI_WDATA,          --       : OUT std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0);
+              m_axi_wstrb               =>  M_AXI_WSTRB,          --       : OUT std_logic_vector(C_AXI_DATA_WIDTH/8-1 DOWNTO 0);
+              m_axi_wlast               =>  M_AXI_WLAST,          --       : OUT std_logic;
+              m_axi_wuser               =>  M_AXI_WUSER,          --       : OUT std_logic_vector(C_AXI_WUSER_WIDTH-1 DOWNTO 0);
+              m_axi_wvalid              =>  M_AXI_WVALID,         --       : OUT std_logic;
+              m_axi_wready              =>  '0',                  --       : IN  std_logic := '0';
+              m_axi_bid                 =>  "0000",               --(others => '0'),      --       : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              m_axi_bresp               =>  "00",                 --(others => '0'),      --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              m_axi_buser               =>  "0",                  --(others => '0'),      --       : IN  std_logic_vector(C_AXI_BUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              m_axi_bvalid              =>  '0',                  --       : IN  std_logic := '0';
+              m_axi_bready              =>  M_AXI_BREADY,         --       : OUT std_logic;
 
               -- AXI Full/Lite Slave Read Channel (Write side)
-              S_AXI_ARID               =>  (others => '0'),       --       : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARADDR             =>  (others => '0'),       --       : IN  std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0) := (OTHERS => '0'); 
-              S_AXI_ARLEN              =>  (others => '0'),       --       : IN  std_logic_vector(8-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARSIZE             =>  (others => '0'),       --       : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARBURST            =>  (others => '0'),       --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARLOCK             =>  (others => '0'),       --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARCACHE            =>  (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARPROT             =>  (others => '0'),       --       : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARQOS              =>  (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARREGION           =>  (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARUSER             =>  (others => '0'),       --       : IN  std_logic_vector(C_AXI_ARUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXI_ARVALID            =>  '0',                   --       : IN  std_logic := '0';
-              S_AXI_ARREADY            =>  open,                  --       : OUT std_logic;
-              S_AXI_RID                =>  open,                  --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);       
-              S_AXI_RDATA              =>  open,                  --       : OUT std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0); 
-              S_AXI_RRESP              =>  open,                  --       : OUT std_logic_vector(2-1 DOWNTO 0);
-              S_AXI_RLAST              =>  open,                  --       : OUT std_logic;
-              S_AXI_RUSER              =>  open,                  --       : OUT std_logic_vector(C_AXI_RUSER_WIDTH-1 DOWNTO 0);
-              S_AXI_RVALID             =>  open,                  --       : OUT std_logic;
-              S_AXI_RREADY             =>  '0',                   --       : IN  std_logic := '0';
+              s_axi_arid               =>  "0000",         --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_araddr             =>  "00000000000000000000000000000000",   --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0) := (OTHERS => '0'); 
+              s_axi_arlen              =>  "00000000",          --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(8-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arsize             =>  "000",          --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arburst            =>  "00",           --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arlock             =>  "00",           --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arcache            =>  "0000",         --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arprot             =>  "000",          --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(3-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arqos              =>  "0000",         --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arregion           =>  "0000",         --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(4-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_aruser             =>  "0",            --(others => '0'),      (others => '0'),       --       : IN  std_logic_vector(C_AXI_ARUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axi_arvalid            =>  '0',                   --       : IN  std_logic := '0';
+              s_axi_arready            =>  S_AXI_ARREADY,         --       : OUT std_logic;
+              s_axi_rid                =>  S_AXI_RID,             --       : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);       
+              s_axi_rdata              =>  S_AXI_RDATA,           --       : OUT std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0); 
+              s_axi_rresp              =>  S_AXI_RRESP,           --       : OUT std_logic_vector(2-1 DOWNTO 0);
+              s_axi_rlast              =>  S_AXI_RLAST,           --       : OUT std_logic;
+              s_axi_ruser              =>  S_AXI_RUSER,           --       : OUT std_logic_vector(C_AXI_RUSER_WIDTH-1 DOWNTO 0);
+              s_axi_rvalid             =>  S_AXI_RVALID,          --       : OUT std_logic;
+              s_axi_rready             =>  '0',                   --       : IN  std_logic := '0';
 
               -- AXI Full/Lite Master Read Channel (Read side)
-              M_AXI_ARID               =>  open,                 --        : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);        
-              M_AXI_ARADDR             =>  open,                 --        : OUT std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0);  
-              M_AXI_ARLEN              =>  open,                 --        : OUT std_logic_vector(8-1 DOWNTO 0);
-              M_AXI_ARSIZE             =>  open,                 --        : OUT std_logic_vector(3-1 DOWNTO 0);
-              M_AXI_ARBURST            =>  open,                 --        : OUT std_logic_vector(2-1 DOWNTO 0);
-              M_AXI_ARLOCK             =>  open,                 --        : OUT std_logic_vector(2-1 DOWNTO 0);
-              M_AXI_ARCACHE            =>  open,                 --        : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_ARPROT             =>  open,                 --        : OUT std_logic_vector(3-1 DOWNTO 0);
-              M_AXI_ARQOS              =>  open,                 --        : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_ARREGION           =>  open,                 --        : OUT std_logic_vector(4-1 DOWNTO 0);
-              M_AXI_ARUSER             =>  open,                 --        : OUT std_logic_vector(C_AXI_ARUSER_WIDTH-1 DOWNTO 0);
-              M_AXI_ARVALID            =>  open,                 --        : OUT std_logic;
-              M_AXI_ARREADY            =>  '0',                  --        : IN  std_logic := '0';
-              M_AXI_RID                =>  (others => '0'),      --        : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');        
-              M_AXI_RDATA              =>  (others => '0'),      --        : IN  std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  
-              M_AXI_RRESP              =>  (others => '0'),      --        : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
-              M_AXI_RLAST              =>  '0',                  --        : IN  std_logic := '0';
-              M_AXI_RUSER              =>  (others => '0'),      --        : IN  std_logic_vector(C_AXI_RUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              M_AXI_RVALID             =>  '0',                  --        : IN  std_logic := '0';
-              M_AXI_RREADY             =>  open,                 --        : OUT std_logic;
+              m_axi_arid               =>  M_AXI_ARID,           --        : OUT std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0);        
+              m_axi_araddr             =>  M_AXI_ARADDR,         --        : OUT std_logic_vector(C_AXI_ADDR_WIDTH-1 DOWNTO 0);  
+              m_axi_arlen              =>  M_AXI_ARLEN,          --        : OUT std_logic_vector(8-1 DOWNTO 0);
+              m_axi_arsize             =>  M_AXI_ARSIZE,         --        : OUT std_logic_vector(3-1 DOWNTO 0);
+              m_axi_arburst            =>  M_AXI_ARBURST,        --        : OUT std_logic_vector(2-1 DOWNTO 0);
+              m_axi_arlock             =>  M_AXI_ARLOCK,         --        : OUT std_logic_vector(2-1 DOWNTO 0);
+              m_axi_arcache            =>  M_AXI_ARCACHE,        --        : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_arprot             =>  M_AXI_ARPROT,         --        : OUT std_logic_vector(3-1 DOWNTO 0);
+              m_axi_arqos              =>  M_AXI_ARQOS,          --        : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_arregion           =>  M_AXI_ARREGION,       --        : OUT std_logic_vector(4-1 DOWNTO 0);
+              m_axi_aruser             =>  M_AXI_ARUSER,         --        : OUT std_logic_vector(C_AXI_ARUSER_WIDTH-1 DOWNTO 0);
+              m_axi_arvalid            =>  M_AXI_ARVALID,        --        : OUT std_logic;
+              m_axi_arready            =>  '0',                  --        : IN  std_logic := '0';
+              m_axi_rid                =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');        
+              m_axi_rdata              =>  "0000000000000000000000000000000000000000000000000000000000000000", --(others => '0'),      --        : IN  std_logic_vector(C_AXI_DATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  
+              m_axi_rresp              =>  "00",                 --(others => '0'),      --        : IN  std_logic_vector(2-1 DOWNTO 0) := (OTHERS => '0');
+              m_axi_rlast              =>  '0',                  --        : IN  std_logic := '0';
+              m_axi_ruser              =>  "0",                  --(others => '0'),      --        : IN  std_logic_vector(C_AXI_RUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              m_axi_rvalid             =>  '0',                  --        : IN  std_logic := '0';
+              m_axi_rready             =>  M_AXI_RREADY,         --        : OUT std_logic;
 
               -- AXI Streaming Slave Signals (Write side)
-              S_AXIS_TVALID            =>  '0',                  --        : IN  std_logic := '0';
-              S_AXIS_TREADY            =>  open,                 --        : OUT std_logic;
-              S_AXIS_TDATA             =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TDATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXIS_TSTRB             =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TSTRB_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXIS_TKEEP             =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TKEEP_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXIS_TLAST             =>  '0',                  --        : IN  std_logic := '0';
-              S_AXIS_TID               =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXIS_TDEST             =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TDEST_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
-              S_AXIS_TUSER             =>  (others => '0'),      --        : IN  std_logic_vector(C_AXIS_TUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tvalid            =>  '0',                  --        : IN  std_logic := '0';
+              s_axis_tready            =>  S_AXIS_TREADY,        --        : OUT std_logic;
+              s_axis_tdata             =>  "0000000000000000000000000000000000000000000000000000000000000000", --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TDATA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tstrb             =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TSTRB_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tkeep             =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TKEEP_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tlast             =>  '0',                  --        : IN  std_logic := '0';
+              s_axis_tid               =>  "00000000",                --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tdest             =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TDEST_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
+              s_axis_tuser             =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_AXIS_TUSER_WIDTH-1 DOWNTO 0) := (OTHERS => '0');
 
               -- AXI Streaming Master Signals (Read side)
-              M_AXIS_TVALID            =>  open,                 --        : OUT std_logic;
-              M_AXIS_TREADY            =>  '0',                  --        : IN  std_logic := '0';
-              M_AXIS_TDATA             =>  open,                 --        : OUT std_logic_vector(C_AXIS_TDATA_WIDTH-1 DOWNTO 0);
-              M_AXIS_TSTRB             =>  open,                 --        : OUT std_logic_vector(C_AXIS_TSTRB_WIDTH-1 DOWNTO 0);
-              M_AXIS_TKEEP             =>  open,                 --        : OUT std_logic_vector(C_AXIS_TKEEP_WIDTH-1 DOWNTO 0);
-              M_AXIS_TLAST             =>  open,                 --        : OUT std_logic;
-              M_AXIS_TID               =>  open,                 --        : OUT std_logic_vector(C_AXIS_TID_WIDTH-1 DOWNTO 0);
-              M_AXIS_TDEST             =>  open,                 --        : OUT std_logic_vector(C_AXIS_TDEST_WIDTH-1 DOWNTO 0);
-              M_AXIS_TUSER             =>  open,                 --        : OUT std_logic_vector(C_AXIS_TUSER_WIDTH-1 DOWNTO 0);
+              m_axis_tvalid            =>  M_AXIS_TVALID,        --        : OUT std_logic;
+              m_axis_tready            =>  '0',                  --        : IN  std_logic := '0';
+              m_axis_tdata             =>  M_AXIS_TDATA,         --        : OUT std_logic_vector(C_AXIS_TDATA_WIDTH-1 DOWNTO 0);
+              m_axis_tstrb             =>  M_AXIS_TSTRB,         --        : OUT std_logic_vector(C_AXIS_TSTRB_WIDTH-1 DOWNTO 0);
+              m_axis_tkeep             =>  M_AXIS_TKEEP,         --        : OUT std_logic_vector(C_AXIS_TKEEP_WIDTH-1 DOWNTO 0);
+              m_axis_tlast             =>  M_AXIS_TLAST,         --        : OUT std_logic;
+              m_axis_tid               =>  M_AXIS_TID,           --        : OUT std_logic_vector(C_AXIS_TID_WIDTH-1 DOWNTO 0);
+              m_axis_tdest             =>  M_AXIS_TDEST,         --        : OUT std_logic_vector(C_AXIS_TDEST_WIDTH-1 DOWNTO 0);
+              m_axis_tuser             =>  M_AXIS_TUSER,         --        : OUT std_logic_vector(C_AXIS_TUSER_WIDTH-1 DOWNTO 0);
 
               -- AXI Full/Lite Write Address Channel Signals
-              AXI_AW_INJECTSBITERR     =>  '0',                  --        : IN  std_logic := '0';
-              AXI_AW_INJECTDBITERR     =>  '0',                  --        : IN  std_logic := '0';
-              AXI_AW_PROG_FULL_THRESH  =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WACH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_AW_PROG_EMPTY_THRESH =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WACH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_AW_DATA_COUNT        =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
-              AXI_AW_WR_DATA_COUNT     =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
-              AXI_AW_RD_DATA_COUNT     =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
-              AXI_AW_SBITERR           =>  open,                 --        : OUT std_logic;
-              AXI_AW_DBITERR           =>  open,                 --        : OUT std_logic;
-              AXI_AW_OVERFLOW          =>  open,                 --        : OUT std_logic;
-              AXI_AW_UNDERFLOW         =>  open,                 --        : OUT std_logic;
-              AXI_AW_PROG_FULL         =>  open,                 --        : OUT STD_LOGIC := '0';
-              AXI_AW_PROG_EMPTY        =>  open,                 --        : OUT STD_LOGIC := '1';
+              axi_aw_injectsbiterr     =>  '0',                  --        : IN  std_logic := '0';
+              axi_aw_injectdbiterr     =>  '0',                  --        : IN  std_logic := '0';
+              axi_aw_prog_full_thresh  =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WACH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_aw_prog_empty_thresh =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WACH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_aw_data_count        =>  AXI_AW_DATA_COUNT,    --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
+              axi_aw_wr_data_count     =>  AXI_AW_WR_DATA_COUNT, --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
+              axi_aw_rd_data_count     =>  AXI_AW_RD_DATA_COUNT, --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WACH DOWNTO 0);
+              axi_aw_sbiterr           =>  AXI_AW_SBITERR,       --        : OUT std_logic;
+              axi_aw_dbiterr           =>  AXI_AW_DBITERR,       --        : OUT std_logic;
+              axi_aw_overflow          =>  AXI_AW_OVERFLOW,      --        : OUT std_logic;
+              axi_aw_underflow         =>  AXI_AW_UNDERFLOW,     --        : OUT std_logic;
+              axi_aw_prog_full         =>  AXI_AW_PROG_FULL,     --        : OUT STD_LOGIC := '0';
+              axi_aw_prog_empty        =>  AXI_AW_PROG_EMPTY,    --        : OUT STD_LOGIC := '1';
+
 
               -- AXI Full/Lite Write Data Channel Signals
-              AXI_W_INJECTSBITERR      =>  '0',                  --        : IN  std_logic := '0';
-              AXI_W_INJECTDBITERR      =>  '0',                  --        : IN  std_logic := '0';
-              AXI_W_PROG_FULL_THRESH   =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WDCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_W_PROG_EMPTY_THRESH  =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WDCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_W_DATA_COUNT         =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
-              AXI_W_WR_DATA_COUNT      =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
-              AXI_W_RD_DATA_COUNT      =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
-              AXI_W_SBITERR            =>  open,                 --        : OUT std_logic;
-              AXI_W_DBITERR            =>  open,                 --        : OUT std_logic;
-              AXI_W_OVERFLOW           =>  open,                 --        : OUT std_logic;
-              AXI_W_UNDERFLOW          =>  open,                 --        : OUT std_logic;
-              AXI_W_PROG_FULL          =>  open,                 --        : OUT STD_LOGIC := '0';
-              AXI_W_PROG_EMPTY         =>  open,                 --        : OUT STD_LOGIC := '1';
+              axi_w_injectsbiterr      =>  '0',                  --        : IN  std_logic := '0';
+              axi_w_injectdbiterr      =>  '0',                  --        : IN  std_logic := '0';
+              axi_w_prog_full_thresh   =>  "0000000000",         --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WDCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_w_prog_empty_thresh  =>  "0000000000",         --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WDCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_w_data_count         =>  AXI_W_DATA_COUNT,     --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
+              axi_w_wr_data_count      =>  AXI_W_WR_DATA_COUNT,  --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
+              axi_w_rd_data_count      =>  AXI_W_RD_DATA_COUNT,  --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WDCH DOWNTO 0);
+              axi_w_sbiterr            =>  AXI_W_SBITERR,        --        : OUT std_logic;
+              axi_w_dbiterr            =>  AXI_W_DBITERR,        --        : OUT std_logic;
+              axi_w_overflow           =>  AXI_W_OVERFLOW,       --        : OUT std_logic;
+              axi_w_underflow          =>  AXI_W_UNDERFLOW,      --        : OUT std_logic;
+              axi_w_prog_full          =>  AXI_W_PROG_FULL,      --        : OUT STD_LOGIC := '0';
+              axi_w_prog_empty         =>  AXI_W_PROG_EMPTY,     --        : OUT STD_LOGIC := '1';
 
               -- AXI Full/Lite Write Response Channel Signals
-              AXI_B_INJECTSBITERR      =>  '0',                  --        : IN  std_logic := '0';
-              AXI_B_INJECTDBITERR      =>  '0',                  --        : IN  std_logic := '0';
-              AXI_B_PROG_FULL_THRESH   =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WRCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_B_PROG_EMPTY_THRESH  =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WRCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_B_DATA_COUNT         =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
-              AXI_B_WR_DATA_COUNT      =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
-              AXI_B_RD_DATA_COUNT      =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
-              AXI_B_SBITERR            =>  open,                 --        : OUT std_logic;
-              AXI_B_DBITERR            =>  open,                 --        : OUT std_logic;
-              AXI_B_OVERFLOW           =>  open,                 --        : OUT std_logic;
-              AXI_B_UNDERFLOW          =>  open,                 --        : OUT std_logic;
-              AXI_B_PROG_FULL          =>  open,                 --        : OUT STD_LOGIC := '0';
-              AXI_B_PROG_EMPTY         =>  open,                 --        : OUT STD_LOGIC := '1';
+              axi_b_injectsbiterr      =>  '0',                  --        : IN  std_logic := '0';
+              axi_b_injectdbiterr      =>  '0',                  --        : IN  std_logic := '0';
+              axi_b_prog_full_thresh   =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WRCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_b_prog_empty_thresh  =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_WRCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_b_data_count         =>  AXI_B_DATA_COUNT,     --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
+              axi_b_wr_data_count      =>  AXI_B_WR_DATA_COUNT,  --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
+              axi_b_rd_data_count      =>  AXI_B_RD_DATA_COUNT,  --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_WRCH DOWNTO 0);
+              axi_b_sbiterr            =>  AXI_B_SBITERR,        --        : OUT std_logic;
+              axi_b_dbiterr            =>  AXI_B_DBITERR,        --        : OUT std_logic;
+              axi_b_overflow           =>  AXI_B_OVERFLOW,       --        : OUT std_logic;
+              axi_b_underflow          =>  AXI_B_UNDERFLOW,      --        : OUT std_logic;
+              axi_b_prog_full          =>  AXI_B_PROG_FULL,      --        : OUT STD_LOGIC := '0';
+              axi_b_prog_empty         =>  AXI_B_PROG_EMPTY,     --        : OUT STD_LOGIC := '1';
 
               -- AXI Full/Lite Read Address Channel Signals
-              AXI_AR_INJECTSBITERR     =>  '0',                  --        : IN  std_logic := '0';
-              AXI_AR_INJECTDBITERR     =>  '0',                  --        : IN  std_logic := '0';
-              AXI_AR_PROG_FULL_THRESH  =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_RACH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_AR_PROG_EMPTY_THRESH =>  (others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_RACH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_AR_DATA_COUNT        =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
-              AXI_AR_WR_DATA_COUNT     =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
-              AXI_AR_RD_DATA_COUNT     =>  open,                 --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
-              AXI_AR_SBITERR           =>  open,                 --        : OUT std_logic;
-              AXI_AR_DBITERR           =>  open,                 --        : OUT std_logic;
-              AXI_AR_OVERFLOW          =>  open,                 --        : OUT std_logic;
-              AXI_AR_UNDERFLOW         =>  open,                 --        : OUT std_logic;
-              AXI_AR_PROG_FULL         =>  open,                 --        : OUT STD_LOGIC := '0';
-              AXI_AR_PROG_EMPTY        =>  open,                 --        : OUT STD_LOGIC := '1';
+              axi_ar_injectsbiterr     =>  '0',                  --        : IN  std_logic := '0';
+              axi_ar_injectdbiterr     =>  '0',                  --        : IN  std_logic := '0';
+              axi_ar_prog_full_thresh  =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_RACH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_ar_prog_empty_thresh =>  "0000",               --(others => '0'),      --        : IN  std_logic_vector(C_WR_PNTR_WIDTH_RACH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_ar_data_count        =>  AXI_AR_DATA_COUNT,    --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
+              axi_ar_wr_data_count     =>  AXI_AR_WR_DATA_COUNT, --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
+              axi_ar_rd_data_count     =>  AXI_AR_RD_DATA_COUNT, --        : OUT std_logic_vector(C_WR_PNTR_WIDTH_RACH DOWNTO 0);
+              axi_ar_sbiterr           =>  AXI_AR_SBITERR,       --        : OUT std_logic;
+              axi_ar_dbiterr           =>  AXI_AR_DBITERR,       --        : OUT std_logic;
+              axi_ar_overflow          =>  AXI_AR_OVERFLOW,      --        : OUT std_logic;
+              axi_ar_underflow         =>  AXI_AR_UNDERFLOW,     --        : OUT std_logic;
+              axi_ar_prog_full         =>  AXI_AR_PROG_FULL,     --        : OUT STD_LOGIC := '0';
+              axi_ar_prog_empty        =>  AXI_AR_PROG_EMPTY,    --        : OUT STD_LOGIC := '1';
 
               -- AXI Full/Lite Read Data Channel Signals
-              AXI_R_INJECTSBITERR     =>  '0',                  --         : IN  std_logic := '0';
-              AXI_R_INJECTDBITERR     =>  '0',                  --         : IN  std_logic := '0';
-              AXI_R_PROG_FULL_THRESH  =>  (others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_RDCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_R_PROG_EMPTY_THRESH =>  (others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_RDCH-1 DOWNTO 0) := (OTHERS => '0');
-              AXI_R_DATA_COUNT        =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
-              AXI_R_WR_DATA_COUNT     =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
-              AXI_R_RD_DATA_COUNT     =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
-              AXI_R_SBITERR           =>  open,                 --         : OUT std_logic;
-              AXI_R_DBITERR           =>  open,                 --         : OUT std_logic;
-              AXI_R_OVERFLOW          =>  open,                 --         : OUT std_logic;
-              AXI_R_UNDERFLOW         =>  open,                 --         : OUT std_logic;
-              AXI_R_PROG_FULL         =>  open,                 --         : OUT STD_LOGIC := '0';
-              AXI_R_PROG_EMPTY        =>  open,                 --         : OUT STD_LOGIC := '1';
+              axi_r_injectsbiterr     =>  '0',                  --         : IN  std_logic := '0';
+              axi_r_injectdbiterr     =>  '0',                  --         : IN  std_logic := '0';
+              axi_r_prog_full_thresh  =>  "0000000000",         --(others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_RDCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_r_prog_empty_thresh =>  "0000000000",         --(others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_RDCH-1 DOWNTO 0) := (OTHERS => '0');
+              axi_r_data_count        =>  AXI_R_DATA_COUNT,     --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
+              axi_r_wr_data_count     =>  AXI_R_WR_DATA_COUNT,  --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
+              axi_r_rd_data_count     =>  AXI_R_RD_DATA_COUNT,  --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_RDCH DOWNTO 0);
+              axi_r_sbiterr           =>  AXI_R_SBITERR,        --         : OUT std_logic;
+              axi_r_dbiterr           =>  AXI_R_DBITERR,        --         : OUT std_logic;
+              axi_r_overflow          =>  AXI_R_OVERFLOW,       --         : OUT std_logic;
+              axi_r_underflow         =>  AXI_R_UNDERFLOW,      --         : OUT std_logic;
+              axi_r_prog_full         =>  AXI_R_PROG_FULL,      --         : OUT STD_LOGIC := '0';
+              axi_r_prog_empty        =>  AXI_R_PROG_EMPTY,     --         : OUT STD_LOGIC := '1';
 
               -- AXI Streaming FIFO Related Signals
-              AXIS_INJECTSBITERR      =>  '0',                  --         : IN  std_logic := '0';
-              AXIS_INJECTDBITERR      =>  '0',                  --         : IN  std_logic := '0';
-              AXIS_PROG_FULL_THRESH   =>  (others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_AXIS-1 DOWNTO 0) := (OTHERS => '0');
-              AXIS_PROG_EMPTY_THRESH  =>  (others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_AXIS-1 DOWNTO 0) := (OTHERS => '0');
-              AXIS_DATA_COUNT         =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
-              AXIS_WR_DATA_COUNT      =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
-              AXIS_RD_DATA_COUNT      =>  open,                 --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
-              AXIS_SBITERR            =>  open,                 --         : OUT std_logic;
-              AXIS_DBITERR            =>  open,                 --         : OUT std_logic;
-              AXIS_OVERFLOW           =>  open,                 --         : OUT std_logic;
-              AXIS_UNDERFLOW          =>  open,                 --         : OUT std_logic
-              AXIS_PROG_FULL          =>  open,                 --         : OUT STD_LOGIC := '0';
-              AXIS_PROG_EMPTY         =>  open                  --         : OUT STD_LOGIC := '1';
+              axis_injectsbiterr      =>  '0',                  --         : IN  std_logic := '0';
+              axis_injectdbiterr      =>  '0',                  --         : IN  std_logic := '0';
+              axis_prog_full_thresh   =>  "0000000000",         --(others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_AXIS-1 DOWNTO 0) := (OTHERS => '0');
+              axis_prog_empty_thresh  =>  "0000000000",         --(others => '0'),      --         : IN  std_logic_vector(C_WR_PNTR_WIDTH_AXIS-1 DOWNTO 0) := (OTHERS => '0');
+              axis_data_count         =>  AXIS_DATA_COUNT,      --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
+              axis_wr_data_count      =>  AXIS_WR_DATA_COUNT,   --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
+              axis_rd_data_count      =>  AXIS_RD_DATA_COUNT,   --         : OUT std_logic_vector(C_WR_PNTR_WIDTH_AXIS DOWNTO 0);
+              axis_sbiterr            =>  AXIS_SBITERR,         --         : OUT std_logic;
+              axis_dbiterr            =>  AXIS_DBITERR,         --         : OUT std_logic;
+              axis_overflow           =>  AXIS_OVERFLOW,        --         : OUT std_logic;
+              axis_underflow          =>  AXIS_UNDERFLOW,       --         : OUT std_logic
+              axis_prog_full          =>  AXIS_PROG_FULL,       --         : OUT STD_LOGIC := '0';
+              axis_prog_empty         =>  AXIS_PROG_EMPTY       --         : OUT STD_LOGIC := '1';
 
              
              );
@@ -1628,3 +1770,4 @@ begin --(architecture implementation)
  
 
 end implementation;
+

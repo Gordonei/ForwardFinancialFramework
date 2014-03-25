@@ -2704,7 +2704,7 @@
 					spirit:library="interface"
 					spirit:name="axis_rtl"
 					spirit:version="1.0"/>
-			<spirit:master/>
+			<spirit:slave/>
 			<spirit:connectionRequired>false</spirit:connectionRequired>
 			<spirit:portMaps>
 				<spirit:portMap>
@@ -40120,15 +40120,15 @@
 				<xilinx:taxonomy>/Embedded Processing/Processor/</xilinx:taxonomy>
 			</xilinx:taxonomies>
 			<xilinx:displayName>ZYNQ7 Processing System</xilinx:displayName>
-			<xilinx:coreRevision>0</xilinx:coreRevision>
+			<xilinx:coreRevision>1</xilinx:coreRevision>
 			<xilinx:upgrades>
 				<xilinx:canUpgradeFrom>xilinx.com:ip:processing_system7:5.01</xilinx:canUpgradeFrom>
 				<xilinx:canUpgradeFrom>xilinx.com:ip:processing_system7:5.2</xilinx:canUpgradeFrom>
 			</xilinx:upgrades>
-			<xilinx:coreCreationDateTime>2013-10-16T14:32:32Z</xilinx:coreCreationDateTime>
+			<xilinx:coreCreationDateTime>2013-12-02T19:25:20Z</xilinx:coreCreationDateTime>
 		</xilinx:coreExtensions>
 		<xilinx:packagingInfo>
-			<xilinx:xilinxVersion>2013.3</xilinx:xilinxVersion>
+			<xilinx:xilinxVersion>2013.4</xilinx:xilinxVersion>
 		</xilinx:packagingInfo>
 	</spirit:vendorExtensions>
 </spirit:component>

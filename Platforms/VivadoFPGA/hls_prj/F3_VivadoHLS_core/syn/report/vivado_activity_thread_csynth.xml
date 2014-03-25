@@ -1,7 +1,7 @@
 <profile>
 
 <ReportVersion>
-<Version>2013.3</Version>
+<Version>2013.4</Version>
 </ReportVersion>
 
 <UserAssignments>
@@ -14,6 +14,7 @@
 </UserAssignments>
 
 <PerformanceEstimates>
+<PipelineType>none</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
 <EstimatedClockPeriod>8.63</EstimatedClockPeriod>
@@ -41,7 +42,7 @@
 <AreaEstimates>
 <Resources>
 <DSP48E>12</DSP48E>
-<FF>963</FF>
+<FF>962</FF>
 <LUT>2146</LUT>
 <BRAM_18K>0</BRAM_18K>
 <SLICE>0</SLICE>

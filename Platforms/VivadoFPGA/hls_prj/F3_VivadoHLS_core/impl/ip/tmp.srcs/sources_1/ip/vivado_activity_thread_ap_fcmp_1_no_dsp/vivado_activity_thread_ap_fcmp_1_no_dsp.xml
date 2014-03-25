@@ -356,7 +356,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>3101962117</spirit:value>
+            <spirit:value>3783399406</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -364,7 +364,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 12 08:21:12 UTC 2014</spirit:value>
+            <spirit:value>Wed Mar 12 09:45:25 UTC 2014</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>StaleAtRelink</spirit:name>
@@ -2618,7 +2618,7 @@
         <xilinx:family xilinx:lifeCycle="Production">azynq</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">kintex7</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">kintex7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Beta">kintex8</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Pre-Production">kintex8</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">qartix7</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">qkintex7</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">qkintex7l</xilinx:family>
@@ -2632,7 +2632,7 @@
         <xilinx:taxonomy>/Math_Functions/Floating_Point</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>Floating-point</xilinx:displayName>
-      <xilinx:coreRevision>2</xilinx:coreRevision>
+      <xilinx:coreRevision>3</xilinx:coreRevision>
       <xilinx:paymentRequired>false</xilinx:paymentRequired>
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>xilinx.com:ip:floating_point:4.0</xilinx:canUpgradeFrom>
@@ -2641,10 +2641,10 @@
         <xilinx:canUpgradeFrom>xilinx.com:ip:floating_point:6.1</xilinx:canUpgradeFrom>
         <xilinx:canUpgradeFrom>xilinx.com:ip:floating_point:6.2</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2013-10-16T14:36:52Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2013-12-02T19:27:45Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2013.3</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2013.4</xilinx:xilinxVersion>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

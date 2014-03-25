@@ -70,6 +70,7 @@ unsigned long mask_read(unsigned long add , unsigned long mask ) {
 #define PS7_CLEAR_ERROR_ECC 0x3
 #define PS7_PCAP_LAST_TRANSFER 1
 
+
 int ps7_ddr_ecc_init(void)
 {
 
@@ -164,23 +165,26 @@ int bugfix3644 (int r0, int r3, float bd0, float bd3, float freq) {
         // rx in ratio units, bd (float) in nsec. freq in mhz.
         // will work up to 0.7inch delta between lane 0 and 3.
         //xil_printf("Bugfix STARTS r0 %d : r3 %d : bd0 %0.6f : bd3 %0.6f : freq %0.6f,  \n \r", r0,r3,bd0,bd3,freq );
-
-        float period_ns = 1000.0 / freq;
+		int bd_delta = 0;
+		int expected_r3 = 0;
+		int er3 = 0;
+		int new_r3 = 0, msb = 0 , val = 0;
+		float bd_delta_ns = 0 , period_ns = 0;
+        period_ns = 1000.0 / freq;
         //xil_printf(" Period %0.6f \n \r", period_ns );
         // calc boad delay delta in nsec
-        float bd_delta_ns = 2.0*(bd3-bd0);
+        bd_delta_ns = 2.0*(bd3-bd0);
         //xil_printf(" bd_delta_ns %0.6f \n \r", bd_delta_ns);
         // convert to ratio units
-        int bd_delta = (int)(256.0 * bd_delta_ns / period_ns);
+        bd_delta = (int)(256.0 * bd_delta_ns / period_ns);
         //xil_printf(" bd_delta %0.6f \n \r", bd_delta);
         // compute an expected value
-        int expected_r3 = r0 + bd_delta;
+        expected_r3 = r0 + bd_delta;
         // limit to 7 bits
-        int er3 = expected_r3 & 0x07f;
-        int msb = (expected_r3 >> 7) & 0x0f;
+        er3 = expected_r3 & 0x07f;
+        msb = (expected_r3 >> 7) & 0x0f;
         // if er3 is close to r3, use the same msbs
         //xil_printf(" msb %d \n \r", msb);
-        int new_r3;
         if (abs(er3 - r3) < 33) {
                 new_r3 = r3 + (msb << 7);
                 //xil_printf(" new_r3 %d \n \r",new_r3);
@@ -196,14 +200,21 @@ int bugfix3644 (int r0, int r3, float bd0, float bd3, float freq) {
                         //xil_printf(" new_r3 (2)  %d \n \r",new_r3);
                 }
         }
-        int val = max( min(new_r3, 2047) , 0 );
+        val = max( min(new_r3, 2047) , 0 );
         return val;
 }
 
 // Workaround function to be called for lpddr2 for manual training
 int ps7_lpddr2_manual_traing_workaround() {
 
-        // STEP 1:
+        int r[4]; // Read DQS
+        int d[4]; // Read gate ratio
+        int gate_ratio[4]; // Read gate ratio
+		float freq = 0;
+        float bd0 = 0;
+        float bd3 = 0;
+		unsigned long si_ver = 0 ;
+		// STEP 1:
         // As before, use zddr_driver unchanged, to provide the 95 or so address-data pairs of the register values required to initialize the DDRC, but modify
         // the very last register load to not take the DDRC out of reset by clearing bit[0] (reg_ddrc_soft_rstb) of the ddrc_ctrl register.
         // For example, the last address-data pair provided by zddr is:
@@ -249,9 +260,7 @@ int ps7_lpddr2_manual_traing_workaround() {
         // fifo_we_ratio_slice_2[10:0] = {Reg_6C[11:9] ,Reg_6B[18:11]}
         // fifo_we_ratio_slice_3[10:0] = {4'b0 ,Reg_6C[18:12]}
 
-        int r[4]; // Read DQS
-        int d[4]; // Read gate ratio
-        int gate_ratio[4]; // Read gate ratio
+        
         r[0] = mask_read (0XF80061B8, 0x3FF00000U); // [29:20]
         r[0] = r[0] >> 20;
         r[2] = mask_read (0XF80061C0, 0x3FF00000U); // [29:20]
@@ -263,7 +272,7 @@ int ps7_lpddr2_manual_traing_workaround() {
         gate_ratio[0] = mask_read (0XF80061A4, 0x1FFFFFFFU); // [28:0]
         gate_ratio[1] = mask_read (0XF80061A8, 0x1FFFFFFFU); // [28:0]
 
-        unsigned long si_ver = ps7GetSiliconVersion ();
+        si_ver = ps7GetSiliconVersion ();
         if (si_ver == PCW_SILICON_VERSION_1) {
           gate_ratio[2] = mask_read (0XF80061AC, 0x1FFFFFFFU); // [28:0]
           gate_ratio[3] = mask_read (0XF80061B0, 0x1FFFFFFFU); // [28:0]
@@ -352,9 +361,9 @@ int ps7_lpddr2_manual_traing_workaround() {
         //d[3] = d[3] >> 9; 
         ////xil_printf("d[1] d[3] 0x%x 0x%x \n \r", d[1] ,d[3] );
 
-        float freq = LPDDR2_FREQ_MHZ;
-        float bd0 = BOARD_DELAY_0;
-        float bd3 = BOARD_DELAY_3;
+        freq = LPDDR2_FREQ_MHZ;
+        bd0 = BOARD_DELAY_0;
+        bd3 = BOARD_DELAY_3;
         //xil_printf("STEP 7 completes rd_data[1] : %d  rd_data[3] : %d   rd_dqs[1] : %d  rd_dqs[3] %d \n \r", d[1], d[3], r[1], r[3] );
 
         d[3] = bugfix3644 (d[0], d[3], bd0, bd3, freq);
@@ -493,6 +502,14 @@ ps7_config(unsigned long * ps7_config_init)
                 i++;
             }
             break;
+        case OPCODE_MASKDELAY:
+            addr = (unsigned long*) args[0];
+            mask = args[1];
+            int delay = get_number_of_cycles_for_delay(mask);
+            perf_reset_and_start_timer(); 
+            while ((*addr < delay)) {
+            }
+            break;
         default:
             finish = PS7_INIT_CORRUPT;
             break;
@@ -531,6 +548,7 @@ ps7_init()
 {
   // Get the PS_VERSION on run time
   unsigned long si_ver = ps7GetSiliconVersion ();
+  int ret;
   //int pcw_ver = 0;
 
   if (si_ver == PCW_SILICON_VERSION_1) {
@@ -559,7 +577,7 @@ ps7_init()
   }
 
   // MIO init
-  int ret = ps7_config (ps7_mio_init_data);  
+  ret = ps7_config (ps7_mio_init_data);  
   if (ret != PS7_INIT_SUCCESS) return ret;
 
   // PLL init
@@ -592,4 +610,47 @@ ps7_init()
   //xil_printf ("\n PCW Silicon Version : %d.0", pcw_ver);
   return PS7_INIT_SUCCESS;
 }
+
+
+
+
+/* For delay calculation using global timer */
+
+/* start timer */
+ void perf_start_clock(void)
+{
+	*(volatile unsigned int*)SCU_GLOBAL_TIMER_CONTROL = ((1 << 0) | // Timer Enable
+						      (1 << 3) | // Auto-increment
+						      (0 << 8) // Pre-scale
+	); 
+}
+
+/* stop timer and reset timer count regs */
+ void perf_reset_clock(void)
+{
+	perf_disable_clock();
+	*(volatile unsigned int*)SCU_GLOBAL_TIMER_COUNT_L32 = 0;
+	*(volatile unsigned int*)SCU_GLOBAL_TIMER_COUNT_U32 = 0;
+}
+
+/* Compute mask for given delay in miliseconds*/
+int get_number_of_cycles_for_delay(unsigned int delay) 
+{
+  // GTC is always clocked at 1/2 of the CPU frequency (CPU_3x2x)
+  return (APU_FREQ*delay/(2*1000));
+   
+}
+
+/* stop timer */
+ void perf_disable_clock(void)
+{
+	*(volatile unsigned int*)SCU_GLOBAL_TIMER_CONTROL = 0;
+}
+
+void perf_reset_and_start_timer() 
+{
+  	    perf_reset_clock();
+	    perf_start_clock();
+}
+
 

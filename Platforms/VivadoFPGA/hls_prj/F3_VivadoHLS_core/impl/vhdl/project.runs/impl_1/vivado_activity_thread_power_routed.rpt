@@ -1,8 +1,8 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version     : Vivado v.2013.3 (lin64) Build 329390 Wed Oct 16 18:26:55 MDT 2013
-| Date             : Wed Mar 12 08:26:00 2014
-| Host             : ganymede running 64-bit Ubuntu 12.04.3 LTS
+| Tool Version     : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
+| Date             : Wed Mar 12 09:52:34 2014
+| Host             : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command          : report_power -file vivado_activity_thread_power_routed.rpt -pb vivado_activity_thread_power_summary_routed.pb
 | Design           : vivado_activity_thread
 | Device           : xc7z020clg484-1
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.120 |
-| Dynamic (W)              | 0.002 |
+| Total On-Chip Power (W)  | 0.123 |
+| Dynamic (W)              | 0.004 |
 | Device Static (W)        | 0.118 |
 | Effective TJA (C/W)      | 11.5  |
 | Max Ambient (C)          | 83.6  |
@@ -50,17 +50,17 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.000 |        1 |       --- |             --- |
-| Slice Logic             |    <0.001 |     2719 |       --- |             --- |
-|   LUT as Logic          |    <0.001 |     1486 |     53200 |            2.79 |
-|   Register              |    <0.001 |      847 |    106400 |            0.80 |
+| Slice Logic             |    <0.001 |     2701 |       --- |             --- |
+|   LUT as Logic          |    <0.001 |     1478 |     53200 |            2.77 |
+|   Register              |    <0.001 |      846 |    106400 |            0.79 |
 |   CARRY4                |    <0.001 |       48 |     13300 |            0.36 |
 |   F7/F8 Muxes           |    <0.001 |      193 |     53200 |            0.36 |
-|   LUT as Shift Register |    <0.001 |        8 |     17400 |            0.05 |
+|   LUT as Shift Register |    <0.001 |        8 |     17400 |            0.04 |
 |   Others                |     0.000 |       63 |       --- |             --- |
-| Signals                 |    <0.001 |     2243 |       --- |             --- |
-| DSPs                    |    <0.001 |       12 |       220 |            5.45 |
+| Signals                 |     0.001 |     2225 |       --- |             --- |
+| DSPs                    |     0.002 |       12 |       220 |            5.45 |
 | Static Power            |     0.118 |          |           |                 |
-| Total                   |     0.120 |          |           |                 |
+| Total                   |     0.123 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -70,7 +70,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.010 |       0.002 |      0.007 |
+| Vccint    |       1.000 |     0.012 |       0.004 |      0.007 |
 | Vccaux    |       1.800 |     0.019 |       0.000 |      0.019 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -130,11 +130,11 @@ Table of Contents
 2.2 Clock Constraints
 ---------------------
 
-+-------+--------+-----------------+
-| Clock | Domain | Constraint (ns) |
-+-------+--------+-----------------+
-| CLK   | ap_clk |            10.0 |
-+-------+--------+-----------------+
++--------+--------+-----------------+
+| Clock  | Domain | Constraint (ns) |
++--------+--------+-----------------+
+| ap_clk | ap_clk |            10.0 |
++--------+--------+-----------------+
 
 
 3. Detailed Reports
@@ -146,7 +146,7 @@ Table of Contents
 +--------------------------------------------------------------+-----------+
 | Name                                                         | Power (W) |
 +--------------------------------------------------------------+-----------+
-| vivado_activity_thread                                       |     0.002 |
+| vivado_activity_thread                                       |     0.004 |
 |   vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |    <0.001 |
 |     vivado_activity_thread_ap_faddfsub_3_full_dsp_u          |    <0.001 |
 |       U0                                                     |    <0.001 |
@@ -161,10 +161,10 @@ Table of Contents
 |         i_synth                                              |    <0.001 |
 |           EXP_OP.OP/i_calculate_e2A                          |    <0.001 |
 |           EXP_OP.OP/i_calculate_e2zmzm1                      |    <0.001 |
-|   vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |     0.002 |
-|     vivado_activity_thread_ap_fmul_2_max_dsp_u               |     0.001 |
-|       U0                                                     |     0.001 |
-|         i_synth                                              |     0.001 |
+|   vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |     0.004 |
+|     vivado_activity_thread_ap_fmul_2_max_dsp_u               |     0.004 |
+|       U0                                                     |     0.004 |
+|         i_synth                                              |     0.004 |
 +--------------------------------------------------------------+-----------+
 
 

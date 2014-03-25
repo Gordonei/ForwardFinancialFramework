@@ -33,7 +33,7 @@
 				<spirit:parameter>
 					<spirit:name>ASSOCIATED_RESET</spirit:name>
 					<spirit:value spirit:resolve="immediate"
-							spirit:id="BUSIFPARAM_VALUE.clock.ASSOCIATED_RESET">ext_reset_in:aux_reset_in:mb_debug_sys_rst</spirit:value>
+							spirit:id="BUSIFPARAM_VALUE.clock.ASSOCIATED_RESET">mb_reset:bus_struct_reset:interconnect_aresetn:peripheral_aresetn:peripheral_reset</spirit:value>
 				</spirit:parameter>
 			</spirit:parameters>
 		</spirit:busInterface>
@@ -315,7 +315,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>3248429096</spirit:value>
+						<spirit:value>2566463555</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -323,7 +323,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 08:38:02 UTC 2014</spirit:value>
+						<spirit:value>Wed Mar 12 10:22:00 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -342,7 +342,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>3248429096</spirit:value>
+						<spirit:value>2566463555</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -350,7 +350,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 08:38:02 UTC 2014</spirit:value>
+						<spirit:value>Wed Mar 12 10:22:00 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -368,7 +368,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>3248429096</spirit:value>
+						<spirit:value>2566463555</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -376,7 +376,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 08:38:02 UTC 2014</spirit:value>
+						<spirit:value>Wed Mar 12 10:22:00 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -395,7 +395,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>1457510150</spirit:value>
+						<spirit:value>2425690046</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -403,7 +403,33 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 08:38:02 UTC 2014</spirit:value>
+						<spirit:value>Wed Mar 12 10:22:00 UTC 2014</spirit:value>
+					</spirit:parameter>
+					<spirit:parameter>
+						<spirit:name>StaleAtRelink</spirit:name>
+						<spirit:value>false</spirit:value>
+					</spirit:parameter>
+				</spirit:parameters>
+			</spirit:view>
+			<spirit:view>
+				<spirit:name>xilinx_versioninformation</spirit:name>
+				<spirit:displayName>Version Information</spirit:displayName>
+				<spirit:envIdentifier>:vivado.xilinx.com:docs.versioninfo</spirit:envIdentifier>
+				<spirit:fileSetRef>
+					<spirit:localName>xilinx_versioninformation_view_fileset</spirit:localName>
+				</spirit:fileSetRef>
+				<spirit:parameters>
+					<spirit:parameter>
+						<spirit:name>customizationCRC</spirit:name>
+						<spirit:value>2566463555</spirit:value>
+					</spirit:parameter>
+					<spirit:parameter>
+						<spirit:name>customizationCRCversion</spirit:name>
+						<spirit:value>3</spirit:value>
+					</spirit:parameter>
+					<spirit:parameter>
+						<spirit:name>GENtimestamp</spirit:name>
+						<spirit:value>Wed Mar 12 10:22:00 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -770,119 +796,119 @@
 		<spirit:fileSet>
 			<spirit:name>xilinx_vhdlsynthesis_view_fileset</spirit:name>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_v8_0_synth_comp.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_v8_1_synth_comp.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_v8_0_defaults.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_v8_1_defaults.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_v8_0_pkg.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_v8_1_pkg.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_getinit_pkg.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_getinit_pkg.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_min_area_pkg.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_min_area_pkg.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_bindec.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_bindec.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_mux.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_mux.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_prim_wrapper_v6.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_prim_wrapper.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_prim_wrapper_v6_init.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_prim_wrapper_init.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_prim_width.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_prim_width.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_generic_cstr.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_generic_cstr.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_ecc_encoder.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_ecc_encoder.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_ecc_decoder.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_ecc_decoder.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_input_block.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_input_block.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_output_block.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_output_block.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_axi_read_fsm.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_axi_read_fsm.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_axi_read_wrapper.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_axi_read_wrapper.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_axi_write_fsm.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_axi_write_fsm.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_axi_write_wrapper.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_axi_write_wrapper.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_axi_regs_fwd.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_axi_regs_fwd.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_top.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_top.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_v8_0_synth.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_v8_1_synth.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>blk_mem_gen_v8_0/blk_mem_gen_v8_0.vhd</spirit:name>
+				<spirit:name>blk_mem_gen_v8_1/blk_mem_gen_v8_1.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
-				<spirit:logicalName>blk_mem_gen_v8_0</spirit:logicalName>
+				<spirit:logicalName>blk_mem_gen_v8_1</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
 				<spirit:name>fifo_generator_v11_0/fifo_generator_v11_0_pkg.vhd</spirit:name>
@@ -891,6 +917,16 @@
 			</spirit:file>
 			<spirit:file>
 				<spirit:name>fifo_generator_v11_0/fifo_generator_v11_0_defaults.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>fifo_generator_v11_0/ramfifo/bram_sync_reg.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>fifo_generator_v11_0/ramfifo/bram_fifo_rstlogic.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 				<spirit:logicalName>fifo_generator_v11_0</spirit:logicalName>
 			</spirit:file>
@@ -1564,6 +1600,13 @@
 				<spirit:logicalName>work</spirit:logicalName>
 			</spirit:file>
 		</spirit:fileSet>
+		<spirit:fileSet>
+			<spirit:name>xilinx_versioninformation_view_fileset</spirit:name>
+			<spirit:file>
+				<spirit:name>doc/proc_sys_reset_v5_0_changelog.txt</spirit:name>
+				<spirit:userFileType>text</spirit:userFileType>
+			</spirit:file>
+		</spirit:fileSet>
 	</spirit:fileSets>
 	<spirit:description>Processor Reset System</spirit:description>
 	<spirit:parameters>
@@ -1692,21 +1735,21 @@
 				<xilinx:family xilinx:lifeCycle="Production">qzynq</xilinx:family>
 				<xilinx:family xilinx:lifeCycle="Production">azynq</xilinx:family>
 				<xilinx:family xilinx:lifeCycle="Beta">virtex8</xilinx:family>
-				<xilinx:family xilinx:lifeCycle="Beta">kintex8</xilinx:family>
+				<xilinx:family xilinx:lifeCycle="Pre-Production">kintex8</xilinx:family>
 			</xilinx:supportedFamilies>
 			<xilinx:taxonomies>
 				<xilinx:taxonomy>/Embedded_Processing/Clock_&amp;_Reset</xilinx:taxonomy>
 			</xilinx:taxonomies>
-			<xilinx:displayName>Proc Sys Reset</xilinx:displayName>
+			<xilinx:displayName>Processor System Reset</xilinx:displayName>
 			<xilinx:vendorURL>http://www.xilinx.com</xilinx:vendorURL>
-			<xilinx:coreRevision>2</xilinx:coreRevision>
+			<xilinx:coreRevision>3</xilinx:coreRevision>
 			<xilinx:upgrades>
 				<xilinx:canUpgradeFrom>xilinx.com:ip:proc_sys_reset:4.00.a</xilinx:canUpgradeFrom>
 			</xilinx:upgrades>
-			<xilinx:coreCreationDateTime>2013-10-16T14:32:27Z</xilinx:coreCreationDateTime>
+			<xilinx:coreCreationDateTime>2013-12-02T19:25:24Z</xilinx:coreCreationDateTime>
 		</xilinx:coreExtensions>
 		<xilinx:packagingInfo>
-			<xilinx:xilinxVersion>2013.3</xilinx:xilinxVersion>
+			<xilinx:xilinxVersion>2013.4</xilinx:xilinxVersion>
 		</xilinx:packagingInfo>
 	</spirit:vendorExtensions>
 </spirit:component>

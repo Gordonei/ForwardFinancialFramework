@@ -1,8 +1,8 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2013.3 (lin64) Build 329390 Wed Oct 16 18:26:55 MDT 2013
-| Date         : Wed Mar 12 08:24:26 2014
-| Host         : ganymede running 64-bit Ubuntu 12.04.3 LTS
+| Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
+| Date         : Wed Mar 12 09:50:12 2014
+| Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_utilization -file vivado_activity_thread_ap_fexp_7_full_dsp_utilization_synth.rpt -pb vivado_activity_thread_ap_fexp_7_full_dsp_utilization_synth.pb
 | Design       : vivado_activity_thread_ap_fexp_7_full_dsp
 | Device       : xc7z020
@@ -131,14 +131,14 @@ Table of Contents
 +----------+------+
 | Ref Name | Used |
 +----------+------+
-| LUT6     |  539 |
+| LUT6     |  542 |
 | FDRE     |  306 |
 | MUXF7    |  193 |
-| LUT5     |  104 |
-| LUT4     |   76 |
+| LUT4     |   91 |
+| LUT5     |   89 |
 | LUT1     |   37 |
-| LUT2     |   36 |
-| LUT3     |   30 |
+| LUT2     |   32 |
+| LUT3     |   29 |
 | CARRY4   |   20 |
 | SRL16E   |   14 |
 | DSP48E1  |    7 |

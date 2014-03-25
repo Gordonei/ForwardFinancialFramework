@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<!--Product Version: Vivado v2013.3 (64-bit)-->
-<Project Version="6" Minor="13" Path="/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/ipi_prj/ipi_prj.xpr">
+<!--Product Version: Vivado v2013.4 (64-bit)-->
+<Project Version="6" Minor="14" Path="/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/ipi_prj/ipi_prj.xpr">
 	<FileSet Dir="sources_1" File="fileset.xml"/>
 	<FileSet Dir="constrs_1" File="fileset.xml"/>
 	<FileSet Dir="sim_1" File="fileset.xml"/>

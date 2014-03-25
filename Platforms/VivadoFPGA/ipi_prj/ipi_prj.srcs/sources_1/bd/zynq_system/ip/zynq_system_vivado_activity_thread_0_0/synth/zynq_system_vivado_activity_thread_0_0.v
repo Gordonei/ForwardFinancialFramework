@@ -48,9 +48,9 @@
 
 
 // IP VLNV: imperial:F3:vivado_activity_thread:1.0
-// IP Revision: -1
+// IP Revision: 1403120945
 
-(* X_CORE_INFO = "vivado_activity_thread_top,Vivado 2013.3" *)
+(* X_CORE_INFO = "vivado_activity_thread_top,Vivado 2013.4" *)
 (* CHECK_LICENSE_TYPE = "zynq_system_vivado_activity_thread_0_0,vivado_activity_thread_top,{}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module zynq_system_vivado_activity_thread_0_0 (
@@ -77,45 +77,45 @@ module zynq_system_vivado_activity_thread_0_0 (
 );
 
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWADDR" *)
-input [6 : 0] s_axi_CORE_IO_AWADDR;
+input wire [6 : 0] s_axi_CORE_IO_AWADDR;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWVALID" *)
-input s_axi_CORE_IO_AWVALID;
+input wire s_axi_CORE_IO_AWVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWREADY" *)
-output s_axi_CORE_IO_AWREADY;
+output wire s_axi_CORE_IO_AWREADY;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO WDATA" *)
-input [31 : 0] s_axi_CORE_IO_WDATA;
+input wire [31 : 0] s_axi_CORE_IO_WDATA;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO WSTRB" *)
-input [3 : 0] s_axi_CORE_IO_WSTRB;
+input wire [3 : 0] s_axi_CORE_IO_WSTRB;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO WVALID" *)
-input s_axi_CORE_IO_WVALID;
+input wire s_axi_CORE_IO_WVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO WREADY" *)
-output s_axi_CORE_IO_WREADY;
+output wire s_axi_CORE_IO_WREADY;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO BRESP" *)
-output [1 : 0] s_axi_CORE_IO_BRESP;
+output wire [1 : 0] s_axi_CORE_IO_BRESP;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO BVALID" *)
-output s_axi_CORE_IO_BVALID;
+output wire s_axi_CORE_IO_BVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO BREADY" *)
-input s_axi_CORE_IO_BREADY;
+input wire s_axi_CORE_IO_BREADY;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO ARADDR" *)
-input [6 : 0] s_axi_CORE_IO_ARADDR;
+input wire [6 : 0] s_axi_CORE_IO_ARADDR;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO ARVALID" *)
-input s_axi_CORE_IO_ARVALID;
+input wire s_axi_CORE_IO_ARVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO ARREADY" *)
-output s_axi_CORE_IO_ARREADY;
+output wire s_axi_CORE_IO_ARREADY;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO RDATA" *)
-output [31 : 0] s_axi_CORE_IO_RDATA;
+output wire [31 : 0] s_axi_CORE_IO_RDATA;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO RRESP" *)
-output [1 : 0] s_axi_CORE_IO_RRESP;
+output wire [1 : 0] s_axi_CORE_IO_RRESP;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO RVALID" *)
-output s_axi_CORE_IO_RVALID;
+output wire s_axi_CORE_IO_RVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO RREADY" *)
-input s_axi_CORE_IO_RREADY;
+input wire s_axi_CORE_IO_RREADY;
 (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 interrupt INTERRUPT" *)
-output interrupt;
+output wire interrupt;
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 aclk CLK" *)
-input aclk;
+input wire aclk;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 aresetn RST" *)
-input aresetn;
+input wire aresetn;
 
   vivado_activity_thread_top #(
     .C_S_AXI_CORE_IO_ADDR_WIDTH(7),

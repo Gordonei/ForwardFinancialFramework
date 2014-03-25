@@ -1,8 +1,8 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2013.3 (lin64) Build 329390 Wed Oct 16 18:26:55 MDT 2013
-| Date         : Wed Mar 12 08:39:32 2014
-| Host         : ganymede running 64-bit Ubuntu 12.04.3 LTS
+| Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
+| Date         : Wed Mar 12 10:24:21 2014
+| Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_utilization -file zynq_system_wrapper_utilization_synth.rpt -pb zynq_system_wrapper_utilization_synth.pb
 | Design       : zynq_system_wrapper
 | Device       : xc7z020
@@ -29,15 +29,15 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Loced | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 2376 |     0 |     53200 |  4.46 |
-|   LUT as Logic             | 2293 |     0 |     53200 |  4.31 |
+| Slice LUTs*                | 2363 |     0 |     53200 |  4.44 |
+|   LUT as Logic             | 2280 |     0 |     53200 |  4.28 |
 |   LUT as Memory            |   83 |     0 |     17400 |  0.47 |
 |     LUT as Distributed RAM |    0 |     0 |           |       |
 |     LUT as Shift Register  |   83 |     0 |           |       |
-| Slice Registers            | 1930 |     0 |    106400 |  1.81 |
-|   Register as Flip Flop    | 1907 |     0 |    106400 |  1.79 |
+| Slice Registers            | 1925 |     0 |    106400 |  1.80 |
+|   Register as Flip Flop    | 1902 |     0 |    106400 |  1.78 |
 |   Register as Latch        |   23 |     0 |    106400 |  0.02 |
-| F7 Muxes                   |  221 |     0 |     26600 |  0.83 |
+| F7 Muxes                   |  220 |     0 |     26600 |  0.82 |
 | F8 Muxes                   |    2 |     0 |     13300 |  0.01 |
 +----------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis for a more realistic count.
@@ -73,7 +73,7 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Loced | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |    0 |     0 |       200 |  0.00 |
+| Bonded IOB                  |  130 |     0 |       200 | 65.00 |
 | Bonded IPADs                |    0 |     0 |         2 |  0.00 |
 | Bonded IOPADs               |    0 |     0 |       130 |  0.00 |
 | IBUFGDS                     |    0 |     0 |       192 |  0.00 |
@@ -131,17 +131,17 @@ Table of Contents
 +----------+------+
 | Ref Name | Used |
 +----------+------+
-| FDRE     | 1836 |
-| LUT6     |  986 |
-| LUT3     |  713 |
-| LUT5     |  439 |
-| LUT4     |  280 |
-| MUXF7    |  221 |
-| LUT1     |  175 |
-| LUT2     |  136 |
+| FDRE     | 1825 |
+| LUT6     |  992 |
+| LUT3     |  712 |
+| LUT5     |  423 |
+| LUT4     |  285 |
+| MUXF7    |  220 |
+| LUT1     |  173 |
+| LUT2     |  138 |
 | BIBUF    |  130 |
+| FDSE     |   77 |
 | CARRY4   |   73 |
-| FDSE     |   71 |
 | SRLC32E  |   47 |
 | SRL16E   |   36 |
 | LDCE     |   23 |

@@ -1,10 +1,10 @@
 -- Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2013.3 (lin64) Build 329390 Wed Oct 16 18:26:55 MDT 2013
--- Date        : Wed Mar 12 08:22:04 2014
--- Host        : ganymede running 64-bit Ubuntu 12.04.3 LTS
+-- Tool Version: Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
+-- Date        : Wed Mar 12 09:46:42 2014
+-- Host        : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_funcsim.vhdl
+--               /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_funcsim.vhdl
 -- Design      : vivado_activity_thread_ap_fcmp_1_no_dsp
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,7 @@
 -- --------------------------------------------------------------------------------
 library IEEE; use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM; use UNISIM.VCOMPONENTS.ALL; 
-entity vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv is
+entity \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ is
   port (
     aclk : in STD_LOGIC;
     aclken : in STD_LOGIC;
@@ -43,149 +43,151 @@ entity vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv is
     m_axis_result_tuser : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_result_tlast : out STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is "floating_point_v7_0_viv";
   attribute C_XDEVICEFAMILY : string;
-  attribute C_XDEVICEFAMILY of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is "zynq";
+  attribute C_XDEVICEFAMILY of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is "zynq";
   attribute C_HAS_ADD : integer;
-  attribute C_HAS_ADD of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ADD of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_SUBTRACT : integer;
-  attribute C_HAS_SUBTRACT of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_SUBTRACT of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_MULTIPLY : integer;
-  attribute C_HAS_MULTIPLY of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_MULTIPLY of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_DIVIDE : integer;
-  attribute C_HAS_DIVIDE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_DIVIDE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_SQRT : integer;
-  attribute C_HAS_SQRT of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_SQRT of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_COMPARE : integer;
-  attribute C_HAS_COMPARE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_HAS_COMPARE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_HAS_FIX_TO_FLT : integer;
-  attribute C_HAS_FIX_TO_FLT of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FIX_TO_FLT of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FIX : integer;
-  attribute C_HAS_FLT_TO_FIX of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FLT_TO_FIX of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FLT : integer;
-  attribute C_HAS_FLT_TO_FLT of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FLT_TO_FLT of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP : integer;
-  attribute C_HAS_RECIP of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RECIP of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP_SQRT : integer;
-  attribute C_HAS_RECIP_SQRT of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RECIP_SQRT of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ABSOLUTE : integer;
-  attribute C_HAS_ABSOLUTE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ABSOLUTE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_LOGARITHM : integer;
-  attribute C_HAS_LOGARITHM of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_LOGARITHM of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_EXPONENTIAL : integer;
-  attribute C_HAS_EXPONENTIAL of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_EXPONENTIAL of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FMA : integer;
-  attribute C_HAS_FMA of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FMA of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FMS : integer;
-  attribute C_HAS_FMS of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FMS of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_A : integer;
-  attribute C_HAS_ACCUMULATOR_A of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUMULATOR_A of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_S : integer;
-  attribute C_HAS_ACCUMULATOR_S of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUMULATOR_S of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_A_WIDTH : integer;
-  attribute C_A_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_A_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_A_FRACTION_WIDTH : integer;
-  attribute C_A_FRACTION_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 24;
+  attribute C_A_FRACTION_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 24;
   attribute C_B_WIDTH : integer;
-  attribute C_B_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_B_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_B_FRACTION_WIDTH : integer;
-  attribute C_B_FRACTION_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 24;
+  attribute C_B_FRACTION_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 24;
   attribute C_C_WIDTH : integer;
-  attribute C_C_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_C_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_C_FRACTION_WIDTH : integer;
-  attribute C_C_FRACTION_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 24;
+  attribute C_C_FRACTION_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 24;
   attribute C_RESULT_WIDTH : integer;
-  attribute C_RESULT_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_RESULT_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_RESULT_FRACTION_WIDTH : integer;
-  attribute C_RESULT_FRACTION_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_RESULT_FRACTION_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_COMPARE_OPERATION : integer;
-  attribute C_COMPARE_OPERATION of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 8;
+  attribute C_COMPARE_OPERATION of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 8;
   attribute C_LATENCY : integer;
-  attribute C_LATENCY of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_LATENCY of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_OPTIMIZATION : integer;
-  attribute C_OPTIMIZATION of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_OPTIMIZATION of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_MULT_USAGE : integer;
-  attribute C_MULT_USAGE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_MULT_USAGE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_BRAM_USAGE : integer;
-  attribute C_BRAM_USAGE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_BRAM_USAGE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_RATE : integer;
-  attribute C_RATE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_RATE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_ACCUM_INPUT_MSB : integer;
-  attribute C_ACCUM_INPUT_MSB of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_ACCUM_INPUT_MSB of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_ACCUM_MSB : integer;
-  attribute C_ACCUM_MSB of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_ACCUM_MSB of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_ACCUM_LSB : integer;
-  attribute C_ACCUM_LSB of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is -31;
+  attribute C_ACCUM_LSB of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is -31;
   attribute C_HAS_UNDERFLOW : integer;
-  attribute C_HAS_UNDERFLOW of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_UNDERFLOW of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_OVERFLOW : integer;
-  attribute C_HAS_OVERFLOW of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_OVERFLOW of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_INVALID_OP : integer;
-  attribute C_HAS_INVALID_OP of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_INVALID_OP of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_DIVIDE_BY_ZERO : integer;
-  attribute C_HAS_DIVIDE_BY_ZERO of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_DIVIDE_BY_ZERO of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_OVERFLOW of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUM_OVERFLOW of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_INPUT_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_INPUT_OVERFLOW of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUM_INPUT_OVERFLOW of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACLKEN : integer;
-  attribute C_HAS_ACLKEN of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_HAS_ACLKEN of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_HAS_ARESETN : integer;
-  attribute C_HAS_ARESETN of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ARESETN of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_THROTTLE_SCHEME : integer;
-  attribute C_THROTTLE_SCHEME of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 3;
+  attribute C_THROTTLE_SCHEME of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 3;
   attribute C_HAS_A_TUSER : integer;
-  attribute C_HAS_A_TUSER of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_A_TUSER of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_A_TLAST : integer;
-  attribute C_HAS_A_TLAST of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_A_TLAST of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_B : integer;
-  attribute C_HAS_B of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_HAS_B of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_HAS_B_TUSER : integer;
-  attribute C_HAS_B_TUSER of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_B_TUSER of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_B_TLAST : integer;
-  attribute C_HAS_B_TLAST of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_B_TLAST of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_C : integer;
-  attribute C_HAS_C of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_C of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_C_TUSER : integer;
-  attribute C_HAS_C_TUSER of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_C_TUSER of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_C_TLAST : integer;
-  attribute C_HAS_C_TLAST of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_C_TLAST of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION : integer;
-  attribute C_HAS_OPERATION of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_HAS_OPERATION of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_HAS_OPERATION_TUSER : integer;
-  attribute C_HAS_OPERATION_TUSER of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_OPERATION_TUSER of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION_TLAST : integer;
-  attribute C_HAS_OPERATION_TLAST of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_OPERATION_TLAST of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TUSER : integer;
-  attribute C_HAS_RESULT_TUSER of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RESULT_TUSER of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TLAST : integer;
-  attribute C_HAS_RESULT_TLAST of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RESULT_TLAST of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_TLAST_RESOLUTION : integer;
-  attribute C_TLAST_RESOLUTION of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_TLAST_RESOLUTION of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_A_TDATA_WIDTH : integer;
-  attribute C_A_TDATA_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_A_TDATA_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_A_TUSER_WIDTH : integer;
-  attribute C_A_TUSER_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_A_TUSER_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_B_TDATA_WIDTH : integer;
-  attribute C_B_TDATA_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_B_TDATA_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_B_TUSER_WIDTH : integer;
-  attribute C_B_TUSER_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_B_TUSER_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_C_TDATA_WIDTH : integer;
-  attribute C_C_TDATA_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_C_TDATA_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_C_TUSER_WIDTH : integer;
-  attribute C_C_TUSER_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_C_TUSER_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_OPERATION_TDATA_WIDTH : integer;
-  attribute C_OPERATION_TDATA_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 8;
+  attribute C_OPERATION_TDATA_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 8;
   attribute C_OPERATION_TUSER_WIDTH : integer;
-  attribute C_OPERATION_TUSER_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_OPERATION_TUSER_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_RESULT_TDATA_WIDTH : integer;
-  attribute C_RESULT_TDATA_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 8;
+  attribute C_RESULT_TDATA_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 8;
   attribute C_RESULT_TUSER_WIDTH : integer;
-  attribute C_RESULT_TUSER_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_RESULT_TUSER_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute downgradeipidentifiedwarnings : string;
-  attribute downgradeipidentifiedwarnings of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv : entity is "yes";
-end vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv;
+  attribute downgradeipidentifiedwarnings of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ : entity is "yes";
+end \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\;
 
-architecture STRUCTURE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv is
+architecture STRUCTURE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\ is
   signal \<const0>\ : STD_LOGIC;
   signal \<const1>\ : STD_LOGIC;
   signal \COMP_OP.SPD.OP/I_O_REG/i_pipe/first_q\ : STD_LOGIC;
@@ -1428,7 +1430,7 @@ i_1: unisim.vcomponents.LUT1
 end STRUCTURE;
 library IEEE; use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM; use UNISIM.VCOMPONENTS.ALL; 
-entity vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 is
+entity \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ is
   port (
     aclk : in STD_LOGIC;
     aclken : in STD_LOGIC;
@@ -1459,149 +1461,151 @@ entity vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 is
     m_axis_result_tuser : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_result_tlast : out STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is "floating_point_v7_0";
   attribute C_XDEVICEFAMILY : string;
-  attribute C_XDEVICEFAMILY of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is "zynq";
+  attribute C_XDEVICEFAMILY of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is "zynq";
   attribute C_HAS_ADD : integer;
-  attribute C_HAS_ADD of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ADD of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_SUBTRACT : integer;
-  attribute C_HAS_SUBTRACT of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_SUBTRACT of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_MULTIPLY : integer;
-  attribute C_HAS_MULTIPLY of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_MULTIPLY of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_DIVIDE : integer;
-  attribute C_HAS_DIVIDE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_DIVIDE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_SQRT : integer;
-  attribute C_HAS_SQRT of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_SQRT of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_COMPARE : integer;
-  attribute C_HAS_COMPARE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_HAS_COMPARE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_HAS_FIX_TO_FLT : integer;
-  attribute C_HAS_FIX_TO_FLT of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FIX_TO_FLT of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FIX : integer;
-  attribute C_HAS_FLT_TO_FIX of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FLT_TO_FIX of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FLT : integer;
-  attribute C_HAS_FLT_TO_FLT of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FLT_TO_FLT of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP : integer;
-  attribute C_HAS_RECIP of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RECIP of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP_SQRT : integer;
-  attribute C_HAS_RECIP_SQRT of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RECIP_SQRT of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ABSOLUTE : integer;
-  attribute C_HAS_ABSOLUTE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ABSOLUTE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_LOGARITHM : integer;
-  attribute C_HAS_LOGARITHM of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_LOGARITHM of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_EXPONENTIAL : integer;
-  attribute C_HAS_EXPONENTIAL of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_EXPONENTIAL of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FMA : integer;
-  attribute C_HAS_FMA of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FMA of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FMS : integer;
-  attribute C_HAS_FMS of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FMS of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_A : integer;
-  attribute C_HAS_ACCUMULATOR_A of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUMULATOR_A of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_S : integer;
-  attribute C_HAS_ACCUMULATOR_S of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUMULATOR_S of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_A_WIDTH : integer;
-  attribute C_A_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 32;
+  attribute C_A_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_A_FRACTION_WIDTH : integer;
-  attribute C_A_FRACTION_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 24;
+  attribute C_A_FRACTION_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 24;
   attribute C_B_WIDTH : integer;
-  attribute C_B_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 32;
+  attribute C_B_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_B_FRACTION_WIDTH : integer;
-  attribute C_B_FRACTION_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 24;
+  attribute C_B_FRACTION_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 24;
   attribute C_C_WIDTH : integer;
-  attribute C_C_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 32;
+  attribute C_C_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_C_FRACTION_WIDTH : integer;
-  attribute C_C_FRACTION_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 24;
+  attribute C_C_FRACTION_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 24;
   attribute C_RESULT_WIDTH : integer;
-  attribute C_RESULT_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_RESULT_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_RESULT_FRACTION_WIDTH : integer;
-  attribute C_RESULT_FRACTION_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_RESULT_FRACTION_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_COMPARE_OPERATION : integer;
-  attribute C_COMPARE_OPERATION of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 8;
+  attribute C_COMPARE_OPERATION of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 8;
   attribute C_LATENCY : integer;
-  attribute C_LATENCY of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_LATENCY of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_OPTIMIZATION : integer;
-  attribute C_OPTIMIZATION of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_OPTIMIZATION of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_MULT_USAGE : integer;
-  attribute C_MULT_USAGE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_MULT_USAGE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_BRAM_USAGE : integer;
-  attribute C_BRAM_USAGE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_BRAM_USAGE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_RATE : integer;
-  attribute C_RATE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_RATE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_ACCUM_INPUT_MSB : integer;
-  attribute C_ACCUM_INPUT_MSB of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 32;
+  attribute C_ACCUM_INPUT_MSB of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_ACCUM_MSB : integer;
-  attribute C_ACCUM_MSB of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 32;
+  attribute C_ACCUM_MSB of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_ACCUM_LSB : integer;
-  attribute C_ACCUM_LSB of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is -31;
+  attribute C_ACCUM_LSB of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is -31;
   attribute C_HAS_UNDERFLOW : integer;
-  attribute C_HAS_UNDERFLOW of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_UNDERFLOW of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_OVERFLOW : integer;
-  attribute C_HAS_OVERFLOW of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_OVERFLOW of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_INVALID_OP : integer;
-  attribute C_HAS_INVALID_OP of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_INVALID_OP of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_DIVIDE_BY_ZERO : integer;
-  attribute C_HAS_DIVIDE_BY_ZERO of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_DIVIDE_BY_ZERO of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_OVERFLOW of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUM_OVERFLOW of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_INPUT_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_INPUT_OVERFLOW of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUM_INPUT_OVERFLOW of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACLKEN : integer;
-  attribute C_HAS_ACLKEN of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_HAS_ACLKEN of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_HAS_ARESETN : integer;
-  attribute C_HAS_ARESETN of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ARESETN of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_THROTTLE_SCHEME : integer;
-  attribute C_THROTTLE_SCHEME of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 3;
+  attribute C_THROTTLE_SCHEME of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 3;
   attribute C_HAS_A_TUSER : integer;
-  attribute C_HAS_A_TUSER of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_A_TUSER of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_A_TLAST : integer;
-  attribute C_HAS_A_TLAST of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_A_TLAST of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_B : integer;
-  attribute C_HAS_B of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_HAS_B of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_HAS_B_TUSER : integer;
-  attribute C_HAS_B_TUSER of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_B_TUSER of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_B_TLAST : integer;
-  attribute C_HAS_B_TLAST of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_B_TLAST of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_C : integer;
-  attribute C_HAS_C of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_C of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_C_TUSER : integer;
-  attribute C_HAS_C_TUSER of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_C_TUSER of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_C_TLAST : integer;
-  attribute C_HAS_C_TLAST of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_C_TLAST of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION : integer;
-  attribute C_HAS_OPERATION of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_HAS_OPERATION of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_HAS_OPERATION_TUSER : integer;
-  attribute C_HAS_OPERATION_TUSER of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_OPERATION_TUSER of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION_TLAST : integer;
-  attribute C_HAS_OPERATION_TLAST of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_OPERATION_TLAST of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TUSER : integer;
-  attribute C_HAS_RESULT_TUSER of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RESULT_TUSER of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TLAST : integer;
-  attribute C_HAS_RESULT_TLAST of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RESULT_TLAST of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_TLAST_RESOLUTION : integer;
-  attribute C_TLAST_RESOLUTION of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 0;
+  attribute C_TLAST_RESOLUTION of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_A_TDATA_WIDTH : integer;
-  attribute C_A_TDATA_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 32;
+  attribute C_A_TDATA_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_A_TUSER_WIDTH : integer;
-  attribute C_A_TUSER_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_A_TUSER_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_B_TDATA_WIDTH : integer;
-  attribute C_B_TDATA_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 32;
+  attribute C_B_TDATA_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_B_TUSER_WIDTH : integer;
-  attribute C_B_TUSER_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_B_TUSER_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_C_TDATA_WIDTH : integer;
-  attribute C_C_TDATA_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 32;
+  attribute C_C_TDATA_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_C_TUSER_WIDTH : integer;
-  attribute C_C_TUSER_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_C_TUSER_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_OPERATION_TDATA_WIDTH : integer;
-  attribute C_OPERATION_TDATA_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 8;
+  attribute C_OPERATION_TDATA_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 8;
   attribute C_OPERATION_TUSER_WIDTH : integer;
-  attribute C_OPERATION_TUSER_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_OPERATION_TUSER_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_RESULT_TDATA_WIDTH : integer;
-  attribute C_RESULT_TDATA_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 8;
+  attribute C_RESULT_TDATA_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 8;
   attribute C_RESULT_TUSER_WIDTH : integer;
-  attribute C_RESULT_TUSER_WIDTH of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is 1;
+  attribute C_RESULT_TUSER_WIDTH of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute downgradeipidentifiedwarnings : string;
-  attribute downgradeipidentifiedwarnings of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 : entity is "yes";
-end vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0;
+  attribute downgradeipidentifiedwarnings of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ : entity is "yes";
+end \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\;
 
-architecture STRUCTURE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0 is
+architecture STRUCTURE of \vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\ is
   attribute C_ACCUM_INPUT_MSB of i_synth : label is 32;
   attribute C_ACCUM_LSB of i_synth : label is -31;
   attribute C_ACCUM_MSB of i_synth : label is 32;
@@ -1673,7 +1677,7 @@ architecture STRUCTURE of vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_
   attribute C_XDEVICEFAMILY of i_synth : label is "zynq";
   attribute downgradeipidentifiedwarnings of i_synth : label is "yes";
 begin
-i_synth: entity work.vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv
+i_synth: entity work.\vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0_viv__parameterized0\
     port map (
       aclk => aclk,
       aclken => aclken,
@@ -1725,11 +1729,11 @@ entity vivado_activity_thread_ap_fcmp_1_no_dsp is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of vivado_activity_thread_ap_fcmp_1_no_dsp : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of vivado_activity_thread_ap_fcmp_1_no_dsp : entity is "floating_point_v7_0,Vivado 2013.3";
+  attribute x_core_info of vivado_activity_thread_ap_fcmp_1_no_dsp : entity is "floating_point_v7_0,Vivado 2013.4";
   attribute CHECK_LICENSE_TYPE : string;
   attribute CHECK_LICENSE_TYPE of vivado_activity_thread_ap_fcmp_1_no_dsp : entity is "vivado_activity_thread_ap_fcmp_1_no_dsp,floating_point_v7_0,{}";
   attribute core_generation_info : string;
-  attribute core_generation_info of vivado_activity_thread_ap_fcmp_1_no_dsp : entity is "vivado_activity_thread_ap_fcmp_1_no_dsp,floating_point_v7_0,{x_ipProduct=Vivado 2013.3,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=floating_point,x_ipVersion=7.0,x_ipCoreRevision=2,x_ipLanguage=VERILOG,C_XDEVICEFAMILY=zynq,C_HAS_ADD=0,C_HAS_SUBTRACT=0,C_HAS_MULTIPLY=0,C_HAS_DIVIDE=0,C_HAS_SQRT=0,C_HAS_COMPARE=1,C_HAS_FIX_TO_FLT=0,C_HAS_FLT_TO_FIX=0,C_HAS_FLT_TO_FLT=0,C_HAS_RECIP=0,C_HAS_RECIP_SQRT=0,C_HAS_ABSOLUTE=0,C_HAS_LOGARITHM=0,C_HAS_EXPONENTIAL=0,C_HAS_FMA=0,C_HAS_FMS=0,C_HAS_ACCUMULATOR_A=0,C_HAS_ACCUMULATOR_S=0,C_A_WIDTH=32,C_A_FRACTION_WIDTH=24,C_B_WIDTH=32,C_B_FRACTION_WIDTH=24,C_C_WIDTH=32,C_C_FRACTION_WIDTH=24,C_RESULT_WIDTH=1,C_RESULT_FRACTION_WIDTH=0,C_COMPARE_OPERATION=8,C_LATENCY=1,C_OPTIMIZATION=1,C_MULT_USAGE=0,C_BRAM_USAGE=0,C_RATE=1,C_ACCUM_INPUT_MSB=32,C_ACCUM_MSB=32,C_ACCUM_LSB=-31,C_HAS_UNDERFLOW=0,C_HAS_OVERFLOW=0,C_HAS_INVALID_OP=0,C_HAS_DIVIDE_BY_ZERO=0,C_HAS_ACCUM_OVERFLOW=0,C_HAS_ACCUM_INPUT_OVERFLOW=0,C_HAS_ACLKEN=1,C_HAS_ARESETN=0,C_THROTTLE_SCHEME=3,C_HAS_A_TUSER=0,C_HAS_A_TLAST=0,C_HAS_B=1,C_HAS_B_TUSER=0,C_HAS_B_TLAST=0,C_HAS_C=0,C_HAS_C_TUSER=0,C_HAS_C_TLAST=0,C_HAS_OPERATION=1,C_HAS_OPERATION_TUSER=0,C_HAS_OPERATION_TLAST=0,C_HAS_RESULT_TUSER=0,C_HAS_RESULT_TLAST=0,C_TLAST_RESOLUTION=0,C_A_TDATA_WIDTH=32,C_A_TUSER_WIDTH=1,C_B_TDATA_WIDTH=32,C_B_TUSER_WIDTH=1,C_C_TDATA_WIDTH=32,C_C_TUSER_WIDTH=1,C_OPERATION_TDATA_WIDTH=8,C_OPERATION_TUSER_WIDTH=1,C_RESULT_TDATA_WIDTH=8,C_RESULT_TUSER_WIDTH=1}";
+  attribute core_generation_info of vivado_activity_thread_ap_fcmp_1_no_dsp : entity is "vivado_activity_thread_ap_fcmp_1_no_dsp,floating_point_v7_0,{x_ipProduct=Vivado 2013.4,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=floating_point,x_ipVersion=7.0,x_ipCoreRevision=3,x_ipLanguage=VHDL,C_XDEVICEFAMILY=zynq,C_HAS_ADD=0,C_HAS_SUBTRACT=0,C_HAS_MULTIPLY=0,C_HAS_DIVIDE=0,C_HAS_SQRT=0,C_HAS_COMPARE=1,C_HAS_FIX_TO_FLT=0,C_HAS_FLT_TO_FIX=0,C_HAS_FLT_TO_FLT=0,C_HAS_RECIP=0,C_HAS_RECIP_SQRT=0,C_HAS_ABSOLUTE=0,C_HAS_LOGARITHM=0,C_HAS_EXPONENTIAL=0,C_HAS_FMA=0,C_HAS_FMS=0,C_HAS_ACCUMULATOR_A=0,C_HAS_ACCUMULATOR_S=0,C_A_WIDTH=32,C_A_FRACTION_WIDTH=24,C_B_WIDTH=32,C_B_FRACTION_WIDTH=24,C_C_WIDTH=32,C_C_FRACTION_WIDTH=24,C_RESULT_WIDTH=1,C_RESULT_FRACTION_WIDTH=0,C_COMPARE_OPERATION=8,C_LATENCY=1,C_OPTIMIZATION=1,C_MULT_USAGE=0,C_BRAM_USAGE=0,C_RATE=1,C_ACCUM_INPUT_MSB=32,C_ACCUM_MSB=32,C_ACCUM_LSB=-31,C_HAS_UNDERFLOW=0,C_HAS_OVERFLOW=0,C_HAS_INVALID_OP=0,C_HAS_DIVIDE_BY_ZERO=0,C_HAS_ACCUM_OVERFLOW=0,C_HAS_ACCUM_INPUT_OVERFLOW=0,C_HAS_ACLKEN=1,C_HAS_ARESETN=0,C_THROTTLE_SCHEME=3,C_HAS_A_TUSER=0,C_HAS_A_TLAST=0,C_HAS_B=1,C_HAS_B_TUSER=0,C_HAS_B_TLAST=0,C_HAS_C=0,C_HAS_C_TUSER=0,C_HAS_C_TLAST=0,C_HAS_OPERATION=1,C_HAS_OPERATION_TUSER=0,C_HAS_OPERATION_TLAST=0,C_HAS_RESULT_TUSER=0,C_HAS_RESULT_TLAST=0,C_TLAST_RESOLUTION=0,C_A_TDATA_WIDTH=32,C_A_TUSER_WIDTH=1,C_B_TDATA_WIDTH=32,C_B_TUSER_WIDTH=1,C_C_TDATA_WIDTH=32,C_C_TUSER_WIDTH=1,C_OPERATION_TDATA_WIDTH=8,C_OPERATION_TUSER_WIDTH=1,C_RESULT_TDATA_WIDTH=8,C_RESULT_TUSER_WIDTH=1}";
 end vivado_activity_thread_ap_fcmp_1_no_dsp;
 
 architecture STRUCTURE of vivado_activity_thread_ap_fcmp_1_no_dsp is
@@ -1887,7 +1891,7 @@ GND: unisim.vcomponents.GND
     port map (
       G => \<const0>\
     );
-U0: entity work.vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0
+U0: entity work.\vivado_activity_thread_ap_fcmp_1_no_dspfloating_point_v7_0__parameterized0\
     port map (
       aclk => aclk,
       aclken => aclken,

@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:ip:processing_system7:5.3
--- IP Revision: 0
+-- IP Revision: 1
 
 -- The following code must appear in the VHDL architecture header.
 

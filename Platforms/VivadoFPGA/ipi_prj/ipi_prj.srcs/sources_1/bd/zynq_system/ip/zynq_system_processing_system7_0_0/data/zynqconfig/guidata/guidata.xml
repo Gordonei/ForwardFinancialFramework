@@ -2213,7 +2213,7 @@
     </uiparam>
     <uiparam param="PCW_UIPARAM_DDR_USE_INTERNAL_VREF"  name="Internal Vref" rw="w" widgetType="checkBox" paramType="pcw_in" order="23025"> <desc>Enables internal voltage reference source. Disable to use external Vref pins as voltage reference.</desc>
     </uiparam>
-    <uiparam param="PCW_UIPARAM_DDR_FREQ_MHZ"  name="DDR" rw="w" widgetType="textBox" paramType="pcw_in" order="23030"> <desc>Memory clock period. The allowed freq range is 10 - 667 MHz.</desc>
+    <uiparam param="PCW_UIPARAM_DDR_FREQ_MHZ"  name="DDR" rw="w" widgetType="textBox" paramType="pcw_in" order="23030"> <desc>Memory clock period. The allowed freq range is</desc>
     </uiparam>
     <uiparam param="PCW_UIPARAM_DDR_HIGH_TEMP"  name="Operating Temperature (C)" rw="w" widgetType="comboBox" paramType="pcw_in" order="23030"> <desc>Intended operating temperature range. Controls the DDR refresh interval.</desc>
     </uiparam>

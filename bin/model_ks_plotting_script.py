@@ -17,7 +17,13 @@ for filename in sys.argv[1:]:
     headers = data[2][:-1].split(",")
     dtype_dict = [("%s"%h,"a30") for h in headers] #Creating datatype cleverness from headers
     
-    data_matrix = numpy.array([tuple(d.split(",")[:-1]) for d in data[3:]],dtype=dtype_dict)
+    raw_data = [d.split(",")[:-1] for d in data[3:]]
+    data_tuples = []
+    for d in raw_data:
+        if(len(d)!=len(dtype_dict)): d.insert(1,"dummy")
+        data_tuples.append(tuple(d))
+    
+    data_matrix = numpy.array(data_tuples,dtype=dtype_dict)
     
     data_color = (numpy.random.random(),numpy.random.random(),numpy.random.random())
     data_label = filename.split("/")[-1].split("_")[0].split(".")[0]
@@ -30,6 +36,7 @@ for filename in sys.argv[1:]:
     
     #Plotting Benchmark Data
     benchmark_selection = data_matrix[data_matrix["Type"]=="Benchmark",:]
+    benchmark_selection = benchmark_selection[benchmark_selection["Stepping"]=="power",:]
     temp_plot, = plt.plot(benchmark_selection["Accuracy"],benchmark_selection["Latency"].astype(numpy.float)/1000000,"-o",color=data_color,label=data_label)
     plots.append(temp_plot)
     
@@ -63,6 +70,7 @@ for filename in sys.argv[1:]:
     
     #Plotting Projection Data
     projection_selection = data_matrix[data_matrix["Type"]=="Projection",:]
+    projection_selection = projection_selection[projection_selection["Stepping"]=="power",:]
     plt.plot(projection_selection["Accuracy"][:verification_length],projection_selection["Latency"][:verification_length].astype(numpy.float)/1000000,".",color=data_color)
     
     print "Prediction Data"

@@ -1,6 +1,7 @@
 set PCW_SILICON_VER_1_0 "0x0"
 set PCW_SILICON_VER_2_0 "0x1"
 set PCW_SILICON_VER_3_0 "0x2"
+set APU_FREQ  % MHzToHz pcw_apu_peripheral_freqmhz %
 
 # TAG_START PCW_DDR_INTERNAL_HASECC
 proc ps7_ddr_ecc_init {} {
@@ -390,6 +391,20 @@ proc mask_poll { addr mask } {
     }
 }
 
+
+
+proc mask_delay { addr val } {
+    set delay  [ get_number_of_cycles_for_delay $val ]
+    perf_reset_and_start_timer
+    set curval "0x[string range [mrd $addr] end-8 end]"
+    set maskedval [expr {$curval < $delay}]
+    while { $maskedval == 1 } {
+        set curval "0x[string range [mrd $addr] end-8 end]"
+        set maskedval [expr {$curval < $delay}]
+    }
+    perf_reset_clock 
+}
+
 proc ps_version { } {
     set si_ver "0x[string range [mrd 0xF8007080] end-8 end]"
     set mask_sil_ver "0x[expr {$si_ver >> 28}]"
@@ -458,3 +473,42 @@ proc ps7_init {} {
             #puts "PCW Silicon Version : 3.0"
     }
 }
+
+
+# For delay calculation using global timer 
+
+# start timer 
+ proc perf_start_clock { } {
+
+    #writing SCU_GLOBAL_TIMER_CONTROL register
+
+    mask_write 0xF8F00208 0x00000109 0x00000009
+}
+
+# stop timer and reset timer count regs 
+ proc perf_reset_clock { } {
+	perf_disable_clock
+    mask_write 0xF8F00200 0xFFFFFFFF 0x00000000
+    mask_write 0xF8F00204 0xFFFFFFFF 0x00000000
+}
+
+# Compute mask for given delay in miliseconds
+proc get_number_of_cycles_for_delay { delay } {
+
+  # GTC is always clocked at 1/2 of the CPU frequency (CPU_3x2x)
+  variable APU_FREQ
+  return [ expr ($delay * $APU_FREQ /(2 * 1000))]
+}
+
+
+# stop timer 
+proc perf_disable_clock {} {
+    mask_write 0xF8F00208 0xFFFFFFFF 0x00000000 
+}
+
+proc perf_reset_and_start_timer {} {
+  	    perf_reset_clock 
+	    perf_start_clock 
+}
+
+

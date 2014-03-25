@@ -51,7 +51,7 @@ public class option extends KernelLib{
 	}
 
 	public void connect_path(){
-		this.carried_delta_time <== ((MC_Solver_Maxeler_Base_Kernel)this.kernel).stream.offset(this.new_delta_time,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).instance_paths);
+		this.carried_delta_time <== ((MC_Solver_Maxeler_Base_Kernel)this.kernel).stream.offset(this.new_delta_time,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
 	}
 
 	public DFEVar payoff(DFEVar end_price){

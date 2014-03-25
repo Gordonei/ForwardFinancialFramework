@@ -1,0 +1,22 @@
+
+You can edit the src for the vivadoHLS core in the src directory.
+
+-------Directories---------------
+ipi_prj/		 The vivado project zynq system directory
+hps_prj/ 		 The vivado HLS project directory
+output/			 Where the result of the entire system build is saved (as system.bit)
+src/ 			 The source directory for the vivadoHLS sources
+
+-------MAKEFILE------------------
+make core 	- builds the vivado HLS core
+make system 	- adds the IP to a zynq system and does a full implementation
+	    	  stores the resulting configuration bit in output/ as system.bit
+
+make clean	- cleans the project
+
+
+------Comming soon----------------
+
+Directory and scripts to generate the boot files.
+Linux kernel image.
+Linux drivers for interfacing with the vivadoHLS core.

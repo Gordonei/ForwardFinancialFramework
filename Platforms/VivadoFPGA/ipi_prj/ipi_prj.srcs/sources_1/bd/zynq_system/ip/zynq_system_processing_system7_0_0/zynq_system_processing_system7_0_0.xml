@@ -2704,7 +2704,7 @@
 					spirit:library="interface"
 					spirit:name="axis_rtl"
 					spirit:version="1.0"/>
-			<spirit:master/>
+			<spirit:slave/>
 			<spirit:connectionRequired>false</spirit:connectionRequired>
 			<spirit:portMaps>
 				<spirit:portMap>
@@ -8620,7 +8620,7 @@
 				<spirit:range spirit:format="bitString"
 						spirit:resolve="dependent"
 						spirit:dependency="((spirit:decode(id(PARAM_VALUE.PCW_QSPI_INTERNAL_HIGHADDRESS))) - 0xfbffffff )"
-						spirit:bitStringLength="32">0x01000000</spirit:range>
+						spirit:bitStringLength="32">16777216</spirit:range>
 				<spirit:width spirit:format="long"
 						spirit:resolve="immediate">32</spirit:width>
 				<spirit:usage>memory</spirit:usage>
@@ -9514,7 +9514,7 @@
 				<spirit:range spirit:format="bitString"
 						spirit:resolve="dependent"
 						spirit:dependency="((spirit:decode(id(PARAM_VALUE.PCW_QSPI_INTERNAL_HIGHADDRESS))) - 0xfbffffff )"
-						spirit:bitStringLength="32">0x01000000</spirit:range>
+						spirit:bitStringLength="32">16777216</spirit:range>
 				<spirit:width spirit:format="long"
 						spirit:resolve="immediate">32</spirit:width>
 				<spirit:usage>memory</spirit:usage>
@@ -10408,7 +10408,7 @@
 				<spirit:range spirit:format="bitString"
 						spirit:resolve="dependent"
 						spirit:dependency="((spirit:decode(id(PARAM_VALUE.PCW_QSPI_INTERNAL_HIGHADDRESS))) - 0xfbffffff )"
-						spirit:bitStringLength="32">0x01000000</spirit:range>
+						spirit:bitStringLength="32">16777216</spirit:range>
 				<spirit:width spirit:format="long"
 						spirit:resolve="immediate">32</spirit:width>
 				<spirit:usage>memory</spirit:usage>
@@ -11238,7 +11238,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>3850766661</spirit:value>
+						<spirit:value>3168809262</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -11246,7 +11246,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 08:37:53 UTC 2014</spirit:value>
+						<spirit:value>Wed Mar 12 10:21:45 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -11264,7 +11264,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>3850766661</spirit:value>
+						<spirit:value>3168809262</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -11272,7 +11272,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 08:37:59 UTC 2014</spirit:value>
+						<spirit:value>Wed Mar 12 10:21:55 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -11290,7 +11290,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>3455688100</spirit:value>
+						<spirit:value>196304156</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -11298,7 +11298,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 08:37:59 UTC 2014</spirit:value>
+						<spirit:value>Wed Mar 12 10:21:56 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -11316,7 +11316,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>3455688100</spirit:value>
+						<spirit:value>196304156</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -11324,7 +11324,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 08:38:00 UTC 2014</spirit:value>
+						<spirit:value>Wed Mar 12 10:21:57 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -11342,7 +11342,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>3850766661</spirit:value>
+						<spirit:value>3168809262</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -11350,7 +11350,33 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 08:38:00 UTC 2014</spirit:value>
+						<spirit:value>Wed Mar 12 10:21:57 UTC 2014</spirit:value>
+					</spirit:parameter>
+					<spirit:parameter>
+						<spirit:name>StaleAtRelink</spirit:name>
+						<spirit:value>false</spirit:value>
+					</spirit:parameter>
+				</spirit:parameters>
+			</spirit:view>
+			<spirit:view>
+				<spirit:name>xilinx_versioninformation</spirit:name>
+				<spirit:displayName>Version Information</spirit:displayName>
+				<spirit:envIdentifier>:vivado.xilinx.com:docs.versioninfo</spirit:envIdentifier>
+				<spirit:fileSetRef>
+					<spirit:localName>xilinx_versioninformation_view_fileset</spirit:localName>
+				</spirit:fileSetRef>
+				<spirit:parameters>
+					<spirit:parameter>
+						<spirit:name>customizationCRC</spirit:name>
+						<spirit:value>3168809262</spirit:value>
+					</spirit:parameter>
+					<spirit:parameter>
+						<spirit:name>customizationCRCversion</spirit:name>
+						<spirit:value>3</spirit:value>
+					</spirit:parameter>
+					<spirit:parameter>
+						<spirit:name>GENtimestamp</spirit:name>
+						<spirit:value>Wed Mar 12 10:21:58 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -28464,8 +28490,8 @@
 	<spirit:choices>
 		<spirit:choice>
 			<spirit:name>choices_0</spirit:name>
-			<spirit:enumeration>0x00100000</spirit:enumeration>
-			<spirit:enumeration>0x00040000</spirit:enumeration>
+			<spirit:enumeration spirit:text="0x00100000">0x00100000</spirit:enumeration>
+			<spirit:enumeration spirit:text="0x00040000">0x00040000</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_1</spirit:name>
@@ -28609,23 +28635,23 @@
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_36</spirit:name>
-			<spirit:enumeration>false</spirit:enumeration>
-			<spirit:enumeration>true</spirit:enumeration>
+			<spirit:enumeration spirit:text="false">false</spirit:enumeration>
+			<spirit:enumeration spirit:text="true">true</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_37</spirit:name>
-			<spirit:enumeration>false</spirit:enumeration>
-			<spirit:enumeration>true</spirit:enumeration>
+			<spirit:enumeration spirit:text="false">false</spirit:enumeration>
+			<spirit:enumeration spirit:text="true">true</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_38</spirit:name>
-			<spirit:enumeration>false</spirit:enumeration>
-			<spirit:enumeration>true</spirit:enumeration>
+			<spirit:enumeration spirit:text="false">false</spirit:enumeration>
+			<spirit:enumeration spirit:text="true">true</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_39</spirit:name>
-			<spirit:enumeration>false</spirit:enumeration>
-			<spirit:enumeration>true</spirit:enumeration>
+			<spirit:enumeration spirit:text="false">false</spirit:enumeration>
+			<spirit:enumeration spirit:text="true">true</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_40</spirit:name>
@@ -28769,90 +28795,90 @@
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_68</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_69</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_70</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_71</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_72</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_73</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_74</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_75</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_76</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_77</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_78</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_79</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_80</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_81</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_82</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_83</spirit:name>
-			<spirit:enumeration>32</spirit:enumeration>
-			<spirit:enumeration>64</spirit:enumeration>
-			<spirit:enumeration>128</spirit:enumeration>
-			<spirit:enumeration>256</spirit:enumeration>
+			<spirit:enumeration spirit:text="32">32</spirit:enumeration>
+			<spirit:enumeration spirit:text="64">64</spirit:enumeration>
+			<spirit:enumeration spirit:text="128">128</spirit:enumeration>
+			<spirit:enumeration spirit:text="256">256</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_84</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_85</spirit:name>
@@ -28860,63 +28886,63 @@
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_86</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_87</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_88</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_89</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_90</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_91</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_92</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_93</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_94</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_95</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_96</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_97</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_98</spirit:name>
@@ -28968,13 +28994,13 @@
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_103</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_104</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_105</spirit:name>
@@ -28983,8 +29009,8 @@
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_106</spirit:name>
-			<spirit:enumeration>6</spirit:enumeration>
-			<spirit:enumeration>12</spirit:enumeration>
+			<spirit:enumeration spirit:text="6">6</spirit:enumeration>
+			<spirit:enumeration spirit:text="12">12</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_107</spirit:name>
@@ -28992,13 +29018,13 @@
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_108</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_109</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_110</spirit:name>
@@ -29007,8 +29033,8 @@
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_111</spirit:name>
-			<spirit:enumeration>6</spirit:enumeration>
-			<spirit:enumeration>12</spirit:enumeration>
+			<spirit:enumeration spirit:text="6">6</spirit:enumeration>
+			<spirit:enumeration spirit:text="12">12</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_112</spirit:name>
@@ -29020,13 +29046,13 @@
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_114</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_115</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_116</spirit:name>
@@ -29191,249 +29217,249 @@
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_149</spirit:name>
-			<spirit:enumeration>32</spirit:enumeration>
-			<spirit:enumeration>16</spirit:enumeration>
+			<spirit:enumeration spirit:text="32">32</spirit:enumeration>
+			<spirit:enumeration spirit:text="16">16</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_150</spirit:name>
-			<spirit:enumeration>4</spirit:enumeration>
-			<spirit:enumeration>2</spirit:enumeration>
+			<spirit:enumeration spirit:text="4">4</spirit:enumeration>
+			<spirit:enumeration spirit:text="2">2</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_151</spirit:name>
-			<spirit:enumeration>4</spirit:enumeration>
-			<spirit:enumeration>2</spirit:enumeration>
+			<spirit:enumeration spirit:text="4">4</spirit:enumeration>
+			<spirit:enumeration spirit:text="2">2</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_152</spirit:name>
-			<spirit:enumeration>54</spirit:enumeration>
-			<spirit:enumeration>32</spirit:enumeration>
+			<spirit:enumeration spirit:text="54">54</spirit:enumeration>
+			<spirit:enumeration spirit:text="32">32</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_153</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_154</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_155</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_156</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_157</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_158</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_159</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_160</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_161</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_162</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_163</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_164</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_165</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_166</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_167</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_168</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_169</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_170</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_171</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_172</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_173</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_174</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_175</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_176</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_177</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_178</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_179</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_180</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_181</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_182</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_183</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_184</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_185</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_186</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_187</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_188</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_189</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_190</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_191</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_192</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_193</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_194</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_195</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_196</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_197</spirit:name>
-			<spirit:enumeration>1</spirit:enumeration>
-			<spirit:enumeration>2</spirit:enumeration>
-			<spirit:enumeration>3</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
+			<spirit:enumeration spirit:text="2">2</spirit:enumeration>
+			<spirit:enumeration spirit:text="3">3</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_198</spirit:name>
@@ -32344,37 +32370,37 @@
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_594</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_595</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_596</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_597</spirit:name>
-			<spirit:enumeration>0</spirit:enumeration>
-			<spirit:enumeration>1</spirit:enumeration>
+			<spirit:enumeration spirit:text="0">0</spirit:enumeration>
+			<spirit:enumeration spirit:text="1">1</spirit:enumeration>
 		</spirit:choice>
 		<spirit:choice>
 			<spirit:name>choices_598</spirit:name>
-			<spirit:enumeration>clg484</spirit:enumeration>
-			<spirit:enumeration>clg225</spirit:enumeration>
-			<spirit:enumeration>clg400</spirit:enumeration>
-			<spirit:enumeration>ffg676</spirit:enumeration>
-			<spirit:enumeration>fbg676</spirit:enumeration>
-			<spirit:enumeration>fbg484</spirit:enumeration>
-			<spirit:enumeration>ffg900</spirit:enumeration>
-			<spirit:enumeration>cl400</spirit:enumeration>
-			<spirit:enumeration>cl484</spirit:enumeration>
-			<spirit:enumeration>rf676</spirit:enumeration>
-			<spirit:enumeration>fb484</spirit:enumeration>
+			<spirit:enumeration spirit:text="clg484">clg484</spirit:enumeration>
+			<spirit:enumeration spirit:text="clg225">clg225</spirit:enumeration>
+			<spirit:enumeration spirit:text="clg400">clg400</spirit:enumeration>
+			<spirit:enumeration spirit:text="ffg676">ffg676</spirit:enumeration>
+			<spirit:enumeration spirit:text="fbg676">fbg676</spirit:enumeration>
+			<spirit:enumeration spirit:text="fbg484">fbg484</spirit:enumeration>
+			<spirit:enumeration spirit:text="ffg900">ffg900</spirit:enumeration>
+			<spirit:enumeration spirit:text="cl400">cl400</spirit:enumeration>
+			<spirit:enumeration spirit:text="cl484">cl484</spirit:enumeration>
+			<spirit:enumeration spirit:text="rf676">rf676</spirit:enumeration>
+			<spirit:enumeration spirit:text="fb484">fb484</spirit:enumeration>
 		</spirit:choice>
 	</spirit:choices>
 	<spirit:fileSets>
@@ -33200,6 +33226,13 @@
 			<spirit:file>
 				<spirit:name>usbctrl_rtl.xml</spirit:name>
 				<spirit:userFileType>xml</spirit:userFileType>
+			</spirit:file>
+		</spirit:fileSet>
+		<spirit:fileSet>
+			<spirit:name>xilinx_versioninformation_view_fileset</spirit:name>
+			<spirit:file>
+				<spirit:name>doc/processing_system7_v5_3_changelog.txt</spirit:name>
+				<spirit:userFileType>text</spirit:userFileType>
 			</spirit:file>
 		</spirit:fileSet>
 	</spirit:fileSets>
@@ -45906,15 +45939,15 @@
 				<xilinx:taxonomy>/Embedded Processing/Processor/</xilinx:taxonomy>
 			</xilinx:taxonomies>
 			<xilinx:displayName>ZYNQ7 Processing System</xilinx:displayName>
-			<xilinx:coreRevision>0</xilinx:coreRevision>
+			<xilinx:coreRevision>1</xilinx:coreRevision>
 			<xilinx:upgrades>
 				<xilinx:canUpgradeFrom>xilinx.com:ip:processing_system7:5.01</xilinx:canUpgradeFrom>
 				<xilinx:canUpgradeFrom>xilinx.com:ip:processing_system7:5.2</xilinx:canUpgradeFrom>
 			</xilinx:upgrades>
-			<xilinx:coreCreationDateTime>2013-10-16T14:32:32Z</xilinx:coreCreationDateTime>
+			<xilinx:coreCreationDateTime>2013-12-02T19:25:20Z</xilinx:coreCreationDateTime>
 		</xilinx:coreExtensions>
 		<xilinx:packagingInfo>
-			<xilinx:xilinxVersion>2013.3</xilinx:xilinxVersion>
+			<xilinx:xilinxVersion>2013.4</xilinx:xilinxVersion>
 		</xilinx:packagingInfo>
 	</spirit:vendorExtensions>
 </spirit:component>

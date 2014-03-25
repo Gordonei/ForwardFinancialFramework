@@ -280,7 +280,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item class_id="10" tracking_level="0" version="0">
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second class_id="11" tracking_level="0" version="0">
                     <count>1</count>
                     <item_version>0</item_version>
@@ -322,7 +322,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -364,7 +364,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -406,7 +406,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -448,7 +448,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -490,7 +490,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -533,7 +533,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>2</count>
                     <item_version>0</item_version>
@@ -582,7 +582,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>2</count>
                     <item_version>0</item_version>
@@ -631,7 +631,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>2</count>
                     <item_version>0</item_version>
@@ -680,7 +680,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -811,7 +811,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -884,7 +884,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -958,7 +958,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -1000,7 +1000,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -1015,7 +1015,7 @@
                 </item>
               </inlineStackInfo>
               <originalName/>
-              <rtlName>exitcond_fu_221_p2</rtlName>
+              <rtlName>exitcond_fu_222_p2</rtlName>
               <coreName/>
             </Obj>
             <bitwidth>1</bitwidth>
@@ -1042,7 +1042,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -1057,7 +1057,7 @@
                 </item>
               </inlineStackInfo>
               <originalName>j</originalName>
-              <rtlName>j_1_fu_227_p2</rtlName>
+              <rtlName>j_1_fu_228_p2</rtlName>
               <coreName/>
             </Obj>
             <bitwidth>4</bitwidth>
@@ -1084,7 +1084,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -1127,7 +1127,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>2</count>
                     <item_version>0</item_version>
@@ -1176,7 +1176,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -1218,7 +1218,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -1259,7 +1259,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>2</count>
                     <item_version>0</item_version>
@@ -1308,7 +1308,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>2</count>
                     <item_version>0</item_version>
@@ -1357,7 +1357,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -1372,7 +1372,7 @@
                 </item>
               </inlineStackInfo>
               <originalName>o_v.value</originalName>
-              <rtlName>o_v_0_value_fu_233_p3</rtlName>
+              <rtlName>o_v_0_value_fu_234_p3</rtlName>
               <coreName/>
             </Obj>
             <bitwidth>32</bitwidth>
@@ -1400,7 +1400,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -1442,7 +1442,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -1483,7 +1483,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -1526,7 +1526,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -1569,7 +1569,7 @@
                 <count>1</count>
                 <item_version>0</item_version>
                 <item>
-                  <first>/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS</first>
+                  <first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA</first>
                   <second>
                     <count>1</count>
                     <item_version>0</item_version>
@@ -2600,7 +2600,7 @@
         <item class_id="26" tracking_level="1" version="0" object_id="_140">
           <id>1</id>
           <operations class_id="27" tracking_level="0" version="0">
-            <count>7</count>
+            <count>3</count>
             <item_version>0</item_version>
             <item class_id="28" tracking_level="1" version="0" object_id="_141">
               <id>22</id>
@@ -2608,20 +2608,22 @@
               <latency>1</latency>
             </item>
             <item class_id_reference="28" object_id="_142">
-              <id>23</id>
-              <stage>1</stage>
-              <latency>1</latency>
-            </item>
-            <item class_id_reference="28" object_id="_143">
-              <id>24</id>
-              <stage>1</stage>
-              <latency>1</latency>
-            </item>
-            <item class_id_reference="28" object_id="_144">
               <id>25</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
+            <item class_id_reference="28" object_id="_143">
+              <id>28</id>
+              <stage>4</stage>
+              <latency>4</latency>
+            </item>
+          </operations>
+        </item>
+        <item class_id_reference="26" object_id="_144">
+          <id>2</id>
+          <operations>
+            <count>3</count>
+            <item_version>0</item_version>
             <item class_id_reference="28" object_id="_145">
               <id>26</id>
               <stage>1</stage>
@@ -2629,7 +2631,7 @@
             </item>
             <item class_id_reference="28" object_id="_146">
               <id>28</id>
-              <stage>4</stage>
+              <stage>3</stage>
               <latency>4</latency>
             </item>
             <item class_id_reference="28" object_id="_147">
@@ -2640,13 +2642,13 @@
           </operations>
         </item>
         <item class_id_reference="26" object_id="_148">
-          <id>2</id>
+          <id>3</id>
           <operations>
             <count>2</count>
             <item_version>0</item_version>
             <item class_id_reference="28" object_id="_149">
               <id>28</id>
-              <stage>3</stage>
+              <stage>2</stage>
               <latency>4</latency>
             </item>
             <item class_id_reference="28" object_id="_150">
@@ -2657,96 +2659,94 @@
           </operations>
         </item>
         <item class_id_reference="26" object_id="_151">
-          <id>3</id>
-          <operations>
-            <count>2</count>
-            <item_version>0</item_version>
-            <item class_id_reference="28" object_id="_152">
-              <id>28</id>
-              <stage>2</stage>
-              <latency>4</latency>
-            </item>
-            <item class_id_reference="28" object_id="_153">
-              <id>29</id>
-              <stage>1</stage>
-              <latency>3</latency>
-            </item>
-          </operations>
-        </item>
-        <item class_id_reference="26" object_id="_154">
           <id>4</id>
           <operations>
-            <count>16</count>
+            <count>19</count>
             <item_version>0</item_version>
-            <item class_id_reference="28" object_id="_155">
+            <item class_id_reference="28" object_id="_152">
               <id>10</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_156">
+            <item class_id_reference="28" object_id="_153">
               <id>11</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_157">
+            <item class_id_reference="28" object_id="_154">
               <id>12</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_158">
+            <item class_id_reference="28" object_id="_155">
               <id>13</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_159">
+            <item class_id_reference="28" object_id="_156">
               <id>14</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_160">
+            <item class_id_reference="28" object_id="_157">
               <id>15</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_161">
+            <item class_id_reference="28" object_id="_158">
               <id>16</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_162">
+            <item class_id_reference="28" object_id="_159">
               <id>17</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_163">
+            <item class_id_reference="28" object_id="_160">
               <id>18</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_164">
+            <item class_id_reference="28" object_id="_161">
               <id>19</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_165">
+            <item class_id_reference="28" object_id="_162">
               <id>20</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_166">
+            <item class_id_reference="28" object_id="_163">
               <id>21</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_167">
+            <item class_id_reference="28" object_id="_164">
+              <id>23</id>
+              <stage>1</stage>
+              <latency>1</latency>
+            </item>
+            <item class_id_reference="28" object_id="_165">
+              <id>24</id>
+              <stage>1</stage>
+              <latency>1</latency>
+            </item>
+            <item class_id_reference="28" object_id="_166">
               <id>27</id>
               <stage>1</stage>
               <latency>1</latency>
             </item>
-            <item class_id_reference="28" object_id="_168">
+            <item class_id_reference="28" object_id="_167">
               <id>28</id>
               <stage>1</stage>
               <latency>4</latency>
+            </item>
+            <item class_id_reference="28" object_id="_168">
+              <id>29</id>
+              <stage>1</stage>
+              <latency>3</latency>
             </item>
             <item class_id_reference="28" object_id="_169">
               <id>30</id>
@@ -3818,7 +3818,7 @@
         <count>4</count>
         <item_version>0</item_version>
         <item>
-          <first>exitcond_fu_221_p2 ( icmp ) </first>
+          <first>exitcond_fu_222_p2 ( icmp ) </first>
           <second>
             <count>4</count>
             <item_version>0</item_version>
@@ -3841,7 +3841,7 @@
           </second>
         </item>
         <item>
-          <first>j_1_fu_227_p2 ( + ) </first>
+          <first>j_1_fu_228_p2 ( + ) </first>
           <second>
             <count>4</count>
             <item_version>0</item_version>
@@ -3864,7 +3864,7 @@
           </second>
         </item>
         <item>
-          <first>o_v_0_value_fu_233_p3 ( Select ) </first>
+          <first>o_v_0_value_fu_234_p3 ( Select ) </first>
           <second>
             <count>5</count>
             <item_version>0</item_version>
@@ -4134,7 +4134,7 @@
         </item>
       </dp_multiplexer_resource>
       <dp_register_resource>
-        <count>14</count>
+        <count>13</count>
         <item_version>0</item_version>
         <item>
           <first>ap_CS_fsm</first>
@@ -4156,7 +4156,7 @@
           </second>
         </item>
         <item>
-          <first>j_1_reg_291</first>
+          <first>j_1_reg_287</first>
           <second>
             <count>3</count>
             <item_version>0</item_version>
@@ -4213,7 +4213,7 @@
           </second>
         </item>
         <item>
-          <first>o_v_0_value_reg_307</first>
+          <first>o_v_0_value_reg_303</first>
           <second>
             <count>3</count>
             <item_version>0</item_version>
@@ -4232,7 +4232,7 @@
           </second>
         </item>
         <item>
-          <first>spot_price_0_1_reg_281</first>
+          <first>spot_price_0_1_reg_277</first>
           <second>
             <count>3</count>
             <item_version>0</item_version>
@@ -4289,7 +4289,7 @@
           </second>
         </item>
         <item>
-          <first>tmp_1_reg_276</first>
+          <first>tmp_1_reg_272</first>
           <second>
             <count>3</count>
             <item_version>0</item_version>
@@ -4308,7 +4308,7 @@
           </second>
         </item>
         <item>
-          <first>tmp_i_reg_271</first>
+          <first>tmp_i_reg_267</first>
           <second>
             <count>3</count>
             <item_version>0</item_version>
@@ -4346,26 +4346,7 @@
           </second>
         </item>
         <item>
-          <first>tmp_reg_266</first>
-          <second>
-            <count>3</count>
-            <item_version>0</item_version>
-            <item>
-              <first>(Bits)</first>
-              <second>1</second>
-            </item>
-            <item>
-              <first>(Consts)</first>
-              <second>0</second>
-            </item>
-            <item>
-              <first>FF</first>
-              <second>1</second>
-            </item>
-          </second>
-        </item>
-        <item>
-          <first>u_v_0_gamma_reg_296</first>
+          <first>u_v_0_gamma_reg_292</first>
           <second>
             <count>3</count>
             <item_version>0</item_version>
@@ -4447,7 +4428,7 @@
         <count>4</count>
         <item_version>0</item_version>
         <item>
-          <first>exitcond_fu_221_p2 ( icmp ) </first>
+          <first>exitcond_fu_222_p2 ( icmp ) </first>
           <second>
             <count>1</count>
             <item_version>0</item_version>
@@ -4455,7 +4436,7 @@
           </second>
         </item>
         <item>
-          <first>j_1_fu_227_p2 ( + ) </first>
+          <first>j_1_fu_228_p2 ( + ) </first>
           <second>
             <count>1</count>
             <item_version>0</item_version>
@@ -4463,7 +4444,7 @@
           </second>
         </item>
         <item>
-          <first>o_v_0_value_fu_233_p3 ( Select ) </first>
+          <first>o_v_0_value_fu_234_p3 ( Select ) </first>
           <second>
             <count>1</count>
             <item_version>0</item_version>
@@ -4501,14 +4482,14 @@
       <item>
         <first>23</first>
         <second>
-          <first>0</first>
+          <first>3</first>
           <second>0</second>
         </second>
       </item>
       <item>
         <first>24</first>
         <second>
-          <first>0</first>
+          <first>3</first>
           <second>0</second>
         </second>
       </item>
@@ -4522,7 +4503,7 @@
       <item>
         <first>26</first>
         <second>
-          <first>0</first>
+          <first>1</first>
           <second>0</second>
         </second>
       </item>
@@ -4543,7 +4524,7 @@
       <item>
         <first>29</first>
         <second>
-          <first>0</first>
+          <first>1</first>
           <second>2</second>
         </second>
       </item>
@@ -4782,7 +4763,7 @@
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>23</item>
+          <item>25</item>
         </second>
       </item>
       <item>
@@ -4790,7 +4771,7 @@
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>24</item>
+          <item>26</item>
         </second>
       </item>
       <item>
@@ -4798,7 +4779,7 @@
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>25</item>
+          <item>23</item>
         </second>
       </item>
       <item>
@@ -4806,7 +4787,7 @@
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>26</item>
+          <item>24</item>
         </second>
       </item>
       <item>
@@ -4958,7 +4939,7 @@
         </second>
       </item>
       <item>
-        <first>221</first>
+        <first>222</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -4966,7 +4947,7 @@
         </second>
       </item>
       <item>
-        <first>227</first>
+        <first>228</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -4974,7 +4955,7 @@
         </second>
       </item>
       <item>
-        <first>233</first>
+        <first>234</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -4986,7 +4967,7 @@
       <count>10</count>
       <item_version>0</item_version>
       <item class_id="54" tracking_level="0" version="0">
-        <first>exitcond_fu_221</first>
+        <first>exitcond_fu_222</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -4994,7 +4975,7 @@
         </second>
       </item>
       <item>
-        <first>j_1_fu_227</first>
+        <first>j_1_fu_228</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5018,7 +4999,7 @@
         </second>
       </item>
       <item>
-        <first>o_v_0_value_fu_233</first>
+        <first>o_v_0_value_fu_234</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5142,7 +5123,7 @@
       <count>8</count>
       <item_version>0</item_version>
       <item>
-        <first>o_a_0_call_read_fu_90</first>
+        <first>o_a_0_call_read_fu_78</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5150,7 +5131,7 @@
         </second>
       </item>
       <item>
-        <first>o_a_0_strike_price_read_fu_78</first>
+        <first>o_a_0_strike_price_read_fu_90</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5158,7 +5139,7 @@
         </second>
       </item>
       <item>
-        <first>o_a_0_time_period_read_fu_84</first>
+        <first>o_a_0_time_period_read_fu_72</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5166,7 +5147,7 @@
         </second>
       </item>
       <item>
-        <first>stg_56_write_fu_96</first>
+        <first>stg_55_write_fu_96</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5190,7 +5171,7 @@
         </second>
       </item>
       <item>
-        <first>u_a_0_current_price_read_fu_72</first>
+        <first>u_a_0_current_price_read_fu_84</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5215,7 +5196,7 @@
       <item_version>0</item_version>
     </dp_mem_port_nodes>
     <dp_reg_nodes>
-      <count>20</count>
+      <count>19</count>
       <item_version>0</item_version>
       <item>
         <first>118</first>
@@ -5266,7 +5247,7 @@
         </second>
       </item>
       <item>
-        <first>240</first>
+        <first>241</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5274,23 +5255,7 @@
         </second>
       </item>
       <item>
-        <first>245</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>23</item>
-        </second>
-      </item>
-      <item>
-        <first>250</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>24</item>
-        </second>
-      </item>
-      <item>
-        <first>256</first>
+        <first>246</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5298,7 +5263,7 @@
         </second>
       </item>
       <item>
-        <first>261</first>
+        <first>251</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5306,15 +5271,23 @@
         </second>
       </item>
       <item>
-        <first>266</first>
+        <first>256</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
-          <item>29</item>
+          <item>23</item>
         </second>
       </item>
       <item>
-        <first>271</first>
+        <first>261</first>
+        <second>
+          <count>1</count>
+          <item_version>0</item_version>
+          <item>24</item>
+        </second>
+      </item>
+      <item>
+        <first>267</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5322,7 +5295,7 @@
         </second>
       </item>
       <item>
-        <first>276</first>
+        <first>272</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5330,7 +5303,7 @@
         </second>
       </item>
       <item>
-        <first>281</first>
+        <first>277</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5338,7 +5311,7 @@
         </second>
       </item>
       <item>
-        <first>291</first>
+        <first>287</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5346,7 +5319,7 @@
         </second>
       </item>
       <item>
-        <first>296</first>
+        <first>292</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5354,7 +5327,7 @@
         </second>
       </item>
       <item>
-        <first>302</first>
+        <first>298</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5362,7 +5335,7 @@
         </second>
       </item>
       <item>
-        <first>307</first>
+        <first>303</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5370,7 +5343,7 @@
         </second>
       </item>
       <item>
-        <first>312</first>
+        <first>308</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5379,10 +5352,10 @@
       </item>
     </dp_reg_nodes>
     <dp_regname_nodes>
-      <count>20</count>
+      <count>19</count>
       <item_version>0</item_version>
       <item>
-        <first>j_1_reg_291</first>
+        <first>j_1_reg_287</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5406,7 +5379,7 @@
         </second>
       </item>
       <item>
-        <first>o_a_0_call_reg_261</first>
+        <first>o_a_0_call_reg_251</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5414,7 +5387,7 @@
         </second>
       </item>
       <item>
-        <first>o_a_0_strike_price_reg_250</first>
+        <first>o_a_0_strike_price_reg_261</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5422,7 +5395,7 @@
         </second>
       </item>
       <item>
-        <first>o_a_0_time_period_reg_256</first>
+        <first>o_a_0_time_period_reg_246</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5430,7 +5403,7 @@
         </second>
       </item>
       <item>
-        <first>o_v_0_value_reg_307</first>
+        <first>o_v_0_value_reg_303</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5438,7 +5411,7 @@
         </second>
       </item>
       <item>
-        <first>spot_price_0_1_reg_281</first>
+        <first>spot_price_0_1_reg_277</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5454,7 +5427,7 @@
         </second>
       </item>
       <item>
-        <first>temp_total_0_1_reg_312</first>
+        <first>temp_total_0_1_reg_308</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5470,7 +5443,7 @@
         </second>
       </item>
       <item>
-        <first>tmp_1_reg_276</first>
+        <first>tmp_1_reg_272</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5478,7 +5451,7 @@
         </second>
       </item>
       <item>
-        <first>tmp_8_reg_302</first>
+        <first>tmp_8_reg_298</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5486,7 +5459,7 @@
         </second>
       </item>
       <item>
-        <first>tmp_i_reg_271</first>
+        <first>tmp_i_reg_267</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5502,15 +5475,7 @@
         </second>
       </item>
       <item>
-        <first>tmp_reg_266</first>
-        <second>
-          <count>1</count>
-          <item_version>0</item_version>
-          <item>29</item>
-        </second>
-      </item>
-      <item>
-        <first>u_a_0_current_price_reg_245</first>
+        <first>u_a_0_current_price_reg_256</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5518,7 +5483,7 @@
         </second>
       </item>
       <item>
-        <first>u_a_0_rfir_reg_240</first>
+        <first>u_a_0_rfir_reg_241</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -5526,7 +5491,7 @@
         </second>
       </item>
       <item>
-        <first>u_v_0_gamma_reg_296</first>
+        <first>u_v_0_gamma_reg_292</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>

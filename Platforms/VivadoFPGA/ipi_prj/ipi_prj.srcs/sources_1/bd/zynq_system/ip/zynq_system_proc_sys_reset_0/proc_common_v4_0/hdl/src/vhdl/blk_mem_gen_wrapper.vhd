@@ -168,10 +168,10 @@ USE ieee.std_logic_1164.ALL;
 --Library XilinxCoreLib;
 -- synopsys translate_on
 
---library blk_mem_gen_v8_0;
+library blk_mem_gen_v8_1;
 library proc_common_v4_0;
---use blk_mem_gen_v8_0.blk_mem_gen_v8_0_xst_comp.all;
-use proc_common_v4_0.coregen_comp_defs.all;
+use blk_mem_gen_v8_1.all;
+--use proc_common_v4_0.coregen_comp_defs.all;
 use proc_common_v4_0.family_support.all;
 
 
@@ -322,23 +322,40 @@ architecture implementation of blk_mem_gen_wrapper is
     Constant FAMILY_IS_SUPPORTED  : boolean := not(FAMILY_NOT_SUPPORTED);
     
     
-    Constant FAM_IS_S3_V4_V5      : boolean := (equalIgnoringCase(FAMILY_TO_USE, "spartan3" ) or 
-                                                equalIgnoringCase(FAMILY_TO_USE, "virtex4"  ) or 
-                                                equalIgnoringCase(FAMILY_TO_USE, "virtex5")) and
-                                                FAMILY_IS_SUPPORTED;
+    --Constant FAM_IS_S3_V4_V5      : boolean := (equalIgnoringCase(FAMILY_TO_USE, "spartan3" ) or 
+    --                                            equalIgnoringCase(FAMILY_TO_USE, "virtex4"  ) or 
+    --                                            equalIgnoringCase(FAMILY_TO_USE, "virtex5")) and
+    --                                            FAMILY_IS_SUPPORTED;
+    --
+    --Constant FAM_IS_NOT_S3_V4_V5  : boolean := not(FAM_IS_S3_V4_V5) and
+    --                                           FAMILY_IS_SUPPORTED;
     
-    Constant FAM_IS_NOT_S3_V4_V5  : boolean := not(FAM_IS_S3_V4_V5) and
-                                               FAMILY_IS_SUPPORTED;
-    
-    
-
+  --Signals added to fix MTI and XSIM issues caused by fix for VCS issues not to use "LIBRARY_SCAN = TRUE"    
+    signal RDADDRECC            : STD_LOGIC_VECTOR(c_addrb_width-1 DOWNTO 0);
+    signal S_AXI_AWREADY        : STD_LOGIC;
+    signal S_AXI_WREADY         : STD_LOGIC;
+    signal S_AXI_BID            : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    signal S_AXI_BRESP          : STD_LOGIC_VECTOR(1 DOWNTO 0);
+    signal S_AXI_BVALID         : STD_LOGIC;
+    signal S_AXI_ARREADY        : STD_LOGIC;
+    signal S_AXI_RID            : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    signal S_AXI_RDATA          : STD_LOGIC_VECTOR(c_write_width_b-1 DOWNTO 0);
+    signal S_AXI_RRESP          : STD_LOGIC_VECTOR(1 DOWNTO 0);
+    signal S_AXI_RLAST          : STD_LOGIC;
+    signal S_AXI_RVALID         : STD_LOGIC;
+    signal S_AXI_SBITERR        : STD_LOGIC;
+    signal S_AXI_DBITERR        : STD_LOGIC;
+    signal S_AXI_RDADDRECC      : STD_LOGIC_VECTOR(c_addrb_width-1 DOWNTO 0);
+    signal S_AXI_WSTRB          : STD_LOGIC_VECTOR(c_wea_width-1 downto 0);
+    signal S_AXI_WDATA          : STD_LOGIC_VECTOR(c_write_width_a-1 downto 0);
 
 
  
 begin
 
  
-   
+  S_AXI_WSTRB <= (others => '0'); 
+  S_AXI_WDATA <= (others => '0'); 
   ------------------------------------------------------------
   -- If Generate
   --
@@ -414,7 +431,7 @@ begin
   --  Families of Virtex-6, Spartan-6 and later.
   --
   ------------------------------------------------------------
-  V6_S6_AND_LATER: if(FAM_IS_NOT_S3_V4_V5) generate
+  FAMILY_SUPPORTED: if(FAMILY_IS_SUPPORTED) generate
   begin
    
    
@@ -427,7 +444,7 @@ begin
     -- for new IP BRAM implementations.
     --
     -------------------------------------------------------------------------------
-    I_TRUE_DUAL_PORT_BLK_MEM_GEN : blk_mem_gen_v8_0
+    I_TRUE_DUAL_PORT_BLK_MEM_GEN : entity blk_mem_gen_v8_1.blk_mem_gen_v8_1
       generic map
         (
         --C_CORENAME                => c_corename              ,                                       
@@ -535,7 +552,7 @@ begin
         INJECTDBITERR         => '0'             ,   -- input
         SBITERR               => sbiterr         ,                                          
         DBITERR               => dbiterr         ,                                         
-        RDADDRECC             => open            ,   -- output
+        RDADDRECC             => RDADDRECC       ,   -- output
       
         -- AXI BMG Input and Output Port Declarations                                                                          -- new for v6.2
                                                                                                                                -- new for v6.2
@@ -544,74 +561,51 @@ begin
         S_ARESETN             => '0'             ,   -- : IN  STD_LOGIC := '0';                                                -- new for v6.2
                                                                                                                                -- new for v6.2
         -- AXI Full/Lite Slave Write (write side)                                                                              -- new for v6.2
-        S_AXI_AWID            => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  -- new for v6.2
-        S_AXI_AWADDR          => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');                -- new for v6.2
-        S_AXI_AWLEN           => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');                 -- new for v6.2
-        S_AXI_AWSIZE          => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(2 DOWNTO 0) := (OTHERS => '0');                 -- new for v6.2
-        S_AXI_AWBURST         => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(1 DOWNTO 0) := (OTHERS => '0');                 -- new for v6.2
+        S_AXI_AWID            => "0000"          ,   -- : IN  STD_LOGIC_VECTOR(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  -- new for v6.2
+        S_AXI_AWADDR          => "00000000000000000000000000000000"    ,   -- : IN  STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');                -- new for v6.2
+        S_AXI_AWLEN           => "00000000"           ,   -- : IN  STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');                 -- new for v6.2
+        S_AXI_AWSIZE          => "000"           ,   -- : IN  STD_LOGIC_VECTOR(2 DOWNTO 0) := (OTHERS => '0');                 -- new for v6.2
+        S_AXI_AWBURST         => "00"            ,   -- : IN  STD_LOGIC_VECTOR(1 DOWNTO 0) := (OTHERS => '0');                 -- new for v6.2
         S_AXI_AWVALID         => '0'             ,   -- : IN  STD_LOGIC := '0';                                                -- new for v6.2
-        S_AXI_AWREADY         => open            ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
-        S_AXI_WDATA           => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(C_WRITE_WIDTH_A-1 DOWNTO 0) := (OTHERS => '0'); -- new for v6.2
-        S_AXI_WSTRB           => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(C_WEA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');     -- new for v6.2
+        S_AXI_AWREADY         => S_AXI_AWREADY   ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
+        S_AXI_WDATA           => S_AXI_WDATA     ,   -- : IN  STD_LOGIC_VECTOR(C_WRITE_WIDTH_A-1 DOWNTO 0) := (OTHERS => '0'); -- new for v6.2
+        S_AXI_WSTRB           => S_AXI_WSTRB     ,   -- : IN  STD_LOGIC_VECTOR(C_WEA_WIDTH-1 DOWNTO 0) := (OTHERS => '0');     -- new for v6.2
         S_AXI_WLAST           => '0'             ,   -- : IN  STD_LOGIC := '0';                                                -- new for v6.2
         S_AXI_WVALID          => '0'             ,   -- : IN  STD_LOGIC := '0';                                                -- new for v6.2
-        S_AXI_WREADY          => open            ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
-        S_AXI_BID             => open            ,   -- : OUT STD_LOGIC_VECTOR(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  -- new for v6.2
-        S_AXI_BRESP           => open            ,   -- : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);                                    -- new for v6.2
-        S_AXI_BVALID          => open            ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
+        S_AXI_WREADY          => S_AXI_WREADY    ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
+        S_AXI_BID             => S_AXI_BID       ,   -- : OUT STD_LOGIC_VECTOR(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  -- new for v6.2
+        S_AXI_BRESP           => S_AXI_BRESP     ,   -- : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);                                    -- new for v6.2
+        S_AXI_BVALID          => S_AXI_BVALID    ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
         S_AXI_BREADY          => '0'             ,   -- : IN  STD_LOGIC := '0';                                                -- new for v6.2
                                                                                                   -- new for v6.2
         -- AXI Full/Lite Slave Read (Write side)                                                  -- new for v6.2
-        S_AXI_ARID            => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  -- new for v6.2
-        S_AXI_ARADDR          => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');                -- new for v6.2
-        S_AXI_ARLEN           => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(8-1 DOWNTO 0) := (OTHERS => '0');               -- new for v6.2
-        S_AXI_ARSIZE          => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(2 DOWNTO 0) := (OTHERS => '0');                 -- new for v6.2
-        S_AXI_ARBURST         => (others => '0') ,   -- : IN  STD_LOGIC_VECTOR(1 DOWNTO 0) := (OTHERS => '0');                 -- new for v6.2
+        S_AXI_ARID            => "0000"          ,   -- : IN  STD_LOGIC_VECTOR(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  -- new for v6.2
+        S_AXI_ARADDR          => "00000000000000000000000000000000"    ,   -- : IN  STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');                -- new for v6.2
+        S_AXI_ARLEN           => "00000000"           ,   -- : IN  STD_LOGIC_VECTOR(8-1 DOWNTO 0) := (OTHERS => '0');               -- new for v6.2
+        S_AXI_ARSIZE          => "000"           ,   -- : IN  STD_LOGIC_VECTOR(2 DOWNTO 0) := (OTHERS => '0');                 -- new for v6.2
+        S_AXI_ARBURST         => "00"            ,   -- : IN  STD_LOGIC_VECTOR(1 DOWNTO 0) := (OTHERS => '0');                 -- new for v6.2
         S_AXI_ARVALID         => '0'             ,   -- : IN  STD_LOGIC := '0';                                                -- new for v6.2
-        S_AXI_ARREADY         => open            ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
-        S_AXI_RID             => open            ,   -- : OUT STD_LOGIC_VECTOR(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  -- new for v6.2
-        S_AXI_RDATA           => open            ,   -- : OUT STD_LOGIC_VECTOR(C_WRITE_WIDTH_B-1 DOWNTO 0);                    -- new for v6.2
-        S_AXI_RRESP           => open            ,   -- : OUT STD_LOGIC_VECTOR(2-1 DOWNTO 0);                                  -- new for v6.2
-        S_AXI_RLAST           => open            ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
-        S_AXI_RVALID          => open            ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
+        S_AXI_ARREADY         => S_AXI_ARREADY   ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
+        S_AXI_RID             => S_AXI_RID       ,   -- : OUT STD_LOGIC_VECTOR(C_AXI_ID_WIDTH-1 DOWNTO 0) := (OTHERS => '0');  -- new for v6.2
+        S_AXI_RDATA           => S_AXI_RDATA     ,   -- : OUT STD_LOGIC_VECTOR(C_WRITE_WIDTH_B-1 DOWNTO 0);                    -- new for v6.2
+        S_AXI_RRESP           => S_AXI_RRESP     ,   -- : OUT STD_LOGIC_VECTOR(2-1 DOWNTO 0);                                  -- new for v6.2
+        S_AXI_RLAST           => S_AXI_RLAST     ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
+        S_AXI_RVALID          => S_AXI_RVALID    ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
         S_AXI_RREADY          => '0'             ,   -- : IN  STD_LOGIC := '0';                                                -- new for v6.2
                                                                                                                                -- new for v6.2
         -- AXI Full/Lite Sideband Signals                                                                                      -- new for v6.2
         S_AXI_INJECTSBITERR   => '0'             ,   -- : IN  STD_LOGIC := '0';                                                -- new for v6.2
         S_AXI_INJECTDBITERR   => '0'             ,   -- : IN  STD_LOGIC := '0';                                                -- new for v6.2
-        S_AXI_SBITERR         => open            ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
-        S_AXI_DBITERR         => open            ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
-        S_AXI_RDADDRECC       => open                -- : OUT STD_LOGIC_VECTOR(C_ADDRB_WIDTH-1 DOWNTO 0)                       -- new for v6.2
+        S_AXI_SBITERR         => S_AXI_SBITERR   ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
+        S_AXI_DBITERR         => S_AXI_DBITERR   ,   -- : OUT STD_LOGIC;                                                       -- new for v6.2
+        S_AXI_RDADDRECC       => S_AXI_RDADDRECC     -- : OUT STD_LOGIC_VECTOR(C_ADDRB_WIDTH-1 DOWNTO 0)                       -- new for v6.2
 
         );                                                              
-  end generate V6_S6_AND_LATER;
+  end generate FAMILY_SUPPORTED;
   
   
   
   
 end implementation;                                                      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

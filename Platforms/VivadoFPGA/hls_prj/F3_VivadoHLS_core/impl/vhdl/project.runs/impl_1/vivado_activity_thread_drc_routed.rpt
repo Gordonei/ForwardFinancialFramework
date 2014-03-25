@@ -1,8 +1,8 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------
-| Tool Version : Vivado v.2013.3 (lin64) Build 329390 Wed Oct 16 18:26:55 MDT 2013
-| Date         : Wed Mar 12 08:25:58 2014
-| Host         : ganymede running 64-bit Ubuntu 12.04.3 LTS
+| Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
+| Date         : Wed Mar 12 09:52:29 2014
+| Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_drc
 -----------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ Table of Contents
 
 REPORT SUMMARY
             Netlist: netlist
-          Floorplan: design_1
+          Floorplan: checkpoint_vivado_activity_thread
       Design limits: <entire design considered>
              Checks: defined_DATA_RATE
                      DSP48E1_AregAcascreg
@@ -29,7 +29,6 @@ REPORT SUMMARY
                      Bank IO standard Vref utilization
                      Bank IO standard Vref
                      Bank IO standard Termination
-                     RXTX_BITSLICE_shared_clkpin_net
                      Input Buffer Connections
                      Missing CFGBVS and CONFIG_VOLTAGE Design Properties
                      Design Rule Check Disabled
@@ -73,7 +72,7 @@ REPORT SUMMARY
                      INTERNAL_VREF
                      Longest carry chain height
                      HLUTNM on instances assigned to non-overlapping pblocks
-                     LOC Excursion
+                     Pblock ranges contradict LOC constraints on logic assigned to the pblock
                      LUTNM on instances assigned to non-overlapping pblocks
                      Combinatorial Loop
                      Bidirection LVDS IOs
@@ -120,7 +119,7 @@ REPORT SUMMARY
                      Hold option missing in multicycle path constraint
                      PS7 block required
            Max violations: <unlimited>
-         Violations found: 274
+         Violations found: 256
 
 2. REPORT DETAILS
 -----------------
@@ -1407,99 +1406,9 @@ PS7 block required
 The PS7 cell must be used in this Zynq design in order to enable correct default configuration.
 Related violations: <none>
 
-REQP-20#1 Advisory
-enum_AREG_0_connects_CEA1_GND_connects_CEA2_GND  
-vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP: When DSP48E1 attribute AREG is set to 0, the CEA1 and CEA2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-20#2 Advisory
-enum_AREG_0_connects_CEA1_GND_connects_CEA2_GND  
-vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP: When DSP48E1 attribute AREG is set to 0, the CEA1 and CEA2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-20#3 Advisory
-enum_AREG_0_connects_CEA1_GND_connects_CEA2_GND  
-vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP: When DSP48E1 attribute AREG is set to 0, the CEA1 and CEA2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-20#4 Advisory
-enum_AREG_0_connects_CEA1_GND_connects_CEA2_GND  
-vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP: When DSP48E1 attribute AREG is set to 0, the CEA1 and CEA2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-20#5 Advisory
-enum_AREG_0_connects_CEA1_GND_connects_CEA2_GND  
-vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP: When DSP48E1 attribute AREG is set to 0, the CEA1 and CEA2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-20#6 Advisory
-enum_AREG_0_connects_CEA1_GND_connects_CEA2_GND  
-vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP: When DSP48E1 attribute AREG is set to 0, the CEA1 and CEA2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-20#7 Advisory
-enum_AREG_0_connects_CEA1_GND_connects_CEA2_GND  
-vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP: When DSP48E1 attribute AREG is set to 0, the CEA1 and CEA2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-20#8 Advisory
-enum_AREG_0_connects_CEA1_GND_connects_CEA2_GND  
-vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP: When DSP48E1 attribute AREG is set to 0, the CEA1 and CEA2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-20#9 Advisory
-enum_AREG_0_connects_CEA1_GND_connects_CEA2_GND  
-vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP: When DSP48E1 attribute AREG is set to 0, the CEA1 and CEA2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-24#1 Advisory
-enum_BREG_0_connects_CEB1_GND_connects_CEB2_GND  
-vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP: When DSP48E1 attribute BREG is set to 0, the CEB1 and CEB2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-24#2 Advisory
-enum_BREG_0_connects_CEB1_GND_connects_CEB2_GND  
-vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP: When DSP48E1 attribute BREG is set to 0, the CEB1 and CEB2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-24#3 Advisory
-enum_BREG_0_connects_CEB1_GND_connects_CEB2_GND  
-vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP: When DSP48E1 attribute BREG is set to 0, the CEB1 and CEB2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-24#4 Advisory
-enum_BREG_0_connects_CEB1_GND_connects_CEB2_GND  
-vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP: When DSP48E1 attribute BREG is set to 0, the CEB1 and CEB2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-24#5 Advisory
-enum_BREG_0_connects_CEB1_GND_connects_CEB2_GND  
-vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP: When DSP48E1 attribute BREG is set to 0, the CEB1 and CEB2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-24#6 Advisory
-enum_BREG_0_connects_CEB1_GND_connects_CEB2_GND  
-vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP: When DSP48E1 attribute BREG is set to 0, the CEB1 and CEB2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-24#7 Advisory
-enum_BREG_0_connects_CEB1_GND_connects_CEB2_GND  
-vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP: When DSP48E1 attribute BREG is set to 0, the CEB1 and CEB2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-24#8 Advisory
-enum_BREG_0_connects_CEB1_GND_connects_CEB2_GND  
-vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP: When DSP48E1 attribute BREG is set to 0, the CEB1 and CEB2 pins should be tied GND to save power.
-Related violations: <none>
-
-REQP-24#9 Advisory
-enum_BREG_0_connects_CEB1_GND_connects_CEB2_GND  
-vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP: When DSP48E1 attribute BREG is set to 0, the CEB1 and CEB2 pins should be tied GND to save power.
-Related violations: <none>
-
 RTSTAT-10#1 Advisory
 No routable loads  
-34 net(s) have no routable loads. The first 15 problem net(s) are ap_done, ap_idle, thread_arg_thread_result_sqrd[0], thread_arg_thread_result_sqrd[1], thread_arg_thread_result_sqrd[2], thread_arg_thread_result_sqrd[3], thread_arg_thread_result_sqrd[4], thread_arg_thread_result_sqrd[5], thread_arg_thread_result_sqrd[6], thread_arg_thread_result_sqrd[7], thread_arg_thread_result_sqrd[8], thread_arg_thread_result_sqrd[9], thread_arg_thread_result_sqrd[10], thread_arg_thread_result_sqrd[11], thread_arg_thread_result_sqrd[12].
+34 net(s) have no routable loads. The problem net(s) are ap_done, ap_idle, thread_arg_thread_result_sqrd[0], thread_arg_thread_result_sqrd[1], thread_arg_thread_result_sqrd[2], thread_arg_thread_result_sqrd[3], thread_arg_thread_result_sqrd[4], thread_arg_thread_result_sqrd[5], thread_arg_thread_result_sqrd[6], thread_arg_thread_result_sqrd[7], thread_arg_thread_result_sqrd[8], thread_arg_thread_result_sqrd[9], thread_arg_thread_result_sqrd[10], thread_arg_thread_result_sqrd[11], thread_arg_thread_result_sqrd[12] (the first 15 of 34 listed).
 Related violations: <none>
 
 
