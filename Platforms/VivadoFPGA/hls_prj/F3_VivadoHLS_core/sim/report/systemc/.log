@@ -1,4 +1,0 @@
-@E [SIM-41] ../../src/tb.c is not found.
-@E [SIM-41] ../../tb.c is not found.
-@W [SIM-42] Please make sure test bench files are set correctly in Vivado HLS project tcl.
-@E [SIM-4] *** C/RTL co-simulation finished: FAIL ***

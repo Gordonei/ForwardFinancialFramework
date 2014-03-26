@@ -1,30 +1,27 @@
-CC = gcc
-CFLAGS = -DFP_t=double
-CFLAGS += -DMULTICORE_CPU
-C_STYLE_FLAG = -DC_STYLE
-OPENCL_STYLE_FLAG = -DOPENCL_STYLE
-LIBRARIES = -lm
+THIS_DIR := $(shell pwd)
+HLS_PRJ := $(THIS_DIR)/hls_prj/F3_VivadoHLS_core
+IPI_PRJ := $(THIS_DIR)/ipi_prj
+IP_NAME := imperial_F3_vivado_activity_thread_1_0
+VIVADO_HLS_CMD := vivado_hls
+VIVADO_SYS_CMD := vivado -mode batch 
 
-TARGET = mc_solver_ref.c
-SRCS = underlying.c option.c
-OBJS = $(SRCS:.c=.o)
+all: core system
 
-OUTPUT = $(TARGET:.c=)
+core: $(HLS_PRJ)/impl/ip/$(IP_NAME).zip
 
-all: c_ref opencl_ref
+$(HLS_PRJ)/impl/ip/$(IP_NAME).zip: 
+	$(VIVADO_HLS_CMD) $(HLS_PRJ)/script.tcl
+	rm *.log 
 
-.cpp.o:
-	g++ -Wall -c $<
+system: core
+	cd $(IPI_PRJ);
+	$(VIVADO_SYS_CMD) -source $(IPI_PRJ)/ipi_build.tcl
+	cp $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit $(THIS_DIR)/output/system.bit
+	rm *.log *.jou 
 
-c_ref: $(OBJS)
-	$(CC) $(CFLAGS) $(C_STYLE_FLAG) $^ $(TARGET) -o $@ $(LIBRARIES)
+bitstream: $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit
 
-opencl_ref: $(OBJS)
-	$(CC) $(CFLAGS) $(OPENCL_STYLE_FLAG) $^ $(TARGET) -o $@ $(LIBRARIES)
-
-test: all
-	./c_ref 1000 1 10 0.1 100 1.0 1.0 100
-	./opencl_ref 1 1 10 0.1 100 1.0 1.0 100
-
-clean:
-	rm -f *.o c_ref opencl_ref
+clean: 
+	rm $(HLS_PRJ)/impl/ip/$(IP_NAME).zip
+	rm $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit
+	rm $(THIS_DIR)/output/system.bit
