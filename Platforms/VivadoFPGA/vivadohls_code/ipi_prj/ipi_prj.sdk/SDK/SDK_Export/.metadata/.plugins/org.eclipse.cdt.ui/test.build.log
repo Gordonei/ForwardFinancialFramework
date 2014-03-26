@@ -1,0 +1,42 @@
+14:55:25 **** Build of configuration Debug for project test ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../test_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:63:5: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32' [-Wformat]
+../src/helloworld.c:63:5: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32' [-Wformat]
+../src/helloworld.c:104:6: warning: implicit declaration of function 'malloc' [-Wimplicit-function-declaration]
+../src/helloworld.c:104:39: warning: incompatible implicit declaration of built-in function 'malloc' [enabled by default]
+../src/helloworld.c:87:11: warning: unused variable 'discount_0_0' [-Wunused-variable]
+Finished building: ../src/helloworld.c
+ 
+Building file: ../src/option.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../test_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/option.d" -MT"src/option.d" -o "src/option.o" "../src/option.c"
+Finished building: ../src/option.c
+ 
+Building file: ../src/platform.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../test_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.d" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/underlying.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../test_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/underlying.d" -MT"src/underlying.d" -o "src/underlying.o" "../src/underlying.c"
+Finished building: ../src/underlying.c
+ 
+Building file: ../src/xopencl_montecarlo_activity_thread.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../test_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/xopencl_montecarlo_activity_thread.d" -MT"src/xopencl_montecarlo_activity_thread.d" -o "src/xopencl_montecarlo_activity_thread.o" "../src/xopencl_montecarlo_activity_thread.c"
+Finished building: ../src/xopencl_montecarlo_activity_thread.c
+ 
+Building file: ../src/xopencl_montecarlo_activity_thread_linux.c
+Invoking: ARM gcc compiler
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../test_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/xopencl_montecarlo_activity_thread_linux.d" -MT"src/xopencl_montecarlo_activity_thread_linux.d" -o "src/xopencl_montecarlo_activity_thread_linux.o" "../src/xopencl_montecarlo_activity_thread_linux.c"
+make: *** No rule to make target `helloworld.o', needed by `test.elf'. Stop.
+Finished building: ../src/xopencl_montecarlo_activity_thread_linux.c
+ 
+
+14:55:26 Build Finished (took 260ms)
+

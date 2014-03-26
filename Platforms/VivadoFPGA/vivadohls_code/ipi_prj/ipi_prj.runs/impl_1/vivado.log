@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado v2013.3 (64-bit)
+# SW Build 329390 on Wed Oct 16 18:26:55 MDT 2013
+# IP Build 192953 on Wed Oct 16 08:44:02 MDT 2013
+# Start of session at: Wed Mar 12 08:14:30 2014
+# Process ID: 26035
+# Log file: /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/ipi_prj/ipi_prj.runs/impl_1/vivado.log
+# Journal file: /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/ipi_prj/ipi_prj.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: Implementation
+INFO: [Common 17-81] Feature available: Implementation
+INFO: [Device 21-36] Loading parts and site information from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/arch.xml
+Parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+open_project /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/ipi_prj/ipi_prj.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user repository '/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/hls_prj/F3_VivadoHLS_core'.
+INFO: [IP_Flow 19-2313] Loaded Vivado repository '/opt/Xilinx/2013.3/Vivado/2013.3/data/ip'.
+open_project: Time (s): cpu = 00:00:14 ; elapsed = 00:00:05 . Memory (MB): peak = 4484.766 ; gain = 30.988
+file copy -force /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/ipi_prj/ipi_prj.runs/impl_1/zynq_system_wrapper.bit /home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/output/system.bit
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Mar 12 08:19:46 2014...

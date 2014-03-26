@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--Product Version: Vivado v2013.3 (64-bit)-->
+<Project Version="6" Minor="13" Path="/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.xpr">
+	<FileSet Dir="sources_1" File="fileset.xml"/>
+	<FileSet Dir="constrs_1" File="fileset.xml"/>
+	<FileSet Dir="sim_1" File="fileset.xml"/>
+	<FileSet Dir="vivado_activity_thread_ap_fcmp_1_no_dsp" File="fileset.xml"/>
+	<FileSet Dir="vivado_activity_thread_ap_faddfsub_3_full_dsp" File="fileset.xml"/>
+	<FileSet Dir="vivado_activity_thread_ap_fmul_2_max_dsp" File="fileset.xml"/>
+	<FileSet Dir="vivado_activity_thread_ap_fexp_7_full_dsp" File="fileset.xml"/>
+	<RunSet Dir="runs" File="runs.xml"/>
+	<DefaultLaunch Dir="$PRUNDIR"/>
+	<Config>
+		<Option Name="Id" Val="892fd934eb214887a265f3299e0c5e90"/>
+		<Option Name="Part" Val="xc7z020clg484-1"/>
+		<Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
+		<Option Name="Board" Val=""/>
+		<Option Name="ActiveSimSet" Val="sim_1"/>
+	</Config>
+</Project>
+

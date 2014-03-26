@@ -1,0 +1,65 @@
+make[1]: Entering directory `/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/csim/build'
+   Compiling(apcc) ../../../../srcs/option.c in debug mode
+@I [HLS-10] Running '/opt/Xilinx/2013.3/Vivado_HLS/2013.3/bin/unwrapped/lnx64.o/apcc'
+            for user 'sf306' on host 'ganymede' (Linux_x86_64 version 3.2.0-51-generic) on Tue Mar 25 15:14:54 GMT 2014
+            in directory '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/csim/build'
+In file included from ../../../../srcs/option.c:7:
+../../../../srcs/option.h:15:2: error: unknown type name 'FP_t'
+        FP_t delta_time;
+        ^
+../../../../srcs/option.h:16:2: error: unknown type name 'FP_t'
+        FP_t value;
+        ^
+../../../../srcs/option.h:20:2: error: unknown type name 'FP_t'
+        FP_t strike_price;
+        ^
+../../../../srcs/option.h:21:2: error: unknown type name 'FP_t'
+        FP_t time_period;
+        ^
+../../../../srcs/option.h:22:2: error: unknown type name 'FP_t'
+        FP_t call;
+        ^
+../../../../srcs/option.h:26:29: error: unknown type name 'FP_t'
+void option_derivative_init(FP_t t,FP_t c,FP_t k,option_attributes* o_a);
+                            ^
+../../../../srcs/option.h:26:36: error: unknown type name 'FP_t'
+void option_derivative_init(FP_t t,FP_t c,FP_t k,option_attributes* o_a);
+                                   ^
+../../../../srcs/option.h:26:43: error: unknown type name 'FP_t'
+void option_derivative_init(FP_t t,FP_t c,FP_t k,option_attributes* o_a);
+                                          ^
+../../../../srcs/option.h:28:29: error: unknown type name 'FP_t'
+void option_derivative_path(FP_t price,FP_t time,option_variables* o_v,option_attributes* o_a);
+                            ^
+../../../../srcs/option.h:28:40: error: unknown type name 'FP_t'
+void option_derivative_path(FP_t price,FP_t time,option_variables* o_v,option_attributes* o_a);
+                                       ^
+../../../../srcs/option.h:29:31: error: unknown type name 'FP_t'
+void option_derivative_payoff(FP_t end_price,option_variables* o_v,option_attributes* o_a);
+                              ^
+../../../../srcs/option.c:9:29: error: unknown type name 'FP_t'
+void option_derivative_init(FP_t t,FP_t c,FP_t k,option_attributes* o_a){
+                            ^
+../../../../srcs/option.c:9:36: error: unknown type name 'FP_t'
+void option_derivative_init(FP_t t,FP_t c,FP_t k,option_attributes* o_a){
+                                   ^
+../../../../srcs/option.c:9:43: error: unknown type name 'FP_t'
+void option_derivative_init(FP_t t,FP_t c,FP_t k,option_attributes* o_a){
+                                          ^
+../../../../srcs/option.c:22:29: error: unknown type name 'FP_t'
+void option_derivative_path(FP_t price,FP_t time,option_variables* o_v,option_attributes* o_a){
+                            ^
+../../../../srcs/option.c:22:40: error: unknown type name 'FP_t'
+void option_derivative_path(FP_t price,FP_t time,option_variables* o_v,option_attributes* o_a){
+                                       ^
+../../../../srcs/option.c:25:31: error: unknown type name 'FP_t'
+void option_derivative_payoff(FP_t end_price,option_variables* o_v,option_attributes* o_a){
+                              ^
+17 errors generated.
+@E [APCC-1-1] clang compile failed: child process exited abnormally
+@E [APCC-1] ProcessSources failed
+@I [APCC-3] Tmp directory is /tmp/apcc_db_sf306/197911395760494773010
+@E [APCC-1] APCC failed.
+make[1]: Leaving directory `/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/csim/build'
+make[1]: *** [obj/option.o] Error 1
+@E [SIM-1] 'csim_design' failed: compilation error(s).

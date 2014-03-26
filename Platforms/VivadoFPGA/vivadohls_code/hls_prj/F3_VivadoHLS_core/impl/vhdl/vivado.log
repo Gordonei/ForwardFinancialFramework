@@ -1,0 +1,1318 @@
+#-----------------------------------------------------------
+# Vivado v2013.3 (64-bit)
+# SW Build 329390 on Wed Oct 16 18:26:55 MDT 2013
+# IP Build 192953 on Wed Oct 16 08:44:02 MDT 2013
+# Start of session at: Tue Mar 25 15:25:22 2014
+# Process ID: 20260
+# Log file: /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado.log
+# Journal file: /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: Implementation
+INFO: [Common 17-81] Feature available: Implementation
+INFO: [Device 21-36] Loading parts and site information from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/arch.xml
+Parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+source run_vivado.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado repository '/opt/Xilinx/2013.3/Vivado/2013.3/data/ip'.
+INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fcmp_1_no_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_fcmp_1_no_dsp'.
+INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_faddfsub_3_full_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_faddfsub_3_full_dsp'.
+INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fmul_2_max_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_fmul_2_max_dsp'.
+INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fexp_7_full_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_fexp_7_full_dsp'.
+[Tue Mar 25 15:25:30 2014] Launched vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1, vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1, vivado_activity_thread_ap_fmul_2_max_dsp_synth_1, vivado_activity_thread_ap_fexp_7_full_dsp_synth_1...
+Run output will be captured here:
+vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1: /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1/runme.log
+vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1: /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1/runme.log
+vivado_activity_thread_ap_fmul_2_max_dsp_synth_1: /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fmul_2_max_dsp_synth_1/runme.log
+vivado_activity_thread_ap_fexp_7_full_dsp_synth_1: /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fexp_7_full_dsp_synth_1/runme.log
+[Tue Mar 25 15:25:30 2014] Launched synth_1...
+Run output will be captured here: /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/runme.log
+[Tue Mar 25 15:25:30 2014] Waiting for synth_1 to finish...
+
+*** Running vivado
+    with args -log vivado_activity_thread.rds -m64 -mode batch -messageDb vivado.pb -source vivado_activity_thread.tcl
+
+
+****** Vivado v2013.3 (64-bit)
+  **** SW Build 329390 on Wed Oct 16 18:26:55 MDT 2013
+  **** IP Build 192953 on Wed Oct 16 08:44:02 MDT 2013
+    ** Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
+
+INFO: [Common 17-78] Attempting to get a license: Implementation
+INFO: [Common 17-81] Feature available: Implementation
+INFO: [Device 21-36] Loading parts and site information from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/arch.xml
+Parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+source vivado_activity_thread.tcl
+# set_msg_config -id {HDL 9-1061} -limit 100000
+# set_msg_config -id {HDL 9-1654} -limit 100000
+# create_project -in_memory -part xc7z020clg484-1
+# set_property target_language Verilog [current_project]
+# set_param project.compositeFile.enableAutoGeneration 0
+# add_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1/vivado_activity_thread_ap_fcmp_1_no_dsp.dcp
+# set_property used_in_implementation false [get_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1/vivado_activity_thread_ap_fcmp_1_no_dsp.dcp]
+# set_property use_blackbox_stub false [get_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1/vivado_activity_thread_ap_fcmp_1_no_dsp.dcp]
+# add_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1/vivado_activity_thread_ap_faddfsub_3_full_dsp.dcp
+# set_property used_in_implementation false [get_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1/vivado_activity_thread_ap_faddfsub_3_full_dsp.dcp]
+# set_property use_blackbox_stub false [get_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1/vivado_activity_thread_ap_faddfsub_3_full_dsp.dcp]
+# add_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fmul_2_max_dsp_synth_1/vivado_activity_thread_ap_fmul_2_max_dsp.dcp
+# set_property used_in_implementation false [get_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fmul_2_max_dsp_synth_1/vivado_activity_thread_ap_fmul_2_max_dsp.dcp]
+# set_property use_blackbox_stub false [get_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fmul_2_max_dsp_synth_1/vivado_activity_thread_ap_fmul_2_max_dsp.dcp]
+# add_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fexp_7_full_dsp_synth_1/vivado_activity_thread_ap_fexp_7_full_dsp.dcp
+# set_property used_in_implementation false [get_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fexp_7_full_dsp_synth_1/vivado_activity_thread_ap_fexp_7_full_dsp.dcp]
+# set_property use_blackbox_stub false [get_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fexp_7_full_dsp_synth_1/vivado_activity_thread_ap_fexp_7_full_dsp.dcp]
+# read_verilog {
+#   /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_stub.v
+#   /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_stub.v
+#   /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_stub.v
+#   /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_stub.v
+# }
+# read_vhdl {
+#   /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd
+#   /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd
+#   /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd
+#   /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd
+#   /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd
+# }
+# read_xdc /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc
+# set_property used_in_implementation false [get_files /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc]
+# read_xdc dont_buffer.xdc
+# set_property used_in_implementation false [get_files dont_buffer.xdc]
+# set_param synth.vivado.isSynthRun true
+# set_property webtalk.parent_dir /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.data/wt [current_project]
+# set_property parent.project_dir /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl [current_project]
+# synth_design -top vivado_activity_thread -part xc7z020clg484-1 -no_lc -no_iobuf -mode out_of_context
+Command: synth_design -top vivado_activity_thread -part xc7z020clg484-1 -no_lc -no_iobuf -mode out_of_context
+
+Starting synthesis...
+
+INFO: [Common 17-347] Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 747.289 ; gain = 143.980
+INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:35]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 5 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp' declared at '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd:11' bound to instance 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1' of component 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:196]
+INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd:30]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 5 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'vivado_activity_thread_ap_faddfsub_3_full_dsp' declared at '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_stub.v:16' bound to instance 'vivado_activity_thread_ap_faddfsub_3_full_dsp_u' of component 'vivado_activity_thread_ap_faddfsub_3_full_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd:62]
+INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_ap_faddfsub_3_full_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_stub.v:16]
+INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp' (1#1) [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd:30]
+	Parameter ID bound to: 2 - type: integer 
+	Parameter NUM_STAGE bound to: 4 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp' declared at '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd:11' bound to instance 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2' of component 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:212]
+INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd:29]
+	Parameter ID bound to: 2 - type: integer 
+	Parameter NUM_STAGE bound to: 4 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'vivado_activity_thread_ap_fmul_2_max_dsp' declared at '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_stub.v:16' bound to instance 'vivado_activity_thread_ap_fmul_2_max_dsp_u' of component 'vivado_activity_thread_ap_fmul_2_max_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd:56]
+INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_ap_fmul_2_max_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_stub.v:16]
+INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp' (2#1) [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd:29]
+	Parameter ID bound to: 3 - type: integer 
+	Parameter NUM_STAGE bound to: 3 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'vivado_activity_thread_fcmp_32ns_32ns_1_3' declared at '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd:11' bound to instance 'vivado_activity_thread_fcmp_32ns_32ns_1_3_U3' of component 'vivado_activity_thread_fcmp_32ns_32ns_1_3' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:227]
+INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_fcmp_32ns_32ns_1_3' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd:30]
+	Parameter ID bound to: 3 - type: integer 
+	Parameter NUM_STAGE bound to: 3 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'vivado_activity_thread_ap_fcmp_1_no_dsp' declared at '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_stub.v:16' bound to instance 'vivado_activity_thread_ap_fcmp_1_no_dsp_u' of component 'vivado_activity_thread_ap_fcmp_1_no_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd:79]
+INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_ap_fcmp_1_no_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_stub.v:16]
+INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread_fcmp_32ns_32ns_1_3' (3#1) [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd:30]
+	Parameter ID bound to: 4 - type: integer 
+	Parameter NUM_STAGE bound to: 9 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp' declared at '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd:11' bound to instance 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4' of component 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:243]
+INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd:29]
+	Parameter ID bound to: 4 - type: integer 
+	Parameter NUM_STAGE bound to: 9 - type: integer 
+	Parameter din0_WIDTH bound to: 32 - type: integer 
+	Parameter din1_WIDTH bound to: 32 - type: integer 
+	Parameter dout_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'vivado_activity_thread_ap_fexp_7_full_dsp' declared at '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_stub.v:16' bound to instance 'vivado_activity_thread_ap_fexp_7_full_dsp_u' of component 'vivado_activity_thread_ap_fexp_7_full_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd:51]
+INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_ap_fexp_7_full_dsp' [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_stub.v:16]
+INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp' (4#1) [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd:29]
+INFO: [Synth 8-226] default block is never used [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:400]
+INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread' (5#1) [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:35]
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[31] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[30] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[29] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[28] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[27] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[26] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[25] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[24] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[23] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[22] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[21] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[20] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[19] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[18] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[17] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[16] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[15] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[14] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[13] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[12] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[11] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[10] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[9] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[8] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[7] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[6] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[5] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[4] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[3] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[2] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[1] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[0] driven by constant 1
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[31]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[30]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[29]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[28]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[27]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[26]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[25]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[24]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[23]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[22]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[21]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[20]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[19]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[18]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[17]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[16]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[15]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[14]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[13]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[12]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[11]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[10]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[9]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[8]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[7]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[6]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[5]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[4]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[3]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[2]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[1]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[0]
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 781.109 ; gain = 177.801
+Start RTL Optimization : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 781.109 ; gain = 177.801
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+Loading clock regions from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/ClockRegion.xml
+Loading clock buffers from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/ClockBuffers.xml
+Loading clock placement rules from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/ClockPlacerRules.xml
+Loading package pin functions from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/PinFunctions.xml...
+Loading package from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/clg484/Package.xml
+Loading io standards from /opt/Xilinx/2013.3/Vivado/2013.3/data/./parts/xilinx/zynq/IOStandards.xml
+INFO: [Common 17-78] Attempting to get a license: Internal_bitstream
+WARNING: [Common 17-301] Failed to get a license: Internal_bitstream
+
+Processing XDC Constraints
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc]
+INFO: [Vivado 12-2286] Implicit search of objects for pattern 'ap_clk' matched to 'port' objects. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc:1]
+Resolution: To avoid ambiguous patterns, provide proper objects using get commands e.g. [get_nets xyz].
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/.Xil/vivado_activity_thread_propImpl.xdc].
+Resolution: To avoid this warning, exclude constraints listed in [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/.Xil/vivado_activity_thread_propImpl.xdc] from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc]
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/.Xil/vivado_activity_thread_propImpl.xdc].
+Resolution: To avoid this warning, exclude constraints listed in [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/.Xil/vivado_activity_thread_propImpl.xdc] from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Start RTL Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1024.883 ; gain = 421.574
+
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 7).
+Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 7).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1024.887 ; gain = 421.578
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Finished RTL Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1024.887 ; gain = 421.578
+---------------------------------------------------------------------------------
+
+INFO: [Synth 8-802] inferred FSM for state register 'ap_CS_fsm_reg' in module 'vivado_activity_thread'
+INFO: [Synth 8-3354] encoded FSM with state register 'ap_CS_fsm_reg' using encoding 'one-hot' in module 'vivado_activity_thread'
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB8 0 RAMB16 0 RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1108.230 ; gain = 504.922
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 15    
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	  32 Input     32 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 12    
+	   8 Input      6 Bit        Muxes := 1     
+	  33 Input      5 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 8     
+
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module vivado_activity_thread 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 8     
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	  32 Input     32 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 12    
+	  33 Input      5 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 8     
+Module vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
+Module vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+Module vivado_activity_thread_fcmp_32ns_32ns_1_3 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
+	                5 Bit    Registers := 1     
++---Muxes : 
+	   8 Input      6 Bit        Muxes := 1     
+Module vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
+
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start Cross Boundary Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[31] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[30] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[29] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[28] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[27] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[26] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[25] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[24] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[23] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[22] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[21] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[20] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[19] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[18] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[17] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[16] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[15] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[14] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[13] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[12] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[11] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[10] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[9] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[8] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[7] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[6] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[5] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[4] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[3] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[2] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[1] driven by constant 0
+WARNING: [Synth 8-3917] design vivado_activity_thread has port thread_arg_path_points[0] driven by constant 1
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[31]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[30]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[29]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[28]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[27]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[26]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[25]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[24]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[23]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[22]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[21]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[20]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[19]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[18]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[17]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[16]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[15]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[14]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[13]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[12]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[11]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[10]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[9]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[8]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[7]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[6]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[5]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[4]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[3]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[2]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[1]
+WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port thread_arg_thread_paths[0]
+---------------------------------------------------------------------------------
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1109.227 ; gain = 505.918
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/opcode_buf1_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[31] )
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/opcode_buf1_reg[4] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/opcode_buf1_reg[3] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/opcode_buf1_reg[1] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/opcode_buf1_reg[0] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[0] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/opcode_buf1_reg[2] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[1] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[2] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[3] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[4] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[5] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[6] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[7] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[8] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[9] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[10] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[11] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[12] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[13] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[14] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[15] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[16] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[17] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[18] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[19] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[20] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[21] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[22] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[23] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[24] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[25] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[26] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[27] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[28] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[29] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[30] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/din1_buf1_reg[31] ) is unused and will be removed from module vivado_activity_thread.
+---------------------------------------------------------------------------------
+Finished Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1156.289 ; gain = 552.980
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1156.289 ; gain = 552.980
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1156.289 ; gain = 552.980
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1156.289 ; gain = 552.980
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-4442] BlackBox module \vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/vivado_activity_thread_ap_fcmp_1_no_dsp_u  has unconnected pin s_axis_operation_tvalid
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1156.289 ; gain = 552.980
+---------------------------------------------------------------------------------
+
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1156.289 ; gain = 552.980
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1156.289 ; gain = 552.980
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+----------------------------------------------+----------+
+|      |BlackBox name                                 |Instances |
++------+----------------------------------------------+----------+
+|1     |vivado_activity_thread_ap_fmul_2_max_dsp      |         1|
+|2     |vivado_activity_thread_ap_fexp_7_full_dsp     |         1|
+|3     |vivado_activity_thread_ap_fcmp_1_no_dsp       |         1|
+|4     |vivado_activity_thread_ap_faddfsub_3_full_dsp |         1|
++------+----------------------------------------------+----------+
+
+Report Cell Usage: 
++------+---------------------------------------------------+------+
+|      |Cell                                               |Count |
++------+---------------------------------------------------+------+
+|1     |vivado_activity_thread_ap_faddfsub_3_full_dsp_bbox |     1|
+|2     |vivado_activity_thread_ap_fcmp_1_no_dsp_bbox       |     1|
+|3     |vivado_activity_thread_ap_fexp_7_full_dsp_bbox     |     1|
+|4     |vivado_activity_thread_ap_fmul_2_max_dsp_bbox      |     1|
+|5     |LUT1                                               |     2|
+|6     |LUT2                                               |    22|
+|7     |LUT3                                               |    83|
+|8     |LUT4                                               |    58|
+|9     |LUT5                                               |   127|
+|10    |LUT6                                               |    81|
+|11    |FDRE                                               |   484|
+|12    |FDSE                                               |     8|
++------+---------------------------------------------------+------+
+
+Report Instance Areas: 
++------+-------------------------------------------------------------+--------------------------------------------------------+------+
+|      |Instance                                                     |Module                                                  |Cells |
++------+-------------------------------------------------------------+--------------------------------------------------------+------+
+|1     |top                                                          |                                                        |   973|
+|2     |  vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp      |   169|
+|3     |  vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4     |vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp     |    65|
+|4     |  vivado_activity_thread_fcmp_32ns_32ns_1_3_U3               |vivado_activity_thread_fcmp_32ns_32ns_1_3               |    42|
+|5     |  vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp |   251|
++------+-------------------------------------------------------------+--------------------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1156.289 ; gain = 552.980
+---------------------------------------------------------------------------------
+
+Synthesis finished with 0 errors, 1 critical warnings and 101 warnings.
+Synthesis Optimization Complete : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1156.289 ; gain = 552.980
+INFO: [Opt 31-138] Pushed 0 inverter(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+37 Infos, 166 Warnings, 1 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1421.500 ; gain = 724.207
+# write_checkpoint vivado_activity_thread.dcp
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "ap_clk" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+# report_utilization -file vivado_activity_thread_utilization_synth.rpt -pb vivado_activity_thread_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.15 . Memory (MB): peak = 1433.535 ; gain = 2.012
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 25 15:29:03 2014...
+[Tue Mar 25 15:29:06 2014] synth_1 finished
+wait_on_run: Time (s): cpu = 00:03:00 ; elapsed = 00:03:36 . Memory (MB): peak = 783.504 ; gain = 8.000
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7z020clg484-1
+INFO: [Project 1-454] Reading design checkpoint '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1/vivado_activity_thread_ap_fcmp_1_no_dsp.dcp' for cell 'vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/vivado_activity_thread_ap_fcmp_1_no_dsp_u'
+INFO: [Project 1-454] Reading design checkpoint '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1/vivado_activity_thread_ap_faddfsub_3_full_dsp.dcp' for cell 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u'
+INFO: [Project 1-454] Reading design checkpoint '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fmul_2_max_dsp_synth_1/vivado_activity_thread_ap_fmul_2_max_dsp.dcp' for cell 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u'
+INFO: [Project 1-454] Reading design checkpoint '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fexp_7_full_dsp_synth_1/vivado_activity_thread_ap_fexp_7_full_dsp.dcp' for cell 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u'
+INFO: [Netlist 29-17] Analyzing 12 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2013.3
+Loading clock regions from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/ClockRegion.xml
+Loading clock buffers from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/ClockBuffers.xml
+Loading clock placement rules from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/ClockPlacerRules.xml
+Loading package pin functions from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/PinFunctions.xml...
+Loading package from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/clg484/Package.xml
+Loading io standards from /opt/Xilinx/2013.3/Vivado/2013.3/data/./parts/xilinx/zynq/IOStandards.xml
+INFO: [Opt 31-138] Pushed 0 inverter(s).
+INFO: [Common 17-78] Attempting to get a license: Internal_bitstream
+WARNING: [Common 17-301] Failed to get a license: Internal_bitstream
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_2/vivado_activity_thread_ap_fcmp_1_no_dsp_early.xdc] for cell 'vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/vivado_activity_thread_ap_fcmp_1_no_dsp_u'
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_2/vivado_activity_thread_ap_fcmp_1_no_dsp_early.xdc] for cell 'vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/vivado_activity_thread_ap_fcmp_1_no_dsp_u'
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_3/vivado_activity_thread_ap_faddfsub_3_full_dsp_early.xdc] for cell 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u'
+WARNING: [Constraints 18-619] A clock with name 'aclk' already exists, overwriting the previous clock with the same name. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_ooc.xdc:6]
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_3/vivado_activity_thread_ap_faddfsub_3_full_dsp_early.xdc] for cell 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u'
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_4/vivado_activity_thread_ap_fmul_2_max_dsp_early.xdc] for cell 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u'
+WARNING: [Constraints 18-619] A clock with name 'aclk' already exists, overwriting the previous clock with the same name. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc:6]
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_4/vivado_activity_thread_ap_fmul_2_max_dsp_early.xdc] for cell 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u'
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_5/vivado_activity_thread_ap_fexp_7_full_dsp_early.xdc] for cell 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u'
+WARNING: [Constraints 18-619] A clock with name 'aclk' already exists, overwriting the previous clock with the same name. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_ooc.xdc:6]
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_5/vivado_activity_thread_ap_fexp_7_full_dsp_early.xdc] for cell 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u'
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc]
+INFO: [Vivado 12-2286] Implicit search of objects for pattern 'ap_clk' matched to 'port' objects. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc:1]
+Resolution: To avoid ambiguous patterns, provide proper objects using get commands e.g. [get_nets xyz].
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc]
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_2/vivado_activity_thread_ap_fcmp_1_no_dsp.xdc] for cell 'vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/vivado_activity_thread_ap_fcmp_1_no_dsp_u'
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_2/vivado_activity_thread_ap_fcmp_1_no_dsp.xdc] for cell 'vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/vivado_activity_thread_ap_fcmp_1_no_dsp_u'
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_3/vivado_activity_thread_ap_faddfsub_3_full_dsp.xdc] for cell 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u'
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_3/vivado_activity_thread_ap_faddfsub_3_full_dsp.xdc] for cell 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u'
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_4/vivado_activity_thread_ap_fmul_2_max_dsp.xdc] for cell 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u'
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_4/vivado_activity_thread_ap_fmul_2_max_dsp.xdc] for cell 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u'
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_5/vivado_activity_thread_ap_fexp_7_full_dsp.xdc] for cell 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u'
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp_5/vivado_activity_thread_ap_fexp_7_full_dsp.xdc] for cell 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u'
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+open_run: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1338.004 ; gain = 554.500
+report_utilization: Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.14 . Memory (MB): peak = 1340.020 ; gain = 2.016
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: max, Constraints type: SDC.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 1 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Chipscope 16-158] Did not write any debug probes to file '/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/debug_nets.ltx' because no debug cores were found in the design.
+[Tue Mar 25 15:29:19 2014] Launched impl_1...
+Run output will be captured here: /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/runme.log
+[Tue Mar 25 15:29:19 2014] Waiting for impl_1 to finish...
+
+*** Running vivado
+    with args -log vivado_activity_thread.rdi -applog -m64 -messageDb vivado.pb -mode batch -source vivado_activity_thread.tcl -notrace
+
+
+****** Vivado v2013.3 (64-bit)
+  **** SW Build 329390 on Wed Oct 16 18:26:55 MDT 2013
+  **** IP Build 192953 on Wed Oct 16 08:44:02 MDT 2013
+    ** Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
+
+INFO: [Common 17-78] Attempting to get a license: Implementation
+INFO: [Common 17-81] Feature available: Implementation
+INFO: [Device 21-36] Loading parts and site information from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/arch.xml
+Parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+source vivado_activity_thread.tcl -notrace
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+Design is defaulting to dcp part: xc7z020clg484-1
+Design is defaulting to dcp top: vivado_activity_thread
+INFO: [Netlist 29-17] Analyzing 12 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2013.3
+Loading clock regions from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/ClockRegion.xml
+Loading clock buffers from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/ClockBuffers.xml
+Loading clock placement rules from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/ClockPlacerRules.xml
+Loading package pin functions from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/PinFunctions.xml...
+Loading package from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/clg484/Package.xml
+Loading io standards from /opt/Xilinx/2013.3/Vivado/2013.3/data/./parts/xilinx/zynq/IOStandards.xml
+INFO: [Opt 31-138] Pushed 0 inverter(s).
+INFO: [Common 17-78] Attempting to get a license: Internal_bitstream
+WARNING: [Common 17-301] Failed to get a license: Internal_bitstream
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20849-ganymede/dcp/vivado_activity_thread_early.xdc]
+WARNING: [Constraints 18-619] A clock with name 'aclk' already exists, overwriting the previous clock with the same name. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_ooc.xdc:6]
+WARNING: [Constraints 18-619] A clock with name 'aclk' already exists, overwriting the previous clock with the same name. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc:6]
+WARNING: [Constraints 18-619] A clock with name 'aclk' already exists, overwriting the previous clock with the same name. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_ooc.xdc:6]
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20849-ganymede/dcp/vivado_activity_thread_early.xdc]
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20849-ganymede/dcp/vivado_activity_thread.xdc]
+INFO: [Vivado 12-2286] Implicit search of objects for pattern 'ap_clk' matched to 'port' objects. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc:1]
+Resolution: To avoid ambiguous patterns, provide proper objects using get commands e.g. [get_nets xyz].
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20849-ganymede/dcp/vivado_activity_thread.xdc]
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+link_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1264.801 ; gain = 567.496
+Command: opt_design
+INFO: [Common 17-347] Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [Drc 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:00.10 ; elapsed = 00:00:00.09 . Memory (MB): peak = 1275.828 ; gain = 11.023
+
+Starting Logic Optimization Task
+Logic Optimization | Checksum: 3e8431b6
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 1 Retarget
+
+INFO: [Opt 31-138] Pushed 4 inverter(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 2a2caae3
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.93 . Memory (MB): peak = 1298.820 ; gain = 22.992
+
+Phase 2 Constant Propagation
+INFO: [Opt 31-138] Pushed 1 inverter(s).
+INFO: [Opt 31-10] Eliminated 111 cells.
+Phase 2 Constant Propagation | Checksum: 9e1a6bdc
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1298.820 ; gain = 22.992
+
+Phase 3 Sweep
+INFO: [Opt 31-12] Eliminated 1585 unconnected nets.
+INFO: [Opt 31-11] Eliminated 193 unconnected cells.
+Phase 3 Sweep | Checksum: 07576ccf
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1298.820 ; gain = 22.992
+Ending Logic Optimization Task | Checksum: 07576ccf
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1298.820 ; gain = 22.992
+Implement Debug Cores | Checksum: 3e8431b6
+
+Starting Power Optimization Task
+Ending Power Optimization Task | Checksum: 07576ccf
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1298.820 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+21 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Command: place_design
+INFO: [Common 17-347] Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command place_design
+INFO: [Drc 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 4 CPUs
+
+Phase 1 Placer Initialization
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1304.824 ; gain = 0.000
+
+Phase 1.1 Mandatory Logic Optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1304.824 ; gain = 0.000
+Phase 1.1 Mandatory Logic Optimization | Checksum: 5bda8304
+
+Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.07 . Memory (MB): peak = 1304.824 ; gain = 0.004
+
+Phase 1.2 Build Super Logic Region (SLR) Database
+Phase 1.2 Build Super Logic Region (SLR) Database | Checksum: 5bda8304
+
+Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.08 . Memory (MB): peak = 1304.824 ; gain = 0.004
+
+Phase 1.3 Add Constraints
+Phase 1.3 Add Constraints | Checksum: 5bda8304
+
+Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.08 . Memory (MB): peak = 1304.824 ; gain = 0.004
+
+Phase 1.4 Build Macros
+Phase 1.4 Build Macros | Checksum: a6aaef82
+
+Time (s): cpu = 00:00:00.20 ; elapsed = 00:00:00.22 . Memory (MB): peak = 1304.824 ; gain = 0.004
+
+Phase 1.5 Routing Based Site Exclusion
+Phase 1.5 Routing Based Site Exclusion | Checksum: a6aaef82
+
+Time (s): cpu = 00:00:00.20 ; elapsed = 00:00:00.22 . Memory (MB): peak = 1304.824 ; gain = 0.004
+
+Phase 1.6 Implementation Feasibility check
+Phase 1.6 Implementation Feasibility check | Checksum: a6aaef82
+
+Time (s): cpu = 00:00:00.37 ; elapsed = 00:00:00.39 . Memory (MB): peak = 1304.824 ; gain = 0.004
+
+Phase 1.7 Pre-Place Cells
+Phase 1.7 Pre-Place Cells | Checksum: a6aaef82
+
+Time (s): cpu = 00:00:00.38 ; elapsed = 00:00:00.40 . Memory (MB): peak = 1304.824 ; gain = 0.004
+
+Phase 1.8 IO Placement/ Clock Placement/ Build Placer Device
+Phase 1.8 IO Placement/ Clock Placement/ Build Placer Device | Checksum: a6aaef82
+
+Time (s): cpu = 00:00:00.70 ; elapsed = 00:00:00.62 . Memory (MB): peak = 1310.832 ; gain = 6.012
+
+Phase 1.9 Build Placer Netlist Model
+
+Phase 1.9.1 Place Init Design
+
+Phase 1.9.1.1 Build Clock Data
+Phase 1.9.1.1 Build Clock Data | Checksum: b9e6b395
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1313.832 ; gain = 9.012
+Phase 1.9.1 Place Init Design | Checksum: cec7a997
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1314.832 ; gain = 10.012
+Phase 1.9 Build Placer Netlist Model | Checksum: cec7a997
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1314.832 ; gain = 10.012
+
+Phase 1.10 Constrain Clocks/Macros
+
+Phase 1.10.1 Constrain Global/Regional Clocks
+Phase 1.10.1 Constrain Global/Regional Clocks | Checksum: cec7a997
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1314.832 ; gain = 10.012
+Phase 1.10 Constrain Clocks/Macros | Checksum: cec7a997
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1314.832 ; gain = 10.012
+Phase 1 Placer Initialization | Checksum: cec7a997
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1314.832 ; gain = 10.012
+
+Phase 2 Global Placement
+Phase 2 Global Placement | Checksum: 14490d311
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:05 . Memory (MB): peak = 1329.832 ; gain = 25.012
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 14490d311
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:05 . Memory (MB): peak = 1329.832 ; gain = 25.012
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: ebb0af4a
+
+Time (s): cpu = 00:00:11 ; elapsed = 00:00:05 . Memory (MB): peak = 1338.848 ; gain = 34.027
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 1263d3cc5
+
+Time (s): cpu = 00:00:11 ; elapsed = 00:00:05 . Memory (MB): peak = 1338.848 ; gain = 34.027
+
+Phase 3.4 Timing Path Optimizer
+Phase 3.4 Timing Path Optimizer | Checksum: 662fd165
+
+Time (s): cpu = 00:00:12 ; elapsed = 00:00:05 . Memory (MB): peak = 1339.848 ; gain = 35.027
+
+Phase 3.5 Commit Small Macros & Core Logic
+Phase 3.5 Commit Small Macros & Core Logic | Checksum: ff278c97
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:06 . Memory (MB): peak = 1353.977 ; gain = 49.156
+
+Phase 3.6 Re-assign LUT pins
+Phase 3.6 Re-assign LUT pins | Checksum: ff278c97
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:06 . Memory (MB): peak = 1353.977 ; gain = 49.156
+Phase 3 Detail Placement | Checksum: ff278c97
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:06 . Memory (MB): peak = 1353.977 ; gain = 49.156
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Placement Timing Optimization
+Phase 4.1 Post Placement Timing Optimization | Checksum: 1008878a0
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:06 . Memory (MB): peak = 1353.977 ; gain = 49.156
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 1008878a0
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:06 . Memory (MB): peak = 1353.977 ; gain = 49.156
+
+Phase 4.3 Placer Reporting
+
+Phase 4.3.1 Congestion Reporting
+Phase 4.3.1 Congestion Reporting | Checksum: 1008878a0
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:06 . Memory (MB): peak = 1353.977 ; gain = 49.156
+
+Phase 4.3.2 updateTiming final
+Phase 4.3.2 updateTiming final | Checksum: ec4b27e4
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:07 . Memory (MB): peak = 1353.977 ; gain = 49.156
+
+Phase 4.3.3 Dump Critical Paths 
+Phase 4.3.3 Dump Critical Paths  | Checksum: ec4b27e4
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 1353.977 ; gain = 49.156
+
+Phase 4.3.4 Restore STA
+Phase 4.3.4 Restore STA | Checksum: ec4b27e4
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 1353.977 ; gain = 49.156
+
+Phase 4.3.5 Print Final WNS
+INFO: [Place 30-100] Post Placement Timing Summary | WNS=1.971  | TNS=0.000  |
+
+Phase 4.3.5 Print Final WNS | Checksum: ec4b27e4
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:07 . Memory (MB): peak = 1353.977 ; gain = 49.156
+Phase 4.3 Placer Reporting | Checksum: ec4b27e4
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:07 . Memory (MB): peak = 1353.977 ; gain = 49.156
+
+Phase 4.4 Final Placement Cleanup
+Phase 4.4 Final Placement Cleanup | Checksum: 1562b8919
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:07 . Memory (MB): peak = 1353.977 ; gain = 49.156
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 1562b8919
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:07 . Memory (MB): peak = 1353.977 ; gain = 49.156
+Ending Placer Task | Checksum: 1a8d6b73c
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:07 . Memory (MB): peak = 1353.977 ; gain = 49.156
+INFO: [Common 17-83] Releasing license: Implementation
+31 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:00:17 ; elapsed = 00:00:07 . Memory (MB): peak = 1353.977 ; gain = 54.152
+INFO: [Timing 38-163] DEBUG : Generate clock report | CPU: 0.18 secs 
+
+report_utilization: Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.16 . Memory (MB): peak = 1359.992 ; gain = 0.000
+INFO: [Designutils 20-134] DEBUG : Generate Control Sets report | CPU: 0.12 secs 
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.23 ; elapsed = 00:00:00.23 . Memory (MB): peak = 1359.996 ; gain = 0.000
+Command: phys_opt_design
+INFO: [Common 17-347] Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Vivado_Tcl 4-232] No setup violation found. The netlist was not modified.
+INFO: [Common 17-83] Releasing license: Implementation
+37 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.23 ; elapsed = 00:00:00.23 . Memory (MB): peak = 1359.996 ; gain = 0.000
+Command: route_design
+INFO: [Common 17-347] Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command route_design
+INFO: [Drc 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 4 CPUs
+
+Starting Route Task
+
+Phase 1 Build RT Design
+
+Phase 1.1 Build Netlist & NodeGraph (MT)
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_time_period[8]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_time_period[8]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_time_period[16]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_time_period[16]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_time_period[0]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_time_period[0]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_time_period[10]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_time_period[10]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_time_period[1]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_time_period[1]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_time_period[14]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_time_period[14]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_time_period[9]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_time_period[9]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_time_period[17]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_time_period[17]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_time_period[5]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_time_period[5]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[1]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[1]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[1]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[1]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[21]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[21]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[21]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[21]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[22]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[22]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[22]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[22]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[2]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[2]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[2]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[2]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[3]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[3]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[3]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[3]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[4]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[4]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[4]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[4]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[0]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[0]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[0]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[0]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[20]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[20]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[20]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[20]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[15]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[15]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[15]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[15]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[19]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[19]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[19]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[19]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[5]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[5]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[5]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[5]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[6]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[6]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[6]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[6]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[7]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[7]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[7]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[7]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[9]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[9]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[9]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[9]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[10]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[10]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[10]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[10]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[11]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[11]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[11]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[11]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[12]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[12]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[12]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[12]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[8]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[8]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[8]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[8]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[13]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[13]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[13]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[13]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[14]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[14]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[14]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[14]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[17]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[17]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[17]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[17]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[16]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[16]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[16]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[16]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_rfir[18]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_rfir[18]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_u_a_0_current_price[18]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_u_a_0_current_price[18]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[17]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[17]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[18]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[18]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[19]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[19]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[20]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[20]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[21]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[21]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[24]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[24]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "ap_rst" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "ap_rst". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[6]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[6]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[7]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[7]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[8]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[8]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[9]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[9]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[0]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[0]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[10]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[10]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[11]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[11]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[14]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[14]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[12]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[12]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[13]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[13]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[15]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[15]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[16]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[16]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[25]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[25]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[26]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[26]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[27]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[27]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[31]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[31]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[1]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[1]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[2]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[2]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[4]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[4]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[5]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[5]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[22]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[22]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[23]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[23]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[28]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[28]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[29]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[29]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[30]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[30]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "ap_start" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "ap_start". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_call[3]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_call[3]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_strike_price[16]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_strike_price[16]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_strike_price[26]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_strike_price[26]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_strike_price[17]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_strike_price[17]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_strike_price[29]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_strike_price[29]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_strike_price[30]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_strike_price[30]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_strike_price[6]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_strike_price[6]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_strike_price[27]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_strike_price[27]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_strike_price[31]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_strike_price[31]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_strike_price[24]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_strike_price[24]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_strike_price[25]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_strike_price[25]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "thread_arg_o_a_0_strike_price[28]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "thread_arg_o_a_0_strike_price[28]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+INFO: [Common 17-14] Message 'Route 35-198' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+Phase 1.1 Build Netlist & NodeGraph (MT) | Checksum: 1a8d6b73c
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:13 . Memory (MB): peak = 1480.500 ; gain = 120.504
+Phase 1 Build RT Design | Checksum: 19e3e9772
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:13 . Memory (MB): peak = 1480.500 ; gain = 120.504
+
+Phase 2 Router Initialization
+
+Phase 2.1 Create Timer
+Phase 2.1 Create Timer | Checksum: 19e3e9772
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:13 . Memory (MB): peak = 1480.504 ; gain = 120.508
+
+Phase 2.2 Restore Routing
+Phase 2.2 Restore Routing | Checksum: 19e3e9772
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:13 . Memory (MB): peak = 1488.500 ; gain = 128.504
+
+Phase 2.3 Special Net Routing
+ Number of Nodes with overlaps = 0
+Phase 2.3 Special Net Routing | Checksum: 667bb02b
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:13 . Memory (MB): peak = 1490.500 ; gain = 130.504
+
+Phase 2.4 Local Clock Net Routing
+Phase 2.4 Local Clock Net Routing | Checksum: 667bb02b
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:13 . Memory (MB): peak = 1490.500 ; gain = 130.504
+
+Phase 2.5 Update Timing
+
+Phase 2.5.1 Update timing with NCN CRPR
+
+Phase 2.5.1.1 Hold Budgeting
+Phase 2.5.1.1 Hold Budgeting | Checksum: 667bb02b
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:13 . Memory (MB): peak = 1491.500 ; gain = 131.504
+Phase 2.5.1 Update timing with NCN CRPR | Checksum: 667bb02b
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:13 . Memory (MB): peak = 1491.500 ; gain = 131.504
+Phase 2.5 Update Timing | Checksum: 667bb02b
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:13 . Memory (MB): peak = 1491.500 ; gain = 131.504
+INFO: [Route 35-57] Estimated Timing Summary | WNS=2.04   | TNS=0      | WHS=-0.163 | THS=-11.8  |
+
+
+Phase 2.6 Budgeting
+Phase 2.6 Budgeting | Checksum: 667bb02b
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:14 . Memory (MB): peak = 1492.500 ; gain = 132.504
+Phase 2 Router Initialization | Checksum: 667bb02b
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:14 . Memory (MB): peak = 1492.500 ; gain = 132.504
+
+Phase 3 Initial Routing
+Phase 3 Initial Routing | Checksum: 49bcab03
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:14 . Memory (MB): peak = 1497.500 ; gain = 137.504
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+
+Phase 4.1.1 Remove Overlaps
+ Number of Nodes with overlaps = 296
+ Number of Nodes with overlaps = 4
+ Number of Nodes with overlaps = 0
+Phase 4.1.1 Remove Overlaps | Checksum: be2ce0a7
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:14 . Memory (MB): peak = 1497.500 ; gain = 137.504
+
+Phase 4.1.2 Update Timing
+Phase 4.1.2 Update Timing | Checksum: be2ce0a7
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:14 . Memory (MB): peak = 1499.500 ; gain = 139.504
+INFO: [Route 35-57] Estimated Timing Summary | WNS=1.52   | TNS=0      | WHS=N/A    | THS=N/A    |
+
+
+Phase 4.1.3 collectNewHoldAndFix
+Phase 4.1.3 collectNewHoldAndFix | Checksum: 1177432e7
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:14 . Memory (MB): peak = 1499.500 ; gain = 139.504
+Phase 4.1 Global Iteration 0 | Checksum: 1177432e7
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:14 . Memory (MB): peak = 1499.500 ; gain = 139.504
+Phase 4 Rip-up And Reroute | Checksum: 1177432e7
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:14 . Memory (MB): peak = 1499.500 ; gain = 139.504
+
+Phase 5 Delay CleanUp
+
+Phase 5.1 Update Timing
+Phase 5.1 Update Timing | Checksum: 1177432e7
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:14 . Memory (MB): peak = 1499.500 ; gain = 139.504
+INFO: [Route 35-57] Estimated Timing Summary | WNS=1.64   | TNS=0      | WHS=N/A    | THS=N/A    |
+
+Phase 5 Delay CleanUp | Checksum: 1177432e7
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:14 . Memory (MB): peak = 1499.500 ; gain = 139.504
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Full Hold Analysis
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 1177432e7
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:15 . Memory (MB): peak = 1499.500 ; gain = 139.504
+INFO: [Route 35-57] Estimated Timing Summary | WNS=1.64   | TNS=0      | WHS=0.096  | THS=0      |
+
+Phase 6.1 Full Hold Analysis | Checksum: 1177432e7
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:15 . Memory (MB): peak = 1499.500 ; gain = 139.504
+Phase 6 Post Hold Fix | Checksum: 1177432e7
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:15 . Memory (MB): peak = 1499.500 ; gain = 139.504
+
+Router Utilization Summary
+  Global Vertical Wire Utilization    = 0.351455 %
+  Global Horizontal Wire Utilization  = 0.48428 %
+  Total Num Pips                      = 32454
+  Number of Failed Nets               = 0
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+
+Phase 7 Verifying routed nets
+
+ Verification completed successfully
+Phase 7 Verifying routed nets | Checksum: 1177432e7
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:15 . Memory (MB): peak = 1501.500 ; gain = 141.504
+
+Phase 8 Depositing Routes
+Phase 8 Depositing Routes | Checksum: db6e79fb
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:15 . Memory (MB): peak = 1501.500 ; gain = 141.504
+
+Phase 9 Post Router Timing
+INFO: [Route 35-20] Post Routing Timing Summary | WNS=1.637  | TNS=0.000  | WHS=0.096  | THS=0.000  |
+
+INFO: [Route 35-61] The design met the timing requirement.
+Phase 9 Post Router Timing | Checksum: db6e79fb
+
+Time (s): cpu = 00:00:24 ; elapsed = 00:00:15 . Memory (MB): peak = 1501.500 ; gain = 141.504
+INFO: [Route 35-16] Router Completed Successfully
+Ending Route Task | Checksum: db6e79fb
+
+Time (s): cpu = 00:00:24 ; elapsed = 00:00:15 . Memory (MB): peak = 1501.500 ; gain = 141.504
+
+Routing Is Done.
+
+Time (s): cpu = 00:00:24 ; elapsed = 00:00:15 . Memory (MB): peak = 1501.500 ; gain = 141.504
+INFO: [Common 17-83] Releasing license: Implementation
+51 Infos, 104 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:16 . Memory (MB): peak = 1501.500 ; gain = 141.504
+INFO: [Drc 23-27] Running DRC with 8 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/vivado_activity_thread_drc_routed.rpt.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max, Constraints type: SDC.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.30 ; elapsed = 00:00:00.31 . Memory (MB): peak = 1509.512 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 25 15:30:07 2014...
+[Tue Mar 25 15:30:11 2014] impl_1 finished
+wait_on_run: Time (s): cpu = 00:00:00.25 ; elapsed = 00:00:52 . Memory (MB): peak = 1383.043 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 12 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2013.3
+INFO: [Opt 31-138] Pushed 0 inverter(s).
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp/vivado_activity_thread_early.xdc]
+WARNING: [Constraints 18-619] A clock with name 'aclk' already exists, overwriting the previous clock with the same name. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_ooc.xdc:6]
+WARNING: [Constraints 18-619] A clock with name 'aclk' already exists, overwriting the previous clock with the same name. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc:6]
+WARNING: [Constraints 18-619] A clock with name 'aclk' already exists, overwriting the previous clock with the same name. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_ooc.xdc:6]
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp/vivado_activity_thread_early.xdc]
+Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp/vivado_activity_thread.xdc]
+INFO: [Vivado 12-2286] Implicit search of objects for pattern 'ap_clk' matched to 'port' objects. [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc:1]
+Resolution: To avoid ambiguous patterns, provide proper objects using get commands e.g. [get_nets xyz].
+Finished Parsing XDC File [/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/.Xil/Vivado-20260-ganymede/dcp/vivado_activity_thread.xdc]
+Reading XDEF placement.
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.12 . Memory (MB): peak = 1460.039 ; gain = 1.000
+Restoring placement.
+Restored 513 out of 513 XDEF sites from archive | CPU: 0.330000 secs | Memory: 4.443466 MB |
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max, Constraints type: SDC.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+report_utilization: Time (s): cpu = 00:00:00.10 ; elapsed = 00:00:00.14 . Memory (MB): peak = 1501.961 ; gain = 1.000
+
+
+Implementation tool: Xilinx Vivado v.2013.3
+Device target:       xc7z020clg484-1
+Report date:         Tue Mar 25 15:30:14 GMT 2014
+
+#=== Resource usage ===
+SLICE:          501
+LUT:           1494
+FF:             847
+DSP:             12
+BRAM:             0
+SRL:              8
+#=== Final timing ===
+CP required:    10.000
+CP achieved:    8.363
+Timing met
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 25 15:30:14 2014...

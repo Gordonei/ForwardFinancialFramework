@@ -1,0 +1,24 @@
+
+****** Vivado v2013.3 (64-bit)
+  **** SW Build 329390 on Wed Oct 16 18:26:55 MDT 2013
+  **** IP Build 192953 on Wed Oct 16 08:44:02 MDT 2013
+    ** Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
+
+INFO: [Common 17-78] Attempting to get a license: Implementation
+INFO: [Common 17-81] Feature available: Implementation
+INFO: [Device 21-36] Loading parts and site information from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/arch.xml
+Parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado repository '/opt/Xilinx/2013.3/Vivado/2013.3/data/ip'.
+INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fcmp_1_no_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_fcmp_1_no_dsp'.
+INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_faddfsub_3_full_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_faddfsub_3_full_dsp'.
+INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fmul_2_max_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_fmul_2_max_dsp'.
+INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fexp_7_full_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_fexp_7_full_dsp'.
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 25 15:25:21 2014...

@@ -1,0 +1,151 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'vivado_activity_thread'" level="0">
+<item name = "Date">Tue Mar 25 15:25:13 2014
+</item>
+<item name = "Version">2013.3 (build date: Wed Oct 16 18:12:55 PM 2013)</item>
+<item name = "Project">hls_prj</item>
+<item name = "Solution">F3_VivadoHLS_core</item>
+<item name = "Product family">zynq zynq_fpv6 </item>
+<item name = "Target device">xc7z020clg484-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="default">10.00, 8.63, 1.25</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">189, 189, 190, 190, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- Loop 1">185, 185, 185, -, -, 1, no</column>
+<column name=" + Loop 1.1">173, 173, 17, -, -, 10, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="Expression">-, -, 0, 42</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">-, 12, 691, 1874</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, 230</column>
+<column name="Register">-, -, 272, -</column>
+<column name="ShiftMemory">-, -, -, -</column>
+<specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
+<specialColumn name="Utilization (%)">0, 5, ~0, 4</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1">vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp, 0, 2, 205, 390</column>
+<column name="vivado_activity_thread_fcmp_32ns_32ns_1_3_U3">vivado_activity_thread_fcmp_32ns_32ns_1_3, 0, 0, 66, 239</column>
+<column name="vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4">vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp, 0, 7, 277, 924</column>
+<column name="vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2">vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp, 0, 3, 143, 321</column>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="7">Memory, Module, BRAM_18K, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Shift register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="j_1_fu_227_p2">+, 0, 0, 4, 4, 1</column>
+<column name="o_v_0_value_fu_233_p3">Select, 0, 0, 32, 1, 32</column>
+<column name="exitcond_fu_221_p2">icmp, 0, 0, 4, 4, 4</column>
+<column name="tmp_1_fu_216_p2">xor, 0, 0, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="grp_fu_192_opcode">2, 3, 2, 6</column>
+<column name="grp_fu_192_p0">32, 5, 32, 160</column>
+<column name="grp_fu_192_p1">32, 5, 32, 160</column>
+<column name="grp_fu_198_p0">32, 3, 32, 96</column>
+<column name="grp_fu_198_p1">32, 3, 32, 96</column>
+<column name="j_reg_180">4, 2, 4, 8</column>
+<column name="temp_total_0_reg_130">32, 2, 32, 64</column>
+<column name="tmp_pn_reg_156">32, 2, 32, 64</column>
+<column name="u_v_gamma_read_assign_reg_168">32, 2, 32, 64</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="4">Name, FF, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">5, 5, 0</column>
+<column name="j_1_reg_291">4, 4, 0</column>
+<column name="j_reg_180">4, 4, 0</column>
+<column name="k_reg_143">1, 1, 0</column>
+<column name="o_v_0_value_reg_307">32, 32, 0</column>
+<column name="spot_price_0_1_reg_281">32, 32, 0</column>
+<column name="spot_price_0_reg_118">32, 32, 0</column>
+<column name="temp_total_0_reg_130">32, 32, 0</column>
+<column name="tmp_1_reg_276">1, 1, 0</column>
+<column name="tmp_i_reg_271">32, 32, 0</column>
+<column name="tmp_pn_reg_156">32, 32, 0</column>
+<column name="tmp_reg_266">1, 1, 0</column>
+<column name="u_v_0_gamma_reg_296">32, 32, 0</column>
+<column name="u_v_gamma_read_assign_reg_168">32, 32, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, vivado_activity_thread, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, vivado_activity_thread, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, vivado_activity_thread, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, vivado_activity_thread, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, vivado_activity_thread, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, vivado_activity_thread, return value</column>
+<column name="thread_arg_thread_paths">in, 32, ap_none, thread_arg_thread_paths, pointer</column>
+<column name="thread_arg_path_points">out, 32, ap_vld, thread_arg_path_points, pointer</column>
+<column name="thread_arg_path_points_ap_vld">out, 1, ap_vld, thread_arg_path_points, pointer</column>
+<column name="thread_arg_thread_result">out, 32, ap_vld, thread_arg_thread_result, pointer</column>
+<column name="thread_arg_thread_result_ap_vld">out, 1, ap_vld, thread_arg_thread_result, pointer</column>
+<column name="thread_arg_thread_result_sqrd">out, 32, ap_vld, thread_arg_thread_result_sqrd, pointer</column>
+<column name="thread_arg_thread_result_sqrd_ap_vld">out, 1, ap_vld, thread_arg_thread_result_sqrd, pointer</column>
+<column name="thread_arg_u_a_0_rfir">in, 32, ap_none, thread_arg_u_a_0_rfir, pointer</column>
+<column name="thread_arg_u_a_0_current_price">in, 32, ap_none, thread_arg_u_a_0_current_price, pointer</column>
+<column name="thread_arg_o_a_0_strike_price">in, 32, ap_none, thread_arg_o_a_0_strike_price, pointer</column>
+<column name="thread_arg_o_a_0_time_period">in, 32, ap_none, thread_arg_o_a_0_time_period, pointer</column>
+<column name="thread_arg_o_a_0_call">in, 32, ap_none, thread_arg_o_a_0_call, pointer</column>
+</table>
+</item>
+</section>
+</profile>

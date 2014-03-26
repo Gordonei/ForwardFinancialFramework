@@ -1,0 +1,63 @@
+Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2013.3 (lin64) Build 329390 Wed Oct 16 18:26:55 MDT 2013
+| Date         : Tue Mar 25 15:29:45 2014
+| Host         : ganymede running 64-bit Ubuntu 12.04.3 LTS
+| Command      : report_control_sets -verbose -file vivado_activity_thread_control_sets_placed.rpt
+| Design       : vivado_activity_thread
+| Device       : xc7z020
+---------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Flip-Flop Distribution
+3. Detailed Control Set Information
+
+1. Summary
+----------
+
++-------------------------------------------------------------------+-------+
+|                               Status                              | Count |
++-------------------------------------------------------------------+-------+
+| Number of unique control sets                                     |    10 |
+| Minimum Number of register sites lost to control set restrictions |    17 |
++-------------------------------------------------------------------+-------+
+
+
+2. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             544 |          181 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              39 |           23 |
+| Yes          | No                    | No                     |             165 |           61 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              99 |           34 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+3. Detailed Control Set Information
+-----------------------------------
+
++--------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+
+| Clock Signal |               Enable Signal               |                                                                 Set/Reset Signal                                                                | Slice Load Count | Bel Load Count |
++--------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+
+|  ap_clk      |                                           | vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/n_0_RESULT_REG.NORMAL.exp_op[7]_i_1 |                3 |              7 |
+|  ap_clk      |                                           | ap_rst                                                                                                                                          |               20 |             32 |
+|  ap_clk      | k_reg_143                                 |                                                                                                                                                 |               10 |             32 |
+|  ap_clk      | n_0_u_v_0_gamma_reg_296[31]_i_1           |                                                                                                                                                 |               11 |             32 |
+|  ap_clk      | n_0_temp_total_0_reg_130[31]_i_2          | n_0_temp_total_0_reg_130[31]_i_1                                                                                                                |               11 |             32 |
+|  ap_clk      | n_0_o_v_0_value_reg_307[31]_i_1           |                                                                                                                                                 |               13 |             32 |
+|  ap_clk      | thread_arg_path_points_ap_vld             |                                                                                                                                                 |               15 |             33 |
+|  ap_clk      | n_0_spot_price_0_1_reg_281[31]_i_1        |                                                                                                                                                 |               12 |             36 |
+|  ap_clk      | n_0_u_v_gamma_read_assign_reg_168[31]_i_2 | j_reg_1800                                                                                                                                      |               23 |             67 |
+|  ap_clk      |                                           |                                                                                                                                                 |              181 |            557 |
++--------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+
+
+

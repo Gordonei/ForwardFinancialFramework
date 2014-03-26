@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2013.4 (64-bit)
+# SW Build 353583 on Mon Dec  9 17:26:26 MST 2013
+# IP Build 208076 on Mon Dec  2 12:38:17 MST 2013
+# Start of session at: Wed Mar 12 10:22:02 2014
+# Process ID: 19839
+# Log file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/ipi_prj/ipi_prj.runs/synth_1/zynq_system_wrapper.rds
+# Journal file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/ipi_prj/ipi_prj.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source zynq_system_wrapper.tcl

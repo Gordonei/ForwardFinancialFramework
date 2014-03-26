@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--Product Version: Vivado v2013.4 (64-bit)-->
+<Project Version="6" Minor="14" Path="/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/ipi_prj/ipi_prj.xpr">
+	<FileSet Dir="sources_1" File="fileset.xml"/>
+	<FileSet Dir="constrs_1" File="fileset.xml"/>
+	<FileSet Dir="sim_1" File="fileset.xml"/>
+	<RunSet Dir="runs" File="runs.xml"/>
+	<DefaultLaunch Dir="$PRUNDIR"/>
+	<Config>
+		<Option Name="Id" Val="0c5cf02f8bbb44f796a42ac1ea4bc84b"/>
+		<Option Name="Part" Val="xc7z020clg484-1"/>
+		<Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
+		<Option Name="TargetLanguage" Val="VHDL"/>
+		<Option Name="SimulatorLanguage" Val="VHDL"/>
+		<Option Name="Board" Val="xilinx.com:zynq:zc702:1.0"/>
+		<Option Name="ActiveSimSet" Val="sim_1"/>
+	</Config>
+</Project>
+

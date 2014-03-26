@@ -1,0 +1,4 @@
+#!/bin/bash
+
+promgen -b -w -p bin -data_width 32 -u 0 $1.bit -o $1.bit.bin
+rm *.prm *.cfi
