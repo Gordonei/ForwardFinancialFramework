@@ -497,7 +497,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         temp = []
         for u in self.underlying:
             if(not(u.name in temp)):
-                compile_cmd.append(("../../MulticoreCPU/multicore_c_code/%s.c" % u.name))
+                compile_cmd.append(("%s.c" % u.name))
                 temp.append(u.name)
             
             base_list = []
@@ -506,10 +506,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
             for b in base_list:
                 if(b not in temp):
-                    compile_cmd.append(("../../MulticoreCPU/multicore_c_code/%s.c" % b))
+                    compile_cmd.append(("%s.c" % b))
                     temp.append(b)
           
-        compile_cmd.append("../../MulticoreCPU/multicore_c_code/gauss.c")
+        compile_cmd.append("gauss.c")
         for d in self.derivative:
             if(not(d.name in temp)):
                 compile_cmd.append(("%s.c" % d.name))
