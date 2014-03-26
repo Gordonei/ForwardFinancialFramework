@@ -6,7 +6,7 @@ sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Underlying
 from ForwardFinancialFramework.Derivatives import Option
 
-def run_test_solver(platform_name,fpga_option):
+def run_test_solver(platform_name,cmd_option):
   #Test Parameters  
   ##Underlying Parameters
   rfir = 0.1
@@ -24,7 +24,7 @@ def run_test_solver(platform_name,fpga_option):
   
   option = [Option.Option(underlying,time_period,call,strike_price)]
  
-  if(platform_name=="GPU"):
+  if(platform_name=="OpenCL_GPU"):
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
     platform = OpenCLGPU.OpenCLGPU()
     mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform)
@@ -34,39 +34,38 @@ def run_test_solver(platform_name,fpga_option):
     platform = MulticoreCPU.MulticoreCPU()
     mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform)
     
-  elif(platform_name=="FPGA"):
+  elif(platform_name=="Maxeler_FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
     platform = MaxelerFPGA.MaxelerFPGA()
     mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform)
+    
+  elif(platform_name=="Vivado_FPGA"):
+    from ForwardFinancialFramework.Platforms.VivadoFPGA import VivadoFPGA_MonteCarlo,VivadoFPGA
+    platform = VivadoFPGA.VivadoFPGA()
+    mc_solver = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo(option,paths,platform,simulation=True)
     
   else:
     print "incorrect platform type!"
     sys.exit()
     
-  if((platform_name=="FPGA" and fpga_option=="Compile") or (platform_name!="FPGA")):
-    mc_solver.generate()
-    compile_output = mc_solver.compile(debug=True)
-  else: compile_output = ""
+  if("Generate" in cmd_option): mc_solver.generate()
+    
+  compile_output = ""
+  if("Compile" in cmd_option): compile_output = mc_solver.compile(debug=True)
   
-  #for c_o in compile_output:
-    #print c_o
-  
-  if ((platform_name=="FPGA" and fpga_option=="Execute") or (platform_name!="FPGA")): execution_output = mc_solver.execute(debug=True)
-    #for e_o in execution_output: print execution_output
-
-  else: execution_output = ""
+  execution_output = ""
+  if("Execute" in cmd_option): execution_output = mc_solver.execute(debug=True)
   
   return (compile_output,execution_output)
   
-if( __name__ == '__main__' and len(sys.argv)>1):
+if( __name__ == '__main__' and len(sys.argv)>2):
   platform_name = sys.argv[1]
-  fpga_option = ""
-  if(platform_name=="FPGA"): fpga_option = sys.argv[2]
+  cmd_options = sys.argv[2:]
   
-  result = run_test_solver(platform_name,fpga_option)
+  result = run_test_solver(platform_name,cmd_options)
   
-  print result[0]
-  print result[1]  
+  print "Compile Output:\n %s\n"%result[0]
+  print "Execute Output:\n %s\n"%result[1]
     
 elif(__name__ == '__main__'):
-  print "usage: python mc_solver_test_script [CPU|GPU|FPGA] [Compile|Execute]"
+  print "usage: python mc_solver_test_script {CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA} [Generate] [Compile] [Execute]"
