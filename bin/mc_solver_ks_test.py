@@ -8,22 +8,25 @@ import KS_ProblemSet
 def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=0):  
   option = KS_ProblemSet.KS_Options(options)
  
-  if(platform_name=="GPU"):
+  if(platform_name=="OpenCL_GPU"):
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
-    if(threads): platform = OpenCLGPU.OpenCLGPU(threads=threads)
-    else: platform = OpenCLGPU.OpenCLGPU()
-    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform,random_number_generator="taus_boxmuller") #,reduce_underlyings=False
+    platform = OpenCLGPU.OpenCLGPU()
+    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform)
     
   elif(platform_name=="CPU"):
     from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
-    if(threads): platform = MulticoreCPU.MulticoreCPU(threads=threads)
-    else: platform = MulticoreCPU.MulticoreCPU()
-    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform,random_number_generator="taus_boxmuller",floating_point_format="float")
+    platform = MulticoreCPU.MulticoreCPU()
+    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform)
     
-  elif(platform_name=="FPGA"):
+  elif(platform_name=="Maxeler_FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
-    platform = MaxelerFPGA.MaxelerFPGA(instances=1)
+    platform = MaxelerFPGA.MaxelerFPGA()
     mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform)
+    
+  elif(platform_name=="Vivado_FPGA"):
+    from ForwardFinancialFramework.Platforms.VivadoFPGA import VivadoFPGA_MonteCarlo,VivadoFPGA
+    platform = VivadoFPGA.VivadoFPGA()
+    mc_solver = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo(option,paths,platform,simulation=True)
     
   else:
     print "incorrect platform type!"
@@ -36,7 +39,7 @@ def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=
   
   execution_output=[""]
   if (platform_name=="FPGA" and "Execute" in script_option): mc_solver.dummy_run() #Make sure the FPGA is clear
-  if (("Execute" in script_option) or (platform_name!="FPGA")): execution_output = mc_solver.execute(debug=debug)
+  if ("Execute" in script_option): execution_output = mc_solver.execute(debug=debug)
   
  
   execution_output_dict = {}
@@ -71,4 +74,4 @@ if(__name__ == '__main__' and len(sys.argv)>3):
     print "Latency: %s uS (%s uS Setup Time + %s uS Activity Time)"%(results[1]["Total time"],results[1]["User time"],results[1]["Kernel time"])
     
 elif(__name__ == '__main__'):
-  print "usage: python mc_solver_ks_test_script [CPU|GPU|FPGA] [Generate|&Compile|&Execute] [Number of Paths] [KS Option Number 1] [KS Option Number 2] [...] [KS Option Number N]"
+  print "usage: python mc_solver_ks_test_script [CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA] [Generate|&Compile|&Execute] [Number of Paths] [KS Option Number 1] [KS Option Number 2] [...] [KS Option Number N]"

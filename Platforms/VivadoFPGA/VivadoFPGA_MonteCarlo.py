@@ -8,7 +8,7 @@ import VivadoFPGA
 
 class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   c_slow = False
-  pipelining = False
+  pipelining = 1
   
   def __init__(self,derivative,paths,platform,points=4096,reduce_underlyings=True,random_number_generator="taus_boxmuller",floating_point_format="float",c_slow=False,pipelining=1,simulation=False):
     self.pipelining = pipelining
@@ -110,6 +110,11 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     return output_list
     
+
+  def generate_tcl_script(self): pass
+    
+  def generate_directives(self): pass
+  
 
   def generate_kernel(self):
     output_list = []
