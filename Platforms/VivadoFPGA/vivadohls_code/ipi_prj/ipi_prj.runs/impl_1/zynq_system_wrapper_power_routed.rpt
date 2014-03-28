@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date             : Wed Mar 12 10:25:47 2014
+| Date             : Fri Mar 28 11:41:37 2014
 | Host             : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command          : report_power -file zynq_system_wrapper_power_routed.rpt -pb zynq_system_wrapper_power_summary_routed.pb
 | Design           : zynq_system_wrapper
@@ -51,14 +51,14 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.004 |        2 |       --- |             --- |
-| Slice Logic             |    <0.001 |     4575 |       --- |             --- |
-|   LUT as Logic          |    <0.001 |     2026 |     53200 |            3.80 |
-|   Register              |    <0.001 |     1602 |    106400 |            1.50 |
-|   CARRY4                |    <0.001 |       60 |     13300 |            0.45 |
-|   F7/F8 Muxes           |    <0.001 |      220 |     53200 |            0.41 |
-|   LUT as Shift Register |    <0.001 |       71 |     17400 |            0.40 |
+| Slice Logic             |    <0.001 |     4459 |       --- |             --- |
+|   LUT as Logic          |    <0.001 |     2008 |     53200 |            3.77 |
+|   Register              |    <0.001 |     1613 |    106400 |            1.51 |
+|   CARRY4                |    <0.001 |       64 |     13300 |            0.48 |
+|   LUT as Shift Register |    <0.001 |       69 |     17400 |            0.39 |
+|   F7/F8 Muxes           |    <0.001 |      194 |     53200 |            0.36 |
 |   Others                |     0.000 |      194 |       --- |             --- |
-| Signals                 |    <0.001 |     3449 |       --- |             --- |
+| Signals                 |     0.001 |     3440 |       --- |             --- |
 | DSPs                    |    <0.001 |       12 |       220 |            5.45 |
 | PS7                     |     1.343 |        1 |       --- |             --- |
 | Static Power            |     0.145 |          |           |                 |
@@ -72,7 +72,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.021 |       0.007 |      0.014 |
+| Vccint    |       1.000 |     0.020 |       0.007 |      0.014 |
 | Vccaux    |       1.800 |     0.020 |       0.000 |      0.020 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -163,7 +163,7 @@ Table of Contents
 |       inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth         |    <0.001 |
 |         EXP_OP.OP/i_calculate_e2A                                                                                                                         |    <0.001 |
 |         EXP_OP.OP/i_calculate_e2zmzm1                                                                                                                     |    <0.001 |
-|       inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth           |     0.002 |
+|       inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth           |     0.001 |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
 
 

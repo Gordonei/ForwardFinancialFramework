@@ -25,9 +25,9 @@ void heston_underlying_underlying_init(FP_t r,FP_t p,FP_t i_v,FP_t v_v,FP_t rh,F
 void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
 	u_v->gamma = 0.0;
 	u_v->time = 0.0;
-	u_v->volatility = sqrt(u_a->initial_volatility);
+	u_v->volatility = sqrt(u_a->initial_volatility,0.5);
 	
-	#if (defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT))
+	#if ((defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT)) && !(defined(VIVADOHLS)))
 	//(u_v->rng_state).s1 = 2; //this is done in the kernel proper now
 	//(u_v->rng_state).s2 = 8;
 	//(u_v->rng_state).s3 = 16 + ((unsigned int) clock());

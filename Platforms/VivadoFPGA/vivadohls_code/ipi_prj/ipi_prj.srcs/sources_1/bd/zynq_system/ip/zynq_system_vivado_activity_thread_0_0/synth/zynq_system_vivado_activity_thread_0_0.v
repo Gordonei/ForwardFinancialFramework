@@ -48,12 +48,26 @@
 
 
 // IP VLNV: imperial:F3:vivado_activity_thread:1.0
-// IP Revision: 1403120945
+// IP Revision: 1403281122
 
 (* X_CORE_INFO = "vivado_activity_thread_top,Vivado 2013.4" *)
 (* CHECK_LICENSE_TYPE = "zynq_system_vivado_activity_thread_0_0,vivado_activity_thread_top,{}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module zynq_system_vivado_activity_thread_0_0 (
+  result_0_Clk_A,
+  result_0_Rst_A,
+  result_0_EN_A,
+  result_0_WEN_A,
+  result_0_Addr_A,
+  result_0_Dout_A,
+  result_0_Din_A,
+  result_sqrd_0_Clk_A,
+  result_sqrd_0_Rst_A,
+  result_sqrd_0_EN_A,
+  result_sqrd_0_WEN_A,
+  result_sqrd_0_Addr_A,
+  result_sqrd_0_Dout_A,
+  result_sqrd_0_Din_A,
   s_axi_CORE_IO_AWADDR,
   s_axi_CORE_IO_AWVALID,
   s_axi_CORE_IO_AWREADY,
@@ -76,6 +90,34 @@ module zynq_system_vivado_activity_thread_0_0 (
   aresetn
 );
 
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_0_PORTA CLK" *)
+output wire result_0_Clk_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_0_PORTA RST" *)
+output wire result_0_Rst_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_0_PORTA EN" *)
+output wire result_0_EN_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_0_PORTA WE" *)
+output wire [3 : 0] result_0_WEN_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_0_PORTA ADDR" *)
+output wire [31 : 0] result_0_Addr_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_0_PORTA DIN" *)
+output wire [31 : 0] result_0_Dout_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_0_PORTA DOUT" *)
+input wire [31 : 0] result_0_Din_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA CLK" *)
+output wire result_sqrd_0_Clk_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA RST" *)
+output wire result_sqrd_0_Rst_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA EN" *)
+output wire result_sqrd_0_EN_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA WE" *)
+output wire [3 : 0] result_sqrd_0_WEN_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA ADDR" *)
+output wire [31 : 0] result_sqrd_0_Addr_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA DIN" *)
+output wire [31 : 0] result_sqrd_0_Dout_A;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA DOUT" *)
+input wire [31 : 0] result_sqrd_0_Din_A;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWADDR" *)
 input wire [6 : 0] s_axi_CORE_IO_AWADDR;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWVALID" *)
@@ -121,6 +163,20 @@ input wire aresetn;
     .C_S_AXI_CORE_IO_ADDR_WIDTH(7),
     .C_S_AXI_CORE_IO_DATA_WIDTH(32)
   ) inst (
+    .result_0_Clk_A(result_0_Clk_A),
+    .result_0_Rst_A(result_0_Rst_A),
+    .result_0_EN_A(result_0_EN_A),
+    .result_0_WEN_A(result_0_WEN_A),
+    .result_0_Addr_A(result_0_Addr_A),
+    .result_0_Dout_A(result_0_Dout_A),
+    .result_0_Din_A(result_0_Din_A),
+    .result_sqrd_0_Clk_A(result_sqrd_0_Clk_A),
+    .result_sqrd_0_Rst_A(result_sqrd_0_Rst_A),
+    .result_sqrd_0_EN_A(result_sqrd_0_EN_A),
+    .result_sqrd_0_WEN_A(result_sqrd_0_WEN_A),
+    .result_sqrd_0_Addr_A(result_sqrd_0_Addr_A),
+    .result_sqrd_0_Dout_A(result_sqrd_0_Dout_A),
+    .result_sqrd_0_Din_A(result_sqrd_0_Din_A),
     .s_axi_CORE_IO_AWADDR(s_axi_CORE_IO_AWADDR),
     .s_axi_CORE_IO_AWVALID(s_axi_CORE_IO_AWVALID),
     .s_axi_CORE_IO_AWREADY(s_axi_CORE_IO_AWREADY),

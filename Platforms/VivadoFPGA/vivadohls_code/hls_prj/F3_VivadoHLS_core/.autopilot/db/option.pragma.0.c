@@ -11,14 +11,14 @@
 
 
 
-#1 "/opt/Xilinx/2013.3/Vivado_HLS/2013.3/common/technology/autopilot/etc/autopilot_ssdm_op.h" 1
+#1 "/mnt/cas_nfs/applications/Xilinx/Vivado_HLS/2013.4/common/technology/autopilot/etc/autopilot_ssdm_op.h" 1
 /* autopilot_ssdm_op.h*/
 /*
  * Copyright (C) 2013 XILINX, Inc. 
  *
  * $Id$
  */
-#238 "/opt/Xilinx/2013.3/Vivado_HLS/2013.3/common/technology/autopilot/etc/autopilot_ssdm_op.h"
+#238 "/mnt/cas_nfs/applications/Xilinx/Vivado_HLS/2013.4/common/technology/autopilot/etc/autopilot_ssdm_op.h"
 /*#define AP_SPEC_ATTR __attribute__ ((pure))*/
 
 
@@ -216,9 +216,9 @@ void option_derivative_path(float price,float time,option_variables* o_v,option_
 
 void option_derivative_payoff(float end_price,option_variables* o_v,option_attributes* o_a){
  if((o_a->call)){
-  o_v->value = end_price-o_a->strike_price;
+  o_v->value = end_price - o_a->strike_price;
  }
  else{
-  o_v->value = o_a->strike_price-end_price;
+  o_v->value = o_a->strike_price - end_price;
  }
 }

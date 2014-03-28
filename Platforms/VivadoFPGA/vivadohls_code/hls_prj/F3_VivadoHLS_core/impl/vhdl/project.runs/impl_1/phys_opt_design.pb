@@ -5,7 +5,7 @@ K
 phys_opt_design2default:defaultZ4-113
 š
 @Attempting to get a license for feature '%s' and/or device '%s'
-308*common2"
+308*common2"
 Implementation2default:default2
 xc7z0202default:defaultZ17-347
 Š
@@ -22,7 +22,7 @@ Q
 ½
 G%s Infos, %s Warnings, %s Critical Warnings and %s Errors encountered.
 28*	vivadotcl2
-372default:default2
+332default:default2
 42default:default2
 02default:default2
 02default:defaultZ4-41
@@ -43,9 +43,9 @@ A
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2)
 Write XDEF Complete: 2default:default2
-00:00:00.232default:default2
-00:00:00.232default:default2
-1359.9962default:default2
+00:00:00.402default:default2
+00:00:00.552default:default2
+1464.2032default:default2
 0.0002default:defaultZ17-268
 
 

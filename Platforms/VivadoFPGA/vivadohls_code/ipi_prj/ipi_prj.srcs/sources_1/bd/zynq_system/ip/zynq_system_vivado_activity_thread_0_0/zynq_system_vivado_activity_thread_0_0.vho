@@ -47,13 +47,27 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: imperial:F3:vivado_activity_thread:1.0
--- IP Revision: 1403120945
+-- IP Revision: 1403281122
 
 -- The following code must appear in the VHDL architecture header.
 
 ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
 COMPONENT zynq_system_vivado_activity_thread_0_0
   PORT (
+    result_0_Clk_A : OUT STD_LOGIC;
+    result_0_Rst_A : OUT STD_LOGIC;
+    result_0_EN_A : OUT STD_LOGIC;
+    result_0_WEN_A : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    result_0_Addr_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    result_0_Dout_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    result_0_Din_A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    result_sqrd_0_Clk_A : OUT STD_LOGIC;
+    result_sqrd_0_Rst_A : OUT STD_LOGIC;
+    result_sqrd_0_EN_A : OUT STD_LOGIC;
+    result_sqrd_0_WEN_A : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    result_sqrd_0_Addr_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    result_sqrd_0_Dout_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    result_sqrd_0_Din_A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
     s_axi_CORE_IO_AWADDR : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
     s_axi_CORE_IO_AWVALID : IN STD_LOGIC;
     s_axi_CORE_IO_AWREADY : OUT STD_LOGIC;
@@ -79,7 +93,7 @@ END COMPONENT;
 ATTRIBUTE SYN_BLACK_BOX : BOOLEAN;
 ATTRIBUTE SYN_BLACK_BOX OF zynq_system_vivado_activity_thread_0_0 : COMPONENT IS TRUE;
 ATTRIBUTE BLACK_BOX_PAD_PIN : STRING;
-ATTRIBUTE BLACK_BOX_PAD_PIN OF zynq_system_vivado_activity_thread_0_0 : COMPONENT IS "s_axi_CORE_IO_AWADDR[6:0],s_axi_CORE_IO_AWVALID,s_axi_CORE_IO_AWREADY,s_axi_CORE_IO_WDATA[31:0],s_axi_CORE_IO_WSTRB[3:0],s_axi_CORE_IO_WVALID,s_axi_CORE_IO_WREADY,s_axi_CORE_IO_BRESP[1:0],s_axi_CORE_IO_BVALID,s_axi_CORE_IO_BREADY,s_axi_CORE_IO_ARADDR[6:0],s_axi_CORE_IO_ARVALID,s_axi_CORE_IO_ARREADY,s_axi_CORE_IO_RDATA[31:0],s_axi_CORE_IO_RRESP[1:0],s_axi_CORE_IO_RVALID,s_axi_CORE_IO_RREADY,interrupt,aclk,aresetn";
+ATTRIBUTE BLACK_BOX_PAD_PIN OF zynq_system_vivado_activity_thread_0_0 : COMPONENT IS "result_0_Clk_A,result_0_Rst_A,result_0_EN_A,result_0_WEN_A[3:0],result_0_Addr_A[31:0],result_0_Dout_A[31:0],result_0_Din_A[31:0],result_sqrd_0_Clk_A,result_sqrd_0_Rst_A,result_sqrd_0_EN_A,result_sqrd_0_WEN_A[3:0],result_sqrd_0_Addr_A[31:0],result_sqrd_0_Dout_A[31:0],result_sqrd_0_Din_A[31:0],s_axi_CORE_IO_AWADDR[6:0],s_axi_CORE_IO_AWVALID,s_axi_CORE_IO_AWREADY,s_axi_CORE_IO_WDATA[31:0],s_axi_CORE_IO_WSTRB[3:0],s_axi_CORE_IO_WVALID,s_axi_CORE_IO_WREADY,s_axi_CORE_IO_BRESP[1:0],s_axi_CORE_IO_BVALID,s_axi_CORE_IO_BREADY,s_axi_CORE_IO_ARADDR[6:0],s_axi_CORE_IO_ARVALID,s_axi_CORE_IO_ARREADY,s_axi_CORE_IO_RDATA[31:0],s_axi_CORE_IO_RRESP[1:0],s_axi_CORE_IO_RVALID,s_axi_CORE_IO_RREADY,interrupt,aclk,aresetn";
 
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
 
@@ -89,6 +103,20 @@ ATTRIBUTE BLACK_BOX_PAD_PIN OF zynq_system_vivado_activity_thread_0_0 : COMPONEN
 ------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
 your_instance_name : zynq_system_vivado_activity_thread_0_0
   PORT MAP (
+    result_0_Clk_A => result_0_Clk_A,
+    result_0_Rst_A => result_0_Rst_A,
+    result_0_EN_A => result_0_EN_A,
+    result_0_WEN_A => result_0_WEN_A,
+    result_0_Addr_A => result_0_Addr_A,
+    result_0_Dout_A => result_0_Dout_A,
+    result_0_Din_A => result_0_Din_A,
+    result_sqrd_0_Clk_A => result_sqrd_0_Clk_A,
+    result_sqrd_0_Rst_A => result_sqrd_0_Rst_A,
+    result_sqrd_0_EN_A => result_sqrd_0_EN_A,
+    result_sqrd_0_WEN_A => result_sqrd_0_WEN_A,
+    result_sqrd_0_Addr_A => result_sqrd_0_Addr_A,
+    result_sqrd_0_Dout_A => result_sqrd_0_Dout_A,
+    result_sqrd_0_Din_A => result_sqrd_0_Din_A,
     s_axi_CORE_IO_AWADDR => s_axi_CORE_IO_AWADDR,
     s_axi_CORE_IO_AWVALID => s_axi_CORE_IO_AWVALID,
     s_axi_CORE_IO_AWREADY => s_axi_CORE_IO_AWREADY,

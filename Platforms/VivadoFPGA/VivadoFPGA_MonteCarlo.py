@@ -60,7 +60,6 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  
         output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
     
-    
     for index,d in enumerate(self.derivative):
         output_list.append("%s_derivative_path_init(&o_v_%d,&o_a_%d);" % (d.name,index,index))
     
@@ -73,7 +72,8 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     for index,d in enumerate(self.derivative):
         output_list.append("kernel_arg->o_a_%d = o_a_%d;" % (index,index))
-        output_list.append("for(i=0;i<PATHS;++i) kernel_arg->o_v_%d[i] = o_v_%d ;"% (index,index))
+        output_list.append("kernel_arg->o_v_%d = o_v_%d ;"% (index,index))
+	#output_list.append("for(i=0;i<PATHS;++i) kernel_arg->o_v_%d[i] = o_v_%d ;"% (index,index))
         
     #Create the loop
     output_list.append("//**Batching Loop**")
@@ -81,11 +81,15 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,d in enumerate(self.derivative):
       output_list.append("FP_t temp_value_%d = 0.0;"%index)
       output_list.append("FP_t temp_value_sqrd_%d = 0.0;"%index)
+      output_list.append("FP_t kernel_value_%d[PATHS];"%index)
+      output_list.append("FP_t kernel_value_sqrd_%d[PATHS];"%index)
     output_list.append("for(i=0;i<chunks;++i){")
     
     #Call the function
     if(self.simulation):
-      output_list.append("vivado_activity_thread(kernel_arg);"%self.name)
+      output_list.append("vivado_activity_thread(kernel_arg")
+      for index,d in enumerate(self.derivative): output_list[-1] = "%s,kernel_value_%d,kernel_value_sqrd_%d"%(output_list[-1],index,index)
+      output_list[-1] = "%s);"%output_list[-1]
       
     else:
       pass
@@ -94,10 +98,8 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//***Aggregating the result**")
     output_list.append("for(j=0;j<PATHS;++j){")
     for index,d in enumerate(self.derivative):
-      #output_list.append("temp_value_%d += (*kernel_arg).kernel_result[%d*PATHS + j];"%(index,index))
-      output_list.append("temp_value_%d += ((*kernel_arg).o_v_%d[%d*PATHS + j]).value;"%(index,index,index))
-      #output_list.append("temp_value_sqrd_%d += (*kernel_arg).kernel_result_sqrd)[%d*PATHS + j];"%(index,index))
-      output_list.append("temp_value_sqrd_%d += pow(((*kernel_arg).o_v_%d[%d*PATHS + j]).value,2);"%(index,index,index))
+      output_list.append("temp_value_%d += kernel_value_%d[j];"%(index,index))
+      output_list.append("temp_value_sqrd_%d += kernel_value_sqrd_%d[j];"%(index,index))
       
     output_list.append("}") #end of reduction loop
     
@@ -113,7 +115,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return output_list
     
 
-  def compile(self,overide=True,compile_options=[],debug=False):
+def compile(self,overide=True,compile_options=[],debug=False):
     result = []
     
     if(self.simulation): 
@@ -132,14 +134,20 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   def generate_kernel(self):
     output_list = []
     output_list.append("//*Vivado HLS Kernel Function*")
-    output_list.append("void vivado_activity_thread(void* void_kernel_arg){"%self.name)
-  
+
+    output_list.append("void vivado_activity_thread(kernel_data* kernel_arg")
+    for index,d in enumerate(self.derivative): output_list[-1] = "%s,FP_t result_%d[PATHS],FP_t result_sqrd_%d[PATHS]" % (output_list[-1],index,index)
+    output_list[-1] = "%s){"%output_list[-1]
+    
+    output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_arg metadata=\"-bus_bundle CORE_IO\"")
+    output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata=\"-bus_bundle CORE_IO\"")
+    
     if(self.simulation):
       output_list.append("#define expf exp")
       output_list.append("#define powf pow")
     
     output_list.append("//**Initialising Kernel Variables*")
-    output_list.append("kernel_data * kernel_arg = (kernel_data*) void_kernel_arg;")
+    #output_list.append("kernel_data * kernel_arg = (kernel_data*) void_kernel_arg;")
     output_list.append("unsigned int p,pp;")
     
     for index,u in enumerate(self.underlying): output_list.append("FP_t spot_price_%d,time_%d;"%(index,index))
@@ -148,29 +156,29 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("FP_t delta_time_%d = kernel_arg->o_a_%d.time_period/PATH_POINTS;"%(index,index))
     
     output_list.append("//**Thread Calculation Loop**")
-    output_list.append("for(p=0;p<PATHS;++p){")
+    output_list.append("PATHSET_LOOP: for(p=0;p<PATHS;++p){")
     
     output_list.append("//**Initiating the Path**")
     for index,u in enumerate(self.underlying): 
       output_list.append("%s_underlying_path_init(&kernel_arg->u_v_%d,&kernel_arg->u_a_%d);" % (u.name,index,index))
-      output_list.append("spot_price_%d = kernel_arg->u_a_%d.current_price*expf(kernel_arg->u_v_%d.gamma);"%(index,index,index))
+      output_list.append("spot_price_%d = kernel_arg->u_a_%d.current_price*exp(kernel_arg->u_v_%d.gamma);"%(index,index,index))
       output_list.append("time_%d = kernel_arg->u_v_%d.time;"%(index,index))
     
-    for index,d in enumerate(self.derivative): output_list.append("%s_derivative_path_init(&kernel_arg->o_v_%d[p],&kernel_arg->o_a_%d);" % (d.name,index,index))
+    for index,d in enumerate(self.derivative): output_list.append("%s_derivative_path_init(&kernel_arg->o_v_%d,&kernel_arg->o_a_%d);" % (d.name,index,index))
     
     output_list.append("//**Running the path**")
-    output_list.append("for(pp=0;pp<(PATH_POINTS);++pp){")
+    output_list.append("PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){")
     
     temp_underlying = self.underlying[:]
     for index,d in enumerate(self.derivative):
       for u in d.underlying: #Calling derivative and underlying path functions
 	u_index = self.underlying.index(u)
-	output_list.append("%s_derivative_path(spot_price_%d,time_%d,&kernel_arg->o_v_%d[p],&kernel_arg->o_a_%d);" % (d.name,u_index,u_index,index,index))
+	output_list.append("%s_derivative_path(spot_price_%d,time_%d,&kernel_arg->o_v_%d,&kernel_arg->o_a_%d);" % (d.name,u_index,u_index,index,index))
 	
 	if(u in temp_underlying):
 	  output_list.append("%s_underlying_path(delta_time_%d,&kernel_arg->u_v_%d,&kernel_arg->u_a_%d);" % (u.name,index,u_index,u_index))
 	  temp_underlying.remove(u)
-	  output_list.append("spot_price_%d = kernel_arg->u_a_%d.current_price*expf(kernel_arg->u_v_%d.gamma);"%(u_index,u_index,u_index))
+	  output_list.append("spot_price_%d = kernel_arg->u_a_%d.current_price*exp(kernel_arg->u_v_%d.gamma);"%(u_index,u_index,u_index))
 	  output_list.append("time_%d = kernel_arg->u_v_%d.time;"%(u_index,u_index))
      
     output_list.append("}") #End of the path
@@ -178,9 +186,11 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**Calculating payoff(s)**")
     for index,d in enumerate(self.derivative):
       for u_index,u in enumerate(d.underlying):
-	output_list.append("%s_derivative_payoff(spot_price_%d,&kernel_arg->o_v_%d[p],&kernel_arg->o_a_%d);"%(d.name,u_index,index,index))
+	output_list.append("%s_derivative_payoff(spot_price_%d,&kernel_arg->o_v_%d,&kernel_arg->o_a_%d);"%(d.name,u_index,index,index))
 	
-      #output_list.append("//**Returning Result**")
+      output_list.append("//**Returning Result**")
+      output_list.append("result_%d[p] = kernel_arg->o_v_%d.value;"% (index,index))
+      output_list.append("result_sqrd_%d[p] = kernel_arg->o_v_%d.value*kernel_arg->o_v_%d.value;"%(index,index))
       #output_list.append("(*kernel_arg).kernel_result[%d*PATHS+p] = (*kernel_arg).o_v_%d.value;"%(index,index))
       #output_list.append("(*kernel_arg).kernel_result[%d*PATHS+p] = powf((*kernel_arg).o_v_%d.value,2);"%(index,index))
     
@@ -192,7 +202,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
   def generate_variable_declaration(self):
     output_list = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate_variable_declaration(self)
-    output_list.append("typedef struct kernel_data{")
+    output_list.append("typedef struct{")
     #output_list.append("int paths;")
     #output_list.append("int points;")
     
@@ -202,11 +212,11 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     for index,d in enumerate(self.derivative):
         output_list.append("%s_attributes o_a_%d;" % (d.name,index))
-        output_list.append("%s_variables o_v_%d[%d*PATHS];" % (d.name,index,len(self.derivative)))
+        output_list.append("%s_variables o_v_%d;" % (d.name,index))
         
     #output_list.append("FP_t kernel_result [%d*PATHS];"%len(self.derivative))
     #output_list.append("FP_t kernel_result_sqrd [%d*PATHS];"%len(self.derivative))
-    output_list.append("};")
+    output_list.append("} kernel_data;")
     
     return output_list
   

@@ -3,3 +3,4 @@
 # to match the target frequencies. 
 # This constraints file is not used in normal top-down synthesis (the default flow of Vivado)
 create_clock -name aclk -period 10.000000 [get_ports aclk]
+

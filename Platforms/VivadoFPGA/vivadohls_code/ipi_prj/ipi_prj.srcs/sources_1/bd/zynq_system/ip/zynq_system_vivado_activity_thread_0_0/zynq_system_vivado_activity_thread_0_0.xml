@@ -8,6 +8,170 @@
 	<spirit:version>1.0</spirit:version>
 	<spirit:busInterfaces>
 		<spirit:busInterface>
+			<spirit:name>result_0_PORTA</spirit:name>
+			<spirit:busType spirit:vendor="xilinx.com"
+					spirit:library="interface"
+					spirit:name="bram"
+					spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="xilinx.com"
+					spirit:library="interface"
+					spirit:name="bram_rtl"
+					spirit:version="1.0"/>
+			<spirit:master/>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CLK</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_0_Clk_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RST</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_0_Rst_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>EN</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_0_EN_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>WE</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_0_WEN_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ADDR</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_0_Addr_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DIN</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_0_Dout_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DOUT</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_0_Din_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:parameters>
+				<spirit:parameter>
+					<spirit:name>MEM_WIDTH</spirit:name>
+					<spirit:value spirit:resolve="immediate"
+							spirit:id="BUSIFPARAM_VALUE.RESULT_0_PORTA.MEM_WIDTH">32</spirit:value>
+				</spirit:parameter>
+				<spirit:parameter>
+					<spirit:name>MEM_SIZE</spirit:name>
+					<spirit:value spirit:resolve="immediate"
+							spirit:id="BUSIFPARAM_VALUE.RESULT_0_PORTA.MEM_SIZE">4096</spirit:value>
+				</spirit:parameter>
+			</spirit:parameters>
+		</spirit:busInterface>
+		<spirit:busInterface>
+			<spirit:name>result_sqrd_0_PORTA</spirit:name>
+			<spirit:busType spirit:vendor="xilinx.com"
+					spirit:library="interface"
+					spirit:name="bram"
+					spirit:version="1.0"/>
+			<spirit:abstractionType spirit:vendor="xilinx.com"
+					spirit:library="interface"
+					spirit:name="bram_rtl"
+					spirit:version="1.0"/>
+			<spirit:master/>
+			<spirit:portMaps>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>CLK</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_sqrd_0_Clk_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>RST</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_sqrd_0_Rst_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>EN</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_sqrd_0_EN_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>WE</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_sqrd_0_WEN_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>ADDR</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_sqrd_0_Addr_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DIN</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_sqrd_0_Dout_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+				<spirit:portMap>
+					<spirit:logicalPort>
+						<spirit:name>DOUT</spirit:name>
+					</spirit:logicalPort>
+					<spirit:physicalPort>
+						<spirit:name>result_sqrd_0_Din_A</spirit:name>
+					</spirit:physicalPort>
+				</spirit:portMap>
+			</spirit:portMaps>
+			<spirit:parameters>
+				<spirit:parameter>
+					<spirit:name>MEM_WIDTH</spirit:name>
+					<spirit:value spirit:resolve="immediate"
+							spirit:id="BUSIFPARAM_VALUE.RESULT_SQRD_0_PORTA.MEM_WIDTH">32</spirit:value>
+				</spirit:parameter>
+				<spirit:parameter>
+					<spirit:name>MEM_SIZE</spirit:name>
+					<spirit:value spirit:resolve="immediate"
+							spirit:id="BUSIFPARAM_VALUE.RESULT_SQRD_0_PORTA.MEM_SIZE">4096</spirit:value>
+				</spirit:parameter>
+			</spirit:parameters>
+		</spirit:busInterface>
+		<spirit:busInterface>
 			<spirit:name>S_AXI_CORE_IO</spirit:name>
 			<spirit:busType spirit:vendor="xilinx.com"
 					spirit:library="interface"
@@ -313,7 +477,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>1895038736</spirit:value>
+						<spirit:value>2394019415</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -321,7 +485,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 10:21:58 UTC 2014</spirit:value>
+						<spirit:value>Fri Mar 28 11:39:54 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -340,7 +504,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>1895038736</spirit:value>
+						<spirit:value>2394019415</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -348,7 +512,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 10:21:59 UTC 2014</spirit:value>
+						<spirit:value>Fri Mar 28 11:40:12 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -367,7 +531,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>2414292512</spirit:value>
+						<spirit:value>1492850084</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -375,7 +539,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 10:21:59 UTC 2014</spirit:value>
+						<spirit:value>Fri Mar 28 11:40:36 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -393,7 +557,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>1895038736</spirit:value>
+						<spirit:value>2394019415</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -401,7 +565,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 10:21:59 UTC 2014</spirit:value>
+						<spirit:value>Fri Mar 28 11:40:36 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -419,7 +583,7 @@
 				<spirit:parameters>
 					<spirit:parameter>
 						<spirit:name>customizationCRC</spirit:name>
-						<spirit:value>1895038736</spirit:value>
+						<spirit:value>2394019415</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>customizationCRCversion</spirit:name>
@@ -427,7 +591,7 @@
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>GENtimestamp</spirit:name>
-						<spirit:value>Wed Mar 12 10:21:59 UTC 2014</spirit:value>
+						<spirit:value>Fri Mar 28 11:40:38 UTC 2014</spirit:value>
 					</spirit:parameter>
 					<spirit:parameter>
 						<spirit:name>StaleAtRelink</spirit:name>
@@ -437,6 +601,220 @@
 			</spirit:view>
 		</spirit:views>
 		<spirit:ports>
+			<spirit:port>
+				<spirit:name>result_0_Clk_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_0_Rst_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_0_EN_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_0_WEN_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>3</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic_vector</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_0_Addr_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic_vector</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_0_Dout_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic_vector</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_0_Din_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic_vector</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_sqrd_0_Clk_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_sqrd_0_Rst_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_sqrd_0_EN_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_sqrd_0_WEN_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>3</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic_vector</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_sqrd_0_Addr_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic_vector</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_sqrd_0_Dout_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>out</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic_vector</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
+			<spirit:port>
+				<spirit:name>result_sqrd_0_Din_A</spirit:name>
+				<spirit:wire>
+					<spirit:direction>in</spirit:direction>
+					<spirit:vector>
+						<spirit:left>31</spirit:left>
+						<spirit:right>0</spirit:right>
+					</spirit:vector>
+					<spirit:wireTypeDefs>
+						<spirit:wireTypeDef>
+							<spirit:typeName>std_logic_vector</spirit:typeName>
+							<spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+							<spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+						</spirit:wireTypeDef>
+					</spirit:wireTypeDefs>
+				</spirit:wire>
+			</spirit:port>
 			<spirit:port>
 				<spirit:name>s_axi_CORE_IO_AWADDR</spirit:name>
 				<spirit:wire>
@@ -1763,10 +2141,6 @@
 				<spirit:logicalName>floating_point_v7_0</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/verilog/vivado_activity_thread_fcmp_32ns_32ns_1_3.v</spirit:name>
-				<spirit:fileType>verilogSource</spirit:fileType>
-			</spirit:file>
-			<spirit:file>
 				<spirit:name>hdl/verilog/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
@@ -1775,11 +2149,11 @@
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/verilog/vivado_activity_thread_top.v</spirit:name>
+				<spirit:name>hdl/verilog/vivado_activity_thread_result_0_if.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/verilog/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.v</spirit:name>
+				<spirit:name>hdl/verilog/vivado_activity_thread_fcmp_32ns_32ns_1_3.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
@@ -1787,7 +2161,11 @@
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/verilog/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.v</spirit:name>
+				<spirit:name>hdl/verilog/vivado_activity_thread_top.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/verilog/vivado_activity_thread_result_sqrd_0_if.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
@@ -1795,11 +2173,15 @@
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp.vhd</spirit:name>
-				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:name>hdl/verilog/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/ip/vivado_activity_thread_ap_fmul_2_max_dsp.vhd</spirit:name>
+				<spirit:name>hdl/verilog/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/ip/vivado_activity_thread_ap_fexp_7_full_dsp.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
@@ -1807,7 +2189,11 @@
 				<spirit:fileType>vhdlSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/ip/vivado_activity_thread_ap_fexp_7_full_dsp.vhd</spirit:name>
+				<spirit:name>hdl/ip/vivado_activity_thread_ap_fmul_2_max_dsp.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
@@ -2831,10 +3217,6 @@
 				<spirit:logicalName>floating_point_v7_0</spirit:logicalName>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/verilog/vivado_activity_thread_fcmp_32ns_32ns_1_3.v</spirit:name>
-				<spirit:fileType>verilogSource</spirit:fileType>
-			</spirit:file>
-			<spirit:file>
 				<spirit:name>hdl/verilog/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
@@ -2843,11 +3225,11 @@
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/verilog/vivado_activity_thread_top.v</spirit:name>
+				<spirit:name>hdl/verilog/vivado_activity_thread_result_0_if.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/verilog/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.v</spirit:name>
+				<spirit:name>hdl/verilog/vivado_activity_thread_fcmp_32ns_32ns_1_3.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
@@ -2855,7 +3237,11 @@
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/verilog/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.v</spirit:name>
+				<spirit:name>hdl/verilog/vivado_activity_thread_top.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/verilog/vivado_activity_thread_result_sqrd_0_if.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
@@ -2863,11 +3249,15 @@
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp.vhd</spirit:name>
-				<spirit:fileType>vhdlSource</spirit:fileType>
+				<spirit:name>hdl/verilog/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/ip/vivado_activity_thread_ap_fmul_2_max_dsp.vhd</spirit:name>
+				<spirit:name>hdl/verilog/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/ip/vivado_activity_thread_ap_fexp_7_full_dsp.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
@@ -2875,7 +3265,11 @@
 				<spirit:fileType>vhdlSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/ip/vivado_activity_thread_ap_fexp_7_full_dsp.vhd</spirit:name>
+				<spirit:name>hdl/ip/vivado_activity_thread_ap_fmul_2_max_dsp.vhd</spirit:name>
+				<spirit:fileType>vhdlSource</spirit:fileType>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp.vhd</spirit:name>
 				<spirit:fileType>vhdlSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
@@ -2894,27 +3288,23 @@
 		<spirit:fileSet>
 			<spirit:name>xilinx_softwaredriver_view_fileset</spirit:name>
 			<spirit:file>
-				<spirit:name>drivers/vivado_activity_thread_top_v1_00_a/data/vivado_activity_thread_top_v2_1_0.tcl</spirit:name>
-				<spirit:fileType>tclSource</spirit:fileType>
-			</spirit:file>
-			<spirit:file>
 				<spirit:name>drivers/vivado_activity_thread_top_v1_00_a/data/vivado_activity_thread_top_v2_1_0.mdd</spirit:name>
 				<spirit:userFileType>mdd</spirit:userFileType>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>drivers/vivado_activity_thread_top_v1_00_a/data/vivado_activity_thread_top_v2_1_0.tcl</spirit:name>
+				<spirit:fileType>tclSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
 				<spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread_hw.h</spirit:name>
 				<spirit:fileType>cSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/Makefile</spirit:name>
-				<spirit:userFileType>unknown</spirit:userFileType>
-			</spirit:file>
-			<spirit:file>
 				<spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread_sinit.c</spirit:name>
 				<spirit:fileType>cSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread.h</spirit:name>
+				<spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread_linux.c</spirit:name>
 				<spirit:fileType>cSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
@@ -2922,7 +3312,11 @@
 				<spirit:fileType>cSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread_linux.c</spirit:name>
+				<spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/Makefile</spirit:name>
+				<spirit:userFileType>unknown</spirit:userFileType>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>drivers/vivado_activity_thread_top_v1_00_a/src/xvivado_activity_thread.h</spirit:name>
 				<spirit:fileType>cSource</spirit:fileType>
 			</spirit:file>
 		</spirit:fileSet>
@@ -2956,8 +3350,8 @@
 				<xilinx:taxonomy>/VIVADO_HLS_IP</xilinx:taxonomy>
 			</xilinx:taxonomies>
 			<xilinx:displayName>Vivado_activity_thread</xilinx:displayName>
-			<xilinx:coreRevision>1403120945</xilinx:coreRevision>
-			<xilinx:coreCreationDateTime>2014-03-12T09:45:27Z</xilinx:coreCreationDateTime>
+			<xilinx:coreRevision>1403281122</xilinx:coreRevision>
+			<xilinx:coreCreationDateTime>2014-03-28T11:24:13Z</xilinx:coreCreationDateTime>
 		</xilinx:coreExtensions>
 		<xilinx:packagingInfo>
 			<xilinx:xilinxVersion>2013.4</xilinx:xilinxVersion>

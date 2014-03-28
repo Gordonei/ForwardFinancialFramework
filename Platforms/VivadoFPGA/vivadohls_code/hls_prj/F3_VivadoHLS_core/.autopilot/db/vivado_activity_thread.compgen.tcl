@@ -272,12 +272,50 @@ if {${::AESL::PGuard_autoexp_gen}} {
     AESL_LIB_XILADAPTER::native_axis_begin
 }
 
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 14 \
+    name result_0 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename result_0 \
+    op interface \
+    ports { result_0_address0 { O 10 vector } result_0_ce0 { O 1 bit } result_0_we0 { O 1 bit } result_0_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'result_0'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 15 \
+    name result_sqrd_0 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename result_sqrd_0 \
+    op interface \
+    ports { result_sqrd_0_address0 { O 10 vector } result_sqrd_0_ce0 { O 1 bit } result_sqrd_0_we0 { O 1 bit } result_sqrd_0_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'result_sqrd_0'"
+}
+}
+
+
 # Adapter definition:
 set corename CORE_IO
 set opts {
     {
         id 5
-        name thread_arg_thread_paths
+        name kernel_arg_u_a_0_rfir
         reset_level 1
         sync_rst true
         type scalar
@@ -287,17 +325,17 @@ set opts {
     }
     {
         id 6
-        name thread_arg_path_points
+        name kernel_arg_u_a_0_current_price
         reset_level 1
         sync_rst true
         type scalar
-        dir O
+        dir I
         width 32
-        mode SIG_OUT_VLD_ON:SIG_OUT_ACC_OFF
+        mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
         id 7
-        name thread_arg_thread_result
+        name kernel_arg_u_v_0_gamma
         reset_level 1
         sync_rst true
         type scalar
@@ -307,7 +345,7 @@ set opts {
     }
     {
         id 8
-        name thread_arg_thread_result_sqrd
+        name kernel_arg_u_v_0_time
         reset_level 1
         sync_rst true
         type scalar
@@ -317,7 +355,7 @@ set opts {
     }
     {
         id 9
-        name thread_arg_u_a_0_rfir
+        name kernel_arg_o_a_0_strike_price
         reset_level 1
         sync_rst true
         type scalar
@@ -327,7 +365,7 @@ set opts {
     }
     {
         id 10
-        name thread_arg_u_a_0_current_price
+        name kernel_arg_o_a_0_time_period
         reset_level 1
         sync_rst true
         type scalar
@@ -337,7 +375,7 @@ set opts {
     }
     {
         id 11
-        name thread_arg_o_a_0_strike_price
+        name kernel_arg_o_a_0_call
         reset_level 1
         sync_rst true
         type scalar
@@ -347,7 +385,7 @@ set opts {
     }
     {
         id 12
-        name thread_arg_o_a_0_time_period
+        name kernel_arg_o_v_0_delta_time
         reset_level 1
         sync_rst true
         type scalar
@@ -357,13 +395,13 @@ set opts {
     }
     {
         id 13
-        name thread_arg_o_a_0_call
+        name kernel_arg_o_v_0_value
         reset_level 1
         sync_rst true
         type scalar
-        dir I
+        dir O
         width 32
-        mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
+        mode SIG_OUT_VLD_ON:SIG_OUT_ACC_OFF
     }
     {
         id -1

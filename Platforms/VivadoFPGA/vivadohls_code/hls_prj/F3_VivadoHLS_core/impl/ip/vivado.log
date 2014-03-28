@@ -1,27 +1,31 @@
 #-----------------------------------------------------------
-# Vivado v2013.3 (64-bit)
-# SW Build 329390 on Wed Oct 16 18:26:55 MDT 2013
-# IP Build 192953 on Wed Oct 16 08:44:02 MDT 2013
-# Start of session at: Tue Mar 25 15:25:14 2014
-# Process ID: 20215
-# Log file: /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/ip/vivado.log
-# Journal file: /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/ip/vivado.jou
+# Vivado v2013.4 (64-bit)
+# SW Build 353583 on Mon Dec  9 17:26:26 MST 2013
+# IP Build 208076 on Mon Dec  2 12:38:17 MST 2013
+# Start of session at: Fri Mar 28 11:22:56 2014
+# Process ID: 19685
+# Log file: /mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/ip/vivado.log
+# Journal file: /mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/ip/vivado.jou
 #-----------------------------------------------------------
-INFO: [Common 17-78] Attempting to get a license: Implementation
-INFO: [Common 17-81] Feature available: Implementation
-INFO: [Device 21-36] Loading parts and site information from /opt/Xilinx/2013.3/Vivado/2013.3/data/parts/arch.xml
-Parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
-Finished parsing RTL primitives file [/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Attempting to get a license: Implementation
+Feature available: Implementation
+Loading parts and site information from /mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/arch.xml
+Parsing RTL primitives file [/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml]
 source run_ippack.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1704] No user repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado repository '/opt/Xilinx/2013.3/Vivado/2013.3/data/ip'.
-INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fcmp_1_no_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
-Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_fcmp_1_no_dsp'.
-INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_faddfsub_3_full_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
-Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_faddfsub_3_full_dsp'.
-INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fmul_2_max_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
-Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_fmul_2_max_dsp'.
-INFO: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fexp_7_full_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
-Delivering 'VHDL Synthesis' files for IP 'vivado_activity_thread_ap_fexp_7_full_dsp'.
-INFO: [Common 17-206] Exiting Vivado at Tue Mar 25 15:25:21 2014...
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/ip'.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vivado_activity_thread_ap_faddfsub_3_full_dsp'...
+WARNING: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_faddfsub_3_full_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+generate_target: Time (s): cpu = 00:00:00.52 ; elapsed = 00:00:18 . Memory (MB): peak = 775.254 ; gain = 2.000
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vivado_activity_thread_ap_fexp_7_full_dsp'...
+WARNING: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fexp_7_full_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+generate_target: Time (s): cpu = 00:00:00.50 ; elapsed = 00:00:15 . Memory (MB): peak = 782.262 ; gain = 4.000
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vivado_activity_thread_ap_fmul_2_max_dsp'...
+WARNING: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fmul_2_max_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+generate_target: Time (s): cpu = 00:00:00.47 ; elapsed = 00:00:15 . Memory (MB): peak = 789.270 ; gain = 5.000
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vivado_activity_thread_ap_fcmp_1_no_dsp'...
+WARNING: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fcmp_1_no_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
+generate_target: Time (s): cpu = 00:00:00.43 ; elapsed = 00:00:16 . Memory (MB): peak = 795.277 ; gain = 4.000
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 28 11:24:15 2014...

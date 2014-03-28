@@ -1,10 +1,10 @@
 // Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2013.3 (lin64) Build 329390 Wed Oct 16 18:26:55 MDT 2013
-// Date        : Tue Mar 25 15:26:56 2014
-// Host        : ganymede running 64-bit Ubuntu 12.04.3 LTS
+// Tool Version: Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
+// Date        : Fri Mar 28 11:27:23 2014
+// Host        : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 // Command     : write_verilog -force -mode funcsim
-//               /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_funcsim.v
+//               /mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_funcsim.v
 // Design      : vivado_activity_thread_ap_faddfsub_3_full_dsp
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,8 +12,8 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "floating_point_v7_0,Vivado 2013.3" *) (* CHECK_LICENSE_TYPE = "vivado_activity_thread_ap_faddfsub_3_full_dsp,floating_point_v7_0,{}" *) 
-(* core_generation_info = "vivado_activity_thread_ap_faddfsub_3_full_dsp,floating_point_v7_0,{x_ipProduct=Vivado 2013.3,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=floating_point,x_ipVersion=7.0,x_ipCoreRevision=2,x_ipLanguage=VERILOG,C_XDEVICEFAMILY=zynq,C_HAS_ADD=1,C_HAS_SUBTRACT=1,C_HAS_MULTIPLY=0,C_HAS_DIVIDE=0,C_HAS_SQRT=0,C_HAS_COMPARE=0,C_HAS_FIX_TO_FLT=0,C_HAS_FLT_TO_FIX=0,C_HAS_FLT_TO_FLT=0,C_HAS_RECIP=0,C_HAS_RECIP_SQRT=0,C_HAS_ABSOLUTE=0,C_HAS_LOGARITHM=0,C_HAS_EXPONENTIAL=0,C_HAS_FMA=0,C_HAS_FMS=0,C_HAS_ACCUMULATOR_A=0,C_HAS_ACCUMULATOR_S=0,C_A_WIDTH=32,C_A_FRACTION_WIDTH=24,C_B_WIDTH=32,C_B_FRACTION_WIDTH=24,C_C_WIDTH=32,C_C_FRACTION_WIDTH=24,C_RESULT_WIDTH=32,C_RESULT_FRACTION_WIDTH=24,C_COMPARE_OPERATION=8,C_LATENCY=3,C_OPTIMIZATION=1,C_MULT_USAGE=2,C_BRAM_USAGE=0,C_RATE=1,C_ACCUM_INPUT_MSB=32,C_ACCUM_MSB=32,C_ACCUM_LSB=-31,C_HAS_UNDERFLOW=0,C_HAS_OVERFLOW=0,C_HAS_INVALID_OP=0,C_HAS_DIVIDE_BY_ZERO=0,C_HAS_ACCUM_OVERFLOW=0,C_HAS_ACCUM_INPUT_OVERFLOW=0,C_HAS_ACLKEN=1,C_HAS_ARESETN=0,C_THROTTLE_SCHEME=3,C_HAS_A_TUSER=0,C_HAS_A_TLAST=0,C_HAS_B=1,C_HAS_B_TUSER=0,C_HAS_B_TLAST=0,C_HAS_C=0,C_HAS_C_TUSER=0,C_HAS_C_TLAST=0,C_HAS_OPERATION=1,C_HAS_OPERATION_TUSER=0,C_HAS_OPERATION_TLAST=0,C_HAS_RESULT_TUSER=0,C_HAS_RESULT_TLAST=0,C_TLAST_RESOLUTION=0,C_A_TDATA_WIDTH=32,C_A_TUSER_WIDTH=1,C_B_TDATA_WIDTH=32,C_B_TUSER_WIDTH=1,C_C_TDATA_WIDTH=32,C_C_TUSER_WIDTH=1,C_OPERATION_TDATA_WIDTH=8,C_OPERATION_TUSER_WIDTH=1,C_RESULT_TDATA_WIDTH=32,C_RESULT_TUSER_WIDTH=1}" *) 
+(* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "floating_point_v7_0,Vivado 2013.4" *) (* CHECK_LICENSE_TYPE = "vivado_activity_thread_ap_faddfsub_3_full_dsp,floating_point_v7_0,{}" *) 
+(* core_generation_info = "vivado_activity_thread_ap_faddfsub_3_full_dsp,floating_point_v7_0,{x_ipProduct=Vivado 2013.4,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=floating_point,x_ipVersion=7.0,x_ipCoreRevision=3,x_ipLanguage=VHDL,C_XDEVICEFAMILY=zynq,C_HAS_ADD=1,C_HAS_SUBTRACT=1,C_HAS_MULTIPLY=0,C_HAS_DIVIDE=0,C_HAS_SQRT=0,C_HAS_COMPARE=0,C_HAS_FIX_TO_FLT=0,C_HAS_FLT_TO_FIX=0,C_HAS_FLT_TO_FLT=0,C_HAS_RECIP=0,C_HAS_RECIP_SQRT=0,C_HAS_ABSOLUTE=0,C_HAS_LOGARITHM=0,C_HAS_EXPONENTIAL=0,C_HAS_FMA=0,C_HAS_FMS=0,C_HAS_ACCUMULATOR_A=0,C_HAS_ACCUMULATOR_S=0,C_A_WIDTH=32,C_A_FRACTION_WIDTH=24,C_B_WIDTH=32,C_B_FRACTION_WIDTH=24,C_C_WIDTH=32,C_C_FRACTION_WIDTH=24,C_RESULT_WIDTH=32,C_RESULT_FRACTION_WIDTH=24,C_COMPARE_OPERATION=8,C_LATENCY=3,C_OPTIMIZATION=1,C_MULT_USAGE=2,C_BRAM_USAGE=0,C_RATE=1,C_ACCUM_INPUT_MSB=32,C_ACCUM_MSB=32,C_ACCUM_LSB=-31,C_HAS_UNDERFLOW=0,C_HAS_OVERFLOW=0,C_HAS_INVALID_OP=0,C_HAS_DIVIDE_BY_ZERO=0,C_HAS_ACCUM_OVERFLOW=0,C_HAS_ACCUM_INPUT_OVERFLOW=0,C_HAS_ACLKEN=1,C_HAS_ARESETN=0,C_THROTTLE_SCHEME=3,C_HAS_A_TUSER=0,C_HAS_A_TLAST=0,C_HAS_B=1,C_HAS_B_TUSER=0,C_HAS_B_TLAST=0,C_HAS_C=0,C_HAS_C_TUSER=0,C_HAS_C_TLAST=0,C_HAS_OPERATION=1,C_HAS_OPERATION_TUSER=0,C_HAS_OPERATION_TLAST=0,C_HAS_RESULT_TUSER=0,C_HAS_RESULT_TLAST=0,C_TLAST_RESOLUTION=0,C_A_TDATA_WIDTH=32,C_A_TUSER_WIDTH=1,C_B_TDATA_WIDTH=32,C_B_TUSER_WIDTH=1,C_C_TDATA_WIDTH=32,C_C_TUSER_WIDTH=1,C_OPERATION_TDATA_WIDTH=8,C_OPERATION_TUSER_WIDTH=1,C_RESULT_TDATA_WIDTH=32,C_RESULT_TUSER_WIDTH=1}" *) 
 (* NotValidForBitStream *)
 module vivado_activity_thread_ap_faddfsub_3_full_dsp
    (aclk,
@@ -129,7 +129,7 @@ GND GND
    (* C_XDEVICEFAMILY = "zynq" *) 
    (* DONT_TOUCH *) 
    (* downgradeipidentifiedwarnings = "yes" *) 
-   vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0 U0
+   vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0__parameterized0 U0
        (.aclk(aclk),
         .aclken(aclken),
         .aresetn(\<const1> ),
@@ -162,31 +162,31 @@ VCC VCC
        (.P(\<const1> ));
 endmodule
 
-(* C_XDEVICEFAMILY = "zynq" *) (* C_HAS_ADD = "1" *) (* C_HAS_SUBTRACT = "1" *) 
-(* C_HAS_MULTIPLY = "0" *) (* C_HAS_DIVIDE = "0" *) (* C_HAS_SQRT = "0" *) 
-(* C_HAS_COMPARE = "0" *) (* C_HAS_FIX_TO_FLT = "0" *) (* C_HAS_FLT_TO_FIX = "0" *) 
-(* C_HAS_FLT_TO_FLT = "0" *) (* C_HAS_RECIP = "0" *) (* C_HAS_RECIP_SQRT = "0" *) 
-(* C_HAS_ABSOLUTE = "0" *) (* C_HAS_LOGARITHM = "0" *) (* C_HAS_EXPONENTIAL = "0" *) 
-(* C_HAS_FMA = "0" *) (* C_HAS_FMS = "0" *) (* C_HAS_ACCUMULATOR_A = "0" *) 
-(* C_HAS_ACCUMULATOR_S = "0" *) (* C_A_WIDTH = "32" *) (* C_A_FRACTION_WIDTH = "24" *) 
-(* C_B_WIDTH = "32" *) (* C_B_FRACTION_WIDTH = "24" *) (* C_C_WIDTH = "32" *) 
-(* C_C_FRACTION_WIDTH = "24" *) (* C_RESULT_WIDTH = "32" *) (* C_RESULT_FRACTION_WIDTH = "24" *) 
-(* C_COMPARE_OPERATION = "8" *) (* C_LATENCY = "3" *) (* C_OPTIMIZATION = "1" *) 
-(* C_MULT_USAGE = "2" *) (* C_BRAM_USAGE = "0" *) (* C_RATE = "1" *) 
-(* C_ACCUM_INPUT_MSB = "32" *) (* C_ACCUM_MSB = "32" *) (* C_ACCUM_LSB = "-31" *) 
-(* C_HAS_UNDERFLOW = "0" *) (* C_HAS_OVERFLOW = "0" *) (* C_HAS_INVALID_OP = "0" *) 
-(* C_HAS_DIVIDE_BY_ZERO = "0" *) (* C_HAS_ACCUM_OVERFLOW = "0" *) (* C_HAS_ACCUM_INPUT_OVERFLOW = "0" *) 
-(* C_HAS_ACLKEN = "1" *) (* C_HAS_ARESETN = "0" *) (* C_THROTTLE_SCHEME = "3" *) 
-(* C_HAS_A_TUSER = "0" *) (* C_HAS_A_TLAST = "0" *) (* C_HAS_B = "1" *) 
-(* C_HAS_B_TUSER = "0" *) (* C_HAS_B_TLAST = "0" *) (* C_HAS_C = "0" *) 
-(* C_HAS_C_TUSER = "0" *) (* C_HAS_C_TLAST = "0" *) (* C_HAS_OPERATION = "1" *) 
-(* C_HAS_OPERATION_TUSER = "0" *) (* C_HAS_OPERATION_TLAST = "0" *) (* C_HAS_RESULT_TUSER = "0" *) 
-(* C_HAS_RESULT_TLAST = "0" *) (* C_TLAST_RESOLUTION = "0" *) (* C_A_TDATA_WIDTH = "32" *) 
-(* C_A_TUSER_WIDTH = "1" *) (* C_B_TDATA_WIDTH = "32" *) (* C_B_TUSER_WIDTH = "1" *) 
-(* C_C_TDATA_WIDTH = "32" *) (* C_C_TUSER_WIDTH = "1" *) (* C_OPERATION_TDATA_WIDTH = "8" *) 
-(* C_OPERATION_TUSER_WIDTH = "1" *) (* C_RESULT_TDATA_WIDTH = "32" *) (* C_RESULT_TUSER_WIDTH = "1" *) 
-(* downgradeipidentifiedwarnings = "yes" *) 
-module vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0
+(* ORIG_REF_NAME = "floating_point_v7_0" *) (* C_XDEVICEFAMILY = "zynq" *) (* C_HAS_ADD = "1" *) 
+(* C_HAS_SUBTRACT = "1" *) (* C_HAS_MULTIPLY = "0" *) (* C_HAS_DIVIDE = "0" *) 
+(* C_HAS_SQRT = "0" *) (* C_HAS_COMPARE = "0" *) (* C_HAS_FIX_TO_FLT = "0" *) 
+(* C_HAS_FLT_TO_FIX = "0" *) (* C_HAS_FLT_TO_FLT = "0" *) (* C_HAS_RECIP = "0" *) 
+(* C_HAS_RECIP_SQRT = "0" *) (* C_HAS_ABSOLUTE = "0" *) (* C_HAS_LOGARITHM = "0" *) 
+(* C_HAS_EXPONENTIAL = "0" *) (* C_HAS_FMA = "0" *) (* C_HAS_FMS = "0" *) 
+(* C_HAS_ACCUMULATOR_A = "0" *) (* C_HAS_ACCUMULATOR_S = "0" *) (* C_A_WIDTH = "32" *) 
+(* C_A_FRACTION_WIDTH = "24" *) (* C_B_WIDTH = "32" *) (* C_B_FRACTION_WIDTH = "24" *) 
+(* C_C_WIDTH = "32" *) (* C_C_FRACTION_WIDTH = "24" *) (* C_RESULT_WIDTH = "32" *) 
+(* C_RESULT_FRACTION_WIDTH = "24" *) (* C_COMPARE_OPERATION = "8" *) (* C_LATENCY = "3" *) 
+(* C_OPTIMIZATION = "1" *) (* C_MULT_USAGE = "2" *) (* C_BRAM_USAGE = "0" *) 
+(* C_RATE = "1" *) (* C_ACCUM_INPUT_MSB = "32" *) (* C_ACCUM_MSB = "32" *) 
+(* C_ACCUM_LSB = "-31" *) (* C_HAS_UNDERFLOW = "0" *) (* C_HAS_OVERFLOW = "0" *) 
+(* C_HAS_INVALID_OP = "0" *) (* C_HAS_DIVIDE_BY_ZERO = "0" *) (* C_HAS_ACCUM_OVERFLOW = "0" *) 
+(* C_HAS_ACCUM_INPUT_OVERFLOW = "0" *) (* C_HAS_ACLKEN = "1" *) (* C_HAS_ARESETN = "0" *) 
+(* C_THROTTLE_SCHEME = "3" *) (* C_HAS_A_TUSER = "0" *) (* C_HAS_A_TLAST = "0" *) 
+(* C_HAS_B = "1" *) (* C_HAS_B_TUSER = "0" *) (* C_HAS_B_TLAST = "0" *) 
+(* C_HAS_C = "0" *) (* C_HAS_C_TUSER = "0" *) (* C_HAS_C_TLAST = "0" *) 
+(* C_HAS_OPERATION = "1" *) (* C_HAS_OPERATION_TUSER = "0" *) (* C_HAS_OPERATION_TLAST = "0" *) 
+(* C_HAS_RESULT_TUSER = "0" *) (* C_HAS_RESULT_TLAST = "0" *) (* C_TLAST_RESOLUTION = "0" *) 
+(* C_A_TDATA_WIDTH = "32" *) (* C_A_TUSER_WIDTH = "1" *) (* C_B_TDATA_WIDTH = "32" *) 
+(* C_B_TUSER_WIDTH = "1" *) (* C_C_TDATA_WIDTH = "32" *) (* C_C_TUSER_WIDTH = "1" *) 
+(* C_OPERATION_TDATA_WIDTH = "8" *) (* C_OPERATION_TUSER_WIDTH = "1" *) (* C_RESULT_TDATA_WIDTH = "32" *) 
+(* C_RESULT_TUSER_WIDTH = "1" *) (* downgradeipidentifiedwarnings = "yes" *) 
+module vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0__parameterized0
    (aclk,
     aclken,
     aresetn,
@@ -343,7 +343,7 @@ module vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0
    (* C_TLAST_RESOLUTION = "0" *) 
    (* C_XDEVICEFAMILY = "zynq" *) 
    (* downgradeipidentifiedwarnings = "yes" *) 
-   vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0_viv i_synth
+   vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0_viv__parameterized0 i_synth
        (.aclk(aclk),
         .aclken(aclken),
         .aresetn(aresetn),
@@ -374,31 +374,31 @@ module vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0
         .s_axis_operation_tvalid(s_axis_operation_tvalid));
 endmodule
 
-(* C_XDEVICEFAMILY = "zynq" *) (* C_HAS_ADD = "1" *) (* C_HAS_SUBTRACT = "1" *) 
-(* C_HAS_MULTIPLY = "0" *) (* C_HAS_DIVIDE = "0" *) (* C_HAS_SQRT = "0" *) 
-(* C_HAS_COMPARE = "0" *) (* C_HAS_FIX_TO_FLT = "0" *) (* C_HAS_FLT_TO_FIX = "0" *) 
-(* C_HAS_FLT_TO_FLT = "0" *) (* C_HAS_RECIP = "0" *) (* C_HAS_RECIP_SQRT = "0" *) 
-(* C_HAS_ABSOLUTE = "0" *) (* C_HAS_LOGARITHM = "0" *) (* C_HAS_EXPONENTIAL = "0" *) 
-(* C_HAS_FMA = "0" *) (* C_HAS_FMS = "0" *) (* C_HAS_ACCUMULATOR_A = "0" *) 
-(* C_HAS_ACCUMULATOR_S = "0" *) (* C_A_WIDTH = "32" *) (* C_A_FRACTION_WIDTH = "24" *) 
-(* C_B_WIDTH = "32" *) (* C_B_FRACTION_WIDTH = "24" *) (* C_C_WIDTH = "32" *) 
-(* C_C_FRACTION_WIDTH = "24" *) (* C_RESULT_WIDTH = "32" *) (* C_RESULT_FRACTION_WIDTH = "24" *) 
-(* C_COMPARE_OPERATION = "8" *) (* C_LATENCY = "3" *) (* C_OPTIMIZATION = "1" *) 
-(* C_MULT_USAGE = "2" *) (* C_BRAM_USAGE = "0" *) (* C_RATE = "1" *) 
-(* C_ACCUM_INPUT_MSB = "32" *) (* C_ACCUM_MSB = "32" *) (* C_ACCUM_LSB = "-31" *) 
-(* C_HAS_UNDERFLOW = "0" *) (* C_HAS_OVERFLOW = "0" *) (* C_HAS_INVALID_OP = "0" *) 
-(* C_HAS_DIVIDE_BY_ZERO = "0" *) (* C_HAS_ACCUM_OVERFLOW = "0" *) (* C_HAS_ACCUM_INPUT_OVERFLOW = "0" *) 
-(* C_HAS_ACLKEN = "1" *) (* C_HAS_ARESETN = "0" *) (* C_THROTTLE_SCHEME = "3" *) 
-(* C_HAS_A_TUSER = "0" *) (* C_HAS_A_TLAST = "0" *) (* C_HAS_B = "1" *) 
-(* C_HAS_B_TUSER = "0" *) (* C_HAS_B_TLAST = "0" *) (* C_HAS_C = "0" *) 
-(* C_HAS_C_TUSER = "0" *) (* C_HAS_C_TLAST = "0" *) (* C_HAS_OPERATION = "1" *) 
-(* C_HAS_OPERATION_TUSER = "0" *) (* C_HAS_OPERATION_TLAST = "0" *) (* C_HAS_RESULT_TUSER = "0" *) 
-(* C_HAS_RESULT_TLAST = "0" *) (* C_TLAST_RESOLUTION = "0" *) (* C_A_TDATA_WIDTH = "32" *) 
-(* C_A_TUSER_WIDTH = "1" *) (* C_B_TDATA_WIDTH = "32" *) (* C_B_TUSER_WIDTH = "1" *) 
-(* C_C_TDATA_WIDTH = "32" *) (* C_C_TUSER_WIDTH = "1" *) (* C_OPERATION_TDATA_WIDTH = "8" *) 
-(* C_OPERATION_TUSER_WIDTH = "1" *) (* C_RESULT_TDATA_WIDTH = "32" *) (* C_RESULT_TUSER_WIDTH = "1" *) 
-(* downgradeipidentifiedwarnings = "yes" *) 
-module vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0_viv
+(* ORIG_REF_NAME = "floating_point_v7_0_viv" *) (* C_XDEVICEFAMILY = "zynq" *) (* C_HAS_ADD = "1" *) 
+(* C_HAS_SUBTRACT = "1" *) (* C_HAS_MULTIPLY = "0" *) (* C_HAS_DIVIDE = "0" *) 
+(* C_HAS_SQRT = "0" *) (* C_HAS_COMPARE = "0" *) (* C_HAS_FIX_TO_FLT = "0" *) 
+(* C_HAS_FLT_TO_FIX = "0" *) (* C_HAS_FLT_TO_FLT = "0" *) (* C_HAS_RECIP = "0" *) 
+(* C_HAS_RECIP_SQRT = "0" *) (* C_HAS_ABSOLUTE = "0" *) (* C_HAS_LOGARITHM = "0" *) 
+(* C_HAS_EXPONENTIAL = "0" *) (* C_HAS_FMA = "0" *) (* C_HAS_FMS = "0" *) 
+(* C_HAS_ACCUMULATOR_A = "0" *) (* C_HAS_ACCUMULATOR_S = "0" *) (* C_A_WIDTH = "32" *) 
+(* C_A_FRACTION_WIDTH = "24" *) (* C_B_WIDTH = "32" *) (* C_B_FRACTION_WIDTH = "24" *) 
+(* C_C_WIDTH = "32" *) (* C_C_FRACTION_WIDTH = "24" *) (* C_RESULT_WIDTH = "32" *) 
+(* C_RESULT_FRACTION_WIDTH = "24" *) (* C_COMPARE_OPERATION = "8" *) (* C_LATENCY = "3" *) 
+(* C_OPTIMIZATION = "1" *) (* C_MULT_USAGE = "2" *) (* C_BRAM_USAGE = "0" *) 
+(* C_RATE = "1" *) (* C_ACCUM_INPUT_MSB = "32" *) (* C_ACCUM_MSB = "32" *) 
+(* C_ACCUM_LSB = "-31" *) (* C_HAS_UNDERFLOW = "0" *) (* C_HAS_OVERFLOW = "0" *) 
+(* C_HAS_INVALID_OP = "0" *) (* C_HAS_DIVIDE_BY_ZERO = "0" *) (* C_HAS_ACCUM_OVERFLOW = "0" *) 
+(* C_HAS_ACCUM_INPUT_OVERFLOW = "0" *) (* C_HAS_ACLKEN = "1" *) (* C_HAS_ARESETN = "0" *) 
+(* C_THROTTLE_SCHEME = "3" *) (* C_HAS_A_TUSER = "0" *) (* C_HAS_A_TLAST = "0" *) 
+(* C_HAS_B = "1" *) (* C_HAS_B_TUSER = "0" *) (* C_HAS_B_TLAST = "0" *) 
+(* C_HAS_C = "0" *) (* C_HAS_C_TUSER = "0" *) (* C_HAS_C_TLAST = "0" *) 
+(* C_HAS_OPERATION = "1" *) (* C_HAS_OPERATION_TUSER = "0" *) (* C_HAS_OPERATION_TLAST = "0" *) 
+(* C_HAS_RESULT_TUSER = "0" *) (* C_HAS_RESULT_TLAST = "0" *) (* C_TLAST_RESOLUTION = "0" *) 
+(* C_A_TDATA_WIDTH = "32" *) (* C_A_TUSER_WIDTH = "1" *) (* C_B_TDATA_WIDTH = "32" *) 
+(* C_B_TUSER_WIDTH = "1" *) (* C_C_TDATA_WIDTH = "32" *) (* C_C_TUSER_WIDTH = "1" *) 
+(* C_OPERATION_TDATA_WIDTH = "8" *) (* C_OPERATION_TUSER_WIDTH = "1" *) (* C_RESULT_TDATA_WIDTH = "32" *) 
+(* C_RESULT_TUSER_WIDTH = "1" *) (* downgradeipidentifiedwarnings = "yes" *) 
+module vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0_viv__parameterized0
    (aclk,
     aclken,
     aresetn,
@@ -630,10 +630,6 @@ module vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0_viv
   wire \n_0_DIST_ENC[3].LSB_i_2 ;
   wire \n_0_DIST_ENC[3].LSB_i_3 ;
   wire \n_0_DIST_ENC[3].LSB_i_4 ;
-  wire n_0_DSP_i_10__0;
-  wire n_0_DSP_i_12__0;
-  wire n_0_DSP_i_14__0;
-  wire n_0_DSP_i_16__0;
   wire n_0_DSP_i_17;
   wire n_0_DSP_i_18;
   wire n_0_DSP_i_19;
@@ -644,11 +640,9 @@ module vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0_viv
   wire n_0_DSP_i_24;
   wire n_0_DSP_i_25;
   wire n_0_DSP_i_26;
-  wire n_0_DSP_i_4__0;
   wire n_0_DSP_i_67;
   wire n_0_DSP_i_68;
-  wire n_0_DSP_i_6__0;
-  wire n_0_DSP_i_8__0;
+  wire n_0_DSP_i_69;
   wire \n_0_i_nd_to_rdy/opt_has_pipe.i_pipe[2].pipe_reg[2][0] ;
   wire \n_0_m_axis_result_tdata[30]_INST_0_i_1 ;
   wire \n_0_m_axis_result_tdata[30]_INST_0_i_2 ;
@@ -683,11 +677,8 @@ module vivado_activity_thread_ap_faddfsub_3_full_dspfloating_point_v7_0_viv
   wire \n_0_opt_has_pipe.first_q[0]_i_3__1 ;
   wire \n_0_opt_has_pipe.first_q[0]_i_3__2 ;
   wire \n_0_opt_has_pipe.first_q[0]_i_4 ;
-  wire \n_0_opt_has_pipe.first_q[0]_i_4__0 ;
   wire \n_0_opt_has_pipe.first_q[0]_i_5 ;
-  wire \n_0_opt_has_pipe.first_q[0]_i_5__0 ;
   wire \n_0_opt_has_pipe.first_q[0]_i_6 ;
-  wire \n_0_opt_has_pipe.first_q[0]_i_6__0 ;
   wire \n_0_opt_has_pipe.first_q[0]_i_7 ;
   wire \n_0_opt_has_pipe.first_q[1]_i_1 ;
   wire \n_0_opt_has_pipe.first_q[1]_i_2 ;
@@ -1395,7 +1386,7 @@ FDRE #(
         .ACIN({\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> }),
         .ACOUT({\n_24_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_25_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_26_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_27_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_28_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_29_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_30_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_31_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_32_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_33_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_34_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_35_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_36_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_37_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_38_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_39_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_40_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_41_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_42_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_43_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_44_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_45_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_46_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_47_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_48_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_49_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_50_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_51_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_52_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_53_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP }),
         .ALUMODE({\<const0> ,\<const0> ,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/SUB_DELAY/i_pipe/first_q ,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/SUB_DELAY/i_pipe/first_q }),
-        .B({\<const0> ,\<const0> ,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [15:14],n_0_DSP_i_4__0,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [12],n_0_DSP_i_6__0,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [10],n_0_DSP_i_8__0,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [8],n_0_DSP_i_10__0,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [6],n_0_DSP_i_12__0,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [4],n_0_DSP_i_14__0,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [2],n_0_DSP_i_16__0,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [0]}),
+        .B({\<const0> ,\<const0> ,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align }),
         .BCIN({\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> }),
         .BCOUT({\n_6_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_7_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_8_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_9_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_10_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_11_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_12_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_13_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_14_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_15_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_16_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_17_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_18_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_19_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_20_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_21_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_22_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_23_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP }),
         .C({\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const1> ,\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/a ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> ,\<const0> }),
@@ -1405,11 +1396,11 @@ FDRE #(
         .CARRYINSEL({\<const0> ,\<const0> ,\<const0> }),
         .CARRYOUT({\n_54_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_55_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_56_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP ,\n_57_ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP }),
         .CEA1(\<const0> ),
-        .CEA2(\<const1> ),
+        .CEA2(\<const0> ),
         .CEAD(\<const0> ),
         .CEALUMODE(\<const0> ),
         .CEB1(\<const0> ),
-        .CEB2(\<const1> ),
+        .CEB2(\<const0> ),
         .CEC(\<const0> ),
         .CECARRYIN(\<const0> ),
         .CECTRL(\<const0> ),
@@ -1986,7 +1977,7 @@ GND \ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/MANT_CARRY.MANT_ALL_ZERO_DE
     .INIT(1'b0)) 
      \ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/DET_SIGN_DELAY/i_pipe/opt_has_pipe.first_q_reg[0] 
        (.C(aclk),
-        .CE(\<const1> ),
+        .CE(aclken),
         .D(\n_0_opt_has_pipe.first_q[0]_i_1__3 ),
         .Q(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/DET_SIGN_DELAY/i_pipe/first_q ),
         .R(\<const0> ));
@@ -2304,8 +2295,18 @@ LUT3 #(
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [8]),
         .O(\n_0_CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1__0 ));
 LUT6 #(
-    .INIT(64'h0000000000000001)) 
+    .INIT(64'h666666666666666A)) 
      \CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1__1 
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ));
+LUT6 #(
+    .INIT(64'h0000000000000001)) 
+     \CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1__2 
        (.I0(s_axis_a_tdata[3]),
         .I1(s_axis_a_tdata[0]),
         .I2(s_axis_a_tdata[5]),
@@ -2315,7 +2316,7 @@ LUT6 #(
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/MANT_CARRY.MANT_ALL_ZERO_DET/chunk_det [0]));
 LUT6 #(
     .INIT(64'h0000000000000001)) 
-     \CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1__2 
+     \CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1__3 
        (.I0(s_axis_b_tdata[3]),
         .I1(s_axis_b_tdata[0]),
         .I2(s_axis_b_tdata[5]),
@@ -2325,23 +2326,13 @@ LUT6 #(
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/MANT_CARRY.MANT_ALL_ZERO_DET/chunk_det [0]));
 LUT5 #(
     .INIT(32'h00053305)) 
-     \CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1__3 
+     \CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1__4 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [0]),
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [0]),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [1]),
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [1]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/ZERO_14_DET.ZERO_DET/chunk_det [0]));
-LUT6 #(
-    .INIT(64'h0001FFFFFFFE0000)) 
-     \CHAIN_GEN[0].C_MUX.CARRY_MUX_i_1__4 
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ));
 LUT4 #(
     .INIT(16'h2F02)) 
      \CHAIN_GEN[0].C_MUX.CARRY_MUX_i_2 
@@ -2828,7 +2819,7 @@ LUT3 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/lead16_zero ),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/add_mant [24]),
         .O(\n_0_DIST_ENC[0].LSB_i_2 ));
-(* SOFT_HLUTNM = "soft_lutpair4" *) 
+(* SOFT_HLUTNM = "soft_lutpair3" *) 
    LUT3 #(
     .INIT(8'hB8)) 
      \DIST_ENC[0].LSB_i_3 
@@ -2939,15 +2930,15 @@ LUT5 #(
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/norm_dist ),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/shift_shift [6]));
 LUT6 #(
-    .INIT(64'h0010100004000010)) 
+    .INIT(64'h0000100800000084)) 
      DSP_i_10__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .O(n_0_DSP_i_10__0));
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [7]));
 LUT6 #(
     .INIT(64'h0000000040444000)) 
      DSP_i_11
@@ -2959,13 +2950,13 @@ LUT6 #(
         .I5(\n_0_DIST_ENC[1].LSB_i_4 ),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/shift_shift [5]));
 LUT5 #(
-    .INIT(32'h01800000)) 
+    .INIT(32'h40000200)) 
      DSP_i_11__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [6]));
 LUT5 #(
     .INIT(32'h0000E200)) 
@@ -2977,15 +2968,15 @@ LUT5 #(
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in9_in ),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/shift_shift [4]));
 LUT6 #(
-    .INIT(64'h0400001000101000)) 
+    .INIT(64'h0000011220000000)) 
      DSP_i_12__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .O(n_0_DSP_i_12__0));
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [5]));
 LUT6 #(
     .INIT(64'h0000000040444000)) 
      DSP_i_13
@@ -2997,14 +2988,14 @@ LUT6 #(
         .I5(\n_0_DIST_ENC[0].LSB_i_2 ),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/shift_shift [3]));
 LUT6 #(
-    .INIT(64'h0000280000280000)) 
+    .INIT(64'h0000044008800000)) 
      DSP_i_13__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [4]));
 LUT5 #(
     .INIT(32'h0000E200)) 
@@ -3016,15 +3007,15 @@ LUT5 #(
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in12_in ),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/shift_shift [2]));
 LUT6 #(
-    .INIT(64'h0001004014000000)) 
+    .INIT(64'h0001100002200000)) 
      DSP_i_14__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
         .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .O(n_0_DSP_i_14__0));
+        .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [3]));
 LUT6 #(
     .INIT(64'h0000005044440050)) 
      DSP_i_15
@@ -3036,14 +3027,14 @@ LUT6 #(
         .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/add_mant [10]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/shift_shift [1]));
 LUT6 #(
-    .INIT(64'h0000006060000000)) 
+    .INIT(64'h0004400000088000)) 
      DSP_i_15__0
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [2]));
 LUT4 #(
     .INIT(16'h00E2)) 
@@ -3054,15 +3045,15 @@ LUT4 #(
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in15_in ),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/shift_shift [0]));
 LUT6 #(
-    .INIT(64'h0004100004100000)) 
+    .INIT(64'h0104000000020800)) 
      DSP_i_16__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .O(n_0_DSP_i_16__0));
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [1]));
 LUT2 #(
     .INIT(4'h2)) 
      DSP_i_17
@@ -3070,14 +3061,14 @@ LUT2 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/lead16_zero ),
         .O(n_0_DSP_i_17));
 LUT6 #(
-    .INIT(64'h0000002828000000)) 
+    .INIT(64'h1040000000002080)) 
      DSP_i_17__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [0]));
 LUT2 #(
     .INIT(4'h2)) 
@@ -3086,14 +3077,14 @@ LUT2 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/lead16_zero ),
         .O(n_0_DSP_i_18));
 LUT6 #(
-    .INIT(64'h9999999999999995)) 
+    .INIT(64'hFFFE00000001FFFF)) 
      DSP_i_18__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]));
 LUT2 #(
     .INIT(4'h2)) 
@@ -3102,12 +3093,12 @@ LUT2 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/lead16_zero ),
         .O(n_0_DSP_i_19));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_19__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [22]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [22]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [22]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [22]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [22]));
 LUT5 #(
     .INIT(32'h00000040)) 
@@ -3133,12 +3124,12 @@ LUT2 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/lead16_zero ),
         .O(n_0_DSP_i_20));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_20__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [21]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [21]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [21]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [21]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [21]));
 LUT2 #(
     .INIT(4'h2)) 
@@ -3147,12 +3138,12 @@ LUT2 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/lead16_zero ),
         .O(n_0_DSP_i_21));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_21__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [20]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [20]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [20]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [20]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [20]));
 LUT2 #(
     .INIT(4'h2)) 
@@ -3161,12 +3152,12 @@ LUT2 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/lead16_zero ),
         .O(n_0_DSP_i_22));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_22__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [19]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [19]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [19]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [19]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [19]));
 LUT2 #(
     .INIT(4'h2)) 
@@ -3175,12 +3166,12 @@ LUT2 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/lead16_zero ),
         .O(n_0_DSP_i_23));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_23__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [18]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [18]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [18]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [18]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [18]));
 LUT2 #(
     .INIT(4'h2)) 
@@ -3189,12 +3180,12 @@ LUT2 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/lead16_zero ),
         .O(n_0_DSP_i_24));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_24__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [17]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [17]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [17]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [17]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [17]));
 LUT2 #(
     .INIT(4'h2)) 
@@ -3203,12 +3194,12 @@ LUT2 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/lead16_zero ),
         .O(n_0_DSP_i_25));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_25__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [16]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [16]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [16]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [16]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [16]));
 LUT2 #(
     .INIT(4'h2)) 
@@ -3217,42 +3208,42 @@ LUT2 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/lead16_zero ),
         .O(n_0_DSP_i_26));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_26__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [15]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [15]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [15]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [15]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [15]));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_27
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [14]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [14]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [14]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [14]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [14]));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_28
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [13]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [13]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [13]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [13]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [13]));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_29
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [12]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [12]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [12]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [12]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [12]));
 LUT5 #(
     .INIT(32'h00000001)) 
      DSP_i_2__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
@@ -3267,108 +3258,108 @@ LUT5 #(
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/add_mant [14]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/shift_shift [13]));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_30
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [11]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [11]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [11]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [11]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [11]));
 LUT4 #(
-    .INIT(16'h00E2)) 
+    .INIT(16'hA808)) 
      DSP_i_31
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [10]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [10]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [10]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [10]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [10]));
 LUT4 #(
-    .INIT(16'hFFE2)) 
+    .INIT(16'hE2FF)) 
      DSP_i_32
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [9]),
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [9]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [9]));
 LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
      DSP_i_33
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [22]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [22]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [8]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [8]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [8]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [22]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [8]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [22]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [8]));
 LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
      DSP_i_34
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [21]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [21]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [7]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [7]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [7]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [21]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [7]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [21]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [7]));
 LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
      DSP_i_35
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [20]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [20]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [6]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [6]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [6]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [20]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [6]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [20]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [6]));
 LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
      DSP_i_36
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [19]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [19]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [5]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [5]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [19]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [5]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [19]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [5]));
 LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
      DSP_i_37
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [18]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [18]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [4]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [4]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [4]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [18]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [4]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [18]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [4]));
 LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
      DSP_i_38
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [17]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [17]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [3]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [3]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [3]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [17]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [3]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [17]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [3]));
 LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
      DSP_i_39
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [16]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [16]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [2]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [2]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [2]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [16]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [2]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [16]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [2]));
 LUT6 #(
-    .INIT(64'h8000000100000000)) 
+    .INIT(64'h8000000000000100)) 
      DSP_i_3__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [14]));
 LUT4 #(
     .INIT(16'h0400)) 
@@ -3381,22 +3372,22 @@ LUT4 #(
 LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
      DSP_i_40
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [15]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [15]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [1]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [1]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [1]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [15]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [1]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [15]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [1]));
 LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
      DSP_i_41
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [14]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [14]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_by_14_mux ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [0]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [0]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [0]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [23]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [14]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [0]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/B_IP_DELAY/i_pipe/first_q [14]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sml_shft_by_14_align [0]));
 LUT3 #(
     .INIT(8'hB8)) 
@@ -3455,23 +3446,23 @@ LUT3 #(
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/A_IP_DELAY/i_pipe/first_q [15]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/a [15]));
 LUT6 #(
-    .INIT(64'h4000001000010010)) 
+    .INIT(64'h0080000000010030)) 
      DSP_i_4__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .O(n_0_DSP_i_4__0));
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [13]));
 LUT6 #(
-    .INIT(64'h2800000000000028)) 
+    .INIT(64'h0880000001100000)) 
      DSP_i_5
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
         .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [12]));
 LUT3 #(
@@ -3603,43 +3594,52 @@ LUT2 #(
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/valid_lrg_add_ip ));
-LUT5 #(
-    .INIT(32'h81000000)) 
+LUT3 #(
+    .INIT(8'h02)) 
      DSP_i_66
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [7]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [8]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .I3(n_0_DSP_i_67),
-        .I4(n_0_DSP_i_68),
+       (.I0(n_0_DSP_i_67),
+        .I1(n_0_DSP_i_68),
+        .I2(n_0_DSP_i_69),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/valid_add_ip ));
-LUT4 #(
-    .INIT(16'h1001)) 
+LUT5 #(
+    .INIT(32'hAFBFFFFF)) 
      DSP_i_67
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [7]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [6]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
         .O(n_0_DSP_i_67));
 LUT6 #(
-    .INIT(64'hF3EFF3CFF3CFFFCF)) 
+    .INIT(64'hFFFFFFFFFFFF7FFE)) 
      DSP_i_68
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [7]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [6]),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [8]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
         .O(n_0_DSP_i_68));
 LUT6 #(
-    .INIT(64'h0040010040010000)) 
+    .INIT(64'h0000155500000000)) 
+     DSP_i_69
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .O(n_0_DSP_i_69));
+LUT6 #(
+    .INIT(64'h0008008100100000)) 
      DSP_i_6__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .O(n_0_DSP_i_6__0));
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [11]));
 LUT6 #(
     .INIT(64'h0000000040444000)) 
      DSP_i_7
@@ -3651,13 +3651,13 @@ LUT6 #(
         .I5(\n_0_DIST_ENC[2].LSB_i_4 ),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/shift_shift [9]));
 LUT6 #(
-    .INIT(64'h0000009090000000)) 
+    .INIT(64'h0000090090000000)) 
      DSP_i_7__0
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
         .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [10]));
 LUT5 #(
@@ -3670,15 +3670,15 @@ LUT5 #(
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in3_in ),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/shift_shift [8]));
 LUT6 #(
-    .INIT(64'h1000000400044000)) 
+    .INIT(64'h0000018000001800)) 
      DSP_i_8__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
         .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
-        .O(n_0_DSP_i_8__0));
+        .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [9]));
 LUT6 #(
     .INIT(64'h0000000040444000)) 
      DSP_i_9
@@ -3690,14 +3690,14 @@ LUT6 #(
         .I5(\n_0_DIST_ENC[1].LSB_i_2 ),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/shift_shift [7]));
 LUT6 #(
-    .INIT(64'h0028000000002800)) 
+    .INIT(64'h0108108000000000)) 
      DSP_i_9__0
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [4]),
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [2]),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [5]),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [3]),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [1]),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/BMA_EXP_DELAY/i_pipe/first_q [0]),
         .O(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/shift_align [8]));
 GND GND
        (.G(\<const0> ));
@@ -4001,7 +4001,8 @@ LUT4 #(
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/det_state_del [1]),
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/CANCELLATION_DELAY/i_pipe/first_q ),
         .O(m_axis_result_tdata[31]));
-LUT5 #(
+(* SOFT_HLUTNM = "soft_lutpair0" *) 
+   LUT5 #(
     .INIT(32'h00000200)) 
      \m_axis_result_tdata[3]_INST_0 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/round_mant [3]),
@@ -4010,8 +4011,7 @@ LUT5 #(
         .I3(\n_0_m_axis_result_tdata[30]_INST_0_i_2 ),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/det_state_del [0]),
         .O(m_axis_result_tdata[3]));
-(* SOFT_HLUTNM = "soft_lutpair0" *) 
-   LUT5 #(
+LUT5 #(
     .INIT(32'h00000200)) 
      \m_axis_result_tdata[4]_INST_0 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/round_mant [4]),
@@ -4087,7 +4087,7 @@ LUT3 #(
        (.I0(s_axis_operation_tdata[0]),
         .I1(s_axis_b_tdata[31]),
         .O(\n_0_opt_has_pipe.first_q[0]_i_1__1 ));
-(* SOFT_HLUTNM = "soft_lutpair3" *) 
+(* SOFT_HLUTNM = "soft_lutpair2" *) 
    LUT3 #(
     .INIT(8'h10)) 
      \opt_has_pipe.first_q[0]_i_1__10 
@@ -4095,7 +4095,7 @@ LUT3 #(
         .I1(s_axis_a_tdata[23]),
         .I2(\n_0_opt_has_pipe.first_q[0]_i_2__3 ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_1__10 ));
-(* SOFT_HLUTNM = "soft_lutpair3" *) 
+(* SOFT_HLUTNM = "soft_lutpair2" *) 
    LUT3 #(
     .INIT(8'h80)) 
      \opt_has_pipe.first_q[0]_i_1__11 
@@ -4103,7 +4103,7 @@ LUT3 #(
         .I1(s_axis_a_tdata[23]),
         .I2(\n_0_opt_has_pipe.first_q[0]_i_2__4 ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_1__11 ));
-(* SOFT_HLUTNM = "soft_lutpair2" *) 
+(* SOFT_HLUTNM = "soft_lutpair4" *) 
    LUT3 #(
     .INIT(8'h10)) 
      \opt_has_pipe.first_q[0]_i_1__12 
@@ -4111,7 +4111,7 @@ LUT3 #(
         .I1(s_axis_b_tdata[23]),
         .I2(\n_0_opt_has_pipe.first_q[0]_i_2__5 ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_1__12 ));
-(* SOFT_HLUTNM = "soft_lutpair2" *) 
+(* SOFT_HLUTNM = "soft_lutpair4" *) 
    LUT3 #(
     .INIT(8'h80)) 
      \opt_has_pipe.first_q[0]_i_1__13 
@@ -4120,24 +4120,24 @@ LUT3 #(
         .I2(\n_0_opt_has_pipe.first_q[0]_i_2__6 ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_1__13 ));
 LUT6 #(
-    .INIT(64'h00AA30AA30AA30AA)) 
+    .INIT(64'h0000AAAA0333AAAA)) 
      \opt_has_pipe.first_q[0]_i_1__2 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/INV_OP_DEL/i_pipe/first_q ),
         .I1(\n_0_opt_has_pipe.first_q[0]_i_2 ),
-        .I2(\n_0_opt_has_pipe.first_q[0]_i_3 ),
-        .I3(aclken),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
+        .I4(aclken),
+        .I5(\n_0_opt_has_pipe.first_q[0]_i_3__0 ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_1__2 ));
 LUT6 #(
-    .INIT(64'h00AACFAA00AA03AA)) 
+    .INIT(64'h800080008FFF8000)) 
      \opt_has_pipe.first_q[0]_i_1__3 
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/DET_SIGN_DELAY/i_pipe/first_q ),
-        .I1(\n_0_opt_has_pipe.first_q[0]_i_2__0 ),
-        .I2(\n_0_opt_has_pipe.first_q[0]_i_3__0 ),
-        .I3(aclken),
-        .I4(\n_0_opt_has_pipe.first_q[0]_i_4 ),
-        .I5(\n_0_opt_has_pipe.first_q[0]_i_5 ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/A_SIGN_DELAY/i_pipe/first_q ),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/B_SIGN_DELAY/i_pipe/first_q ),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
+        .I4(\n_0_opt_has_pipe.first_q[0]_i_2__0 ),
+        .I5(\n_0_opt_has_pipe.first_q[0]_i_3__0 ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_1__3 ));
 LUT4 #(
     .INIT(16'h0EEE)) 
@@ -4147,7 +4147,7 @@ LUT4 #(
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_1__4 ));
-(* SOFT_HLUTNM = "soft_lutpair4" *) 
+(* SOFT_HLUTNM = "soft_lutpair3" *) 
    LUT2 #(
     .INIT(4'h8)) 
      \opt_has_pipe.first_q[0]_i_1__5 
@@ -4176,9 +4176,9 @@ LUT6 #(
      \opt_has_pipe.first_q[0]_i_1__8 
        (.I0(\n_0_opt_has_pipe.first_q[0]_i_2__1 ),
         .I1(\n_0_opt_has_pipe.first_q[0]_i_3__1 ),
-        .I2(\n_0_opt_has_pipe.first_q[0]_i_4__0 ),
-        .I3(\n_0_opt_has_pipe.first_q[0]_i_5__0 ),
-        .I4(\n_0_opt_has_pipe.first_q[0]_i_6__0 ),
+        .I2(\n_0_opt_has_pipe.first_q[0]_i_4 ),
+        .I3(\n_0_opt_has_pipe.first_q[0]_i_5 ),
+        .I4(\n_0_opt_has_pipe.first_q[0]_i_6 ),
         .I5(\n_0_opt_has_pipe.first_q[0]_i_7 ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_1__8 ));
 LUT4 #(
@@ -4200,14 +4200,14 @@ LUT6 #(
         .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/A_SIGN_DELAY/i_pipe/first_q ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_2 ));
 LUT6 #(
-    .INIT(64'h00007FFF7FFF7FFF)) 
+    .INIT(64'hFFFF00EA3F150000)) 
      \opt_has_pipe.first_q[0]_i_2__0 
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q ),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/a_mant_is_zero ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/b_mant_is_zero ),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/b_mant_is_zero ),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
+        .I3(\n_0_opt_has_pipe.first_q[0]_i_3 ),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/A_SIGN_DELAY/i_pipe/first_q ),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/B_SIGN_DELAY/i_pipe/first_q ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_2__0 ));
 LUT2 #(
     .INIT(4'h8)) 
@@ -4216,14 +4216,14 @@ LUT2 #(
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/add_mant [3]),
         .O(\n_0_opt_has_pipe.first_q[0]_i_2__1 ));
 LUT6 #(
-    .INIT(64'h9A9A9A9999999A99)) 
+    .INIT(64'h99A999A999AA9999)) 
      \opt_has_pipe.first_q[0]_i_2__2 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/first_q [0]),
         .I1(\n_0_opt_has_pipe.first_q[0]_i_3__2 ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/norm_dist ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O54_in ),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in12_in ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O0_in ),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O0_in ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/norm_dist ),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O54_in ),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in12_in ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_2__2 ));
 LUT6 #(
     .INIT(64'h0000000000000001)) 
@@ -4265,19 +4265,19 @@ LUT6 #(
         .I4(s_axis_b_tdata[26]),
         .I5(s_axis_b_tdata[29]),
         .O(\n_0_opt_has_pipe.first_q[0]_i_2__6 ));
-LUT4 #(
-    .INIT(16'hD0DD)) 
-     \opt_has_pipe.first_q[0]_i_3 
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q ),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/b_mant_is_zero ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/a_mant_is_zero ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q ),
-        .O(\n_0_opt_has_pipe.first_q[0]_i_3 ));
 LUT2 #(
-    .INIT(4'h7)) 
+    .INIT(4'h8)) 
+     \opt_has_pipe.first_q[0]_i_3 
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q ),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/a_mant_is_zero ),
+        .O(\n_0_opt_has_pipe.first_q[0]_i_3 ));
+LUT4 #(
+    .INIT(16'h44F4)) 
      \opt_has_pipe.first_q[0]_i_3__0 
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/A_SIGN_DELAY/i_pipe/first_q ),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/B_SIGN_DELAY/i_pipe/first_q ),
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/a_mant_is_zero ),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q ),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/b_mant_is_zero ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_3__0 ));
 LUT5 #(
     .INIT(32'h23202020)) 
@@ -4297,61 +4297,35 @@ LUT4 #(
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O2_in ),
         .O(\n_0_opt_has_pipe.first_q[0]_i_3__2 ));
 LUT6 #(
-    .INIT(64'h0070777700700070)) 
-     \opt_has_pipe.first_q[0]_i_4 
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/a_mant_is_zero ),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/b_mant_is_zero ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q ),
-        .O(\n_0_opt_has_pipe.first_q[0]_i_4 ));
-LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
-     \opt_has_pipe.first_q[0]_i_4__0 
+     \opt_has_pipe.first_q[0]_i_4 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/p_8_in ),
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/p_5_in ),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/p_3_in ),
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/p_4_in ),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/p_10_in ),
         .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/p_6_in ),
-        .O(\n_0_opt_has_pipe.first_q[0]_i_4__0 ));
-LUT6 #(
-    .INIT(64'hFFFF00EAFF150000)) 
-     \opt_has_pipe.first_q[0]_i_5 
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/b_largest ),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/b_mant_is_zero ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q ),
-        .I3(\n_0_opt_has_pipe.first_q[0]_i_6 ),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/A_SIGN_DELAY/i_pipe/first_q ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/B_SIGN_DELAY/i_pipe/first_q ),
-        .O(\n_0_opt_has_pipe.first_q[0]_i_5 ));
+        .O(\n_0_opt_has_pipe.first_q[0]_i_4 ));
 LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFEFF)) 
-     \opt_has_pipe.first_q[0]_i_5__0 
+     \opt_has_pipe.first_q[0]_i_5 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/p_2_in ),
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/p_1_in ),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/p_0_in ),
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/Z_14_LZD_DELAY/i_pipe/first_q ),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sum_pad_fab [0]),
         .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/p_7_in ),
-        .O(\n_0_opt_has_pipe.first_q[0]_i_5__0 ));
-LUT2 #(
-    .INIT(4'h8)) 
-     \opt_has_pipe.first_q[0]_i_6 
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ONE_DEL/i_pipe/first_q ),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/a_mant_is_zero ),
-        .O(\n_0_opt_has_pipe.first_q[0]_i_6 ));
+        .O(\n_0_opt_has_pipe.first_q[0]_i_5 ));
 LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFC88)) 
-     \opt_has_pipe.first_q[0]_i_6__0 
+     \opt_has_pipe.first_q[0]_i_6 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/add_mant [1]),
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/add_mant [26]),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/add_mant [25]),
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/add_mant [0]),
         .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/sum_pad_fab [12]),
         .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/p_9_in ),
-        .O(\n_0_opt_has_pipe.first_q[0]_i_6__0 ));
+        .O(\n_0_opt_has_pipe.first_q[0]_i_6 ));
 LUT6 #(
     .INIT(64'h3530353F353F353F)) 
      \opt_has_pipe.first_q[0]_i_7 
@@ -4363,16 +4337,16 @@ LUT6 #(
         .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/add_mant [0]),
         .O(\n_0_opt_has_pipe.first_q[0]_i_7 ));
 LUT5 #(
-    .INIT(32'hC0AAFFAA)) 
+    .INIT(32'hFACACACA)) 
      \opt_has_pipe.first_q[1]_i_1 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/STATE_DELAY/i_pipe/first_q [1]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
-        .I3(aclken),
-        .I4(\n_0_opt_has_pipe.first_q[1]_i_2 ),
+        .I1(\n_0_opt_has_pipe.first_q[1]_i_2 ),
+        .I2(aclken),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_B/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/COND_DET_A/EXP_DET_LUT.EXP_ALL_ZERO_DEL/i_pipe/first_q ),
         .O(\n_0_opt_has_pipe.first_q[1]_i_1 ));
 LUT6 #(
-    .INIT(64'h6F00FFFF0FFF0FFF)) 
+    .INIT(64'h90FF0000F000F000)) 
      \opt_has_pipe.first_q[1]_i_2 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/A_SIGN_DELAY/i_pipe/first_q ),
         .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/B_SIGN_DELAY/i_pipe/first_q ),
@@ -4407,14 +4381,15 @@ LUT2 #(
        (.I0(s_axis_b_tdata[25]),
         .I1(s_axis_a_tdata[25]),
         .O(\n_0_opt_has_pipe.first_q[3]_i_3__0 ));
-LUT5 #(
-    .INIT(32'h5595AAAA)) 
+LUT6 #(
+    .INIT(64'h9A9A9A9999999A99)) 
      \opt_has_pipe.first_q[3]_i_4 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/first_q [1]),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O4_in ),
+        .I1(\n_0_opt_has_pipe.first_q[3]_i_6 ),
         .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/norm_dist ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in ),
-        .I4(\n_0_opt_has_pipe.first_q[3]_i_6 ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O ),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in12_in ),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O1_in ),
         .O(\n_0_opt_has_pipe.first_q[3]_i_4 ));
 LUT2 #(
     .INIT(4'h9)) 
@@ -4429,24 +4404,22 @@ LUT2 #(
         .I1(s_axis_a_tdata[23]),
         .O(\n_0_opt_has_pipe.first_q[3]_i_5 ));
 LUT6 #(
-    .INIT(64'h9A9A9A9999999A99)) 
+    .INIT(64'h99A999A999AA9999)) 
      \opt_has_pipe.first_q[3]_i_5__0 
        (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/EXP/EXP_OFF.LRG_EXP_DELAY/i_pipe/first_q [0]),
         .I1(\n_0_opt_has_pipe.first_q[0]_i_3__2 ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/norm_dist ),
-        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O54_in ),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in12_in ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O0_in ),
-        .O(\n_0_opt_has_pipe.first_q[3]_i_5__0 ));
-LUT6 #(
-    .INIT(64'h0047FF47FF47FF47)) 
-     \opt_has_pipe.first_q[3]_i_6 
-       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O1_in ),
-        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in12_in ),
-        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O ),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O0_in ),
         .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/norm_dist ),
-        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O7_in ),
-        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in ),
+        .I4(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O54_in ),
+        .I5(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in12_in ),
+        .O(\n_0_opt_has_pipe.first_q[3]_i_5__0 ));
+LUT4 #(
+    .INIT(16'hB080)) 
+     \opt_has_pipe.first_q[3]_i_6 
+       (.I0(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O7_in ),
+        .I1(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/CI0_in ),
+        .I2(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/norm_dist ),
+        .I3(\ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/LOD/O4_in ),
         .O(\n_0_opt_has_pipe.first_q[3]_i_6 ));
 LUT1 #(
     .INIT(2'h1)) 

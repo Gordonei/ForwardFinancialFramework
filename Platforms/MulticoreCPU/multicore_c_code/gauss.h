@@ -45,6 +45,12 @@
 #define uint32_t uint
 #endif
 
+#ifdef VIVADOHLS
+#include "ap_cint.h"
+//#include "hls_math.h"
+#define M_PI 3.1415926535897
+#endif
+
 //#include <gsl/gsl_rng.h>
 
 /* position of right-most step */
@@ -203,6 +209,11 @@ static const double wtab[128] = {
 //  }
 //  return  sign ? sigma*x : -sigma*x;
 //}
+
+#ifdef VIVADOHLS
+typedef uint32 uint32_t;
+#endif
+
 
 //Beginning of modified code that uses the Combined TAUSWORTHE RNG
 typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;uint32_t offset;} rng_state_t;

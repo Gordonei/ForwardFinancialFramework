@@ -57,18 +57,18 @@
 				<UsedIn Val="IMPLEMENTATION"/>
 				<UsedIn Val="SIMULATION"/>
 			</File>
-			<File Name="ip/zynq_system_auto_pc_0/zynq_system_auto_pc_0.xci"
+			<File Name="ip/zynq_system_auto_pc_7/zynq_system_auto_pc_7.xci"
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="false"
-						Timestamp="1394617477"
+						Timestamp="0"
 						IsTrackable="true"/>
 				<Library Name="work"/>
 				<UsedIn Val="SYNTHESIS"/>
 				<UsedIn Val="IMPLEMENTATION"/>
 				<UsedIn Val="SIMULATION"/>
 			</File>
-			<File Name="ip/zynq_system_auto_pc_1/zynq_system_auto_pc_1.xci"
+			<File Name="ip/zynq_system_auto_pc_8/zynq_system_auto_pc_8.xci"
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="true"

@@ -35,6 +35,11 @@
 #endif
 #endif
 
+#ifdef VIVADOHLS
+//#include "hls_math.h"
+#define M_PI 3.1415926535897
+#endif
+
 typedef struct {
 FP_t gamma;
 FP_t time;

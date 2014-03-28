@@ -1,5 +1,5 @@
-# 1 "/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/.autopilot/db/option.pragma.1.c"
-# 1 "/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/.autopilot/db/option.pragma.1.c" 1
+# 1 "/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/.autopilot/db/option.pragma.1.c"
+# 1 "/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/.autopilot/db/option.pragma.1.c" 1
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 149 "<built-in>" 3
@@ -11,14 +11,14 @@
 
 
 
-# 1 "/opt/Xilinx/2013.3/Vivado_HLS/2013.3/common/technology/autopilot/etc/autopilot_ssdm_op.h" 1
+# 1 "/mnt/cas_nfs/applications/Xilinx/Vivado_HLS/2013.4/common/technology/autopilot/etc/autopilot_ssdm_op.h" 1
 /* autopilot_ssdm_op.h*/
 /*
  * Copyright (C) 2013 XILINX, Inc. 
  *
  * $Id$
  */
-# 238 "/opt/Xilinx/2013.3/Vivado_HLS/2013.3/common/technology/autopilot/etc/autopilot_ssdm_op.h"
+# 238 "/mnt/cas_nfs/applications/Xilinx/Vivado_HLS/2013.4/common/technology/autopilot/etc/autopilot_ssdm_op.h"
 /*#define AP_SPEC_ATTR __attribute__ ((pure))*/
 
 
@@ -158,7 +158,7 @@
 #define _ssdm_op_Delayed(X) X */
 # 9 "<command line>" 2
 # 1 "<built-in>" 2
-# 1 "/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/.autopilot/db/option.pragma.1.c" 2
+# 1 "/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/.autopilot/db/option.pragma.1.c" 2
 # 1 "srcs/option.c"
 # 1 "srcs/option.c" 1
 # 1 "<built-in>" 1
@@ -172,14 +172,14 @@
 
 
 
-# 1 "/opt/Xilinx/2013.3/Vivado_HLS/2013.3/common/technology/autopilot/etc/autopilot_ssdm_op.h" 1
+# 1 "/mnt/cas_nfs/applications/Xilinx/Vivado_HLS/2013.4/common/technology/autopilot/etc/autopilot_ssdm_op.h" 1
 /* autopilot_ssdm_op.h*/
 /*
  * Copyright (C) 2013 XILINX, Inc. 
  *
  * $Id$
  */
-# 238 "/opt/Xilinx/2013.3/Vivado_HLS/2013.3/common/technology/autopilot/etc/autopilot_ssdm_op.h"
+# 238 "/mnt/cas_nfs/applications/Xilinx/Vivado_HLS/2013.4/common/technology/autopilot/etc/autopilot_ssdm_op.h"
 /*#define AP_SPEC_ATTR __attribute__ ((pure))*/
 
 
@@ -378,9 +378,9 @@ void option_derivative_path(float price,float time,option_variables* o_v,option_
 
 void option_derivative_payoff(float end_price,option_variables* o_v,option_attributes* o_a){
  if((o_a->call)){
-  o_v->value = end_price-o_a->strike_price;
+  o_v->value = end_price - o_a->strike_price;
  }
  else{
-  o_v->value = o_a->strike_price-end_price;
+  o_v->value = o_a->strike_price - end_price;
  }
 }
