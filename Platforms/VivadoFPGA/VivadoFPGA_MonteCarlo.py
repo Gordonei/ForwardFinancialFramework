@@ -9,21 +9,23 @@ import VivadoFPGA
 class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   c_slow = False
   pipelining = 1
+  instances = 1
   
-  def __init__(self,derivative,paths,platform,points=4096,reduce_underlyings=True,random_number_generator="taus_boxmuller",floating_point_format="float",c_slow=False,pipelining=1,simulation=False):
+  def __init__(self,derivative,paths,platform,points=4096,reduce_underlyings=True,random_number_generator="taus_boxmuller",floating_point_format="float",c_slow=False,pipelining=1,instances=1,simulation=False):
     self.pipelining = pipelining
     self.c_slow = c_slow
     self.simulation = simulation
+    self.instances = instances
     
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings,random_number_generator=random_number_generator,floating_point_format=floating_point_format)
     self.solver_metadata["threads"] = 1 #In this context this means something different
     
-    self.solver_metadata["instance_paths"] = 1000
+    self.solver_metadata["instance_paths"] = 100
     self.solver_metadata["path_points"] = points
     
   def generate_name(self):
       MonteCarlo.MonteCarlo.generate_name(self)  
-      self.output_file_name = ("%s_cslow_%s_pipelining_%d"%(self.output_file_name,str(self.c_slow),self.pipelining))
+      self.output_file_name = ("%s_cslow_%s_pipe_%d_insts_%d"%(self.output_file_name,str(self.c_slow),self.pipelining,self.instances))
     
   """def generate(self,override=True):
     #Generate C Host Code largely using Multicore C infrastructure
@@ -83,7 +85,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     #Call the function
     if(self.simulation):
-      output_list.append("%s_kernel(kernel_arg);"%self.name)
+      output_list.append("vivado_activity_thread(kernel_arg);"%self.name)
       
     else:
       pass
@@ -111,15 +113,26 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return output_list
     
 
-  def generate_tcl_script(self): pass
+  def compile(self,overide=True,compile_options=[],debug=False):
+    result = []
     
-  def generate_directives(self): pass
+    if(self.simulation): 
+      result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_options,debug)
+    
+    else:
+      os.chdir("%s/.."self.platform.platform_directory())
+      
+      compile_cmd = ["make","all"]
+      if(self.instances>1): compile_cmd.append[""]
+      result = subprocess.check_output(compile_cmd)
+      
+    return result
   
 
   def generate_kernel(self):
     output_list = []
     output_list.append("//*Vivado HLS Kernel Function*")
-    output_list.append("void %s_kernel(void* void_kernel_arg){"%self.name)
+    output_list.append("void vivado_activity_thread(void* void_kernel_arg){"%self.name)
   
     if(self.simulation):
       output_list.append("#define expf exp")
