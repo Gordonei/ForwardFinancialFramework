@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------
 | Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date         : Fri Mar 28 11:41:30 2014
+| Date         : Fri Mar 28 17:16:47 2014
 | Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_drc
 -----------------------------------------------------------------------------------
@@ -119,7 +119,7 @@ REPORT SUMMARY
                      Delay constraint missing on IO port
                      PS7 block required
            Max violations: <unlimited>
-         Violations found: 176
+         Violations found: 229
 
 2. REPORT DETAILS
 -----------------
@@ -138,110 +138,375 @@ Related violations: <none>
 
 DPIP-1#1 Warning
 DSP input pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input A B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#2 Warning
 DSP input pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/SHIFT_RND/DSP input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#3 Warning
 DSP input pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP input A B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#4 Warning
 DSP input pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#5 Warning
 DSP input pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#6 Warning
 DSP input pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#7 Warning
 DSP input pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP input B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#8 Warning
 DSP input pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP input A B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#9 Warning
 DSP input pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#10 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_Xf/dsp.two.dsp48e1_add_hi/DSP input B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#11 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_Xf/dsp.two.dsp48e1_add_lo/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#12 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_1.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#13 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_1.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#14 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#15 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#16 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#17 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#18 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.two.dsp48e1_add_hi/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#19 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.two.dsp48e1_add_lo/DSP input A B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#20 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.two.dsp48e1_add_hi/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#21 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.two.dsp48e1_add_lo/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#22 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#23 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[2].i_addsub/dsp.one.dsp48e1_add/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#24 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP input B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#25 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP0/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#26 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP1/DSP input A  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#27 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP2/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#28 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LOGIC.R_AND_R/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP input B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#29 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#30 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/SHIFT_RND/DSP input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#31 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP input A B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#32 Warning
+DSP input pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#33 Warning
 DSP input pipelining  
 DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP input A C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPOP-1#1 Warning
 DSP output pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#2 Warning
 DSP output pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/SHIFT_RND/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#3 Warning
 DSP output pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_sp_dsp.i_calculate_Fr/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#4 Warning
 DSP output pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_Xf/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#5 Warning
 DSP output pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#6 Warning
 DSP output pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#7 Warning
 DSP output pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#8 Warning
 DSP output pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#9 Warning
 DSP output pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#10 Warning
 DSP output pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_e2zm1/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#11 Warning
 DSP output pipelining  
-DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_Xf/dsp.two.dsp48e1_add_hi/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#12 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_Xf/dsp.two.dsp48e1_add_lo/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#13 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_1.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#14 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_1.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#15 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#16 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#17 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#18 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#19 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.two.dsp48e1_add_hi/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#20 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.two.dsp48e1_add_lo/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#21 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.two.dsp48e1_add_hi/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#22 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.two.dsp48e1_add_lo/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#23 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#24 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#25 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[2].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#26 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7/vivado_activity_thread_ap_dexp_16_full_dsp_u/U0/i_synth/EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#27 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP0/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#28 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP1/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#29 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP2/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#30 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP3/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#31 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP4/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#32 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP5/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#33 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP6/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#34 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP7/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#35 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP8/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#36 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/FULL_MAX_USAGE.DSP9/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#37 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6/vivado_activity_thread_ap_dmul_4_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LOGIC.R_AND_R/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#38 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#39 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/SHIFT_RND/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#40 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#41 Warning
+DSP output pipelining  
+DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#42 Warning
 DSP output pipelining  
 DSP zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>

@@ -57,7 +57,7 @@
 				<UsedIn Val="IMPLEMENTATION"/>
 				<UsedIn Val="SIMULATION"/>
 			</File>
-			<File Name="ip/zynq_system_auto_pc_7/zynq_system_auto_pc_7.xci"
+			<File Name="ip/zynq_system_auto_pc_8/zynq_system_auto_pc_8.xci"
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="false"
@@ -68,7 +68,7 @@
 				<UsedIn Val="IMPLEMENTATION"/>
 				<UsedIn Val="SIMULATION"/>
 			</File>
-			<File Name="ip/zynq_system_auto_pc_8/zynq_system_auto_pc_8.xci"
+			<File Name="ip/zynq_system_auto_pc_9/zynq_system_auto_pc_9.xci"
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="true"

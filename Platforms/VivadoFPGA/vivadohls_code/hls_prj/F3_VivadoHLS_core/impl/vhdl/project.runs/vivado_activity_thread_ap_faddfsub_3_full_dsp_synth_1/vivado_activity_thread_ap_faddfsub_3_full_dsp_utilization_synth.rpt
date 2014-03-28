@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date         : Fri Mar 28 11:27:21 2014
+| Date         : Fri Mar 28 16:57:17 2014
 | Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_utilization -file vivado_activity_thread_ap_faddfsub_3_full_dsp_utilization_synth.rpt -pb vivado_activity_thread_ap_faddfsub_3_full_dsp_utilization_synth.pb
 | Design       : vivado_activity_thread_ap_faddfsub_3_full_dsp

@@ -2,6 +2,7 @@
 Created on 24 March 2014
 
 '''
+import os,subprocess
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo
 import VivadoFPGA
@@ -115,18 +116,34 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return output_list
     
 
-def compile(self,overide=True,compile_options=[],debug=False):
+  def compile(self,overide=True,compile_options=[],debug=False):
     result = []
     
     if(self.simulation): 
-      result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_options,debug)
+      result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,overide,compile_options,debug)
     
     else:
-      os.chdir("%s/.."self.platform.platform_directory())
+      os.chdir("..")
+      os.chdir(self.platform.platform_directory())
+      
+      subprocess.check_output(["cp", "%s.c"%self.output_file_name, "vivado_core.c"])
+      
+      os.chdir("..")
+      
+      try: subprocess.check_output(["make","clean"])
+      except: pass
       
       compile_cmd = ["make","all"]
-      if(self.instances>1): compile_cmd.append[""]
+      
+      #Configuring optimisations
+      if(self.instances>1): compile_cmd.append("LOOP_UNROLL=%d"%self.instances)
+      if(self.pipelining>1): compile_cmd.append("LOOP_II=%d" % (self.solver_metadata["path_points"]/self.pipelining))
+      
       result = subprocess.check_output(compile_cmd)
+      
+      os.chdir("src")
+      os.chdir(self.platform.root_directory())
+      os.chdir("bin")
       
     return result
   
@@ -140,7 +157,14 @@ def compile(self,overide=True,compile_options=[],debug=False):
     output_list[-1] = "%s){"%output_list[-1]
     
     output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_arg metadata=\"-bus_bundle CORE_IO\"")
-    output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata=\"-bus_bundle CORE_IO\"")
+    for index,d in enumerate(self.derivative):
+      output_list.append("#pragma HLS INTERFACE ap_fifo port=result_%d"%index)
+      output_list.append("#pragma HLS INTERFACE ap_fifo port=result_sqrd_%d"%index)
+      #output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=result_%d metadata=\"-bus_bundle CORE_IO\""%index)
+      #output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=result_sqrd_%d metadata=\"-bus_bundle CORE_IO\""%index)
+    
+    #output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata=\"-bus_bundle CORE_IO\"")
+    
     
     if(self.simulation):
       output_list.append("#define expf exp")
@@ -190,7 +214,7 @@ def compile(self,overide=True,compile_options=[],debug=False):
 	
       output_list.append("//**Returning Result**")
       output_list.append("result_%d[p] = kernel_arg->o_v_%d.value;"% (index,index))
-      output_list.append("result_sqrd_%d[p] = kernel_arg->o_v_%d.value*kernel_arg->o_v_%d.value;"%(index,index))
+      output_list.append("result_sqrd_%d[p] = kernel_arg->o_v_%d.value*kernel_arg->o_v_%d.value;"%(index,index,index))
       #output_list.append("(*kernel_arg).kernel_result[%d*PATHS+p] = (*kernel_arg).o_v_%d.value;"%(index,index))
       #output_list.append("(*kernel_arg).kernel_result[%d*PATHS+p] = powf((*kernel_arg).o_v_%d.value,2);"%(index,index))
     

@@ -11,6 +11,9 @@ target triple = "x86_64-unknown-linux-gnu"
 @p_str109 = private unnamed_addr constant [1 x i8] zeroinitializer, align 1
 @p_str110 = private unnamed_addr constant [10 x i8] c"AXI_SLAVE\00", align 1
 @p_str111 = private unnamed_addr constant [20 x i8] c"-bus_bundle CORE_IO\00", align 1
+@p_str112 = private unnamed_addr constant [8 x i8] c"ap_fifo\00", align 1
+@p_str113 = private unnamed_addr constant [13 x i8] c"PATHSET_LOOP\00", align 1
+@p_str114 = private unnamed_addr constant [10 x i8] c"PATH_LOOP\00", align 1
 @i = common global i32 0, align 4
 @j = common global i32 0, align 4
 @discount_0_0 = common global float 0.000000e+00, align 4
@@ -25,6 +28,16 @@ target triple = "x86_64-unknown-linux-gnu"
 @llvm_global_ctors_1 = appending global [2 x void ()*] [void ()* @_GLOBAL__I_a, void ()* @_GLOBAL__I_a2027]
 @str = internal constant [23 x i8] c"vivado_activity_thread\00"
 
+define weak void @_ssdm_op_SpecFifo(...) nounwind {
+entry:
+  ret void
+}
+
+define weak void @_ssdm_op_SpecLoopName(...) nounwind {
+entry:
+  ret void
+}
+
 declare void @llvm.dbg.value(metadata, i64, metadata) nounwind readnone
 
 define weak void @_ssdm_op_SpecTopModule(...) {
@@ -36,94 +49,20 @@ declare void @_GLOBAL__I_a() nounwind section ".text.startup"
 
 declare void @_GLOBAL__I_a2027() nounwind section ".text.startup"
 
-declare float @llvm.exp.f32(float) nounwind readonly
+declare double @llvm.exp.f64(double) nounwind readonly
+
+define weak i32 @_ssdm_op_SpecRegionBegin(...) {
+entry:
+  ret i32 0
+}
+
+define weak i32 @_ssdm_op_SpecRegionEnd(...) {
+entry:
+  ret i32 0
+}
 
 define weak void @_ssdm_op_SpecIFCore(...) {
 entry:
-  ret void
-}
-
-define void @vivado_activity_thread(float* %kernel_arg_u_a_0_rfir, float* %kernel_arg_u_a_0_current_price, float* %kernel_arg_u_v_0_gamma, float* %kernel_arg_u_v_0_time, float* %kernel_arg_o_a_0_strike_price, float* %kernel_arg_o_a_0_time_period, float* %kernel_arg_o_a_0_call, float* %kernel_arg_o_v_0_delta_time, float* %kernel_arg_o_v_0_value, [1000 x float]* %result_0, [1000 x float]* %result_sqrd_0) {
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_a_0_rfir), !map !94
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_a_0_current_price), !map !98
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_v_0_gamma), !map !102
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_v_0_time), !map !106
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_strike_price), !map !110
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_time_period), !map !114
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_call), !map !118
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_v_0_delta_time), !map !122
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_v_0_value), !map !126
-  call void (...)* @_ssdm_op_SpecBitsMap([1000 x float]* %result_0), !map !130
-  call void (...)* @_ssdm_op_SpecBitsMap([1000 x float]* %result_sqrd_0), !map !136
-  call void (...)* @_ssdm_op_SpecTopModule([23 x i8]* @str) nounwind
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, float* %kernel_arg_u_a_0_current_price, float* %kernel_arg_u_v_0_gamma, float* %kernel_arg_u_v_0_time, float* %kernel_arg_o_a_0_strike_price, float* %kernel_arg_o_a_0_time_period, float* %kernel_arg_o_a_0_call, float* %kernel_arg_o_v_0_delta_time, float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  %kernel_arg_o_a_0_time_period_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_time_period)
-  %delta_time_0 = fmul float %kernel_arg_o_a_0_time_period_read, 0x3F30000000000000
-  %kernel_arg_u_a_0_current_price_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_u_a_0_current_price)
-  br label %1
-
-; <label>:1                                       ; preds = %_ifconv, %0
-  %p = phi i10 [ 0, %0 ], [ %p_1, %_ifconv ]
-  %exitcond1 = icmp eq i10 %p, -24
-  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1000, i64 1000, i64 1000)
-  %p_1 = add i10 %p, 1
-  br i1 %exitcond1, label %5, label %2
-
-; <label>:2                                       ; preds = %1
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_time, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_gamma, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_gamma, float 0.000000e+00)
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_time, float 0.000000e+00)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_o_v_0_value, float 0.000000e+00)
-  br label %3
-
-; <label>:3                                       ; preds = %4, %2
-  %kernel_arg_u_v_0_time_load = phi float [ 0.000000e+00, %2 ], [ %tmp_1_i, %4 ]
-  %kernel_arg_u_v_0_gamma_load_2 = phi float [ 0.000000e+00, %2 ], [ %tmp_i_3, %4 ]
-  %pp = phi i13 [ 0, %2 ], [ %pp_1, %4 ]
-  %tmp_pn = phi float [ 1.000000e+00, %2 ], [ %tmp_5, %4 ]
-  %spot_price_0 = fmul float %kernel_arg_u_a_0_current_price_read, %tmp_pn
-  %exitcond = icmp eq i13 %pp, -4096
-  %empty_2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4096, i64 4096, i64 4096)
-  %pp_1 = add i13 %pp, 1
-  br i1 %exitcond, label %_ifconv, label %4
-
-; <label>:4                                       ; preds = %3
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_time, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_gamma, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  %kernel_arg_u_a_0_rfir_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_u_a_0_rfir)
-  %tmp_i = fmul float %kernel_arg_u_a_0_rfir_read, %delta_time_0
-  %tmp_i_3 = fadd float %kernel_arg_u_v_0_gamma_load_2, %tmp_i
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_gamma, float %tmp_i_3)
-  %tmp_1_i = fadd float %kernel_arg_u_v_0_time_load, %delta_time_0
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_time, float %tmp_1_i)
-  %tmp_5 = call float @llvm.exp.f32(float %tmp_i_3)
-  br label %3
-
-_ifconv:                                          ; preds = %3
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_call, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_strike_price, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  %kernel_arg_o_a_0_call_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_call)
-  %tmp = fcmp oeq float %kernel_arg_o_a_0_call_read, 0.000000e+00
-  %tmp_1 = xor i1 %tmp, true
-  %kernel_arg_o_a_0_strike_price_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_strike_price)
-  %tmp_8_i = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
-  %tmp_9_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
-  %storemerge_i = select i1 %tmp_1, float %tmp_8_i, float %tmp_9_i
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_o_v_0_value, float %storemerge_i)
-  %tmp_2 = zext i10 %p to i64
-  %result_0_addr = getelementptr [1000 x float]* %result_0, i64 0, i64 %tmp_2
-  store float %storemerge_i, float* %result_0_addr, align 4
-  %tmp_3 = fmul float %storemerge_i, %storemerge_i
-  %result_sqrd_0_addr = getelementptr [1000 x float]* %result_sqrd_0, i64 0, i64 %tmp_2
-  store float %tmp_3, float* %result_sqrd_0_addr, align 4
-  br label %1
-
-; <label>:5                                       ; preds = %1
   ret void
 }
 
@@ -137,6 +76,93 @@ entry:
   ret i32 0
 }
 
+define void @vivado_activity_thread(float* %kernel_arg_u_a_0_rfir, float* %kernel_arg_u_a_0_current_price, float* %kernel_arg_u_v_0_gamma, float* %kernel_arg_u_v_0_time, float* %kernel_arg_o_a_0_strike_price, float* %kernel_arg_o_a_0_time_period, float* %kernel_arg_o_a_0_call, float* %kernel_arg_o_v_0_delta_time, float* %kernel_arg_o_v_0_value, float* %result_0) {
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_a_0_rfir), !map !94
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_a_0_current_price), !map !98
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_v_0_gamma), !map !102
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_v_0_time), !map !106
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_strike_price), !map !110
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_time_period), !map !114
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_call), !map !118
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_v_0_delta_time), !map !122
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_v_0_value), !map !126
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %result_0), !map !130
+  call void (...)* @_ssdm_op_SpecTopModule([23 x i8]* @str) nounwind
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, float* %kernel_arg_u_a_0_current_price, float* %kernel_arg_u_v_0_gamma, float* %kernel_arg_u_v_0_time, float* %kernel_arg_o_a_0_strike_price, float* %kernel_arg_o_a_0_time_period, float* %kernel_arg_o_a_0_call, float* %kernel_arg_o_v_0_delta_time, float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  call void (...)* @_ssdm_op_SpecFifo(float* %result_0, [8 x i8]* @p_str112, i32 0, i32 0, i32 0, [1 x i8]* @p_str109)
+  %kernel_arg_o_a_0_time_period_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_time_period)
+  %delta_time_0 = fmul float %kernel_arg_o_a_0_time_period_read, 0x3F30000000000000
+  %kernel_arg_u_a_0_current_price_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_u_a_0_current_price)
+  %tmp = fpext float %kernel_arg_u_a_0_current_price_read to double
+  br label %1
+
+; <label>:1                                       ; preds = %_ifconv, %0
+  %p = phi i7 [ 0, %0 ], [ %p_1, %_ifconv ]
+  %exitcond1 = icmp eq i7 %p, -28
+  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 100, i64 100, i64 100)
+  %p_1 = add i7 %p, 1
+  br i1 %exitcond1, label %5, label %2
+
+; <label>:2                                       ; preds = %1
+  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str113) nounwind
+  %tmp_5 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str113)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_time, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_gamma, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_gamma, float 0.000000e+00)
+  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_time, float 0.000000e+00)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_o_v_0_value, float 0.000000e+00)
+  br label %3
+
+; <label>:3                                       ; preds = %4, %2
+  %kernel_arg_u_v_0_time_load = phi float [ 0.000000e+00, %2 ], [ %tmp_2_i, %4 ]
+  %kernel_arg_u_v_0_gamma_load_2 = phi float [ 0.000000e+00, %2 ], [ %tmp_i_4, %4 ]
+  %pp = phi i13 [ 0, %2 ], [ %pp_1, %4 ]
+  %tmp_2_pn = phi double [ 1.000000e+00, %2 ], [ %tmp_8, %4 ]
+  %spot_price_0_0_in = fmul double %tmp, %tmp_2_pn
+  %spot_price_0 = fptrunc double %spot_price_0_0_in to float
+  %exitcond = icmp eq i13 %pp, -4096
+  %empty_3 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4096, i64 4096, i64 4096)
+  %pp_1 = add i13 %pp, 1
+  br i1 %exitcond, label %_ifconv, label %4
+
+; <label>:4                                       ; preds = %3
+  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str114) nounwind
+  %tmp_6 = call i32 (...)* @_ssdm_op_SpecRegionBegin([10 x i8]* @p_str114)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_time, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_gamma, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  %kernel_arg_u_a_0_rfir_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_u_a_0_rfir)
+  %tmp_i = fmul float %kernel_arg_u_a_0_rfir_read, %delta_time_0
+  %tmp_i_4 = fadd float %kernel_arg_u_v_0_gamma_load_2, %tmp_i
+  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_gamma, float %tmp_i_4)
+  %tmp_2_i = fadd float %kernel_arg_u_v_0_time_load, %delta_time_0
+  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_time, float %tmp_2_i)
+  %tmp_7 = fpext float %tmp_i_4 to double
+  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+  %empty_5 = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_str114, i32 %tmp_6)
+  br label %3
+
+_ifconv:                                          ; preds = %3
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_call, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_strike_price, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  %kernel_arg_o_a_0_call_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_call)
+  %tmp_1 = fcmp oeq float %kernel_arg_o_a_0_call_read, 0.000000e+00
+  %tmp_2 = xor i1 %tmp_1, true
+  %kernel_arg_o_a_0_strike_price_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_strike_price)
+  %tmp_i3 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
+  %tmp_1_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
+  %storemerge_i = select i1 %tmp_2, float %tmp_i3, float %tmp_1_i
+  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_o_v_0_value, float %storemerge_i)
+  call void @_ssdm_op_Write.ap_fifo.volatile.floatP(float* %result_0, float %storemerge_i)
+  %empty_6 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str113, i32 %tmp_5)
+  br label %1
+
+; <label>:5                                       ; preds = %1
+  ret void
+}
+
 define weak float @_ssdm_op_Read.ap_auto.floatP(float*) {
 entry:
   %empty = load float* %0
@@ -148,6 +174,14 @@ entry:
   store float %1, float* %0
   ret void
 }
+
+define weak void @_ssdm_op_Write.ap_fifo.volatile.floatP(float*, float) {
+entry:
+  %empty = call float @_autotb_FifoWrite_float(float* %0, float %1)
+  ret void
+}
+
+declare float @_autotb_FifoWrite_float(float*, float)
 
 !llvm.map.gv = !{!0, !7, !12, !17, !22, !27, !32, !37, !42, !47, !52, !57, !62, !67, !72, !77, !82, !87}
 
@@ -286,8 +320,4 @@ entry:
 !132 = metadata !{metadata !133}
 !133 = metadata !{metadata !"result_0", metadata !134, metadata !"float"}
 !134 = metadata !{metadata !135}
-!135 = metadata !{i32 0, i32 999, i32 1}
-!136 = metadata !{metadata !137}
-!137 = metadata !{i32 0, i32 31, metadata !138}
-!138 = metadata !{metadata !139}
-!139 = metadata !{metadata !"result_sqrd_0", metadata !134, metadata !"float"}
+!135 = metadata !{i32 0, i32 99, i32 1}

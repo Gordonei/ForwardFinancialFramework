@@ -18,13 +18,8 @@ const Port_Property HLS_Design_Meta::port_props[]={
 	Port_Property("kernel_arg_o_v_0_delta_time", 32, hls_in, 7, "ap_none", "in_data", 1),
 	Port_Property("kernel_arg_o_v_0_value", 32, hls_out, 8, "ap_vld", "out_data", 1),
 	Port_Property("kernel_arg_o_v_0_value_ap_vld", 1, hls_out, 8, "ap_vld", "out_vld", 1),
-	Port_Property("result_0_address0", 10, hls_out, 9, "ap_memory", "mem_address", 1),
-	Port_Property("result_0_ce0", 1, hls_out, 9, "ap_memory", "mem_ce", 1),
-	Port_Property("result_0_we0", 1, hls_out, 9, "ap_memory", "mem_we", 1),
-	Port_Property("result_0_d0", 32, hls_out, 9, "ap_memory", "mem_din", 1),
-	Port_Property("result_sqrd_0_address0", 10, hls_out, 10, "ap_memory", "mem_address", 1),
-	Port_Property("result_sqrd_0_ce0", 1, hls_out, 10, "ap_memory", "mem_ce", 1),
-	Port_Property("result_sqrd_0_we0", 1, hls_out, 10, "ap_memory", "mem_we", 1),
-	Port_Property("result_sqrd_0_d0", 32, hls_out, 10, "ap_memory", "mem_din", 1),
+	Port_Property("result_0_din", 32, hls_out, 9, "ap_fifo", "fifo_data", 100),
+	Port_Property("result_0_full_n", 1, hls_in, 9, "ap_fifo", "fifo_status", 100),
+	Port_Property("result_0_write", 1, hls_out, 9, "ap_fifo", "fifo_update", 100),
 };
 const char* HLS_Design_Meta::dut_name = "vivado_activity_thread";

@@ -21,61 +21,6 @@ int XVivado_activity_thread_CfgInitialize(XVivado_activity_thread *InstancePtr, 
 }
 #endif
 
-void XVivado_activity_thread_Start(XVivado_activity_thread *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_AP_CTRL) & 0x80;
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_AP_CTRL, Data | 0x01);
-}
-
-u32 XVivado_activity_thread_IsDone(XVivado_activity_thread *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_AP_CTRL);
-    return (Data >> 1) & 0x1;
-}
-
-u32 XVivado_activity_thread_IsIdle(XVivado_activity_thread *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_AP_CTRL);
-    return (Data >> 2) & 0x1;
-}
-
-u32 XVivado_activity_thread_IsReady(XVivado_activity_thread *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_AP_CTRL);
-    // check ap_start to see if the pcore is ready for next input
-    return !(Data & 0x1);
-}
-
-void XVivado_activity_thread_EnableAutoRestart(XVivado_activity_thread *InstancePtr) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_AP_CTRL, 0x80);
-}
-
-void XVivado_activity_thread_DisableAutoRestart(XVivado_activity_thread *InstancePtr) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_AP_CTRL, 0);
-}
-
 void XVivado_activity_thread_SetKernel_arg_u_a_0_rfir(XVivado_activity_thread *InstancePtr, u32 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
@@ -236,60 +181,5 @@ u32 XVivado_activity_thread_GetKernel_arg_o_v_0_valueVld(XVivado_activity_thread
 
     Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_ARG_O_V_0_VALUE_CTRL);
     return Data & 0x1;
-}
-
-void XVivado_activity_thread_InterruptGlobalEnable(XVivado_activity_thread *InstancePtr) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_GIE, 1);
-}
-
-void XVivado_activity_thread_InterruptGlobalDisable(XVivado_activity_thread *InstancePtr) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_GIE, 0);
-}
-
-void XVivado_activity_thread_InterruptEnable(XVivado_activity_thread *InstancePtr, u32 Mask) {
-    u32 Register;
-
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Register =  XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_IER);
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_IER, Register | Mask);
-}
-
-void XVivado_activity_thread_InterruptDisable(XVivado_activity_thread *InstancePtr, u32 Mask) {
-    u32 Register;
-
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Register =  XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_IER);
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_IER, Register & (~Mask));
-}
-
-void XVivado_activity_thread_InterruptClear(XVivado_activity_thread *InstancePtr, u32 Mask) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_ISR, Mask);
-}
-
-u32 XVivado_activity_thread_InterruptGetEnabled(XVivado_activity_thread *InstancePtr) {
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    return XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_IER);
-}
-
-u32 XVivado_activity_thread_InterruptGetStatus(XVivado_activity_thread *InstancePtr) {
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    return XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_ISR);
 }
 

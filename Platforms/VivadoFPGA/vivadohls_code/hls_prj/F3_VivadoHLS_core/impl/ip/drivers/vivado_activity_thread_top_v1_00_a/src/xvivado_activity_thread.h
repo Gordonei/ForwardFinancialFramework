@@ -80,12 +80,6 @@ int XVivado_activity_thread_Initialize(XVivado_activity_thread *InstancePtr, con
 int XVivado_activity_thread_Release(XVivado_activity_thread *InstancePtr);
 #endif
 
-void XVivado_activity_thread_Start(XVivado_activity_thread *InstancePtr);
-u32 XVivado_activity_thread_IsDone(XVivado_activity_thread *InstancePtr);
-u32 XVivado_activity_thread_IsIdle(XVivado_activity_thread *InstancePtr);
-u32 XVivado_activity_thread_IsReady(XVivado_activity_thread *InstancePtr);
-void XVivado_activity_thread_EnableAutoRestart(XVivado_activity_thread *InstancePtr);
-void XVivado_activity_thread_DisableAutoRestart(XVivado_activity_thread *InstancePtr);
 
 void XVivado_activity_thread_SetKernel_arg_u_a_0_rfir(XVivado_activity_thread *InstancePtr, u32 Data);
 u32 XVivado_activity_thread_GetKernel_arg_u_a_0_rfir(XVivado_activity_thread *InstancePtr);
@@ -105,14 +99,6 @@ void XVivado_activity_thread_SetKernel_arg_o_v_0_delta_time(XVivado_activity_thr
 u32 XVivado_activity_thread_GetKernel_arg_o_v_0_delta_time(XVivado_activity_thread *InstancePtr);
 u32 XVivado_activity_thread_GetKernel_arg_o_v_0_value(XVivado_activity_thread *InstancePtr);
 u32 XVivado_activity_thread_GetKernel_arg_o_v_0_valueVld(XVivado_activity_thread *InstancePtr);
-
-void XVivado_activity_thread_InterruptGlobalEnable(XVivado_activity_thread *InstancePtr);
-void XVivado_activity_thread_InterruptGlobalDisable(XVivado_activity_thread *InstancePtr);
-void XVivado_activity_thread_InterruptEnable(XVivado_activity_thread *InstancePtr, u32 Mask);
-void XVivado_activity_thread_InterruptDisable(XVivado_activity_thread *InstancePtr, u32 Mask);
-void XVivado_activity_thread_InterruptClear(XVivado_activity_thread *InstancePtr, u32 Mask);
-u32 XVivado_activity_thread_InterruptGetEnabled(XVivado_activity_thread *InstancePtr);
-u32 XVivado_activity_thread_InterruptGetStatus(XVivado_activity_thread *InstancePtr);
 
 #ifdef __cplusplus
 }

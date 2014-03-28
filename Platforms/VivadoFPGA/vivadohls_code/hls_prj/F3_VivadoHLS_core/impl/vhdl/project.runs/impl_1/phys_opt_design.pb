@@ -23,7 +23,7 @@ Q
 G%s Infos, %s Warnings, %s Critical Warnings and %s Errors encountered.
 28*	vivadotcl2
 332default:default2
-42default:default2
+72default:default2
 02default:default2
 02default:defaultZ4-41
 X
@@ -43,9 +43,9 @@ A
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2)
 Write XDEF Complete: 2default:default2
-00:00:00.402default:default2
-00:00:00.552default:default2
-1464.2032default:default2
+00:00:00.622default:default2
+00:00:00.792default:default2
+1500.6172default:default2
 0.0002default:defaultZ17-268
 
 

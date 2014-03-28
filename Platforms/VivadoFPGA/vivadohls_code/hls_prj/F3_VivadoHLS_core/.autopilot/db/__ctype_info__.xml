@@ -99,15 +99,5 @@
 <CFractionWidth>24</CFractionWidth>
 <InvalidType>0</InvalidType>
 </RtlPorts>
-<RtlPorts>
-<name>result_sqrd_0</name>
-<CType>
-<TypeName>float</TypeName>
-<TypeWidth>32</TypeWidth>
-<PhysicalWidth>32</PhysicalWidth>
-</CType>
-<CFractionWidth>24</CFractionWidth>
-<InvalidType>0</InvalidType>
-</RtlPorts>
 </InterfaceSummary>
 

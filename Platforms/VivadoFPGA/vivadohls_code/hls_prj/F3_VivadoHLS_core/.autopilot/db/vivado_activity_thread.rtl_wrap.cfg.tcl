@@ -1413,7 +1413,7 @@ set gport44 [list $gportName44 $gportInterface44 $gportData44 $gportPointer44 $g
 lappend globalVariable $gport44
 set staticVariable ""
 set moduleName "vivado_activity_thread"
-set rawDecl [list "void" "vivado_activity_thread\(kernel_data* kernel_arg,float result_0\[1000\],float result_sqrd_0\[1000\]\)"]
+set rawDecl [list "void" "vivado_activity_thread\(kernel_data* kernel_arg,float result_0\[100\]\)"]
 set argAPint ""
 set returnAPint ""
 set portList ""
@@ -1568,25 +1568,15 @@ set portArrayOpt0 ""
 set port0 [list $portName0 $portInterface0 $portData0 $portPointer0 $portArrayDim0 $portConst0 $portVolatile0 $portArrayOpt0]
 lappend portList $port0
 set portName1 "result_0"
-set portInterface1 "memory"
+set portInterface1 "[list fifo 0]"
 set portData1 "float"
 set portPointer1 "0"
-set portArrayDim1 [list 1000]
+set portArrayDim1 [list 100]
 set portConst1 "0"
 set portVolatile1 "0"
 set portArrayOpt1 ""
 set port1 [list $portName1 $portInterface1 $portData1 $portPointer1 $portArrayDim1 $portConst1 $portVolatile1 $portArrayOpt1]
 lappend portList $port1
-set portName2 "result_sqrd_0"
-set portInterface2 "memory"
-set portData2 "float"
-set portPointer2 "0"
-set portArrayDim2 [list 1000]
-set portConst2 "0"
-set portVolatile2 "0"
-set portArrayOpt2 ""
-set port2 [list $portName2 $portInterface2 $portData2 $portPointer2 $portArrayDim2 $portConst2 $portVolatile2 $portArrayOpt2]
-lappend portList $port2
 set dataPackList ""
 set module [list $moduleName $portList $rawDecl $argAPint $returnAPint $dataPackList]
 set hasCPPAPInt 0

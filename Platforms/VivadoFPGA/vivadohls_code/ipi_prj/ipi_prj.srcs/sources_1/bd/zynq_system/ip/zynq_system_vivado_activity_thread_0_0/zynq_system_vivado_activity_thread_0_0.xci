@@ -31,7 +31,7 @@
 				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.BOARD">xilinx.com:zynq:zc702:1.0</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.MANAGED">TRUE</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2013.4</spirit:configurableElementValue>
-				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">1403281122</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">1403281650</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SYNTHESISFLOW">OUT_OF_CONTEXT</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.OUTPUTDIR">.</spirit:configurableElementValue>
 			</spirit:configurableElementValues>

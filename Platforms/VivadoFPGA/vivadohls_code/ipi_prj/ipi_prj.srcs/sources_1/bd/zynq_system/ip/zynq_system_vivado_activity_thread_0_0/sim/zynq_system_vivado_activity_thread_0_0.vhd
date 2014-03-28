@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: imperial:F3:vivado_activity_thread:1.0
--- IP Revision: 1403281122
+-- IP Revision: 1403281650
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -55,20 +55,13 @@ USE ieee.numeric_std.ALL;
 
 ENTITY zynq_system_vivado_activity_thread_0_0 IS
   PORT (
-    result_0_Clk_A : OUT STD_LOGIC;
-    result_0_Rst_A : OUT STD_LOGIC;
-    result_0_EN_A : OUT STD_LOGIC;
-    result_0_WEN_A : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-    result_0_Addr_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    result_0_Dout_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    result_0_Din_A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-    result_sqrd_0_Clk_A : OUT STD_LOGIC;
-    result_sqrd_0_Rst_A : OUT STD_LOGIC;
-    result_sqrd_0_EN_A : OUT STD_LOGIC;
-    result_sqrd_0_WEN_A : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-    result_sqrd_0_Addr_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    result_sqrd_0_Dout_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    result_sqrd_0_Din_A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    result_0_din : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    result_0_full_n : IN STD_LOGIC;
+    result_0_write : OUT STD_LOGIC;
+    ap_start : IN STD_LOGIC;
+    ap_ready : OUT STD_LOGIC;
+    ap_done : OUT STD_LOGIC;
+    ap_idle : OUT STD_LOGIC;
     s_axi_CORE_IO_AWADDR : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
     s_axi_CORE_IO_AWVALID : IN STD_LOGIC;
     s_axi_CORE_IO_AWREADY : OUT STD_LOGIC;
@@ -86,7 +79,6 @@ ENTITY zynq_system_vivado_activity_thread_0_0 IS
     s_axi_CORE_IO_RRESP : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
     s_axi_CORE_IO_RVALID : OUT STD_LOGIC;
     s_axi_CORE_IO_RREADY : IN STD_LOGIC;
-    interrupt : OUT STD_LOGIC;
     aclk : IN STD_LOGIC;
     aresetn : IN STD_LOGIC
   );
@@ -102,20 +94,13 @@ ARCHITECTURE zynq_system_vivado_activity_thread_0_0_arch OF zynq_system_vivado_a
       C_S_AXI_CORE_IO_DATA_WIDTH : INTEGER
     );
     PORT (
-      result_0_Clk_A : OUT STD_LOGIC;
-      result_0_Rst_A : OUT STD_LOGIC;
-      result_0_EN_A : OUT STD_LOGIC;
-      result_0_WEN_A : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      result_0_Addr_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-      result_0_Dout_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-      result_0_Din_A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-      result_sqrd_0_Clk_A : OUT STD_LOGIC;
-      result_sqrd_0_Rst_A : OUT STD_LOGIC;
-      result_sqrd_0_EN_A : OUT STD_LOGIC;
-      result_sqrd_0_WEN_A : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-      result_sqrd_0_Addr_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-      result_sqrd_0_Dout_A : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-      result_sqrd_0_Din_A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+      result_0_din : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+      result_0_full_n : IN STD_LOGIC;
+      result_0_write : OUT STD_LOGIC;
+      ap_start : IN STD_LOGIC;
+      ap_ready : OUT STD_LOGIC;
+      ap_done : OUT STD_LOGIC;
+      ap_idle : OUT STD_LOGIC;
       s_axi_CORE_IO_AWADDR : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
       s_axi_CORE_IO_AWVALID : IN STD_LOGIC;
       s_axi_CORE_IO_AWREADY : OUT STD_LOGIC;
@@ -133,26 +118,11 @@ ARCHITECTURE zynq_system_vivado_activity_thread_0_0_arch OF zynq_system_vivado_a
       s_axi_CORE_IO_RRESP : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
       s_axi_CORE_IO_RVALID : OUT STD_LOGIC;
       s_axi_CORE_IO_RREADY : IN STD_LOGIC;
-      interrupt : OUT STD_LOGIC;
       aclk : IN STD_LOGIC;
       aresetn : IN STD_LOGIC
     );
   END COMPONENT vivado_activity_thread_top;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
-  ATTRIBUTE X_INTERFACE_INFO OF result_0_Clk_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_0_PORTA CLK";
-  ATTRIBUTE X_INTERFACE_INFO OF result_0_Rst_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_0_PORTA RST";
-  ATTRIBUTE X_INTERFACE_INFO OF result_0_EN_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_0_PORTA EN";
-  ATTRIBUTE X_INTERFACE_INFO OF result_0_WEN_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_0_PORTA WE";
-  ATTRIBUTE X_INTERFACE_INFO OF result_0_Addr_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_0_PORTA ADDR";
-  ATTRIBUTE X_INTERFACE_INFO OF result_0_Dout_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_0_PORTA DIN";
-  ATTRIBUTE X_INTERFACE_INFO OF result_0_Din_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_0_PORTA DOUT";
-  ATTRIBUTE X_INTERFACE_INFO OF result_sqrd_0_Clk_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA CLK";
-  ATTRIBUTE X_INTERFACE_INFO OF result_sqrd_0_Rst_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA RST";
-  ATTRIBUTE X_INTERFACE_INFO OF result_sqrd_0_EN_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA EN";
-  ATTRIBUTE X_INTERFACE_INFO OF result_sqrd_0_WEN_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA WE";
-  ATTRIBUTE X_INTERFACE_INFO OF result_sqrd_0_Addr_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA ADDR";
-  ATTRIBUTE X_INTERFACE_INFO OF result_sqrd_0_Dout_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA DIN";
-  ATTRIBUTE X_INTERFACE_INFO OF result_sqrd_0_Din_A: SIGNAL IS "xilinx.com:interface:bram:1.0 result_sqrd_0_PORTA DOUT";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_AWADDR: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWADDR";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_AWVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWVALID";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_AWREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWREADY";
@@ -170,7 +140,6 @@ ARCHITECTURE zynq_system_vivado_activity_thread_0_0_arch OF zynq_system_vivado_a
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_RRESP: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO RRESP";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_RVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO RVALID";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_RREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO RREADY";
-  ATTRIBUTE X_INTERFACE_INFO OF interrupt: SIGNAL IS "xilinx.com:signal:interrupt:1.0 interrupt INTERRUPT";
   ATTRIBUTE X_INTERFACE_INFO OF aclk: SIGNAL IS "xilinx.com:signal:clock:1.0 aclk CLK";
   ATTRIBUTE X_INTERFACE_INFO OF aresetn: SIGNAL IS "xilinx.com:signal:reset:1.0 aresetn RST";
 BEGIN
@@ -180,20 +149,13 @@ BEGIN
       C_S_AXI_CORE_IO_DATA_WIDTH => 32
     )
     PORT MAP (
-      result_0_Clk_A => result_0_Clk_A,
-      result_0_Rst_A => result_0_Rst_A,
-      result_0_EN_A => result_0_EN_A,
-      result_0_WEN_A => result_0_WEN_A,
-      result_0_Addr_A => result_0_Addr_A,
-      result_0_Dout_A => result_0_Dout_A,
-      result_0_Din_A => result_0_Din_A,
-      result_sqrd_0_Clk_A => result_sqrd_0_Clk_A,
-      result_sqrd_0_Rst_A => result_sqrd_0_Rst_A,
-      result_sqrd_0_EN_A => result_sqrd_0_EN_A,
-      result_sqrd_0_WEN_A => result_sqrd_0_WEN_A,
-      result_sqrd_0_Addr_A => result_sqrd_0_Addr_A,
-      result_sqrd_0_Dout_A => result_sqrd_0_Dout_A,
-      result_sqrd_0_Din_A => result_sqrd_0_Din_A,
+      result_0_din => result_0_din,
+      result_0_full_n => result_0_full_n,
+      result_0_write => result_0_write,
+      ap_start => ap_start,
+      ap_ready => ap_ready,
+      ap_done => ap_done,
+      ap_idle => ap_idle,
       s_axi_CORE_IO_AWADDR => s_axi_CORE_IO_AWADDR,
       s_axi_CORE_IO_AWVALID => s_axi_CORE_IO_AWVALID,
       s_axi_CORE_IO_AWREADY => s_axi_CORE_IO_AWREADY,
@@ -211,7 +173,6 @@ BEGIN
       s_axi_CORE_IO_RRESP => s_axi_CORE_IO_RRESP,
       s_axi_CORE_IO_RVALID => s_axi_CORE_IO_RVALID,
       s_axi_CORE_IO_RREADY => s_axi_CORE_IO_RREADY,
-      interrupt => interrupt,
       aclk => aclk,
       aresetn => aresetn
     );

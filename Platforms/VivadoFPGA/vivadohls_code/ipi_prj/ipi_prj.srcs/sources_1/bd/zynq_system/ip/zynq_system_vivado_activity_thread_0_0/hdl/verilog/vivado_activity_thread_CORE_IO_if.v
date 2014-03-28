@@ -31,7 +31,6 @@ module vivado_activity_thread_CORE_IO_if
     output wire [1:0]                RRESP,
     output wire                      RVALID,
     input  wire                      RREADY,
-    output wire                      interrupt,
     // user signals
     output wire [31:0]               I_kernel_arg_u_a_0_rfir,
     output wire [31:0]               I_kernel_arg_u_a_0_current_price,
@@ -44,31 +43,13 @@ module vivado_activity_thread_CORE_IO_if
     output wire [31:0]               I_kernel_arg_o_a_0_call,
     output wire [31:0]               I_kernel_arg_o_v_0_delta_time,
     input  wire [31:0]               O_kernel_arg_o_v_0_value,
-    input  wire                      O_kernel_arg_o_v_0_value_ap_vld,
-    output wire                      I_ap_start,
-    input  wire                      O_ap_ready,
-    input  wire                      O_ap_done,
-    input  wire                      O_ap_idle
+    input  wire                      O_kernel_arg_o_v_0_value_ap_vld
 );
 //------------------------Address Info-------------------
-// 0x00 : Control signals
-//        bit 0  - ap_start (Read/Write/COH)
-//        bit 1  - ap_done (Read/COR)
-//        bit 2  - ap_idle (Read)
-//        bit 3  - ap_ready (Read)
-//        bit 7  - auto_restart (Read/Write)
-//        others - reserved
-// 0x04 : Global Interrupt Enable Register
-//        bit 0  - Global Interrupt Enable (Read/Write)
-//        others - reserved
-// 0x08 : IP Interrupt Enable Register (Read/Write)
-//        bit 0  - Channel 0 (ap_done)
-//        bit 1  - Channel 1 (ap_ready)
-//        others - reserved
-// 0x0c : IP Interrupt Status Register (Read/TOW)
-//        bit 0  - Channel 0 (ap_done)
-//        bit 1  - Channel 1 (ap_ready)
-//        others - reserved
+// 0x00 : reserved
+// 0x04 : reserved
+// 0x08 : reserved
+// 0x0c : reserved
 // 0x10 : reserved
 // 0x14 : Data signal of kernel_arg_u_a_0_rfir
 //        bit 31~0 - kernel_arg_u_a_0_rfir[31:0] (Read/Write)
@@ -111,10 +92,6 @@ localparam
 
 // address
 localparam
-    ADDR_AP_CTRL                               = 7'h00,
-    ADDR_GIE                                   = 7'h04,
-    ADDR_IER                                   = 7'h08,
-    ADDR_ISR                                   = 7'h0c,
     ADDR_KERNEL_ARG_U_A_0_RFIR_CTRL            = 7'h10,
     ADDR_KERNEL_ARG_U_A_0_RFIR_DATA_0          = 7'h14,
     ADDR_KERNEL_ARG_U_A_0_CURRENT_PRICE_CTRL   = 7'h18,
@@ -160,14 +137,6 @@ reg  [31:0]          rdata;
 wire                 ar_hs;
 wire [ADDR_BITS-1:0] raddr;
 // internal registers
-wire                 ap_idle;
-reg                  ap_done;
-wire                 ap_ready;
-reg                  ap_start;
-reg                  auto_restart;
-reg                  gie;
-reg  [1:0]           ier;
-reg  [1:0]           isr;
 reg  [31:0]          _kernel_arg_u_a_0_rfir;
 reg  [31:0]          _kernel_arg_u_a_0_current_price;
 wire [31:0]          _kernel_arg_u_v_0_gamma;
@@ -268,22 +237,6 @@ always @(posedge ACLK) begin
     if (ar_hs) begin
         rdata <= 1'b0;
         case (raddr)
-            ADDR_AP_CTRL: begin
-                rdata[0] <= ap_start;
-                rdata[1] <= ap_done;
-                rdata[2] <= ap_idle;
-                rdata[3] <= ap_ready;
-                rdata[7] <= auto_restart;
-            end
-            ADDR_GIE: begin
-                rdata <= gie;
-            end
-            ADDR_IER: begin
-                rdata <= ier;
-            end
-            ADDR_ISR: begin
-                rdata <= isr;
-            end
             ADDR_KERNEL_ARG_U_A_0_RFIR_DATA_0: begin
                 rdata <= _kernel_arg_u_a_0_rfir[31:0];
             end
@@ -326,10 +279,6 @@ end
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //++++++++++++++++++++++++internal registers+++++++++++++
-assign interrupt                        = gie & (|isr);
-assign I_ap_start                       = ap_start;
-assign ap_idle                          = O_ap_idle;
-assign ap_ready                         = O_ap_ready;
 assign I_kernel_arg_u_a_0_rfir          = _kernel_arg_u_a_0_rfir;
 assign I_kernel_arg_u_a_0_current_price = _kernel_arg_u_a_0_current_price;
 assign _kernel_arg_u_v_0_gamma          = O_kernel_arg_u_v_0_gamma;
@@ -339,70 +288,6 @@ assign I_kernel_arg_o_a_0_time_period   = _kernel_arg_o_a_0_time_period;
 assign I_kernel_arg_o_a_0_call          = _kernel_arg_o_a_0_call;
 assign I_kernel_arg_o_v_0_delta_time    = _kernel_arg_o_v_0_delta_time;
 assign _kernel_arg_o_v_0_value          = O_kernel_arg_o_v_0_value;
-
-// ap_start
-always @(posedge ACLK) begin
-    if (~ARESETN)
-        ap_start <= 1'b0;
-    else if (w_hs && waddr == ADDR_AP_CTRL && WSTRB[0] && WDATA[0])
-        ap_start <= 1'b1;
-    else if (O_ap_ready)
-        ap_start <= auto_restart; // clear on handshake/auto restart
-end
-
-// ap_done
-always @(posedge ACLK) begin
-    if (~ARESETN)
-        ap_done <= 1'b0;
-    else if (O_ap_done)
-        ap_done <= 1'b1;
-    else if (ar_hs && raddr == ADDR_AP_CTRL)
-        ap_done <= 1'b0; // clear on read
-end
-
-// auto_restart
-always @(posedge ACLK) begin
-    if (~ARESETN)
-        auto_restart <= 1'b0;
-    else if (w_hs && waddr == ADDR_AP_CTRL && WSTRB[0])
-        auto_restart <=  WDATA[7];
-end
-
-// gie
-always @(posedge ACLK) begin
-    if (~ARESETN)
-        gie <= 1'b0;
-    else if (w_hs && waddr == ADDR_GIE && WSTRB[0])
-        gie <= WDATA[0];
-end
-
-// ier
-always @(posedge ACLK) begin
-    if (~ARESETN)
-        ier <= 1'b0;
-    else if (w_hs && waddr == ADDR_IER && WSTRB[0])
-        ier <= WDATA[1:0];
-end
-
-// isr[0]
-always @(posedge ACLK) begin
-    if (~ARESETN)
-        isr[0] <= 1'b0;
-    else if (ier[0] & O_ap_done)
-        isr[0] <= 1'b1;
-    else if (w_hs && waddr == ADDR_ISR && WSTRB[0])
-        isr[0] <= isr[0] ^ WDATA[0]; // toggle on write
-end
-
-// isr[1]
-always @(posedge ACLK) begin
-    if (~ARESETN)
-        isr[1] <= 1'b0;
-    else if (ier[1] & O_ap_ready)
-        isr[1] <= 1'b1;
-    else if (w_hs && waddr == ADDR_ISR && WSTRB[0])
-        isr[1] <= isr[1] ^ WDATA[1]; // toggle on write
-end
 
 // _kernel_arg_u_a_0_rfir[31:0]
 always @(posedge ACLK) begin

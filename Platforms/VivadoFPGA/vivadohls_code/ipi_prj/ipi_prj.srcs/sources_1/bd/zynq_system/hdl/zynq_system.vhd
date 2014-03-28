@@ -65,7 +65,7 @@ entity s00_couplers_imp_156Q4UY is
 end s00_couplers_imp_156Q4UY;
 
 architecture STRUCTURE of s00_couplers_imp_156Q4UY is
-  component zynq_system_auto_pc_8 is
+  component zynq_system_auto_pc_9 is
   port (
     aclk : in STD_LOGIC;
     aresetn : in STD_LOGIC;
@@ -127,7 +127,7 @@ architecture STRUCTURE of s00_couplers_imp_156Q4UY is
     m_axi_rvalid : in STD_LOGIC;
     m_axi_rready : out STD_LOGIC
   );
-  end component zynq_system_auto_pc_8;
+  end component zynq_system_auto_pc_9;
   signal S_ACLK_1 : STD_LOGIC;
   signal S_ARESETN_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal auto_pc_to_s00_couplers_ARADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -245,7 +245,7 @@ begin
   s00_couplers_to_auto_pc_WLAST <= S_AXI_wlast;
   s00_couplers_to_auto_pc_WSTRB(3 downto 0) <= S_AXI_wstrb(3 downto 0);
   s00_couplers_to_auto_pc_WVALID <= S_AXI_wvalid;
-auto_pc: component zynq_system_auto_pc_8
+auto_pc: component zynq_system_auto_pc_9
     port map (
       aclk => S_ACLK_1,
       aresetn => S_ARESETN_1(0),
@@ -681,20 +681,13 @@ architecture STRUCTURE of zynq_system is
   end component zynq_system_proc_sys_reset_0;
   component zynq_system_vivado_activity_thread_0_0 is
   port (
-    result_0_Clk_A : out STD_LOGIC;
-    result_0_Rst_A : out STD_LOGIC;
-    result_0_EN_A : out STD_LOGIC;
-    result_0_WEN_A : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    result_0_Addr_A : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    result_0_Dout_A : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    result_0_Din_A : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    result_sqrd_0_Clk_A : out STD_LOGIC;
-    result_sqrd_0_Rst_A : out STD_LOGIC;
-    result_sqrd_0_EN_A : out STD_LOGIC;
-    result_sqrd_0_WEN_A : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    result_sqrd_0_Addr_A : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    result_sqrd_0_Dout_A : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    result_sqrd_0_Din_A : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    result_0_din : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    result_0_full_n : in STD_LOGIC;
+    result_0_write : out STD_LOGIC;
+    ap_start : in STD_LOGIC;
+    ap_ready : out STD_LOGIC;
+    ap_done : out STD_LOGIC;
+    ap_idle : out STD_LOGIC;
     s_axi_CORE_IO_AWADDR : in STD_LOGIC_VECTOR ( 6 downto 0 );
     s_axi_CORE_IO_AWVALID : in STD_LOGIC;
     s_axi_CORE_IO_AWREADY : out STD_LOGIC;
@@ -712,7 +705,6 @@ architecture STRUCTURE of zynq_system is
     s_axi_CORE_IO_RRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_CORE_IO_RVALID : out STD_LOGIC;
     s_axi_CORE_IO_RREADY : in STD_LOGIC;
-    interrupt : out STD_LOGIC;
     aclk : in STD_LOGIC;
     aresetn : in STD_LOGIC
   );
@@ -807,19 +799,11 @@ architecture STRUCTURE of zynq_system is
   signal NLW_processing_system7_0_TTC0_WAVE2_OUT_UNCONNECTED : STD_LOGIC;
   signal NLW_processing_system7_0_USB0_VBUS_PWRSELECT_UNCONNECTED : STD_LOGIC;
   signal NLW_processing_system7_0_USB0_PORT_INDCTL_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_vivado_activity_thread_0_interrupt_UNCONNECTED : STD_LOGIC;
-  signal NLW_vivado_activity_thread_0_result_0_Clk_A_UNCONNECTED : STD_LOGIC;
-  signal NLW_vivado_activity_thread_0_result_0_EN_A_UNCONNECTED : STD_LOGIC;
-  signal NLW_vivado_activity_thread_0_result_0_Rst_A_UNCONNECTED : STD_LOGIC;
-  signal NLW_vivado_activity_thread_0_result_sqrd_0_Clk_A_UNCONNECTED : STD_LOGIC;
-  signal NLW_vivado_activity_thread_0_result_sqrd_0_EN_A_UNCONNECTED : STD_LOGIC;
-  signal NLW_vivado_activity_thread_0_result_sqrd_0_Rst_A_UNCONNECTED : STD_LOGIC;
-  signal NLW_vivado_activity_thread_0_result_0_Addr_A_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal NLW_vivado_activity_thread_0_result_0_Dout_A_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal NLW_vivado_activity_thread_0_result_0_WEN_A_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal NLW_vivado_activity_thread_0_result_sqrd_0_Addr_A_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal NLW_vivado_activity_thread_0_result_sqrd_0_Dout_A_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal NLW_vivado_activity_thread_0_result_sqrd_0_WEN_A_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal NLW_vivado_activity_thread_0_ap_done_UNCONNECTED : STD_LOGIC;
+  signal NLW_vivado_activity_thread_0_ap_idle_UNCONNECTED : STD_LOGIC;
+  signal NLW_vivado_activity_thread_0_ap_ready_UNCONNECTED : STD_LOGIC;
+  signal NLW_vivado_activity_thread_0_result_0_write_UNCONNECTED : STD_LOGIC;
+  signal NLW_vivado_activity_thread_0_result_0_din_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
 begin
 GND: unisim.vcomponents.GND
     port map (
@@ -983,84 +967,14 @@ processing_system7_0_axi_periph: entity work.zynq_system_processing_system7_0_ax
 vivado_activity_thread_0: component zynq_system_vivado_activity_thread_0_0
     port map (
       aclk => processing_system7_0_fclk_clk0,
+      ap_done => NLW_vivado_activity_thread_0_ap_done_UNCONNECTED,
+      ap_idle => NLW_vivado_activity_thread_0_ap_idle_UNCONNECTED,
+      ap_ready => NLW_vivado_activity_thread_0_ap_ready_UNCONNECTED,
+      ap_start => GND_1,
       aresetn => proc_sys_reset_peripheral_aresetn(0),
-      interrupt => NLW_vivado_activity_thread_0_interrupt_UNCONNECTED,
-      result_0_Addr_A(31 downto 0) => NLW_vivado_activity_thread_0_result_0_Addr_A_UNCONNECTED(31 downto 0),
-      result_0_Clk_A => NLW_vivado_activity_thread_0_result_0_Clk_A_UNCONNECTED,
-      result_0_Din_A(31) => GND_1,
-      result_0_Din_A(30) => GND_1,
-      result_0_Din_A(29) => GND_1,
-      result_0_Din_A(28) => GND_1,
-      result_0_Din_A(27) => GND_1,
-      result_0_Din_A(26) => GND_1,
-      result_0_Din_A(25) => GND_1,
-      result_0_Din_A(24) => GND_1,
-      result_0_Din_A(23) => GND_1,
-      result_0_Din_A(22) => GND_1,
-      result_0_Din_A(21) => GND_1,
-      result_0_Din_A(20) => GND_1,
-      result_0_Din_A(19) => GND_1,
-      result_0_Din_A(18) => GND_1,
-      result_0_Din_A(17) => GND_1,
-      result_0_Din_A(16) => GND_1,
-      result_0_Din_A(15) => GND_1,
-      result_0_Din_A(14) => GND_1,
-      result_0_Din_A(13) => GND_1,
-      result_0_Din_A(12) => GND_1,
-      result_0_Din_A(11) => GND_1,
-      result_0_Din_A(10) => GND_1,
-      result_0_Din_A(9) => GND_1,
-      result_0_Din_A(8) => GND_1,
-      result_0_Din_A(7) => GND_1,
-      result_0_Din_A(6) => GND_1,
-      result_0_Din_A(5) => GND_1,
-      result_0_Din_A(4) => GND_1,
-      result_0_Din_A(3) => GND_1,
-      result_0_Din_A(2) => GND_1,
-      result_0_Din_A(1) => GND_1,
-      result_0_Din_A(0) => GND_1,
-      result_0_Dout_A(31 downto 0) => NLW_vivado_activity_thread_0_result_0_Dout_A_UNCONNECTED(31 downto 0),
-      result_0_EN_A => NLW_vivado_activity_thread_0_result_0_EN_A_UNCONNECTED,
-      result_0_Rst_A => NLW_vivado_activity_thread_0_result_0_Rst_A_UNCONNECTED,
-      result_0_WEN_A(3 downto 0) => NLW_vivado_activity_thread_0_result_0_WEN_A_UNCONNECTED(3 downto 0),
-      result_sqrd_0_Addr_A(31 downto 0) => NLW_vivado_activity_thread_0_result_sqrd_0_Addr_A_UNCONNECTED(31 downto 0),
-      result_sqrd_0_Clk_A => NLW_vivado_activity_thread_0_result_sqrd_0_Clk_A_UNCONNECTED,
-      result_sqrd_0_Din_A(31) => GND_1,
-      result_sqrd_0_Din_A(30) => GND_1,
-      result_sqrd_0_Din_A(29) => GND_1,
-      result_sqrd_0_Din_A(28) => GND_1,
-      result_sqrd_0_Din_A(27) => GND_1,
-      result_sqrd_0_Din_A(26) => GND_1,
-      result_sqrd_0_Din_A(25) => GND_1,
-      result_sqrd_0_Din_A(24) => GND_1,
-      result_sqrd_0_Din_A(23) => GND_1,
-      result_sqrd_0_Din_A(22) => GND_1,
-      result_sqrd_0_Din_A(21) => GND_1,
-      result_sqrd_0_Din_A(20) => GND_1,
-      result_sqrd_0_Din_A(19) => GND_1,
-      result_sqrd_0_Din_A(18) => GND_1,
-      result_sqrd_0_Din_A(17) => GND_1,
-      result_sqrd_0_Din_A(16) => GND_1,
-      result_sqrd_0_Din_A(15) => GND_1,
-      result_sqrd_0_Din_A(14) => GND_1,
-      result_sqrd_0_Din_A(13) => GND_1,
-      result_sqrd_0_Din_A(12) => GND_1,
-      result_sqrd_0_Din_A(11) => GND_1,
-      result_sqrd_0_Din_A(10) => GND_1,
-      result_sqrd_0_Din_A(9) => GND_1,
-      result_sqrd_0_Din_A(8) => GND_1,
-      result_sqrd_0_Din_A(7) => GND_1,
-      result_sqrd_0_Din_A(6) => GND_1,
-      result_sqrd_0_Din_A(5) => GND_1,
-      result_sqrd_0_Din_A(4) => GND_1,
-      result_sqrd_0_Din_A(3) => GND_1,
-      result_sqrd_0_Din_A(2) => GND_1,
-      result_sqrd_0_Din_A(1) => GND_1,
-      result_sqrd_0_Din_A(0) => GND_1,
-      result_sqrd_0_Dout_A(31 downto 0) => NLW_vivado_activity_thread_0_result_sqrd_0_Dout_A_UNCONNECTED(31 downto 0),
-      result_sqrd_0_EN_A => NLW_vivado_activity_thread_0_result_sqrd_0_EN_A_UNCONNECTED,
-      result_sqrd_0_Rst_A => NLW_vivado_activity_thread_0_result_sqrd_0_Rst_A_UNCONNECTED,
-      result_sqrd_0_WEN_A(3 downto 0) => NLW_vivado_activity_thread_0_result_sqrd_0_WEN_A_UNCONNECTED(3 downto 0),
+      result_0_din(31 downto 0) => NLW_vivado_activity_thread_0_result_0_din_UNCONNECTED(31 downto 0),
+      result_0_full_n => GND_1,
+      result_0_write => NLW_vivado_activity_thread_0_result_0_write_UNCONNECTED,
       s_axi_CORE_IO_ARADDR(6 downto 0) => processing_system7_0_axi_periph_m00_axi_ARADDR(6 downto 0),
       s_axi_CORE_IO_ARREADY => processing_system7_0_axi_periph_m00_axi_ARREADY,
       s_axi_CORE_IO_ARVALID => processing_system7_0_axi_periph_m00_axi_ARVALID,
