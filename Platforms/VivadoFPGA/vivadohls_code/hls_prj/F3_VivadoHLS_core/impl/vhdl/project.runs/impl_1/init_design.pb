@@ -1,20 +1,8 @@
 
-^
-#Design is defaulting to srcset: %s
-437*	planAhead2
-	sources_12default:defaultZ12-437
-a
-&Design is defaulting to constrset: %s
-434*	planAhead2
-	constrs_12default:defaultZ12-434
-h
-%Design is defaulting to dcp part: %s
-1902*	planAhead2#
-xc7z020clg484-12default:defaultZ12-3128
-n
-$Design is defaulting to dcp top: %s
-1903*	planAhead2*
-vivado_activity_thread2default:defaultZ12-3129
+˛
+Command: %s
+1870*	planAhead2—
+ºopen_checkpoint /mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/vivado_activity_thread.dcp2default:defaultZ12-2866
 ]
 -Analyzing %s Unisim elements for replacement
 17*netlist2
@@ -26,96 +14,91 @@ a
 o
 Netlist was created with %s %s291*project2
 Vivado2default:default2
-2013.32default:defaultZ1-479
-ü
+2013.42default:defaultZ1-479
+≠
 Loading clock regions from %s
-13*device2h
-T/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/ClockRegion.xml2default:defaultZ21-13
-†
+13*device2v
+b/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/zynq/zynq/xc7z020/ClockRegion.xml2default:defaultZ21-13
+Æ
 Loading clock buffers from %s
-11*device2i
-U/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/ClockBuffers.xml2default:defaultZ21-11
-†
+11*device2w
+c/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/zynq/zynq/xc7z020/ClockBuffers.xml2default:defaultZ21-11
+Æ
 &Loading clock placement rules from %s
-318*place2`
-L/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/ClockPlacerRules.xml2default:defaultZ30-318
-û
+318*place2n
+Z/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/zynq/ClockPlacerRules.xml2default:defaultZ30-318
+¨
 )Loading package pin functions from %s...
-17*device2\
-H/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/PinFunctions.xml2default:defaultZ21-17
-ú
+17*device2j
+V/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/zynq/PinFunctions.xml2default:defaultZ21-17
+™
 Loading package from %s
-16*device2k
-W/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/clg484/Package.xml2default:defaultZ21-16
-ì
+16*device2y
+e/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/zynq/zynq/xc7z020/clg484/Package.xml2default:defaultZ21-16
+°
 Loading io standards from %s
-15*device2]
-I/opt/Xilinx/2013.3/Vivado/2013.3/data/./parts/xilinx/zynq/IOStandards.xml2default:defaultZ21-15
+15*device2k
+W/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/./parts/xilinx/zynq/IOStandards.xml2default:defaultZ21-15
+û
+Parsing XDC File [%s]
+179*designutils2Á
+“/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20126-ee-boxer0/dcp/vivado_activity_thread_early.xdc2default:defaultZ20-179
+–
+nA clock with name '%s' already exists, creating a clock with the same name will overwrite the previous clock.
+576*constraints2
+aclk2default:default2ä
+Û/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_ooc.xdc2default:default2
+62default:default8@Z18-619
+Œ
+nA clock with name '%s' already exists, creating a clock with the same name will overwrite the previous clock.
+576*constraints2
+aclk2default:default2à
+Ò/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc2default:default2
+62default:default8@Z18-619
+Ã
+nA clock with name '%s' already exists, creating a clock with the same name will overwrite the previous clock.
+576*constraints2
+aclk2default:default2Ü
+Ô/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_ooc.xdc2default:default2
+62default:default8@Z18-619
+ß
+Finished Parsing XDC File [%s]
+178*designutils2Á
+“/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20126-ee-boxer0/dcp/vivado_activity_thread_early.xdc2default:defaultZ20-178
+ò
+Parsing XDC File [%s]
+179*designutils2·
+Ã/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20126-ee-boxer0/dcp/vivado_activity_thread.xdc2default:defaultZ20-179
+Á
+DImplicit search of objects for pattern '%s' matched to '%s' objects.1744*	planAhead2
+ap_clk2default:default2
+port2default:default2Ø
+ò/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc2default:default2
+12default:default8@Z12-2286
+°
+Finished Parsing XDC File [%s]
+178*designutils2·
+Ã/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20126-ee-boxer0/dcp/vivado_activity_thread.xdc2default:defaultZ20-178
 C
 Pushed %s inverter(s).
 98*opt2
 02default:defaultZ31-138
-_
- Attempting to get a license: %s
-78*common2&
-Internal_bitstream2default:defaultZ17-78
-]
-Failed to get a license: %s
-295*common2&
-Internal_bitstream2default:defaultZ17-301
-¢
-Parsing XDC File [%s]
-179*designutils2Î
-÷/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20849-ganymede/dcp/vivado_activity_thread_early.xdc2default:defaultZ20-179
-›
-nA clock with name '%s' already exists, creating a clock with the same name will overwrite the previous clock.
-576*constraints2
-aclk2default:default2ó
-Ä/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_ooc.xdc2default:default2
-62default:default8@Z18-619
-”
-nA clock with name '%s' already exists, creating a clock with the same name will overwrite the previous clock.
-576*constraints2
-aclk2default:default2ç
-ˆ/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc2default:default2
-62default:default8@Z18-619
-’
-nA clock with name '%s' already exists, creating a clock with the same name will overwrite the previous clock.
-576*constraints2
-aclk2default:default2è
-¯/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_ooc.xdc2default:default2
-62default:default8@Z18-619
-´
-Finished Parsing XDC File [%s]
-178*designutils2Î
-÷/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20849-ganymede/dcp/vivado_activity_thread_early.xdc2default:defaultZ20-178
-ú
-Parsing XDC File [%s]
-179*designutils2Â
-–/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20849-ganymede/dcp/vivado_activity_thread.xdc2default:defaultZ20-179
-Ï
-DImplicit search of objects for pattern '%s' matched to '%s' objects.1744*	planAhead2
-ap_clk2default:default2
-port2default:default2¥
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc2default:default2
-12default:default8@Z12-2286
-•
-Finished Parsing XDC File [%s]
-178*designutils2Â
-–/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-20849-ganymede/dcp/vivado_activity_thread.xdc2default:defaultZ20-178
 u
 !Unisim Transformation Summary:
 %s111*project29
 %No Unisim elements were transformed.
 2default:defaultZ1-111
-¸
+Y
+$Checkpoint was created with build %s293*project2
+3535832default:defaultZ1-484
+Ä
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
-268*common2!
-link_design: 2default:default2
-00:00:112default:default2
-00:00:122default:default2
-1264.8012default:default2
-567.4962default:defaultZ17-268
+268*common2%
+open_checkpoint: 2default:default2
+00:00:172default:default2
+00:00:192default:default2
+1370.9802default:default2
+652.7662default:defaultZ17-268
 
 
 End Record

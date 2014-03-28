@@ -18,7 +18,7 @@ void black_scholes_underlying_underlying_path_init(black_scholes_underlying_vari
 	u_v->time = 0.0;
 	u_v->x = 0.0;
 	
-	#if defined (TAUS_BOXMULLER) || defined (TAUS_ZIGGURAT)
+	#if ((defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT)) && !(defined(VIVADOHLS)))
 	//(u_v->rng_state).s1 = 2; This is done in the kernel proper now
 	//(u_v->rng_state).s2 = 8;
 	//(u_v->rng_state).s3 = 16;

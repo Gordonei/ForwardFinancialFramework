@@ -1,3 +1,5 @@
+LOOP_II := 0
+LOOP_UNROLL := 0
 THIS_DIR := $(shell pwd)
 HLS_PRJ := $(THIS_DIR)/hls_prj/F3_VivadoHLS_core
 IPI_PRJ := $(THIS_DIR)/ipi_prj
@@ -10,7 +12,7 @@ all: core system
 core: $(HLS_PRJ)/impl/ip/$(IP_NAME).zip
 
 $(HLS_PRJ)/impl/ip/$(IP_NAME).zip: 
-	$(VIVADO_HLS_CMD) $(HLS_PRJ)/script.tcl
+	$(VIVADO_HLS_CMD) $(HLS_PRJ)/script.tcl $(LOOP_II) $(LOOP_UNROLL)
 	rm *.log 
 
 system: core

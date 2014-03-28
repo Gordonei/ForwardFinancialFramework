@@ -1,10 +1,10 @@
 -- Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2013.3 (lin64) Build 329390 Wed Oct 16 18:26:55 MDT 2013
--- Date        : Tue Mar 25 15:27:42 2014
--- Host        : ganymede running 64-bit Ubuntu 12.04.3 LTS
+-- Tool Version: Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
+-- Date        : Fri Mar 28 11:30:04 2014
+-- Host        : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_funcsim.vhdl
+--               /mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_funcsim.vhdl
 -- Design      : vivado_activity_thread_ap_fmul_2_max_dsp
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,7 @@
 -- --------------------------------------------------------------------------------
 library IEEE; use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM; use UNISIM.VCOMPONENTS.ALL; 
-entity vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv is
+entity \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ is
   port (
     aclk : in STD_LOGIC;
     aclken : in STD_LOGIC;
@@ -43,149 +43,151 @@ entity vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv is
     m_axis_result_tuser : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_result_tlast : out STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is "floating_point_v7_0_viv";
   attribute C_XDEVICEFAMILY : string;
-  attribute C_XDEVICEFAMILY of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is "zynq";
+  attribute C_XDEVICEFAMILY of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is "zynq";
   attribute C_HAS_ADD : integer;
-  attribute C_HAS_ADD of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ADD of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_SUBTRACT : integer;
-  attribute C_HAS_SUBTRACT of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_SUBTRACT of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_MULTIPLY : integer;
-  attribute C_HAS_MULTIPLY of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_HAS_MULTIPLY of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_HAS_DIVIDE : integer;
-  attribute C_HAS_DIVIDE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_DIVIDE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_SQRT : integer;
-  attribute C_HAS_SQRT of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_SQRT of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_COMPARE : integer;
-  attribute C_HAS_COMPARE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_COMPARE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FIX_TO_FLT : integer;
-  attribute C_HAS_FIX_TO_FLT of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FIX_TO_FLT of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FIX : integer;
-  attribute C_HAS_FLT_TO_FIX of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FLT_TO_FIX of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FLT : integer;
-  attribute C_HAS_FLT_TO_FLT of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FLT_TO_FLT of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP : integer;
-  attribute C_HAS_RECIP of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RECIP of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP_SQRT : integer;
-  attribute C_HAS_RECIP_SQRT of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RECIP_SQRT of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ABSOLUTE : integer;
-  attribute C_HAS_ABSOLUTE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ABSOLUTE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_LOGARITHM : integer;
-  attribute C_HAS_LOGARITHM of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_LOGARITHM of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_EXPONENTIAL : integer;
-  attribute C_HAS_EXPONENTIAL of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_EXPONENTIAL of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FMA : integer;
-  attribute C_HAS_FMA of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FMA of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_FMS : integer;
-  attribute C_HAS_FMS of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_FMS of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_A : integer;
-  attribute C_HAS_ACCUMULATOR_A of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUMULATOR_A of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_S : integer;
-  attribute C_HAS_ACCUMULATOR_S of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUMULATOR_S of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_A_WIDTH : integer;
-  attribute C_A_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_A_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_A_FRACTION_WIDTH : integer;
-  attribute C_A_FRACTION_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 24;
+  attribute C_A_FRACTION_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 24;
   attribute C_B_WIDTH : integer;
-  attribute C_B_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_B_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_B_FRACTION_WIDTH : integer;
-  attribute C_B_FRACTION_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 24;
+  attribute C_B_FRACTION_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 24;
   attribute C_C_WIDTH : integer;
-  attribute C_C_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_C_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_C_FRACTION_WIDTH : integer;
-  attribute C_C_FRACTION_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 24;
+  attribute C_C_FRACTION_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 24;
   attribute C_RESULT_WIDTH : integer;
-  attribute C_RESULT_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_RESULT_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_RESULT_FRACTION_WIDTH : integer;
-  attribute C_RESULT_FRACTION_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 24;
+  attribute C_RESULT_FRACTION_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 24;
   attribute C_COMPARE_OPERATION : integer;
-  attribute C_COMPARE_OPERATION of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 8;
+  attribute C_COMPARE_OPERATION of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 8;
   attribute C_LATENCY : integer;
-  attribute C_LATENCY of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 2;
+  attribute C_LATENCY of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 2;
   attribute C_OPTIMIZATION : integer;
-  attribute C_OPTIMIZATION of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_OPTIMIZATION of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_MULT_USAGE : integer;
-  attribute C_MULT_USAGE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 3;
+  attribute C_MULT_USAGE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 3;
   attribute C_BRAM_USAGE : integer;
-  attribute C_BRAM_USAGE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_BRAM_USAGE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_RATE : integer;
-  attribute C_RATE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_RATE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_ACCUM_INPUT_MSB : integer;
-  attribute C_ACCUM_INPUT_MSB of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_ACCUM_INPUT_MSB of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_ACCUM_MSB : integer;
-  attribute C_ACCUM_MSB of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_ACCUM_MSB of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_ACCUM_LSB : integer;
-  attribute C_ACCUM_LSB of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is -31;
+  attribute C_ACCUM_LSB of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is -31;
   attribute C_HAS_UNDERFLOW : integer;
-  attribute C_HAS_UNDERFLOW of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_UNDERFLOW of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_OVERFLOW : integer;
-  attribute C_HAS_OVERFLOW of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_OVERFLOW of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_INVALID_OP : integer;
-  attribute C_HAS_INVALID_OP of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_INVALID_OP of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_DIVIDE_BY_ZERO : integer;
-  attribute C_HAS_DIVIDE_BY_ZERO of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_DIVIDE_BY_ZERO of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_OVERFLOW of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUM_OVERFLOW of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_INPUT_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_INPUT_OVERFLOW of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ACCUM_INPUT_OVERFLOW of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_ACLKEN : integer;
-  attribute C_HAS_ACLKEN of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_HAS_ACLKEN of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_HAS_ARESETN : integer;
-  attribute C_HAS_ARESETN of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_ARESETN of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_THROTTLE_SCHEME : integer;
-  attribute C_THROTTLE_SCHEME of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 3;
+  attribute C_THROTTLE_SCHEME of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 3;
   attribute C_HAS_A_TUSER : integer;
-  attribute C_HAS_A_TUSER of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_A_TUSER of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_A_TLAST : integer;
-  attribute C_HAS_A_TLAST of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_A_TLAST of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_B : integer;
-  attribute C_HAS_B of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_HAS_B of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_HAS_B_TUSER : integer;
-  attribute C_HAS_B_TUSER of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_B_TUSER of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_B_TLAST : integer;
-  attribute C_HAS_B_TLAST of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_B_TLAST of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_C : integer;
-  attribute C_HAS_C of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_C of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_C_TUSER : integer;
-  attribute C_HAS_C_TUSER of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_C_TUSER of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_C_TLAST : integer;
-  attribute C_HAS_C_TLAST of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_C_TLAST of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION : integer;
-  attribute C_HAS_OPERATION of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_OPERATION of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION_TUSER : integer;
-  attribute C_HAS_OPERATION_TUSER of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_OPERATION_TUSER of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION_TLAST : integer;
-  attribute C_HAS_OPERATION_TLAST of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_OPERATION_TLAST of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TUSER : integer;
-  attribute C_HAS_RESULT_TUSER of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RESULT_TUSER of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TLAST : integer;
-  attribute C_HAS_RESULT_TLAST of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_HAS_RESULT_TLAST of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_TLAST_RESOLUTION : integer;
-  attribute C_TLAST_RESOLUTION of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 0;
+  attribute C_TLAST_RESOLUTION of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 0;
   attribute C_A_TDATA_WIDTH : integer;
-  attribute C_A_TDATA_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_A_TDATA_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_A_TUSER_WIDTH : integer;
-  attribute C_A_TUSER_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_A_TUSER_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_B_TDATA_WIDTH : integer;
-  attribute C_B_TDATA_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_B_TDATA_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_B_TUSER_WIDTH : integer;
-  attribute C_B_TUSER_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_B_TUSER_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_C_TDATA_WIDTH : integer;
-  attribute C_C_TDATA_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_C_TDATA_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_C_TUSER_WIDTH : integer;
-  attribute C_C_TUSER_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_C_TUSER_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_OPERATION_TDATA_WIDTH : integer;
-  attribute C_OPERATION_TDATA_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 8;
+  attribute C_OPERATION_TDATA_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 8;
   attribute C_OPERATION_TUSER_WIDTH : integer;
-  attribute C_OPERATION_TUSER_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_OPERATION_TUSER_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute C_RESULT_TDATA_WIDTH : integer;
-  attribute C_RESULT_TDATA_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 32;
+  attribute C_RESULT_TDATA_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 32;
   attribute C_RESULT_TUSER_WIDTH : integer;
-  attribute C_RESULT_TUSER_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is 1;
+  attribute C_RESULT_TUSER_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is 1;
   attribute downgradeipidentifiedwarnings : string;
-  attribute downgradeipidentifiedwarnings of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv : entity is "yes";
-end vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv;
+  attribute downgradeipidentifiedwarnings of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ : entity is "yes";
+end \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\;
 
-architecture STRUCTURE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv is
+architecture STRUCTURE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\ is
   signal \<const0>\ : STD_LOGIC;
   signal \<const1>\ : STD_LOGIC;
   signal GND_2 : STD_LOGIC;
@@ -217,7 +219,7 @@ architecture STRUCTURE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point
   signal \MULT.OP/EXP/state_det\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/dsp1_ac_p1\ : STD_LOGIC_VECTOR ( 29 downto 0 );
   signal \MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/dsp1_pc_p3\ : STD_LOGIC_VECTOR ( 47 downto 0 );
-  signal \MULT.OP/OP/exp_op6_out\ : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal \MULT.OP/OP/exp_op6_out\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal \MULT.OP/OP/p_5_out\ : STD_LOGIC_VECTOR ( 22 downto 0 );
   signal \MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/plus2_sel_op\ : STD_LOGIC;
   signal \MULT.OP/exp_rnd\ : STD_LOGIC_VECTOR ( 7 to 7 );
@@ -281,22 +283,26 @@ architecture STRUCTURE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point
   signal \n_0_RESULT_REG.NORMAL.exp_op[0]_i_3\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[1]_i_1\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[1]_i_2\ : STD_LOGIC;
+  signal \n_0_RESULT_REG.NORMAL.exp_op[1]_i_3\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[2]_i_1\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[2]_i_2\ : STD_LOGIC;
+  signal \n_0_RESULT_REG.NORMAL.exp_op[2]_i_3\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[3]_i_1\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[3]_i_2\ : STD_LOGIC;
+  signal \n_0_RESULT_REG.NORMAL.exp_op[3]_i_3\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[4]_i_1\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[4]_i_2\ : STD_LOGIC;
+  signal \n_0_RESULT_REG.NORMAL.exp_op[4]_i_3\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[5]_i_1\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[5]_i_2\ : STD_LOGIC;
+  signal \n_0_RESULT_REG.NORMAL.exp_op[5]_i_3\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[6]_i_1\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[6]_i_2\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[6]_i_3\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[6]_i_4\ : STD_LOGIC;
-  signal \n_0_RESULT_REG.NORMAL.exp_op[7]_i_1\ : STD_LOGIC;
-  signal \n_0_RESULT_REG.NORMAL.exp_op[7]_i_2\ : STD_LOGIC;
+  signal \n_0_RESULT_REG.NORMAL.exp_op[6]_i_5\ : STD_LOGIC;
+  signal \n_0_RESULT_REG.NORMAL.exp_op[7]_i_6\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\ : STD_LOGIC;
-  signal \n_0_RESULT_REG.NORMAL.exp_op[7]_i_8\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.mant_op[0]_i_1\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.mant_op[10]_i_1\ : STD_LOGIC;
   signal \n_0_RESULT_REG.NORMAL.mant_op[11]_i_1\ : STD_LOGIC;
@@ -735,8 +741,8 @@ architecture STRUCTURE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point
   attribute XILINX_LEGACY_PRIM of \MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/MANT_OUT_reg[8]\ : label is "LD";
   attribute XILINX_LEGACY_PRIM of \MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/MANT_OUT_reg[9]\ : label is "LD";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \RESULT_REG.NORMAL.exp_op[6]_i_3\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \RESULT_REG.NORMAL.exp_op[7]_i_8\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \RESULT_REG.NORMAL.exp_op[6]_i_5\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \RESULT_REG.NORMAL.exp_op[7]_i_7\ : label is "soft_lutpair0";
   attribute keep of \i_nd_to_rdy/opt_has_pipe.first_q_reg[0]\ : label is "yes";
   attribute SOFT_HLUTNM of \opt_has_pipe.first_q[0]_i_3\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \opt_has_pipe.first_q[1]_i_2\ : label is "soft_lutpair2";
@@ -1692,11 +1698,11 @@ GND_1: unisim.vcomponents.GND
       CARRYOUT(1) => \n_56_MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP\,
       CARRYOUT(0) => \n_57_MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP\,
       CEA1 => \<const0>\,
-      CEA2 => \<const1>\,
+      CEA2 => \<const0>\,
       CEAD => \<const0>\,
       CEALUMODE => \<const0>\,
       CEB1 => \<const0>\,
-      CEB2 => \<const1>\,
+      CEB2 => \<const0>\,
       CEC => \<const0>\,
       CECARRYIN => \<const0>\,
       CECTRL => \<const0>\,
@@ -2057,11 +2063,11 @@ GND_1: unisim.vcomponents.GND
       CARRYOUT(1) => \n_56_MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP\,
       CARRYOUT(0) => \n_57_MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP\,
       CEA1 => \<const0>\,
-      CEA2 => \<const1>\,
+      CEA2 => \<const0>\,
       CEAD => \<const0>\,
       CEALUMODE => \<const0>\,
       CEB1 => \<const0>\,
-      CEB2 => \<const1>\,
+      CEB2 => \<const0>\,
       CEC => \<const0>\,
       CECARRYIN => \<const0>\,
       CECTRL => \<const0>\,
@@ -2144,7 +2150,7 @@ GND_1: unisim.vcomponents.GND
       Q => \^m_axis_result_tdata\(23),
       R => \<const0>\
     );
-\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[1]\: unisim.vcomponents.FDRE
+\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[1]\: unisim.vcomponents.FDSE
     generic map(
       INIT => '0'
     )
@@ -2153,9 +2159,9 @@ GND_1: unisim.vcomponents.GND
       CE => \<const1>\,
       D => \n_0_RESULT_REG.NORMAL.exp_op[1]_i_1\,
       Q => \^m_axis_result_tdata\(24),
-      R => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_1\
+      S => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_1\
     );
-\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[2]\: unisim.vcomponents.FDRE
+\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[2]\: unisim.vcomponents.FDSE
     generic map(
       INIT => '0'
     )
@@ -2164,9 +2170,9 @@ GND_1: unisim.vcomponents.GND
       CE => \<const1>\,
       D => \n_0_RESULT_REG.NORMAL.exp_op[2]_i_1\,
       Q => \^m_axis_result_tdata\(25),
-      R => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_1\
+      S => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_1\
     );
-\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[3]\: unisim.vcomponents.FDRE
+\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[3]\: unisim.vcomponents.FDSE
     generic map(
       INIT => '0'
     )
@@ -2175,9 +2181,9 @@ GND_1: unisim.vcomponents.GND
       CE => \<const1>\,
       D => \n_0_RESULT_REG.NORMAL.exp_op[3]_i_1\,
       Q => \^m_axis_result_tdata\(26),
-      R => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_1\
+      S => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_1\
     );
-\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[4]\: unisim.vcomponents.FDRE
+\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[4]\: unisim.vcomponents.FDSE
     generic map(
       INIT => '0'
     )
@@ -2186,9 +2192,9 @@ GND_1: unisim.vcomponents.GND
       CE => \<const1>\,
       D => \n_0_RESULT_REG.NORMAL.exp_op[4]_i_1\,
       Q => \^m_axis_result_tdata\(27),
-      R => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_1\
+      S => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_1\
     );
-\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[5]\: unisim.vcomponents.FDRE
+\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[5]\: unisim.vcomponents.FDSE
     generic map(
       INIT => '0'
     )
@@ -2197,18 +2203,18 @@ GND_1: unisim.vcomponents.GND
       CE => \<const1>\,
       D => \n_0_RESULT_REG.NORMAL.exp_op[5]_i_1\,
       Q => \^m_axis_result_tdata\(28),
-      R => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_1\
+      S => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_1\
     );
-\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[6]\: unisim.vcomponents.FDRE
+\MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[6]\: unisim.vcomponents.FDSE
     generic map(
       INIT => '0'
     )
     port map (
       C => aclk,
       CE => \<const1>\,
-      D => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_1\,
+      D => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_2\,
       Q => \^m_axis_result_tdata\(29),
-      R => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_1\
+      S => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_1\
     );
 \MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[7]\: unisim.vcomponents.FDRE
     generic map(
@@ -2217,9 +2223,9 @@ GND_1: unisim.vcomponents.GND
     port map (
       C => aclk,
       CE => \<const1>\,
-      D => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_2\,
+      D => \MULT.OP/OP/exp_op6_out\(7),
       Q => \^m_axis_result_tdata\(30),
-      R => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_1\
+      R => \<const0>\
     );
 \MULT.OP/OP/RESULT_REG.NORMAL.mant_op_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -2723,11 +2729,11 @@ GND_1: unisim.vcomponents.GND
       CARRYOUT(1) => \n_56_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
       CARRYOUT(0) => \n_57_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
       CEA1 => \<const0>\,
-      CEA2 => \<const1>\,
+      CEA2 => \<const0>\,
       CEAD => \<const0>\,
       CEALUMODE => \<const0>\,
       CEB1 => \<const0>\,
-      CEB2 => \<const1>\,
+      CEB2 => \<const0>\,
       CEC => \<const0>\,
       CECARRYIN => \<const0>\,
       CECTRL => \<const0>\,
@@ -3161,7 +3167,7 @@ GND_1: unisim.vcomponents.GND
       I1 => aclken,
       I2 => \n_73_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
       I3 => \MULT.OP/mant_rnd\(25),
-      I4 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_3\,
+      I4 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_5\,
       O => \n_0_RESULT_REG.NORMAL.exp_op[0]_i_2\
     );
 \RESULT_REG.NORMAL.exp_op[0]_i_3\: unisim.vcomponents.LUT6
@@ -3171,157 +3177,244 @@ GND_1: unisim.vcomponents.GND
     port map (
       I0 => \MULT.OP/mant_rnd\(25),
       I1 => \n_64_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I2 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_8\,
+      I2 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\,
       I3 => \n_0_MANT_OUT_reg[0]_i_2\,
       I4 => aclken,
       I5 => \^m_axis_result_tdata\(23),
       O => \n_0_RESULT_REG.NORMAL.exp_op[0]_i_3\
     );
-\RESULT_REG.NORMAL.exp_op[1]_i_1\: unisim.vcomponents.LUT4
+\RESULT_REG.NORMAL.exp_op[1]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FBF8"
+      INIT => X"F0F0F070"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
       I2 => \n_0_RESULT_REG.NORMAL.exp_op[1]_i_2\,
-      I3 => \^m_axis_result_tdata\(24),
+      I3 => \MULT.OP/EXP/state_dec\(0),
+      I4 => \MULT.OP/flow_op\(3),
       O => \n_0_RESULT_REG.NORMAL.exp_op[1]_i_1\
     );
-\RESULT_REG.NORMAL.exp_op[1]_i_2\: unisim.vcomponents.LUT6
+\RESULT_REG.NORMAL.exp_op[1]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFF888088808880"
+      INIT => X"EAEAEAAA"
     )
     port map (
-      I0 => aclken,
-      I1 => \n_72_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I2 => \MULT.OP/mant_rnd\(25),
-      I3 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_3\,
-      I4 => \n_63_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I5 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_4\,
+      I0 => \n_0_RESULT_REG.NORMAL.exp_op[1]_i_3\,
+      I1 => aclken,
+      I2 => \n_72_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I3 => \MULT.OP/mant_rnd\(25),
+      I4 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_5\,
       O => \n_0_RESULT_REG.NORMAL.exp_op[1]_i_2\
     );
-\RESULT_REG.NORMAL.exp_op[2]_i_1\: unisim.vcomponents.LUT4
+\RESULT_REG.NORMAL.exp_op[1]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FBF8"
+      INIT => X"4044FFFF40440000"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/mant_rnd\(25),
+      I1 => \n_63_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I2 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\,
+      I3 => \n_0_MANT_OUT_reg[0]_i_2\,
+      I4 => aclken,
+      I5 => \^m_axis_result_tdata\(24),
+      O => \n_0_RESULT_REG.NORMAL.exp_op[1]_i_3\
+    );
+\RESULT_REG.NORMAL.exp_op[2]_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"F0F0F070"
+    )
+    port map (
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
       I2 => \n_0_RESULT_REG.NORMAL.exp_op[2]_i_2\,
-      I3 => \^m_axis_result_tdata\(25),
+      I3 => \MULT.OP/EXP/state_dec\(0),
+      I4 => \MULT.OP/flow_op\(3),
       O => \n_0_RESULT_REG.NORMAL.exp_op[2]_i_1\
     );
-\RESULT_REG.NORMAL.exp_op[2]_i_2\: unisim.vcomponents.LUT6
+\RESULT_REG.NORMAL.exp_op[2]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFF888088808880"
+      INIT => X"EAEAEAAA"
     )
     port map (
-      I0 => aclken,
-      I1 => \n_71_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I2 => \MULT.OP/mant_rnd\(25),
-      I3 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_3\,
-      I4 => \n_62_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I5 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_4\,
+      I0 => \n_0_RESULT_REG.NORMAL.exp_op[2]_i_3\,
+      I1 => aclken,
+      I2 => \n_71_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I3 => \MULT.OP/mant_rnd\(25),
+      I4 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_5\,
       O => \n_0_RESULT_REG.NORMAL.exp_op[2]_i_2\
     );
-\RESULT_REG.NORMAL.exp_op[3]_i_1\: unisim.vcomponents.LUT4
+\RESULT_REG.NORMAL.exp_op[2]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FBF8"
+      INIT => X"4044FFFF40440000"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/mant_rnd\(25),
+      I1 => \n_62_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I2 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\,
+      I3 => \n_0_MANT_OUT_reg[0]_i_2\,
+      I4 => aclken,
+      I5 => \^m_axis_result_tdata\(25),
+      O => \n_0_RESULT_REG.NORMAL.exp_op[2]_i_3\
+    );
+\RESULT_REG.NORMAL.exp_op[3]_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"F0F0F070"
+    )
+    port map (
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
       I2 => \n_0_RESULT_REG.NORMAL.exp_op[3]_i_2\,
-      I3 => \^m_axis_result_tdata\(26),
+      I3 => \MULT.OP/EXP/state_dec\(0),
+      I4 => \MULT.OP/flow_op\(3),
       O => \n_0_RESULT_REG.NORMAL.exp_op[3]_i_1\
     );
-\RESULT_REG.NORMAL.exp_op[3]_i_2\: unisim.vcomponents.LUT6
+\RESULT_REG.NORMAL.exp_op[3]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFF888088808880"
+      INIT => X"EAEAEAAA"
     )
     port map (
-      I0 => aclken,
-      I1 => \n_70_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I2 => \MULT.OP/mant_rnd\(25),
-      I3 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_3\,
-      I4 => \n_61_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I5 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_4\,
+      I0 => \n_0_RESULT_REG.NORMAL.exp_op[3]_i_3\,
+      I1 => aclken,
+      I2 => \n_70_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I3 => \MULT.OP/mant_rnd\(25),
+      I4 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_5\,
       O => \n_0_RESULT_REG.NORMAL.exp_op[3]_i_2\
     );
-\RESULT_REG.NORMAL.exp_op[4]_i_1\: unisim.vcomponents.LUT4
+\RESULT_REG.NORMAL.exp_op[3]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FBF8"
+      INIT => X"4044FFFF40440000"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/mant_rnd\(25),
+      I1 => \n_61_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I2 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\,
+      I3 => \n_0_MANT_OUT_reg[0]_i_2\,
+      I4 => aclken,
+      I5 => \^m_axis_result_tdata\(26),
+      O => \n_0_RESULT_REG.NORMAL.exp_op[3]_i_3\
+    );
+\RESULT_REG.NORMAL.exp_op[4]_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"F0F0F070"
+    )
+    port map (
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
       I2 => \n_0_RESULT_REG.NORMAL.exp_op[4]_i_2\,
-      I3 => \^m_axis_result_tdata\(27),
+      I3 => \MULT.OP/EXP/state_dec\(0),
+      I4 => \MULT.OP/flow_op\(3),
       O => \n_0_RESULT_REG.NORMAL.exp_op[4]_i_1\
     );
-\RESULT_REG.NORMAL.exp_op[4]_i_2\: unisim.vcomponents.LUT6
+\RESULT_REG.NORMAL.exp_op[4]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFF888088808880"
+      INIT => X"EAEAEAAA"
     )
     port map (
-      I0 => aclken,
-      I1 => \n_69_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I2 => \MULT.OP/mant_rnd\(25),
-      I3 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_3\,
-      I4 => \n_60_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I5 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_4\,
+      I0 => \n_0_RESULT_REG.NORMAL.exp_op[4]_i_3\,
+      I1 => aclken,
+      I2 => \n_69_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I3 => \MULT.OP/mant_rnd\(25),
+      I4 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_5\,
       O => \n_0_RESULT_REG.NORMAL.exp_op[4]_i_2\
     );
-\RESULT_REG.NORMAL.exp_op[5]_i_1\: unisim.vcomponents.LUT4
+\RESULT_REG.NORMAL.exp_op[4]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FBF8"
+      INIT => X"4044FFFF40440000"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/mant_rnd\(25),
+      I1 => \n_60_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I2 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\,
+      I3 => \n_0_MANT_OUT_reg[0]_i_2\,
+      I4 => aclken,
+      I5 => \^m_axis_result_tdata\(27),
+      O => \n_0_RESULT_REG.NORMAL.exp_op[4]_i_3\
+    );
+\RESULT_REG.NORMAL.exp_op[5]_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"F0F0F070"
+    )
+    port map (
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
       I2 => \n_0_RESULT_REG.NORMAL.exp_op[5]_i_2\,
-      I3 => \^m_axis_result_tdata\(28),
+      I3 => \MULT.OP/EXP/state_dec\(0),
+      I4 => \MULT.OP/flow_op\(3),
       O => \n_0_RESULT_REG.NORMAL.exp_op[5]_i_1\
     );
-\RESULT_REG.NORMAL.exp_op[5]_i_2\: unisim.vcomponents.LUT6
+\RESULT_REG.NORMAL.exp_op[5]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFF888088808880"
+      INIT => X"EAEAEAAA"
     )
     port map (
-      I0 => aclken,
-      I1 => \n_68_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I2 => \MULT.OP/mant_rnd\(25),
-      I3 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_3\,
-      I4 => \n_59_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I5 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_4\,
+      I0 => \n_0_RESULT_REG.NORMAL.exp_op[5]_i_3\,
+      I1 => aclken,
+      I2 => \n_68_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I3 => \MULT.OP/mant_rnd\(25),
+      I4 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_5\,
       O => \n_0_RESULT_REG.NORMAL.exp_op[5]_i_2\
     );
-\RESULT_REG.NORMAL.exp_op[6]_i_1\: unisim.vcomponents.LUT4
+\RESULT_REG.NORMAL.exp_op[5]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FBF8"
+      INIT => X"4044FFFF40440000"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
-      I1 => aclken,
-      I2 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_2\,
-      I3 => \^m_axis_result_tdata\(29),
-      O => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_1\
+      I0 => \MULT.OP/mant_rnd\(25),
+      I1 => \n_59_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I2 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\,
+      I3 => \n_0_MANT_OUT_reg[0]_i_2\,
+      I4 => aclken,
+      I5 => \^m_axis_result_tdata\(28),
+      O => \n_0_RESULT_REG.NORMAL.exp_op[5]_i_3\
     );
-\RESULT_REG.NORMAL.exp_op[6]_i_2\: unisim.vcomponents.LUT6
+\RESULT_REG.NORMAL.exp_op[6]_i_1\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"FFFF888088808880"
+      INIT => X"8"
     )
     port map (
       I0 => aclken,
-      I1 => \n_67_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I2 => \MULT.OP/mant_rnd\(25),
-      I3 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_3\,
-      I4 => \n_58_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I5 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_4\,
+      I1 => \MULT.OP/EXP/state_dec\(0),
+      O => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_1\
+    );
+\RESULT_REG.NORMAL.exp_op[6]_i_2\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"F0F0F070"
+    )
+    port map (
+      I0 => \MULT.OP/EXP/state_dec\(1),
+      I1 => aclken,
+      I2 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_3\,
+      I3 => \MULT.OP/EXP/state_dec\(0),
+      I4 => \MULT.OP/flow_op\(3),
       O => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_2\
     );
 \RESULT_REG.NORMAL.exp_op[6]_i_3\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"EAEAEAAA"
+    )
+    port map (
+      I0 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_4\,
+      I1 => aclken,
+      I2 => \n_67_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I3 => \MULT.OP/mant_rnd\(25),
+      I4 => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_5\,
+      O => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_3\
+    );
+\RESULT_REG.NORMAL.exp_op[6]_i_4\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"4044FFFF40440000"
+    )
+    port map (
+      I0 => \MULT.OP/mant_rnd\(25),
+      I1 => \n_58_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
+      I2 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\,
+      I3 => \n_0_MANT_OUT_reg[0]_i_2\,
+      I4 => aclken,
+      I5 => \^m_axis_result_tdata\(29),
+      O => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_4\
+    );
+\RESULT_REG.NORMAL.exp_op[6]_i_5\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"00008000"
     )
@@ -3331,106 +3424,84 @@ GND_1: unisim.vcomponents.GND
       I2 => \n_75_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
       I3 => \MULT.OP/mant_rnd\(0),
       I4 => \MULT.OP/mant_rnd\(25),
-      O => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_3\
+      O => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_5\
     );
-\RESULT_REG.NORMAL.exp_op[6]_i_4\: unisim.vcomponents.LUT6
+\RESULT_REG.NORMAL.exp_op[7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"000000007FFF0000"
+      INIT => X"FCFCFC30FCFC7430"
     )
     port map (
-      I0 => \n_0_MANT_OUT_reg[0]_i_2\,
-      I1 => \MULT.OP/mant_rnd\(0),
-      I2 => \n_75_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
-      I3 => \MULT.OP/mant_rnd\(1),
-      I4 => aclken,
-      I5 => \MULT.OP/mant_rnd\(25),
-      O => \n_0_RESULT_REG.NORMAL.exp_op[6]_i_4\
-    );
-\RESULT_REG.NORMAL.exp_op[7]_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0400"
-    )
-    port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
-      I1 => \MULT.OP/EXP/state_dec\(1),
-      I2 => \MULT.OP/flow_op\(3),
-      I3 => aclken,
-      O => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_1\
-    );
-\RESULT_REG.NORMAL.exp_op[7]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FCB8"
-    )
-    port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
       I2 => \^m_axis_result_tdata\(30),
       I3 => \MULT.OP/exp_rnd\(7),
-      O => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_2\
+      I4 => \MULT.OP/EXP/state_dec\(0),
+      I5 => \MULT.OP/flow_op\(3),
+      O => \MULT.OP/OP/exp_op6_out\(7)
     );
-\RESULT_REG.NORMAL.exp_op[7]_i_3\: unisim.vcomponents.LUT6
+\RESULT_REG.NORMAL.exp_op[7]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FF00FF00FF00FFEA"
-    )
-    port map (
-      I0 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(0),
-      I1 => \MULT.OP/mant_rnd\(25),
-      I2 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(2),
-      I3 => \MULT.OP/EXP/STATE_DELAY/i_pipe/first_q\(0),
-      I4 => \MULT.OP/EXP/STATE_DELAY/i_pipe/first_q\(1),
-      I5 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(1),
-      O => \MULT.OP/EXP/state_dec\(0)
-    );
-\RESULT_REG.NORMAL.exp_op[7]_i_4\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"BBBABBBBBBBABBBA"
+      INIT => X"BBBBBBBBBABABBBA"
     )
     port map (
       I0 => \MULT.OP/EXP/STATE_DELAY/i_pipe/first_q\(1),
       I1 => \MULT.OP/EXP/STATE_DELAY/i_pipe/first_q\(0),
-      I2 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\,
-      I3 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(1),
+      I2 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(1),
+      I3 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(3),
       I4 => \MULT.OP/mant_rnd\(25),
-      I5 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(3),
+      I5 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_6\,
       O => \MULT.OP/EXP/state_dec\(1)
     );
-\RESULT_REG.NORMAL.exp_op[7]_i_5\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"1010101010100010"
-    )
-    port map (
-      I0 => \MULT.OP/EXP/STATE_DELAY/i_pipe/first_q\(1),
-      I1 => \MULT.OP/EXP/STATE_DELAY/i_pipe/first_q\(0),
-      I2 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(3),
-      I3 => \MULT.OP/mant_rnd\(25),
-      I4 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(1),
-      I5 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(0),
-      O => \MULT.OP/flow_op\(3)
-    );
-\RESULT_REG.NORMAL.exp_op[7]_i_6\: unisim.vcomponents.LUT6
+\RESULT_REG.NORMAL.exp_op[7]_i_3\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FFFF9F9900009099"
     )
     port map (
       I0 => \n_54_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
       I1 => \MULT.OP/EXP/EXP_PRE_RND_DEL/i_pipe/first_q\(7),
-      I2 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_8\,
+      I2 => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\,
       I3 => \n_0_MANT_OUT_reg[0]_i_2\,
       I4 => \MULT.OP/mant_rnd\(25),
       I5 => \n_66_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
       O => \MULT.OP/exp_rnd\(7)
     );
-\RESULT_REG.NORMAL.exp_op[7]_i_7\: unisim.vcomponents.LUT3
+\RESULT_REG.NORMAL.exp_op[7]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"EA"
+      INIT => X"FF00FF00FF00FFF8"
     )
     port map (
-      I0 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(0),
-      I1 => \MULT.OP/mant_rnd\(25),
-      I2 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(2),
-      O => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\
+      I0 => \MULT.OP/mant_rnd\(25),
+      I1 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(2),
+      I2 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(0),
+      I3 => \MULT.OP/EXP/STATE_DELAY/i_pipe/first_q\(0),
+      I4 => \MULT.OP/EXP/STATE_DELAY/i_pipe/first_q\(1),
+      I5 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(1),
+      O => \MULT.OP/EXP/state_dec\(0)
     );
-\RESULT_REG.NORMAL.exp_op[7]_i_8\: unisim.vcomponents.LUT4
+\RESULT_REG.NORMAL.exp_op[7]_i_5\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"1010101010001010"
+    )
+    port map (
+      I0 => \MULT.OP/EXP/STATE_DELAY/i_pipe/first_q\(1),
+      I1 => \MULT.OP/EXP/STATE_DELAY/i_pipe/first_q\(0),
+      I2 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(3),
+      I3 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(1),
+      I4 => \MULT.OP/mant_rnd\(25),
+      I5 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(0),
+      O => \MULT.OP/flow_op\(3)
+    );
+\RESULT_REG.NORMAL.exp_op[7]_i_6\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"F8"
+    )
+    port map (
+      I0 => \MULT.OP/mant_rnd\(25),
+      I1 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(2),
+      I2 => \MULT.OP/EXP/SIG_DELAY/i_pipe/first_q\(0),
+      O => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_6\
+    );
+\RESULT_REG.NORMAL.exp_op[7]_i_7\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"BFFF"
     )
@@ -3439,16 +3510,16 @@ GND_1: unisim.vcomponents.GND
       I1 => \MULT.OP/mant_rnd\(0),
       I2 => \n_75_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP\,
       I3 => \MULT.OP/mant_rnd\(1),
-      O => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_8\
+      O => \n_0_RESULT_REG.NORMAL.exp_op[7]_i_7\
     );
 \RESULT_REG.NORMAL.mant_op[0]_i_1\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(0),
       I4 => \MULT.OP/OP/p_5_out\(0),
       O => \n_0_RESULT_REG.NORMAL.mant_op[0]_i_1\
@@ -3458,9 +3529,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(10),
       I4 => \MULT.OP/OP/p_5_out\(10),
       O => \n_0_RESULT_REG.NORMAL.mant_op[10]_i_1\
@@ -3470,9 +3541,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(11),
       I4 => \MULT.OP/OP/p_5_out\(11),
       O => \n_0_RESULT_REG.NORMAL.mant_op[11]_i_1\
@@ -3482,9 +3553,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(12),
       I4 => \MULT.OP/OP/p_5_out\(12),
       O => \n_0_RESULT_REG.NORMAL.mant_op[12]_i_1\
@@ -3494,9 +3565,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(13),
       I4 => \MULT.OP/OP/p_5_out\(13),
       O => \n_0_RESULT_REG.NORMAL.mant_op[13]_i_1\
@@ -3506,9 +3577,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(14),
       I4 => \MULT.OP/OP/p_5_out\(14),
       O => \n_0_RESULT_REG.NORMAL.mant_op[14]_i_1\
@@ -3518,9 +3589,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(15),
       I4 => \MULT.OP/OP/p_5_out\(15),
       O => \n_0_RESULT_REG.NORMAL.mant_op[15]_i_1\
@@ -3530,9 +3601,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(16),
       I4 => \MULT.OP/OP/p_5_out\(16),
       O => \n_0_RESULT_REG.NORMAL.mant_op[16]_i_1\
@@ -3542,9 +3613,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(17),
       I4 => \MULT.OP/OP/p_5_out\(17),
       O => \n_0_RESULT_REG.NORMAL.mant_op[17]_i_1\
@@ -3554,9 +3625,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(18),
       I4 => \MULT.OP/OP/p_5_out\(18),
       O => \n_0_RESULT_REG.NORMAL.mant_op[18]_i_1\
@@ -3566,9 +3637,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(19),
       I4 => \MULT.OP/OP/p_5_out\(19),
       O => \n_0_RESULT_REG.NORMAL.mant_op[19]_i_1\
@@ -3578,9 +3649,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(1),
       I4 => \MULT.OP/OP/p_5_out\(1),
       O => \n_0_RESULT_REG.NORMAL.mant_op[1]_i_1\
@@ -3590,9 +3661,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(20),
       I4 => \MULT.OP/OP/p_5_out\(20),
       O => \n_0_RESULT_REG.NORMAL.mant_op[20]_i_1\
@@ -3602,9 +3673,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(21),
       I4 => \MULT.OP/OP/p_5_out\(21),
       O => \n_0_RESULT_REG.NORMAL.mant_op[21]_i_1\
@@ -3626,9 +3697,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(2),
       I4 => \MULT.OP/OP/p_5_out\(2),
       O => \n_0_RESULT_REG.NORMAL.mant_op[2]_i_1\
@@ -3638,9 +3709,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(3),
       I4 => \MULT.OP/OP/p_5_out\(3),
       O => \n_0_RESULT_REG.NORMAL.mant_op[3]_i_1\
@@ -3650,9 +3721,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(4),
       I4 => \MULT.OP/OP/p_5_out\(4),
       O => \n_0_RESULT_REG.NORMAL.mant_op[4]_i_1\
@@ -3662,9 +3733,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(5),
       I4 => \MULT.OP/OP/p_5_out\(5),
       O => \n_0_RESULT_REG.NORMAL.mant_op[5]_i_1\
@@ -3674,9 +3745,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(6),
       I4 => \MULT.OP/OP/p_5_out\(6),
       O => \n_0_RESULT_REG.NORMAL.mant_op[6]_i_1\
@@ -3686,9 +3757,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(7),
       I4 => \MULT.OP/OP/p_5_out\(7),
       O => \n_0_RESULT_REG.NORMAL.mant_op[7]_i_1\
@@ -3698,9 +3769,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(8),
       I4 => \MULT.OP/OP/p_5_out\(8),
       O => \n_0_RESULT_REG.NORMAL.mant_op[8]_i_1\
@@ -3710,9 +3781,9 @@ GND_1: unisim.vcomponents.GND
       INIT => X"37043300"
     )
     port map (
-      I0 => \MULT.OP/EXP/state_dec\(0),
+      I0 => \MULT.OP/EXP/state_dec\(1),
       I1 => aclken,
-      I2 => \MULT.OP/EXP/state_dec\(1),
+      I2 => \MULT.OP/EXP/state_dec\(0),
       I3 => \^m_axis_result_tdata\(9),
       I4 => \MULT.OP/OP/p_5_out\(9),
       O => \n_0_RESULT_REG.NORMAL.mant_op[9]_i_1\
@@ -4054,7 +4125,7 @@ VCC_1: unisim.vcomponents.VCC
 end STRUCTURE;
 library IEEE; use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM; use UNISIM.VCOMPONENTS.ALL; 
-entity vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 is
+entity \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ is
   port (
     aclk : in STD_LOGIC;
     aclken : in STD_LOGIC;
@@ -4085,149 +4156,151 @@ entity vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 is
     m_axis_result_tuser : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_result_tlast : out STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is "floating_point_v7_0";
   attribute C_XDEVICEFAMILY : string;
-  attribute C_XDEVICEFAMILY of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is "zynq";
+  attribute C_XDEVICEFAMILY of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is "zynq";
   attribute C_HAS_ADD : integer;
-  attribute C_HAS_ADD of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ADD of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_SUBTRACT : integer;
-  attribute C_HAS_SUBTRACT of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_SUBTRACT of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_MULTIPLY : integer;
-  attribute C_HAS_MULTIPLY of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 1;
+  attribute C_HAS_MULTIPLY of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_HAS_DIVIDE : integer;
-  attribute C_HAS_DIVIDE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_DIVIDE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_SQRT : integer;
-  attribute C_HAS_SQRT of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_SQRT of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_COMPARE : integer;
-  attribute C_HAS_COMPARE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_COMPARE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FIX_TO_FLT : integer;
-  attribute C_HAS_FIX_TO_FLT of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FIX_TO_FLT of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FIX : integer;
-  attribute C_HAS_FLT_TO_FIX of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FLT_TO_FIX of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FLT_TO_FLT : integer;
-  attribute C_HAS_FLT_TO_FLT of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FLT_TO_FLT of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP : integer;
-  attribute C_HAS_RECIP of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RECIP of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RECIP_SQRT : integer;
-  attribute C_HAS_RECIP_SQRT of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RECIP_SQRT of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ABSOLUTE : integer;
-  attribute C_HAS_ABSOLUTE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ABSOLUTE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_LOGARITHM : integer;
-  attribute C_HAS_LOGARITHM of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_LOGARITHM of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_EXPONENTIAL : integer;
-  attribute C_HAS_EXPONENTIAL of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_EXPONENTIAL of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FMA : integer;
-  attribute C_HAS_FMA of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FMA of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_FMS : integer;
-  attribute C_HAS_FMS of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_FMS of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_A : integer;
-  attribute C_HAS_ACCUMULATOR_A of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUMULATOR_A of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUMULATOR_S : integer;
-  attribute C_HAS_ACCUMULATOR_S of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUMULATOR_S of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_A_WIDTH : integer;
-  attribute C_A_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 32;
+  attribute C_A_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_A_FRACTION_WIDTH : integer;
-  attribute C_A_FRACTION_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 24;
+  attribute C_A_FRACTION_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 24;
   attribute C_B_WIDTH : integer;
-  attribute C_B_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 32;
+  attribute C_B_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_B_FRACTION_WIDTH : integer;
-  attribute C_B_FRACTION_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 24;
+  attribute C_B_FRACTION_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 24;
   attribute C_C_WIDTH : integer;
-  attribute C_C_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 32;
+  attribute C_C_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_C_FRACTION_WIDTH : integer;
-  attribute C_C_FRACTION_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 24;
+  attribute C_C_FRACTION_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 24;
   attribute C_RESULT_WIDTH : integer;
-  attribute C_RESULT_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 32;
+  attribute C_RESULT_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_RESULT_FRACTION_WIDTH : integer;
-  attribute C_RESULT_FRACTION_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 24;
+  attribute C_RESULT_FRACTION_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 24;
   attribute C_COMPARE_OPERATION : integer;
-  attribute C_COMPARE_OPERATION of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 8;
+  attribute C_COMPARE_OPERATION of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 8;
   attribute C_LATENCY : integer;
-  attribute C_LATENCY of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 2;
+  attribute C_LATENCY of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 2;
   attribute C_OPTIMIZATION : integer;
-  attribute C_OPTIMIZATION of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 1;
+  attribute C_OPTIMIZATION of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_MULT_USAGE : integer;
-  attribute C_MULT_USAGE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 3;
+  attribute C_MULT_USAGE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 3;
   attribute C_BRAM_USAGE : integer;
-  attribute C_BRAM_USAGE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_BRAM_USAGE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_RATE : integer;
-  attribute C_RATE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 1;
+  attribute C_RATE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_ACCUM_INPUT_MSB : integer;
-  attribute C_ACCUM_INPUT_MSB of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 32;
+  attribute C_ACCUM_INPUT_MSB of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_ACCUM_MSB : integer;
-  attribute C_ACCUM_MSB of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 32;
+  attribute C_ACCUM_MSB of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_ACCUM_LSB : integer;
-  attribute C_ACCUM_LSB of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is -31;
+  attribute C_ACCUM_LSB of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is -31;
   attribute C_HAS_UNDERFLOW : integer;
-  attribute C_HAS_UNDERFLOW of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_UNDERFLOW of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_OVERFLOW : integer;
-  attribute C_HAS_OVERFLOW of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_OVERFLOW of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_INVALID_OP : integer;
-  attribute C_HAS_INVALID_OP of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_INVALID_OP of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_DIVIDE_BY_ZERO : integer;
-  attribute C_HAS_DIVIDE_BY_ZERO of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_DIVIDE_BY_ZERO of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_OVERFLOW of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUM_OVERFLOW of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACCUM_INPUT_OVERFLOW : integer;
-  attribute C_HAS_ACCUM_INPUT_OVERFLOW of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ACCUM_INPUT_OVERFLOW of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_ACLKEN : integer;
-  attribute C_HAS_ACLKEN of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 1;
+  attribute C_HAS_ACLKEN of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_HAS_ARESETN : integer;
-  attribute C_HAS_ARESETN of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_ARESETN of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_THROTTLE_SCHEME : integer;
-  attribute C_THROTTLE_SCHEME of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 3;
+  attribute C_THROTTLE_SCHEME of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 3;
   attribute C_HAS_A_TUSER : integer;
-  attribute C_HAS_A_TUSER of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_A_TUSER of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_A_TLAST : integer;
-  attribute C_HAS_A_TLAST of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_A_TLAST of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_B : integer;
-  attribute C_HAS_B of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 1;
+  attribute C_HAS_B of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_HAS_B_TUSER : integer;
-  attribute C_HAS_B_TUSER of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_B_TUSER of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_B_TLAST : integer;
-  attribute C_HAS_B_TLAST of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_B_TLAST of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_C : integer;
-  attribute C_HAS_C of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_C of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_C_TUSER : integer;
-  attribute C_HAS_C_TUSER of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_C_TUSER of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_C_TLAST : integer;
-  attribute C_HAS_C_TLAST of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_C_TLAST of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION : integer;
-  attribute C_HAS_OPERATION of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_OPERATION of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION_TUSER : integer;
-  attribute C_HAS_OPERATION_TUSER of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_OPERATION_TUSER of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_OPERATION_TLAST : integer;
-  attribute C_HAS_OPERATION_TLAST of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_OPERATION_TLAST of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TUSER : integer;
-  attribute C_HAS_RESULT_TUSER of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RESULT_TUSER of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_HAS_RESULT_TLAST : integer;
-  attribute C_HAS_RESULT_TLAST of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_HAS_RESULT_TLAST of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_TLAST_RESOLUTION : integer;
-  attribute C_TLAST_RESOLUTION of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 0;
+  attribute C_TLAST_RESOLUTION of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 0;
   attribute C_A_TDATA_WIDTH : integer;
-  attribute C_A_TDATA_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 32;
+  attribute C_A_TDATA_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_A_TUSER_WIDTH : integer;
-  attribute C_A_TUSER_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 1;
+  attribute C_A_TUSER_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_B_TDATA_WIDTH : integer;
-  attribute C_B_TDATA_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 32;
+  attribute C_B_TDATA_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_B_TUSER_WIDTH : integer;
-  attribute C_B_TUSER_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 1;
+  attribute C_B_TUSER_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_C_TDATA_WIDTH : integer;
-  attribute C_C_TDATA_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 32;
+  attribute C_C_TDATA_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_C_TUSER_WIDTH : integer;
-  attribute C_C_TUSER_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 1;
+  attribute C_C_TUSER_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_OPERATION_TDATA_WIDTH : integer;
-  attribute C_OPERATION_TDATA_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 8;
+  attribute C_OPERATION_TDATA_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 8;
   attribute C_OPERATION_TUSER_WIDTH : integer;
-  attribute C_OPERATION_TUSER_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 1;
+  attribute C_OPERATION_TUSER_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute C_RESULT_TDATA_WIDTH : integer;
-  attribute C_RESULT_TDATA_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 32;
+  attribute C_RESULT_TDATA_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 32;
   attribute C_RESULT_TUSER_WIDTH : integer;
-  attribute C_RESULT_TUSER_WIDTH of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is 1;
+  attribute C_RESULT_TUSER_WIDTH of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is 1;
   attribute downgradeipidentifiedwarnings : string;
-  attribute downgradeipidentifiedwarnings of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 : entity is "yes";
-end vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0;
+  attribute downgradeipidentifiedwarnings of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ : entity is "yes";
+end \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\;
 
-architecture STRUCTURE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0 is
+architecture STRUCTURE of \vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\ is
   attribute C_ACCUM_INPUT_MSB of i_synth : label is 32;
   attribute C_ACCUM_LSB of i_synth : label is -31;
   attribute C_ACCUM_MSB of i_synth : label is 32;
@@ -4299,7 +4372,7 @@ architecture STRUCTURE of vivado_activity_thread_ap_fmul_2_max_dspfloating_point
   attribute C_XDEVICEFAMILY of i_synth : label is "zynq";
   attribute downgradeipidentifiedwarnings of i_synth : label is "yes";
 begin
-i_synth: entity work.vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv
+i_synth: entity work.\vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0_viv__parameterized0\
     port map (
       aclk => aclk,
       aclken => aclken,
@@ -4349,11 +4422,11 @@ entity vivado_activity_thread_ap_fmul_2_max_dsp is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of vivado_activity_thread_ap_fmul_2_max_dsp : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of vivado_activity_thread_ap_fmul_2_max_dsp : entity is "floating_point_v7_0,Vivado 2013.3";
+  attribute x_core_info of vivado_activity_thread_ap_fmul_2_max_dsp : entity is "floating_point_v7_0,Vivado 2013.4";
   attribute CHECK_LICENSE_TYPE : string;
   attribute CHECK_LICENSE_TYPE of vivado_activity_thread_ap_fmul_2_max_dsp : entity is "vivado_activity_thread_ap_fmul_2_max_dsp,floating_point_v7_0,{}";
   attribute core_generation_info : string;
-  attribute core_generation_info of vivado_activity_thread_ap_fmul_2_max_dsp : entity is "vivado_activity_thread_ap_fmul_2_max_dsp,floating_point_v7_0,{x_ipProduct=Vivado 2013.3,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=floating_point,x_ipVersion=7.0,x_ipCoreRevision=2,x_ipLanguage=VERILOG,C_XDEVICEFAMILY=zynq,C_HAS_ADD=0,C_HAS_SUBTRACT=0,C_HAS_MULTIPLY=1,C_HAS_DIVIDE=0,C_HAS_SQRT=0,C_HAS_COMPARE=0,C_HAS_FIX_TO_FLT=0,C_HAS_FLT_TO_FIX=0,C_HAS_FLT_TO_FLT=0,C_HAS_RECIP=0,C_HAS_RECIP_SQRT=0,C_HAS_ABSOLUTE=0,C_HAS_LOGARITHM=0,C_HAS_EXPONENTIAL=0,C_HAS_FMA=0,C_HAS_FMS=0,C_HAS_ACCUMULATOR_A=0,C_HAS_ACCUMULATOR_S=0,C_A_WIDTH=32,C_A_FRACTION_WIDTH=24,C_B_WIDTH=32,C_B_FRACTION_WIDTH=24,C_C_WIDTH=32,C_C_FRACTION_WIDTH=24,C_RESULT_WIDTH=32,C_RESULT_FRACTION_WIDTH=24,C_COMPARE_OPERATION=8,C_LATENCY=2,C_OPTIMIZATION=1,C_MULT_USAGE=3,C_BRAM_USAGE=0,C_RATE=1,C_ACCUM_INPUT_MSB=32,C_ACCUM_MSB=32,C_ACCUM_LSB=-31,C_HAS_UNDERFLOW=0,C_HAS_OVERFLOW=0,C_HAS_INVALID_OP=0,C_HAS_DIVIDE_BY_ZERO=0,C_HAS_ACCUM_OVERFLOW=0,C_HAS_ACCUM_INPUT_OVERFLOW=0,C_HAS_ACLKEN=1,C_HAS_ARESETN=0,C_THROTTLE_SCHEME=3,C_HAS_A_TUSER=0,C_HAS_A_TLAST=0,C_HAS_B=1,C_HAS_B_TUSER=0,C_HAS_B_TLAST=0,C_HAS_C=0,C_HAS_C_TUSER=0,C_HAS_C_TLAST=0,C_HAS_OPERATION=0,C_HAS_OPERATION_TUSER=0,C_HAS_OPERATION_TLAST=0,C_HAS_RESULT_TUSER=0,C_HAS_RESULT_TLAST=0,C_TLAST_RESOLUTION=0,C_A_TDATA_WIDTH=32,C_A_TUSER_WIDTH=1,C_B_TDATA_WIDTH=32,C_B_TUSER_WIDTH=1,C_C_TDATA_WIDTH=32,C_C_TUSER_WIDTH=1,C_OPERATION_TDATA_WIDTH=8,C_OPERATION_TUSER_WIDTH=1,C_RESULT_TDATA_WIDTH=32,C_RESULT_TUSER_WIDTH=1}";
+  attribute core_generation_info of vivado_activity_thread_ap_fmul_2_max_dsp : entity is "vivado_activity_thread_ap_fmul_2_max_dsp,floating_point_v7_0,{x_ipProduct=Vivado 2013.4,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=floating_point,x_ipVersion=7.0,x_ipCoreRevision=3,x_ipLanguage=VHDL,C_XDEVICEFAMILY=zynq,C_HAS_ADD=0,C_HAS_SUBTRACT=0,C_HAS_MULTIPLY=1,C_HAS_DIVIDE=0,C_HAS_SQRT=0,C_HAS_COMPARE=0,C_HAS_FIX_TO_FLT=0,C_HAS_FLT_TO_FIX=0,C_HAS_FLT_TO_FLT=0,C_HAS_RECIP=0,C_HAS_RECIP_SQRT=0,C_HAS_ABSOLUTE=0,C_HAS_LOGARITHM=0,C_HAS_EXPONENTIAL=0,C_HAS_FMA=0,C_HAS_FMS=0,C_HAS_ACCUMULATOR_A=0,C_HAS_ACCUMULATOR_S=0,C_A_WIDTH=32,C_A_FRACTION_WIDTH=24,C_B_WIDTH=32,C_B_FRACTION_WIDTH=24,C_C_WIDTH=32,C_C_FRACTION_WIDTH=24,C_RESULT_WIDTH=32,C_RESULT_FRACTION_WIDTH=24,C_COMPARE_OPERATION=8,C_LATENCY=2,C_OPTIMIZATION=1,C_MULT_USAGE=3,C_BRAM_USAGE=0,C_RATE=1,C_ACCUM_INPUT_MSB=32,C_ACCUM_MSB=32,C_ACCUM_LSB=-31,C_HAS_UNDERFLOW=0,C_HAS_OVERFLOW=0,C_HAS_INVALID_OP=0,C_HAS_DIVIDE_BY_ZERO=0,C_HAS_ACCUM_OVERFLOW=0,C_HAS_ACCUM_INPUT_OVERFLOW=0,C_HAS_ACLKEN=1,C_HAS_ARESETN=0,C_THROTTLE_SCHEME=3,C_HAS_A_TUSER=0,C_HAS_A_TLAST=0,C_HAS_B=1,C_HAS_B_TUSER=0,C_HAS_B_TLAST=0,C_HAS_C=0,C_HAS_C_TUSER=0,C_HAS_C_TLAST=0,C_HAS_OPERATION=0,C_HAS_OPERATION_TUSER=0,C_HAS_OPERATION_TLAST=0,C_HAS_RESULT_TUSER=0,C_HAS_RESULT_TLAST=0,C_TLAST_RESOLUTION=0,C_A_TDATA_WIDTH=32,C_A_TUSER_WIDTH=1,C_B_TDATA_WIDTH=32,C_B_TUSER_WIDTH=1,C_C_TDATA_WIDTH=32,C_C_TUSER_WIDTH=1,C_OPERATION_TDATA_WIDTH=8,C_OPERATION_TUSER_WIDTH=1,C_RESULT_TDATA_WIDTH=32,C_RESULT_TUSER_WIDTH=1}";
 end vivado_activity_thread_ap_fmul_2_max_dsp;
 
 architecture STRUCTURE of vivado_activity_thread_ap_fmul_2_max_dsp is
@@ -4511,7 +4584,7 @@ GND: unisim.vcomponents.GND
     port map (
       G => \<const0>\
     );
-U0: entity work.vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0
+U0: entity work.\vivado_activity_thread_ap_fmul_2_max_dspfloating_point_v7_0__parameterized0\
     port map (
       aclk => aclk,
       aclken => aclken,

@@ -33,18 +33,18 @@ module vivado_activity_thread_CORE_IO_if
     input  wire                      RREADY,
     output wire                      interrupt,
     // user signals
-    output wire [31:0]               I_thread_arg_thread_paths,
-    input  wire [31:0]               O_thread_arg_path_points,
-    input  wire                      O_thread_arg_path_points_ap_vld,
-    input  wire [31:0]               O_thread_arg_thread_result,
-    input  wire                      O_thread_arg_thread_result_ap_vld,
-    input  wire [31:0]               O_thread_arg_thread_result_sqrd,
-    input  wire                      O_thread_arg_thread_result_sqrd_ap_vld,
-    output wire [31:0]               I_thread_arg_u_a_0_rfir,
-    output wire [31:0]               I_thread_arg_u_a_0_current_price,
-    output wire [31:0]               I_thread_arg_o_a_0_strike_price,
-    output wire [31:0]               I_thread_arg_o_a_0_time_period,
-    output wire [31:0]               I_thread_arg_o_a_0_call,
+    output wire [31:0]               I_kernel_arg_u_a_0_rfir,
+    output wire [31:0]               I_kernel_arg_u_a_0_current_price,
+    input  wire [31:0]               O_kernel_arg_u_v_0_gamma,
+    input  wire                      O_kernel_arg_u_v_0_gamma_ap_vld,
+    input  wire [31:0]               O_kernel_arg_u_v_0_time,
+    input  wire                      O_kernel_arg_u_v_0_time_ap_vld,
+    output wire [31:0]               I_kernel_arg_o_a_0_strike_price,
+    output wire [31:0]               I_kernel_arg_o_a_0_time_period,
+    output wire [31:0]               I_kernel_arg_o_a_0_call,
+    output wire [31:0]               I_kernel_arg_o_v_0_delta_time,
+    input  wire [31:0]               O_kernel_arg_o_v_0_value,
+    input  wire                      O_kernel_arg_o_v_0_value_ap_vld,
     output wire                      I_ap_start,
     input  wire                      O_ap_ready,
     input  wire                      O_ap_done,
@@ -70,38 +70,38 @@ module vivado_activity_thread_CORE_IO_if
 //        bit 1  - Channel 1 (ap_ready)
 //        others - reserved
 // 0x10 : reserved
-// 0x14 : Data signal of thread_arg_thread_paths
-//        bit 31~0 - thread_arg_thread_paths[31:0] (Read/Write)
-// 0x18 : Control signal of thread_arg_path_points
-//        bit 0  - thread_arg_path_points_ap_vld (Read/COR)
+// 0x14 : Data signal of kernel_arg_u_a_0_rfir
+//        bit 31~0 - kernel_arg_u_a_0_rfir[31:0] (Read/Write)
+// 0x18 : reserved
+// 0x1c : Data signal of kernel_arg_u_a_0_current_price
+//        bit 31~0 - kernel_arg_u_a_0_current_price[31:0] (Read/Write)
+// 0x20 : Control signal of kernel_arg_u_v_0_gamma
+//        bit 0  - kernel_arg_u_v_0_gamma_ap_vld (Read/COR)
 //        others - reserved
-// 0x1c : Data signal of thread_arg_path_points
-//        bit 31~0 - thread_arg_path_points[31:0] (Read)
-// 0x20 : Control signal of thread_arg_thread_result
-//        bit 0  - thread_arg_thread_result_ap_vld (Read/COR)
+// 0x24 : Data signal of kernel_arg_u_v_0_gamma
+//        bit 31~0 - kernel_arg_u_v_0_gamma[31:0] (Read)
+// 0x28 : Control signal of kernel_arg_u_v_0_time
+//        bit 0  - kernel_arg_u_v_0_time_ap_vld (Read/COR)
 //        others - reserved
-// 0x24 : Data signal of thread_arg_thread_result
-//        bit 31~0 - thread_arg_thread_result[31:0] (Read)
-// 0x28 : Control signal of thread_arg_thread_result_sqrd
-//        bit 0  - thread_arg_thread_result_sqrd_ap_vld (Read/COR)
-//        others - reserved
-// 0x2c : Data signal of thread_arg_thread_result_sqrd
-//        bit 31~0 - thread_arg_thread_result_sqrd[31:0] (Read)
+// 0x2c : Data signal of kernel_arg_u_v_0_time
+//        bit 31~0 - kernel_arg_u_v_0_time[31:0] (Read)
 // 0x30 : reserved
-// 0x34 : Data signal of thread_arg_u_a_0_rfir
-//        bit 31~0 - thread_arg_u_a_0_rfir[31:0] (Read/Write)
+// 0x34 : Data signal of kernel_arg_o_a_0_strike_price
+//        bit 31~0 - kernel_arg_o_a_0_strike_price[31:0] (Read/Write)
 // 0x38 : reserved
-// 0x3c : Data signal of thread_arg_u_a_0_current_price
-//        bit 31~0 - thread_arg_u_a_0_current_price[31:0] (Read/Write)
+// 0x3c : Data signal of kernel_arg_o_a_0_time_period
+//        bit 31~0 - kernel_arg_o_a_0_time_period[31:0] (Read/Write)
 // 0x40 : reserved
-// 0x44 : Data signal of thread_arg_o_a_0_strike_price
-//        bit 31~0 - thread_arg_o_a_0_strike_price[31:0] (Read/Write)
+// 0x44 : Data signal of kernel_arg_o_a_0_call
+//        bit 31~0 - kernel_arg_o_a_0_call[31:0] (Read/Write)
 // 0x48 : reserved
-// 0x4c : Data signal of thread_arg_o_a_0_time_period
-//        bit 31~0 - thread_arg_o_a_0_time_period[31:0] (Read/Write)
-// 0x50 : reserved
-// 0x54 : Data signal of thread_arg_o_a_0_call
-//        bit 31~0 - thread_arg_o_a_0_call[31:0] (Read/Write)
+// 0x4c : Data signal of kernel_arg_o_v_0_delta_time
+//        bit 31~0 - kernel_arg_o_v_0_delta_time[31:0] (Read/Write)
+// 0x50 : Control signal of kernel_arg_o_v_0_value
+//        bit 0  - kernel_arg_o_v_0_value_ap_vld (Read/COR)
+//        others - reserved
+// 0x54 : Data signal of kernel_arg_o_v_0_value
+//        bit 31~0 - kernel_arg_o_v_0_value[31:0] (Read)
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 //------------------------Parameter----------------------
@@ -115,24 +115,24 @@ localparam
     ADDR_GIE                                   = 7'h04,
     ADDR_IER                                   = 7'h08,
     ADDR_ISR                                   = 7'h0c,
-    ADDR_THREAD_ARG_THREAD_PATHS_CTRL          = 7'h10,
-    ADDR_THREAD_ARG_THREAD_PATHS_DATA_0        = 7'h14,
-    ADDR_THREAD_ARG_PATH_POINTS_CTRL           = 7'h18,
-    ADDR_THREAD_ARG_PATH_POINTS_DATA_0         = 7'h1c,
-    ADDR_THREAD_ARG_THREAD_RESULT_CTRL         = 7'h20,
-    ADDR_THREAD_ARG_THREAD_RESULT_DATA_0       = 7'h24,
-    ADDR_THREAD_ARG_THREAD_RESULT_SQRD_CTRL    = 7'h28,
-    ADDR_THREAD_ARG_THREAD_RESULT_SQRD_DATA_0  = 7'h2c,
-    ADDR_THREAD_ARG_U_A_0_RFIR_CTRL            = 7'h30,
-    ADDR_THREAD_ARG_U_A_0_RFIR_DATA_0          = 7'h34,
-    ADDR_THREAD_ARG_U_A_0_CURRENT_PRICE_CTRL   = 7'h38,
-    ADDR_THREAD_ARG_U_A_0_CURRENT_PRICE_DATA_0 = 7'h3c,
-    ADDR_THREAD_ARG_O_A_0_STRIKE_PRICE_CTRL    = 7'h40,
-    ADDR_THREAD_ARG_O_A_0_STRIKE_PRICE_DATA_0  = 7'h44,
-    ADDR_THREAD_ARG_O_A_0_TIME_PERIOD_CTRL     = 7'h48,
-    ADDR_THREAD_ARG_O_A_0_TIME_PERIOD_DATA_0   = 7'h4c,
-    ADDR_THREAD_ARG_O_A_0_CALL_CTRL            = 7'h50,
-    ADDR_THREAD_ARG_O_A_0_CALL_DATA_0          = 7'h54;
+    ADDR_KERNEL_ARG_U_A_0_RFIR_CTRL            = 7'h10,
+    ADDR_KERNEL_ARG_U_A_0_RFIR_DATA_0          = 7'h14,
+    ADDR_KERNEL_ARG_U_A_0_CURRENT_PRICE_CTRL   = 7'h18,
+    ADDR_KERNEL_ARG_U_A_0_CURRENT_PRICE_DATA_0 = 7'h1c,
+    ADDR_KERNEL_ARG_U_V_0_GAMMA_CTRL           = 7'h20,
+    ADDR_KERNEL_ARG_U_V_0_GAMMA_DATA_0         = 7'h24,
+    ADDR_KERNEL_ARG_U_V_0_TIME_CTRL            = 7'h28,
+    ADDR_KERNEL_ARG_U_V_0_TIME_DATA_0          = 7'h2c,
+    ADDR_KERNEL_ARG_O_A_0_STRIKE_PRICE_CTRL    = 7'h30,
+    ADDR_KERNEL_ARG_O_A_0_STRIKE_PRICE_DATA_0  = 7'h34,
+    ADDR_KERNEL_ARG_O_A_0_TIME_PERIOD_CTRL     = 7'h38,
+    ADDR_KERNEL_ARG_O_A_0_TIME_PERIOD_DATA_0   = 7'h3c,
+    ADDR_KERNEL_ARG_O_A_0_CALL_CTRL            = 7'h40,
+    ADDR_KERNEL_ARG_O_A_0_CALL_DATA_0          = 7'h44,
+    ADDR_KERNEL_ARG_O_V_0_DELTA_TIME_CTRL      = 7'h48,
+    ADDR_KERNEL_ARG_O_V_0_DELTA_TIME_DATA_0    = 7'h4c,
+    ADDR_KERNEL_ARG_O_V_0_VALUE_CTRL           = 7'h50,
+    ADDR_KERNEL_ARG_O_V_0_VALUE_DATA_0         = 7'h54;
 
 // axi write fsm
 localparam
@@ -168,18 +168,18 @@ reg                  auto_restart;
 reg                  gie;
 reg  [1:0]           ier;
 reg  [1:0]           isr;
-reg  [31:0]          _thread_arg_thread_paths;
-wire [31:0]          _thread_arg_path_points;
-reg                  _thread_arg_path_points_ap_vld;
-wire [31:0]          _thread_arg_thread_result;
-reg                  _thread_arg_thread_result_ap_vld;
-wire [31:0]          _thread_arg_thread_result_sqrd;
-reg                  _thread_arg_thread_result_sqrd_ap_vld;
-reg  [31:0]          _thread_arg_u_a_0_rfir;
-reg  [31:0]          _thread_arg_u_a_0_current_price;
-reg  [31:0]          _thread_arg_o_a_0_strike_price;
-reg  [31:0]          _thread_arg_o_a_0_time_period;
-reg  [31:0]          _thread_arg_o_a_0_call;
+reg  [31:0]          _kernel_arg_u_a_0_rfir;
+reg  [31:0]          _kernel_arg_u_a_0_current_price;
+wire [31:0]          _kernel_arg_u_v_0_gamma;
+reg                  _kernel_arg_u_v_0_gamma_ap_vld;
+wire [31:0]          _kernel_arg_u_v_0_time;
+reg                  _kernel_arg_u_v_0_time_ap_vld;
+reg  [31:0]          _kernel_arg_o_a_0_strike_price;
+reg  [31:0]          _kernel_arg_o_a_0_time_period;
+reg  [31:0]          _kernel_arg_o_a_0_call;
+reg  [31:0]          _kernel_arg_o_v_0_delta_time;
+wire [31:0]          _kernel_arg_o_v_0_value;
+reg                  _kernel_arg_o_v_0_value_ap_vld;
 
 //------------------------Body---------------------------
 //++++++++++++++++++++++++axi write++++++++++++++++++++++
@@ -284,41 +284,41 @@ always @(posedge ACLK) begin
             ADDR_ISR: begin
                 rdata <= isr;
             end
-            ADDR_THREAD_ARG_THREAD_PATHS_DATA_0: begin
-                rdata <= _thread_arg_thread_paths[31:0];
+            ADDR_KERNEL_ARG_U_A_0_RFIR_DATA_0: begin
+                rdata <= _kernel_arg_u_a_0_rfir[31:0];
             end
-            ADDR_THREAD_ARG_PATH_POINTS_CTRL: begin
-                rdata[0] <= _thread_arg_path_points_ap_vld;
+            ADDR_KERNEL_ARG_U_A_0_CURRENT_PRICE_DATA_0: begin
+                rdata <= _kernel_arg_u_a_0_current_price[31:0];
             end
-            ADDR_THREAD_ARG_PATH_POINTS_DATA_0: begin
-                rdata <= _thread_arg_path_points[31:0];
+            ADDR_KERNEL_ARG_U_V_0_GAMMA_CTRL: begin
+                rdata[0] <= _kernel_arg_u_v_0_gamma_ap_vld;
             end
-            ADDR_THREAD_ARG_THREAD_RESULT_CTRL: begin
-                rdata[0] <= _thread_arg_thread_result_ap_vld;
+            ADDR_KERNEL_ARG_U_V_0_GAMMA_DATA_0: begin
+                rdata <= _kernel_arg_u_v_0_gamma[31:0];
             end
-            ADDR_THREAD_ARG_THREAD_RESULT_DATA_0: begin
-                rdata <= _thread_arg_thread_result[31:0];
+            ADDR_KERNEL_ARG_U_V_0_TIME_CTRL: begin
+                rdata[0] <= _kernel_arg_u_v_0_time_ap_vld;
             end
-            ADDR_THREAD_ARG_THREAD_RESULT_SQRD_CTRL: begin
-                rdata[0] <= _thread_arg_thread_result_sqrd_ap_vld;
+            ADDR_KERNEL_ARG_U_V_0_TIME_DATA_0: begin
+                rdata <= _kernel_arg_u_v_0_time[31:0];
             end
-            ADDR_THREAD_ARG_THREAD_RESULT_SQRD_DATA_0: begin
-                rdata <= _thread_arg_thread_result_sqrd[31:0];
+            ADDR_KERNEL_ARG_O_A_0_STRIKE_PRICE_DATA_0: begin
+                rdata <= _kernel_arg_o_a_0_strike_price[31:0];
             end
-            ADDR_THREAD_ARG_U_A_0_RFIR_DATA_0: begin
-                rdata <= _thread_arg_u_a_0_rfir[31:0];
+            ADDR_KERNEL_ARG_O_A_0_TIME_PERIOD_DATA_0: begin
+                rdata <= _kernel_arg_o_a_0_time_period[31:0];
             end
-            ADDR_THREAD_ARG_U_A_0_CURRENT_PRICE_DATA_0: begin
-                rdata <= _thread_arg_u_a_0_current_price[31:0];
+            ADDR_KERNEL_ARG_O_A_0_CALL_DATA_0: begin
+                rdata <= _kernel_arg_o_a_0_call[31:0];
             end
-            ADDR_THREAD_ARG_O_A_0_STRIKE_PRICE_DATA_0: begin
-                rdata <= _thread_arg_o_a_0_strike_price[31:0];
+            ADDR_KERNEL_ARG_O_V_0_DELTA_TIME_DATA_0: begin
+                rdata <= _kernel_arg_o_v_0_delta_time[31:0];
             end
-            ADDR_THREAD_ARG_O_A_0_TIME_PERIOD_DATA_0: begin
-                rdata <= _thread_arg_o_a_0_time_period[31:0];
+            ADDR_KERNEL_ARG_O_V_0_VALUE_CTRL: begin
+                rdata[0] <= _kernel_arg_o_v_0_value_ap_vld;
             end
-            ADDR_THREAD_ARG_O_A_0_CALL_DATA_0: begin
-                rdata <= _thread_arg_o_a_0_call[31:0];
+            ADDR_KERNEL_ARG_O_V_0_VALUE_DATA_0: begin
+                rdata <= _kernel_arg_o_v_0_value[31:0];
             end
         endcase
     end
@@ -330,15 +330,15 @@ assign interrupt                        = gie & (|isr);
 assign I_ap_start                       = ap_start;
 assign ap_idle                          = O_ap_idle;
 assign ap_ready                         = O_ap_ready;
-assign I_thread_arg_thread_paths        = _thread_arg_thread_paths;
-assign _thread_arg_path_points          = O_thread_arg_path_points;
-assign _thread_arg_thread_result        = O_thread_arg_thread_result;
-assign _thread_arg_thread_result_sqrd   = O_thread_arg_thread_result_sqrd;
-assign I_thread_arg_u_a_0_rfir          = _thread_arg_u_a_0_rfir;
-assign I_thread_arg_u_a_0_current_price = _thread_arg_u_a_0_current_price;
-assign I_thread_arg_o_a_0_strike_price  = _thread_arg_o_a_0_strike_price;
-assign I_thread_arg_o_a_0_time_period   = _thread_arg_o_a_0_time_period;
-assign I_thread_arg_o_a_0_call          = _thread_arg_o_a_0_call;
+assign I_kernel_arg_u_a_0_rfir          = _kernel_arg_u_a_0_rfir;
+assign I_kernel_arg_u_a_0_current_price = _kernel_arg_u_a_0_current_price;
+assign _kernel_arg_u_v_0_gamma          = O_kernel_arg_u_v_0_gamma;
+assign _kernel_arg_u_v_0_time           = O_kernel_arg_u_v_0_time;
+assign I_kernel_arg_o_a_0_strike_price  = _kernel_arg_o_a_0_strike_price;
+assign I_kernel_arg_o_a_0_time_period   = _kernel_arg_o_a_0_time_period;
+assign I_kernel_arg_o_a_0_call          = _kernel_arg_o_a_0_call;
+assign I_kernel_arg_o_v_0_delta_time    = _kernel_arg_o_v_0_delta_time;
+assign _kernel_arg_o_v_0_value          = O_kernel_arg_o_v_0_value;
 
 // ap_start
 always @(posedge ACLK) begin
@@ -404,70 +404,70 @@ always @(posedge ACLK) begin
         isr[1] <= isr[1] ^ WDATA[1]; // toggle on write
 end
 
-// _thread_arg_thread_paths[31:0]
+// _kernel_arg_u_a_0_rfir[31:0]
 always @(posedge ACLK) begin
-    if (w_hs && waddr == ADDR_THREAD_ARG_THREAD_PATHS_DATA_0)
-        _thread_arg_thread_paths[31:0] <= (WDATA[31:0] & wmask) | (_thread_arg_thread_paths[31:0] & ~wmask);
+    if (w_hs && waddr == ADDR_KERNEL_ARG_U_A_0_RFIR_DATA_0)
+        _kernel_arg_u_a_0_rfir[31:0] <= (WDATA[31:0] & wmask) | (_kernel_arg_u_a_0_rfir[31:0] & ~wmask);
 end
 
-// _thread_arg_path_points_ap_vld
+// _kernel_arg_u_a_0_current_price[31:0]
+always @(posedge ACLK) begin
+    if (w_hs && waddr == ADDR_KERNEL_ARG_U_A_0_CURRENT_PRICE_DATA_0)
+        _kernel_arg_u_a_0_current_price[31:0] <= (WDATA[31:0] & wmask) | (_kernel_arg_u_a_0_current_price[31:0] & ~wmask);
+end
+
+// _kernel_arg_u_v_0_gamma_ap_vld
 always @(posedge ACLK) begin
     if (~ARESETN)
-        _thread_arg_path_points_ap_vld <= 1'b0;
-    else if (O_thread_arg_path_points_ap_vld)
-        _thread_arg_path_points_ap_vld <= 1'b1;
-    else if (ar_hs && raddr == ADDR_THREAD_ARG_PATH_POINTS_CTRL)
-        _thread_arg_path_points_ap_vld <= 1'b0; // clear on read
+        _kernel_arg_u_v_0_gamma_ap_vld <= 1'b0;
+    else if (O_kernel_arg_u_v_0_gamma_ap_vld)
+        _kernel_arg_u_v_0_gamma_ap_vld <= 1'b1;
+    else if (ar_hs && raddr == ADDR_KERNEL_ARG_U_V_0_GAMMA_CTRL)
+        _kernel_arg_u_v_0_gamma_ap_vld <= 1'b0; // clear on read
 end
 
-// _thread_arg_thread_result_ap_vld
+// _kernel_arg_u_v_0_time_ap_vld
 always @(posedge ACLK) begin
     if (~ARESETN)
-        _thread_arg_thread_result_ap_vld <= 1'b0;
-    else if (O_thread_arg_thread_result_ap_vld)
-        _thread_arg_thread_result_ap_vld <= 1'b1;
-    else if (ar_hs && raddr == ADDR_THREAD_ARG_THREAD_RESULT_CTRL)
-        _thread_arg_thread_result_ap_vld <= 1'b0; // clear on read
+        _kernel_arg_u_v_0_time_ap_vld <= 1'b0;
+    else if (O_kernel_arg_u_v_0_time_ap_vld)
+        _kernel_arg_u_v_0_time_ap_vld <= 1'b1;
+    else if (ar_hs && raddr == ADDR_KERNEL_ARG_U_V_0_TIME_CTRL)
+        _kernel_arg_u_v_0_time_ap_vld <= 1'b0; // clear on read
 end
 
-// _thread_arg_thread_result_sqrd_ap_vld
+// _kernel_arg_o_a_0_strike_price[31:0]
+always @(posedge ACLK) begin
+    if (w_hs && waddr == ADDR_KERNEL_ARG_O_A_0_STRIKE_PRICE_DATA_0)
+        _kernel_arg_o_a_0_strike_price[31:0] <= (WDATA[31:0] & wmask) | (_kernel_arg_o_a_0_strike_price[31:0] & ~wmask);
+end
+
+// _kernel_arg_o_a_0_time_period[31:0]
+always @(posedge ACLK) begin
+    if (w_hs && waddr == ADDR_KERNEL_ARG_O_A_0_TIME_PERIOD_DATA_0)
+        _kernel_arg_o_a_0_time_period[31:0] <= (WDATA[31:0] & wmask) | (_kernel_arg_o_a_0_time_period[31:0] & ~wmask);
+end
+
+// _kernel_arg_o_a_0_call[31:0]
+always @(posedge ACLK) begin
+    if (w_hs && waddr == ADDR_KERNEL_ARG_O_A_0_CALL_DATA_0)
+        _kernel_arg_o_a_0_call[31:0] <= (WDATA[31:0] & wmask) | (_kernel_arg_o_a_0_call[31:0] & ~wmask);
+end
+
+// _kernel_arg_o_v_0_delta_time[31:0]
+always @(posedge ACLK) begin
+    if (w_hs && waddr == ADDR_KERNEL_ARG_O_V_0_DELTA_TIME_DATA_0)
+        _kernel_arg_o_v_0_delta_time[31:0] <= (WDATA[31:0] & wmask) | (_kernel_arg_o_v_0_delta_time[31:0] & ~wmask);
+end
+
+// _kernel_arg_o_v_0_value_ap_vld
 always @(posedge ACLK) begin
     if (~ARESETN)
-        _thread_arg_thread_result_sqrd_ap_vld <= 1'b0;
-    else if (O_thread_arg_thread_result_sqrd_ap_vld)
-        _thread_arg_thread_result_sqrd_ap_vld <= 1'b1;
-    else if (ar_hs && raddr == ADDR_THREAD_ARG_THREAD_RESULT_SQRD_CTRL)
-        _thread_arg_thread_result_sqrd_ap_vld <= 1'b0; // clear on read
-end
-
-// _thread_arg_u_a_0_rfir[31:0]
-always @(posedge ACLK) begin
-    if (w_hs && waddr == ADDR_THREAD_ARG_U_A_0_RFIR_DATA_0)
-        _thread_arg_u_a_0_rfir[31:0] <= (WDATA[31:0] & wmask) | (_thread_arg_u_a_0_rfir[31:0] & ~wmask);
-end
-
-// _thread_arg_u_a_0_current_price[31:0]
-always @(posedge ACLK) begin
-    if (w_hs && waddr == ADDR_THREAD_ARG_U_A_0_CURRENT_PRICE_DATA_0)
-        _thread_arg_u_a_0_current_price[31:0] <= (WDATA[31:0] & wmask) | (_thread_arg_u_a_0_current_price[31:0] & ~wmask);
-end
-
-// _thread_arg_o_a_0_strike_price[31:0]
-always @(posedge ACLK) begin
-    if (w_hs && waddr == ADDR_THREAD_ARG_O_A_0_STRIKE_PRICE_DATA_0)
-        _thread_arg_o_a_0_strike_price[31:0] <= (WDATA[31:0] & wmask) | (_thread_arg_o_a_0_strike_price[31:0] & ~wmask);
-end
-
-// _thread_arg_o_a_0_time_period[31:0]
-always @(posedge ACLK) begin
-    if (w_hs && waddr == ADDR_THREAD_ARG_O_A_0_TIME_PERIOD_DATA_0)
-        _thread_arg_o_a_0_time_period[31:0] <= (WDATA[31:0] & wmask) | (_thread_arg_o_a_0_time_period[31:0] & ~wmask);
-end
-
-// _thread_arg_o_a_0_call[31:0]
-always @(posedge ACLK) begin
-    if (w_hs && waddr == ADDR_THREAD_ARG_O_A_0_CALL_DATA_0)
-        _thread_arg_o_a_0_call[31:0] <= (WDATA[31:0] & wmask) | (_thread_arg_o_a_0_call[31:0] & ~wmask);
+        _kernel_arg_o_v_0_value_ap_vld <= 1'b0;
+    else if (O_kernel_arg_o_v_0_value_ap_vld)
+        _kernel_arg_o_v_0_value_ap_vld <= 1'b1;
+    else if (ar_hs && raddr == ADDR_KERNEL_ARG_O_V_0_VALUE_CTRL)
+        _kernel_arg_o_v_0_value_ap_vld <= 1'b0; // clear on read
 end
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -7,6 +7,20 @@
 
 `timescale 1 ns / 1 ps
 module vivado_activity_thread_top (
+result_0_Clk_A,
+result_0_Rst_A,
+result_0_EN_A,
+result_0_WEN_A,
+result_0_Addr_A,
+result_0_Dout_A,
+result_0_Din_A,
+result_sqrd_0_Clk_A,
+result_sqrd_0_Rst_A,
+result_sqrd_0_EN_A,
+result_sqrd_0_WEN_A,
+result_sqrd_0_Addr_A,
+result_sqrd_0_Dout_A,
+result_sqrd_0_Din_A,
 s_axi_CORE_IO_AWADDR,
 s_axi_CORE_IO_AWVALID,
 s_axi_CORE_IO_AWREADY,
@@ -33,6 +47,24 @@ parameter C_S_AXI_CORE_IO_ADDR_WIDTH = 7;
 parameter C_S_AXI_CORE_IO_DATA_WIDTH = 32;
 parameter RESET_ACTIVE_LOW = 1;
 
+output result_0_Clk_A ;
+output result_0_Rst_A ;
+output result_0_EN_A ;
+output [4 - 1:0] result_0_WEN_A ;
+output [32 - 1:0] result_0_Addr_A ;
+output [32 - 1:0] result_0_Dout_A ;
+input [32 - 1:0] result_0_Din_A ;
+
+
+output result_sqrd_0_Clk_A ;
+output result_sqrd_0_Rst_A ;
+output result_sqrd_0_EN_A ;
+output [4 - 1:0] result_sqrd_0_WEN_A ;
+output [32 - 1:0] result_sqrd_0_Addr_A ;
+output [32 - 1:0] result_sqrd_0_Dout_A ;
+input [32 - 1:0] result_sqrd_0_Din_A ;
+
+
 input [C_S_AXI_CORE_IO_ADDR_WIDTH - 1:0] s_axi_CORE_IO_AWADDR ;
 input s_axi_CORE_IO_AWVALID ;
 output s_axi_CORE_IO_AWREADY ;
@@ -57,6 +89,24 @@ input aresetn ;
 input aclk ;
 
 
+wire result_0_Clk_A;
+wire result_0_Rst_A;
+wire result_0_EN_A;
+wire [4 - 1:0] result_0_WEN_A;
+wire [32 - 1:0] result_0_Addr_A;
+wire [32 - 1:0] result_0_Dout_A;
+wire [32 - 1:0] result_0_Din_A;
+
+
+wire result_sqrd_0_Clk_A;
+wire result_sqrd_0_Rst_A;
+wire result_sqrd_0_EN_A;
+wire [4 - 1:0] result_sqrd_0_WEN_A;
+wire [32 - 1:0] result_sqrd_0_Addr_A;
+wire [32 - 1:0] result_sqrd_0_Dout_A;
+wire [32 - 1:0] result_sqrd_0_Din_A;
+
+
 wire [C_S_AXI_CORE_IO_ADDR_WIDTH - 1:0] s_axi_CORE_IO_AWADDR;
 wire s_axi_CORE_IO_AWVALID;
 wire s_axi_CORE_IO_AWREADY;
@@ -79,18 +129,30 @@ wire interrupt;
 wire aresetn;
 
 
-wire [32 - 1:0] sig_vivado_activity_thread_thread_arg_thread_paths;
-wire [32 - 1:0] sig_vivado_activity_thread_thread_arg_path_points;
-wire sig_vivado_activity_thread_thread_arg_path_points_ap_vld;
-wire [32 - 1:0] sig_vivado_activity_thread_thread_arg_thread_result;
-wire sig_vivado_activity_thread_thread_arg_thread_result_ap_vld;
-wire [32 - 1:0] sig_vivado_activity_thread_thread_arg_thread_result_sqrd;
-wire sig_vivado_activity_thread_thread_arg_thread_result_sqrd_ap_vld;
-wire [32 - 1:0] sig_vivado_activity_thread_thread_arg_u_a_0_rfir;
-wire [32 - 1:0] sig_vivado_activity_thread_thread_arg_u_a_0_current_price;
-wire [32 - 1:0] sig_vivado_activity_thread_thread_arg_o_a_0_strike_price;
-wire [32 - 1:0] sig_vivado_activity_thread_thread_arg_o_a_0_time_period;
-wire [32 - 1:0] sig_vivado_activity_thread_thread_arg_o_a_0_call;
+
+wire [10 - 1:0] sig_vivado_activity_thread_result_0_address0;
+wire sig_vivado_activity_thread_result_0_ce0;
+wire sig_vivado_activity_thread_result_0_we0;
+wire [32 - 1:0] sig_vivado_activity_thread_result_0_d0;
+
+
+wire [10 - 1:0] sig_vivado_activity_thread_result_sqrd_0_address0;
+wire sig_vivado_activity_thread_result_sqrd_0_ce0;
+wire sig_vivado_activity_thread_result_sqrd_0_we0;
+wire [32 - 1:0] sig_vivado_activity_thread_result_sqrd_0_d0;
+
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_u_a_0_rfir;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_u_a_0_current_price;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_u_v_0_gamma;
+wire sig_vivado_activity_thread_kernel_arg_u_v_0_gamma_ap_vld;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_u_v_0_time;
+wire sig_vivado_activity_thread_kernel_arg_u_v_0_time_ap_vld;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_a_0_strike_price;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_a_0_time_period;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_a_0_call;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_v_0_delta_time;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_v_0_value;
+wire sig_vivado_activity_thread_kernel_arg_o_v_0_value_ap_vld;
 wire sig_vivado_activity_thread_ap_start;
 wire sig_vivado_activity_thread_ap_ready;
 wire sig_vivado_activity_thread_ap_done;
@@ -101,18 +163,26 @@ wire sig_vivado_activity_thread_ap_rst;
 
 
 vivado_activity_thread vivado_activity_thread_U(
-    .thread_arg_thread_paths(sig_vivado_activity_thread_thread_arg_thread_paths),
-    .thread_arg_path_points(sig_vivado_activity_thread_thread_arg_path_points),
-    .thread_arg_path_points_ap_vld(sig_vivado_activity_thread_thread_arg_path_points_ap_vld),
-    .thread_arg_thread_result(sig_vivado_activity_thread_thread_arg_thread_result),
-    .thread_arg_thread_result_ap_vld(sig_vivado_activity_thread_thread_arg_thread_result_ap_vld),
-    .thread_arg_thread_result_sqrd(sig_vivado_activity_thread_thread_arg_thread_result_sqrd),
-    .thread_arg_thread_result_sqrd_ap_vld(sig_vivado_activity_thread_thread_arg_thread_result_sqrd_ap_vld),
-    .thread_arg_u_a_0_rfir(sig_vivado_activity_thread_thread_arg_u_a_0_rfir),
-    .thread_arg_u_a_0_current_price(sig_vivado_activity_thread_thread_arg_u_a_0_current_price),
-    .thread_arg_o_a_0_strike_price(sig_vivado_activity_thread_thread_arg_o_a_0_strike_price),
-    .thread_arg_o_a_0_time_period(sig_vivado_activity_thread_thread_arg_o_a_0_time_period),
-    .thread_arg_o_a_0_call(sig_vivado_activity_thread_thread_arg_o_a_0_call),
+    .result_0_address0(sig_vivado_activity_thread_result_0_address0),
+    .result_0_ce0(sig_vivado_activity_thread_result_0_ce0),
+    .result_0_we0(sig_vivado_activity_thread_result_0_we0),
+    .result_0_d0(sig_vivado_activity_thread_result_0_d0),
+    .result_sqrd_0_address0(sig_vivado_activity_thread_result_sqrd_0_address0),
+    .result_sqrd_0_ce0(sig_vivado_activity_thread_result_sqrd_0_ce0),
+    .result_sqrd_0_we0(sig_vivado_activity_thread_result_sqrd_0_we0),
+    .result_sqrd_0_d0(sig_vivado_activity_thread_result_sqrd_0_d0),
+    .kernel_arg_u_a_0_rfir(sig_vivado_activity_thread_kernel_arg_u_a_0_rfir),
+    .kernel_arg_u_a_0_current_price(sig_vivado_activity_thread_kernel_arg_u_a_0_current_price),
+    .kernel_arg_u_v_0_gamma(sig_vivado_activity_thread_kernel_arg_u_v_0_gamma),
+    .kernel_arg_u_v_0_gamma_ap_vld(sig_vivado_activity_thread_kernel_arg_u_v_0_gamma_ap_vld),
+    .kernel_arg_u_v_0_time(sig_vivado_activity_thread_kernel_arg_u_v_0_time),
+    .kernel_arg_u_v_0_time_ap_vld(sig_vivado_activity_thread_kernel_arg_u_v_0_time_ap_vld),
+    .kernel_arg_o_a_0_strike_price(sig_vivado_activity_thread_kernel_arg_o_a_0_strike_price),
+    .kernel_arg_o_a_0_time_period(sig_vivado_activity_thread_kernel_arg_o_a_0_time_period),
+    .kernel_arg_o_a_0_call(sig_vivado_activity_thread_kernel_arg_o_a_0_call),
+    .kernel_arg_o_v_0_delta_time(sig_vivado_activity_thread_kernel_arg_o_v_0_delta_time),
+    .kernel_arg_o_v_0_value(sig_vivado_activity_thread_kernel_arg_o_v_0_value),
+    .kernel_arg_o_v_0_value_ap_vld(sig_vivado_activity_thread_kernel_arg_o_v_0_value_ap_vld),
     .ap_start(sig_vivado_activity_thread_ap_start),
     .ap_ready(sig_vivado_activity_thread_ap_ready),
     .ap_done(sig_vivado_activity_thread_ap_done),
@@ -121,24 +191,54 @@ vivado_activity_thread vivado_activity_thread_U(
     .ap_clk(aclk)
 );
 
+vivado_activity_thread_result_0_if vivado_activity_thread_result_0_if_U(
+    .clk(aclk),
+    .reset(sig_vivado_activity_thread_ap_rst),
+    .result_0_address0(sig_vivado_activity_thread_result_0_address0),
+    .result_0_ce0(sig_vivado_activity_thread_result_0_ce0),
+    .result_0_we0(sig_vivado_activity_thread_result_0_we0),
+    .result_0_d0(sig_vivado_activity_thread_result_0_d0),
+    .Clk_A(result_0_Clk_A),
+    .Rst_A(result_0_Rst_A),
+    .EN_A(result_0_EN_A),
+    .WEN_A(result_0_WEN_A),
+    .Addr_A(result_0_Addr_A),
+    .Dout_A(result_0_Dout_A),
+    .Din_A(result_0_Din_A));
+
+vivado_activity_thread_result_sqrd_0_if vivado_activity_thread_result_sqrd_0_if_U(
+    .clk(aclk),
+    .reset(sig_vivado_activity_thread_ap_rst),
+    .result_sqrd_0_address0(sig_vivado_activity_thread_result_sqrd_0_address0),
+    .result_sqrd_0_ce0(sig_vivado_activity_thread_result_sqrd_0_ce0),
+    .result_sqrd_0_we0(sig_vivado_activity_thread_result_sqrd_0_we0),
+    .result_sqrd_0_d0(sig_vivado_activity_thread_result_sqrd_0_d0),
+    .Clk_A(result_sqrd_0_Clk_A),
+    .Rst_A(result_sqrd_0_Rst_A),
+    .EN_A(result_sqrd_0_EN_A),
+    .WEN_A(result_sqrd_0_WEN_A),
+    .Addr_A(result_sqrd_0_Addr_A),
+    .Dout_A(result_sqrd_0_Dout_A),
+    .Din_A(result_sqrd_0_Din_A));
+
 vivado_activity_thread_CORE_IO_if #(
     .C_ADDR_WIDTH(C_S_AXI_CORE_IO_ADDR_WIDTH),
     .C_DATA_WIDTH(C_S_AXI_CORE_IO_DATA_WIDTH))
 vivado_activity_thread_CORE_IO_if_U(
     .ACLK(aclk),
     .ARESETN(aresetn),
-    .I_thread_arg_thread_paths(sig_vivado_activity_thread_thread_arg_thread_paths),
-    .O_thread_arg_path_points(sig_vivado_activity_thread_thread_arg_path_points),
-    .O_thread_arg_path_points_ap_vld(sig_vivado_activity_thread_thread_arg_path_points_ap_vld),
-    .O_thread_arg_thread_result(sig_vivado_activity_thread_thread_arg_thread_result),
-    .O_thread_arg_thread_result_ap_vld(sig_vivado_activity_thread_thread_arg_thread_result_ap_vld),
-    .O_thread_arg_thread_result_sqrd(sig_vivado_activity_thread_thread_arg_thread_result_sqrd),
-    .O_thread_arg_thread_result_sqrd_ap_vld(sig_vivado_activity_thread_thread_arg_thread_result_sqrd_ap_vld),
-    .I_thread_arg_u_a_0_rfir(sig_vivado_activity_thread_thread_arg_u_a_0_rfir),
-    .I_thread_arg_u_a_0_current_price(sig_vivado_activity_thread_thread_arg_u_a_0_current_price),
-    .I_thread_arg_o_a_0_strike_price(sig_vivado_activity_thread_thread_arg_o_a_0_strike_price),
-    .I_thread_arg_o_a_0_time_period(sig_vivado_activity_thread_thread_arg_o_a_0_time_period),
-    .I_thread_arg_o_a_0_call(sig_vivado_activity_thread_thread_arg_o_a_0_call),
+    .I_kernel_arg_u_a_0_rfir(sig_vivado_activity_thread_kernel_arg_u_a_0_rfir),
+    .I_kernel_arg_u_a_0_current_price(sig_vivado_activity_thread_kernel_arg_u_a_0_current_price),
+    .O_kernel_arg_u_v_0_gamma(sig_vivado_activity_thread_kernel_arg_u_v_0_gamma),
+    .O_kernel_arg_u_v_0_gamma_ap_vld(sig_vivado_activity_thread_kernel_arg_u_v_0_gamma_ap_vld),
+    .O_kernel_arg_u_v_0_time(sig_vivado_activity_thread_kernel_arg_u_v_0_time),
+    .O_kernel_arg_u_v_0_time_ap_vld(sig_vivado_activity_thread_kernel_arg_u_v_0_time_ap_vld),
+    .I_kernel_arg_o_a_0_strike_price(sig_vivado_activity_thread_kernel_arg_o_a_0_strike_price),
+    .I_kernel_arg_o_a_0_time_period(sig_vivado_activity_thread_kernel_arg_o_a_0_time_period),
+    .I_kernel_arg_o_a_0_call(sig_vivado_activity_thread_kernel_arg_o_a_0_call),
+    .I_kernel_arg_o_v_0_delta_time(sig_vivado_activity_thread_kernel_arg_o_v_0_delta_time),
+    .O_kernel_arg_o_v_0_value(sig_vivado_activity_thread_kernel_arg_o_v_0_value),
+    .O_kernel_arg_o_v_0_value_ap_vld(sig_vivado_activity_thread_kernel_arg_o_v_0_value_ap_vld),
     .I_ap_start(sig_vivado_activity_thread_ap_start),
     .O_ap_ready(sig_vivado_activity_thread_ap_ready),
     .O_ap_done(sig_vivado_activity_thread_ap_done),

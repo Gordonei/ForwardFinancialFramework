@@ -1,2 +1,15 @@
-<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView"/>
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+    <sourceFile name="">
+        <directive functionName="vivado_activity_thread" label="PATH_LOOP" functionLabel="">
+            <pragma name="LOOP_FLATTEN">
+                <option name="flatten" value="" positionalBoolean="3"/>
+            </pragma>
+        </directive>
+        <directive functionName="vivado_activity_thread" label="PATHSET_LOOP" functionLabel="">
+            <pragma name="UNROLL">
+                <option name="skip_exit_check" value="" positionalBoolean="1"/>
+            </pragma>
+        </directive>
+    </sourceFile>
+</AutoPilot:ProjectResources>
 

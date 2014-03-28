@@ -1,24 +1,24 @@
 
 [
  Attempting to get a license: %s
-78*common2"
+78*common2"
 Implementation2default:defaultZ17-78
 Q
 Feature available: %s
-81*common2"
+81*common2"
 Implementation2default:defaultZ17-81
-å
+ö
 +Loading parts and site information from %s
-36*device2H
-4/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/arch.xml2default:defaultZ21-36
-ô
+36*device2V
+B/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/arch.xml2default:defaultZ21-36
+ß
 !Parsing RTL primitives file [%s]
-14*netlist2^
-J/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml2default:defaultZ29-14
-¢
+14*netlist2l
+X/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml2default:defaultZ29-14
+∞
 *Finished parsing RTL primitives file [%s]
-11*netlist2^
-J/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/rtl/prims/rtl_prims.xml2default:defaultZ29-11
+11*netlist2l
+X/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml2default:defaultZ29-11
 †
 Command: %s
 53*	vivadotcl2x
@@ -30,7 +30,7 @@ Starting synthesis...
 3*	vivadotclZ4-3
 ï
 @Attempting to get a license for feature '%s' and/or device '%s'
-308*common2
+308*common2
 	Synthesis2default:default2
 xc7z0202default:defaultZ17-347
 Ö
@@ -40,13 +40,13 @@ Starting synthesis...
 xc7z0202default:defaultZ17-349
 ú
 %s*synth2å
-xStarting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 747.289 ; gain = 143.980
+xStarting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 771.215 ; gain = 148.391
 2default:default
-∞
+´
 synthesizing module '%s'638*oasys2*
-vivado_activity_thread2default:default2¥
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-352default:default8@Z8-638
+vivado_activity_thread2default:default2Ø
+ò/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
+432default:default8@Z8-638
 N
 %s*synth2?
 +	Parameter ID bound to: 1 - type: integer 
@@ -67,19 +67,19 @@ W
 %s*synth2H
 4	Parameter dout_WIDTH bound to: 32 - type: integer 
 2default:default
-è
+Ö
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2K
-7vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp2default:default2”
-æ/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd2default:default2
+7vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp2default:default2Œ
+π/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd2default:default2
 112default:default2N
 :vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U12default:default2K
-7vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp2default:default2¥
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-1962default:default8@Z8-3491
-Ú
-synthesizing module '%s'638*oasys2K
-7vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp2default:default2’
-æ/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd2default:default2
+7vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp2default:default2Ø
+ò/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
+2152default:default8@Z8-3491
+˝
+synthesizing module '%s'638*oasys2[
+Gvivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp__parameterized02default:default2–
+π/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd2default:default2
 302default:default8@Z8-638
 N
 %s*synth2?
@@ -101,26 +101,26 @@ W
 %s*synth2H
 4	Parameter dout_WIDTH bound to: 32 - type: integer 
 2default:default
-—
+«
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2A
--vivado_activity_thread_ap_faddfsub_3_full_dsp2default:default2î
-ˇ/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_stub.v2default:default2
+-vivado_activity_thread_ap_faddfsub_3_full_dsp2default:default2è
+˙/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_stub.v2default:default2
 162default:default2C
 /vivado_activity_thread_ap_faddfsub_3_full_dsp_u2default:default2A
--vivado_activity_thread_ap_faddfsub_3_full_dsp2default:default2’
-æ/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd2default:default2
+-vivado_activity_thread_ap_faddfsub_3_full_dsp2default:default2–
+π/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd2default:default2
 622default:default8@Z8-3491
-©
+§
 synthesizing module '%s'638*oasys2A
--vivado_activity_thread_ap_faddfsub_3_full_dsp2default:default2ñ
-ˇ/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_stub.v2default:default2
+-vivado_activity_thread_ap_faddfsub_3_full_dsp2default:default2ë
+˙/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_faddfsub_3_full_dsp/vivado_activity_thread_ap_faddfsub_3_full_dsp_stub.v2default:default2
 162default:default8@Z8-638
-≠
-%done synthesizing module '%s' (%s#%s)256*oasys2K
-7vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp2default:default2
+∏
+%done synthesizing module '%s' (%s#%s)256*oasys2[
+Gvivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp__parameterized02default:default2
 12default:default2
-12default:default2’
-æ/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd2default:default2
+12default:default2–
+π/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd2default:default2
 302default:default8@Z8-256
 N
 %s*synth2?
@@ -142,19 +142,19 @@ W
 %s*synth2H
 4	Parameter dout_WIDTH bound to: 32 - type: integer 
 2default:default
-˚
+Ò
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2F
-2vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp2default:default2Œ
-π/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd2default:default2
+2vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp2default:default2…
+¥/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd2default:default2
 112default:default2I
 5vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U22default:default2F
-2vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp2default:default2¥
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-2122default:default8@Z8-3491
-Ë
-synthesizing module '%s'638*oasys2F
-2vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp2default:default2–
-π/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd2default:default2
+2vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp2default:default2Ø
+ò/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
+2312default:default8@Z8-3491
+Û
+synthesizing module '%s'638*oasys2V
+Bvivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp__parameterized02default:default2À
+¥/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd2default:default2
 292default:default8@Z8-638
 N
 %s*synth2?
@@ -176,26 +176,26 @@ W
 %s*synth2H
 4	Parameter dout_WIDTH bound to: 32 - type: integer 
 2default:default
-≥
+©
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2<
-(vivado_activity_thread_ap_fmul_2_max_dsp2default:default2ä
-ı/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_stub.v2default:default2
+(vivado_activity_thread_ap_fmul_2_max_dsp2default:default2Ö
+/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_stub.v2default:default2
 162default:default2>
 *vivado_activity_thread_ap_fmul_2_max_dsp_u2default:default2<
-(vivado_activity_thread_ap_fmul_2_max_dsp2default:default2–
-π/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd2default:default2
+(vivado_activity_thread_ap_fmul_2_max_dsp2default:default2À
+¥/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd2default:default2
 562default:default8@Z8-3491
-ö
+ï
 synthesizing module '%s'638*oasys2<
-(vivado_activity_thread_ap_fmul_2_max_dsp2default:default2å
-ı/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_stub.v2default:default2
+(vivado_activity_thread_ap_fmul_2_max_dsp2default:default2á
+/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_stub.v2default:default2
 162default:default8@Z8-638
-£
-%done synthesizing module '%s' (%s#%s)256*oasys2F
-2vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp2default:default2
+Æ
+%done synthesizing module '%s' (%s#%s)256*oasys2V
+Bvivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp__parameterized02default:default2
 22default:default2
-12default:default2–
-π/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd2default:default2
+12default:default2À
+¥/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd2default:default2
 292default:default8@Z8-256
 N
 %s*synth2?
@@ -217,19 +217,19 @@ V
 %s*synth2G
 3	Parameter dout_WIDTH bound to: 1 - type: integer 
 2default:default
-◊
+Õ
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2=
-)vivado_activity_thread_fcmp_32ns_32ns_1_32default:default2≈
-∞/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd2default:default2
+)vivado_activity_thread_fcmp_32ns_32ns_1_32default:default2¿
+´/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd2default:default2
 112default:default2@
 ,vivado_activity_thread_fcmp_32ns_32ns_1_3_U32default:default2=
-)vivado_activity_thread_fcmp_32ns_32ns_1_32default:default2¥
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-2272default:default8@Z8-3491
-÷
-synthesizing module '%s'638*oasys2=
-)vivado_activity_thread_fcmp_32ns_32ns_1_32default:default2«
-∞/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd2default:default2
+)vivado_activity_thread_fcmp_32ns_32ns_1_32default:default2Ø
+ò/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
+2462default:default8@Z8-3491
+·
+synthesizing module '%s'638*oasys2M
+9vivado_activity_thread_fcmp_32ns_32ns_1_3__parameterized02default:default2¬
+´/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd2default:default2
 302default:default8@Z8-638
 N
 %s*synth2?
@@ -251,26 +251,32 @@ V
 %s*synth2G
 3	Parameter dout_WIDTH bound to: 1 - type: integer 
 2default:default
-•
+õ
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2;
-'vivado_activity_thread_ap_fcmp_1_no_dsp2default:default2à
-Û/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_stub.v2default:default2
+'vivado_activity_thread_ap_fcmp_1_no_dsp2default:default2É
+Ó/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_stub.v2default:default2
 162default:default2=
 )vivado_activity_thread_ap_fcmp_1_no_dsp_u2default:default2;
-'vivado_activity_thread_ap_fcmp_1_no_dsp2default:default2«
-∞/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd2default:default2
+'vivado_activity_thread_ap_fcmp_1_no_dsp2default:default2¬
+´/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd2default:default2
 792default:default8@Z8-3491
-ó
+í
 synthesizing module '%s'638*oasys2;
-'vivado_activity_thread_ap_fcmp_1_no_dsp2default:default2ä
-Û/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_stub.v2default:default2
+'vivado_activity_thread_ap_fcmp_1_no_dsp2default:default2Ö
+Ó/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_stub.v2default:default2
 162default:default8@Z8-638
-ë
-%done synthesizing module '%s' (%s#%s)256*oasys2=
-)vivado_activity_thread_fcmp_32ns_32ns_1_32default:default2
+ö
+0Net %s in module/entity %s does not have driver.3422*oasys2
+	op_tvalid2default:default2M
+9vivado_activity_thread_fcmp_32ns_32ns_1_3__parameterized02default:default2¬
+´/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd2default:default2
+702default:default8@Z8-3848
+ú
+%done synthesizing module '%s' (%s#%s)256*oasys2M
+9vivado_activity_thread_fcmp_32ns_32ns_1_3__parameterized02default:default2
 32default:default2
-12default:default2«
-∞/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd2default:default2
+12default:default2¬
+´/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd2default:default2
 302default:default8@Z8-256
 N
 %s*synth2?
@@ -292,19 +298,19 @@ W
 %s*synth2H
 4	Parameter dout_WIDTH bound to: 32 - type: integer 
 2default:default
-ˇ
+ı
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2G
-3vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp2default:default2œ
-∫/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd2default:default2
+3vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp2default:default2 
+µ/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd2default:default2
 112default:default2J
 6vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U42default:default2G
-3vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp2default:default2¥
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-2432default:default8@Z8-3491
-Í
-synthesizing module '%s'638*oasys2G
-3vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp2default:default2—
-∫/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd2default:default2
+3vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp2default:default2Ø
+ò/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
+2622default:default8@Z8-3491
+ı
+synthesizing module '%s'638*oasys2W
+Cvivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp__parameterized02default:default2Ã
+µ/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd2default:default2
 292default:default8@Z8-638
 N
 %s*synth2?
@@ -326,333 +332,165 @@ W
 %s*synth2H
 4	Parameter dout_WIDTH bound to: 32 - type: integer 
 2default:default
-π
+Ø
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2=
-)vivado_activity_thread_ap_fexp_7_full_dsp2default:default2å
-˜/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_stub.v2default:default2
+)vivado_activity_thread_ap_fexp_7_full_dsp2default:default2á
+Ú/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_stub.v2default:default2
 162default:default2?
 +vivado_activity_thread_ap_fexp_7_full_dsp_u2default:default2=
-)vivado_activity_thread_ap_fexp_7_full_dsp2default:default2—
-∫/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd2default:default2
+)vivado_activity_thread_ap_fexp_7_full_dsp2default:default2Ã
+µ/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd2default:default2
 512default:default8@Z8-3491
-ù
+ò
 synthesizing module '%s'638*oasys2=
-)vivado_activity_thread_ap_fexp_7_full_dsp2default:default2é
-˜/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_stub.v2default:default2
+)vivado_activity_thread_ap_fexp_7_full_dsp2default:default2â
+Ú/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_stub.v2default:default2
 162default:default8@Z8-638
-•
-%done synthesizing module '%s' (%s#%s)256*oasys2G
-3vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp2default:default2
+∞
+%done synthesizing module '%s' (%s#%s)256*oasys2W
+Cvivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp__parameterized02default:default2
 42default:default2
-12default:default2—
-∫/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd2default:default2
+12default:default2Ã
+µ/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd2default:default2
 292default:default8@Z8-256
-à
-default block is never used226*oasys2¥
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-4002default:default8@Z8-226
-Î
+Ê
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 vivado_activity_thread2default:default2
 52default:default2
-12default:default2¥
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-352default:default8@Z8-256
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[31]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[30]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[29]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[28]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[27]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[26]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[25]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[24]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[23]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[22]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[21]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[20]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[19]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[18]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[17]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[16]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[15]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[14]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[13]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[12]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[11]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[10]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[9]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[8]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[7]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[6]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[5]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[4]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[3]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[2]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[1]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[0]2default:default2
-12default:defaultZ8-3917
-ó
+12default:default2Ø
+ò/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
+432default:default8@Z8-256
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[31]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[31]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[30]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[30]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[29]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[29]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[28]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[28]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[27]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[27]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[26]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[26]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[25]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[25]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[24]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[24]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[23]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[23]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[22]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[22]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[21]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[21]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[20]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[20]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[19]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[19]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[18]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[18]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[17]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[17]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[16]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[16]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[15]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[15]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[14]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[14]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[13]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[13]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[12]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[12]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[11]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[11]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[10]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[10]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[9]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[9]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[8]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[8]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[7]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[7]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[6]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[6]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[5]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[5]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[4]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[4]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[3]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[3]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[2]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[2]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[1]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[1]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[0]2default:defaultZ8-3331
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[0]2default:defaultZ8-3331
 ú
 %s*synth2å
-xFinished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 781.109 ; gain = 177.801
-2default:default
-ö
-%s*synth2ä
-vStart RTL Optimization : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 781.109 ; gain = 177.801
+xFinished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 808.027 ; gain = 185.203
 2default:default
 ;
 %s*synth2,
@@ -679,74 +517,56 @@ l
 %s*synth2]
 I+------+------------------+-------+---------+-------+------------------+
 2default:default
-ü
+≠
 Loading clock regions from %s
-13*device2h
-T/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/ClockRegion.xml2default:defaultZ21-13
-†
+13*device2v
+b/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/zynq/zynq/xc7z020/ClockRegion.xml2default:defaultZ21-13
+Æ
 Loading clock buffers from %s
-11*device2i
-U/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/ClockBuffers.xml2default:defaultZ21-11
-†
+11*device2w
+c/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/zynq/zynq/xc7z020/ClockBuffers.xml2default:defaultZ21-11
+Æ
 &Loading clock placement rules from %s
-318*place2`
-L/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/ClockPlacerRules.xml2default:defaultZ30-318
-û
+318*place2n
+Z/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/zynq/ClockPlacerRules.xml2default:defaultZ30-318
+¨
 )Loading package pin functions from %s...
-17*device2\
-H/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/PinFunctions.xml2default:defaultZ21-17
-ú
+17*device2j
+V/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/zynq/PinFunctions.xml2default:defaultZ21-17
+™
 Loading package from %s
-16*device2k
-W/opt/Xilinx/2013.3/Vivado/2013.3/data/parts/xilinx/zynq/zynq/xc7z020/clg484/Package.xml2default:defaultZ21-16
-ì
+16*device2y
+e/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/zynq/zynq/xc7z020/clg484/Package.xml2default:defaultZ21-16
+°
 Loading io standards from %s
-15*device2]
-I/opt/Xilinx/2013.3/Vivado/2013.3/data/./parts/xilinx/zynq/IOStandards.xml2default:defaultZ21-15
-_
- Attempting to get a license: %s
-78*common2&
-Internal_bitstream2default:defaultZ17-78
-]
-Failed to get a license: %s
-295*common2&
-Internal_bitstream2default:defaultZ17-301
+15*device2k
+W/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/./parts/xilinx/zynq/IOStandards.xml2default:defaultZ21-15
 5
 
 Processing XDC Constraints
 244*projectZ1-262
-È
+‰
 Parsing XDC File [%s]
-179*designutils2≤
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc2default:defaultZ20-179
-Ï
+179*designutils2≠
+ò/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc2default:defaultZ20-179
+Á
 DImplicit search of objects for pattern '%s' matched to '%s' objects.1744*	planAhead2
 ap_clk2default:default2
-port2default:default2¥
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc2default:default2
+port2default:default2Ø
+ò/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc2default:default2
 12default:default8@Z12-2286
-Ú
+Ì
 Finished Parsing XDC File [%s]
-178*designutils2≤
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc2default:defaultZ20-178
-Ä
-ŸImplementation specific constraints were found while reading constraint file [%s]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [%s].
-233*project2≤
-ù/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc2default:default2’
-¿/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/.Xil/vivado_activity_thread_propImpl.xdc2default:defaultZ1-236
-Û
+178*designutils2≠
+ò/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc2default:defaultZ20-178
+Ó
 Parsing XDC File [%s]
-179*designutils2º
-ß/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc2default:defaultZ20-179
-¸
+179*designutils2∑
+¢/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc2default:defaultZ20-179
+˜
 Finished Parsing XDC File [%s]
-178*designutils2º
-ß/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc2default:defaultZ20-178
-ä
-ŸImplementation specific constraints were found while reading constraint file [%s]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [%s].
-233*project2º
-ß/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc2default:default2’
-¿/home/sf306/phd_codebase/FPL2014/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/.Xil/vivado_activity_thread_propImpl.xdc2default:defaultZ1-236
+178*designutils2∑
+¢/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc2default:defaultZ20-178
 ?
 &Completed Processing XDC Constraints
 
@@ -756,26 +576,29 @@ u
 %s111*project29
 %No Unisim elements were transformed.
 2default:defaultZ1-111
-õ
-%s*synth2ã
-wStart RTL Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1024.883 ; gain = 421.574
-2default:default
 ∂
 %s*synth2¶
-ëFinished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1024.887 ; gain = 421.578
+ëFinished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:25 . Memory (MB): peak = 1046.809 ; gain = 423.984
 2default:default
 û
 %s*synth2é
-zFinished RTL Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1024.887 ; gain = 421.578
+zFinished RTL Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:25 . Memory (MB): peak = 1046.809 ; gain = 423.984
 2default:default
 ô
 3inferred FSM for state register '%s' in module '%s'802*oasys2!
 ap_CS_fsm_reg2default:default2*
 vivado_activity_thread2default:defaultZ8-802
-Ã
+ö
+0Net %s in module/entity %s does not have driver.3422*oasys2
+	op_tvalid2default:default2M
+9vivado_activity_thread_fcmp_32ns_32ns_1_3__parameterized02default:default2¬
+´/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd2default:default2
+702default:default8@Z8-3848
+œ
 Gencoded FSM with state register '%s' using encoding '%s' in module '%s'3353*oasys2!
-ap_CS_fsm_reg2default:default2
-one-hot2default:default2*
+ap_CS_fsm_reg2default:default2
+
+sequential2default:default2*
 vivado_activity_thread2default:defaultZ8-3354
 <
 %s*synth2-
@@ -798,15 +621,15 @@ N
 %s*synth2?
 ++-+--------------+------------+----------+
 2default:default
-ã
-%s*synth2|
-hPart Resources:
+z
+%s*synth2k
+WPart Resources:
 DSPs: 220 (col length:60)
-BRAMs: 280 (col length: RAMB8 0 RAMB16 0 RAMB18 60 RAMB36 30)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
 2default:default
 ≤
 %s*synth2¢
-çFinished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1108.230 ; gain = 504.922
+çFinished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:33 . Memory (MB): peak = 1123.160 ; gain = 500.336
 2default:default
 B
 %s*synth23
@@ -818,7 +641,11 @@ B
 2default:default
 Q
 %s*synth2B
-.	   2 Input      4 Bit       Adders := 1     
+.	   2 Input     13 Bit       Adders := 1     
+2default:default
+Q
+%s*synth2B
+.	   2 Input     10 Bit       Adders := 1     
 2default:default
 /
 %s*synth2 
@@ -838,11 +665,15 @@ Q
 2default:default
 Q
 %s*synth2B
-.	                5 Bit    Registers := 1     
+.	               13 Bit    Registers := 2     
 2default:default
 Q
 %s*synth2B
-.	                4 Bit    Registers := 2     
+.	               10 Bit    Registers := 2     
+2default:default
+Q
+%s*synth2B
+.	                5 Bit    Registers := 1     
 2default:default
 Q
 %s*synth2B
@@ -850,7 +681,7 @@ Q
 2default:default
 Q
 %s*synth2B
-.	                1 Bit    Registers := 3     
+.	                1 Bit    Registers := 1     
 2default:default
 0
 %s*synth2!
@@ -858,11 +689,23 @@ Q
 2default:default
 Q
 %s*synth2B
-.	  32 Input     32 Bit        Muxes := 1     
+.	   4 Input     32 Bit        Muxes := 2     
 2default:default
 Q
 %s*synth2B
-.	   2 Input     32 Bit        Muxes := 12    
+.	   2 Input     32 Bit        Muxes := 9     
+2default:default
+Q
+%s*synth2B
+.	   2 Input      6 Bit        Muxes := 3     
+2default:default
+Q
+%s*synth2B
+.	  37 Input      6 Bit        Muxes := 1     
+2default:default
+Q
+%s*synth2B
+.	  38 Input      6 Bit        Muxes := 1     
 2default:default
 Q
 %s*synth2B
@@ -870,15 +713,11 @@ Q
 2default:default
 Q
 %s*synth2B
-.	  33 Input      5 Bit        Muxes := 1     
-2default:default
-Q
-%s*synth2B
 .	   3 Input      1 Bit        Muxes := 1     
 2default:default
 Q
 %s*synth2B
-.	   2 Input      1 Bit        Muxes := 8     
+.	   2 Input      1 Bit        Muxes := 14    
 2default:default
 F
 %s*synth27
@@ -898,7 +737,11 @@ B
 2default:default
 Q
 %s*synth2B
-.	   2 Input      4 Bit       Adders := 1     
+.	   2 Input     13 Bit       Adders := 1     
+2default:default
+Q
+%s*synth2B
+.	   2 Input     10 Bit       Adders := 1     
 2default:default
 /
 %s*synth2 
@@ -918,11 +761,15 @@ Q
 2default:default
 Q
 %s*synth2B
-.	                4 Bit    Registers := 2     
+.	               13 Bit    Registers := 2     
 2default:default
 Q
 %s*synth2B
-.	                1 Bit    Registers := 3     
+.	               10 Bit    Registers := 2     
+2default:default
+Q
+%s*synth2B
+.	                1 Bit    Registers := 1     
 2default:default
 0
 %s*synth2!
@@ -930,15 +777,23 @@ Q
 2default:default
 Q
 %s*synth2B
-.	  32 Input     32 Bit        Muxes := 1     
+.	   2 Input     32 Bit        Muxes := 9     
 2default:default
 Q
 %s*synth2B
-.	   2 Input     32 Bit        Muxes := 12    
+.	   4 Input     32 Bit        Muxes := 2     
 2default:default
 Q
 %s*synth2B
-.	  33 Input      5 Bit        Muxes := 1     
+.	  38 Input      6 Bit        Muxes := 1     
+2default:default
+Q
+%s*synth2B
+.	   2 Input      6 Bit        Muxes := 3     
+2default:default
+Q
+%s*synth2B
+.	  37 Input      6 Bit        Muxes := 1     
 2default:default
 Q
 %s*synth2B
@@ -946,11 +801,11 @@ Q
 2default:default
 Q
 %s*synth2B
-.	   2 Input      1 Bit        Muxes := 8     
+.	   2 Input      1 Bit        Muxes := 14    
 2default:default
-^
-%s*synth2O
-;Module vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp 
+s
+%s*synth2d
+PModule vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp__parameterized0 
 2default:default
 B
 %s*synth23
@@ -964,9 +819,13 @@ Q
 %s*synth2B
 .	               32 Bit    Registers := 2     
 2default:default
-_
-%s*synth2P
-<Module vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp 
+Q
+%s*synth2B
+.	                2 Bit    Registers := 1     
+2default:default
+n
+%s*synth2_
+KModule vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp__parameterized0 
 2default:default
 B
 %s*synth23
@@ -978,11 +837,11 @@ B
 2default:default
 Q
 %s*synth2B
-.	               32 Bit    Registers := 1     
+.	               32 Bit    Registers := 2     
 2default:default
-U
-%s*synth2F
-2Module vivado_activity_thread_fcmp_32ns_32ns_1_3 
+e
+%s*synth2V
+BModule vivado_activity_thread_fcmp_32ns_32ns_1_3__parameterized0 
 2default:default
 B
 %s*synth23
@@ -1008,9 +867,9 @@ Q
 %s*synth2B
 .	   8 Input      6 Bit        Muxes := 1     
 2default:default
-c
-%s*synth2T
-@Module vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp 
+o
+%s*synth2`
+LModule vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp__parameterized0 
 2default:default
 B
 %s*synth23
@@ -1022,303 +881,139 @@ B
 2default:default
 Q
 %s*synth2B
-.	               32 Bit    Registers := 2     
+.	               32 Bit    Registers := 1     
 2default:default
-Q
-%s*synth2B
-.	                2 Bit    Registers := 1     
-2default:default
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[31]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[30]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[29]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[28]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[27]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[26]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[25]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[24]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[23]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[22]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[21]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[20]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[19]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[18]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[17]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[16]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[15]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[14]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[13]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[12]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[11]2default:default2
-02default:defaultZ8-3917
-∑
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_path_points[10]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[9]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[8]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[7]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[6]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[5]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[4]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[3]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[2]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[1]2default:default2
-02default:defaultZ8-3917
-∂
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2-
-thread_arg_path_points[0]2default:default2
-12default:defaultZ8-3917
-ó
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[31]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[31]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[30]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[30]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[29]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[29]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[28]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[28]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[27]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[27]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[26]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[26]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[25]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[25]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[24]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[24]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[23]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[23]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[22]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[22]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[21]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[21]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[20]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[20]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[19]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[19]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[18]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[18]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[17]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[17]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[16]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[16]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[15]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[15]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[14]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[14]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[13]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[13]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[12]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[12]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[11]2default:defaultZ8-3331
-ó
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[11]2default:defaultZ8-3331
+õ
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2/
-thread_arg_thread_paths[10]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default23
+kernel_arg_o_v_0_delta_time[10]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[9]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[9]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[8]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[8]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[7]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[7]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[6]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[6]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[5]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[5]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[4]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[4]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[3]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[3]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[2]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[2]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[1]2default:defaultZ8-3331
-ñ
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[1]2default:defaultZ8-3331
+ö
 !design %s has unconnected port %s3331*oasys2*
-vivado_activity_thread2default:default2.
-thread_arg_thread_paths[0]2default:defaultZ8-3331
+vivado_activity_thread2default:default22
+kernel_arg_o_v_0_delta_time[0]2default:defaultZ8-3331
 ™
 %s*synth2ö
-ÖFinished Cross Boundary Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1109.227 ; gain = 505.918
+ÖFinished Cross Boundary Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:33 . Memory (MB): peak = 1123.160 ; gain = 500.336
 2default:default
 ¢
 %s*synth2í
@@ -1496,19 +1191,27 @@ ESequential element (%s) is unused and will be removed from module %s.3332*
 vivado_activity_thread2default:defaultZ8-3332
 ü
 %s*synth2è
-{Finished Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1156.289 ; gain = 552.980
+{Finished Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.207 ; gain = 548.383
+2default:default
+†
+%s*synth2ê
+˚Wrong number or type of arguments for overloaded function 'NRealModS_findPins'. at line 1 of file /mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc
 2default:default
 Æ
 %s*synth2û
-âFinished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1156.289 ; gain = 552.980
+âFinished Applying XDC Timing Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.207 ; gain = 548.383
 2default:default
 °
 %s*synth2ë
-}Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1156.289 ; gain = 552.980
+}Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.207 ; gain = 548.383
 2default:default
 †
 %s*synth2ê
-|Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1156.289 ; gain = 552.980
+|Finished Technology Mapping : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 1171.207 ; gain = 548.383
+2default:default
+D
+%s*synth25
+!Gated Clock Conversion mode: off
 2default:default
 ﬁ
 *BlackBox module %s has unconnected pin %s
@@ -1517,7 +1220,7 @@ X\vivado_activity_thread_fcmp_32ns_32ns_1_3_U3/vivado_activity_thread_ap_fcmp_1_
 s_axis_operation_tvalid2default:defaultZ8-4442
 ö
 %s*synth2ä
-vFinished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1156.289 ; gain = 552.980
+vFinished IO Insertion : Time (s): cpu = 00:00:27 ; elapsed = 00:00:36 . Memory (MB): peak = 1171.207 ; gain = 548.383
 2default:default
 ;
 %s*synth2,
@@ -1546,11 +1249,11 @@ I+------+------------------+-------+---------+-------+------------------+
 2default:default
 ´
 %s*synth2õ
-ÜFinished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1156.289 ; gain = 552.980
+ÜFinished Renaming Generated Instances : Time (s): cpu = 00:00:27 ; elapsed = 00:00:36 . Memory (MB): peak = 1171.207 ; gain = 548.383
 2default:default
 ®
 %s*synth2ò
-ÉFinished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1156.289 ; gain = 552.980
+ÉFinished Rebuilding User Hierarchy : Time (s): cpu = 00:00:27 ; elapsed = 00:00:36 . Memory (MB): peak = 1171.207 ; gain = 548.383
 2default:default
 ¢
 %s*synth2í
@@ -1642,35 +1345,39 @@ D|4     |vivado_activity_thread_ap_fmul_2_max_dsp_bbox      |     1|
 2default:default
 g
 %s*synth2X
-D|5     |LUT1                                               |     2|
+D|5     |CARRY4                                             |     3|
 2default:default
 g
 %s*synth2X
-D|6     |LUT2                                               |    22|
+D|6     |LUT1                                               |    14|
 2default:default
 g
 %s*synth2X
-D|7     |LUT3                                               |    83|
+D|7     |LUT2                                               |    71|
 2default:default
 g
 %s*synth2X
-D|8     |LUT4                                               |    58|
+D|8     |LUT3                                               |    45|
 2default:default
 g
 %s*synth2X
-D|9     |LUT5                                               |   127|
+D|9     |LUT4                                               |     8|
 2default:default
 g
 %s*synth2X
-D|10    |LUT6                                               |    81|
+D|10    |LUT5                                               |   132|
 2default:default
 g
 %s*synth2X
-D|11    |FDRE                                               |   484|
+D|11    |LUT6                                               |    67|
 2default:default
 g
 %s*synth2X
-D|12    |FDSE                                               |     8|
+D|12    |FDRE                                               |   495|
+2default:default
+g
+%s*synth2X
+D|13    |FDSE                                               |     7|
 2default:default
 g
 %s*synth2X
@@ -1681,53 +1388,53 @@ D+------+---------------------------------------------------+------+
 
 Report Instance Areas: 
 2default:default
-¨
-%s*synth2ú
-á+------+-------------------------------------------------------------+--------------------------------------------------------+------+
+º
+%s*synth2¨
+ó+------+-------------------------------------------------------------+------------------------------------------------------------------------+------+
 2default:default
-¨
-%s*synth2ú
-á|      |Instance                                                     |Module                                                  |Cells |
+º
+%s*synth2¨
+ó|      |Instance                                                     |Module                                                                  |Cells |
 2default:default
-¨
-%s*synth2ú
-á+------+-------------------------------------------------------------+--------------------------------------------------------+------+
+º
+%s*synth2¨
+ó+------+-------------------------------------------------------------+------------------------------------------------------------------------+------+
 2default:default
-¨
-%s*synth2ú
-á|1     |top                                                          |                                                        |   973|
+º
+%s*synth2¨
+ó|1     |top                                                          |                                                                        |   950|
 2default:default
-¨
-%s*synth2ú
-á|2     |  vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp      |   169|
+º
+%s*synth2¨
+ó|2     |  vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp__parameterized0      |   163|
 2default:default
-¨
-%s*synth2ú
-á|3     |  vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4     |vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp     |    65|
+º
+%s*synth2¨
+ó|3     |  vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U4     |vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp__parameterized0     |    65|
 2default:default
-¨
-%s*synth2ú
-á|4     |  vivado_activity_thread_fcmp_32ns_32ns_1_3_U3               |vivado_activity_thread_fcmp_32ns_32ns_1_3               |    42|
+º
+%s*synth2¨
+ó|4     |  vivado_activity_thread_fcmp_32ns_32ns_1_3_U3               |vivado_activity_thread_fcmp_32ns_32ns_1_3__parameterized0               |    42|
 2default:default
-¨
-%s*synth2ú
-á|5     |  vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp |   251|
+º
+%s*synth2¨
+ó|5     |  vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp__parameterized0 |   234|
 2default:default
-¨
-%s*synth2ú
-á+------+-------------------------------------------------------------+--------------------------------------------------------+------+
+º
+%s*synth2¨
+ó+------+-------------------------------------------------------------+------------------------------------------------------------------------+------+
 2default:default
 ß
 %s*synth2ó
-ÇFinished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1156.289 ; gain = 552.980
+ÇFinished Writing Synthesis Report : Time (s): cpu = 00:00:27 ; elapsed = 00:00:36 . Memory (MB): peak = 1171.207 ; gain = 548.383
 2default:default
-k
-%s*synth2\
-HSynthesis finished with 0 errors, 1 critical warnings and 101 warnings.
+j
+%s*synth2[
+GSynthesis finished with 0 errors, 1 critical warnings and 70 warnings.
 2default:default
 •
 %s*synth2ï
-ÄSynthesis Optimization Complete : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1156.289 ; gain = 552.980
+ÄSynthesis Optimization Complete : Time (s): cpu = 00:00:27 ; elapsed = 00:00:36 . Memory (MB): peak = 1171.207 ; gain = 548.383
 2default:default
 C
 Pushed %s inverter(s).
@@ -1745,8 +1452,8 @@ L
 ø
 G%s Infos, %s Warnings, %s Critical Warnings and %s Errors encountered.
 28*	vivadotcl2
-372default:default2
-1662default:default2
+322default:default2
+1032default:default2
 12default:default2
 02default:defaultZ4-41
 U
@@ -1757,21 +1464,18 @@ U
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2"
 synth_design: 2default:default2
-00:00:242default:default2
-00:00:252default:default2
-1421.5002default:default2
-724.2072default:defaultZ17-268
+00:00:352default:default2
+00:00:432default:default2
+1516.6912default:default2
+797.4772default:defaultZ17-268
 <
 %Done setting XDC timing constraints.
 35*timingZ38-35
-∑
-ÅThe property HD.CLK_SRC of clock port %s is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew167*timing2
-ap_clk2default:defaultZ38-242
 Ç
-vreport_utilization: Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.15 . Memory (MB): peak = 1433.535 ; gain = 2.012
+vreport_utilization: Time (s): cpu = 00:00:00.46 ; elapsed = 00:00:00.93 . Memory (MB): peak = 1520.746 ; gain = 3.055
 *common
 w
 Exiting %s at %s...
 206*common2
 Vivado2default:default2,
-Tue Mar 25 15:29:03 20142default:defaultZ17-206
+Fri Mar 28 11:32:10 20142default:defaultZ17-206

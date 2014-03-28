@@ -1,9 +1,9 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'vivado_activity_thread'" level="0">
-<item name = "Date">Tue Mar 25 15:25:13 2014
+<item name = "Date">Fri Mar 28 11:22:04 2014
 </item>
-<item name = "Version">2013.3 (build date: Wed Oct 16 18:12:55 PM 2013)</item>
+<item name = "Version">2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)</item>
 <item name = "Project">hls_prj</item>
 <item name = "Solution">F3_VivadoHLS_core</item>
 <item name = "Product family">zynq zynq_fpv6 </item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">189, 189, 190, 190, none</column>
+<column name="">86032004, 86032004, 86032005, 86032005, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,8 +35,8 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- Loop 1">185, 185, 185, -, -, 1, no</column>
-<column name=" + Loop 1.1">173, 173, 17, -, -, 10, no</column>
+<column name="- Loop 1">86032000, 86032000, 86032, -, -, 1000, no</column>
+<column name=" + Loop 1.1">86019, 86019, 21, -, -, 4096, no</column>
 </table>
 </item>
 </section>
