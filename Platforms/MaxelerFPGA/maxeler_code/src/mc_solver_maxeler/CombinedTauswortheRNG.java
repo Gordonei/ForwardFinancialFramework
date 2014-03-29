@@ -55,8 +55,9 @@ public class CombinedTauswortheRNG extends KernelLib{
     
       t_s2 = (((this.s2).cast(Kernel.dfeUInt(64))&s2_c).cast(Kernel.dfeUInt(32))<<4) ^ (((this.s2 <<2) ^ this.s2)>>25); //TAUSWORTHE(rng_state->s2, 2, 25, 4294967288UL, 4);
   
-      t_s3 = ((((this.s3).cast(Kernel.dfeUInt(64))+this.offset)&s3_c).cast(Kernel.dfeUInt(32))<<17) ^ (((this.s3 <<3) ^ this.s3)>>11); //TAUSWORTHE(rng_state->s3+rng_state->offset, 3, 11, 4294967280UL, 17);
-
+      t_s3 = ((((this.s3).cast(Kernel.dfeUInt(64)))&s3_c).cast(Kernel.dfeUInt(32))<<17) ^ (((this.s3 <<3) ^ this.s3)>>11); //TAUSWORTHE(rng_state->s3+rng_state->offset, 3, 11, 4294967280UL, 17);
+      //t_s3 = ((((this.s3).cast(Kernel.dfeUInt(64))+this.offset)&s3_c).cast(Kernel.dfeUInt(32))<<17) ^ (((this.s3 <<3) ^ this.s3)>>11); //TAUSWORTHE(rng_state->s3+rng_state->offset, 3, 11, 4294967280UL, 17);
+      
       t_offset = this.offset + 1;
       
       loop_s1.connect(t_s1);

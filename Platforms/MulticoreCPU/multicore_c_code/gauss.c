@@ -44,8 +44,9 @@ uint32_t __random32(rng_state_t *rng_state)
 
     rng_state->s1 = TAUSWORTHE(rng_state->s1, 13, 19, 4294967294UL, 12);
     rng_state->s2 = TAUSWORTHE(rng_state->s2, 2, 25, 4294967288UL, 4);
-    rng_state->s3 = TAUSWORTHE(rng_state->s3+rng_state->offset, 3, 11, 4294967280UL, 17);
-
+    //rng_state->s3 = TAUSWORTHE(rng_state->s3+rng_state->offset, 3, 11, 4294967280UL, 17);
+    rng_state->s3 = TAUSWORTHE(rng_state->s3, 3, 11, 4294967280UL, 17);
+    
     rng_state->offset++;
     
     return (rng_state->s1 ^ rng_state->s2 ^ rng_state->s3);
