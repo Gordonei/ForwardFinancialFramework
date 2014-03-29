@@ -29,6 +29,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
   def generate(self,name_extension=".c",override=True,verbose=False):
     #os.chdir("..")
     #os.chdir(self.platform.platform_directory())
+    self.generate_name()
     
     if(override or not os.path.exists("%s.c"%self.output_file_name)):
         #os.chdir(self.platform.root_directory())
