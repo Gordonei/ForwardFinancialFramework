@@ -419,11 +419,11 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     #Build Configuration
     output_list.append("BuildConfig c = new BuildConfig(BuildConfig.Level.FULL_BUILD);")
-    output_list.append("c.setBuildEffort(BuildConfig.Effort.MEDIUM);")  #LOW,MEDIUM,HIGH,VERY_HIGH
+    output_list.append("c.setBuildEffort(BuildConfig.Effort.HIGH);")  #LOW,MEDIUM,HIGH,VERY_HIGH
     output_list.append("c.setEnableTimingAnalysis(true);")
     output_list.append("c.setMPPRCostTableSearchRange(1,100);")
     threads = int(math.ceil(multiprocessing.cpu_count()))
-    if(threads>5): threads = 5
+    if(threads>6): threads = 6
     output_list.append("c.setMPPRParallelism(%d);"%threads) #This has to be done carefully, as it takes a *lot* of RAM
     output_list.append("m.setBuildConfig(c);")
     output_list.append("m.build();")
@@ -497,7 +497,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
       if(debug): print compile_string
       
-      sw_result = subprocess.check_output(compile_cmd)
+      try: sw_result = subprocess.check_output(compile_cmd)
+      except: pass
       #print sw_result
       
       os.chdir(self.platform.root_directory())

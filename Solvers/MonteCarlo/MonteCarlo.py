@@ -84,26 +84,10 @@ class MonteCarlo:
 	      print "\n"
         print self.underlying"""
          
-        temp = [] #Generating Filename - based on underlyings,derivatives and platforms used
+        
         self.generate_name()
 	  
-        for u in self.underlying:
-          if u.name not in temp:
-            count = 0
-            for uu in self.underlying:
-              if(uu.name==u.name): count = count + 1
     
-            self.output_file_name = "%s_%s_%d" % (self.output_file_name,u.name[0:2],count) #First letter is used to keep names succinct
-            temp.append(u.name)
-    
-        for d in self.derivative: 
-          if d.name not in temp:
-            count = 0
-            for dd in self.derivative:
-              if(dd.name==d.name): count = count + 1
-      
-            self.output_file_name = "%s_%s_%d" % (self.output_file_name,d.name[0:2],count)
-            temp.append(d.name)
         
         self.underlying_dependencies = [] #Creating a dependency list for each underlying, detailing the derivative that depends on it
         for u in self.underlying:
@@ -129,6 +113,25 @@ class MonteCarlo:
     def generate_name(self):
       self.output_file_name = "mc_solver"  
       self.output_file_name = ("%s_%s"%(self.output_file_name,self.platform.name))
+      
+      temp = [] #Generating Filename - based on underlyings,derivatives and platforms used
+      for u in self.underlying:
+	if u.name not in temp:
+	    count = 0
+            for uu in self.underlying:
+              if(uu.name==u.name): count = count + 1
+    
+            self.output_file_name = "%s_%s_%d" % (self.output_file_name,u.name[0:2],count) #First letter is used to keep names succinct
+            temp.append(u.name)
+    
+      for d in self.derivative:
+	if d.name not in temp:
+	    count = 0
+	    for dd in self.derivative:
+	      if(dd.name==d.name): count = count + 1
+  
+	    self.output_file_name = "%s_%s_%d" % (self.output_file_name,d.name[0:2],count)
+	    temp.append(d.name)
     
     def populate_model(self,base_trial_paths,trial_steps,redudancy=10,stepping="linear"):
       derivative_backup = self.derivative[:]
