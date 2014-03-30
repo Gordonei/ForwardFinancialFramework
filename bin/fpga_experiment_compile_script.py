@@ -7,52 +7,47 @@ import KS_ProblemSet
 def fpga_compile(mc_solver):
     mc_solver.generate()
     print "Now building: %s\n"%mc_solver.output_file_name
-    mc_solver.compile()
+    try: mc_solver.compile()
+    except: print "Error building %s\n"%mc_solver.output_file_name
     print "Finished building: %s\n"%mc_solver.output_file_name
 
 def option_enumeration(platform_name,instance_paths,path_points,options,optimisations):
-    platform_max_instances = 1
-    
+    instances = 1
+    cslow_flag = False
+
+    tp_flag = False    
     for o in options.split():
         temp_options = KS_ProblemSet.KS_Options([o])
-        
-        if(platform_name=="Maxeler"):
-            from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
-            platform = MaxelerFPGA.MaxelerFPGA()
-            mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(temp_options,instance_paths,platform,path_points)
-            platform_max_instances = 8
-            if(o=="13"): platform_max_instances = 16
-        
-        elif(platform_name=="Vivado"): pass
-        elif(platform_name=="Altera"): pass
-        else: print "unrecognised platform!"
-        
-        if("naive" in optimisations): fpga_compile(mc_solver)
+        for opt in optimisations.split():
+            cslow_flag = False
+            tp_flag = False
+            instances = 1
             
-        if("cslow" in optimisations):
-            mc_solver.c_slow = True
+            if("naive" in opt): pass
+                
+            if("cslow" in opt): cslow_flag = True
             
-            fpga_compile(mc_solver)
-            
-            mc_solver.c_slow = False
-        
-        if("pipeline parallelism" in optimisations): pass
-        
-        if("task parallelism" in optimisations): 
-            mc_solver.instances = platform_max_instances
-            
-            fpga_compile(mc_solver)
-            
-            mc_solver.instances = 1
-            
-        if("all" in optimisations): 
-            mc_solver.instances = platform_max_instances
-            mc_solver.c_slow = True
+            if("pipeline_parallelism" in opt): pass
+                
+            if("all" in opt): 
+                tp_flag = True
+                cslow_flag = True
+                
+            if(("task_parallelism" in opt) or tp_flag):
+                if(platform_name=="Maxeler"):
+                    instances = 8
+                    if(o=="13"): instances = 16
+                
+            if(platform_name=="Maxeler"):
+                from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
+                platform = MaxelerFPGA.MaxelerFPGA()
+                mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(temp_options,instance_paths,platform,path_points,c_slow=cslow_flag,instances=instances)
+                
+            elif(platform_name=="Vivado"): pass
+            elif(platform_name=="Altera"): pass
+            else: print "unrecognised platform!"
             
             fpga_compile(mc_solver)
-            
-            mc_solver.instances = 1
-            mc_solver.c_slow = False
 
 if( __name__ == '__main__' and len(sys.argv)>4):
     option_enumeration(sys.argv[1],int(sys.argv[2]),int(sys.argv[3]),sys.argv[4],sys.argv[5])

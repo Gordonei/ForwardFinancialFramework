@@ -29,7 +29,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
   def generate(self,name_extension=".c",override=True,verbose=False):
     #os.chdir("..")
     #os.chdir(self.platform.platform_directory())
-    self.generate_name()
+    self.generate_name() #incase any variables have changed since solver construction
     
     if(override or not os.path.exists("%s.c"%self.output_file_name)):
         #os.chdir(self.platform.root_directory())
@@ -550,6 +550,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         if(debug): print compile_string
         
         result = subprocess.check_output(compile_cmd)
+	
         os.chdir(self.platform.root_directory())
         os.chdir("bin")
         

@@ -497,7 +497,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
       if(debug): print compile_string
       
-      sw_result = subprocess.check_output(compile_cmd)
+      try: sw_result = subprocess.check_output(compile_cmd)
+      except: pass
       #print sw_result
       
       os.chdir(self.platform.root_directory())
