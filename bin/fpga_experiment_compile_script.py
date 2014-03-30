@@ -23,17 +23,17 @@ def option_enumeration(platform_name,instance_paths,path_points,options,optimisa
             tp_flag = False
             instances = 1
             
-            if("naive" in opt): pass
+            if("naive"==opt): pass
                 
-            if("cslow" in opt): cslow_flag = True
+            if("cslow"==opt): cslow_flag = True
             
-            if("pipeline_parallelism" in opt): pass
+            if("pipeline_parallelism"==opt): pass
                 
-            if("all" in opt): 
+            if("all"==opt): 
                 tp_flag = True
                 cslow_flag = True
                 
-            if(("task_parallelism" in opt) or tp_flag):
+            if(("task_parallelism"==opt) or tp_flag):
                 if(platform_name=="Maxeler"):
                     instances = 8
                     if(o=="13"): instances = 16
