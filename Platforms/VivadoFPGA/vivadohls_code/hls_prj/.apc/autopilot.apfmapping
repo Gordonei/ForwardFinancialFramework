@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="vivado_core.h" path="/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/vivado_core.h"/>
-    <originFiles name="vivado_core.c" path="/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/vivado_core.c"/>
-    <originFiles name="underlying.h" path="/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/underlying.h"/>
-    <originFiles name="underlying.c" path="/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/underlying.c"/>
-    <originFiles name="option.h" path="/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/option.h"/>
-    <originFiles name="option.c" path="/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/option.c"/>
+    <originFiles name="asian_option.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/asian_option.c"/>
+    <originFiles name="asian_option.h" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/asian_option.h"/>
+    <originFiles name="digital_double_barrier_option.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/digital_double_barrier_option.c"/>
+    <originFiles name="digital_double_barrier_option.h" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/digital_double_barrier_option.h"/>
+    <originFiles name="double_barrier_option.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/double_barrier_option.c"/>
+    <originFiles name="double_barrier_option.h" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/double_barrier_option.h"/>
+    <originFiles name="barrier_option.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/barrier_option.c"/>
+    <originFiles name="barrier_option.h" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/barrier_option.h"/>
+    <originFiles name="european_option.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/european_option.c"/>
+    <originFiles name="european_option.h" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/european_option.h"/>
+    <originFiles name="heston_underlying.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/heston_underlying.c"/>
+    <originFiles name="heston_underlying.h" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/heston_underlying.h"/>
+    <originFiles name="black_scholes_underlying.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/black_scholes_underlying.c"/>
+    <originFiles name="black_scholes_underlying.h" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/black_scholes_underlying.h"/>
+    <originFiles name="gauss.h" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/gauss.h"/>
+    <originFiles name="gauss.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/gauss.c"/>
+    <originFiles name="vivado_core.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/vivado_core.c"/>
   </source>
   <testbench>
-    <originFiles name="tb.c" path="/home/sf306/phd_codebase/FPL2014/F3_VivadoHLS/tb.c"/>
+    <originFiles name="tb.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/tb.c"/>
+    <originFiles name="tb.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/tb.c"/>
+    <originFiles name="tb.c" path="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/tb.c"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

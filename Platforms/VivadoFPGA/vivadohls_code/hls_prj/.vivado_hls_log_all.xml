@@ -2,7 +2,14 @@
 <vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
   <errorLogs>
     <logs>
-      <synLog/>
+      <synLog>
+        <logs message="@E [HLS-70] Synthesizability check failed." projectName="hls_prj" solutionName="F3_VivadoHLS_core" date="2014-03-31T14:26:16.577+0100"/>
+        <logs message="@E [SYNCHK-71] srcs/vivado_core.c:82: function 'option_derivative_payoff' has no function body." projectName="hls_prj" solutionName="F3_VivadoHLS_core" date="2014-03-31T14:26:16.572+0100"/>
+        <logs message="@E [SYNCHK-71] srcs/vivado_core.c:76: function 'underlying_underlying_path' has no function body." projectName="hls_prj" solutionName="F3_VivadoHLS_core" date="2014-03-31T14:26:16.566+0100"/>
+        <logs message="@E [SYNCHK-71] srcs/vivado_core.c:75: function 'option_derivative_path' has no function body." projectName="hls_prj" solutionName="F3_VivadoHLS_core" date="2014-03-31T14:26:16.561+0100"/>
+        <logs message="@E [SYNCHK-71] srcs/vivado_core.c:71: function 'option_derivative_path_init' has no function body." projectName="hls_prj" solutionName="F3_VivadoHLS_core" date="2014-03-31T14:26:16.556+0100"/>
+        <logs message="@E [SYNCHK-71] srcs/vivado_core.c:68: function 'underlying_underlying_path_init' has no function body." projectName="hls_prj" solutionName="F3_VivadoHLS_core" date="2014-03-31T14:26:16.550+0100"/>
+      </synLog>
       <simLog/>
       <mgLog/>
       <packageLog/>
@@ -11,9 +18,7 @@
   </errorLogs>
   <warningLogs>
     <logs>
-      <synLog>
-        <logs message="@W [RTGEN-101] Port 'vivado_activity_thread/thread_arg_thread_paths' has no fanin or fanout and is left dangling.&#xA;               Please use C simulation to confirm this function argument can be read from or written to." projectName="hls_prj" solutionName="F3_VivadoHLS_core" date="2014-03-10T12:37:21.282+0000" type="Warning"/>
-      </synLog>
+      <synLog/>
       <simLog/>
       <mgLog/>
       <packageLog/>

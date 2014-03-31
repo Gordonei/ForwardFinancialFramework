@@ -29,13 +29,16 @@ aclk,
 result_0_din,
 result_0_full_n,
 result_0_write,
+result_sqrd_0_din,
+result_sqrd_0_full_n,
+result_sqrd_0_write,
 ap_start,
 ap_ready,
 ap_done,
 ap_idle
 );
 
-parameter C_S_AXI_CORE_IO_ADDR_WIDTH = 7;
+parameter C_S_AXI_CORE_IO_ADDR_WIDTH = 6;
 parameter C_S_AXI_CORE_IO_DATA_WIDTH = 32;
 parameter RESET_ACTIVE_LOW = 1;
 
@@ -64,6 +67,9 @@ input aclk ;
 output [32 - 1:0] result_0_din ;
 input result_0_full_n ;
 output result_0_write ;
+output [32 - 1:0] result_sqrd_0_din ;
+input result_sqrd_0_full_n ;
+output result_sqrd_0_write ;
 input ap_start ;
 output ap_ready ;
 output ap_done ;
@@ -93,16 +99,9 @@ wire aresetn;
 
 wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_u_a_0_rfir;
 wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_u_a_0_current_price;
-wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_u_v_0_gamma;
-wire sig_vivado_activity_thread_kernel_arg_u_v_0_gamma_ap_vld;
-wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_u_v_0_time;
-wire sig_vivado_activity_thread_kernel_arg_u_v_0_time_ap_vld;
 wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_a_0_strike_price;
 wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_a_0_time_period;
 wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_a_0_call;
-wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_v_0_delta_time;
-wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_v_0_value;
-wire sig_vivado_activity_thread_kernel_arg_o_v_0_value_ap_vld;
 
 wire sig_vivado_activity_thread_ap_rst;
 
@@ -111,21 +110,17 @@ wire sig_vivado_activity_thread_ap_rst;
 vivado_activity_thread vivado_activity_thread_U(
     .kernel_arg_u_a_0_rfir(sig_vivado_activity_thread_kernel_arg_u_a_0_rfir),
     .kernel_arg_u_a_0_current_price(sig_vivado_activity_thread_kernel_arg_u_a_0_current_price),
-    .kernel_arg_u_v_0_gamma(sig_vivado_activity_thread_kernel_arg_u_v_0_gamma),
-    .kernel_arg_u_v_0_gamma_ap_vld(sig_vivado_activity_thread_kernel_arg_u_v_0_gamma_ap_vld),
-    .kernel_arg_u_v_0_time(sig_vivado_activity_thread_kernel_arg_u_v_0_time),
-    .kernel_arg_u_v_0_time_ap_vld(sig_vivado_activity_thread_kernel_arg_u_v_0_time_ap_vld),
     .kernel_arg_o_a_0_strike_price(sig_vivado_activity_thread_kernel_arg_o_a_0_strike_price),
     .kernel_arg_o_a_0_time_period(sig_vivado_activity_thread_kernel_arg_o_a_0_time_period),
     .kernel_arg_o_a_0_call(sig_vivado_activity_thread_kernel_arg_o_a_0_call),
-    .kernel_arg_o_v_0_delta_time(sig_vivado_activity_thread_kernel_arg_o_v_0_delta_time),
-    .kernel_arg_o_v_0_value(sig_vivado_activity_thread_kernel_arg_o_v_0_value),
-    .kernel_arg_o_v_0_value_ap_vld(sig_vivado_activity_thread_kernel_arg_o_v_0_value_ap_vld),
     .ap_rst(sig_vivado_activity_thread_ap_rst),
     .ap_clk(aclk),
     .result_0_din(result_0_din),
     .result_0_full_n(result_0_full_n),
     .result_0_write(result_0_write),
+    .result_sqrd_0_din(result_sqrd_0_din),
+    .result_sqrd_0_full_n(result_sqrd_0_full_n),
+    .result_sqrd_0_write(result_sqrd_0_write),
     .ap_start(ap_start),
     .ap_ready(ap_ready),
     .ap_done(ap_done),
@@ -140,16 +135,9 @@ vivado_activity_thread_CORE_IO_if_U(
     .ARESETN(aresetn),
     .I_kernel_arg_u_a_0_rfir(sig_vivado_activity_thread_kernel_arg_u_a_0_rfir),
     .I_kernel_arg_u_a_0_current_price(sig_vivado_activity_thread_kernel_arg_u_a_0_current_price),
-    .O_kernel_arg_u_v_0_gamma(sig_vivado_activity_thread_kernel_arg_u_v_0_gamma),
-    .O_kernel_arg_u_v_0_gamma_ap_vld(sig_vivado_activity_thread_kernel_arg_u_v_0_gamma_ap_vld),
-    .O_kernel_arg_u_v_0_time(sig_vivado_activity_thread_kernel_arg_u_v_0_time),
-    .O_kernel_arg_u_v_0_time_ap_vld(sig_vivado_activity_thread_kernel_arg_u_v_0_time_ap_vld),
     .I_kernel_arg_o_a_0_strike_price(sig_vivado_activity_thread_kernel_arg_o_a_0_strike_price),
     .I_kernel_arg_o_a_0_time_period(sig_vivado_activity_thread_kernel_arg_o_a_0_time_period),
     .I_kernel_arg_o_a_0_call(sig_vivado_activity_thread_kernel_arg_o_a_0_call),
-    .I_kernel_arg_o_v_0_delta_time(sig_vivado_activity_thread_kernel_arg_o_v_0_delta_time),
-    .O_kernel_arg_o_v_0_value(sig_vivado_activity_thread_kernel_arg_o_v_0_value),
-    .O_kernel_arg_o_v_0_value_ap_vld(sig_vivado_activity_thread_kernel_arg_o_v_0_value_ap_vld),
     .AWADDR(s_axi_CORE_IO_AWADDR),
     .AWVALID(s_axi_CORE_IO_AWVALID),
     .AWREADY(s_axi_CORE_IO_AWREADY),

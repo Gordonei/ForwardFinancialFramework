@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date         : Fri Mar 28 17:08:48 2014
+| Date         : Mon Mar 31 15:12:46 2014
 | Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_utilization -file ./report/vivado_activity_thread_utilization_routed.rpt
 | Design       : vivado_activity_thread
@@ -30,13 +30,13 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Loced | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs                 | 2815 |     0 |     53200 |  5.29 |
-|   LUT as Logic             | 2744 |     0 |     53200 |  5.15 |
-|   LUT as Memory            |   71 |     0 |     17400 |  0.40 |
+| Slice LUTs                 | 2773 |     0 |     53200 |  5.21 |
+|   LUT as Logic             | 2704 |     0 |     53200 |  5.08 |
+|   LUT as Memory            |   69 |     0 |     17400 |  0.39 |
 |     LUT as Distributed RAM |    0 |     0 |           |       |
-|     LUT as Shift Register  |   71 |     0 |           |       |
-| Slice Registers            | 2465 |     0 |    106400 |  2.31 |
-|   Register as Flip Flop    | 2465 |     0 |    106400 |  2.31 |
+|     LUT as Shift Register  |   69 |     0 |           |       |
+| Slice Registers            | 2401 |     0 |    106400 |  2.25 |
+|   Register as Flip Flop    | 2401 |     0 |    106400 |  2.25 |
 |   Register as Latch        |    0 |     0 |    106400 |  0.00 |
 | F7 Muxes                   |  422 |     0 |     26600 |  1.58 |
 | F8 Muxes                   |    1 |     0 |     13300 | <0.01 |
@@ -49,23 +49,23 @@ Table of Contents
 +-------------------------------------------------------------+----------+-------+-----------+-------+
 |                          Site Type                          |   Used   | Loced | Available | Util% |
 +-------------------------------------------------------------+----------+-------+-----------+-------+
-| Slice                                                       |     1155 |     0 |     13300 |  8.68 |
-| LUT as Logic                                                |     2744 |     0 |     53200 |  5.15 |
+| Slice                                                       |     1128 |     0 |     13300 |  8.48 |
+| LUT as Logic                                                |     2704 |     0 |     53200 |  5.08 |
 |   using O5 output only                                      |        1 |       |           |       |
-|   using O6 output only                                      |     2662 |       |           |       |
-|   using O5 and O6                                           |       81 |       |           |       |
-| LUT as Memory                                               |       71 |     0 |     17400 |  0.40 |
+|   using O6 output only                                      |     2630 |       |           |       |
+|   using O5 and O6                                           |       73 |       |           |       |
+| LUT as Memory                                               |       69 |     0 |     17400 |  0.39 |
 |   LUT as Distributed RAM                                    |        0 |     0 |           |       |
-|   LUT as Shift Register                                     |       71 |     0 |           |       |
-|     using O5 output only                                    |        2 |       |           |       |
-|     using O6 output only                                    |       10 |       |           |       |
-|     using O5 and O6                                         |       59 |       |           |       |
-| LUT Flip Flop Pairs                                         |     3675 |     0 |     53200 |  6.90 |
-|   fully used LUT-FF pairs                                   |     1297 |       |           |       |
-|   LUT-FF pairs with unused LUT                              |      863 |       |           |       |
-|   LUT-FF pairs with unused Flip Flop                        |     1515 |       |           |       |
-| Unique Control Sets                                         |       16 |       |           |       |
-| Minimum number of registers lost to control set restriction | 23(Lost) |       |           |       |
+|   LUT as Shift Register                                     |       69 |     0 |           |       |
+|     using O5 output only                                    |        0 |       |           |       |
+|     using O6 output only                                    |        8 |       |           |       |
+|     using O5 and O6                                         |       61 |       |           |       |
+| LUT Flip Flop Pairs                                         |     3564 |     0 |     53200 |  6.69 |
+|   fully used LUT-FF pairs                                   |     1285 |       |           |       |
+|   LUT-FF pairs with unused LUT                              |      792 |       |           |       |
+|   LUT-FF pairs with unused Flip Flop                        |     1487 |       |           |       |
+| Unique Control Sets                                         |       15 |       |           |       |
+| Minimum number of registers lost to control set restriction | 31(Lost) |       |           |       |
 +-------------------------------------------------------------+----------+-------+-----------+-------+
 
 
@@ -157,18 +157,18 @@ Table of Contents
 +----------+------+
 | Ref Name | Used |
 +----------+------+
-| FDRE     | 2444 |
-| LUT6     | 1497 |
+| FDRE     | 2395 |
+| LUT6     | 1544 |
 | MUXF7    |  422 |
-| LUT2     |  377 |
-| LUT5     |  355 |
-| LUT3     |  330 |
-| LUT4     |  247 |
+| LUT2     |  344 |
+| LUT3     |  315 |
+| LUT5     |  309 |
+| LUT4     |  246 |
 | SRL16E   |  130 |
 | CARRY4   |  124 |
 | DSP48E1  |   42 |
-| FDSE     |   21 |
 | LUT1     |   19 |
+| FDSE     |    6 |
 | MUXF8    |    1 |
 +----------+------+
 

@@ -43,9 +43,9 @@ A
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2)
 Write XDEF Complete: 2default:default2
-00:00:00.622default:default2
-00:00:00.792default:default2
-1500.6172default:default2
+00:00:00.602default:default2
+00:00:00.602default:default2
+1500.1052default:default2
 0.0002default:defaultZ17-268
 
 

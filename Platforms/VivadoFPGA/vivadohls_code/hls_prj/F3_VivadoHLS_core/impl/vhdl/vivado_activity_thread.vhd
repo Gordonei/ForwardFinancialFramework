@@ -19,26 +19,22 @@ port (
     ap_ready : OUT STD_LOGIC;
     kernel_arg_u_a_0_rfir : IN STD_LOGIC_VECTOR (31 downto 0);
     kernel_arg_u_a_0_current_price : IN STD_LOGIC_VECTOR (31 downto 0);
-    kernel_arg_u_v_0_gamma : OUT STD_LOGIC_VECTOR (31 downto 0);
-    kernel_arg_u_v_0_gamma_ap_vld : OUT STD_LOGIC;
-    kernel_arg_u_v_0_time : OUT STD_LOGIC_VECTOR (31 downto 0);
-    kernel_arg_u_v_0_time_ap_vld : OUT STD_LOGIC;
     kernel_arg_o_a_0_strike_price : IN STD_LOGIC_VECTOR (31 downto 0);
     kernel_arg_o_a_0_time_period : IN STD_LOGIC_VECTOR (31 downto 0);
     kernel_arg_o_a_0_call : IN STD_LOGIC_VECTOR (31 downto 0);
-    kernel_arg_o_v_0_delta_time : IN STD_LOGIC_VECTOR (31 downto 0);
-    kernel_arg_o_v_0_value : OUT STD_LOGIC_VECTOR (31 downto 0);
-    kernel_arg_o_v_0_value_ap_vld : OUT STD_LOGIC;
     result_0_din : OUT STD_LOGIC_VECTOR (31 downto 0);
     result_0_full_n : IN STD_LOGIC;
-    result_0_write : OUT STD_LOGIC );
+    result_0_write : OUT STD_LOGIC;
+    result_sqrd_0_din : OUT STD_LOGIC_VECTOR (31 downto 0);
+    result_sqrd_0_full_n : IN STD_LOGIC;
+    result_sqrd_0_write : OUT STD_LOGIC );
 end;
 
 
 architecture behav of vivado_activity_thread is 
     attribute CORE_GENERATION_INFO : STRING;
     attribute CORE_GENERATION_INFO of behav : architecture is
-    "vivado_activity_thread,hls_ip_2013_4,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=1,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020clg484-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=8.626000,HLS_SYN_LAT=15566604,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=0}";
+    "vivado_activity_thread,hls_ip_2013_4,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=1,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020clg484-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=8.626000,HLS_SYN_LAT=15566304,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=0}";
     constant ap_const_logic_1 : STD_LOGIC := '1';
     constant ap_const_logic_0 : STD_LOGIC := '0';
     constant ap_ST_st1_fsm_0 : STD_LOGIC_VECTOR (5 downto 0) := "000000";
@@ -92,9 +88,11 @@ architecture behav of vivado_activity_thread is
     constant ap_ST_st49_fsm_48 : STD_LOGIC_VECTOR (5 downto 0) := "110000";
     constant ap_ST_st50_fsm_49 : STD_LOGIC_VECTOR (5 downto 0) := "110001";
     constant ap_ST_st51_fsm_50 : STD_LOGIC_VECTOR (5 downto 0) := "110010";
+    constant ap_ST_st52_fsm_51 : STD_LOGIC_VECTOR (5 downto 0) := "110011";
+    constant ap_ST_st53_fsm_52 : STD_LOGIC_VECTOR (5 downto 0) := "110100";
+    constant ap_ST_st54_fsm_53 : STD_LOGIC_VECTOR (5 downto 0) := "110101";
     constant ap_const_lv1_0 : STD_LOGIC_VECTOR (0 downto 0) := "0";
     constant ap_const_lv7_0 : STD_LOGIC_VECTOR (6 downto 0) := "0000000";
-    constant ap_const_lv64_3FF0000000000000 : STD_LOGIC_VECTOR (63 downto 0) := "0011111111110000000000000000000000000000000000000000000000000000";
     constant ap_const_lv32_0 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
     constant ap_const_lv13_0 : STD_LOGIC_VECTOR (12 downto 0) := "0000000000000";
     constant ap_const_lv32_39800000 : STD_LOGIC_VECTOR (31 downto 0) := "00111001100000000000000000000000";
@@ -109,57 +107,55 @@ architecture behav of vivado_activity_thread is
     constant ap_const_lv64_1 : STD_LOGIC_VECTOR (63 downto 0) := "0000000000000000000000000000000000000000000000000000000000000001";
 
     signal ap_CS_fsm : STD_LOGIC_VECTOR (5 downto 0) := "000000";
-    signal grp_fu_213_p2 : STD_LOGIC_VECTOR (31 downto 0);
-    signal delta_time_0_reg_290 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_fu_223_p1 : STD_LOGIC_VECTOR (63 downto 0);
-    signal tmp_reg_296 : STD_LOGIC_VECTOR (63 downto 0);
-    signal p_1_fu_249_p2 : STD_LOGIC_VECTOR (6 downto 0);
-    signal p_1_reg_304 : STD_LOGIC_VECTOR (6 downto 0);
-    signal grp_fu_233_p2 : STD_LOGIC_VECTOR (63 downto 0);
-    signal spot_price_0_0_in_reg_309 : STD_LOGIC_VECTOR (63 downto 0);
-    signal grp_fu_220_p1 : STD_LOGIC_VECTOR (31 downto 0);
-    signal spot_price_0_reg_314 : STD_LOGIC_VECTOR (31 downto 0);
-    signal pp_1_fu_261_p2 : STD_LOGIC_VECTOR (12 downto 0);
-    signal pp_1_reg_323 : STD_LOGIC_VECTOR (12 downto 0);
-    signal exitcond_fu_255_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal tmp_i_reg_338 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_fu_204_p2 : STD_LOGIC_VECTOR (31 downto 0);
-    signal tmp_2_i_reg_343 : STD_LOGIC_VECTOR (31 downto 0);
-    signal tmp_i_4_reg_348 : STD_LOGIC_VECTOR (31 downto 0);
-    signal tmp_7_reg_355 : STD_LOGIC_VECTOR (63 downto 0);
-    signal grp_fu_238_p2 : STD_LOGIC_VECTOR (63 downto 0);
-    signal tmp_2_fu_267_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal tmp_2_reg_365 : STD_LOGIC_VECTOR (0 downto 0);
-    signal storemerge_i_fu_273_p3 : STD_LOGIC_VECTOR (31 downto 0);
-    signal storemerge_i_reg_376 : STD_LOGIC_VECTOR (31 downto 0);
-    signal p_reg_145 : STD_LOGIC_VECTOR (6 downto 0);
-    signal tmp_2_pn_reg_156 : STD_LOGIC_VECTOR (63 downto 0);
-    signal exitcond1_fu_243_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal kernel_arg_u_v_0_time_load_reg_168 : STD_LOGIC_VECTOR (31 downto 0);
-    signal kernel_arg_u_v_0_gamma_load_2_reg_180 : STD_LOGIC_VECTOR (31 downto 0);
-    signal pp_reg_192 : STD_LOGIC_VECTOR (12 downto 0);
-    signal grp_fu_204_p0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_fu_204_p1 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_fu_213_p0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_fu_213_p1 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_fu_220_p0 : STD_LOGIC_VECTOR (63 downto 0);
-    signal grp_fu_223_p0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_fu_227_p0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_fu_227_p1 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_fu_233_p0 : STD_LOGIC_VECTOR (63 downto 0);
-    signal grp_fu_233_p1 : STD_LOGIC_VECTOR (63 downto 0);
-    signal grp_fu_238_p1 : STD_LOGIC_VECTOR (63 downto 0);
-    signal grp_fu_227_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal grp_fu_204_opcode : STD_LOGIC_VECTOR (1 downto 0);
-    signal grp_fu_204_ce : STD_LOGIC;
-    signal grp_fu_213_ce : STD_LOGIC;
-    signal grp_fu_220_ce : STD_LOGIC;
-    signal grp_fu_223_ce : STD_LOGIC;
-    signal grp_fu_227_ce : STD_LOGIC;
-    signal grp_fu_227_opcode : STD_LOGIC_VECTOR (4 downto 0);
-    signal grp_fu_233_ce : STD_LOGIC;
-    signal grp_fu_238_p0 : STD_LOGIC_VECTOR (63 downto 0);
-    signal grp_fu_238_ce : STD_LOGIC;
+    signal grp_fu_170_p2 : STD_LOGIC_VECTOR (31 downto 0);
+    signal delta_time_0_reg_248 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_fu_182_p1 : STD_LOGIC_VECTOR (63 downto 0);
+    signal tmp_reg_253 : STD_LOGIC_VECTOR (63 downto 0);
+    signal p_1_fu_207_p2 : STD_LOGIC_VECTOR (6 downto 0);
+    signal p_1_reg_262 : STD_LOGIC_VECTOR (6 downto 0);
+    signal grp_fu_178_p1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal spot_price_0_reg_267 : STD_LOGIC_VECTOR (31 downto 0);
+    signal pp_1_fu_219_p2 : STD_LOGIC_VECTOR (12 downto 0);
+    signal pp_1_reg_276 : STD_LOGIC_VECTOR (12 downto 0);
+    signal exitcond_fu_213_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_i_reg_291 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_fu_163_p2 : STD_LOGIC_VECTOR (31 downto 0);
+    signal u_v_0_gamma_reg_296 : STD_LOGIC_VECTOR (31 downto 0);
+    signal tmp_8_reg_302 : STD_LOGIC_VECTOR (63 downto 0);
+    signal grp_fu_196_p2 : STD_LOGIC_VECTOR (63 downto 0);
+    signal tmp_9_reg_307 : STD_LOGIC_VECTOR (63 downto 0);
+    signal grp_fu_192_p2 : STD_LOGIC_VECTOR (63 downto 0);
+    signal tmp_4_fu_225_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_4_reg_317 : STD_LOGIC_VECTOR (0 downto 0);
+    signal o_v_0_value_fu_231_p3 : STD_LOGIC_VECTOR (31 downto 0);
+    signal o_v_0_value_reg_328 : STD_LOGIC_VECTOR (31 downto 0);
+    signal p_reg_118 : STD_LOGIC_VECTOR (6 downto 0);
+    signal spot_price_0_0_in_reg_129 : STD_LOGIC_VECTOR (63 downto 0);
+    signal exitcond1_fu_201_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal u_v_gamma_read_assign_reg_139 : STD_LOGIC_VECTOR (31 downto 0);
+    signal pp_reg_151 : STD_LOGIC_VECTOR (12 downto 0);
+    signal grp_fu_163_p0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_fu_163_p1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_fu_170_p0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_fu_170_p1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_fu_178_p0 : STD_LOGIC_VECTOR (63 downto 0);
+    signal grp_fu_182_p0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_fu_186_p0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_fu_186_p1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_fu_192_p0 : STD_LOGIC_VECTOR (63 downto 0);
+    signal grp_fu_192_p1 : STD_LOGIC_VECTOR (63 downto 0);
+    signal grp_fu_196_p1 : STD_LOGIC_VECTOR (63 downto 0);
+    signal grp_fu_186_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal grp_fu_163_opcode : STD_LOGIC_VECTOR (1 downto 0);
+    signal grp_fu_163_ce : STD_LOGIC;
+    signal grp_fu_170_ce : STD_LOGIC;
+    signal grp_fu_178_ce : STD_LOGIC;
+    signal grp_fu_182_ce : STD_LOGIC;
+    signal grp_fu_186_ce : STD_LOGIC;
+    signal grp_fu_186_opcode : STD_LOGIC_VECTOR (4 downto 0);
+    signal grp_fu_192_ce : STD_LOGIC;
+    signal grp_fu_196_p0 : STD_LOGIC_VECTOR (63 downto 0);
+    signal grp_fu_196_ce : STD_LOGIC;
     signal ap_NS_fsm : STD_LOGIC_VECTOR (5 downto 0);
 
     component vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp IS
@@ -291,11 +287,11 @@ begin
     port map (
         clk => ap_clk,
         reset => ap_rst,
-        din0 => grp_fu_204_p0,
-        din1 => grp_fu_204_p1,
-        opcode => grp_fu_204_opcode,
-        ce => grp_fu_204_ce,
-        dout => grp_fu_204_p2);
+        din0 => grp_fu_163_p0,
+        din1 => grp_fu_163_p1,
+        opcode => grp_fu_163_opcode,
+        ce => grp_fu_163_ce,
+        dout => grp_fu_163_p2);
 
     vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2 : component vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp
     generic map (
@@ -307,10 +303,10 @@ begin
     port map (
         clk => ap_clk,
         reset => ap_rst,
-        din0 => grp_fu_213_p0,
-        din1 => grp_fu_213_p1,
-        ce => grp_fu_213_ce,
-        dout => grp_fu_213_p2);
+        din0 => grp_fu_170_p0,
+        din1 => grp_fu_170_p1,
+        ce => grp_fu_170_ce,
+        dout => grp_fu_170_p2);
 
     vivado_activity_thread_fptrunc_64ns_32_3_U3 : component vivado_activity_thread_fptrunc_64ns_32_3
     generic map (
@@ -321,9 +317,9 @@ begin
     port map (
         clk => ap_clk,
         reset => ap_rst,
-        din0 => grp_fu_220_p0,
-        ce => grp_fu_220_ce,
-        dout => grp_fu_220_p1);
+        din0 => grp_fu_178_p0,
+        ce => grp_fu_178_ce,
+        dout => grp_fu_178_p1);
 
     vivado_activity_thread_fpext_32ns_64_3_U4 : component vivado_activity_thread_fpext_32ns_64_3
     generic map (
@@ -334,9 +330,9 @@ begin
     port map (
         clk => ap_clk,
         reset => ap_rst,
-        din0 => grp_fu_223_p0,
-        ce => grp_fu_223_ce,
-        dout => grp_fu_223_p1);
+        din0 => grp_fu_182_p0,
+        ce => grp_fu_182_ce,
+        dout => grp_fu_182_p1);
 
     vivado_activity_thread_fcmp_32ns_32ns_1_3_U5 : component vivado_activity_thread_fcmp_32ns_32ns_1_3
     generic map (
@@ -348,11 +344,11 @@ begin
     port map (
         clk => ap_clk,
         reset => ap_rst,
-        din0 => grp_fu_227_p0,
-        din1 => grp_fu_227_p1,
-        ce => grp_fu_227_ce,
-        opcode => grp_fu_227_opcode,
-        dout => grp_fu_227_p2);
+        din0 => grp_fu_186_p0,
+        din1 => grp_fu_186_p1,
+        ce => grp_fu_186_ce,
+        opcode => grp_fu_186_opcode,
+        dout => grp_fu_186_p2);
 
     vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6 : component vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp
     generic map (
@@ -364,10 +360,10 @@ begin
     port map (
         clk => ap_clk,
         reset => ap_rst,
-        din0 => grp_fu_233_p0,
-        din1 => grp_fu_233_p1,
-        ce => grp_fu_233_ce,
-        dout => grp_fu_233_p2);
+        din0 => grp_fu_192_p0,
+        din1 => grp_fu_192_p1,
+        ce => grp_fu_192_ce,
+        dout => grp_fu_192_p2);
 
     vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7 : component vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp
     generic map (
@@ -379,10 +375,10 @@ begin
     port map (
         clk => ap_clk,
         reset => ap_rst,
-        din0 => grp_fu_238_p0,
-        din1 => grp_fu_238_p1,
-        ce => grp_fu_238_ce,
-        dout => grp_fu_238_p2);
+        din0 => grp_fu_196_p0,
+        din1 => grp_fu_196_p1,
+        ce => grp_fu_196_ce,
+        dout => grp_fu_196_p2);
 
 
 
@@ -401,62 +397,50 @@ begin
     end process;
 
 
-    -- kernel_arg_u_v_0_gamma_load_2_reg_180 assign process. --
-    kernel_arg_u_v_0_gamma_load_2_reg_180_assign_proc : process (ap_clk)
+    -- p_reg_118 assign process. --
+    p_reg_118_assign_proc : process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if ((ap_ST_st43_fsm_42 = ap_CS_fsm)) then 
-                kernel_arg_u_v_0_gamma_load_2_reg_180 <= tmp_i_4_reg_348;
-            elsif (((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_243_p2))) then 
-                kernel_arg_u_v_0_gamma_load_2_reg_180 <= ap_const_lv32_0;
-            end if; 
-        end if;
-    end process;
-
-    -- kernel_arg_u_v_0_time_load_reg_168 assign process. --
-    kernel_arg_u_v_0_time_load_reg_168_assign_proc : process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if ((ap_ST_st43_fsm_42 = ap_CS_fsm)) then 
-                kernel_arg_u_v_0_time_load_reg_168 <= tmp_2_i_reg_343;
-            elsif (((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_243_p2))) then 
-                kernel_arg_u_v_0_time_load_reg_168 <= ap_const_lv32_0;
-            end if; 
-        end if;
-    end process;
-
-    -- p_reg_145 assign process. --
-    p_reg_145_assign_proc : process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if (((ap_ST_st51_fsm_50 = ap_CS_fsm) and not((result_0_full_n = ap_const_logic_0)))) then 
-                p_reg_145 <= p_1_reg_304;
+            if (((ap_ST_st54_fsm_53 = ap_CS_fsm) and not((result_sqrd_0_full_n = ap_const_logic_0)))) then 
+                p_reg_118 <= p_1_reg_262;
             elsif ((ap_ST_st4_fsm_3 = ap_CS_fsm)) then 
-                p_reg_145 <= ap_const_lv7_0;
+                p_reg_118 <= ap_const_lv7_0;
             end if; 
         end if;
     end process;
 
-    -- pp_reg_192 assign process. --
-    pp_reg_192_assign_proc : process (ap_clk)
+    -- pp_reg_151 assign process. --
+    pp_reg_151_assign_proc : process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_ST_st43_fsm_42 = ap_CS_fsm)) then 
-                pp_reg_192 <= pp_1_reg_323;
-            elsif (((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_243_p2))) then 
-                pp_reg_192 <= ap_const_lv13_0;
+                pp_reg_151 <= pp_1_reg_276;
+            elsif (((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_201_p2))) then 
+                pp_reg_151 <= ap_const_lv13_0;
             end if; 
         end if;
     end process;
 
-    -- tmp_2_pn_reg_156 assign process. --
-    tmp_2_pn_reg_156_assign_proc : process (ap_clk)
+    -- spot_price_0_0_in_reg_129 assign process. --
+    spot_price_0_0_in_reg_129_assign_proc : process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_ST_st43_fsm_42 = ap_CS_fsm)) then 
-                tmp_2_pn_reg_156 <= grp_fu_238_p2;
-            elsif (((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_243_p2))) then 
-                tmp_2_pn_reg_156 <= ap_const_lv64_3FF0000000000000;
+                spot_price_0_0_in_reg_129 <= grp_fu_192_p2;
+            elsif (((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_201_p2))) then 
+                spot_price_0_0_in_reg_129 <= tmp_reg_253;
+            end if; 
+        end if;
+    end process;
+
+    -- u_v_gamma_read_assign_reg_139 assign process. --
+    u_v_gamma_read_assign_reg_139_assign_proc : process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if ((ap_ST_st43_fsm_42 = ap_CS_fsm)) then 
+                u_v_gamma_read_assign_reg_139 <= u_v_0_gamma_reg_296;
+            elsif (((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_201_p2))) then 
+                u_v_gamma_read_assign_reg_139 <= ap_const_lv32_0;
             end if; 
         end if;
     end process;
@@ -466,39 +450,8 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_ST_st4_fsm_3 = ap_CS_fsm)) then
-                delta_time_0_reg_290 <= grp_fu_213_p2;
-                tmp_reg_296 <= grp_fu_223_p1;
-            end if;
-        end if;
-    end process;
-
-    -- assign process. --
-    process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if ((ap_ST_st5_fsm_4 = ap_CS_fsm)) then
-                p_1_reg_304 <= p_1_fu_249_p2;
-            end if;
-        end if;
-    end process;
-
-    -- assign process. --
-    process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if ((ap_ST_st14_fsm_13 = ap_CS_fsm)) then
-                pp_1_reg_323 <= pp_1_fu_261_p2;
-                spot_price_0_reg_314 <= grp_fu_220_p1;
-            end if;
-        end if;
-    end process;
-
-    -- assign process. --
-    process (ap_clk)
-    begin
-        if (ap_clk'event and ap_clk = '1') then
-            if ((ap_ST_st11_fsm_10 = ap_CS_fsm)) then
-                spot_price_0_0_in_reg_309 <= grp_fu_233_p2;
+                delta_time_0_reg_248 <= grp_fu_170_p2;
+                tmp_reg_253 <= grp_fu_182_p1;
             end if;
         end if;
     end process;
@@ -508,7 +461,7 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_ST_st50_fsm_49 = ap_CS_fsm)) then
-                storemerge_i_reg_376 <= storemerge_i_fu_273_p3;
+                o_v_0_value_reg_328 <= o_v_0_value_fu_231_p3;
             end if;
         end if;
     end process;
@@ -517,8 +470,19 @@ begin
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if ((ap_ST_st18_fsm_17 = ap_CS_fsm)) then
-                tmp_2_i_reg_343 <= grp_fu_204_p2;
+            if ((ap_ST_st5_fsm_4 = ap_CS_fsm)) then
+                p_1_reg_262 <= p_1_fu_207_p2;
+            end if;
+        end if;
+    end process;
+
+    -- assign process. --
+    process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if ((ap_ST_st8_fsm_7 = ap_CS_fsm)) then
+                pp_1_reg_276 <= pp_1_fu_219_p2;
+                spot_price_0_reg_267 <= grp_fu_178_p1;
             end if;
         end if;
     end process;
@@ -528,7 +492,7 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_ST_st45_fsm_44 = ap_CS_fsm)) then
-                tmp_2_reg_365 <= tmp_2_fu_267_p2;
+                tmp_4_reg_317 <= tmp_4_fu_225_p2;
             end if;
         end if;
     end process;
@@ -537,8 +501,8 @@ begin
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if ((ap_ST_st25_fsm_24 = ap_CS_fsm)) then
-                tmp_7_reg_355 <= grp_fu_223_p1;
+            if ((ap_ST_st19_fsm_18 = ap_CS_fsm)) then
+                tmp_8_reg_302 <= grp_fu_182_p1;
             end if;
         end if;
     end process;
@@ -547,8 +511,8 @@ begin
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if ((ap_ST_st22_fsm_21 = ap_CS_fsm)) then
-                tmp_i_4_reg_348 <= grp_fu_204_p2;
+            if ((ap_ST_st37_fsm_36 = ap_CS_fsm)) then
+                tmp_9_reg_307 <= grp_fu_196_p2;
             end if;
         end if;
     end process;
@@ -557,14 +521,24 @@ begin
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if ((ap_ST_st17_fsm_16 = ap_CS_fsm)) then
-                tmp_i_reg_338 <= grp_fu_213_p2;
+            if ((ap_ST_st11_fsm_10 = ap_CS_fsm)) then
+                tmp_i_reg_291 <= grp_fu_170_p2;
+            end if;
+        end if;
+    end process;
+
+    -- assign process. --
+    process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if ((ap_ST_st16_fsm_15 = ap_CS_fsm)) then
+                u_v_0_gamma_reg_296 <= grp_fu_163_p2;
             end if;
         end if;
     end process;
 
     -- the next state (ap_NS_fsm) of the state machine. --
-    ap_NS_fsm_assign_proc : process (ap_start , ap_CS_fsm , result_0_full_n , exitcond_fu_255_p2 , exitcond1_fu_243_p2)
+    ap_NS_fsm_assign_proc : process (ap_start , ap_CS_fsm , result_0_full_n , result_sqrd_0_full_n , exitcond_fu_213_p2 , exitcond1_fu_201_p2)
     begin
         case ap_CS_fsm is
             when ap_ST_st1_fsm_0 => 
@@ -580,7 +554,7 @@ begin
             when ap_ST_st4_fsm_3 => 
                 ap_NS_fsm <= ap_ST_st5_fsm_4;
             when ap_ST_st5_fsm_4 => 
-                if (not((ap_const_lv1_0 = exitcond1_fu_243_p2))) then
+                if (not((ap_const_lv1_0 = exitcond1_fu_201_p2))) then
                     ap_NS_fsm <= ap_ST_st1_fsm_0;
                 else
                     ap_NS_fsm <= ap_ST_st6_fsm_5;
@@ -590,7 +564,11 @@ begin
             when ap_ST_st7_fsm_6 => 
                 ap_NS_fsm <= ap_ST_st8_fsm_7;
             when ap_ST_st8_fsm_7 => 
-                ap_NS_fsm <= ap_ST_st9_fsm_8;
+                if (not((exitcond_fu_213_p2 = ap_const_lv1_0))) then
+                    ap_NS_fsm <= ap_ST_st44_fsm_43;
+                else
+                    ap_NS_fsm <= ap_ST_st9_fsm_8;
+                end if;
             when ap_ST_st9_fsm_8 => 
                 ap_NS_fsm <= ap_ST_st10_fsm_9;
             when ap_ST_st10_fsm_9 => 
@@ -602,11 +580,7 @@ begin
             when ap_ST_st13_fsm_12 => 
                 ap_NS_fsm <= ap_ST_st14_fsm_13;
             when ap_ST_st14_fsm_13 => 
-                if (not((exitcond_fu_255_p2 = ap_const_lv1_0))) then
-                    ap_NS_fsm <= ap_ST_st44_fsm_43;
-                else
-                    ap_NS_fsm <= ap_ST_st15_fsm_14;
-                end if;
+                ap_NS_fsm <= ap_ST_st15_fsm_14;
             when ap_ST_st15_fsm_14 => 
                 ap_NS_fsm <= ap_ST_st16_fsm_15;
             when ap_ST_st16_fsm_15 => 
@@ -681,9 +655,19 @@ begin
                 ap_NS_fsm <= ap_ST_st51_fsm_50;
             when ap_ST_st51_fsm_50 => 
                 if (not((result_0_full_n = ap_const_logic_0))) then
-                    ap_NS_fsm <= ap_ST_st5_fsm_4;
+                    ap_NS_fsm <= ap_ST_st52_fsm_51;
                 else
                     ap_NS_fsm <= ap_ST_st51_fsm_50;
+                end if;
+            when ap_ST_st52_fsm_51 => 
+                ap_NS_fsm <= ap_ST_st53_fsm_52;
+            when ap_ST_st53_fsm_52 => 
+                ap_NS_fsm <= ap_ST_st54_fsm_53;
+            when ap_ST_st54_fsm_53 => 
+                if (not((result_sqrd_0_full_n = ap_const_logic_0))) then
+                    ap_NS_fsm <= ap_ST_st5_fsm_4;
+                else
+                    ap_NS_fsm <= ap_ST_st54_fsm_53;
                 end if;
             when others =>  
                 ap_NS_fsm <= "XXXXXX";
@@ -691,9 +675,9 @@ begin
     end process;
 
     -- ap_done assign process. --
-    ap_done_assign_proc : process(ap_CS_fsm, exitcond1_fu_243_p2)
+    ap_done_assign_proc : process(ap_CS_fsm, exitcond1_fu_201_p2)
     begin
-        if (((ap_ST_st5_fsm_4 = ap_CS_fsm) and not((ap_const_lv1_0 = exitcond1_fu_243_p2)))) then 
+        if (((ap_ST_st5_fsm_4 = ap_CS_fsm) and not((ap_const_lv1_0 = exitcond1_fu_201_p2)))) then 
             ap_done <= ap_const_logic_1;
         else 
             ap_done <= ap_const_logic_0;
@@ -713,193 +697,134 @@ begin
 
 
     -- ap_ready assign process. --
-    ap_ready_assign_proc : process(ap_CS_fsm, exitcond1_fu_243_p2)
+    ap_ready_assign_proc : process(ap_CS_fsm, exitcond1_fu_201_p2)
     begin
-        if (((ap_ST_st5_fsm_4 = ap_CS_fsm) and not((ap_const_lv1_0 = exitcond1_fu_243_p2)))) then 
+        if (((ap_ST_st5_fsm_4 = ap_CS_fsm) and not((ap_const_lv1_0 = exitcond1_fu_201_p2)))) then 
             ap_ready <= ap_const_logic_1;
         else 
             ap_ready <= ap_const_logic_0;
         end if; 
     end process;
 
-    exitcond1_fu_243_p2 <= "1" when (p_reg_145 = ap_const_lv7_64) else "0";
-    exitcond_fu_255_p2 <= "1" when (pp_reg_192 = ap_const_lv13_1000) else "0";
-    grp_fu_204_ce <= ap_const_logic_1;
+    exitcond1_fu_201_p2 <= "1" when (p_reg_118 = ap_const_lv7_64) else "0";
+    exitcond_fu_213_p2 <= "1" when (pp_reg_151 = ap_const_lv13_1000) else "0";
+    grp_fu_163_ce <= ap_const_logic_1;
 
-    -- grp_fu_204_opcode assign process. --
-    grp_fu_204_opcode_assign_proc : process(ap_CS_fsm, exitcond_fu_255_p2, tmp_2_reg_365)
+    -- grp_fu_163_opcode assign process. --
+    grp_fu_163_opcode_assign_proc : process(ap_CS_fsm, tmp_4_reg_317)
     begin
-        if ((((ap_ST_st46_fsm_45 = ap_CS_fsm) and not((ap_const_lv1_0 = tmp_2_reg_365))) or ((ap_ST_st46_fsm_45 = ap_CS_fsm) and (ap_const_lv1_0 = tmp_2_reg_365)))) then 
-            grp_fu_204_opcode <= ap_const_lv2_1;
-        elsif ((((ap_ST_st14_fsm_13 = ap_CS_fsm) and (exitcond_fu_255_p2 = ap_const_lv1_0)) or (ap_ST_st18_fsm_17 = ap_CS_fsm))) then 
-            grp_fu_204_opcode <= ap_const_lv2_0;
+        if ((((ap_ST_st46_fsm_45 = ap_CS_fsm) and not((ap_const_lv1_0 = tmp_4_reg_317))) or ((ap_ST_st46_fsm_45 = ap_CS_fsm) and (ap_const_lv1_0 = tmp_4_reg_317)))) then 
+            grp_fu_163_opcode <= ap_const_lv2_1;
+        elsif ((ap_ST_st12_fsm_11 = ap_CS_fsm)) then 
+            grp_fu_163_opcode <= ap_const_lv2_0;
         else 
-            grp_fu_204_opcode <= "XX";
+            grp_fu_163_opcode <= "XX";
         end if; 
     end process;
 
 
-    -- grp_fu_204_p0 assign process. --
-    grp_fu_204_p0_assign_proc : process(ap_CS_fsm, kernel_arg_o_a_0_strike_price, spot_price_0_reg_314, tmp_2_reg_365, kernel_arg_u_v_0_time_load_reg_168, kernel_arg_u_v_0_gamma_load_2_reg_180)
+    -- grp_fu_163_p0 assign process. --
+    grp_fu_163_p0_assign_proc : process(ap_CS_fsm, kernel_arg_o_a_0_strike_price, spot_price_0_reg_267, tmp_i_reg_291, tmp_4_reg_317)
     begin
-        if (((ap_ST_st46_fsm_45 = ap_CS_fsm) and (ap_const_lv1_0 = tmp_2_reg_365))) then 
-            grp_fu_204_p0 <= kernel_arg_o_a_0_strike_price;
-        elsif (((ap_ST_st46_fsm_45 = ap_CS_fsm) and not((ap_const_lv1_0 = tmp_2_reg_365)))) then 
-            grp_fu_204_p0 <= spot_price_0_reg_314;
-        elsif ((ap_ST_st18_fsm_17 = ap_CS_fsm)) then 
-            grp_fu_204_p0 <= kernel_arg_u_v_0_gamma_load_2_reg_180;
-        elsif ((ap_ST_st14_fsm_13 = ap_CS_fsm)) then 
-            grp_fu_204_p0 <= kernel_arg_u_v_0_time_load_reg_168;
+        if (((ap_ST_st46_fsm_45 = ap_CS_fsm) and (ap_const_lv1_0 = tmp_4_reg_317))) then 
+            grp_fu_163_p0 <= kernel_arg_o_a_0_strike_price;
+        elsif (((ap_ST_st46_fsm_45 = ap_CS_fsm) and not((ap_const_lv1_0 = tmp_4_reg_317)))) then 
+            grp_fu_163_p0 <= spot_price_0_reg_267;
+        elsif ((ap_ST_st12_fsm_11 = ap_CS_fsm)) then 
+            grp_fu_163_p0 <= tmp_i_reg_291;
         else 
-            grp_fu_204_p0 <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            grp_fu_163_p0 <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
         end if; 
     end process;
 
 
-    -- grp_fu_204_p1 assign process. --
-    grp_fu_204_p1_assign_proc : process(ap_CS_fsm, kernel_arg_o_a_0_strike_price, delta_time_0_reg_290, spot_price_0_reg_314, tmp_i_reg_338, tmp_2_reg_365)
+    -- grp_fu_163_p1 assign process. --
+    grp_fu_163_p1_assign_proc : process(ap_CS_fsm, kernel_arg_o_a_0_strike_price, spot_price_0_reg_267, tmp_4_reg_317, u_v_gamma_read_assign_reg_139)
     begin
-        if (((ap_ST_st46_fsm_45 = ap_CS_fsm) and (ap_const_lv1_0 = tmp_2_reg_365))) then 
-            grp_fu_204_p1 <= spot_price_0_reg_314;
-        elsif (((ap_ST_st46_fsm_45 = ap_CS_fsm) and not((ap_const_lv1_0 = tmp_2_reg_365)))) then 
-            grp_fu_204_p1 <= kernel_arg_o_a_0_strike_price;
-        elsif ((ap_ST_st18_fsm_17 = ap_CS_fsm)) then 
-            grp_fu_204_p1 <= tmp_i_reg_338;
-        elsif ((ap_ST_st14_fsm_13 = ap_CS_fsm)) then 
-            grp_fu_204_p1 <= delta_time_0_reg_290;
+        if (((ap_ST_st46_fsm_45 = ap_CS_fsm) and (ap_const_lv1_0 = tmp_4_reg_317))) then 
+            grp_fu_163_p1 <= spot_price_0_reg_267;
+        elsif (((ap_ST_st46_fsm_45 = ap_CS_fsm) and not((ap_const_lv1_0 = tmp_4_reg_317)))) then 
+            grp_fu_163_p1 <= kernel_arg_o_a_0_strike_price;
+        elsif ((ap_ST_st12_fsm_11 = ap_CS_fsm)) then 
+            grp_fu_163_p1 <= u_v_gamma_read_assign_reg_139;
         else 
-            grp_fu_204_p1 <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            grp_fu_163_p1 <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
         end if; 
     end process;
 
-    grp_fu_213_ce <= ap_const_logic_1;
 
-    -- grp_fu_213_p0 assign process. --
-    grp_fu_213_p0_assign_proc : process(ap_CS_fsm, kernel_arg_u_a_0_rfir, kernel_arg_o_a_0_time_period)
+    -- grp_fu_170_ce assign process. --
+    grp_fu_170_ce_assign_proc : process(ap_start, ap_CS_fsm, result_0_full_n, result_sqrd_0_full_n, exitcond_fu_213_p2)
     begin
-        if ((ap_ST_st14_fsm_13 = ap_CS_fsm)) then 
-            grp_fu_213_p0 <= kernel_arg_u_a_0_rfir;
+        if ((((ap_ST_st1_fsm_0 = ap_CS_fsm) and not((ap_start = ap_const_logic_0))) or (ap_ST_st2_fsm_1 = ap_CS_fsm) or (ap_ST_st4_fsm_3 = ap_CS_fsm) or ((ap_ST_st8_fsm_7 = ap_CS_fsm) and (exitcond_fu_213_p2 = ap_const_lv1_0)) or (ap_ST_st11_fsm_10 = ap_CS_fsm) or ((ap_ST_st54_fsm_53 = ap_CS_fsm) and not((result_sqrd_0_full_n = ap_const_logic_0))) or ((ap_ST_st51_fsm_50 = ap_CS_fsm) and not((result_0_full_n = ap_const_logic_0))) or (ap_ST_st3_fsm_2 = ap_CS_fsm) or (ap_ST_st9_fsm_8 = ap_CS_fsm) or (ap_ST_st10_fsm_9 = ap_CS_fsm) or (ap_ST_st52_fsm_51 = ap_CS_fsm) or (ap_ST_st53_fsm_52 = ap_CS_fsm))) then 
+            grp_fu_170_ce <= ap_const_logic_1;
+        else 
+            grp_fu_170_ce <= ap_const_logic_0;
+        end if; 
+    end process;
+
+
+    -- grp_fu_170_p0 assign process. --
+    grp_fu_170_p0_assign_proc : process(ap_CS_fsm, kernel_arg_u_a_0_rfir, kernel_arg_o_a_0_time_period, o_v_0_value_reg_328)
+    begin
+        if ((ap_ST_st51_fsm_50 = ap_CS_fsm)) then 
+            grp_fu_170_p0 <= o_v_0_value_reg_328;
+        elsif ((ap_ST_st8_fsm_7 = ap_CS_fsm)) then 
+            grp_fu_170_p0 <= kernel_arg_u_a_0_rfir;
         elsif ((ap_ST_st1_fsm_0 = ap_CS_fsm)) then 
-            grp_fu_213_p0 <= kernel_arg_o_a_0_time_period;
+            grp_fu_170_p0 <= kernel_arg_o_a_0_time_period;
         else 
-            grp_fu_213_p0 <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            grp_fu_170_p0 <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
         end if; 
     end process;
 
 
-    -- grp_fu_213_p1 assign process. --
-    grp_fu_213_p1_assign_proc : process(ap_CS_fsm, delta_time_0_reg_290)
+    -- grp_fu_170_p1 assign process. --
+    grp_fu_170_p1_assign_proc : process(ap_CS_fsm, delta_time_0_reg_248, o_v_0_value_reg_328)
     begin
-        if ((ap_ST_st14_fsm_13 = ap_CS_fsm)) then 
-            grp_fu_213_p1 <= delta_time_0_reg_290;
+        if ((ap_ST_st51_fsm_50 = ap_CS_fsm)) then 
+            grp_fu_170_p1 <= o_v_0_value_reg_328;
+        elsif ((ap_ST_st8_fsm_7 = ap_CS_fsm)) then 
+            grp_fu_170_p1 <= delta_time_0_reg_248;
         elsif ((ap_ST_st1_fsm_0 = ap_CS_fsm)) then 
-            grp_fu_213_p1 <= ap_const_lv32_39800000;
+            grp_fu_170_p1 <= ap_const_lv32_39800000;
         else 
-            grp_fu_213_p1 <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            grp_fu_170_p1 <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
         end if; 
     end process;
 
-    grp_fu_220_ce <= ap_const_logic_1;
-    grp_fu_220_p0 <= spot_price_0_0_in_reg_309;
-    grp_fu_223_ce <= ap_const_logic_1;
+    grp_fu_178_ce <= ap_const_logic_1;
+    grp_fu_178_p0 <= spot_price_0_0_in_reg_129;
+    grp_fu_182_ce <= ap_const_logic_1;
 
-    -- grp_fu_223_p0 assign process. --
-    grp_fu_223_p0_assign_proc : process(ap_CS_fsm, kernel_arg_u_a_0_current_price, tmp_i_4_reg_348)
+    -- grp_fu_182_p0 assign process. --
+    grp_fu_182_p0_assign_proc : process(ap_CS_fsm, kernel_arg_u_a_0_current_price, u_v_0_gamma_reg_296)
     begin
-        if ((ap_ST_st23_fsm_22 = ap_CS_fsm)) then 
-            grp_fu_223_p0 <= tmp_i_4_reg_348;
+        if ((ap_ST_st17_fsm_16 = ap_CS_fsm)) then 
+            grp_fu_182_p0 <= u_v_0_gamma_reg_296;
         elsif ((ap_ST_st2_fsm_1 = ap_CS_fsm)) then 
-            grp_fu_223_p0 <= kernel_arg_u_a_0_current_price;
+            grp_fu_182_p0 <= kernel_arg_u_a_0_current_price;
         else 
-            grp_fu_223_p0 <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            grp_fu_182_p0 <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
         end if; 
     end process;
 
-    grp_fu_227_ce <= ap_const_logic_1;
-    grp_fu_227_opcode <= ap_const_lv5_1;
-    grp_fu_227_p0 <= kernel_arg_o_a_0_call;
-    grp_fu_227_p1 <= ap_const_lv32_0;
-    grp_fu_233_ce <= ap_const_logic_1;
-    grp_fu_233_p0 <= tmp_reg_296;
-    grp_fu_233_p1 <= tmp_2_pn_reg_156;
-    grp_fu_238_ce <= ap_const_logic_1;
-    grp_fu_238_p0 <= ap_const_lv64_1;
-    grp_fu_238_p1 <= tmp_7_reg_355;
-
-    -- kernel_arg_o_v_0_value assign process. --
-    kernel_arg_o_v_0_value_assign_proc : process(ap_CS_fsm, result_0_full_n, storemerge_i_reg_376, exitcond1_fu_243_p2)
-    begin
-        if (((ap_ST_st51_fsm_50 = ap_CS_fsm) and not((result_0_full_n = ap_const_logic_0)))) then 
-            kernel_arg_o_v_0_value <= storemerge_i_reg_376;
-        elsif (((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_243_p2))) then 
-            kernel_arg_o_v_0_value <= ap_const_lv32_0;
-        else 
-            kernel_arg_o_v_0_value <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-        end if; 
-    end process;
-
-
-    -- kernel_arg_o_v_0_value_ap_vld assign process. --
-    kernel_arg_o_v_0_value_ap_vld_assign_proc : process(ap_CS_fsm, result_0_full_n, exitcond1_fu_243_p2)
-    begin
-        if ((((ap_ST_st51_fsm_50 = ap_CS_fsm) and not((result_0_full_n = ap_const_logic_0))) or ((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_243_p2)))) then 
-            kernel_arg_o_v_0_value_ap_vld <= ap_const_logic_1;
-        else 
-            kernel_arg_o_v_0_value_ap_vld <= ap_const_logic_0;
-        end if; 
-    end process;
-
-
-    -- kernel_arg_u_v_0_gamma assign process. --
-    kernel_arg_u_v_0_gamma_assign_proc : process(ap_CS_fsm, tmp_i_4_reg_348, exitcond1_fu_243_p2)
-    begin
-        if ((ap_ST_st23_fsm_22 = ap_CS_fsm)) then 
-            kernel_arg_u_v_0_gamma <= tmp_i_4_reg_348;
-        elsif (((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_243_p2))) then 
-            kernel_arg_u_v_0_gamma <= ap_const_lv32_0;
-        else 
-            kernel_arg_u_v_0_gamma <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-        end if; 
-    end process;
-
-
-    -- kernel_arg_u_v_0_gamma_ap_vld assign process. --
-    kernel_arg_u_v_0_gamma_ap_vld_assign_proc : process(ap_CS_fsm, exitcond1_fu_243_p2)
-    begin
-        if ((((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_243_p2)) or (ap_ST_st23_fsm_22 = ap_CS_fsm))) then 
-            kernel_arg_u_v_0_gamma_ap_vld <= ap_const_logic_1;
-        else 
-            kernel_arg_u_v_0_gamma_ap_vld <= ap_const_logic_0;
-        end if; 
-    end process;
-
-
-    -- kernel_arg_u_v_0_time assign process. --
-    kernel_arg_u_v_0_time_assign_proc : process(ap_CS_fsm, grp_fu_204_p2, exitcond1_fu_243_p2)
-    begin
-        if ((ap_ST_st18_fsm_17 = ap_CS_fsm)) then 
-            kernel_arg_u_v_0_time <= grp_fu_204_p2;
-        elsif (((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_243_p2))) then 
-            kernel_arg_u_v_0_time <= ap_const_lv32_0;
-        else 
-            kernel_arg_u_v_0_time <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-        end if; 
-    end process;
-
-
-    -- kernel_arg_u_v_0_time_ap_vld assign process. --
-    kernel_arg_u_v_0_time_ap_vld_assign_proc : process(ap_CS_fsm, exitcond1_fu_243_p2)
-    begin
-        if (((ap_ST_st18_fsm_17 = ap_CS_fsm) or ((ap_ST_st5_fsm_4 = ap_CS_fsm) and (ap_const_lv1_0 = exitcond1_fu_243_p2)))) then 
-            kernel_arg_u_v_0_time_ap_vld <= ap_const_logic_1;
-        else 
-            kernel_arg_u_v_0_time_ap_vld <= ap_const_logic_0;
-        end if; 
-    end process;
-
-    p_1_fu_249_p2 <= std_logic_vector(unsigned(p_reg_145) + unsigned(ap_const_lv7_1));
-    pp_1_fu_261_p2 <= std_logic_vector(unsigned(pp_reg_192) + unsigned(ap_const_lv13_1));
-    result_0_din <= storemerge_i_reg_376;
+    grp_fu_186_ce <= ap_const_logic_1;
+    grp_fu_186_opcode <= ap_const_lv5_1;
+    grp_fu_186_p0 <= kernel_arg_o_a_0_call;
+    grp_fu_186_p1 <= ap_const_lv32_0;
+    grp_fu_192_ce <= ap_const_logic_1;
+    grp_fu_192_p0 <= tmp_reg_253;
+    grp_fu_192_p1 <= tmp_9_reg_307;
+    grp_fu_196_ce <= ap_const_logic_1;
+    grp_fu_196_p0 <= ap_const_lv64_1;
+    grp_fu_196_p1 <= tmp_8_reg_302;
+    o_v_0_value_fu_231_p3 <= 
+        grp_fu_163_p2 when (tmp_4_reg_317(0) = '1') else 
+        grp_fu_163_p2;
+    p_1_fu_207_p2 <= std_logic_vector(unsigned(p_reg_118) + unsigned(ap_const_lv7_1));
+    pp_1_fu_219_p2 <= std_logic_vector(unsigned(pp_reg_151) + unsigned(ap_const_lv13_1));
+    result_0_din <= o_v_0_value_reg_328;
 
     -- result_0_write assign process. --
     result_0_write_assign_proc : process(ap_CS_fsm, result_0_full_n)
@@ -911,8 +836,17 @@ begin
         end if; 
     end process;
 
-    storemerge_i_fu_273_p3 <= 
-        grp_fu_204_p2 when (tmp_2_reg_365(0) = '1') else 
-        grp_fu_204_p2;
-    tmp_2_fu_267_p2 <= (grp_fu_227_p2 xor ap_const_lv1_1);
+    result_sqrd_0_din <= grp_fu_170_p2;
+
+    -- result_sqrd_0_write assign process. --
+    result_sqrd_0_write_assign_proc : process(ap_CS_fsm, result_sqrd_0_full_n)
+    begin
+        if (((ap_ST_st54_fsm_53 = ap_CS_fsm) and not((result_sqrd_0_full_n = ap_const_logic_0)))) then 
+            result_sqrd_0_write <= ap_const_logic_1;
+        else 
+            result_sqrd_0_write <= ap_const_logic_0;
+        end if; 
+    end process;
+
+    tmp_4_fu_225_p2 <= (grp_fu_186_p2 xor ap_const_lv1_1);
 end behav;

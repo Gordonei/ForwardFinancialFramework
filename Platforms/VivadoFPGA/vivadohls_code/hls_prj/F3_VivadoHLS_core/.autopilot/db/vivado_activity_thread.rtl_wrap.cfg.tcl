@@ -1081,40 +1081,40 @@ set gportInitilizer20 ""
 set gextern20 1
 set gport20 [list $gportName20 $gportInterface20 $gportData20 $gportPointer20 $gportArrayDim20 $gportConst20 $gportVolatile20 $gportInitilizer20 $gextern20]
 lappend globalVariable $gport20
-set gportName21 "discount_0_0"
-set gportInterface21 "wire"
-set gportData21 "float"
+set gportName21 "ytab"
+set gportInterface21 "memory"
+set gportData21 "double"
 set gportPointer21 "0"
-set gportArrayDim21 0
-set gportConst21 "0"
+set gportArrayDim21 [list 128]
+set gportConst21 "1"
 set gportVolatile21 "0"
 set gportInitilizer21 ""
 set gextern21 0
 set gport21 [list $gportName21 $gportInterface21 $gportData21 $gportPointer21 $gportArrayDim21 $gportConst21 $gportVolatile21 $gportInitilizer21 $gextern21]
 lappend globalVariable $gport21
-set gportName22 "option_price_0"
-set gportInterface22 "wire"
-set gportData22 "float"
+set gportName22 "ktab"
+set gportInterface22 "memory"
+set gportData22 "unsigned long"
 set gportPointer22 "0"
-set gportArrayDim22 0
-set gportConst22 "0"
+set gportArrayDim22 [list 128]
+set gportConst22 "1"
 set gportVolatile22 "0"
 set gportInitilizer22 ""
 set gextern22 0
 set gport22 [list $gportName22 $gportInterface22 $gportData22 $gportPointer22 $gportArrayDim22 $gportConst22 $gportVolatile22 $gportInitilizer22 $gextern22]
 lappend globalVariable $gport22
-set gportName23 "option_price_0_confidence_interval"
-set gportInterface23 "wire"
-set gportData23 "float"
+set gportName23 "wtab"
+set gportInterface23 "memory"
+set gportData23 "double"
 set gportPointer23 "0"
-set gportArrayDim23 0
-set gportConst23 "0"
+set gportArrayDim23 [list 128]
+set gportConst23 "1"
 set gportVolatile23 "0"
 set gportInitilizer23 ""
 set gextern23 0
 set gport23 [list $gportName23 $gportInterface23 $gportData23 $gportPointer23 $gportArrayDim23 $gportConst23 $gportVolatile23 $gportInitilizer23 $gextern23]
 lappend globalVariable $gport23
-set gportName24 "underlying_0_rfir"
+set gportName24 "discount_0_0"
 set gportInterface24 "wire"
 set gportData24 "float"
 set gportPointer24 "0"
@@ -1125,7 +1125,7 @@ set gportInitilizer24 ""
 set gextern24 0
 set gport24 [list $gportName24 $gportInterface24 $gportData24 $gportPointer24 $gportArrayDim24 $gportConst24 $gportVolatile24 $gportInitilizer24 $gextern24]
 lappend globalVariable $gport24
-set gportName25 "underlying_0_current_price"
+set gportName25 "option_price_0"
 set gportInterface25 "wire"
 set gportData25 "float"
 set gportPointer25 "0"
@@ -1136,7 +1136,7 @@ set gportInitilizer25 ""
 set gextern25 0
 set gport25 [list $gportName25 $gportInterface25 $gportData25 $gportPointer25 $gportArrayDim25 $gportConst25 $gportVolatile25 $gportInitilizer25 $gextern25]
 lappend globalVariable $gport25
-set gportName26 "option_0_time_period"
+set gportName26 "option_price_0_confidence_interval"
 set gportInterface26 "wire"
 set gportData26 "float"
 set gportPointer26 "0"
@@ -1147,7 +1147,7 @@ set gportInitilizer26 ""
 set gextern26 0
 set gport26 [list $gportName26 $gportInterface26 $gportData26 $gportPointer26 $gportArrayDim26 $gportConst26 $gportVolatile26 $gportInitilizer26 $gextern26]
 lappend globalVariable $gport26
-set gportName27 "option_0_call"
+set gportName27 "underlying_0_rfir"
 set gportInterface27 "wire"
 set gportData27 "float"
 set gportPointer27 "0"
@@ -1158,7 +1158,7 @@ set gportInitilizer27 ""
 set gextern27 0
 set gport27 [list $gportName27 $gportInterface27 $gportData27 $gportPointer27 $gportArrayDim27 $gportConst27 $gportVolatile27 $gportInitilizer27 $gextern27]
 lappend globalVariable $gport27
-set gportName28 "option_0_strike_price"
+set gportName28 "underlying_0_current_price"
 set gportInterface28 "wire"
 set gportData28 "float"
 set gportPointer28 "0"
@@ -1169,9 +1169,9 @@ set gportInitilizer28 ""
 set gextern28 0
 set gport28 [list $gportName28 $gportInterface28 $gportData28 $gportPointer28 $gportArrayDim28 $gportConst28 $gportVolatile28 $gportInitilizer28 $gextern28]
 lappend globalVariable $gport28
-set gportName29 "paths"
+set gportName29 "option_0_time_period"
 set gportInterface29 "wire"
-set gportData29 "int"
+set gportData29 "float"
 set gportPointer29 "0"
 set gportArrayDim29 0
 set gportConst29 "0"
@@ -1180,9 +1180,9 @@ set gportInitilizer29 ""
 set gextern29 0
 set gport29 [list $gportName29 $gportInterface29 $gportData29 $gportPointer29 $gportArrayDim29 $gportConst29 $gportVolatile29 $gportInitilizer29 $gextern29]
 lappend globalVariable $gport29
-set gportName30 "default_points"
+set gportName30 "option_0_call"
 set gportInterface30 "wire"
-set gportData30 "int"
+set gportData30 "float"
 set gportPointer30 "0"
 set gportArrayDim30 0
 set gportConst30 "0"
@@ -1191,9 +1191,9 @@ set gportInitilizer30 ""
 set gextern30 0
 set gport30 [list $gportName30 $gportInterface30 $gportData30 $gportPointer30 $gportArrayDim30 $gportConst30 $gportVolatile30 $gportInitilizer30 $gextern30]
 lappend globalVariable $gport30
-set gportName31 "path_points"
+set gportName31 "option_0_strike_price"
 set gportInterface31 "wire"
-set gportData31 "int"
+set gportData31 "float"
 set gportPointer31 "0"
 set gportArrayDim31 0
 set gportConst31 "0"
@@ -1202,7 +1202,7 @@ set gportInitilizer31 ""
 set gextern31 0
 set gport31 [list $gportName31 $gportInterface31 $gportData31 $gportPointer31 $gportArrayDim31 $gportConst31 $gportVolatile31 $gportInitilizer31 $gextern31]
 lappend globalVariable $gport31
-set gportName32 "threads"
+set gportName32 "paths"
 set gportInterface32 "wire"
 set gportData32 "int"
 set gportPointer32 "0"
@@ -1213,7 +1213,7 @@ set gportInitilizer32 ""
 set gextern32 0
 set gport32 [list $gportName32 $gportInterface32 $gportData32 $gportPointer32 $gportArrayDim32 $gportConst32 $gportVolatile32 $gportInitilizer32 $gextern32]
 lappend globalVariable $gport32
-set gportName33 "instance_paths"
+set gportName33 "default_points"
 set gportInterface33 "wire"
 set gportData33 "int"
 set gportPointer33 "0"
@@ -1224,7 +1224,7 @@ set gportInitilizer33 ""
 set gextern33 0
 set gport33 [list $gportName33 $gportInterface33 $gportData33 $gportPointer33 $gportArrayDim33 $gportConst33 $gportVolatile33 $gportInitilizer33 $gextern33]
 lappend globalVariable $gport33
-set gportName34 "rng_seed"
+set gportName34 "path_points"
 set gportInterface34 "wire"
 set gportData34 "int"
 set gportPointer34 "0"
@@ -1235,7 +1235,7 @@ set gportInitilizer34 ""
 set gextern34 0
 set gport34 [list $gportName34 $gportInterface34 $gportData34 $gportPointer34 $gportArrayDim34 $gportConst34 $gportVolatile34 $gportInitilizer34 $gextern34]
 lappend globalVariable $gport34
-set gportName35 "thread_paths"
+set gportName35 "threads"
 set gportInterface35 "wire"
 set gportData35 "int"
 set gportPointer35 "0"
@@ -1246,7 +1246,7 @@ set gportInitilizer35 ""
 set gextern35 0
 set gport35 [list $gportName35 $gportInterface35 $gportData35 $gportPointer35 $gportArrayDim35 $gportConst35 $gportVolatile35 $gportInitilizer35 $gextern35]
 lappend globalVariable $gport35
-set gportName36 "i"
+set gportName36 "instance_paths"
 set gportInterface36 "wire"
 set gportData36 "int"
 set gportPointer36 "0"
@@ -1257,7 +1257,7 @@ set gportInitilizer36 ""
 set gextern36 0
 set gport36 [list $gportName36 $gportInterface36 $gportData36 $gportPointer36 $gportArrayDim36 $gportConst36 $gportVolatile36 $gportInitilizer36 $gextern36]
 lappend globalVariable $gport36
-set gportName37 "j"
+set gportName37 "rng_seed"
 set gportInterface37 "wire"
 set gportData37 "int"
 set gportPointer37 "0"
@@ -1268,9 +1268,9 @@ set gportInitilizer37 ""
 set gextern37 0
 set gport37 [list $gportName37 $gportInterface37 $gportData37 $gportPointer37 $gportArrayDim37 $gportConst37 $gportVolatile37 $gportInitilizer37 $gextern37]
 lappend globalVariable $gport37
-set gportName38 "setup_time"
+set gportName38 "thread_paths"
 set gportInterface38 "wire"
-set gportData38 "float"
+set gportData38 "int"
 set gportPointer38 "0"
 set gportArrayDim38 0
 set gportConst38 "0"
@@ -1279,9 +1279,9 @@ set gportInitilizer38 ""
 set gextern38 0
 set gport38 [list $gportName38 $gportInterface38 $gportData38 $gportPointer38 $gportArrayDim38 $gportConst38 $gportVolatile38 $gportInitilizer38 $gextern38]
 lappend globalVariable $gport38
-set gportName39 "activity_time"
+set gportName39 "i"
 set gportInterface39 "wire"
-set gportData39 "float"
+set gportData39 "int"
 set gportPointer39 "0"
 set gportArrayDim39 0
 set gportConst39 "0"
@@ -1290,31 +1290,9 @@ set gportInitilizer39 ""
 set gextern39 0
 set gport39 [list $gportName39 $gportInterface39 $gportData39 $gportPointer39 $gportArrayDim39 $gportConst39 $gportVolatile39 $gportInitilizer39 $gextern39]
 lappend globalVariable $gport39
-set gportName40 "start"
+set gportName40 "j"
 set gportInterface40 "wire"
-set structName40 "timespec"
-set structMember40 ""
-set portName500 "tv_sec"
-set portInterface500 "wire"
-set portData500 "long"
-set portPointer500 "0"
-set portArrayDim500 0
-set portConst500 "0"
-set portVolatile500 "0"
-set portArrayOpt500 ""
-set port500 [list $portName500 $portInterface500 $portData500 $portPointer500 $portArrayDim500 $portConst500 $portVolatile500 $portArrayOpt500]
-lappend structMember40 $port500
-set portName501 "tv_nsec"
-set portInterface501 "wire"
-set portData501 "long"
-set portPointer501 "0"
-set portArrayDim501 0
-set portConst501 "0"
-set portVolatile501 "0"
-set portArrayOpt501 ""
-set port501 [list $portName501 $portInterface501 $portData501 $portPointer501 $portArrayDim501 $portConst501 $portVolatile501 $portArrayOpt501]
-lappend structMember40 $port501
-set gportData40 [list $structName40 "struct timespec " $structMember40 1 0]
+set gportData40 "int"
 set gportPointer40 "0"
 set gportArrayDim40 0
 set gportConst40 "0"
@@ -1323,31 +1301,9 @@ set gportInitilizer40 ""
 set gextern40 0
 set gport40 [list $gportName40 $gportInterface40 $gportData40 $gportPointer40 $gportArrayDim40 $gportConst40 $gportVolatile40 $gportInitilizer40 $gextern40]
 lappend globalVariable $gport40
-set gportName41 "setup_end"
+set gportName41 "setup_time"
 set gportInterface41 "wire"
-set structName41 "timespec"
-set structMember41 ""
-set portName510 "tv_sec"
-set portInterface510 "wire"
-set portData510 "long"
-set portPointer510 "0"
-set portArrayDim510 0
-set portConst510 "0"
-set portVolatile510 "0"
-set portArrayOpt510 ""
-set port510 [list $portName510 $portInterface510 $portData510 $portPointer510 $portArrayDim510 $portConst510 $portVolatile510 $portArrayOpt510]
-lappend structMember41 $port510
-set portName511 "tv_nsec"
-set portInterface511 "wire"
-set portData511 "long"
-set portPointer511 "0"
-set portArrayDim511 0
-set portConst511 "0"
-set portVolatile511 "0"
-set portArrayOpt511 ""
-set port511 [list $portName511 $portInterface511 $portData511 $portPointer511 $portArrayDim511 $portConst511 $portVolatile511 $portArrayOpt511]
-lappend structMember41 $port511
-set gportData41 [list $structName41 "struct timespec " $structMember41 1 0]
+set gportData41 "float"
 set gportPointer41 "0"
 set gportArrayDim41 0
 set gportConst41 "0"
@@ -1356,31 +1312,9 @@ set gportInitilizer41 ""
 set gextern41 0
 set gport41 [list $gportName41 $gportInterface41 $gportData41 $gportPointer41 $gportArrayDim41 $gportConst41 $gportVolatile41 $gportInitilizer41 $gextern41]
 lappend globalVariable $gport41
-set gportName42 "end"
+set gportName42 "activity_time"
 set gportInterface42 "wire"
-set structName42 "timespec"
-set structMember42 ""
-set portName520 "tv_sec"
-set portInterface520 "wire"
-set portData520 "long"
-set portPointer520 "0"
-set portArrayDim520 0
-set portConst520 "0"
-set portVolatile520 "0"
-set portArrayOpt520 ""
-set port520 [list $portName520 $portInterface520 $portData520 $portPointer520 $portArrayDim520 $portConst520 $portVolatile520 $portArrayOpt520]
-lappend structMember42 $port520
-set portName521 "tv_nsec"
-set portInterface521 "wire"
-set portData521 "long"
-set portPointer521 "0"
-set portArrayDim521 0
-set portConst521 "0"
-set portVolatile521 "0"
-set portArrayOpt521 ""
-set port521 [list $portName521 $portInterface521 $portData521 $portPointer521 $portArrayDim521 $portConst521 $portVolatile521 $portArrayOpt521]
-lappend structMember42 $port521
-set gportData42 [list $structName42 "struct timespec " $structMember42 1 0]
+set gportData42 "float"
 set gportPointer42 "0"
 set gportArrayDim42 0
 set gportConst42 "0"
@@ -1389,9 +1323,31 @@ set gportInitilizer42 ""
 set gextern42 0
 set gport42 [list $gportName42 $gportInterface42 $gportData42 $gportPointer42 $gportArrayDim42 $gportConst42 $gportVolatile42 $gportInitilizer42 $gextern42]
 lappend globalVariable $gport42
-set gportName43 "ret"
+set gportName43 "start"
 set gportInterface43 "wire"
-set gportData43 "int"
+set structName43 "timespec"
+set structMember43 ""
+set portName530 "tv_sec"
+set portInterface530 "wire"
+set portData530 "long"
+set portPointer530 "0"
+set portArrayDim530 0
+set portConst530 "0"
+set portVolatile530 "0"
+set portArrayOpt530 ""
+set port530 [list $portName530 $portInterface530 $portData530 $portPointer530 $portArrayDim530 $portConst530 $portVolatile530 $portArrayOpt530]
+lappend structMember43 $port530
+set portName531 "tv_nsec"
+set portInterface531 "wire"
+set portData531 "long"
+set portPointer531 "0"
+set portArrayDim531 0
+set portConst531 "0"
+set portVolatile531 "0"
+set portArrayOpt531 ""
+set port531 [list $portName531 $portInterface531 $portData531 $portPointer531 $portArrayDim531 $portConst531 $portVolatile531 $portArrayOpt531]
+lappend structMember43 $port531
+set gportData43 [list $structName43 "struct timespec " $structMember43 1 0]
 set gportPointer43 "0"
 set gportArrayDim43 0
 set gportConst43 "0"
@@ -1400,9 +1356,31 @@ set gportInitilizer43 ""
 set gextern43 0
 set gport43 [list $gportName43 $gportInterface43 $gportData43 $gportPointer43 $gportArrayDim43 $gportConst43 $gportVolatile43 $gportInitilizer43 $gextern43]
 lappend globalVariable $gport43
-set gportName44 "ret_2"
+set gportName44 "setup_end"
 set gportInterface44 "wire"
-set gportData44 "int"
+set structName44 "timespec"
+set structMember44 ""
+set portName540 "tv_sec"
+set portInterface540 "wire"
+set portData540 "long"
+set portPointer540 "0"
+set portArrayDim540 0
+set portConst540 "0"
+set portVolatile540 "0"
+set portArrayOpt540 ""
+set port540 [list $portName540 $portInterface540 $portData540 $portPointer540 $portArrayDim540 $portConst540 $portVolatile540 $portArrayOpt540]
+lappend structMember44 $port540
+set portName541 "tv_nsec"
+set portInterface541 "wire"
+set portData541 "long"
+set portPointer541 "0"
+set portArrayDim541 0
+set portConst541 "0"
+set portVolatile541 "0"
+set portArrayOpt541 ""
+set port541 [list $portName541 $portInterface541 $portData541 $portPointer541 $portArrayDim541 $portConst541 $portVolatile541 $portArrayOpt541]
+lappend structMember44 $port541
+set gportData44 [list $structName44 "struct timespec " $structMember44 1 0]
 set gportPointer44 "0"
 set gportArrayDim44 0
 set gportConst44 "0"
@@ -1411,9 +1389,64 @@ set gportInitilizer44 ""
 set gextern44 0
 set gport44 [list $gportName44 $gportInterface44 $gportData44 $gportPointer44 $gportArrayDim44 $gportConst44 $gportVolatile44 $gportInitilizer44 $gextern44]
 lappend globalVariable $gport44
+set gportName45 "end"
+set gportInterface45 "wire"
+set structName45 "timespec"
+set structMember45 ""
+set portName550 "tv_sec"
+set portInterface550 "wire"
+set portData550 "long"
+set portPointer550 "0"
+set portArrayDim550 0
+set portConst550 "0"
+set portVolatile550 "0"
+set portArrayOpt550 ""
+set port550 [list $portName550 $portInterface550 $portData550 $portPointer550 $portArrayDim550 $portConst550 $portVolatile550 $portArrayOpt550]
+lappend structMember45 $port550
+set portName551 "tv_nsec"
+set portInterface551 "wire"
+set portData551 "long"
+set portPointer551 "0"
+set portArrayDim551 0
+set portConst551 "0"
+set portVolatile551 "0"
+set portArrayOpt551 ""
+set port551 [list $portName551 $portInterface551 $portData551 $portPointer551 $portArrayDim551 $portConst551 $portVolatile551 $portArrayOpt551]
+lappend structMember45 $port551
+set gportData45 [list $structName45 "struct timespec " $structMember45 1 0]
+set gportPointer45 "0"
+set gportArrayDim45 0
+set gportConst45 "0"
+set gportVolatile45 "0"
+set gportInitilizer45 ""
+set gextern45 0
+set gport45 [list $gportName45 $gportInterface45 $gportData45 $gportPointer45 $gportArrayDim45 $gportConst45 $gportVolatile45 $gportInitilizer45 $gextern45]
+lappend globalVariable $gport45
+set gportName46 "ret"
+set gportInterface46 "wire"
+set gportData46 "int"
+set gportPointer46 "0"
+set gportArrayDim46 0
+set gportConst46 "0"
+set gportVolatile46 "0"
+set gportInitilizer46 ""
+set gextern46 0
+set gport46 [list $gportName46 $gportInterface46 $gportData46 $gportPointer46 $gportArrayDim46 $gportConst46 $gportVolatile46 $gportInitilizer46 $gextern46]
+lappend globalVariable $gport46
+set gportName47 "ret_2"
+set gportInterface47 "wire"
+set gportData47 "int"
+set gportPointer47 "0"
+set gportArrayDim47 0
+set gportConst47 "0"
+set gportVolatile47 "0"
+set gportInitilizer47 ""
+set gextern47 0
+set gport47 [list $gportName47 $gportInterface47 $gportData47 $gportPointer47 $gportArrayDim47 $gportConst47 $gportVolatile47 $gportInitilizer47 $gextern47]
+lappend globalVariable $gport47
 set staticVariable ""
 set moduleName "vivado_activity_thread"
-set rawDecl [list "void" "vivado_activity_thread\(kernel_data* kernel_arg,float result_0\[100\]\)"]
+set rawDecl [list "void" "vivado_activity_thread\(kernel_data* kernel_arg,float result_0\[100\],float result_sqrd_0\[100\]\)"]
 set argAPint ""
 set returnAPint ""
 set portList ""
@@ -1453,11 +1486,11 @@ set portVolatile100 "0"
 set portArrayOpt100 ""
 set port100 [list $portName100 $portInterface100 $portData100 $portPointer100 $portArrayDim100 $portConst100 $portVolatile100 $portArrayOpt100]
 lappend structMember0 $port100
-set portName101 "u_v_0"
+set portName101 "o_a_0"
 set portInterface101 "wire"
-set structName101 "underlying_variables"
+set structName101 "option_attributes"
 set structMember101 ""
-set portName1110 "gamma"
+set portName1110 "strike_price"
 set portInterface1110 "wire"
 set portData1110 "float"
 set portPointer1110 "0"
@@ -1467,7 +1500,7 @@ set portVolatile1110 "0"
 set portArrayOpt1110 ""
 set port1110 [list $portName1110 $portInterface1110 $portData1110 $portPointer1110 $portArrayDim1110 $portConst1110 $portVolatile1110 $portArrayOpt1110]
 lappend structMember101 $port1110
-set portName1111 "time"
+set portName1111 "time_period"
 set portInterface1111 "wire"
 set portData1111 "float"
 set portPointer1111 "0"
@@ -1477,6 +1510,16 @@ set portVolatile1111 "0"
 set portArrayOpt1111 ""
 set port1111 [list $portName1111 $portInterface1111 $portData1111 $portPointer1111 $portArrayDim1111 $portConst1111 $portVolatile1111 $portArrayOpt1111]
 lappend structMember101 $port1111
+set portName1112 "call"
+set portInterface1112 "wire"
+set portData1112 "float"
+set portPointer1112 "0"
+set portArrayDim1112 0
+set portConst1112 "0"
+set portVolatile1112 "0"
+set portArrayOpt1112 ""
+set port1112 [list $portName1112 $portInterface1112 $portData1112 $portPointer1112 $portArrayDim1112 $portConst1112 $portVolatile1112 $portArrayOpt1112]
+lappend structMember101 $port1112
 set portData101 [list $structName101 "struct  " $structMember101 0 0]
 set portPointer101 "0"
 set portArrayDim101 0
@@ -1485,80 +1528,6 @@ set portVolatile101 "0"
 set portArrayOpt101 ""
 set port101 [list $portName101 $portInterface101 $portData101 $portPointer101 $portArrayDim101 $portConst101 $portVolatile101 $portArrayOpt101]
 lappend structMember0 $port101
-set portName102 "o_a_0"
-set portInterface102 "wire"
-set structName102 "option_attributes"
-set structMember102 ""
-set portName1120 "strike_price"
-set portInterface1120 "wire"
-set portData1120 "float"
-set portPointer1120 "0"
-set portArrayDim1120 0
-set portConst1120 "0"
-set portVolatile1120 "0"
-set portArrayOpt1120 ""
-set port1120 [list $portName1120 $portInterface1120 $portData1120 $portPointer1120 $portArrayDim1120 $portConst1120 $portVolatile1120 $portArrayOpt1120]
-lappend structMember102 $port1120
-set portName1121 "time_period"
-set portInterface1121 "wire"
-set portData1121 "float"
-set portPointer1121 "0"
-set portArrayDim1121 0
-set portConst1121 "0"
-set portVolatile1121 "0"
-set portArrayOpt1121 ""
-set port1121 [list $portName1121 $portInterface1121 $portData1121 $portPointer1121 $portArrayDim1121 $portConst1121 $portVolatile1121 $portArrayOpt1121]
-lappend structMember102 $port1121
-set portName1122 "call"
-set portInterface1122 "wire"
-set portData1122 "float"
-set portPointer1122 "0"
-set portArrayDim1122 0
-set portConst1122 "0"
-set portVolatile1122 "0"
-set portArrayOpt1122 ""
-set port1122 [list $portName1122 $portInterface1122 $portData1122 $portPointer1122 $portArrayDim1122 $portConst1122 $portVolatile1122 $portArrayOpt1122]
-lappend structMember102 $port1122
-set portData102 [list $structName102 "struct  " $structMember102 0 0]
-set portPointer102 "0"
-set portArrayDim102 0
-set portConst102 "0"
-set portVolatile102 "0"
-set portArrayOpt102 ""
-set port102 [list $portName102 $portInterface102 $portData102 $portPointer102 $portArrayDim102 $portConst102 $portVolatile102 $portArrayOpt102]
-lappend structMember0 $port102
-set portName103 "o_v_0"
-set portInterface103 "wire"
-set structName103 "option_variables"
-set structMember103 ""
-set portName1130 "delta_time"
-set portInterface1130 "wire"
-set portData1130 "float"
-set portPointer1130 "0"
-set portArrayDim1130 0
-set portConst1130 "0"
-set portVolatile1130 "0"
-set portArrayOpt1130 ""
-set port1130 [list $portName1130 $portInterface1130 $portData1130 $portPointer1130 $portArrayDim1130 $portConst1130 $portVolatile1130 $portArrayOpt1130]
-lappend structMember103 $port1130
-set portName1131 "value"
-set portInterface1131 "wire"
-set portData1131 "float"
-set portPointer1131 "0"
-set portArrayDim1131 0
-set portConst1131 "0"
-set portVolatile1131 "0"
-set portArrayOpt1131 ""
-set port1131 [list $portName1131 $portInterface1131 $portData1131 $portPointer1131 $portArrayDim1131 $portConst1131 $portVolatile1131 $portArrayOpt1131]
-lappend structMember103 $port1131
-set portData103 [list $structName103 "struct  " $structMember103 0 0]
-set portPointer103 "0"
-set portArrayDim103 0
-set portConst103 "0"
-set portVolatile103 "0"
-set portArrayOpt103 ""
-set port103 [list $portName103 $portInterface103 $portData103 $portPointer103 $portArrayDim103 $portConst103 $portVolatile103 $portArrayOpt103]
-lappend structMember0 $port103
 set portData0 [list $structName0 "struct  " $structMember0 0 0]
 set portPointer0 "1"
 set portArrayDim0 0
@@ -1577,6 +1546,16 @@ set portVolatile1 "0"
 set portArrayOpt1 ""
 set port1 [list $portName1 $portInterface1 $portData1 $portPointer1 $portArrayDim1 $portConst1 $portVolatile1 $portArrayOpt1]
 lappend portList $port1
+set portName2 "result_sqrd_0"
+set portInterface2 "[list fifo 0]"
+set portData2 "float"
+set portPointer2 "0"
+set portArrayDim2 [list 100]
+set portConst2 "0"
+set portVolatile2 "0"
+set portArrayOpt2 ""
+set port2 [list $portName2 $portInterface2 $portData2 $portPointer2 $portArrayDim2 $portConst2 $portVolatile2 $portArrayOpt2]
+lappend portList $port2
 set dataPackList ""
 set module [list $moduleName $portList $rawDecl $argAPint $returnAPint $dataPackList]
 set hasCPPAPInt 0

@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xd" xd:functionName="vivado_activity_thread" xd:componentRef="vivado_activity_thread" xd:initiationInterval="15566605" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64">
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xd" xd:functionName="vivado_activity_thread" xd:componentRef="vivado_activity_thread" xd:initiationInterval="15566305" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64">
   <xd:controlReg xd:name="control" xd:interfaceRef="ap_ctrl" xd:busTypeRef="acc_handshake" xd:type="acc_handshake"/>
   <xd:arg xd:name="kernel_arg-&gt;u_a_0.rfir" xd:originalName="kernel_arg" xd:direction="in" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x14" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
   <xd:arg xd:name="kernel_arg-&gt;u_a_0.current_price" xd:originalName="kernel_arg" xd:direction="in" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x1C" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
-  <xd:arg xd:name="kernel_arg-&gt;u_v_0.gamma" xd:originalName="kernel_arg" xd:direction="out" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x24" xd:handshakeRef="ap_vld" xd:dataWidth="32"/>
-  <xd:arg xd:name="kernel_arg-&gt;u_v_0.time" xd:originalName="kernel_arg" xd:direction="out" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x2C" xd:handshakeRef="ap_vld" xd:dataWidth="32"/>
-  <xd:arg xd:name="kernel_arg-&gt;o_a_0.strike_price" xd:originalName="kernel_arg" xd:direction="in" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x34" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
-  <xd:arg xd:name="kernel_arg-&gt;o_a_0.time_period" xd:originalName="kernel_arg" xd:direction="in" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x3C" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
-  <xd:arg xd:name="kernel_arg-&gt;o_a_0.call" xd:originalName="kernel_arg" xd:direction="in" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x44" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
-  <xd:arg xd:name="kernel_arg-&gt;o_v_0.delta_time" xd:originalName="kernel_arg" xd:direction="in" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x4C" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
-  <xd:arg xd:name="kernel_arg-&gt;o_v_0.value" xd:originalName="kernel_arg" xd:direction="out" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x54" xd:handshakeRef="ap_vld" xd:dataWidth="32"/>
+  <xd:arg xd:name="kernel_arg-&gt;o_a_0.strike_price" xd:originalName="kernel_arg" xd:direction="in" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x24" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
+  <xd:arg xd:name="kernel_arg-&gt;o_a_0.time_period" xd:originalName="kernel_arg" xd:direction="in" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x2C" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
+  <xd:arg xd:name="kernel_arg-&gt;o_a_0.call" xd:originalName="kernel_arg" xd:direction="in" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0x34" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
   <xd:arg xd:name="result_0[]" xd:originalName="result_0" xd:direction="out" xd:interfaceRef="result_0" xd:busTypeRef="acc_fifo" xd:arraySize="100" xd:dataWidth="32"/>
-  <xd:latencyEstimates xd:best-case="15566604" xd:worst-case="15566604" xd:average-case="15566604"/>
-  <xd:resourceEstimates xd:LUT="5026" xd:FF="3067" xd:BRAM="0" xd:DSP="42"/>
+  <xd:arg xd:name="result_sqrd_0[]" xd:originalName="result_sqrd_0" xd:direction="out" xd:interfaceRef="result_sqrd_0" xd:busTypeRef="acc_fifo" xd:arraySize="100" xd:dataWidth="32"/>
+  <xd:latencyEstimates xd:best-case="15566304" xd:worst-case="15566304" xd:average-case="15566304"/>
+  <xd:resourceEstimates xd:LUT="4898" xd:FF="3003" xd:BRAM="0" xd:DSP="42"/>
 </xd:acceleratorMap>

@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date         : Fri Mar 28 17:05:58 2014
+| Date         : Mon Mar 31 15:10:30 2014
 | Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_utilization -file vivado_activity_thread_utilization_synth.rpt -pb vivado_activity_thread_utilization_synth.pb
 | Design       : vivado_activity_thread
@@ -29,11 +29,11 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Loced | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |  361 |     0 |     53200 |  0.67 |
-|   LUT as Logic          |  361 |     0 |     53200 |  0.67 |
+| Slice LUTs*             |  311 |     0 |     53200 |  0.58 |
+|   LUT as Logic          |  311 |     0 |     53200 |  0.58 |
 |   LUT as Memory         |    0 |     0 |     17400 |  0.00 |
-| Slice Registers         | 1008 |     0 |    106400 |  0.94 |
-|   Register as Flip Flop | 1008 |     0 |    106400 |  0.94 |
+| Slice Registers         |  944 |     0 |    106400 |  0.88 |
+|   Register as Flip Flop |  944 |     0 |    106400 |  0.88 |
 |   Register as Latch     |    0 |     0 |    106400 |  0.00 |
 | F7 Muxes                |    0 |     0 |     26600 |  0.00 |
 | F8 Muxes                |    0 |     0 |     13300 |  0.00 |
@@ -128,14 +128,13 @@ Table of Contents
 +----------+------+
 | Ref Name | Used |
 +----------+------+
-| FDRE     |  993 |
-| LUT6     |  102 |
-| LUT5     |   98 |
-| LUT2     |   74 |
-| LUT3     |   67 |
-| FDSE     |   15 |
+| FDRE     |  944 |
+| LUT6     |  137 |
+| LUT3     |  104 |
+| LUT4     |   30 |
+| LUT5     |   14 |
 | LUT1     |   14 |
-| LUT4     |    6 |
+| LUT2     |   12 |
 | CARRY4   |    3 |
 +----------+------+
 

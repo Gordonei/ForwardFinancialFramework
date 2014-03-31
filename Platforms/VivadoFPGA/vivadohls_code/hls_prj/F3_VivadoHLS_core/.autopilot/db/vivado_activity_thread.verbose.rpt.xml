@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'vivado_activity_thread'" level="0">
-<item name = "Date">Fri Mar 28 17:53:31 2014
+<item name = "Date">Mon Mar 31 15:01:00 2014
 </item>
 <item name = "Version">2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)</item>
 <item name = "Project">hls_prj</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">15566604, 15566604, 15566605, 15566605, none</column>
+<column name="">15566304, 15566304, 15566305, 15566305, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,8 +35,8 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- PATHSET_LOOP">15566600, 15566600, 155666, -, -, 100, no</column>
-<column name=" + PATH_LOOP">155656, 155656, 38, -, -, 4096, no</column>
+<column name="- PATHSET_LOOP">15566300, 15566300, 155663, -, -, 100, no</column>
+<column name=" + PATH_LOOP">155650, 155650, 38, -, -, 4096, no</column>
 </table>
 </item>
 </section>
@@ -52,8 +52,8 @@
 <column name="FIFO">-, -, -, -</column>
 <column name="Instance">-, 42, 2508, 4542</column>
 <column name="Memory">-, -, -, -</column>
-<column name="Multiplexer">-, -, -, 406</column>
-<column name="Register">-, -, 559, -</column>
+<column name="Multiplexer">-, -, -, 278</column>
+<column name="Register">-, -, 495, -</column>
 <column name="ShiftMemory">-, -, -, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
 <specialColumn name="Utilization (%)">0, 19, 2, 9</specialColumn>
@@ -86,52 +86,46 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="p_1_fu_249_p2">+, 0, 0, 7, 7, 1</column>
-<column name="pp_1_fu_261_p2">+, 0, 0, 13, 13, 1</column>
-<column name="storemerge_i_fu_273_p3">Select, 0, 0, 32, 1, 32</column>
-<column name="exitcond1_fu_243_p2">icmp, 0, 0, 7, 7, 6</column>
-<column name="exitcond_fu_255_p2">icmp, 0, 0, 17, 13, 14</column>
-<column name="tmp_2_fu_267_p2">xor, 0, 0, 2, 1, 2</column>
+<column name="p_1_fu_207_p2">+, 0, 0, 7, 7, 1</column>
+<column name="pp_1_fu_219_p2">+, 0, 0, 13, 13, 1</column>
+<column name="o_v_0_value_fu_231_p3">Select, 0, 0, 32, 1, 32</column>
+<column name="exitcond1_fu_201_p2">icmp, 0, 0, 7, 7, 6</column>
+<column name="exitcond_fu_213_p2">icmp, 0, 0, 17, 13, 14</column>
+<column name="tmp_4_fu_225_p2">xor, 0, 0, 2, 1, 2</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
-<column name="grp_fu_204_opcode">2, 3, 2, 6</column>
-<column name="grp_fu_204_p0">32, 5, 32, 160</column>
-<column name="grp_fu_204_p1">32, 5, 32, 160</column>
-<column name="grp_fu_213_p0">32, 3, 32, 96</column>
-<column name="grp_fu_213_p1">32, 3, 32, 96</column>
-<column name="grp_fu_223_p0">32, 3, 32, 96</column>
-<column name="kernel_arg_o_v_0_value">32, 3, 32, 96</column>
-<column name="kernel_arg_u_v_0_gamma">32, 3, 32, 96</column>
-<column name="kernel_arg_u_v_0_gamma_load_2_reg_180">32, 2, 32, 64</column>
-<column name="kernel_arg_u_v_0_time">32, 3, 32, 96</column>
-<column name="kernel_arg_u_v_0_time_load_reg_168">32, 2, 32, 64</column>
-<column name="p_reg_145">7, 2, 7, 14</column>
-<column name="pp_reg_192">13, 2, 13, 26</column>
-<column name="tmp_2_pn_reg_156">64, 2, 64, 128</column>
+<column name="grp_fu_163_opcode">2, 3, 2, 6</column>
+<column name="grp_fu_163_p0">32, 4, 32, 128</column>
+<column name="grp_fu_163_p1">32, 4, 32, 128</column>
+<column name="grp_fu_170_p0">32, 4, 32, 128</column>
+<column name="grp_fu_170_p1">32, 4, 32, 128</column>
+<column name="grp_fu_182_p0">32, 3, 32, 96</column>
+<column name="p_reg_118">7, 2, 7, 14</column>
+<column name="pp_reg_151">13, 2, 13, 26</column>
+<column name="spot_price_0_0_in_reg_129">64, 2, 64, 128</column>
+<column name="u_v_gamma_read_assign_reg_139">32, 2, 32, 64</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="4">Name, FF, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">6, 6, 0</column>
-<column name="delta_time_0_reg_290">32, 32, 0</column>
-<column name="kernel_arg_u_v_0_gamma_load_2_reg_180">32, 32, 0</column>
-<column name="kernel_arg_u_v_0_time_load_reg_168">32, 32, 0</column>
-<column name="p_1_reg_304">7, 7, 0</column>
-<column name="p_reg_145">7, 7, 0</column>
-<column name="pp_1_reg_323">13, 13, 0</column>
-<column name="pp_reg_192">13, 13, 0</column>
-<column name="spot_price_0_0_in_reg_309">64, 64, 0</column>
-<column name="spot_price_0_reg_314">32, 32, 0</column>
-<column name="storemerge_i_reg_376">32, 32, 0</column>
-<column name="tmp_2_i_reg_343">32, 32, 0</column>
-<column name="tmp_2_pn_reg_156">64, 64, 0</column>
-<column name="tmp_2_reg_365">1, 1, 0</column>
-<column name="tmp_7_reg_355">64, 64, 0</column>
-<column name="tmp_i_4_reg_348">32, 32, 0</column>
-<column name="tmp_i_reg_338">32, 32, 0</column>
-<column name="tmp_reg_296">64, 64, 0</column>
+<column name="delta_time_0_reg_248">32, 32, 0</column>
+<column name="o_v_0_value_reg_328">32, 32, 0</column>
+<column name="p_1_reg_262">7, 7, 0</column>
+<column name="p_reg_118">7, 7, 0</column>
+<column name="pp_1_reg_276">13, 13, 0</column>
+<column name="pp_reg_151">13, 13, 0</column>
+<column name="spot_price_0_0_in_reg_129">64, 64, 0</column>
+<column name="spot_price_0_reg_267">32, 32, 0</column>
+<column name="tmp_4_reg_317">1, 1, 0</column>
+<column name="tmp_8_reg_302">64, 64, 0</column>
+<column name="tmp_9_reg_307">64, 64, 0</column>
+<column name="tmp_i_reg_291">32, 32, 0</column>
+<column name="tmp_reg_253">64, 64, 0</column>
+<column name="u_v_0_gamma_reg_296">32, 32, 0</column>
+<column name="u_v_gamma_read_assign_reg_139">32, 32, 0</column>
 </table>
 </item>
 </section>
@@ -149,19 +143,15 @@
 <column name="ap_ready">out, 1, ap_ctrl_hs, vivado_activity_thread, return value</column>
 <column name="kernel_arg_u_a_0_rfir">in, 32, ap_none, kernel_arg_u_a_0_rfir, pointer</column>
 <column name="kernel_arg_u_a_0_current_price">in, 32, ap_none, kernel_arg_u_a_0_current_price, pointer</column>
-<column name="kernel_arg_u_v_0_gamma">out, 32, ap_vld, kernel_arg_u_v_0_gamma, pointer</column>
-<column name="kernel_arg_u_v_0_gamma_ap_vld">out, 1, ap_vld, kernel_arg_u_v_0_gamma, pointer</column>
-<column name="kernel_arg_u_v_0_time">out, 32, ap_vld, kernel_arg_u_v_0_time, pointer</column>
-<column name="kernel_arg_u_v_0_time_ap_vld">out, 1, ap_vld, kernel_arg_u_v_0_time, pointer</column>
 <column name="kernel_arg_o_a_0_strike_price">in, 32, ap_none, kernel_arg_o_a_0_strike_price, pointer</column>
 <column name="kernel_arg_o_a_0_time_period">in, 32, ap_none, kernel_arg_o_a_0_time_period, pointer</column>
 <column name="kernel_arg_o_a_0_call">in, 32, ap_none, kernel_arg_o_a_0_call, pointer</column>
-<column name="kernel_arg_o_v_0_delta_time">in, 32, ap_none, kernel_arg_o_v_0_delta_time, pointer</column>
-<column name="kernel_arg_o_v_0_value">out, 32, ap_vld, kernel_arg_o_v_0_value, pointer</column>
-<column name="kernel_arg_o_v_0_value_ap_vld">out, 1, ap_vld, kernel_arg_o_v_0_value, pointer</column>
 <column name="result_0_din">out, 32, ap_fifo, result_0, pointer</column>
 <column name="result_0_full_n">in, 1, ap_fifo, result_0, pointer</column>
 <column name="result_0_write">out, 1, ap_fifo, result_0, pointer</column>
+<column name="result_sqrd_0_din">out, 32, ap_fifo, result_sqrd_0, pointer</column>
+<column name="result_sqrd_0_full_n">in, 1, ap_fifo, result_sqrd_0, pointer</column>
+<column name="result_sqrd_0_write">out, 1, ap_fifo, result_sqrd_0, pointer</column>
 </table>
 </item>
 </section>

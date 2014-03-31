@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: imperial:F3:vivado_activity_thread:1.0
--- IP Revision: 1403281650
+-- IP Revision: 1403311501
 
 -- The following code must appear in the VHDL architecture header.
 
@@ -57,6 +57,9 @@ COMPONENT zynq_system_vivado_activity_thread_0_0
     result_0_din : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     result_0_full_n : IN STD_LOGIC;
     result_0_write : OUT STD_LOGIC;
+    result_sqrd_0_din : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    result_sqrd_0_full_n : IN STD_LOGIC;
+    result_sqrd_0_write : OUT STD_LOGIC;
     ap_start : IN STD_LOGIC;
     ap_ready : OUT STD_LOGIC;
     ap_done : OUT STD_LOGIC;
@@ -85,7 +88,7 @@ END COMPONENT;
 ATTRIBUTE SYN_BLACK_BOX : BOOLEAN;
 ATTRIBUTE SYN_BLACK_BOX OF zynq_system_vivado_activity_thread_0_0 : COMPONENT IS TRUE;
 ATTRIBUTE BLACK_BOX_PAD_PIN : STRING;
-ATTRIBUTE BLACK_BOX_PAD_PIN OF zynq_system_vivado_activity_thread_0_0 : COMPONENT IS "result_0_din[31:0],result_0_full_n,result_0_write,ap_start,ap_ready,ap_done,ap_idle,s_axi_CORE_IO_AWADDR[6:0],s_axi_CORE_IO_AWVALID,s_axi_CORE_IO_AWREADY,s_axi_CORE_IO_WDATA[31:0],s_axi_CORE_IO_WSTRB[3:0],s_axi_CORE_IO_WVALID,s_axi_CORE_IO_WREADY,s_axi_CORE_IO_BRESP[1:0],s_axi_CORE_IO_BVALID,s_axi_CORE_IO_BREADY,s_axi_CORE_IO_ARADDR[6:0],s_axi_CORE_IO_ARVALID,s_axi_CORE_IO_ARREADY,s_axi_CORE_IO_RDATA[31:0],s_axi_CORE_IO_RRESP[1:0],s_axi_CORE_IO_RVALID,s_axi_CORE_IO_RREADY,aclk,aresetn";
+ATTRIBUTE BLACK_BOX_PAD_PIN OF zynq_system_vivado_activity_thread_0_0 : COMPONENT IS "result_0_din[31:0],result_0_full_n,result_0_write,result_sqrd_0_din[31:0],result_sqrd_0_full_n,result_sqrd_0_write,ap_start,ap_ready,ap_done,ap_idle,s_axi_CORE_IO_AWADDR[6:0],s_axi_CORE_IO_AWVALID,s_axi_CORE_IO_AWREADY,s_axi_CORE_IO_WDATA[31:0],s_axi_CORE_IO_WSTRB[3:0],s_axi_CORE_IO_WVALID,s_axi_CORE_IO_WREADY,s_axi_CORE_IO_BRESP[1:0],s_axi_CORE_IO_BVALID,s_axi_CORE_IO_BREADY,s_axi_CORE_IO_ARADDR[6:0],s_axi_CORE_IO_ARVALID,s_axi_CORE_IO_ARREADY,s_axi_CORE_IO_RDATA[31:0],s_axi_CORE_IO_RRESP[1:0],s_axi_CORE_IO_RVALID,s_axi_CORE_IO_RREADY,aclk,aresetn";
 
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
 
@@ -98,6 +101,9 @@ your_instance_name : zynq_system_vivado_activity_thread_0_0
     result_0_din => result_0_din,
     result_0_full_n => result_0_full_n,
     result_0_write => result_0_write,
+    result_sqrd_0_din => result_sqrd_0_din,
+    result_sqrd_0_full_n => result_sqrd_0_full_n,
+    result_sqrd_0_write => result_sqrd_0_write,
     ap_start => ap_start,
     ap_ready => ap_ready,
     ap_done => ap_done,

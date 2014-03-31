@@ -8,77 +8,114 @@ Copyright (C) 2013 Xilinx Inc. All rights reserved.
 @I [SYN-201] Setting up clock 'default' with a period of 10ns.
 @I [HLS-10] Setting target device to 'xc7z020clg484-1'
 @I [HLS-10] Analyzing design file 'srcs/vivado_core.c' ... 
-@E [HLS-70] Compilation errors found:
-srcs/vivado_core.c:9:18: warning: extra tokens at end of #include directive [-Wextra-tokens]
+srcs/vivado_core.c:7:18: warning: extra tokens at end of #include directive [-Wextra-tokens]
 #include "math.h";
                  ^
                  //
-srcs/vivado_core.c:10:21: warning: extra tokens at end of #include directive [-Wextra-tokens]
+srcs/vivado_core.c:8:21: warning: extra tokens at end of #include directive [-Wextra-tokens]
 #include "pthread.h";
                     ^
                     //
-srcs/vivado_core.c:11:20: warning: extra tokens at end of #include directive [-Wextra-tokens]
-#include "stdint.h";
-                   ^
-                   //
-srcs/vivado_core.c:12:20: warning: extra tokens at end of #include directive [-Wextra-tokens]
+srcs/vivado_core.c:9:20: warning: extra tokens at end of #include directive [-Wextra-tokens]
 #include "stdlib.h";
                    ^
                    //
-srcs/vivado_core.c:13:19: warning: extra tokens at end of #include directive [-Wextra-tokens]
+srcs/vivado_core.c:10:19: warning: extra tokens at end of #include directive [-Wextra-tokens]
 #include "stdio.h";
                   ^
                   //
-srcs/vivado_core.c:14:18: warning: extra tokens at end of #include directive [-Wextra-tokens]
+srcs/vivado_core.c:11:18: warning: extra tokens at end of #include directive [-Wextra-tokens]
 #include "time.h";
                  ^
                  //
-srcs/vivado_core.c:15:26: warning: extra tokens at end of #include directive [-Wextra-tokens]
+srcs/vivado_core.c:12:26: warning: extra tokens at end of #include directive [-Wextra-tokens]
 #include "sys/resource.h";
                          ^
                          //
-srcs/vivado_core.c:16:20: warning: extra tokens at end of #include directive [-Wextra-tokens]
+srcs/vivado_core.c:13:20: warning: extra tokens at end of #include directive [-Wextra-tokens]
 #include "unistd.h";
                    ^
                    //
-srcs/vivado_core.c:17:20: warning: extra tokens at end of #include directive [-Wextra-tokens]
+srcs/vivado_core.c:14:20: warning: extra tokens at end of #include directive [-Wextra-tokens]
 #include "string.h";
                    ^
                    //
-srcs/vivado_core.c:18:24: warning: extra tokens at end of #include directive [-Wextra-tokens]
+srcs/vivado_core.c:15:19: warning: extra tokens at end of #include directive [-Wextra-tokens]
+#include "gauss.h";
+                  ^
+                  //
+srcs/vivado_core.c:16:24: warning: extra tokens at end of #include directive [-Wextra-tokens]
 #include "underlying.h";
                        ^
                        //
-srcs/vivado_core.c:19:20: warning: extra tokens at end of #include directive [-Wextra-tokens]
+srcs/vivado_core.c:17:20: warning: extra tokens at end of #include directive [-Wextra-tokens]
 #include "option.h";
                    ^
                    //
-srcs/vivado_core.c:58:2: error: use of undeclared identifier 'pragma'
-        pragma HLS INTERFACE ap_fifo port=result_0
+srcs/vivado_core.c:129:2: warning: control reaches end of non-void function [-Wreturn-type]
+        }
         ^
-srcs/vivado_core.c:67:20: error: use of undeclared identifier 'p'
-        PATHSET_LOOP: for(p=0;p<PATHS;++p){
-                          ^
-srcs/vivado_core.c:67:24: error: use of undeclared identifier 'p'
-        PATHSET_LOOP: for(p=0;p<PATHS;++p){
-                              ^
-srcs/vivado_core.c:67:34: error: use of undeclared identifier 'p'
-        PATHSET_LOOP: for(p=0;p<PATHS;++p){
-                                        ^
-srcs/vivado_core.c:76:18: error: use of undeclared identifier 'pp'
-                PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){
-                               ^
-srcs/vivado_core.c:76:23: error: use of undeclared identifier 'pp'
-                PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){
-                                    ^
-srcs/vivado_core.c:76:42: error: use of undeclared identifier 'pp'
-                PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){
-                                                       ^
-srcs/vivado_core.c:87:12: error: use of undeclared identifier 'p'
-                result_0[p] = kernel_arg->o_v_0.value;
-                         ^
-srcs/vivado_core.c:88:17: error: use of undeclared identifier 'p'
-                result_sqrd_0[p] = kernel_arg->o_v_0.value*kernel_arg->o_v_0.value;
-                              ^
-11 warnings and 9 errors generated.
+12 warnings generated.
+@I [HLS-10] Analyzing design file 'srcs/heston_underlying.c' ... 
+@I [HLS-10] Analyzing design file 'srcs/gauss.c' ... 
+@I [HLS-10] Analyzing design file 'srcs/european_option.c' ... 
+@I [HLS-10] Analyzing design file 'srcs/double_barrier_option.c' ... 
+@I [HLS-10] Analyzing design file 'srcs/digital_double_barrier_option.c' ... 
+@I [HLS-10] Analyzing design file 'srcs/black_scholes_underlying.c' ... 
+@I [HLS-10] Analyzing design file 'srcs/barrier_option.c' ... 
+@I [HLS-10] Analyzing design file 'srcs/asian_option.c' ... 
+@I [HLS-10] Analyzing design file 'srcs/underlying.c' ... 
+@I [HLS-10] Analyzing design file 'srcs/option.c' ... 
+@I [HLS-10] Importing test bench file 'srcs/tb.c' ... 
+@I [HLS-10] Validating synthesis directives ...
+@I [HLS-10] Starting code transformations ...
+@I [HLS-10] Checking synthesizability ...
+@I [XFORM-602] Inlining function 'underlying_underlying_path' into 'vivado_activity_thread' (srcs/vivado_core.c:76) automatically.
+@I [XFORM-602] Inlining function 'option_derivative_payoff' into 'vivado_activity_thread' (srcs/vivado_core.c:82) automatically.
+@I [XFORM-401] Performing if-conversion on hyperblock to (srcs/vivado_core.c:65:30) in function 'vivado_activity_thread'... converting 4 basic blocks.
+@I [HLS-111] Elapsed time: 8.49 seconds; current memory usage: 295 MB.
+@I [HLS-10] Starting hardware synthesis ...
+@I [HLS-10] Synthesizing 'vivado_activity_thread' ...
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Scheduling module 'vivado_activity_thread' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-111] Elapsed time: 0.08 seconds; current memory usage: 296 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Exploring micro-architecture for module 'vivado_activity_thread' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-111] Elapsed time: 0.03 seconds; current memory usage: 297 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'vivado_activity_thread' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/kernel_arg_u_a_0_rfir' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/kernel_arg_u_a_0_current_price' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/kernel_arg_o_a_0_strike_price' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/kernel_arg_o_a_0_time_period' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/kernel_arg_o_a_0_call' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/result_0' to 'ap_fifo'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/result_sqrd_0' to 'ap_fifo'.
+@I [RTGEN-500] Setting interface mode on function 'vivado_activity_thread' to 'ap_ctrl_hs'.
+@I [RTGEN-100] Generating core module 'vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp': 1 instance(s).
+@I [RTGEN-100] Generating core module 'vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp': 1 instance(s).
+@I [RTGEN-100] Generating core module 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp': 1 instance(s).
+@I [RTGEN-100] Generating core module 'vivado_activity_thread_fcmp_32ns_32ns_1_3': 1 instance(s).
+@I [RTGEN-100] Generating core module 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp': 1 instance(s).
+@I [RTGEN-100] Generating core module 'vivado_activity_thread_fpext_32ns_64_3': 1 instance(s).
+@I [RTGEN-100] Generating core module 'vivado_activity_thread_fptrunc_64ns_32_3': 1 instance(s).
+@I [RTGEN-100] Finished creating RTL model for 'vivado_activity_thread'.
+@I [HLS-111] Elapsed time: 0.06 seconds; current memory usage: 297 MB.
+@I [HLS-10] Finished generating all RTL models.
+@I [WSYSC-301] Generating RTL SystemC for 'vivado_activity_thread'.
+@I [WVHDL-304] Generating RTL VHDL for 'vivado_activity_thread'.
+@I [WVLOG-307] Generating RTL Verilog for 'vivado_activity_thread'.
+@I [IMPL-8] Exporting RTL as an IP in IP-XACT.
+@I [IMPL-8] Starting RTL evaluation using Vivado ...
+@I [HLS-112] Total elapsed time: 740.855 seconds; peak memory usage: 297 MB.
 @I [LIC-101] Checked in feature [HLS]

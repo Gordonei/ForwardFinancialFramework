@@ -2,16 +2,21 @@
 <sourceFile name="">
 <directive functionLabel="" functionName="vivado_activity_thread" label="">
 <pragma name="RESOURCE">
-<option name="variable" positionalBoolean="4" value="thread_arg"/>
+<option name="variable" positionalBoolean="4" value="kernel_arg"/>
 <option name="core" value="AXI_SLAVE"/>
 <option name="metadata" value="&quot;-bus_bundle CORE_IO&quot;"/>
 </pragma>
 </directive>
 <directive functionLabel="" functionName="vivado_activity_thread" label="">
-<pragma name="RESOURCE">
-<option name="variable" positionalBoolean="4" value="return"/>
-<option name="core" value="AXI_SLAVE"/>
-<option name="metadata" value="&quot;-bus_bundle CORE_IO&quot;"/>
+<pragma name="INTERFACE">
+<option name="ap_fifo" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="result_0"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="vivado_activity_thread" label="">
+<pragma name="INTERFACE">
+<option name="ap_fifo" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="result_sqrd_0"/>
 </pragma>
 </directive>
 </sourceFile>

@@ -34,9 +34,9 @@ set SCTraceFileName "mytrace"
 set SCTraceFileFormat "vcd"
 set SCTraceOption "all"
 set TargetInfo "xc7z020:clg484:-1"
-set SourceFiles {sc {} c {../../srcs/vivado_core.c ../../srcs/asian_option.c ../../srcs/digital_double_barrier_option.c ../../srcs/double_barrier_option.c ../../srcs/barrier_option.c ../../srcs/european_option.c ../../srcs/option.c ../../srcs/heston_underlying.c ../../srcs/black_scholes_underlying.c ../../srcs/gauss.c ../../srcs/underlying.c}}
-set SourceFlags {sc {} c {{-DFP_t=float -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} -DFP_t=float -DFP_t=float -DFP_t=float -DFP_t=float -DFP_t=float -DFP_t=float {-DFP_t=float -DTAUS_BOXMULLER -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} {-DFP_t=float -DTAUS_BOXMULLER -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} {-DFP_t=float -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} -DFP_t=float}}
-set DirectiveFile {/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/F3_VivadoHLS_core.directive}
+set SourceFiles {sc {} c {../../srcs/vivado_core.c ../../srcs/heston_underlying.c ../../srcs/gauss.c ../../srcs/european_option.c ../../srcs/double_barrier_option.c ../../srcs/digital_double_barrier_option.c ../../srcs/black_scholes_underlying.c ../../srcs/barrier_option.c ../../srcs/asian_option.c ../../srcs/underlying.c ../../srcs/option.c}}
+set SourceFlags {sc {} c {{} {-DFP_t=float -DTAUS_BOXMULLER -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} {-DFP_t=float -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} -DFP_t=float -DFP_t=float -DFP_t=float {-DFP_t=float -DTAUS_BOXMULLER -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} -DFP_t=float -DFP_t=float -DFP_t=float -DFP_t=float}}
+set DirectiveFile {/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/F3_VivadoHLS_core.directive}
 set TBFiles {verilog ../../srcs/tb.c bc ../../srcs/tb.c vhdl ../../srcs/tb.c sc ../../srcs/tb.c cas ../../srcs/tb.c c {}}
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
@@ -45,7 +45,7 @@ set TBInstNames {verilog {} bc {} vhdl {} sc {} cas {} c {}}
 set ExtraGlobalOptions {"area_timing" 1 "clock_gate" 1 "impl_flow" map "power_gate" 0}
 set PlatformFiles {{DefaultPlatform {xilinx/zynq/zynq xilinx/zynq/zynq_fpv6}}}
 set DefaultPlatform "DefaultPlatform"
-set TBTVFileNotFound "../../src/tb.c ../../tb.c"
+set TBTVFileNotFound ""
 set AppFile "../vivado_hls.app"
 set ApsFile "F3_VivadoHLS_core.aps"
 set AvePath "../.."

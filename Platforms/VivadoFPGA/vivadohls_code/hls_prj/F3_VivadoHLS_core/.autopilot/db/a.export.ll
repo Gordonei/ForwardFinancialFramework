@@ -1,4 +1,4 @@
-; ModuleID = '/mnt/cas_nfs/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/.autopilot/db/a.o.2.bc'
+; ModuleID = '/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/.autopilot/db/a.o.2.bc'
 target datalayout = "e-p:64:64:64-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:128:128-a0:0:64-s0:64:64-f80:128:128-n8:16:32:64-S128"
 target triple = "x86_64-unknown-linux-gnu"
 
@@ -8,12 +8,12 @@ target triple = "x86_64-unknown-linux-gnu"
 @setup_end_tv_nsec = common global i64 0
 @start_tv_sec = common global i64 0
 @start_tv_nsec = common global i64 0
-@p_str109 = private unnamed_addr constant [1 x i8] zeroinitializer, align 1
-@p_str110 = private unnamed_addr constant [10 x i8] c"AXI_SLAVE\00", align 1
-@p_str111 = private unnamed_addr constant [20 x i8] c"-bus_bundle CORE_IO\00", align 1
-@p_str112 = private unnamed_addr constant [8 x i8] c"ap_fifo\00", align 1
-@p_str113 = private unnamed_addr constant [13 x i8] c"PATHSET_LOOP\00", align 1
-@p_str114 = private unnamed_addr constant [10 x i8] c"PATH_LOOP\00", align 1
+@p_str105 = private unnamed_addr constant [1 x i8] zeroinitializer, align 1
+@p_str106 = private unnamed_addr constant [10 x i8] c"AXI_SLAVE\00", align 1
+@p_str107 = private unnamed_addr constant [20 x i8] c"-bus_bundle CORE_IO\00", align 1
+@p_str108 = private unnamed_addr constant [8 x i8] c"ap_fifo\00", align 1
+@p_str109 = private unnamed_addr constant [13 x i8] c"PATHSET_LOOP\00", align 1
+@p_str110 = private unnamed_addr constant [10 x i8] c"PATH_LOOP\00", align 1
 @i = common global i32 0, align 4
 @j = common global i32 0, align 4
 @discount_0_0 = common global float 0.000000e+00, align 4
@@ -76,20 +76,18 @@ entry:
   ret i32 0
 }
 
-define void @vivado_activity_thread(float* %kernel_arg_u_a_0_rfir, float* %kernel_arg_u_a_0_current_price, float* %kernel_arg_u_v_0_gamma, float* %kernel_arg_u_v_0_time, float* %kernel_arg_o_a_0_strike_price, float* %kernel_arg_o_a_0_time_period, float* %kernel_arg_o_a_0_call, float* %kernel_arg_o_v_0_delta_time, float* %kernel_arg_o_v_0_value, float* %result_0) {
+define void @vivado_activity_thread(float* %kernel_arg_u_a_0_rfir, float* %kernel_arg_u_a_0_current_price, float* %kernel_arg_o_a_0_strike_price, float* %kernel_arg_o_a_0_time_period, float* %kernel_arg_o_a_0_call, float* %result_0, float* %result_sqrd_0) {
   call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_a_0_rfir), !map !94
   call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_a_0_current_price), !map !98
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_v_0_gamma), !map !102
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_v_0_time), !map !106
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_strike_price), !map !110
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_time_period), !map !114
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_call), !map !118
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_v_0_delta_time), !map !122
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_v_0_value), !map !126
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %result_0), !map !130
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_strike_price), !map !102
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_time_period), !map !106
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_call), !map !110
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %result_0), !map !114
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %result_sqrd_0), !map !120
   call void (...)* @_ssdm_op_SpecTopModule([23 x i8]* @str) nounwind
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, float* %kernel_arg_u_a_0_current_price, float* %kernel_arg_u_v_0_gamma, float* %kernel_arg_u_v_0_time, float* %kernel_arg_o_a_0_strike_price, float* %kernel_arg_o_a_0_time_period, float* %kernel_arg_o_a_0_call, float* %kernel_arg_o_v_0_delta_time, float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecFifo(float* %result_0, [8 x i8]* @p_str112, i32 0, i32 0, i32 0, [1 x i8]* @p_str109)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, float* %kernel_arg_u_a_0_current_price, float* %kernel_arg_o_a_0_strike_price, float* %kernel_arg_o_a_0_time_period, float* %kernel_arg_o_a_0_call, [1 x i8]* @p_str105, [10 x i8]* @p_str106, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [20 x i8]* @p_str107)
+  call void (...)* @_ssdm_op_SpecFifo(float* %result_0, [8 x i8]* @p_str108, i32 0, i32 0, i32 0, [1 x i8]* @p_str105)
+  call void (...)* @_ssdm_op_SpecFifo(float* %result_sqrd_0, [8 x i8]* @p_str108, i32 0, i32 0, i32 0, [1 x i8]* @p_str105)
   %kernel_arg_o_a_0_time_period_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_time_period)
   %delta_time_0 = fmul float %kernel_arg_o_a_0_time_period_read, 0x3F30000000000000
   %kernel_arg_u_a_0_current_price_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_u_a_0_current_price)
@@ -104,22 +102,14 @@ define void @vivado_activity_thread(float* %kernel_arg_u_a_0_rfir, float* %kerne
   br i1 %exitcond1, label %5, label %2
 
 ; <label>:2                                       ; preds = %1
-  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str113) nounwind
-  %tmp_5 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str113)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_time, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_gamma, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_gamma, float 0.000000e+00)
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_time, float 0.000000e+00)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_o_v_0_value, float 0.000000e+00)
+  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str109) nounwind
+  %tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str109)
   br label %3
 
 ; <label>:3                                       ; preds = %4, %2
-  %kernel_arg_u_v_0_time_load = phi float [ 0.000000e+00, %2 ], [ %tmp_2_i, %4 ]
-  %kernel_arg_u_v_0_gamma_load_2 = phi float [ 0.000000e+00, %2 ], [ %tmp_i_4, %4 ]
+  %u_v_gamma_read_assign = phi float [ 0.000000e+00, %2 ], [ %u_v_0_gamma, %4 ]
   %pp = phi i13 [ 0, %2 ], [ %pp_1, %4 ]
-  %tmp_2_pn = phi double [ 1.000000e+00, %2 ], [ %tmp_8, %4 ]
-  %spot_price_0_0_in = fmul double %tmp, %tmp_2_pn
+  %spot_price_0_0_in = phi double [ %tmp, %2 ], [ %tmp_s, %4 ]
   %spot_price_0 = fptrunc double %spot_price_0_0_in to float
   %exitcond = icmp eq i13 %pp, -4096
   %empty_3 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4096, i64 4096, i64 4096)
@@ -127,36 +117,32 @@ define void @vivado_activity_thread(float* %kernel_arg_u_a_0_rfir, float* %kerne
   br i1 %exitcond, label %_ifconv, label %4
 
 ; <label>:4                                       ; preds = %3
-  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str114) nounwind
-  %tmp_6 = call i32 (...)* @_ssdm_op_SpecRegionBegin([10 x i8]* @p_str114)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_time, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_gamma, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str110) nounwind
+  %tmp_2 = call i32 (...)* @_ssdm_op_SpecRegionBegin([10 x i8]* @p_str110)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, [1 x i8]* @p_str105, [10 x i8]* @p_str106, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [20 x i8]* @p_str107)
   %kernel_arg_u_a_0_rfir_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_u_a_0_rfir)
   %tmp_i = fmul float %kernel_arg_u_a_0_rfir_read, %delta_time_0
-  %tmp_i_4 = fadd float %kernel_arg_u_v_0_gamma_load_2, %tmp_i
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_gamma, float %tmp_i_4)
-  %tmp_2_i = fadd float %kernel_arg_u_v_0_time_load, %delta_time_0
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_time, float %tmp_2_i)
-  %tmp_7 = fpext float %tmp_i_4 to double
-  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
-  %empty_5 = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_str114, i32 %tmp_6)
+  %u_v_0_gamma = fadd float %tmp_i, %u_v_gamma_read_assign
+  %tmp_8 = fpext float %u_v_0_gamma to double
+  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
+  %tmp_s = fmul double %tmp, %tmp_9
+  %empty_4 = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_str110, i32 %tmp_2)
   br label %3
 
 _ifconv:                                          ; preds = %3
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_call, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_strike_price, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_call, [1 x i8]* @p_str105, [10 x i8]* @p_str106, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [20 x i8]* @p_str107)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_strike_price, [1 x i8]* @p_str105, [10 x i8]* @p_str106, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [20 x i8]* @p_str107)
   %kernel_arg_o_a_0_call_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_call)
-  %tmp_1 = fcmp oeq float %kernel_arg_o_a_0_call_read, 0.000000e+00
-  %tmp_2 = xor i1 %tmp_1, true
+  %tmp_3 = fcmp oeq float %kernel_arg_o_a_0_call_read, 0.000000e+00
+  %tmp_4 = xor i1 %tmp_3, true
   %kernel_arg_o_a_0_strike_price_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_strike_price)
-  %tmp_i3 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
-  %tmp_1_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
-  %storemerge_i = select i1 %tmp_2, float %tmp_i3, float %tmp_1_i
-  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_o_v_0_value, float %storemerge_i)
-  call void @_ssdm_op_Write.ap_fifo.volatile.floatP(float* %result_0, float %storemerge_i)
-  %empty_6 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str113, i32 %tmp_5)
+  %tmp_i_5 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
+  %tmp_2_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
+  %o_v_0_value = select i1 %tmp_4, float %tmp_i_5, float %tmp_2_i
+  call void @_ssdm_op_Write.ap_fifo.volatile.floatP(float* %result_0, float %o_v_0_value)
+  %tmp_5 = fmul float %o_v_0_value, %o_v_0_value
+  call void @_ssdm_op_Write.ap_fifo.volatile.floatP(float* %result_sqrd_0, float %tmp_5)
+  %empty_6 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str109, i32 %tmp_1)
   br label %1
 
 ; <label>:5                                       ; preds = %1
@@ -167,12 +153,6 @@ define weak float @_ssdm_op_Read.ap_auto.floatP(float*) {
 entry:
   %empty = load float* %0
   ret float %empty
-}
-
-define weak void @_ssdm_op_Write.ap_auto.floatP(float*, float) {
-entry:
-  store float %1, float* %0
-  ret void
 }
 
 define weak void @_ssdm_op_Write.ap_fifo.volatile.floatP(float*, float) {
@@ -290,34 +270,22 @@ declare float @_autotb_FifoWrite_float(float*, float)
 !102 = metadata !{metadata !103}
 !103 = metadata !{i32 0, i32 31, metadata !104}
 !104 = metadata !{metadata !105}
-!105 = metadata !{metadata !"kernel_arg.u_v_0.gamma", metadata !5, metadata !"float"}
+!105 = metadata !{metadata !"kernel_arg.o_a_0.strike_price", metadata !5, metadata !"float"}
 !106 = metadata !{metadata !107}
 !107 = metadata !{i32 0, i32 31, metadata !108}
 !108 = metadata !{metadata !109}
-!109 = metadata !{metadata !"kernel_arg.u_v_0.time", metadata !5, metadata !"float"}
+!109 = metadata !{metadata !"kernel_arg.o_a_0.time_period", metadata !5, metadata !"float"}
 !110 = metadata !{metadata !111}
 !111 = metadata !{i32 0, i32 31, metadata !112}
 !112 = metadata !{metadata !113}
-!113 = metadata !{metadata !"kernel_arg.o_a_0.strike_price", metadata !5, metadata !"float"}
+!113 = metadata !{metadata !"kernel_arg.o_a_0.call", metadata !5, metadata !"float"}
 !114 = metadata !{metadata !115}
 !115 = metadata !{i32 0, i32 31, metadata !116}
 !116 = metadata !{metadata !117}
-!117 = metadata !{metadata !"kernel_arg.o_a_0.time_period", metadata !5, metadata !"float"}
+!117 = metadata !{metadata !"result_0", metadata !118, metadata !"float"}
 !118 = metadata !{metadata !119}
-!119 = metadata !{i32 0, i32 31, metadata !120}
+!119 = metadata !{i32 0, i32 99, i32 1}
 !120 = metadata !{metadata !121}
-!121 = metadata !{metadata !"kernel_arg.o_a_0.call", metadata !5, metadata !"float"}
+!121 = metadata !{i32 0, i32 31, metadata !122}
 !122 = metadata !{metadata !123}
-!123 = metadata !{i32 0, i32 31, metadata !124}
-!124 = metadata !{metadata !125}
-!125 = metadata !{metadata !"kernel_arg.o_v_0.delta_time", metadata !5, metadata !"float"}
-!126 = metadata !{metadata !127}
-!127 = metadata !{i32 0, i32 31, metadata !128}
-!128 = metadata !{metadata !129}
-!129 = metadata !{metadata !"kernel_arg.o_v_0.value", metadata !5, metadata !"float"}
-!130 = metadata !{metadata !131}
-!131 = metadata !{i32 0, i32 31, metadata !132}
-!132 = metadata !{metadata !133}
-!133 = metadata !{metadata !"result_0", metadata !134, metadata !"float"}
-!134 = metadata !{metadata !135}
-!135 = metadata !{i32 0, i32 99, i32 1}
+!123 = metadata !{metadata !"result_sqrd_0", metadata !118, metadata !"float"}

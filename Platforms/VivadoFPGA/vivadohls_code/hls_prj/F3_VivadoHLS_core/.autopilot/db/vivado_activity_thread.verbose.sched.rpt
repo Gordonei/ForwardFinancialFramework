@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'vivado_activity_thread'
 ================================================================
-* Date:           Fri Mar 28 17:53:29 2014
+* Date:           Mon Mar 31 15:01:00 2014
 
 * Version:        2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)
 * Project:        hls_prj
@@ -29,7 +29,7 @@
     |       Latency       |       Interval      | Pipeline|
     |    min   |    max   |    min   |    max   |   Type  |
     +----------+----------+----------+----------+---------+
-    |  15566604|  15566604|  15566605|  15566605|   none  |
+    |  15566304|  15566304|  15566305|  15566305|   none  |
     +----------+----------+----------+----------+---------+
 
     + Detail: 
@@ -41,8 +41,8 @@
         |                |       Latency       | Iteration|  Initiation Interval  | Trip |          |
         |    Loop Name   |    min   |    max   |  Latency |  achieved |   target  | Count| Pipelined|
         +----------------+----------+----------+----------+-----------+-----------+------+----------+
-        |- PATHSET_LOOP  |  15566600|  15566600|    155666|          -|          -|   100|    no    |
-        | + PATH_LOOP    |    155656|    155656|        38|          -|          -|  4096|    no    |
+        |- PATHSET_LOOP  |  15566300|  15566300|    155663|          -|          -|   100|    no    |
+        | + PATH_LOOP    |    155650|    155650|        38|          -|          -|  4096|    no    |
         +----------------+----------+----------+----------+-----------+-----------+------+----------+
 
 
@@ -125,7 +125,7 @@ IsGatedGlobalClock: 0
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states: 51
+* Number of FSM states: 54
 * Pipeline: 0
 * Dataflow Pipeline: 0
 
@@ -145,7 +145,8 @@ IsGatedGlobalClock: 0
 7 --> 
 	8  / true
 8 --> 
-	9  / true
+	9  / (!exitcond)
+	44  / (exitcond)
 9 --> 
 	10  / true
 10 --> 
@@ -157,8 +158,7 @@ IsGatedGlobalClock: 0
 13 --> 
 	14  / true
 14 --> 
-	15  / (!exitcond)
-	44  / (exitcond)
+	15  / true
 15 --> 
 	16  / true
 16 --> 
@@ -232,84 +232,84 @@ IsGatedGlobalClock: 0
 50 --> 
 	51  / true
 51 --> 
+	52  / true
+52 --> 
+	53  / true
+53 --> 
+	54  / true
+54 --> 
 	5  / true
 * FSM state operations: 
 
  <State 1>: 5.70ns
 ST_1: kernel_arg_o_a_0_time_period_read [1/1] 0.00ns
-:13  %kernel_arg_o_a_0_time_period_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_time_period)
+:11  %kernel_arg_o_a_0_time_period_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_time_period)
 
 ST_1: delta_time_0 [4/4] 5.70ns
-:14  %delta_time_0 = fmul float %kernel_arg_o_a_0_time_period_read, 0x3F30000000000000
+:12  %delta_time_0 = fmul float %kernel_arg_o_a_0_time_period_read, 0x3F30000000000000
 
 
  <State 2>: 5.70ns
 ST_2: delta_time_0 [3/4] 5.70ns
-:14  %delta_time_0 = fmul float %kernel_arg_o_a_0_time_period_read, 0x3F30000000000000
+:12  %delta_time_0 = fmul float %kernel_arg_o_a_0_time_period_read, 0x3F30000000000000
 
 ST_2: kernel_arg_u_a_0_current_price_read [1/1] 0.00ns
-:15  %kernel_arg_u_a_0_current_price_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_u_a_0_current_price)
+:13  %kernel_arg_u_a_0_current_price_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_u_a_0_current_price)
 
 ST_2: tmp [3/3] 3.70ns
-:16  %tmp = fpext float %kernel_arg_u_a_0_current_price_read to double
+:14  %tmp = fpext float %kernel_arg_u_a_0_current_price_read to double
 
 
  <State 3>: 5.70ns
 ST_3: delta_time_0 [2/4] 5.70ns
-:14  %delta_time_0 = fmul float %kernel_arg_o_a_0_time_period_read, 0x3F30000000000000
+:12  %delta_time_0 = fmul float %kernel_arg_o_a_0_time_period_read, 0x3F30000000000000
 
 ST_3: tmp [2/3] 3.70ns
-:16  %tmp = fpext float %kernel_arg_u_a_0_current_price_read to double
+:14  %tmp = fpext float %kernel_arg_u_a_0_current_price_read to double
 
 
  <State 4>: 5.70ns
-ST_4: stg_59 [1/1] 0.00ns
+ST_4: stg_62 [1/1] 0.00ns
 :0  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_a_0_rfir), !map !94
 
-ST_4: stg_60 [1/1] 0.00ns
+ST_4: stg_63 [1/1] 0.00ns
 :1  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_a_0_current_price), !map !98
 
-ST_4: stg_61 [1/1] 0.00ns
-:2  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_v_0_gamma), !map !102
-
-ST_4: stg_62 [1/1] 0.00ns
-:3  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_u_v_0_time), !map !106
-
-ST_4: stg_63 [1/1] 0.00ns
-:4  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_strike_price), !map !110
-
 ST_4: stg_64 [1/1] 0.00ns
-:5  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_time_period), !map !114
+:2  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_strike_price), !map !102
 
 ST_4: stg_65 [1/1] 0.00ns
-:6  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_call), !map !118
+:3  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_time_period), !map !106
 
 ST_4: stg_66 [1/1] 0.00ns
-:7  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_v_0_delta_time), !map !122
+:4  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_a_0_call), !map !110
 
 ST_4: stg_67 [1/1] 0.00ns
-:8  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_arg_o_v_0_value), !map !126
+:5  call void (...)* @_ssdm_op_SpecBitsMap(float* %result_0), !map !114
 
 ST_4: stg_68 [1/1] 0.00ns
-:9  call void (...)* @_ssdm_op_SpecBitsMap(float* %result_0), !map !130
+:6  call void (...)* @_ssdm_op_SpecBitsMap(float* %result_sqrd_0), !map !120
 
 ST_4: stg_69 [1/1] 0.00ns
-:10  call void (...)* @_ssdm_op_SpecTopModule([23 x i8]* @str) nounwind
+:7  call void (...)* @_ssdm_op_SpecTopModule([23 x i8]* @str) nounwind
 
 ST_4: stg_70 [1/1] 0.00ns
-:11  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, float* %kernel_arg_u_a_0_current_price, float* %kernel_arg_u_v_0_gamma, float* %kernel_arg_u_v_0_time, float* %kernel_arg_o_a_0_strike_price, float* %kernel_arg_o_a_0_time_period, float* %kernel_arg_o_a_0_call, float* %kernel_arg_o_v_0_delta_time, float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+:8  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, float* %kernel_arg_u_a_0_current_price, float* %kernel_arg_o_a_0_strike_price, float* %kernel_arg_o_a_0_time_period, float* %kernel_arg_o_a_0_call, [1 x i8]* @p_str105, [10 x i8]* @p_str106, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [20 x i8]* @p_str107)
 
 ST_4: stg_71 [1/1] 0.00ns
-:12  call void (...)* @_ssdm_op_SpecFifo(float* %result_0, [8 x i8]* @p_str112, i32 0, i32 0, i32 0, [1 x i8]* @p_str109)
+:9  call void (...)* @_ssdm_op_SpecFifo(float* %result_0, [8 x i8]* @p_str108, i32 0, i32 0, i32 0, [1 x i8]* @p_str105)
+
+ST_4: stg_72 [1/1] 0.00ns
+:10  call void (...)* @_ssdm_op_SpecFifo(float* %result_sqrd_0, [8 x i8]* @p_str108, i32 0, i32 0, i32 0, [1 x i8]* @p_str105)
 
 ST_4: delta_time_0 [1/4] 5.70ns
-:14  %delta_time_0 = fmul float %kernel_arg_o_a_0_time_period_read, 0x3F30000000000000
+:12  %delta_time_0 = fmul float %kernel_arg_o_a_0_time_period_read, 0x3F30000000000000
 
 ST_4: tmp [1/3] 3.70ns
-:16  %tmp = fpext float %kernel_arg_u_a_0_current_price_read to double
+:14  %tmp = fpext float %kernel_arg_u_a_0_current_price_read to double
 
-ST_4: stg_74 [1/1] 1.35ns
-:17  br label %1
+ST_4: stg_75 [1/1] 1.35ns
+:15  br label %1
 
 
  <State 5>: 1.97ns
@@ -325,387 +325,354 @@ ST_5: empty [1/1] 0.00ns
 ST_5: p_1 [1/1] 1.72ns
 :3  %p_1 = add i7 %p, 1
 
-ST_5: stg_79 [1/1] 0.00ns
+ST_5: stg_80 [1/1] 0.00ns
 :4  br i1 %exitcond1, label %5, label %2
 
-ST_5: stg_80 [1/1] 0.00ns
-:0  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str113) nounwind
+ST_5: stg_81 [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str109) nounwind
 
-ST_5: tmp_5 [1/1] 0.00ns
-:1  %tmp_5 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str113)
+ST_5: tmp_1 [1/1] 0.00ns
+:1  %tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str109)
 
-ST_5: stg_82 [1/1] 0.00ns
-:2  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_time, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-
-ST_5: stg_83 [1/1] 0.00ns
-:3  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_gamma, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+ST_5: stg_83 [1/1] 1.57ns
+:2  br label %3
 
 ST_5: stg_84 [1/1] 0.00ns
-:4  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_gamma, float 0.000000e+00)
-
-ST_5: stg_85 [1/1] 0.00ns
-:5  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_time, float 0.000000e+00)
-
-ST_5: stg_86 [1/1] 0.00ns
-:6  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
-
-ST_5: stg_87 [1/1] 0.00ns
-:7  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_o_v_0_value, float 0.000000e+00)
-
-ST_5: stg_88 [1/1] 1.57ns
-:8  br label %3
-
-ST_5: stg_89 [1/1] 0.00ns
 :0  ret void
 
 
- <State 6>: 7.79ns
-ST_6: tmp_2_pn [1/1] 0.00ns
-:3  %tmp_2_pn = phi double [ 1.000000e+00, %2 ], [ %tmp_8, %4 ]
+ <State 6>: 4.33ns
+ST_6: spot_price_0_0_in [1/1] 0.00ns
+:2  %spot_price_0_0_in = phi double [ %tmp, %2 ], [ %tmp_s, %4 ]
 
-ST_6: spot_price_0_0_in [6/6] 7.79ns
-:4  %spot_price_0_0_in = fmul double %tmp, %tmp_2_pn
-
-
- <State 7>: 7.79ns
-ST_7: spot_price_0_0_in [5/6] 7.79ns
-:4  %spot_price_0_0_in = fmul double %tmp, %tmp_2_pn
+ST_6: spot_price_0 [3/3] 4.33ns
+:3  %spot_price_0 = fptrunc double %spot_price_0_0_in to float
 
 
- <State 8>: 7.79ns
-ST_8: spot_price_0_0_in [4/6] 7.79ns
-:4  %spot_price_0_0_in = fmul double %tmp, %tmp_2_pn
+ <State 7>: 4.33ns
+ST_7: spot_price_0 [2/3] 4.33ns
+:3  %spot_price_0 = fptrunc double %spot_price_0_0_in to float
 
 
- <State 9>: 7.79ns
-ST_9: spot_price_0_0_in [3/6] 7.79ns
-:4  %spot_price_0_0_in = fmul double %tmp, %tmp_2_pn
+ <State 8>: 5.70ns
+ST_8: u_v_gamma_read_assign [1/1] 0.00ns
+:0  %u_v_gamma_read_assign = phi float [ 0.000000e+00, %2 ], [ %u_v_0_gamma, %4 ]
+
+ST_8: pp [1/1] 0.00ns
+:1  %pp = phi i13 [ 0, %2 ], [ %pp_1, %4 ]
+
+ST_8: spot_price_0 [1/3] 4.33ns
+:3  %spot_price_0 = fptrunc double %spot_price_0_0_in to float
+
+ST_8: exitcond [1/1] 2.18ns
+:4  %exitcond = icmp eq i13 %pp, -4096
+
+ST_8: empty_3 [1/1] 0.00ns
+:5  %empty_3 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4096, i64 4096, i64 4096)
+
+ST_8: pp_1 [1/1] 1.96ns
+:6  %pp_1 = add i13 %pp, 1
+
+ST_8: stg_94 [1/1] 0.00ns
+:7  br i1 %exitcond, label %_ifconv, label %4
+
+ST_8: kernel_arg_u_a_0_rfir_read [1/1] 0.00ns
+:3  %kernel_arg_u_a_0_rfir_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_u_a_0_rfir)
+
+ST_8: tmp_i [4/4] 5.70ns
+:4  %tmp_i = fmul float %kernel_arg_u_a_0_rfir_read, %delta_time_0
+
+ST_8: kernel_arg_o_a_0_call_read [1/1] 0.00ns
+_ifconv:2  %kernel_arg_o_a_0_call_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_call)
+
+ST_8: tmp_3 [3/3] 4.53ns
+_ifconv:3  %tmp_3 = fcmp oeq float %kernel_arg_o_a_0_call_read, 0.000000e+00
 
 
- <State 10>: 7.79ns
-ST_10: spot_price_0_0_in [2/6] 7.79ns
-:4  %spot_price_0_0_in = fmul double %tmp, %tmp_2_pn
+ <State 9>: 5.70ns
+ST_9: tmp_i [3/4] 5.70ns
+:4  %tmp_i = fmul float %kernel_arg_u_a_0_rfir_read, %delta_time_0
 
 
- <State 11>: 7.79ns
-ST_11: spot_price_0_0_in [1/6] 7.79ns
-:4  %spot_price_0_0_in = fmul double %tmp, %tmp_2_pn
+ <State 10>: 5.70ns
+ST_10: tmp_i [2/4] 5.70ns
+:4  %tmp_i = fmul float %kernel_arg_u_a_0_rfir_read, %delta_time_0
 
 
- <State 12>: 4.33ns
-ST_12: spot_price_0 [3/3] 4.33ns
-:5  %spot_price_0 = fptrunc double %spot_price_0_0_in to float
+ <State 11>: 5.70ns
+ST_11: tmp_i [1/4] 5.70ns
+:4  %tmp_i = fmul float %kernel_arg_u_a_0_rfir_read, %delta_time_0
 
 
- <State 13>: 4.33ns
-ST_13: spot_price_0 [2/3] 4.33ns
-:5  %spot_price_0 = fptrunc double %spot_price_0_0_in to float
+ <State 12>: 7.26ns
+ST_12: u_v_0_gamma [5/5] 7.26ns
+:5  %u_v_0_gamma = fadd float %tmp_i, %u_v_gamma_read_assign
+
+
+ <State 13>: 7.26ns
+ST_13: u_v_0_gamma [4/5] 7.26ns
+:5  %u_v_0_gamma = fadd float %tmp_i, %u_v_gamma_read_assign
 
 
  <State 14>: 7.26ns
-ST_14: kernel_arg_u_v_0_time_load [1/1] 0.00ns
-:0  %kernel_arg_u_v_0_time_load = phi float [ 0.000000e+00, %2 ], [ %tmp_2_i, %4 ]
-
-ST_14: kernel_arg_u_v_0_gamma_load_2 [1/1] 0.00ns
-:1  %kernel_arg_u_v_0_gamma_load_2 = phi float [ 0.000000e+00, %2 ], [ %tmp_i_4, %4 ]
-
-ST_14: pp [1/1] 0.00ns
-:2  %pp = phi i13 [ 0, %2 ], [ %pp_1, %4 ]
-
-ST_14: spot_price_0 [1/3] 4.33ns
-:5  %spot_price_0 = fptrunc double %spot_price_0_0_in to float
-
-ST_14: exitcond [1/1] 2.18ns
-:6  %exitcond = icmp eq i13 %pp, -4096
-
-ST_14: empty_3 [1/1] 0.00ns
-:7  %empty_3 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4096, i64 4096, i64 4096)
-
-ST_14: pp_1 [1/1] 1.96ns
-:8  %pp_1 = add i13 %pp, 1
-
-ST_14: stg_106 [1/1] 0.00ns
-:9  br i1 %exitcond, label %_ifconv, label %4
-
-ST_14: kernel_arg_u_a_0_rfir_read [1/1] 0.00ns
-:5  %kernel_arg_u_a_0_rfir_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_u_a_0_rfir)
-
-ST_14: tmp_i [4/4] 5.70ns
-:6  %tmp_i = fmul float %kernel_arg_u_a_0_rfir_read, %delta_time_0
-
-ST_14: tmp_2_i [5/5] 7.26ns
-:9  %tmp_2_i = fadd float %kernel_arg_u_v_0_time_load, %delta_time_0
-
-ST_14: kernel_arg_o_a_0_call_read [1/1] 0.00ns
-_ifconv:3  %kernel_arg_o_a_0_call_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_call)
-
-ST_14: tmp_1 [3/3] 4.53ns
-_ifconv:4  %tmp_1 = fcmp oeq float %kernel_arg_o_a_0_call_read, 0.000000e+00
+ST_14: u_v_0_gamma [3/5] 7.26ns
+:5  %u_v_0_gamma = fadd float %tmp_i, %u_v_gamma_read_assign
 
 
  <State 15>: 7.26ns
-ST_15: tmp_i [3/4] 5.70ns
-:6  %tmp_i = fmul float %kernel_arg_u_a_0_rfir_read, %delta_time_0
-
-ST_15: tmp_2_i [4/5] 7.26ns
-:9  %tmp_2_i = fadd float %kernel_arg_u_v_0_time_load, %delta_time_0
+ST_15: u_v_0_gamma [2/5] 7.26ns
+:5  %u_v_0_gamma = fadd float %tmp_i, %u_v_gamma_read_assign
 
 
  <State 16>: 7.26ns
-ST_16: tmp_i [2/4] 5.70ns
-:6  %tmp_i = fmul float %kernel_arg_u_a_0_rfir_read, %delta_time_0
-
-ST_16: tmp_2_i [3/5] 7.26ns
-:9  %tmp_2_i = fadd float %kernel_arg_u_v_0_time_load, %delta_time_0
+ST_16: u_v_0_gamma [1/5] 7.26ns
+:5  %u_v_0_gamma = fadd float %tmp_i, %u_v_gamma_read_assign
 
 
- <State 17>: 7.26ns
-ST_17: tmp_i [1/4] 5.70ns
-:6  %tmp_i = fmul float %kernel_arg_u_a_0_rfir_read, %delta_time_0
-
-ST_17: tmp_2_i [2/5] 7.26ns
-:9  %tmp_2_i = fadd float %kernel_arg_u_v_0_time_load, %delta_time_0
+ <State 17>: 3.70ns
+ST_17: tmp_8 [3/3] 3.70ns
+:6  %tmp_8 = fpext float %u_v_0_gamma to double
 
 
- <State 18>: 7.26ns
-ST_18: tmp_i_4 [5/5] 7.26ns
-:7  %tmp_i_4 = fadd float %kernel_arg_u_v_0_gamma_load_2, %tmp_i
-
-ST_18: tmp_2_i [1/5] 7.26ns
-:9  %tmp_2_i = fadd float %kernel_arg_u_v_0_time_load, %delta_time_0
-
-ST_18: stg_120 [1/1] 0.00ns
-:10  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_time, float %tmp_2_i)
+ <State 18>: 3.70ns
+ST_18: tmp_8 [2/3] 3.70ns
+:6  %tmp_8 = fpext float %u_v_0_gamma to double
 
 
- <State 19>: 7.26ns
-ST_19: tmp_i_4 [4/5] 7.26ns
-:7  %tmp_i_4 = fadd float %kernel_arg_u_v_0_gamma_load_2, %tmp_i
+ <State 19>: 3.70ns
+ST_19: tmp_8 [1/3] 3.70ns
+:6  %tmp_8 = fpext float %u_v_0_gamma to double
 
 
- <State 20>: 7.26ns
-ST_20: tmp_i_4 [3/5] 7.26ns
-:7  %tmp_i_4 = fadd float %kernel_arg_u_v_0_gamma_load_2, %tmp_i
+ <State 20>: 7.32ns
+ST_20: tmp_9 [18/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
- <State 21>: 7.26ns
-ST_21: tmp_i_4 [2/5] 7.26ns
-:7  %tmp_i_4 = fadd float %kernel_arg_u_v_0_gamma_load_2, %tmp_i
+ <State 21>: 7.32ns
+ST_21: tmp_9 [17/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
- <State 22>: 7.26ns
-ST_22: tmp_i_4 [1/5] 7.26ns
-:7  %tmp_i_4 = fadd float %kernel_arg_u_v_0_gamma_load_2, %tmp_i
+ <State 22>: 7.32ns
+ST_22: tmp_9 [16/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
- <State 23>: 3.70ns
-ST_23: stg_125 [1/1] 0.00ns
-:8  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_u_v_0_gamma, float %tmp_i_4)
-
-ST_23: tmp_7 [3/3] 3.70ns
-:11  %tmp_7 = fpext float %tmp_i_4 to double
+ <State 23>: 7.32ns
+ST_23: tmp_9 [15/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
- <State 24>: 3.70ns
-ST_24: tmp_7 [2/3] 3.70ns
-:11  %tmp_7 = fpext float %tmp_i_4 to double
+ <State 24>: 7.32ns
+ST_24: tmp_9 [14/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
- <State 25>: 3.70ns
-ST_25: tmp_7 [1/3] 3.70ns
-:11  %tmp_7 = fpext float %tmp_i_4 to double
+ <State 25>: 7.32ns
+ST_25: tmp_9 [13/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 26>: 7.32ns
-ST_26: tmp_8 [18/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_26: tmp_9 [12/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 27>: 7.32ns
-ST_27: tmp_8 [17/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_27: tmp_9 [11/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 28>: 7.32ns
-ST_28: tmp_8 [16/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_28: tmp_9 [10/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 29>: 7.32ns
-ST_29: tmp_8 [15/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_29: tmp_9 [9/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 30>: 7.32ns
-ST_30: tmp_8 [14/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_30: tmp_9 [8/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 31>: 7.32ns
-ST_31: tmp_8 [13/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_31: tmp_9 [7/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 32>: 7.32ns
-ST_32: tmp_8 [12/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_32: tmp_9 [6/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 33>: 7.32ns
-ST_33: tmp_8 [11/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_33: tmp_9 [5/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 34>: 7.32ns
-ST_34: tmp_8 [10/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_34: tmp_9 [4/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 35>: 7.32ns
-ST_35: tmp_8 [9/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_35: tmp_9 [3/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 36>: 7.32ns
-ST_36: tmp_8 [8/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_36: tmp_9 [2/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
  <State 37>: 7.32ns
-ST_37: tmp_8 [7/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ST_37: tmp_9 [1/18] 7.32ns
+:7  %tmp_9 = call double @llvm.exp.f64(double %tmp_8)
 
 
- <State 38>: 7.32ns
-ST_38: tmp_8 [6/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ <State 38>: 7.79ns
+ST_38: tmp_s [6/6] 7.79ns
+:8  %tmp_s = fmul double %tmp, %tmp_9
 
 
- <State 39>: 7.32ns
-ST_39: tmp_8 [5/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ <State 39>: 7.79ns
+ST_39: tmp_s [5/6] 7.79ns
+:8  %tmp_s = fmul double %tmp, %tmp_9
 
 
- <State 40>: 7.32ns
-ST_40: tmp_8 [4/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ <State 40>: 7.79ns
+ST_40: tmp_s [4/6] 7.79ns
+:8  %tmp_s = fmul double %tmp, %tmp_9
 
 
- <State 41>: 7.32ns
-ST_41: tmp_8 [3/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ <State 41>: 7.79ns
+ST_41: tmp_s [3/6] 7.79ns
+:8  %tmp_s = fmul double %tmp, %tmp_9
 
 
- <State 42>: 7.32ns
-ST_42: tmp_8 [2/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
+ <State 42>: 7.79ns
+ST_42: tmp_s [2/6] 7.79ns
+:8  %tmp_s = fmul double %tmp, %tmp_9
 
 
- <State 43>: 7.32ns
-ST_43: stg_146 [1/1] 0.00ns
-:0  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str114) nounwind
+ <State 43>: 7.79ns
+ST_43: stg_133 [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str110) nounwind
 
-ST_43: tmp_6 [1/1] 0.00ns
-:1  %tmp_6 = call i32 (...)* @_ssdm_op_SpecRegionBegin([10 x i8]* @p_str114)
+ST_43: tmp_2 [1/1] 0.00ns
+:1  %tmp_2 = call i32 (...)* @_ssdm_op_SpecRegionBegin([10 x i8]* @p_str110)
 
-ST_43: stg_148 [1/1] 0.00ns
-:2  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_time, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+ST_43: stg_135 [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, [1 x i8]* @p_str105, [10 x i8]* @p_str106, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [20 x i8]* @p_str107)
 
-ST_43: stg_149 [1/1] 0.00ns
-:3  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_v_0_gamma, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+ST_43: tmp_s [1/6] 7.79ns
+:8  %tmp_s = fmul double %tmp, %tmp_9
 
-ST_43: stg_150 [1/1] 0.00ns
-:4  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_u_a_0_rfir, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+ST_43: empty_4 [1/1] 0.00ns
+:9  %empty_4 = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_str110, i32 %tmp_2)
 
-ST_43: tmp_8 [1/18] 7.32ns
-:12  %tmp_8 = call double @llvm.exp.f64(double %tmp_7)
-
-ST_43: empty_5 [1/1] 0.00ns
-:13  %empty_5 = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_str114, i32 %tmp_6)
-
-ST_43: stg_153 [1/1] 0.00ns
-:14  br label %3
+ST_43: stg_138 [1/1] 0.00ns
+:10  br label %3
 
 
  <State 44>: 4.53ns
-ST_44: tmp_1 [2/3] 4.53ns
-_ifconv:4  %tmp_1 = fcmp oeq float %kernel_arg_o_a_0_call_read, 0.000000e+00
+ST_44: tmp_3 [2/3] 4.53ns
+_ifconv:3  %tmp_3 = fcmp oeq float %kernel_arg_o_a_0_call_read, 0.000000e+00
 
 
  <State 45>: 5.90ns
-ST_45: tmp_1 [1/3] 4.53ns
-_ifconv:4  %tmp_1 = fcmp oeq float %kernel_arg_o_a_0_call_read, 0.000000e+00
+ST_45: tmp_3 [1/3] 4.53ns
+_ifconv:3  %tmp_3 = fcmp oeq float %kernel_arg_o_a_0_call_read, 0.000000e+00
 
-ST_45: tmp_2 [1/1] 1.37ns
-_ifconv:5  %tmp_2 = xor i1 %tmp_1, true
+ST_45: tmp_4 [1/1] 1.37ns
+_ifconv:4  %tmp_4 = xor i1 %tmp_3, true
 
 
  <State 46>: 7.26ns
 ST_46: kernel_arg_o_a_0_strike_price_read [1/1] 0.00ns
-_ifconv:6  %kernel_arg_o_a_0_strike_price_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_strike_price)
+_ifconv:5  %kernel_arg_o_a_0_strike_price_read = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_arg_o_a_0_strike_price)
 
-ST_46: tmp_i3 [5/5] 7.26ns
-_ifconv:7  %tmp_i3 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
+ST_46: tmp_i_5 [5/5] 7.26ns
+_ifconv:6  %tmp_i_5 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
 
-ST_46: tmp_1_i [5/5] 7.26ns
-_ifconv:8  %tmp_1_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
+ST_46: tmp_2_i [5/5] 7.26ns
+_ifconv:7  %tmp_2_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
 
 
  <State 47>: 7.26ns
-ST_47: tmp_i3 [4/5] 7.26ns
-_ifconv:7  %tmp_i3 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
+ST_47: tmp_i_5 [4/5] 7.26ns
+_ifconv:6  %tmp_i_5 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
 
-ST_47: tmp_1_i [4/5] 7.26ns
-_ifconv:8  %tmp_1_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
+ST_47: tmp_2_i [4/5] 7.26ns
+_ifconv:7  %tmp_2_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
 
 
  <State 48>: 7.26ns
-ST_48: tmp_i3 [3/5] 7.26ns
-_ifconv:7  %tmp_i3 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
+ST_48: tmp_i_5 [3/5] 7.26ns
+_ifconv:6  %tmp_i_5 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
 
-ST_48: tmp_1_i [3/5] 7.26ns
-_ifconv:8  %tmp_1_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
+ST_48: tmp_2_i [3/5] 7.26ns
+_ifconv:7  %tmp_2_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
 
 
  <State 49>: 7.26ns
-ST_49: tmp_i3 [2/5] 7.26ns
-_ifconv:7  %tmp_i3 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
+ST_49: tmp_i_5 [2/5] 7.26ns
+_ifconv:6  %tmp_i_5 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
 
-ST_49: tmp_1_i [2/5] 7.26ns
-_ifconv:8  %tmp_1_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
+ST_49: tmp_2_i [2/5] 7.26ns
+_ifconv:7  %tmp_2_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
 
 
  <State 50>: 8.63ns
-ST_50: tmp_i3 [1/5] 7.26ns
-_ifconv:7  %tmp_i3 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
+ST_50: tmp_i_5 [1/5] 7.26ns
+_ifconv:6  %tmp_i_5 = fsub float %spot_price_0, %kernel_arg_o_a_0_strike_price_read
 
-ST_50: tmp_1_i [1/5] 7.26ns
-_ifconv:8  %tmp_1_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
+ST_50: tmp_2_i [1/5] 7.26ns
+_ifconv:7  %tmp_2_i = fsub float %kernel_arg_o_a_0_strike_price_read, %spot_price_0
 
-ST_50: storemerge_i [1/1] 1.37ns
-_ifconv:9  %storemerge_i = select i1 %tmp_2, float %tmp_i3, float %tmp_1_i
+ST_50: o_v_0_value [1/1] 1.37ns
+_ifconv:8  %o_v_0_value = select i1 %tmp_4, float %tmp_i_5, float %tmp_2_i
 
 
- <State 51>: 1.86ns
-ST_51: stg_169 [1/1] 0.00ns
-_ifconv:0  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_v_0_value, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+ <State 51>: 5.70ns
+ST_51: stg_154 [1/1] 1.86ns
+_ifconv:9  call void @_ssdm_op_Write.ap_fifo.volatile.floatP(float* %result_0, float %o_v_0_value)
 
-ST_51: stg_170 [1/1] 0.00ns
-_ifconv:1  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_call, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
+ST_51: tmp_5 [4/4] 5.70ns
+_ifconv:10  %tmp_5 = fmul float %o_v_0_value, %o_v_0_value
 
-ST_51: stg_171 [1/1] 0.00ns
-_ifconv:2  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_strike_price, [1 x i8]* @p_str109, [10 x i8]* @p_str110, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [1 x i8]* @p_str109, [20 x i8]* @p_str111)
 
-ST_51: stg_172 [1/1] 0.00ns
-_ifconv:10  call void @_ssdm_op_Write.ap_auto.floatP(float* %kernel_arg_o_v_0_value, float %storemerge_i)
+ <State 52>: 5.70ns
+ST_52: tmp_5 [3/4] 5.70ns
+_ifconv:10  %tmp_5 = fmul float %o_v_0_value, %o_v_0_value
 
-ST_51: stg_173 [1/1] 1.86ns
-_ifconv:11  call void @_ssdm_op_Write.ap_fifo.volatile.floatP(float* %result_0, float %storemerge_i)
 
-ST_51: empty_6 [1/1] 0.00ns
-_ifconv:12  %empty_6 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str113, i32 %tmp_5)
+ <State 53>: 5.70ns
+ST_53: tmp_5 [2/4] 5.70ns
+_ifconv:10  %tmp_5 = fmul float %o_v_0_value, %o_v_0_value
 
-ST_51: stg_175 [1/1] 0.00ns
+
+ <State 54>: 7.56ns
+ST_54: stg_158 [1/1] 0.00ns
+_ifconv:0  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_call, [1 x i8]* @p_str105, [10 x i8]* @p_str106, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [20 x i8]* @p_str107)
+
+ST_54: stg_159 [1/1] 0.00ns
+_ifconv:1  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_arg_o_a_0_strike_price, [1 x i8]* @p_str105, [10 x i8]* @p_str106, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [1 x i8]* @p_str105, [20 x i8]* @p_str107)
+
+ST_54: tmp_5 [1/4] 5.70ns
+_ifconv:10  %tmp_5 = fmul float %o_v_0_value, %o_v_0_value
+
+ST_54: stg_161 [1/1] 1.86ns
+_ifconv:11  call void @_ssdm_op_Write.ap_fifo.volatile.floatP(float* %result_sqrd_0, float %tmp_5)
+
+ST_54: empty_6 [1/1] 0.00ns
+_ifconv:12  %empty_6 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str109, i32 %tmp_1)
+
+ST_54: stg_163 [1/1] 0.00ns
 _ifconv:13  br label %1
 
 
@@ -768,6 +735,9 @@ N/A
 	State 49
 	State 50
 	State 51
+	State 52
+	State 53
+	State 54
 
 
 ============================================================

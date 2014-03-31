@@ -2,6 +2,7 @@
 #define PATHS 100
 #define PATH_POINTS 4096
 #define TAUS_BOXMULLER
+#define FP_t float
 //Libraries
 #include "math.h";
 #include "pthread.h";

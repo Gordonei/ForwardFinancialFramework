@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'vivado_activity_thread'" level="0">
-<item name = "Date">Fri Mar 28 17:53:29 2014
+<item name = "Date">Mon Mar 31 15:01:00 2014
 </item>
 <item name = "Version">2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)</item>
 <item name = "Project">hls_prj</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">15566604, 15566604, 15566605, 15566605, none</column>
+<column name="">15566304, 15566304, 15566305, 15566305, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,8 +35,8 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- PATHSET_LOOP">15566600, 15566600, 155666, -, -, 100, no</column>
-<column name=" + PATH_LOOP">155656, 155656, 38, -, -, 4096, no</column>
+<column name="- PATHSET_LOOP">15566300, 15566300, 155663, -, -, 100, no</column>
+<column name=" + PATH_LOOP">155650, 155650, 38, -, -, 4096, no</column>
 </table>
 </item>
 </section>

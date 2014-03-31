@@ -480,26 +480,6 @@ set opts {
     }
     {
         id 10
-        name kernel_arg_u_v_0_gamma
-        reset_level 1
-        sync_rst true
-        type scalar
-        dir O
-        width 32
-        mode SIG_OUT_VLD_ON:SIG_OUT_ACC_OFF
-    }
-    {
-        id 11
-        name kernel_arg_u_v_0_time
-        reset_level 1
-        sync_rst true
-        type scalar
-        dir O
-        width 32
-        mode SIG_OUT_VLD_ON:SIG_OUT_ACC_OFF
-    }
-    {
-        id 12
         name kernel_arg_o_a_0_strike_price
         reset_level 1
         sync_rst true
@@ -509,7 +489,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 13
+        id 11
         name kernel_arg_o_a_0_time_period
         reset_level 1
         sync_rst true
@@ -519,7 +499,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 14
+        id 12
         name kernel_arg_o_a_0_call
         reset_level 1
         sync_rst true
@@ -527,26 +507,6 @@ set opts {
         dir I
         width 32
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
-    }
-    {
-        id 15
-        name kernel_arg_o_v_0_delta_time
-        reset_level 1
-        sync_rst true
-        type scalar
-        dir I
-        width 32
-        mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
-    }
-    {
-        id 16
-        name kernel_arg_o_v_0_value
-        reset_level 1
-        sync_rst true
-        type scalar
-        dir O
-        width 32
-        mode SIG_OUT_VLD_ON:SIG_OUT_ACC_OFF
     }
 }
 set portmap { }
@@ -570,7 +530,7 @@ puts "@W Can not find gen function '::AESL_LIB_XILADAPTER::axi_slave_int_gen' in
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 17 \
+    id 13 \
     name result_0 \
     type fifo \
     dir O \
@@ -579,6 +539,21 @@ eval "cg_default_interface_gen_dc { \
     corename dc_result_0 \
     op interface \
     ports { result_0_din { O 32 vector } result_0_full_n { I 1 bit } result_0_write { O 1 bit } } \
+} "
+}
+
+# Direct connection:
+if {${::AESL::PGuard_autoexp_gen}} {
+eval "cg_default_interface_gen_dc { \
+    id 14 \
+    name result_sqrd_0 \
+    type fifo \
+    dir O \
+    reset_level 1 \
+    sync_rst true \
+    corename dc_result_sqrd_0 \
+    op interface \
+    ports { result_sqrd_0_din { O 32 vector } result_sqrd_0_full_n { I 1 bit } result_sqrd_0_write { O 1 bit } } \
 } "
 }
 

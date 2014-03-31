@@ -65,7 +65,7 @@ entity s00_couplers_imp_156Q4UY is
 end s00_couplers_imp_156Q4UY;
 
 architecture STRUCTURE of s00_couplers_imp_156Q4UY is
-  component zynq_system_auto_pc_9 is
+  component zynq_system_auto_pc_12 is
   port (
     aclk : in STD_LOGIC;
     aresetn : in STD_LOGIC;
@@ -127,7 +127,7 @@ architecture STRUCTURE of s00_couplers_imp_156Q4UY is
     m_axi_rvalid : in STD_LOGIC;
     m_axi_rready : out STD_LOGIC
   );
-  end component zynq_system_auto_pc_9;
+  end component zynq_system_auto_pc_12;
   signal S_ACLK_1 : STD_LOGIC;
   signal S_ARESETN_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal auto_pc_to_s00_couplers_ARADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -245,7 +245,7 @@ begin
   s00_couplers_to_auto_pc_WLAST <= S_AXI_wlast;
   s00_couplers_to_auto_pc_WSTRB(3 downto 0) <= S_AXI_wstrb(3 downto 0);
   s00_couplers_to_auto_pc_WVALID <= S_AXI_wvalid;
-auto_pc: component zynq_system_auto_pc_9
+auto_pc: component zynq_system_auto_pc_12
     port map (
       aclk => S_ACLK_1,
       aresetn => S_ARESETN_1(0),
@@ -684,6 +684,9 @@ architecture STRUCTURE of zynq_system is
     result_0_din : out STD_LOGIC_VECTOR ( 31 downto 0 );
     result_0_full_n : in STD_LOGIC;
     result_0_write : out STD_LOGIC;
+    result_sqrd_0_din : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    result_sqrd_0_full_n : in STD_LOGIC;
+    result_sqrd_0_write : out STD_LOGIC;
     ap_start : in STD_LOGIC;
     ap_ready : out STD_LOGIC;
     ap_done : out STD_LOGIC;
@@ -803,7 +806,9 @@ architecture STRUCTURE of zynq_system is
   signal NLW_vivado_activity_thread_0_ap_idle_UNCONNECTED : STD_LOGIC;
   signal NLW_vivado_activity_thread_0_ap_ready_UNCONNECTED : STD_LOGIC;
   signal NLW_vivado_activity_thread_0_result_0_write_UNCONNECTED : STD_LOGIC;
+  signal NLW_vivado_activity_thread_0_result_sqrd_0_write_UNCONNECTED : STD_LOGIC;
   signal NLW_vivado_activity_thread_0_result_0_din_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal NLW_vivado_activity_thread_0_result_sqrd_0_din_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
 begin
 GND: unisim.vcomponents.GND
     port map (
@@ -975,6 +980,9 @@ vivado_activity_thread_0: component zynq_system_vivado_activity_thread_0_0
       result_0_din(31 downto 0) => NLW_vivado_activity_thread_0_result_0_din_UNCONNECTED(31 downto 0),
       result_0_full_n => GND_1,
       result_0_write => NLW_vivado_activity_thread_0_result_0_write_UNCONNECTED,
+      result_sqrd_0_din(31 downto 0) => NLW_vivado_activity_thread_0_result_sqrd_0_din_UNCONNECTED(31 downto 0),
+      result_sqrd_0_full_n => GND_1,
+      result_sqrd_0_write => NLW_vivado_activity_thread_0_result_sqrd_0_write_UNCONNECTED,
       s_axi_CORE_IO_ARADDR(6 downto 0) => processing_system7_0_axi_periph_m00_axi_ARADDR(6 downto 0),
       s_axi_CORE_IO_ARREADY => processing_system7_0_axi_periph_m00_axi_ARREADY,
       s_axi_CORE_IO_ARVALID => processing_system7_0_axi_periph_m00_axi_ARVALID,

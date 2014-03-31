@@ -17,7 +17,7 @@
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="true"
-						Timestamp="1394617476"
+						Timestamp="1396020801"
 						IsTrackable="true"/>
 				<Library Name="work"/>
 				<UsedIn Val="SYNTHESIS"/>
@@ -28,7 +28,7 @@
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="true"
-						Timestamp="1394617475"
+						Timestamp="1396271181"
 						IsTrackable="true"/>
 				<Library Name="work"/>
 				<UsedIn Val="SYNTHESIS"/>
@@ -39,7 +39,7 @@
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="false"
-						Timestamp="1394617477"
+						Timestamp="1395914320"
 						IsTrackable="true"/>
 				<Library Name="work"/>
 				<UsedIn Val="SYNTHESIS"/>
@@ -50,14 +50,14 @@
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="true"
-						Timestamp="1394617477"
+						Timestamp="1396020801"
 						IsTrackable="true"/>
 				<Library Name="work"/>
 				<UsedIn Val="SYNTHESIS"/>
 				<UsedIn Val="IMPLEMENTATION"/>
 				<UsedIn Val="SIMULATION"/>
 			</File>
-			<File Name="ip/zynq_system_auto_pc_8/zynq_system_auto_pc_8.xci"
+			<File Name="ip/zynq_system_auto_pc_11/zynq_system_auto_pc_11.xci"
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="false"
@@ -68,7 +68,7 @@
 				<UsedIn Val="IMPLEMENTATION"/>
 				<UsedIn Val="SIMULATION"/>
 			</File>
-			<File Name="ip/zynq_system_auto_pc_9/zynq_system_auto_pc_9.xci"
+			<File Name="ip/zynq_system_auto_pc_12/zynq_system_auto_pc_12.xci"
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="true"

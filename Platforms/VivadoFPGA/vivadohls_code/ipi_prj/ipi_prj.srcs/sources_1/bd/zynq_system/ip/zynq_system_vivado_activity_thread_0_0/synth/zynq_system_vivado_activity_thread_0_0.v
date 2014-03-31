@@ -48,7 +48,7 @@
 
 
 // IP VLNV: imperial:F3:vivado_activity_thread:1.0
-// IP Revision: 1403281650
+// IP Revision: 1403311501
 
 (* X_CORE_INFO = "vivado_activity_thread_top,Vivado 2013.4" *)
 (* CHECK_LICENSE_TYPE = "zynq_system_vivado_activity_thread_0_0,vivado_activity_thread_top,{}" *)
@@ -57,6 +57,9 @@ module zynq_system_vivado_activity_thread_0_0 (
   result_0_din,
   result_0_full_n,
   result_0_write,
+  result_sqrd_0_din,
+  result_sqrd_0_full_n,
+  result_sqrd_0_write,
   ap_start,
   ap_ready,
   ap_done,
@@ -85,6 +88,9 @@ module zynq_system_vivado_activity_thread_0_0 (
 output wire [31 : 0] result_0_din;
 input wire result_0_full_n;
 output wire result_0_write;
+output wire [31 : 0] result_sqrd_0_din;
+input wire result_sqrd_0_full_n;
+output wire result_sqrd_0_write;
 input wire ap_start;
 output wire ap_ready;
 output wire ap_done;
@@ -135,6 +141,9 @@ input wire aresetn;
     .result_0_din(result_0_din),
     .result_0_full_n(result_0_full_n),
     .result_0_write(result_0_write),
+    .result_sqrd_0_din(result_sqrd_0_din),
+    .result_sqrd_0_full_n(result_sqrd_0_full_n),
+    .result_sqrd_0_write(result_sqrd_0_write),
     .ap_start(ap_start),
     .ap_ready(ap_ready),
     .ap_done(ap_done),
