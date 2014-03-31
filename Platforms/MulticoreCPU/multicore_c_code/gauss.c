@@ -93,7 +93,7 @@ void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_stat
   
   t_x = sqrt(-2*native_log(u))*cos(2*M_PI*v);
   t_y = sqrt(-2*native_log(u))*sin(2*M_PI*v);
-  t_y = t_x*rho+native_sqrt(1.0-native_powr(rho,2))*t_y;
+  t_y = t_x*rho+native_sqrt(1.0-rho*rho)*t_y;
   
   *x = t_x;
   *y = t_y;

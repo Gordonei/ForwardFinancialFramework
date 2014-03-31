@@ -56,6 +56,6 @@ void black_scholes_underlying_underlying_path(FP_t delta_time,black_scholes_unde
 	u_v->x = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
 	#endif
 
-	u_v->gamma += (u_a->rfir-pow((u_a->volatility),2)/2)*delta_time+u_a->volatility*u_v->x*native_sqrt(delta_time); //native_sqrt
+	u_v->gamma += (u_a->rfir-u_a->volatility*u_a->volatility/2)*delta_time+u_a->volatility*u_v->x*native_sqrt(delta_time); //native_sqrt
 	u_v->time += delta_time;
 }

@@ -42,7 +42,7 @@ def run_test_solver(platform_name,cmd_option):
   elif(platform_name=="Vivado_FPGA"):
     from ForwardFinancialFramework.Platforms.VivadoFPGA import VivadoFPGA_MonteCarlo,VivadoFPGA
     platform = VivadoFPGA.VivadoFPGA()
-    mc_solver = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo(option,paths,platform)
+    mc_solver = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo(option,paths,platform,simulation=False)
     
   else:
     print "incorrect platform type!"

@@ -37,7 +37,12 @@
 
 #ifdef VIVADOHLS
 //#include "hls_math.h"
-#define M_PI 3.1415926535897
+//#define M_PI 3.1415926535897
+#define native_sqrt rsqrt
+#define native_exp expf
+#define native_log logf
+#define sin sinf
+#define cos cosf
 #endif
 
 typedef struct {

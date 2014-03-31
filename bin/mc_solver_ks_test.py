@@ -26,7 +26,7 @@ def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=
   elif(platform_name=="Vivado_FPGA"):
     from ForwardFinancialFramework.Platforms.VivadoFPGA import VivadoFPGA_MonteCarlo,VivadoFPGA
     platform = VivadoFPGA.VivadoFPGA()
-    mc_solver = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo(option,paths,platform,simulation=True)
+    mc_solver = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo(option,paths,platform)
     
   else:
     print "incorrect platform type!"
@@ -38,7 +38,7 @@ def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=
   if ("Compile" in script_option): compile_output = mc_solver.compile(debug=debug)
   
   execution_output=[""]
-  if (platform_name=="FPGA" and "Execute" in script_option): mc_solver.dummy_run() #Make sure the FPGA is clear
+  #if ("FPGA" in platform_name and "Execute" in script_option): mc_solver.dummy_run() #Make sure the FPGA is clear
   if ("Execute" in script_option): execution_output = mc_solver.execute(debug=debug)
   
  

@@ -29,7 +29,6 @@
 #ifndef GAUSS_H_
 #define GAUSS_H_
 
-
 //#include <assert.h>
 
 #ifdef MULTICORE_CPU
@@ -48,7 +47,13 @@
 #ifdef VIVADOHLS
 #include "ap_cint.h"
 //#include "hls_math.h"
-#define M_PI 3.1415926535897
+#include "math.h"
+//#define M_PI 3.1415926535897
+#define native_log logf
+#define native_exp expf
+#define native_sqrt rsqrt
+#define sin sinf
+#define cos cosf
 #endif
 
 //#include <gsl/gsl_rng.h>
