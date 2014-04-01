@@ -20,7 +20,13 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #mwc64x_path_string = "%s/../%s/%s"%(os.getcwd(),self.platform.platform_directory(),mwc64x_path_string)
     else:
       self.utility_libraries.extend(["CL/cl.hpp"])
-      
+    
+    for u in self.underlying:
+      if((self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat")):
+	self.utility_libraries.append("gauss.h")
+	break
+    #self.utility_libraries.append("gauss.h")
+   
     #self.utility_libraries.extend(["%s"%mwc64x_path_string])
       
     self.activity_thread_name = "opencl_montecarlo_activity_thread"
@@ -495,7 +501,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
     
-    output_list.append("kernel void %s_kernel(constant int *path_points,"%self.output_file_name)
+    output_list.append("kernel void %s_kernel("%self.output_file_name)
+    output_list.append("\tconstant int *path_points,")
     output_list.append("\tglobal uint *seed,")
     output_list.append("\tglobal uint *chunk_size,") #constant
     output_list.append("\tglobal uint *chunk_number,") #constant
