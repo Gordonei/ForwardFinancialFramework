@@ -1,6 +1,6 @@
 #define VIVADOHLS
-#define PATHS 100
-#define PATH_POINTS 4096
+#define PATHS 1
+#define PATH_POINTS 10
 #define TAUS_BOXMULLER
 #define FP_t float
 //Libraries
@@ -46,13 +46,18 @@ int ret,ret_2;
 typedef struct{
 	underlying_attributes u_a_0;
 	option_attributes o_a_0;
+	float thread_result_0[PATHS];
+	float thread_result_sqrd_0[PATHS];
 	} kernel_data;
 
 //*Vivado HLS Kernel Function*
-void vivado_activity_thread(kernel_data* kernel_arg,FP_t result_0[PATHS],FP_t result_sqrd_0[PATHS]){
+void vivado_activity_thread(kernel_data * kernel_arg){
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_arg metadata="-bus_bundle CORE_IO"
-	#pragma HLS INTERFACE ap_fifo port=result_0
-	#pragma HLS INTERFACE ap_fifo port=result_sqrd_0
+	
+	#pragma HLS INTERFACE ap_hs port=kernel_arg->thread_result_0
+	#pragma HLS INTERFACE ap_hs port=kernel_arg->thread_result_sqrd_0
+	//#pragma HLS INTERFACE ap_fifo port=result_0
+	//#pragma HLS INTERFACE ap_fifo port=result_sqrd_0
 
 	//**Initialising Kernel Variables*
 	unsigned int p,pp;
@@ -82,8 +87,10 @@ void vivado_activity_thread(kernel_data* kernel_arg,FP_t result_0[PATHS],FP_t re
 		option_derivative_payoff(spot_price_0,&o_v_0,&kernel_arg->o_a_0);
 
 		//**Returning Result**
-		result_0[p] = o_v_0.value;
-		result_sqrd_0[p] = o_v_0.value*o_v_0.value;
+		FP_t temp_value = o_v_0.value;
+		
+		(kernel_arg->thread_result_0)[p] = temp_value;
+		(kernel_arg->thread_result_sqrd_0)[p] = temp_value*temp_value;
 		}
 	}
 
