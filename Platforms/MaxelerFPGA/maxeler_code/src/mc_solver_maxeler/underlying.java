@@ -63,9 +63,16 @@ public class underlying extends KernelLib {
 		//this.temp_price = this.parameters.current_price*(KernelMath.exp(this.new_gamma.cast(this.kernel.expType)));
 	}
 
-	public void connect_path(){
-		this.carried_gamma <== this.stream.offset(this.new_gamma,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
-		this.carried_time <== this.stream.offset(this.new_time,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+	public void connect_path(boolean pipeline, DFEVar path_gamma,DFEVar path_time){
+		//boolean pipeline, DFEVar path_gamma,DFEVar path_time
+		if(pipeline){
+			this.carried_gamma <== path_gamma;
+			this.carried_time <== path_time;
+		}
+		else{
+			this.carried_gamma <== this.stream.offset(path_gamma,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+			this.carried_time <== this.stream.offset(path_time,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+		}
 	}
 
 	public underlying_parameters getParameters(){

@@ -40,10 +40,14 @@ public class barrier_option extends european_option {
 	
 	//((MC_Solver_Maxeler_Base_Kernel)this.kernel).constant.var(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType,0.0)
 
-	@Override
-	public void connect_path(){
-		super.connect_path();
-		this.carried_barrier_event <== this.kernel.stream.offset(this.new_barrier_event, -((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+	public void connect_path(boolean pipeline,DFEVar path_barrier_event){
+		super.connect_path(pipeline);
+		if(pipeline){
+			this.carried_barrier_event <== path_barrier_event;
+		}
+		else{
+			this.carried_barrier_event <== this.kernel.stream.offset(path_barrier_event, -((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+		}
 	}
 
 	protected DFEVar check_barrier(DFEVar temp_price){

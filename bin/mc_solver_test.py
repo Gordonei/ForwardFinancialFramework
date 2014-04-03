@@ -7,8 +7,6 @@ from ForwardFinancialFramework.Underlyings import Underlying
 from ForwardFinancialFramework.Derivatives import Option
 
 def run_test_solver(platform_name,cmd_option):
-  print platform_name
-  print cmd_option
   #Test Parameters  
   ##Underlying Parameters
   rfir = 0.1

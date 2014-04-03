@@ -147,7 +147,7 @@ clean-maxfiles:
 ################## Host Code for hardware .max files ################
 
 gauss.o:
-	$(CC) gauss.c -DMULTICORE_CPU -DFP_t=float -lm
+	$(CC) gauss.c -DMULTICORE_CPU -DFP_t=float -lm -c
 
 $(APP)FPGA.o:
 	$(MAXFILECOMPILE) "$(BUILD_RESULTS)/$(HWMAXFILE)" "$@" "$(APP)"
