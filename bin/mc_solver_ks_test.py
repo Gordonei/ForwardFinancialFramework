@@ -22,8 +22,8 @@ def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=
     
   elif(platform_name=="FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
-    platform = MaxelerFPGA.MaxelerFPGA(instances=1)
-    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform)
+    platform = MaxelerFPGA.MaxelerFPGA()
+    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform,c_slow=True)
     
   else:
     print "incorrect platform type!"

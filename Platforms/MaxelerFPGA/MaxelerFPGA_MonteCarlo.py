@@ -26,7 +26,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     
     self.solver_metadata["instances"] = self.instances
-    self.solver_metadata["instance_paths"] = 10000 #setting the number of paths per instance
+    self.solver_metadata["instance_paths"] = 1000 #setting the number of paths per instance
     self.solver_metadata["path_points"] = points
     self.solver_metadata["delay"] = self.delay
         
@@ -309,8 +309,13 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       if("heston" in u.name or "black_scholes" in u.name):
 	#output_list.append("%s_%d_parameters.seed = input_array[%d*2];"%(u.name,index,rng_index))
 	#output_list.append("%s_%d_parameters.seed2 = input_array[%d*2+1];"%(u.name,index,rng_index))
-	output_list.append("CombinedTauswortheRNG %s_%d_x = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2],input_array[%d*8+3]);"%(u.name,index,index,index,index,index));
-	output_list.append("CombinedTauswortheRNG %s_%d_y = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6],input_array[%d*8+7]);"%(u.name,index,index,index,index,index));
+	if(self.c_slow):
+	  output_list.append("CombinedTauswortheRNG %s_%d_x = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2],input_array[%d*8+3]);"%(u.name,index,index,index,index,index));
+	  output_list.append("CombinedTauswortheRNG %s_%d_y = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6],input_array[%d*8+7]);"%(u.name,index,index,index,index,index));
+	else:
+	  output_list.append("CombinedTauswortheRNG %s_%d_x = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1)*this.delay,input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2],input_array[%d*8+3]);"%(u.name,index,index,index,index,index));
+	  output_list.append("CombinedTauswortheRNG %s_%d_y = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1)*this.delay,input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6],input_array[%d*8+7]);"%(u.name,index,index,index,index,index));
+	
 	output_list.append("%s %s_%d = new %s(this,%s_%d_x,%s_%d_y,pp,p,d,%s_%d_parameters);"%(u.name,u.name,index,u.name,u.name,index,u.name,index,u.name,index))
       
       else: output_list.append("%s %s_%d = new %s(this,pp,p,d,%s_%d_parameters);"%(u.name,u.name,index,u.name,u.name,index))
