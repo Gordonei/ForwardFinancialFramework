@@ -26,7 +26,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     
     self.solver_metadata["instances"] = self.instances
-    self.solver_metadata["instance_paths"] = 10000 #setting the number of paths per instance
+    self.solver_metadata["instance_paths"] = 1000 #setting the number of paths per instance
     self.solver_metadata["path_points"] = points
     self.solver_metadata["delay"] = self.delay
         
@@ -445,7 +445,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("m.addMaxFileConstant(\"path_points\", path_points);")
     output_list.append("m.addMaxFileConstant(\"instances\", instances);")
     output_list.append("m.addMaxFileConstant(\"delay\", delay);")
-    output_list.append("m.setClockFrequency(250);")
+    output_list.append("m.setClockFrequency(200);")
     
     
     #Build Configuration
