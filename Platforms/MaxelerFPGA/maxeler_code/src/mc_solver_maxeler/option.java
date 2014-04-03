@@ -51,7 +51,7 @@ public class option extends KernelLib{
 		//this.value = (this.point.eq(this.kernel.path_points-1)) ? this.payoff(temp_price) : this.kernel.constant.var(this.kernel.doubleType,0.0);
 	}
 
-	public void connect_path(){
+	public void connect_path(boolean pipeline){
 		//this.carried_delta_time <== ((MC_Solver_Maxeler_Base_Kernel)this.kernel).stream.offset(this.new_delta_time,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
 	}
 
