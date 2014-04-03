@@ -163,7 +163,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("max_input(\"seeds_in\",seeds_in, %d*instance_paths*sizeof(uint32_t)),"%(4*seeds_in))
     output_list.append("max_output(\"values_out\", values_out, %d*instance_paths*sizeof(float)),"%(4*values_out))
     if(self.c_slow): output_list.append("max_runfor(\"%s_Kernel\",instance_paths*(path_points+1)),"%(self.output_file_name))
-    else: output_list.append("max_runfor(\"%s_Kernel\",instance_paths*(path_points+1)*delay),"%(self.output_file_name))
+    else: output_list.append("max_runfor(\"%s_Kernel\",instance_paths*(path_points/%d+1)*delay),"%(self.output_file_name,self.pipelining))
     output_list.append("max_end());")
     
     output_list.append("//**Post-Kernel Aggregation**")
@@ -256,12 +256,14 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("CounterChain chain = control.count.makeCounterChain();")
     
     if(self.c_slow):
-      output_list.append("DFEVar pp = chain.addCounter(this.path_points+1,1).cast(dfeUInt(32));") #Path Points is the outer loop so as to implement a C-Slow architecture
+      #output_list.append("DFEVar pp = chain.addCounter(this.path_points/%d+%d,1).cast(dfeUInt(32));"%(self.pipelining,self.pipelining)) #Path Points is the outer loop so as to implement a C-Slow architecture
+      output_list.append("DFEVar pp = chain.addCounter(this.path_points+1,%d).cast(dfeUInt(32));"%(self.pipelining)) #Path Points is the outer loop so as to implement a C-Slow architecture
       output_list.append("DFEVar p = chain.addCounter(this.instance_paths,1).cast(dfeUInt(32));")
-      output_list.append("DFEVar d = p;")
+      output_list.append("DFEVar d = p;") #Just make the delay counter equal to the path counter - it functions as the same thing
     else:
       output_list.append("DFEVar p = chain.addCounter(this.instance_paths,1).cast(dfeUInt(32));")
-      output_list.append("DFEVar pp = chain.addCounter(this.path_points+1,1).cast(dfeUInt(32));") #Path Points is the outer loop so as to implement a C-Slow architecture
+      #output_list.append("DFEVar pp = chain.addCounter(this.path_points/%d+%d-1,1).cast(dfeUInt(32));"%(self.pipelining,self.pipelining))
+      output_list.append("DFEVar pp = chain.addCounter(this.path_points+1,%d).cast(dfeUInt(32));"%(self.pipelining)) #Path Points is the outer loop so as to implement a C-Slow architecture
       output_list.append("DFEVar d = chain.addCounter(this.delay,1);")
     
     #Scaler Inputs
@@ -294,67 +296,93 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**Parallelism Loop**")
     output_list.append("for (int i=0;i<this.instances;i++){")
     
-    output_list.append("//***Underlying Declaration(s)***")
-    rng_index = 0
-    for index,u in enumerate(self.underlying):
-      
-      #Creating the parameter object
-      temp_string = "%s_parameters %s_%d_parameters = new %s_parameters(this" % (u.name,u.name,index,u.name)
-      for u_a in self.underlying_attributes[index][:-1]: temp_string = ("%s,%s_%d_%s"%(temp_string,u.name,index,u_a))
-      temp_string = "%s,%s_%d_%s);"%(temp_string,u.name,index,self.underlying_attributes[index][-1])
-      
-      output_list.append(temp_string)
-      
-      #If there is a random number generator, this needs to be created and linked to the input seeds
-      if("heston" in u.name or "black_scholes" in u.name):
-	#output_list.append("%s_%d_parameters.seed = input_array[%d*2];"%(u.name,index,rng_index))
-	#output_list.append("%s_%d_parameters.seed2 = input_array[%d*2+1];"%(u.name,index,rng_index))
-	if(self.c_slow):
-	  output_list.append("CombinedTauswortheRNG %s_%d_x = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2],input_array[%d*8+3]);"%(u.name,index,index,index,index,index));
-	  output_list.append("CombinedTauswortheRNG %s_%d_y = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6],input_array[%d*8+7]);"%(u.name,index,index,index,index,index));
-	else:
-	  output_list.append("CombinedTauswortheRNG %s_%d_x = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1)*this.delay,input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2],input_array[%d*8+3]);"%(u.name,index,index,index,index,index));
-	  output_list.append("CombinedTauswortheRNG %s_%d_y = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1)*this.delay,input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6],input_array[%d*8+7]);"%(u.name,index,index,index,index,index));
-	
-	output_list.append("%s %s_%d = new %s(this,%s_%d_x,%s_%d_y,pp,p,d,%s_%d_parameters);"%(u.name,u.name,index,u.name,u.name,index,u.name,index,u.name,index))
-      
-      else: output_list.append("%s %s_%d = new %s(this,pp,p,d,%s_%d_parameters);"%(u.name,u.name,index,u.name,u.name,index))
-      
-      output_list.append("%s_%d.path_init();"%(u.name,index))
-      
-    output_list.append("//***Derivative Declaration(s)***")
+    output_list.append("//***Underlying and Derivative Declaration(s)***")
     for index,d in enumerate(self.derivative):
-      
       #Creating the parameter object
       temp_string = "%s_parameters %s_%d_parameters = new %s_parameters(this" % (d.name,d.name,index,d.name)
       for d_a in self.derivative_attributes[index][:-1]: temp_string = ("%s,%s_%d_%s"%(temp_string,d.name,index,d_a))
       temp_string = "%s,%s_%d_%s);"%(temp_string,d.name,index,self.derivative_attributes[index][-1])
       
       output_list.append(temp_string)
-      output_list.append("%s %s_%d = new %s(this,pp,p,d,this.constant.var(true),%s_%d_parameters);"%(d.name,d.name,index,d.name,d.name,index))
-      output_list.append("%s_%d.path_init();"%(d.name,index)) #path initialisation
-      #output_list.append("DFEVar delta_time_%d = %s_%d.delta_time;"%(index,d.name,index))
+    
+    temp_path_call_underlying = []
+    temp_path_call_derivative = []
+    for pipe in range(self.pipelining):
+      output_list.append("//***Pipeline Stage %d***"%pipe)
+      rng_index = 0
+      for index,u in enumerate(self.underlying):
+	#If there is a random number generator, this needs to be created and linked to the input seeds
+	if("heston" in u.name or "black_scholes" in u.name):
+	  #output_list.append("%s_%d_parameters.seed = input_array[%d*2];"%(u.name,index,rng_index))
+	  #output_list.append("%s_%d_parameters.seed2 = input_array[%d*2+1];"%(u.name,index,rng_index))
+	  
+	  if(self.c_slow):
+	    output_list.append("CombinedTauswortheRNG %s_%d_x_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2],input_array[%d*8+3]);"%(u.name,index,pipe,index,index,index,index));
+	    output_list.append("CombinedTauswortheRNG %s_%d_y_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6],input_array[%d*8+7]);"%(u.name,index,pipe,index,index,index,index));
+	  else:
+	    output_list.append("CombinedTauswortheRNG %s_%d_x_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1)*this.delay,input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2],input_array[%d*8+3]);"%(u.name,index,pipe,index,index,index,index));
+	    output_list.append("CombinedTauswortheRNG %s_%d_y_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1)*this.delay,input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6],input_array[%d*8+7]);"%(u.name,index,pipe,index,index,index,index));
+	  
+	  output_list.append("%s %s_%d_%d = new %s(this,%s_%d_x_%d,%s_%d_y_%d,pp,p,d,%s_%d_parameters);"%(u.name,u.name,index,pipe,u.name,u.name,index,pipe,u.name,index,pipe,u.name,index))
+	  
+	
+	else: output_list.append("%s %s_%d_%d = new %s(this,pp,p,d,%s_%d_parameters);"%(u.name,u.name,index,pipe,u.name,u.name,index))
+	
+	output_list.append("%s_%d_%d.path_init();"%(u.name,index,pipe))
+	
+      for index,d in enumerate(self.derivative):
+	
+	
+	output_list.append("%s %s_%d_%d = new %s(this,pp,p,d,this.constant.var(true),%s_%d_parameters);"%(d.name,d.name,index,pipe,d.name,d.name,index))
+	output_list.append("%s_%d_%d.path_init();"%(d.name,index,pipe)) #path initialisation
+	#output_list.append("DFEVar delta_time_%d = %s_%d.delta_time;"%(index,d.name,index))
       
-    output_list.append("//***Path Initialisation, Path, Payoff Calls and Accumulation***")
-    
-    temp_path_call = []
-    for d_index,d in enumerate(self.derivative):
-      for u_index,u in enumerate(d.underlying):
-        if("%s_%d"%(u.name,u_index) not in temp_path_call): #checking to see if this path has not been called already
-          #if("points" in self.derivative_attributes[d_index]): output_list.append("%s_%d.path(%s_%d.delta_time);"%(u.name,u_index,d.name,d_index)) #Calling the path function
-	  #else: output_list.append("%s_%d.path(%s_%d.delta_time/%d);"%(u.name,u_index,d.name,d_index,self.solver_metadata["path_points"])) #Calling the path function
-	  output_list.append("%s_%d.path(delta_time_%d);"%(u.name,u_index,d_index)) #Calling the path function
-          output_list.append("%s_%d.connect_path();"%(u.name,u_index))
-          temp_path_call.append("%s_%d"%(u.name,u_index))
-    
-          output_list.append("DFEVar temp_price_%d = (%s_%d.parameters.current_price*KernelMath.exp(%s_%d.gamma));"%(u_index,u.name,u_index,u.name,u_index))
-        
-        output_list.append("%s_%d.path(temp_price_%d,%s_%d.time);"%(d.name,d_index,u_index,u.name,u_index))
-        output_list.append("%s_%d.connect_path();"%(d.name,d_index))
-        output_list.append("DFEVar payoff_%d = %s_%d.payoff(temp_price_%d);"%(d_index,d.name,d_index,u_index))
-        #output_list.append("DFEVar loopAccumulate_%d = accum.makeAccumulator(payoff_%d.cast(accumType), ap);"%(d_index,d_index))
-        output_list.append("accumulate_%d += payoff_%d;"%(d_index,d_index))
-	output_list.append("accumulate_sqrd_%d += payoff_%d*payoff_%d;"%(d_index,d_index,d_index))
+      output_list.append("//***Path Initialisation and Path Calls***")
+      
+      for d_index,d in enumerate(self.derivative):
+	for u_index,u in enumerate(d.underlying):
+	  if("%s_%d_%d"%(u.name,u_index,pipe) not in temp_path_call_underlying): #checking to see if this path has not been called already
+	    #if("points" in self.derivative_attributes[d_index]): output_list.append("%s_%d.path(%s_%d.delta_time);"%(u.name,u_index,d.name,d_index)) #Calling the path function
+	    #else: output_list.append("%s_%d.path(%s_%d.delta_time/%d);"%(u.name,u_index,d.name,d_index,self.solver_metadata["path_points"])) #Calling the path function
+	    output_list.append("%s_%d_%d.path(delta_time_%d);"%(u.name,u_index,pipe,d_index)) #Calling the path function
+	    
+	    temp_path_call_underlying.append("%s_%d_%d"%(u.name,u_index,pipe))
+      
+	    output_list.append("DFEVar temp_price_%d_%d = (%s_%d_%d.parameters.current_price*KernelMath.exp(%s_%d_%d.gamma));"%(u_index,pipe,u.name,u_index,pipe,u.name,u_index,pipe))
+	  	  
+	  output_list.append("%s_%d_%d.path(temp_price_%d_%d,%s_%d_%d.time);"%(d.name,d_index,pipe,u_index,pipe,u.name,u_index,pipe))
+	  
+	temp_path_call_derivative.append("%s_%d_%d"%(d.name,d_index,pipe))
+	
+      
+    output_list.append("//***Path Connect Calls***")
+    for index,tpc in enumerate(temp_path_call_underlying): #this is fairly dodgy - TODO improve
+      if(int(tpc[-1])>0): #connect each point in the pipeline to the value that proceeded it
+	output_list.append("%s.connect_path(true,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-1],int(tpc[-1])-1,tpc[:-1],int(tpc[-1])-1))
+	if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
+      else: #loop back to the end for the first value in the pipeline
+	output_list.append("%s.connect_path(false,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-1],self.pipelining-1,tpc[:-1],self.pipelining-1))
+	if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)
+	
+    for index,tpc in enumerate(temp_path_call_derivative):
+      if(int(tpc[-1])>0): #connect each point in the pipeline to the value that proceeded it
+	output_list.append("%s.connect_path(true);"%tpc)
+	if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
+	if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
+      else: #loop back to the end for the first value in the pipeline
+	output_list.append("%s.connect_path(false);"%tpc)
+	if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
+	if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)
+	if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)
+	    
+	 
+    output_list.append("//***Path Payoff and Accumulate Calls***") 
+    for index,d in enumerate(self.derivative):
+      #We're only interested in the payoff for the last path step 
+      output_list.append("DFEVar payoff_%d = %s_%d_%d.payoff(temp_price_%d_%d);"%(d_index,d.name,d_index,self.pipelining-1,self.underlying.index(d.underlying[0]),self.pipelining-1))
+      #output_list.append("DFEVar loopAccumulate_%d = accum.makeAccumulator(payoff_%d.cast(accumType), ap);"%(d_index,d_index))
+      output_list.append("accumulate_%d += payoff_%d;"%(d_index,d_index))
+      output_list.append("accumulate_sqrd_%d += payoff_%d*payoff_%d;"%(d_index,d_index,d_index))
     
     output_list.append("}") #End of parallelism loop
     
@@ -366,8 +394,6 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       
     for i in range(len(self.derivative)*2,int(values_out)): output_list.append("output_array[%d] <== this.constant.var(inputFloatType,0.0);"%i)
     
-    #output_list.append("io.output(\"values_out\", output_array ,outputArrayType,p.eq(this.instance_paths-1)&pp.eq(this.path_points-1));")
-    #if(self.c_slow): output_list.("io.output(\"values_out\", output_array ,outputArrayType,pp.eq(this.path_points));")
     if(self.c_slow): output_list.append("io.output(\"values_out\", output_array ,outputArrayType,pp.eq(this.path_points));")
     else: output_list.append("io.output(\"values_out\", output_array ,outputArrayType,pp.eq(this.path_points)&d.eq(0));")
     output_list.append("}")
@@ -419,7 +445,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("m.addMaxFileConstant(\"path_points\", path_points);")
     output_list.append("m.addMaxFileConstant(\"instances\", instances);")
     output_list.append("m.addMaxFileConstant(\"delay\", delay);")
-    output_list.append("m.setClockFrequency(250);")
+    output_list.append("m.setClockFrequency(200);")
     
     
     #Build Configuration
@@ -705,11 +731,11 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       self.solver_metadata["delay"] = delay
       
   def get_delay(self):
-    
-    delay = 25 #176 for European,25 for Asian Options
+    delay = 13*self.pipelining 
     
     for d in self.derivative:
       for u in d.underlying:
-	if("heston" in u.name):
-	  delay = 176 #176 for European,25 for Asian Options
+	if("black_scholes" in u.name): delay = 25*self.pipelining
+	if("heston" in u.name): delay = 176*self.pipelining
+	
     return delay

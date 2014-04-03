@@ -35,7 +35,7 @@ def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=
   if ("Compile" in script_option): compile_output = mc_solver.compile(debug=debug)
   
   execution_output=[""]
-  if (platform_name=="FPGA" and "Execute" in script_option): mc_solver.dummy_run() #Make sure the FPGA is clear
+  #if (platform_name=="FPGA" and "Execute" in script_option): mc_solver.dummy_run() #Make sure the FPGA is clear
   if (("Execute" in script_option) or (platform_name!="FPGA")): execution_output = mc_solver.execute(debug=debug)
   
  

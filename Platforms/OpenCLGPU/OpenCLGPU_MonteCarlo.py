@@ -730,16 +730,16 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     opencl_compile_flags = ""
     path_string = ""
     if(self.random_number_generator=="mwc64x_boxmuller"):
-      path_string = "mwc64x/cl"
+      #path_string = ""
       opencl_compile_flags = "%s -DMWC64X_BOXMULLER"%opencl_compile_flags
     
     elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
-      path_string = ""
+      #path_string = ""
       opencl_compile_flags = "%s -DTAUS_BOXMULLER"%opencl_compile_flags
     
     #if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
-    if(path_string==""): path_string = os.getcwd()
-    else: path_string = "%s/%s"%(os.getcwd(),path_string)
+    path_string = os.getcwd()
+    #else: path_string = "%s/%s"%(os.getcwd(),path_string)
     
     opencl_compile_flags = "-DOPENCL_GPU -I%s %s"% (path_string,opencl_compile_flags)
     #else: opencl_compile_flags = "-I . %s"% (opencl_compile_flags)

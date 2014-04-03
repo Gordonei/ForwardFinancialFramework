@@ -36,10 +36,14 @@ public class asian_option extends european_option {
 		this.new_average = this.average + this.temp_average_contribution;
 	}
 
-	@Override
-	public void connect_path(){
-		super.connect_path();
-		this.carried_average <== this.kernel.stream.offset(this.new_average,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+	public void connect_path(boolean pipeline,DFEVar path_average){
+		super.connect_path(pipeline);
+		if(pipeline){
+			this.carried_average <== path_average;
+		}
+		else{
+			this.carried_average <== this.kernel.stream.offset(path_average,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+		}
 	}
 
 	@Override

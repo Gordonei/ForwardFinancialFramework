@@ -22,12 +22,16 @@ def option_enumeration(platform_name,instance_paths,path_points,options,optimisa
             cslow_flag = False
             tp_flag = False
             instances = 1
+            pipelining = 1
             
             if("naive"==opt): pass
                 
             if("cslow"==opt): cslow_flag = True
             
-            if("pipeline_parallelism"==opt): pass
+            if("pipeline_parallelism"==opt):
+                if(platform_name=="Maxeler"):
+                    pipelining = 8
+                    if(o=="13"): pipelining = 16
                 
             if("all"==opt): 
                 tp_flag = True
@@ -41,7 +45,7 @@ def option_enumeration(platform_name,instance_paths,path_points,options,optimisa
             if(platform_name=="Maxeler"):
                 from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
                 platform = MaxelerFPGA.MaxelerFPGA()
-                mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(temp_options,instance_paths,platform,path_points,c_slow=cslow_flag,instances=instances)
+                mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(temp_options,instance_paths,platform,path_points,c_slow=cslow_flag,instances=instances,pipelining=pipelining)
                 
             elif(platform_name=="Vivado"): pass
             elif(platform_name=="Altera"): pass
