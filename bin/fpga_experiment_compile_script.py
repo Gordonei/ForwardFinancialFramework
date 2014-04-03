@@ -28,7 +28,10 @@ def option_enumeration(platform_name,instance_paths,path_points,options,optimisa
                 
             if("cslow"==opt): cslow_flag = True
             
-            if("pipeline_parallelism"==opt): pipelining=4
+            if("pipeline_parallelism"==opt):
+                if(platform_name=="Maxeler"):
+                    pipelining = 8
+                    if(o=="13"): pipelining = 16
                 
             if("all"==opt): 
                 tp_flag = True
