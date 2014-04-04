@@ -57,8 +57,10 @@ FP_t __drandom32(rng_state_t *rng_state)
      return (__random32(rng_state)/4294967296.0);
 }
 
+#ifdef TAUS_ZIGGURAT
 FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state)
 {
+    
   unsigned long  U, sign, i, j;
   FP_t  x, y;
 
@@ -84,6 +86,7 @@ FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state)
   }
   return  sign ? sigma*x : -sigma*x;
 }
+#endif
 
 void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_state)
 {
