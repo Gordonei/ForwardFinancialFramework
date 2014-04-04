@@ -1,5 +1,5 @@
 #define VIVADOHLS
-#define PATHS 1
+#define PATHS 10
 #define PATH_POINTS 10
 #define TAUS_BOXMULLER
 #define FP_t float
@@ -46,6 +46,7 @@ int ret,ret_2;
 typedef struct{
 	underlying_attributes u_a_0;
 	option_attributes o_a_0;
+	float delta_time_0;
 	float thread_result_0[PATHS];
 	float thread_result_sqrd_0[PATHS];
 	} kernel_data;
@@ -64,25 +65,28 @@ void vivado_activity_thread(kernel_data * kernel_arg){
 	underlying_variables u_v_0;
 	FP_t spot_price_0,time_0;
 	option_variables o_v_0;
-	FP_t delta_time_0 = (kernel_arg->o_a_0).time_period/PATH_POINTS;
+	FP_t delta_time_0 = kernel_arg->delta_time_0;
 
 	//**Thread Calculation Loop**
 	PATHSET_LOOP: for(p=0;p<PATHS;++p){
 
 		//**Initiating the Path**
 		underlying_underlying_path_init(&u_v_0,&kernel_arg->u_a_0);
-		spot_price_0 = (kernel_arg->u_a_0).current_price*exp(u_v_0.gamma);
+		spot_price_0 = (kernel_arg->u_a_0).current_price*expf(u_v_0.gamma);
 		time_0 = u_v_0.time;
 		option_derivative_path_init(&o_v_0,&kernel_arg->o_a_0);
 
 		//**Running the path**
 		PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){
+		#pragma HLS UNROLL factor=2
+		#pragma HLS PIPELINE II=1
 			option_derivative_path(spot_price_0,time_0,&o_v_0,&kernel_arg->o_a_0);
 			underlying_underlying_path(delta_time_0,&u_v_0,&kernel_arg->u_a_0);
-			spot_price_0 = kernel_arg->u_a_0.current_price*exp(u_v_0.gamma);
+			spot_price_0 = kernel_arg->u_a_0.current_price*expf(u_v_0.gamma);
 			time_0 = u_v_0.time;
-			}
 
+
+		if(pp==(PATH_POINTS-1)){
 		//**Calculating payoff(s)**
 		option_derivative_payoff(spot_price_0,&o_v_0,&kernel_arg->o_a_0);
 
@@ -92,6 +96,8 @@ void vivado_activity_thread(kernel_data * kernel_arg){
 		(kernel_arg->thread_result_0)[p] = temp_value;
 		(kernel_arg->thread_result_sqrd_0)[p] = temp_value*temp_value;
 		}
+		}
+	}
 	}
 
 //*MC Multicore Activity Thread Function*
