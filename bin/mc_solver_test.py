@@ -75,4 +75,4 @@ if( __name__ == '__main__' and len(sys.argv)>2):
   print "Execute Output:\n %s\n"%result[1]
     
 elif(__name__ == '__main__'):
-  print "usage: python mc_solver_test_script {CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA} [Generate] [Compile] [Execute]"
+  print "usage: python mc_solver_test_script {CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA|OpenCL_AlteraFPGA} [Generate] [Compile] [Execute]"
