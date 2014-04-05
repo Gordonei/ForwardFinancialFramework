@@ -19,8 +19,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     self.instance_paths = instance_paths
     OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings=reduce_underlyings,kernel_path_max=kernel_path_max,random_number_generator=random_number_generator,floating_point_format=floating_point_format,default_points=default_points)
     
-    self.utility_libraries.remove("CL/cl.hpp")
-    self.utility_libraries.append("CL/opencl.h") #Because the one thing that people wont standardise on is the name and location of the API header file...
+    #self.utility_libraries.remove("CL/cl.hpp")
+    #self.utility_libraries.append("CL/opencl.h") #Because the one thing that people wont standardise on is the name and location of the API header file...
     
     self.pipelining = pipelining
     self.simulation = simulation
@@ -91,10 +91,16 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     #Controlling the degree of task parallelism
     if(self.instances>1):
         index = output_list.index("kernel void %s_kernel("%self.output_file_name)
-        output_list.insert(index,"__attribute__((reqd_work_group_size(%d,1,1)))"%self.instances)
-        output_list.insert(index,"__attribute__((num_simd_work_items(%d)))"%self.instances)
-        self.solver_metadata["local_work_items"] = self.instances #just in case this has changed
-        
+        output_list.insert(index,"__attribute__((num_compute_units(%d))))"%self.instances)
+        #output_list.insert(index,"__attribute__((reqd_work_group_size(%d,1,1)))"%self.instances)
+        #output_list.insert(index,"__attribute__((num_simd_work_items(%d)))"%self.instances)
+        #self.solver_metadata["local_work_items"] = self.instances #just in case this has changed
+       
+    #Designating each kernel as a task
+    index = output_list.index("kernel void %s_kernel("%self.output_file_name)
+    output_list.insert(index,"__attribute__((task))")
+    output_list.insert(index,"__attribute__((reqd_work_group_size(1,1,1)))")
+    
     #Ammending the seeding operation
     for index,u in enumerate(self.underlying):
         if("black_scholes" in u.name or "heston" in u.name):
