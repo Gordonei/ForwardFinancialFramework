@@ -17,15 +17,15 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     
   def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=1,random_number_generator="taus_boxmuller",floating_point_format="float",instance_paths=1000,instances=1,pipelining=1,cslow=False,simulation=False,default_points=4096):
     self.instance_paths = instance_paths
-    OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings=reduce_underlyings,kernel_path_max=kernel_path_max,random_number_generator=random_number_generator,floating_point_format=floating_point_format,default_points=default_points)
-    
-    #self.utility_libraries.remove("CL/cl.hpp")
-    #self.utility_libraries.append("CL/opencl.h") #Because the one thing that people wont standardise on is the name and location of the API header file...
-    
     self.pipelining = pipelining
     self.simulation = simulation
     self.cslow = cslow
     self.instances = instances
+    
+    OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings=reduce_underlyings,kernel_path_max=kernel_path_max,random_number_generator=random_number_generator,floating_point_format=floating_point_format,default_points=default_points)
+    
+    #self.utility_libraries.remove("CL/cl.hpp")
+    #self.utility_libraries.append("CL/opencl.h") #Because the one thing that people wont standardise on is the name and location of the API header file...
     self.solver_metadata["local_work_items"] = self.instances
     
   def generate_name(self):
@@ -84,14 +84,14 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
       output_list.remove("\tglobal %s_attributes *o_a_%d,"%(d.name,index))
     
     #Controlling the amount of pipeline parallelism
-    if(self.pipelining>1):
-        index = output_list.index("for(int j=0;j<PATH_POINTS;++j){")
-        output_list.insert(index,"#pragma unroll %d"%self.pipelining)
+    #if(self.pipelining>1):
+    index = output_list.index("for(int j=0;j<PATH_POINTS;++j){")
+    output_list.insert(index,"#pragma unroll UNROLL_FACTOR")
     
     #Controlling the degree of task parallelism
-    if(self.instances>1):
-        index = output_list.index("kernel void %s_kernel("%self.output_file_name)
-        output_list.insert(index,"__attribute__((num_compute_units(%d))))"%self.instances)
+    index = output_list.index("kernel void %s_kernel("%self.output_file_name)
+    output_list.insert(index,"__attribute__((num_compute_units(COMPUTE_UNITS)))")
+    #if(self.instances>1):
         #output_list.insert(index,"__attribute__((reqd_work_group_size(%d,1,1)))"%self.instances)
         #output_list.insert(index,"__attribute__((num_simd_work_items(%d)))"%self.instances)
         #self.solver_metadata["local_work_items"] = self.instances #just in case this has changed
@@ -121,6 +121,11 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
   
   """
   g++ mc_solver_opencl_gpu_un_1_op_1.c -DMULTICORE_CPU -DFP_t=float underlying.c option.c -o mc_solver_opencl_gpu_un_1_op_1Run -lpthread -lrt -O3 -w -ffast-math -fpermissive -march=native -I/opt/altera/13.1/hld/host/include -fpermissive -ggdb -L/opt/altera/13.1/hld/linux64/lib -L/opt/altera/13.1/hld/host/linux64/lib -lalteracl -lalterahalmmd -lalterammdpcie -lelf -lrt
+  """
+  
+  def execute(self): pass
+  """
+  ./mc_solver_opencl_gpu_un_1_op_1Run 1000 10 10 1 8 1 2 4253708855 0.1 100 1.0 1.0 100
   """
     
   def set_chunk_paths(self):
