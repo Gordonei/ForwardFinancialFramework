@@ -15,6 +15,7 @@
 #include "gauss.h";
 #include "underlying.h";
 #include "option.h";
+#include "vivado_core.h";
 
 //*Intermediate and Communication Variables*
 FP_t discount_0_0;
@@ -43,18 +44,24 @@ struct thread_data{
 FP_t setup_time,activity_time;
 struct timespec start, setup_end, end;
 int ret,ret_2;
-typedef struct{
-	underlying_attributes u_a_0;
-	option_attributes o_a_0;
-	float delta_time_0;
-	float thread_result_0[PATHS];
-	float thread_result_sqrd_0[PATHS];
-	} kernel_data;
+
+/*typedef struct{
+	standard_underlying_attributes u_a_0;
+	standard_derivative_attributes o_a_0;
+	rng_state_t seed_0[PATHS];
+	FP_t thread_result_0[PATHS];
+	FP_t thread_result_sqrd_0[PATHS];
+	} kernel_data;*/
 
 //*Vivado HLS Kernel Function*
-void vivado_activity_thread(kernel_data * kernel_arg){
-	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_arg metadata="-bus_bundle CORE_IO"
+void vivado_activity_thread(standard_underlying_attributes kernel_u_a_0,standard_derivative_attributes kernel_o_a_0,rng_state_t kernel_seed_0[PATHS],FP_t thread_result_0[PATHS],FP_t thread_result_sqrd_0[PATHS]){
+	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_u_a_0 metadata="-bus_bundle CORE_IO"
+	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_o_a_0 metadata="-bus_bundle CORE_IO"
+	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_seed_0 metadata="-bus_bundle CORE_IO"
+	#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_0 metadata="-bus_bundle CORE_IO"
+	#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_sqrd_0 metadata="-bus_bundle CORE_IO"
 	
+	#pragma HLS INTERFACE ap_hs port=kernel_arg->seed_0
 	#pragma HLS INTERFACE ap_hs port=kernel_arg->thread_result_0
 	#pragma HLS INTERFACE ap_hs port=kernel_arg->thread_result_sqrd_0
 	//#pragma HLS INTERFACE ap_fifo port=result_0
@@ -65,40 +72,49 @@ void vivado_activity_thread(kernel_data * kernel_arg){
 	underlying_variables u_v_0;
 	FP_t spot_price_0,time_0;
 	option_variables o_v_0;
-	FP_t delta_time_0 = kernel_arg->delta_time_0;
+	FP_t delta_time_0 = kernel_o_a_0.time_period/kernel_o_a_0.points;
+	
+	option_attributes o_a_0;
+	o_a_0.strike_price = kernel_o_a_0.strike_period;
+	o_a_0.time_period = kernel_o_a_0.time_period;
+	o_a_0.call = kernel_o_a_0.call;
+	
+	underlying_attributes u_a_0;
+	u_a_0.rfir = kernel_u_a_0.rfir;
+	u_a_0.current_price = kernel_u_a_0.current_price;
 
 	//**Thread Calculation Loop**
 	PATHSET_LOOP: for(p=0;p<PATHS;++p){
 
 		//**Initiating the Path**
-		underlying_underlying_path_init(&u_v_0,&kernel_arg->u_a_0);
-		spot_price_0 = (kernel_arg->u_a_0).current_price*expf(u_v_0.gamma);
+		underlying_underlying_path_init(&u_v_0,&u_a_0);
+		spot_price_0 = u_a_0.current_price*expf(u_v_0.gamma);
 		time_0 = u_v_0.time;
-		option_derivative_path_init(&o_v_0,&kernel_arg->o_a_0);
+		option_derivative_path_init(&o_v_0,&kernel_o_a_0);
 
 		//**Running the path**
 		PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){
-		#pragma HLS UNROLL factor=2
-		#pragma HLS PIPELINE II=1
-			option_derivative_path(spot_price_0,time_0,&o_v_0,&kernel_arg->o_a_0);
-			underlying_underlying_path(delta_time_0,&u_v_0,&kernel_arg->u_a_0);
-			spot_price_0 = kernel_arg->u_a_0.current_price*expf(u_v_0.gamma);
+		//#pragma HLS UNROLL factor=2
+		//#pragma HLS PIPELINE II=1
+			option_derivative_path(spot_price_0,time_0,&o_v_0,&kernel_o_a_0);
+			underlying_underlying_path(delta_time_0,&u_v_0,&kernel_u_a_0);
+			spot_price_0 = kernel_u_a_0.current_price*expf(u_v_0.gamma);
 			time_0 = u_v_0.time;
 
 
-		if(pp==(PATH_POINTS-1)){
+		}
+	if(pp==(PATH_POINTS-1)){
 		//**Calculating payoff(s)**
-		option_derivative_payoff(spot_price_0,&o_v_0,&kernel_arg->o_a_0);
+		option_derivative_payoff(spot_price_0,&o_v_0,&kernel_o_a_0);
 
 		//**Returning Result**
 		FP_t temp_value = o_v_0.value;
 		
-		(kernel_arg->thread_result_0)[p] = temp_value;
-		(kernel_arg->thread_result_sqrd_0)[p] = temp_value*temp_value;
-		}
+		thread_result_0[p] = temp_value;
+		thread_result_sqrd_0[p] = temp_value*temp_value;
 		}
 	}
-	}
+}
 
 //*MC Multicore Activity Thread Function*
 void * multicore_montecarlo_activity_thread(void* thread_arg){
