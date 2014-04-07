@@ -14,7 +14,6 @@ typedef struct{
 } standard_underlying_attributes;
 
 typedef struct{
-    FP_t barrier;
     FP_t second_barrier;
     FP_t barrier;
     FP_t out;
