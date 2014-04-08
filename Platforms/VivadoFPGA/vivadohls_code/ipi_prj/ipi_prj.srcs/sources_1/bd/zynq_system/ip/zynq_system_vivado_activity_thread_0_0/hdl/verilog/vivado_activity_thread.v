@@ -7,7 +7,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="vivado_activity_thread,hls_ip_2013_4,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=1,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020clg484-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=8.626000,HLS_SYN_LAT=15566304,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=0}" *)
+(* CORE_GENERATION_INFO="vivado_activity_thread,hls_ip_2013_4,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=1,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020clg484-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=8.626000,HLS_SYN_LAT=204,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=0,HLS_SYN_LUT=0}" *)
 
 module vivado_activity_thread (
         ap_clk,
@@ -16,17 +16,44 @@ module vivado_activity_thread (
         ap_done,
         ap_idle,
         ap_ready,
-        kernel_arg_u_a_0_rfir,
-        kernel_arg_u_a_0_current_price,
-        kernel_arg_o_a_0_strike_price,
-        kernel_arg_o_a_0_time_period,
-        kernel_arg_o_a_0_call,
-        result_0_din,
-        result_0_full_n,
-        result_0_write,
-        result_sqrd_0_din,
-        result_sqrd_0_full_n,
-        result_sqrd_0_write
+        kernel_u_a_0_rfir,
+        kernel_u_a_0_current_price,
+        kernel_u_a_0_volatility,
+        kernel_u_a_0_initial_volatility,
+        kernel_u_a_0_volatility_volatility,
+        kernel_u_a_0_rho,
+        kernel_u_a_0_kappa,
+        kernel_u_a_0_theta,
+        kernel_u_a_0_correlation_matrix_0_0,
+        kernel_u_a_0_correlation_matrix_0_1,
+        kernel_u_a_0_correlation_matrix_1_0,
+        kernel_u_a_0_correlation_matrix_1_1,
+        kernel_o_a_0_second_barrier,
+        kernel_o_a_0_barrier,
+        kernel_o_a_0_out,
+        kernel_o_a_0_down,
+        kernel_o_a_0_strike_price,
+        kernel_o_a_0_time_period,
+        kernel_o_a_0_call,
+        kernel_o_a_0_points,
+        seed_0_s1_dout,
+        seed_0_s1_empty_n,
+        seed_0_s1_read,
+        seed_0_s2_dout,
+        seed_0_s2_empty_n,
+        seed_0_s2_read,
+        seed_0_s3_dout,
+        seed_0_s3_empty_n,
+        seed_0_s3_read,
+        seed_0_offset_dout,
+        seed_0_offset_empty_n,
+        seed_0_offset_read,
+        thread_result_0_din,
+        thread_result_0_full_n,
+        thread_result_0_write,
+        thread_result_sqrd_0_din,
+        thread_result_sqrd_0_full_n,
+        thread_result_sqrd_0_write
 );
 
 input   ap_clk;
@@ -35,73 +62,86 @@ input   ap_start;
 output   ap_done;
 output   ap_idle;
 output   ap_ready;
-input  [31:0] kernel_arg_u_a_0_rfir;
-input  [31:0] kernel_arg_u_a_0_current_price;
-input  [31:0] kernel_arg_o_a_0_strike_price;
-input  [31:0] kernel_arg_o_a_0_time_period;
-input  [31:0] kernel_arg_o_a_0_call;
-output  [31:0] result_0_din;
-input   result_0_full_n;
-output   result_0_write;
-output  [31:0] result_sqrd_0_din;
-input   result_sqrd_0_full_n;
-output   result_sqrd_0_write;
+input  [31:0] kernel_u_a_0_rfir;
+input  [31:0] kernel_u_a_0_current_price;
+input  [31:0] kernel_u_a_0_volatility;
+input  [31:0] kernel_u_a_0_initial_volatility;
+input  [31:0] kernel_u_a_0_volatility_volatility;
+input  [31:0] kernel_u_a_0_rho;
+input  [31:0] kernel_u_a_0_kappa;
+input  [31:0] kernel_u_a_0_theta;
+input  [31:0] kernel_u_a_0_correlation_matrix_0_0;
+input  [31:0] kernel_u_a_0_correlation_matrix_0_1;
+input  [31:0] kernel_u_a_0_correlation_matrix_1_0;
+input  [31:0] kernel_u_a_0_correlation_matrix_1_1;
+input  [31:0] kernel_o_a_0_second_barrier;
+input  [31:0] kernel_o_a_0_barrier;
+input  [31:0] kernel_o_a_0_out;
+input  [31:0] kernel_o_a_0_down;
+input  [31:0] kernel_o_a_0_strike_price;
+input  [31:0] kernel_o_a_0_time_period;
+input  [31:0] kernel_o_a_0_call;
+input  [31:0] kernel_o_a_0_points;
+input  [31:0] seed_0_s1_dout;
+input   seed_0_s1_empty_n;
+output   seed_0_s1_read;
+input  [31:0] seed_0_s2_dout;
+input   seed_0_s2_empty_n;
+output   seed_0_s2_read;
+input  [31:0] seed_0_s3_dout;
+input   seed_0_s3_empty_n;
+output   seed_0_s3_read;
+input  [31:0] seed_0_offset_dout;
+input   seed_0_offset_empty_n;
+output   seed_0_offset_read;
+output  [31:0] thread_result_0_din;
+input   thread_result_0_full_n;
+output   thread_result_0_write;
+output  [31:0] thread_result_sqrd_0_din;
+input   thread_result_sqrd_0_full_n;
+output   thread_result_sqrd_0_write;
 
 reg ap_done;
 reg ap_idle;
 reg ap_ready;
-reg result_0_write;
-reg result_sqrd_0_write;
+reg thread_result_0_write;
+reg thread_result_sqrd_0_write;
 reg   [5:0] ap_CS_fsm = 6'b000000;
-wire   [31:0] grp_fu_170_p2;
-reg   [31:0] delta_time_0_reg_248;
-wire   [63:0] grp_fu_182_p1;
-reg   [63:0] tmp_reg_253;
-wire   [6:0] p_1_fu_207_p2;
-reg   [6:0] p_1_reg_262;
-wire   [31:0] grp_fu_178_p1;
-reg   [31:0] spot_price_0_reg_267;
-wire   [12:0] pp_1_fu_219_p2;
-reg   [12:0] pp_1_reg_276;
-wire   [0:0] exitcond_fu_213_p2;
-reg   [31:0] tmp_i_reg_291;
-wire   [31:0] grp_fu_163_p2;
-reg   [31:0] u_v_0_gamma_reg_296;
-reg   [63:0] tmp_8_reg_302;
-wire   [63:0] grp_fu_196_p2;
-reg   [63:0] tmp_9_reg_307;
-wire   [63:0] grp_fu_192_p2;
-wire   [0:0] tmp_4_fu_225_p2;
-reg   [0:0] tmp_4_reg_317;
-wire   [31:0] o_v_0_value_fu_231_p3;
-reg   [31:0] o_v_0_value_reg_328;
-reg   [6:0] p_reg_118;
-reg   [63:0] spot_price_0_0_in_reg_129;
-wire   [0:0] exitcond1_fu_201_p2;
-reg   [31:0] u_v_gamma_read_assign_reg_139;
-reg   [12:0] pp_reg_151;
-reg   [31:0] grp_fu_163_p0;
-reg   [31:0] grp_fu_163_p1;
-reg   [31:0] grp_fu_170_p0;
-reg   [31:0] grp_fu_170_p1;
-wire   [63:0] grp_fu_178_p0;
-reg   [31:0] grp_fu_182_p0;
-wire   [31:0] grp_fu_186_p0;
-wire   [31:0] grp_fu_186_p1;
-wire   [63:0] grp_fu_192_p0;
-wire   [63:0] grp_fu_192_p1;
-wire   [63:0] grp_fu_196_p1;
-wire   [0:0] grp_fu_186_p2;
-reg   [1:0] grp_fu_163_opcode;
-wire    grp_fu_163_ce;
-reg    grp_fu_170_ce;
-wire    grp_fu_178_ce;
-wire    grp_fu_182_ce;
-wire    grp_fu_186_ce;
-wire   [4:0] grp_fu_186_opcode;
-wire    grp_fu_192_ce;
-wire   [63:0] grp_fu_196_p0;
-wire    grp_fu_196_ce;
+wire   [31:0] grp_fu_193_p2;
+reg   [31:0] reg_216;
+wire   [31:0] grp_fu_200_p2;
+reg   [31:0] delta_time_0_reg_253;
+wire   [3:0] pp_1_fu_228_p2;
+reg   [3:0] pp_1_reg_282;
+wire   [31:0] grp_fu_188_p2;
+reg   [31:0] u_v_0_gamma_reg_287;
+wire   [31:0] grp_fu_211_p2;
+wire   [0:0] tmp_2_fu_234_p2;
+reg   [0:0] tmp_2_reg_298;
+wire   [31:0] temp_value_fu_240_p3;
+reg   [31:0] temp_value_reg_303;
+reg   [31:0] tmp_pn_reg_152;
+reg   [31:0] u_v_gamma_read_assign_reg_164;
+reg   [3:0] pp_reg_176;
+reg   [31:0] grp_fu_188_p0;
+reg   [31:0] grp_fu_188_p1;
+reg   [31:0] grp_fu_193_p0;
+reg   [31:0] grp_fu_193_p1;
+wire   [31:0] grp_fu_200_p0;
+wire   [31:0] grp_fu_200_p1;
+wire   [31:0] grp_fu_206_p0;
+wire   [31:0] grp_fu_206_p1;
+wire   [31:0] grp_fu_211_p1;
+wire   [0:0] grp_fu_206_p2;
+reg   [1:0] grp_fu_188_opcode;
+wire   [0:0] exitcond_fu_222_p2;
+reg    grp_fu_188_ce;
+reg    grp_fu_193_ce;
+wire    grp_fu_200_ce;
+wire    grp_fu_206_ce;
+wire   [4:0] grp_fu_206_opcode;
+wire   [31:0] grp_fu_211_p0;
+wire    grp_fu_211_ce;
 reg   [5:0] ap_NS_fsm;
 parameter    ap_const_logic_1 = 1'b1;
 parameter    ap_const_logic_0 = 1'b0;
@@ -153,26 +193,18 @@ parameter    ap_ST_st45_fsm_44 = 6'b101100;
 parameter    ap_ST_st46_fsm_45 = 6'b101101;
 parameter    ap_ST_st47_fsm_46 = 6'b101110;
 parameter    ap_ST_st48_fsm_47 = 6'b101111;
-parameter    ap_ST_st49_fsm_48 = 6'b110000;
-parameter    ap_ST_st50_fsm_49 = 6'b110001;
-parameter    ap_ST_st51_fsm_50 = 6'b110010;
-parameter    ap_ST_st52_fsm_51 = 6'b110011;
-parameter    ap_ST_st53_fsm_52 = 6'b110100;
-parameter    ap_ST_st54_fsm_53 = 6'b110101;
-parameter    ap_const_lv1_0 = 1'b0;
-parameter    ap_const_lv7_0 = 7'b0000000;
+parameter    ap_const_lv32_3F800000 = 32'b111111100000000000000000000000;
 parameter    ap_const_lv32_0 = 32'b00000000000000000000000000000000;
-parameter    ap_const_lv13_0 = 13'b0000000000000;
-parameter    ap_const_lv32_39800000 = 32'b111001100000000000000000000000;
-parameter    ap_const_lv7_64 = 7'b1100100;
-parameter    ap_const_lv7_1 = 7'b1;
-parameter    ap_const_lv13_1000 = 13'b1000000000000;
-parameter    ap_const_lv13_1 = 13'b1;
+parameter    ap_const_lv4_0 = 4'b0000;
+parameter    ap_const_lv1_0 = 1'b0;
+parameter    ap_const_lv32_41200000 = 32'b1000001001000000000000000000000;
+parameter    ap_const_lv4_A = 4'b1010;
+parameter    ap_const_lv4_1 = 4'b1;
 parameter    ap_const_lv1_1 = 1'b1;
 parameter    ap_const_lv2_0 = 2'b00;
 parameter    ap_const_lv2_1 = 2'b1;
 parameter    ap_const_lv5_1 = 5'b1;
-parameter    ap_const_lv64_1 = 64'b1;
+parameter    ap_const_lv32_1 = 32'b1;
 parameter    ap_true = 1'b1;
 
 
@@ -185,11 +217,11 @@ vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp #(
 vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1(
     .clk( ap_clk ),
     .reset( ap_rst ),
-    .din0( grp_fu_163_p0 ),
-    .din1( grp_fu_163_p1 ),
-    .opcode( grp_fu_163_opcode ),
-    .ce( grp_fu_163_ce ),
-    .dout( grp_fu_163_p2 )
+    .din0( grp_fu_188_p0 ),
+    .din1( grp_fu_188_p1 ),
+    .opcode( grp_fu_188_opcode ),
+    .ce( grp_fu_188_ce ),
+    .dout( grp_fu_188_p2 )
 );
 
 vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp #(
@@ -201,82 +233,56 @@ vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp #(
 vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2(
     .clk( ap_clk ),
     .reset( ap_rst ),
-    .din0( grp_fu_170_p0 ),
-    .din1( grp_fu_170_p1 ),
-    .ce( grp_fu_170_ce ),
-    .dout( grp_fu_170_p2 )
+    .din0( grp_fu_193_p0 ),
+    .din1( grp_fu_193_p1 ),
+    .ce( grp_fu_193_ce ),
+    .dout( grp_fu_193_p2 )
 );
 
-vivado_activity_thread_fptrunc_64ns_32_3 #(
+vivado_activity_thread_fdiv_32ns_32ns_32_16 #(
     .ID( 3 ),
-    .NUM_STAGE( 3 ),
-    .din0_WIDTH( 64 ),
-    .dout_WIDTH( 32 ))
-vivado_activity_thread_fptrunc_64ns_32_3_U3(
-    .clk( ap_clk ),
-    .reset( ap_rst ),
-    .din0( grp_fu_178_p0 ),
-    .ce( grp_fu_178_ce ),
-    .dout( grp_fu_178_p1 )
-);
-
-vivado_activity_thread_fpext_32ns_64_3 #(
-    .ID( 4 ),
-    .NUM_STAGE( 3 ),
+    .NUM_STAGE( 16 ),
     .din0_WIDTH( 32 ),
-    .dout_WIDTH( 64 ))
-vivado_activity_thread_fpext_32ns_64_3_U4(
+    .din1_WIDTH( 32 ),
+    .dout_WIDTH( 32 ))
+vivado_activity_thread_fdiv_32ns_32ns_32_16_U3(
     .clk( ap_clk ),
     .reset( ap_rst ),
-    .din0( grp_fu_182_p0 ),
-    .ce( grp_fu_182_ce ),
-    .dout( grp_fu_182_p1 )
+    .din0( grp_fu_200_p0 ),
+    .din1( grp_fu_200_p1 ),
+    .ce( grp_fu_200_ce ),
+    .dout( grp_fu_200_p2 )
 );
 
 vivado_activity_thread_fcmp_32ns_32ns_1_3 #(
-    .ID( 5 ),
+    .ID( 4 ),
     .NUM_STAGE( 3 ),
     .din0_WIDTH( 32 ),
     .din1_WIDTH( 32 ),
     .dout_WIDTH( 1 ))
-vivado_activity_thread_fcmp_32ns_32ns_1_3_U5(
+vivado_activity_thread_fcmp_32ns_32ns_1_3_U4(
     .clk( ap_clk ),
     .reset( ap_rst ),
-    .din0( grp_fu_186_p0 ),
-    .din1( grp_fu_186_p1 ),
-    .ce( grp_fu_186_ce ),
-    .opcode( grp_fu_186_opcode ),
-    .dout( grp_fu_186_p2 )
+    .din0( grp_fu_206_p0 ),
+    .din1( grp_fu_206_p1 ),
+    .ce( grp_fu_206_ce ),
+    .opcode( grp_fu_206_opcode ),
+    .dout( grp_fu_206_p2 )
 );
 
-vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp #(
-    .ID( 6 ),
-    .NUM_STAGE( 6 ),
-    .din0_WIDTH( 64 ),
-    .din1_WIDTH( 64 ),
-    .dout_WIDTH( 64 ))
-vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6(
+vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp #(
+    .ID( 5 ),
+    .NUM_STAGE( 9 ),
+    .din0_WIDTH( 32 ),
+    .din1_WIDTH( 32 ),
+    .dout_WIDTH( 32 ))
+vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5(
     .clk( ap_clk ),
     .reset( ap_rst ),
-    .din0( grp_fu_192_p0 ),
-    .din1( grp_fu_192_p1 ),
-    .ce( grp_fu_192_ce ),
-    .dout( grp_fu_192_p2 )
-);
-
-vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp #(
-    .ID( 7 ),
-    .NUM_STAGE( 18 ),
-    .din0_WIDTH( 64 ),
-    .din1_WIDTH( 64 ),
-    .dout_WIDTH( 64 ))
-vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7(
-    .clk( ap_clk ),
-    .reset( ap_rst ),
-    .din0( grp_fu_196_p0 ),
-    .din1( grp_fu_196_p1 ),
-    .ce( grp_fu_196_ce ),
-    .dout( grp_fu_196_p2 )
+    .din0( grp_fu_211_p0 ),
+    .din1( grp_fu_211_p1 ),
+    .ce( grp_fu_211_ce ),
+    .dout( grp_fu_211_p2 )
 );
 
 
@@ -294,90 +300,10 @@ end
 /// assign process. ///
 always @(posedge ap_clk)
 begin
-    if (((ap_ST_st54_fsm_53 == ap_CS_fsm) & ~(result_sqrd_0_full_n == ap_const_logic_0))) begin
-        p_reg_118 <= p_1_reg_262;
-    end else if ((ap_ST_st4_fsm_3 == ap_CS_fsm)) begin
-        p_reg_118 <= ap_const_lv7_0;
-    end
-end
-
-/// assign process. ///
-always @(posedge ap_clk)
-begin
-    if ((ap_ST_st43_fsm_42 == ap_CS_fsm)) begin
-        pp_reg_151 <= pp_1_reg_276;
-    end else if (((ap_ST_st5_fsm_4 == ap_CS_fsm) & (ap_const_lv1_0 == exitcond1_fu_201_p2))) begin
-        pp_reg_151 <= ap_const_lv13_0;
-    end
-end
-
-/// assign process. ///
-always @(posedge ap_clk)
-begin
-    if ((ap_ST_st43_fsm_42 == ap_CS_fsm)) begin
-        spot_price_0_0_in_reg_129 <= grp_fu_192_p2;
-    end else if (((ap_ST_st5_fsm_4 == ap_CS_fsm) & (ap_const_lv1_0 == exitcond1_fu_201_p2))) begin
-        spot_price_0_0_in_reg_129 <= tmp_reg_253;
-    end
-end
-
-/// assign process. ///
-always @(posedge ap_clk)
-begin
-    if ((ap_ST_st43_fsm_42 == ap_CS_fsm)) begin
-        u_v_gamma_read_assign_reg_139 <= u_v_0_gamma_reg_296;
-    end else if (((ap_ST_st5_fsm_4 == ap_CS_fsm) & (ap_const_lv1_0 == exitcond1_fu_201_p2))) begin
-        u_v_gamma_read_assign_reg_139 <= ap_const_lv32_0;
-    end
-end
-
-/// assign process. ///
-always @(posedge ap_clk)
-begin
-    if ((ap_ST_st4_fsm_3 == ap_CS_fsm)) begin
-        delta_time_0_reg_248 <= grp_fu_170_p2;
-        tmp_reg_253 <= grp_fu_182_p1;
-    end
-end
-
-/// assign process. ///
-always @(posedge ap_clk)
-begin
-    if ((ap_ST_st50_fsm_49 == ap_CS_fsm)) begin
-        o_v_0_value_reg_328 <= o_v_0_value_fu_231_p3;
-    end
-end
-
-/// assign process. ///
-always @(posedge ap_clk)
-begin
-    if ((ap_ST_st5_fsm_4 == ap_CS_fsm)) begin
-        p_1_reg_262 <= p_1_fu_207_p2;
-    end
-end
-
-/// assign process. ///
-always @(posedge ap_clk)
-begin
-    if ((ap_ST_st8_fsm_7 == ap_CS_fsm)) begin
-        pp_1_reg_276 <= pp_1_fu_219_p2;
-        spot_price_0_reg_267 <= grp_fu_178_p1;
-    end
-end
-
-/// assign process. ///
-always @(posedge ap_clk)
-begin
-    if ((ap_ST_st45_fsm_44 == ap_CS_fsm)) begin
-        tmp_4_reg_317 <= tmp_4_fu_225_p2;
-    end
-end
-
-/// assign process. ///
-always @(posedge ap_clk)
-begin
-    if ((ap_ST_st19_fsm_18 == ap_CS_fsm)) begin
-        tmp_8_reg_302 <= grp_fu_182_p1;
+    if ((ap_ST_st37_fsm_36 == ap_CS_fsm)) begin
+        pp_reg_176 <= pp_1_reg_282;
+    end else if ((ap_ST_st20_fsm_19 == ap_CS_fsm)) begin
+        pp_reg_176 <= ap_const_lv4_0;
     end
 end
 
@@ -385,15 +311,19 @@ end
 always @(posedge ap_clk)
 begin
     if ((ap_ST_st37_fsm_36 == ap_CS_fsm)) begin
-        tmp_9_reg_307 <= grp_fu_196_p2;
+        tmp_pn_reg_152 <= grp_fu_211_p2;
+    end else if ((ap_ST_st20_fsm_19 == ap_CS_fsm)) begin
+        tmp_pn_reg_152 <= ap_const_lv32_3F800000;
     end
 end
 
 /// assign process. ///
 always @(posedge ap_clk)
 begin
-    if ((ap_ST_st11_fsm_10 == ap_CS_fsm)) begin
-        tmp_i_reg_291 <= grp_fu_170_p2;
+    if ((ap_ST_st37_fsm_36 == ap_CS_fsm)) begin
+        u_v_gamma_read_assign_reg_164 <= u_v_0_gamma_reg_287;
+    end else if ((ap_ST_st20_fsm_19 == ap_CS_fsm)) begin
+        u_v_gamma_read_assign_reg_164 <= ap_const_lv32_0;
     end
 end
 
@@ -401,14 +331,54 @@ end
 always @(posedge ap_clk)
 begin
     if ((ap_ST_st16_fsm_15 == ap_CS_fsm)) begin
-        u_v_0_gamma_reg_296 <= grp_fu_163_p2;
+        delta_time_0_reg_253 <= grp_fu_200_p2;
+    end
+end
+
+/// assign process. ///
+always @(posedge ap_clk)
+begin
+    if ((ap_ST_st24_fsm_23 == ap_CS_fsm)) begin
+        pp_1_reg_282 <= pp_1_fu_228_p2;
+    end
+end
+
+/// assign process. ///
+always @(posedge ap_clk)
+begin
+    if (((ap_ST_st20_fsm_19 == ap_CS_fsm) | (ap_ST_st24_fsm_23 == ap_CS_fsm))) begin
+        reg_216 <= grp_fu_193_p2;
+    end
+end
+
+/// assign process. ///
+always @(posedge ap_clk)
+begin
+    if (((ap_ST_st44_fsm_43 == ap_CS_fsm) & ~(thread_result_0_full_n == ap_const_logic_0))) begin
+        temp_value_reg_303 <= temp_value_fu_240_p3;
+    end
+end
+
+/// assign process. ///
+always @(posedge ap_clk)
+begin
+    if ((ap_ST_st39_fsm_38 == ap_CS_fsm)) begin
+        tmp_2_reg_298 <= tmp_2_fu_234_p2;
+    end
+end
+
+/// assign process. ///
+always @(posedge ap_clk)
+begin
+    if ((ap_ST_st28_fsm_27 == ap_CS_fsm)) begin
+        u_v_0_gamma_reg_287 <= grp_fu_188_p2;
     end
 end
 
 /// ap_done assign process. ///
-always @ (ap_CS_fsm or exitcond1_fu_201_p2)
+always @ (ap_CS_fsm or thread_result_sqrd_0_full_n)
 begin
-    if (((ap_ST_st5_fsm_4 == ap_CS_fsm) & ~(ap_const_lv1_0 == exitcond1_fu_201_p2))) begin
+    if (((ap_ST_st48_fsm_47 == ap_CS_fsm) & ~(thread_result_sqrd_0_full_n == ap_const_logic_0))) begin
         ap_done = ap_const_logic_1;
     end else begin
         ap_done = ap_const_logic_0;
@@ -426,125 +396,121 @@ begin
 end
 
 /// ap_ready assign process. ///
-always @ (ap_CS_fsm or exitcond1_fu_201_p2)
+always @ (ap_CS_fsm or thread_result_sqrd_0_full_n)
 begin
-    if (((ap_ST_st5_fsm_4 == ap_CS_fsm) & ~(ap_const_lv1_0 == exitcond1_fu_201_p2))) begin
+    if (((ap_ST_st48_fsm_47 == ap_CS_fsm) & ~(thread_result_sqrd_0_full_n == ap_const_logic_0))) begin
         ap_ready = ap_const_logic_1;
     end else begin
         ap_ready = ap_const_logic_0;
     end
 end
 
-/// grp_fu_163_opcode assign process. ///
-always @ (ap_CS_fsm or tmp_4_reg_317)
+/// grp_fu_188_ce assign process. ///
+always @ (ap_CS_fsm or thread_result_0_full_n or tmp_2_reg_298 or exitcond_fu_222_p2)
 begin
-    if ((((ap_ST_st46_fsm_45 == ap_CS_fsm) & ~(ap_const_lv1_0 == tmp_4_reg_317)) | ((ap_ST_st46_fsm_45 == ap_CS_fsm) & (ap_const_lv1_0 == tmp_4_reg_317)))) begin
-        grp_fu_163_opcode = ap_const_lv2_1;
-    end else if ((ap_ST_st12_fsm_11 == ap_CS_fsm)) begin
-        grp_fu_163_opcode = ap_const_lv2_0;
+    if (((ap_ST_st28_fsm_27 == ap_CS_fsm) | ((ap_ST_st24_fsm_23 == ap_CS_fsm) & (ap_const_lv1_0 == exitcond_fu_222_p2)) | (ap_ST_st25_fsm_24 == ap_CS_fsm) | (ap_ST_st26_fsm_25 == ap_CS_fsm) | (ap_ST_st27_fsm_26 == ap_CS_fsm) | ((ap_ST_st40_fsm_39 == ap_CS_fsm) & ((tmp_2_reg_298 == ap_const_lv1_0) | ~(tmp_2_reg_298 == ap_const_lv1_0))) | (((tmp_2_reg_298 == ap_const_lv1_0) | ~(tmp_2_reg_298 == ap_const_lv1_0)) & (ap_ST_st41_fsm_40 == ap_CS_fsm)) | (((tmp_2_reg_298 == ap_const_lv1_0) | ~(tmp_2_reg_298 == ap_const_lv1_0)) & (ap_ST_st42_fsm_41 == ap_CS_fsm)) | (((tmp_2_reg_298 == ap_const_lv1_0) | ~(tmp_2_reg_298 == ap_const_lv1_0)) & (ap_ST_st43_fsm_42 == ap_CS_fsm)) | ((ap_ST_st44_fsm_43 == ap_CS_fsm) & ~(thread_result_0_full_n == ap_const_logic_0) & ((tmp_2_reg_298 == ap_const_lv1_0) | ~(tmp_2_reg_298 == ap_const_lv1_0))))) begin
+        grp_fu_188_ce = ap_const_logic_1;
     end else begin
-        grp_fu_163_opcode = 'bx;
+        grp_fu_188_ce = ap_const_logic_0;
     end
 end
 
-/// grp_fu_163_p0 assign process. ///
-always @ (ap_CS_fsm or kernel_arg_o_a_0_strike_price or spot_price_0_reg_267 or tmp_i_reg_291 or tmp_4_reg_317)
+/// grp_fu_188_opcode assign process. ///
+always @ (ap_CS_fsm or tmp_2_reg_298 or exitcond_fu_222_p2)
 begin
-    if (((ap_ST_st46_fsm_45 == ap_CS_fsm) & (ap_const_lv1_0 == tmp_4_reg_317))) begin
-        grp_fu_163_p0 = kernel_arg_o_a_0_strike_price;
-    end else if (((ap_ST_st46_fsm_45 == ap_CS_fsm) & ~(ap_const_lv1_0 == tmp_4_reg_317))) begin
-        grp_fu_163_p0 = spot_price_0_reg_267;
-    end else if ((ap_ST_st12_fsm_11 == ap_CS_fsm)) begin
-        grp_fu_163_p0 = tmp_i_reg_291;
+    if ((((ap_ST_st40_fsm_39 == ap_CS_fsm) & ~(tmp_2_reg_298 == ap_const_lv1_0)) | ((ap_ST_st40_fsm_39 == ap_CS_fsm) & (tmp_2_reg_298 == ap_const_lv1_0)))) begin
+        grp_fu_188_opcode = ap_const_lv2_1;
+    end else if (((ap_ST_st24_fsm_23 == ap_CS_fsm) & (ap_const_lv1_0 == exitcond_fu_222_p2))) begin
+        grp_fu_188_opcode = ap_const_lv2_0;
     end else begin
-        grp_fu_163_p0 = 'bx;
+        grp_fu_188_opcode = 'bx;
     end
 end
 
-/// grp_fu_163_p1 assign process. ///
-always @ (ap_CS_fsm or kernel_arg_o_a_0_strike_price or spot_price_0_reg_267 or tmp_4_reg_317 or u_v_gamma_read_assign_reg_139)
+/// grp_fu_188_p0 assign process. ///
+always @ (ap_CS_fsm or kernel_o_a_0_strike_price or reg_216 or tmp_2_reg_298)
 begin
-    if (((ap_ST_st46_fsm_45 == ap_CS_fsm) & (ap_const_lv1_0 == tmp_4_reg_317))) begin
-        grp_fu_163_p1 = spot_price_0_reg_267;
-    end else if (((ap_ST_st46_fsm_45 == ap_CS_fsm) & ~(ap_const_lv1_0 == tmp_4_reg_317))) begin
-        grp_fu_163_p1 = kernel_arg_o_a_0_strike_price;
-    end else if ((ap_ST_st12_fsm_11 == ap_CS_fsm)) begin
-        grp_fu_163_p1 = u_v_gamma_read_assign_reg_139;
+    if (((ap_ST_st40_fsm_39 == ap_CS_fsm) & (tmp_2_reg_298 == ap_const_lv1_0))) begin
+        grp_fu_188_p0 = kernel_o_a_0_strike_price;
+    end else if (((ap_ST_st24_fsm_23 == ap_CS_fsm) | ((ap_ST_st40_fsm_39 == ap_CS_fsm) & ~(tmp_2_reg_298 == ap_const_lv1_0)))) begin
+        grp_fu_188_p0 = reg_216;
     end else begin
-        grp_fu_163_p1 = 'bx;
+        grp_fu_188_p0 = 'bx;
     end
 end
 
-/// grp_fu_170_ce assign process. ///
-always @ (ap_start or ap_CS_fsm or result_0_full_n or result_sqrd_0_full_n or exitcond_fu_213_p2)
+/// grp_fu_188_p1 assign process. ///
+always @ (ap_CS_fsm or kernel_o_a_0_strike_price or reg_216 or tmp_2_reg_298 or u_v_gamma_read_assign_reg_164)
 begin
-    if ((((ap_ST_st1_fsm_0 == ap_CS_fsm) & ~(ap_start == ap_const_logic_0)) | (ap_ST_st2_fsm_1 == ap_CS_fsm) | (ap_ST_st4_fsm_3 == ap_CS_fsm) | ((ap_ST_st8_fsm_7 == ap_CS_fsm) & (exitcond_fu_213_p2 == ap_const_lv1_0)) | (ap_ST_st11_fsm_10 == ap_CS_fsm) | ((ap_ST_st54_fsm_53 == ap_CS_fsm) & ~(result_sqrd_0_full_n == ap_const_logic_0)) | ((ap_ST_st51_fsm_50 == ap_CS_fsm) & ~(result_0_full_n == ap_const_logic_0)) | (ap_ST_st3_fsm_2 == ap_CS_fsm) | (ap_ST_st9_fsm_8 == ap_CS_fsm) | (ap_ST_st10_fsm_9 == ap_CS_fsm) | (ap_ST_st52_fsm_51 == ap_CS_fsm) | (ap_ST_st53_fsm_52 == ap_CS_fsm))) begin
-        grp_fu_170_ce = ap_const_logic_1;
+    if (((ap_ST_st40_fsm_39 == ap_CS_fsm) & (tmp_2_reg_298 == ap_const_lv1_0))) begin
+        grp_fu_188_p1 = reg_216;
+    end else if (((ap_ST_st40_fsm_39 == ap_CS_fsm) & ~(tmp_2_reg_298 == ap_const_lv1_0))) begin
+        grp_fu_188_p1 = kernel_o_a_0_strike_price;
+    end else if ((ap_ST_st24_fsm_23 == ap_CS_fsm)) begin
+        grp_fu_188_p1 = u_v_gamma_read_assign_reg_164;
     end else begin
-        grp_fu_170_ce = ap_const_logic_0;
+        grp_fu_188_p1 = 'bx;
     end
 end
 
-/// grp_fu_170_p0 assign process. ///
-always @ (ap_CS_fsm or kernel_arg_u_a_0_rfir or kernel_arg_o_a_0_time_period or o_v_0_value_reg_328)
+/// grp_fu_193_ce assign process. ///
+always @ (ap_CS_fsm or thread_result_sqrd_0_full_n)
 begin
-    if ((ap_ST_st51_fsm_50 == ap_CS_fsm)) begin
-        grp_fu_170_p0 = o_v_0_value_reg_328;
-    end else if ((ap_ST_st8_fsm_7 == ap_CS_fsm)) begin
-        grp_fu_170_p0 = kernel_arg_u_a_0_rfir;
-    end else if ((ap_ST_st1_fsm_0 == ap_CS_fsm)) begin
-        grp_fu_170_p0 = kernel_arg_o_a_0_time_period;
+    if (((ap_ST_st20_fsm_19 == ap_CS_fsm) | (ap_ST_st24_fsm_23 == ap_CS_fsm) | (ap_ST_st17_fsm_16 == ap_CS_fsm) | ((ap_ST_st48_fsm_47 == ap_CS_fsm) & ~(thread_result_sqrd_0_full_n == ap_const_logic_0)) | (ap_ST_st21_fsm_20 == ap_CS_fsm) | (ap_ST_st45_fsm_44 == ap_CS_fsm) | (ap_ST_st18_fsm_17 == ap_CS_fsm) | (ap_ST_st19_fsm_18 == ap_CS_fsm) | (ap_ST_st22_fsm_21 == ap_CS_fsm) | (ap_ST_st23_fsm_22 == ap_CS_fsm) | (ap_ST_st46_fsm_45 == ap_CS_fsm) | (ap_ST_st47_fsm_46 == ap_CS_fsm))) begin
+        grp_fu_193_ce = ap_const_logic_1;
     end else begin
-        grp_fu_170_p0 = 'bx;
+        grp_fu_193_ce = ap_const_logic_0;
     end
 end
 
-/// grp_fu_170_p1 assign process. ///
-always @ (ap_CS_fsm or delta_time_0_reg_248 or o_v_0_value_reg_328)
+/// grp_fu_193_p0 assign process. ///
+always @ (ap_CS_fsm or kernel_u_a_0_rfir or kernel_u_a_0_current_price or temp_value_reg_303)
 begin
-    if ((ap_ST_st51_fsm_50 == ap_CS_fsm)) begin
-        grp_fu_170_p1 = o_v_0_value_reg_328;
-    end else if ((ap_ST_st8_fsm_7 == ap_CS_fsm)) begin
-        grp_fu_170_p1 = delta_time_0_reg_248;
-    end else if ((ap_ST_st1_fsm_0 == ap_CS_fsm)) begin
-        grp_fu_170_p1 = ap_const_lv32_39800000;
+    if ((ap_ST_st45_fsm_44 == ap_CS_fsm)) begin
+        grp_fu_193_p0 = temp_value_reg_303;
+    end else if ((ap_ST_st21_fsm_20 == ap_CS_fsm)) begin
+        grp_fu_193_p0 = kernel_u_a_0_current_price;
+    end else if ((ap_ST_st17_fsm_16 == ap_CS_fsm)) begin
+        grp_fu_193_p0 = kernel_u_a_0_rfir;
     end else begin
-        grp_fu_170_p1 = 'bx;
+        grp_fu_193_p0 = 'bx;
     end
 end
 
-/// grp_fu_182_p0 assign process. ///
-always @ (ap_CS_fsm or kernel_arg_u_a_0_current_price or u_v_0_gamma_reg_296)
+/// grp_fu_193_p1 assign process. ///
+always @ (ap_CS_fsm or delta_time_0_reg_253 or temp_value_reg_303 or tmp_pn_reg_152)
 begin
-    if ((ap_ST_st17_fsm_16 == ap_CS_fsm)) begin
-        grp_fu_182_p0 = u_v_0_gamma_reg_296;
-    end else if ((ap_ST_st2_fsm_1 == ap_CS_fsm)) begin
-        grp_fu_182_p0 = kernel_arg_u_a_0_current_price;
+    if ((ap_ST_st45_fsm_44 == ap_CS_fsm)) begin
+        grp_fu_193_p1 = temp_value_reg_303;
+    end else if ((ap_ST_st21_fsm_20 == ap_CS_fsm)) begin
+        grp_fu_193_p1 = tmp_pn_reg_152;
+    end else if ((ap_ST_st17_fsm_16 == ap_CS_fsm)) begin
+        grp_fu_193_p1 = delta_time_0_reg_253;
     end else begin
-        grp_fu_182_p0 = 'bx;
+        grp_fu_193_p1 = 'bx;
     end
 end
 
-/// result_0_write assign process. ///
-always @ (ap_CS_fsm or result_0_full_n)
+/// thread_result_0_write assign process. ///
+always @ (ap_CS_fsm or thread_result_0_full_n)
 begin
-    if (((ap_ST_st51_fsm_50 == ap_CS_fsm) & ~(result_0_full_n == ap_const_logic_0))) begin
-        result_0_write = ap_const_logic_1;
+    if (((ap_ST_st44_fsm_43 == ap_CS_fsm) & ~(thread_result_0_full_n == ap_const_logic_0))) begin
+        thread_result_0_write = ap_const_logic_1;
     end else begin
-        result_0_write = ap_const_logic_0;
+        thread_result_0_write = ap_const_logic_0;
     end
 end
 
-/// result_sqrd_0_write assign process. ///
-always @ (ap_CS_fsm or result_sqrd_0_full_n)
+/// thread_result_sqrd_0_write assign process. ///
+always @ (ap_CS_fsm or thread_result_sqrd_0_full_n)
 begin
-    if (((ap_ST_st54_fsm_53 == ap_CS_fsm) & ~(result_sqrd_0_full_n == ap_const_logic_0))) begin
-        result_sqrd_0_write = ap_const_logic_1;
+    if (((ap_ST_st48_fsm_47 == ap_CS_fsm) & ~(thread_result_sqrd_0_full_n == ap_const_logic_0))) begin
+        thread_result_sqrd_0_write = ap_const_logic_1;
     end else begin
-        result_sqrd_0_write = ap_const_logic_0;
+        thread_result_sqrd_0_write = ap_const_logic_0;
     end
 end
-always @ (ap_start or ap_CS_fsm or result_0_full_n or result_sqrd_0_full_n or exitcond_fu_213_p2 or exitcond1_fu_201_p2)
+always @ (ap_start or ap_CS_fsm or thread_result_0_full_n or thread_result_sqrd_0_full_n or exitcond_fu_222_p2)
 begin
     case (ap_CS_fsm)
         ap_ST_st1_fsm_0 : 
@@ -560,21 +526,13 @@ begin
         ap_ST_st4_fsm_3 : 
             ap_NS_fsm = ap_ST_st5_fsm_4;
         ap_ST_st5_fsm_4 : 
-            if (~(ap_const_lv1_0 == exitcond1_fu_201_p2)) begin
-                ap_NS_fsm = ap_ST_st1_fsm_0;
-            end else begin
-                ap_NS_fsm = ap_ST_st6_fsm_5;
-            end
+            ap_NS_fsm = ap_ST_st6_fsm_5;
         ap_ST_st6_fsm_5 : 
             ap_NS_fsm = ap_ST_st7_fsm_6;
         ap_ST_st7_fsm_6 : 
             ap_NS_fsm = ap_ST_st8_fsm_7;
         ap_ST_st8_fsm_7 : 
-            if (~(exitcond_fu_213_p2 == ap_const_lv1_0)) begin
-                ap_NS_fsm = ap_ST_st44_fsm_43;
-            end else begin
-                ap_NS_fsm = ap_ST_st9_fsm_8;
-            end
+            ap_NS_fsm = ap_ST_st9_fsm_8;
         ap_ST_st9_fsm_8 : 
             ap_NS_fsm = ap_ST_st10_fsm_9;
         ap_ST_st10_fsm_9 : 
@@ -606,7 +564,11 @@ begin
         ap_ST_st23_fsm_22 : 
             ap_NS_fsm = ap_ST_st24_fsm_23;
         ap_ST_st24_fsm_23 : 
-            ap_NS_fsm = ap_ST_st25_fsm_24;
+            if (~(ap_const_lv1_0 == exitcond_fu_222_p2)) begin
+                ap_NS_fsm = ap_ST_st38_fsm_37;
+            end else begin
+                ap_NS_fsm = ap_ST_st25_fsm_24;
+            end
         ap_ST_st25_fsm_24 : 
             ap_NS_fsm = ap_ST_st26_fsm_25;
         ap_ST_st26_fsm_25 : 
@@ -632,7 +594,7 @@ begin
         ap_ST_st36_fsm_35 : 
             ap_NS_fsm = ap_ST_st37_fsm_36;
         ap_ST_st37_fsm_36 : 
-            ap_NS_fsm = ap_ST_st38_fsm_37;
+            ap_NS_fsm = ap_ST_st21_fsm_20;
         ap_ST_st38_fsm_37 : 
             ap_NS_fsm = ap_ST_st39_fsm_38;
         ap_ST_st39_fsm_38 : 
@@ -644,9 +606,13 @@ begin
         ap_ST_st42_fsm_41 : 
             ap_NS_fsm = ap_ST_st43_fsm_42;
         ap_ST_st43_fsm_42 : 
-            ap_NS_fsm = ap_ST_st6_fsm_5;
+            ap_NS_fsm = ap_ST_st44_fsm_43;
         ap_ST_st44_fsm_43 : 
-            ap_NS_fsm = ap_ST_st45_fsm_44;
+            if (~(thread_result_0_full_n == ap_const_logic_0)) begin
+                ap_NS_fsm = ap_ST_st45_fsm_44;
+            end else begin
+                ap_NS_fsm = ap_ST_st44_fsm_43;
+            end
         ap_ST_st45_fsm_44 : 
             ap_NS_fsm = ap_ST_st46_fsm_45;
         ap_ST_st46_fsm_45 : 
@@ -654,53 +620,35 @@ begin
         ap_ST_st47_fsm_46 : 
             ap_NS_fsm = ap_ST_st48_fsm_47;
         ap_ST_st48_fsm_47 : 
-            ap_NS_fsm = ap_ST_st49_fsm_48;
-        ap_ST_st49_fsm_48 : 
-            ap_NS_fsm = ap_ST_st50_fsm_49;
-        ap_ST_st50_fsm_49 : 
-            ap_NS_fsm = ap_ST_st51_fsm_50;
-        ap_ST_st51_fsm_50 : 
-            if (~(result_0_full_n == ap_const_logic_0)) begin
-                ap_NS_fsm = ap_ST_st52_fsm_51;
+            if (~(thread_result_sqrd_0_full_n == ap_const_logic_0)) begin
+                ap_NS_fsm = ap_ST_st1_fsm_0;
             end else begin
-                ap_NS_fsm = ap_ST_st51_fsm_50;
-            end
-        ap_ST_st52_fsm_51 : 
-            ap_NS_fsm = ap_ST_st53_fsm_52;
-        ap_ST_st53_fsm_52 : 
-            ap_NS_fsm = ap_ST_st54_fsm_53;
-        ap_ST_st54_fsm_53 : 
-            if (~(result_sqrd_0_full_n == ap_const_logic_0)) begin
-                ap_NS_fsm = ap_ST_st5_fsm_4;
-            end else begin
-                ap_NS_fsm = ap_ST_st54_fsm_53;
+                ap_NS_fsm = ap_ST_st48_fsm_47;
             end
         default : 
             ap_NS_fsm = 'bx;
     endcase
 end
-assign exitcond1_fu_201_p2 = (p_reg_118 == ap_const_lv7_64? 1'b1: 1'b0);
-assign exitcond_fu_213_p2 = (pp_reg_151 == ap_const_lv13_1000? 1'b1: 1'b0);
-assign grp_fu_163_ce = ap_const_logic_1;
-assign grp_fu_178_ce = ap_const_logic_1;
-assign grp_fu_178_p0 = spot_price_0_0_in_reg_129;
-assign grp_fu_182_ce = ap_const_logic_1;
-assign grp_fu_186_ce = ap_const_logic_1;
-assign grp_fu_186_opcode = ap_const_lv5_1;
-assign grp_fu_186_p0 = kernel_arg_o_a_0_call;
-assign grp_fu_186_p1 = ap_const_lv32_0;
-assign grp_fu_192_ce = ap_const_logic_1;
-assign grp_fu_192_p0 = tmp_reg_253;
-assign grp_fu_192_p1 = tmp_9_reg_307;
-assign grp_fu_196_ce = ap_const_logic_1;
-assign grp_fu_196_p0 = ap_const_lv64_1;
-assign grp_fu_196_p1 = tmp_8_reg_302;
-assign o_v_0_value_fu_231_p3 = ((tmp_4_reg_317)? grp_fu_163_p2: grp_fu_163_p2);
-assign p_1_fu_207_p2 = (p_reg_118 + ap_const_lv7_1);
-assign pp_1_fu_219_p2 = (pp_reg_151 + ap_const_lv13_1);
-assign result_0_din = o_v_0_value_reg_328;
-assign result_sqrd_0_din = grp_fu_170_p2;
-assign tmp_4_fu_225_p2 = (grp_fu_186_p2 ^ ap_const_lv1_1);
+assign exitcond_fu_222_p2 = (pp_reg_176 == ap_const_lv4_A? 1'b1: 1'b0);
+assign grp_fu_200_ce = ap_const_logic_1;
+assign grp_fu_200_p0 = kernel_o_a_0_time_period;
+assign grp_fu_200_p1 = ap_const_lv32_41200000;
+assign grp_fu_206_ce = ap_const_logic_1;
+assign grp_fu_206_opcode = ap_const_lv5_1;
+assign grp_fu_206_p0 = kernel_o_a_0_call;
+assign grp_fu_206_p1 = ap_const_lv32_0;
+assign grp_fu_211_ce = ap_const_logic_1;
+assign grp_fu_211_p0 = ap_const_lv32_1;
+assign grp_fu_211_p1 = u_v_0_gamma_reg_287;
+assign pp_1_fu_228_p2 = (pp_reg_176 + ap_const_lv4_1);
+assign seed_0_offset_read = ap_const_logic_0;
+assign seed_0_s1_read = ap_const_logic_0;
+assign seed_0_s2_read = ap_const_logic_0;
+assign seed_0_s3_read = ap_const_logic_0;
+assign temp_value_fu_240_p3 = ((tmp_2_reg_298)? grp_fu_188_p2: grp_fu_188_p2);
+assign thread_result_0_din = ((tmp_2_reg_298)? grp_fu_188_p2: grp_fu_188_p2);
+assign thread_result_sqrd_0_din = grp_fu_193_p2;
+assign tmp_2_fu_234_p2 = (grp_fu_206_p2 ^ ap_const_lv1_1);
 
 
 endmodule //vivado_activity_thread

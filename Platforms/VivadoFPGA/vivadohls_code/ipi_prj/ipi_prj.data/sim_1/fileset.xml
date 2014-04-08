@@ -6,7 +6,6 @@
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="zynq_system_wrapper"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
-      <Option Name="SimMode" Val="post-implementation"/>
       <Option Name="SrcSet" Val="sources_1"/>
     </Config>
   </FileSet>

@@ -14,24 +14,30 @@
 					spirit:name="vivado_activity_thread"
 					spirit:version="1.0"/>
 			<spirit:configurableElementValues>
-				<spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.C_S_AXI_CORE_IO_ADDR_WIDTH">7</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.C_S_AXI_CORE_IO_ADDR_WIDTH">8</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.Component_Name">zynq_system_vivado_activity_thread_0_0</spirit:configurableElementValue>
-				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_S_AXI_CORE_IO_ADDR_WIDTH">7</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_S_AXI_CORE_IO_ADDR_WIDTH">8</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.SEED_0_OFFSET.LAYERED_METADATA">xilinx.com:interface:datatypes:1.0 {TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 32} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value false}}}}}</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.SEED_0_S1.LAYERED_METADATA">xilinx.com:interface:datatypes:1.0 {TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 32} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value false}}}}}</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.SEED_0_S2.LAYERED_METADATA">xilinx.com:interface:datatypes:1.0 {TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 32} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value false}}}}}</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.SEED_0_S3.LAYERED_METADATA">xilinx.com:interface:datatypes:1.0 {TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 32} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value false}}}}}</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.THREAD_RESULT_0.LAYERED_METADATA">xilinx.com:interface:datatypes:1.0 {TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 32} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} real {float {sigwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 24}}}}}}</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="BUSIFPARAM_VALUE.THREAD_RESULT_SQRD_0.LAYERED_METADATA">xilinx.com:interface:datatypes:1.0 {TDATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 32} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} real {float {sigwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 24}}}}}}</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.ARCHITECTURE">zynq</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.DEVICE">xc7z020</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.PACKAGE">clg484</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.SPEEDGRADE">-1</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.TEMPERATURE_GRADE">C</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.SILICON_REVISION"/>
-				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.PREFHDL">VHDL</spirit:configurableElementValue>
-				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.SIMULATOR_LANGUAGE">VHDL</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.PREFHDL">VERILOG</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.SIMULATOR_LANGUAGE">MIXED</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.USE_RDI_CUSTOMIZATION">TRUE</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.USE_RDI_GENERATION">TRUE</spirit:configurableElementValue>
-				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.USER_REPO_PATHS">/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.USER_REPO_PATHS">/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="PROJECT_PARAM.BOARD">xilinx.com:zynq:zc702:1.0</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.MANAGED">TRUE</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SWVERSION">2013.4</spirit:configurableElementValue>
-				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">1403311501</spirit:configurableElementValue>
+				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.IPREVISION">1404082022</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.SYNTHESISFLOW">OUT_OF_CONTEXT</spirit:configurableElementValue>
 				<spirit:configurableElementValue spirit:referenceId="RUNTIME_PARAM.OUTPUTDIR">.</spirit:configurableElementValue>
 			</spirit:configurableElementValues>

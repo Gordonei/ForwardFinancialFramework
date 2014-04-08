@@ -21,88 +21,343 @@ int XVivado_activity_thread_CfgInitialize(XVivado_activity_thread *InstancePtr, 
 }
 #endif
 
-void XVivado_activity_thread_SetKernel_arg_u_a_0_rfir(XVivado_activity_thread *InstancePtr, u32 Data) {
+void XVivado_activity_thread_SetKernel_u_a_0_rfir(XVivado_activity_thread *InstancePtr, u32 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_ARG_U_A_0_RFIR_DATA, Data);
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_RFIR_DATA, Data);
 }
 
-u32 XVivado_activity_thread_GetKernel_arg_u_a_0_rfir(XVivado_activity_thread *InstancePtr) {
+u32 XVivado_activity_thread_GetKernel_u_a_0_rfir(XVivado_activity_thread *InstancePtr) {
     u32 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_ARG_U_A_0_RFIR_DATA);
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_RFIR_DATA);
     return Data;
 }
 
-void XVivado_activity_thread_SetKernel_arg_u_a_0_current_price(XVivado_activity_thread *InstancePtr, u32 Data) {
+void XVivado_activity_thread_SetKernel_u_a_0_current_price(XVivado_activity_thread *InstancePtr, u32 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_ARG_U_A_0_CURRENT_PRICE_DATA, Data);
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_CURRENT_PRICE_DATA, Data);
 }
 
-u32 XVivado_activity_thread_GetKernel_arg_u_a_0_current_price(XVivado_activity_thread *InstancePtr) {
+u32 XVivado_activity_thread_GetKernel_u_a_0_current_price(XVivado_activity_thread *InstancePtr) {
     u32 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_ARG_U_A_0_CURRENT_PRICE_DATA);
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_CURRENT_PRICE_DATA);
     return Data;
 }
 
-void XVivado_activity_thread_SetKernel_arg_o_a_0_strike_price(XVivado_activity_thread *InstancePtr, u32 Data) {
+void XVivado_activity_thread_SetKernel_u_a_0_volatility(XVivado_activity_thread *InstancePtr, u32 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_ARG_O_A_0_STRIKE_PRICE_DATA, Data);
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_VOLATILITY_DATA, Data);
 }
 
-u32 XVivado_activity_thread_GetKernel_arg_o_a_0_strike_price(XVivado_activity_thread *InstancePtr) {
+u32 XVivado_activity_thread_GetKernel_u_a_0_volatility(XVivado_activity_thread *InstancePtr) {
     u32 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_ARG_O_A_0_STRIKE_PRICE_DATA);
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_VOLATILITY_DATA);
     return Data;
 }
 
-void XVivado_activity_thread_SetKernel_arg_o_a_0_time_period(XVivado_activity_thread *InstancePtr, u32 Data) {
+void XVivado_activity_thread_SetKernel_u_a_0_initial_volatility(XVivado_activity_thread *InstancePtr, u32 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_ARG_O_A_0_TIME_PERIOD_DATA, Data);
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_INITIAL_VOLATILITY_DATA, Data);
 }
 
-u32 XVivado_activity_thread_GetKernel_arg_o_a_0_time_period(XVivado_activity_thread *InstancePtr) {
+u32 XVivado_activity_thread_GetKernel_u_a_0_initial_volatility(XVivado_activity_thread *InstancePtr) {
     u32 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_ARG_O_A_0_TIME_PERIOD_DATA);
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_INITIAL_VOLATILITY_DATA);
     return Data;
 }
 
-void XVivado_activity_thread_SetKernel_arg_o_a_0_call(XVivado_activity_thread *InstancePtr, u32 Data) {
+void XVivado_activity_thread_SetKernel_u_a_0_volatility_volatility(XVivado_activity_thread *InstancePtr, u32 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_ARG_O_A_0_CALL_DATA, Data);
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_VOLATILITY_VOLATILITY_DATA, Data);
 }
 
-u32 XVivado_activity_thread_GetKernel_arg_o_a_0_call(XVivado_activity_thread *InstancePtr) {
+u32 XVivado_activity_thread_GetKernel_u_a_0_volatility_volatility(XVivado_activity_thread *InstancePtr) {
     u32 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_ARG_O_A_0_CALL_DATA);
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_VOLATILITY_VOLATILITY_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_u_a_0_rho(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_RHO_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_u_a_0_rho(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_RHO_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_u_a_0_kappa(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_KAPPA_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_u_a_0_kappa(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_KAPPA_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_u_a_0_theta(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_THETA_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_u_a_0_theta(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_THETA_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_0_0(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_CORRELATION_MATRIX_0_0_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_u_a_0_correlation_matrix_0_0(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_CORRELATION_MATRIX_0_0_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_0_1(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_CORRELATION_MATRIX_0_1_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_u_a_0_correlation_matrix_0_1(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_CORRELATION_MATRIX_0_1_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_1_0(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_CORRELATION_MATRIX_1_0_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_u_a_0_correlation_matrix_1_0(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_CORRELATION_MATRIX_1_0_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_1_1(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_CORRELATION_MATRIX_1_1_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_u_a_0_correlation_matrix_1_1(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_CORRELATION_MATRIX_1_1_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_o_a_0_second_barrier(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_SECOND_BARRIER_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_o_a_0_second_barrier(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_SECOND_BARRIER_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_o_a_0_barrier(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_BARRIER_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_o_a_0_barrier(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_BARRIER_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_o_a_0_out(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_OUT_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_o_a_0_out(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_OUT_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_o_a_0_down(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_DOWN_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_o_a_0_down(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_DOWN_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_o_a_0_strike_price(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_STRIKE_PRICE_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_o_a_0_strike_price(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_STRIKE_PRICE_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_o_a_0_time_period(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_TIME_PERIOD_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_o_a_0_time_period(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_TIME_PERIOD_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_o_a_0_call(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_CALL_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_o_a_0_call(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_CALL_DATA);
+    return Data;
+}
+
+void XVivado_activity_thread_SetKernel_o_a_0_points(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_POINTS_DATA, Data);
+}
+
+u32 XVivado_activity_thread_GetKernel_o_a_0_points(XVivado_activity_thread *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_POINTS_DATA);
     return Data;
 }
 

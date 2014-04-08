@@ -1,0 +1,194 @@
+
+
+================================================================
+== Vivado HLS Report for 'vivado_activity_thread'
+================================================================
+* Date:           Tue Apr  8 20:22:02 2014
+
+* Version:        2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)
+* Project:        hls_prj
+* Solution:       F3_VivadoHLS_core
+* Product family: zynq zynq_fpv6 
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |  10.00|      8.63|        1.25|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |  204|  204|  205|  205|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------+-----+-----+----------+-----------+-----------+------+----------+
+        |             |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        |  Loop Name  | min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------+-----+-----+----------+-----------+-----------+------+----------+
+        |- PATH_LOOP  |  173|  173|        17|          -|          -|    10|    no    |
+        +-------------+-----+-----+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|Expression       |        -|      -|       0|     42|
+|FIFO             |        -|      -|       -|      -|
+|Instance         |        -|     12|    1452|   2868|
+|Memory           |        -|      -|       -|      -|
+|Multiplexer      |        -|      -|       -|    198|
+|Register         |        -|      -|     207|      -|
+|ShiftMemory      |        -|      -|       -|      -|
++-----------------+---------+-------+--------+-------+
+|Total            |        0|     12|    1659|   3108|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |        0|      5|       1|      5|
++-----------------+---------+-------+--------+-------+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------------------------------+---------------------------------------------------------+---------+-------+-----+-----+
+    |                          Instance                          |                          Module                         | BRAM_18K| DSP48E|  FF | LUT |
+    +------------------------------------------------------------+---------------------------------------------------------+---------+-------+-----+-----+
+    |vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1  |vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp  |        0|      2|  205|  390|
+    |vivado_activity_thread_fcmp_32ns_32ns_1_3_U4                |vivado_activity_thread_fcmp_32ns_32ns_1_3                |        0|      0|   66|  239|
+    |vivado_activity_thread_fdiv_32ns_32ns_32_16_U3              |vivado_activity_thread_fdiv_32ns_32ns_32_16              |        0|      0|  761|  994|
+    |vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5      |vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp      |        0|      7|  277|  924|
+    |vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2       |vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp       |        0|      3|  143|  321|
+    +------------------------------------------------------------+---------------------------------------------------------+---------+-------+-----+-----+
+    |Total                                                       |                                                         |        0|     12| 1452| 2868|
+    +------------------------------------------------------------+---------------------------------------------------------+---------+-------+-----+-----+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Shift register: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+-------+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+-------+---+----+------------+------------+
+    |pp_1_fu_228_p2        |     +    |      0|  0|   4|           4|           1|
+    |temp_value_fu_240_p3  |  Select  |      0|  0|  32|           1|          32|
+    |exitcond_fu_222_p2    |   icmp   |      0|  0|   4|           4|           4|
+    |tmp_2_fu_234_p2       |    xor   |      0|  0|   2|           1|           2|
+    +----------------------+----------+-------+---+----+------------+------------+
+    |Total                 |          |      0|  0|  42|          10|          39|
+    +----------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------+----+-----------+-----+-----------+
+    |              Name             | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------+----+-----------+-----+-----------+
+    |grp_fu_188_opcode              |   2|          3|    2|          6|
+    |grp_fu_188_p0                  |  32|          3|   32|         96|
+    |grp_fu_188_p1                  |  32|          4|   32|        128|
+    |grp_fu_193_p0                  |  32|          4|   32|        128|
+    |grp_fu_193_p1                  |  32|          4|   32|        128|
+    |pp_reg_176                     |   4|          2|    4|          8|
+    |tmp_pn_reg_152                 |  32|          2|   32|         64|
+    |u_v_gamma_read_assign_reg_164  |  32|          2|   32|         64|
+    +-------------------------------+----+-----------+-----+-----------+
+    |Total                          | 198|         24|  198|        622|
+    +-------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------+----+-----+-----------+
+    |              Name             | FF | Bits| Const Bits|
+    +-------------------------------+----+-----+-----------+
+    |ap_CS_fsm                      |   6|    6|          0|
+    |delta_time_0_reg_253           |  32|   32|          0|
+    |pp_1_reg_282                   |   4|    4|          0|
+    |pp_reg_176                     |   4|    4|          0|
+    |reg_216                        |  32|   32|          0|
+    |temp_value_reg_303             |  32|   32|          0|
+    |tmp_2_reg_298                  |   1|    1|          0|
+    |tmp_pn_reg_152                 |  32|   32|          0|
+    |u_v_0_gamma_reg_287            |  32|   32|          0|
+    |u_v_gamma_read_assign_reg_164  |  32|   32|          0|
+    +-------------------------------+----+-----+-----------+
+    |Total                          | 207|  207|          0|
+    +-------------------------------+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+|              RTL Ports              | Dir | Bits|  Protocol  |            Source Object            |    C Type    |
++-------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+|ap_clk                               |  in |    1| ap_ctrl_hs |        vivado_activity_thread       | return value |
+|ap_rst                               |  in |    1| ap_ctrl_hs |        vivado_activity_thread       | return value |
+|ap_start                             |  in |    1| ap_ctrl_hs |        vivado_activity_thread       | return value |
+|ap_done                              | out |    1| ap_ctrl_hs |        vivado_activity_thread       | return value |
+|ap_idle                              | out |    1| ap_ctrl_hs |        vivado_activity_thread       | return value |
+|ap_ready                             | out |    1| ap_ctrl_hs |        vivado_activity_thread       | return value |
+|kernel_u_a_0_rfir                    |  in |   32|   ap_none  |          kernel_u_a_0_rfir          |    pointer   |
+|kernel_u_a_0_current_price           |  in |   32|   ap_none  |      kernel_u_a_0_current_price     |    pointer   |
+|kernel_u_a_0_volatility              |  in |   32|   ap_none  |       kernel_u_a_0_volatility       |    pointer   |
+|kernel_u_a_0_initial_volatility      |  in |   32|   ap_none  |   kernel_u_a_0_initial_volatility   |    pointer   |
+|kernel_u_a_0_volatility_volatility   |  in |   32|   ap_none  |  kernel_u_a_0_volatility_volatility |    pointer   |
+|kernel_u_a_0_rho                     |  in |   32|   ap_none  |           kernel_u_a_0_rho          |    pointer   |
+|kernel_u_a_0_kappa                   |  in |   32|   ap_none  |          kernel_u_a_0_kappa         |    pointer   |
+|kernel_u_a_0_theta                   |  in |   32|   ap_none  |          kernel_u_a_0_theta         |    pointer   |
+|kernel_u_a_0_correlation_matrix_0_0  |  in |   32|   ap_none  | kernel_u_a_0_correlation_matrix_0_0 |    pointer   |
+|kernel_u_a_0_correlation_matrix_0_1  |  in |   32|   ap_none  | kernel_u_a_0_correlation_matrix_0_1 |    pointer   |
+|kernel_u_a_0_correlation_matrix_1_0  |  in |   32|   ap_none  | kernel_u_a_0_correlation_matrix_1_0 |    pointer   |
+|kernel_u_a_0_correlation_matrix_1_1  |  in |   32|   ap_none  | kernel_u_a_0_correlation_matrix_1_1 |    pointer   |
+|kernel_o_a_0_second_barrier          |  in |   32|   ap_none  |     kernel_o_a_0_second_barrier     |    pointer   |
+|kernel_o_a_0_barrier                 |  in |   32|   ap_none  |         kernel_o_a_0_barrier        |    pointer   |
+|kernel_o_a_0_out                     |  in |   32|   ap_none  |           kernel_o_a_0_out          |    pointer   |
+|kernel_o_a_0_down                    |  in |   32|   ap_none  |          kernel_o_a_0_down          |    pointer   |
+|kernel_o_a_0_strike_price            |  in |   32|   ap_none  |      kernel_o_a_0_strike_price      |    pointer   |
+|kernel_o_a_0_time_period             |  in |   32|   ap_none  |       kernel_o_a_0_time_period      |    pointer   |
+|kernel_o_a_0_call                    |  in |   32|   ap_none  |          kernel_o_a_0_call          |    pointer   |
+|kernel_o_a_0_points                  |  in |   32|   ap_none  |         kernel_o_a_0_points         |    pointer   |
+|seed_0_s1_dout                       |  in |   32|   ap_fifo  |              seed_0_s1              |    pointer   |
+|seed_0_s1_empty_n                    |  in |    1|   ap_fifo  |              seed_0_s1              |    pointer   |
+|seed_0_s1_read                       | out |    1|   ap_fifo  |              seed_0_s1              |    pointer   |
+|seed_0_s2_dout                       |  in |   32|   ap_fifo  |              seed_0_s2              |    pointer   |
+|seed_0_s2_empty_n                    |  in |    1|   ap_fifo  |              seed_0_s2              |    pointer   |
+|seed_0_s2_read                       | out |    1|   ap_fifo  |              seed_0_s2              |    pointer   |
+|seed_0_s3_dout                       |  in |   32|   ap_fifo  |              seed_0_s3              |    pointer   |
+|seed_0_s3_empty_n                    |  in |    1|   ap_fifo  |              seed_0_s3              |    pointer   |
+|seed_0_s3_read                       | out |    1|   ap_fifo  |              seed_0_s3              |    pointer   |
+|seed_0_offset_dout                   |  in |   32|   ap_fifo  |            seed_0_offset            |    pointer   |
+|seed_0_offset_empty_n                |  in |    1|   ap_fifo  |            seed_0_offset            |    pointer   |
+|seed_0_offset_read                   | out |    1|   ap_fifo  |            seed_0_offset            |    pointer   |
+|thread_result_0_din                  | out |   32|   ap_fifo  |           thread_result_0           |    pointer   |
+|thread_result_0_full_n               |  in |    1|   ap_fifo  |           thread_result_0           |    pointer   |
+|thread_result_0_write                | out |    1|   ap_fifo  |           thread_result_0           |    pointer   |
+|thread_result_sqrd_0_din             | out |   32|   ap_fifo  |         thread_result_sqrd_0        |    pointer   |
+|thread_result_sqrd_0_full_n          |  in |    1|   ap_fifo  |         thread_result_sqrd_0        |    pointer   |
+|thread_result_sqrd_0_write           | out |    1|   ap_fifo  |         thread_result_sqrd_0        |    pointer   |
++-------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+

@@ -1,0 +1,546 @@
+/*
+
+Vivado v2013.4 (64-bit)
+SW Build 353583 on Mon Dec  9 17:26:26 MST 2013
+Process ID: 8779
+
+Current time: 	4/8/14 8:50:09 PM
+Time zone: 	Greenwich Mean Time (Europe/London)
+
+OS: DISTRIB_ID=Ubuntu
+Version: 2.6.32-41-server
+Architecture: amd64
+Available processors (cores): 12
+
+DISPLAY: localhost:13.0
+Screen size: 2760x1920
+Screen resolution (DPI): 96
+Available screens: 2
+
+Java version: 	1.7.0_40 64-bit
+Java home: 	/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/tps/lnx64/jre
+
+User name: 	sf306
+User directory: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code
+User country: 	GB
+User language: 	en
+User locale: 	en_GB
+
+GUI Allocated memory:	137 mb
+GUI Max memory:		3,066 mb
+Engine Allocated memory: 4126 mb
+
+*/
+
+// TclEventType: START_GUI
+selectButton (PAResourceAtoH.GettingStartedView_OPEN_PROJECT, "Open Project"); // h:j (JPanel:JComponent, bT:JFrame)
+// HMemoryUtils.trashcanNow. Current time: 4/8/14 8:50:10 PM
+selectMenuItem ((HResource) null, "/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/ipi_prj/ipi_prj.xpr"); // ah:JMenuItem (al:JPopupMenu, Popup:JWindow)
+// cb:I (bT:JFrame):  Open Project : addNotify
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// [GUI Memory]: 61 mb (+61846kb) [00:00:25]
+// [Engine Memory]: 4,140 mb (+4189248kb) [00:00:25]
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 79 mb (+18666kb) [00:00:26]
+// [Engine Memory]: 4,154 mb (+14770kb) [00:00:26]
+// [Engine Memory]: 4,163 mb (+9863kb) [00:00:26]
+// [GUI Memory]: 86 mb (+7077kb) [00:00:27]
+// [Engine Memory]: 4,167 mb (+4194kb) [00:00:27]
+// [GUI Memory]: 86 mb (+144kb) [00:00:29]
+// [Engine Memory]: 4,172 mb (+5283kb) [00:00:29]
+// [GUI Memory]: 109 mb (+24402kb) [00:00:30]
+// [Engine Memory]: 4,197 mb (+25706kb) [00:00:30]
+// [GUI Memory]: 114 mb (+4714kb) [00:00:30]
+// [GUI Memory]: 116 mb (+2698kb) [00:00:31]
+// [GUI Memory]: 121 mb (+4522kb) [00:00:31]
+// Tcl Message: open_project /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/ipi_prj/ipi_prj.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj'. INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/ip'. 
+// Tcl Message: open_project: Time (s): cpu = 00:00:25 ; elapsed = 00:00:10 . Memory (MB): peak = 4872.102 ; gain = 36.832 
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 14 seconds
+dismissDialog ("Open Project"); // cb:I (bT:JFrame)
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// [Engine Memory]: 4,231 mb (+36159kb) [00:00:38]
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+expandTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, zynq_system_wrapper (zynq_system_wrapper.v)]", 1); // o:f (u:JPanel, bT:JFrame)
+// [GUI Memory]: 127 mb (+6436kb) [00:00:46]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, zynq_system_wrapper (zynq_system_wrapper.v), zynq_system_i - zynq_system (zynq_system.bd)]", 2); // o:f (u:JPanel, bT:JFrame)
+// [GUI Memory]: 129 mb (+2022kb) [00:00:46]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, zynq_system_wrapper (zynq_system_wrapper.v), zynq_system_i - zynq_system (zynq_system.bd)]", 2, false, false, false, false, true); // o:f (u:JPanel, bT:JFrame) - DOUBLE CLICK
+// cb:I (bT:JFrame):  Open Block Design : addNotify
+// TclEventType: LOAD_FEATURE
+// TclEventType: PARAM_UPDATED
+// [Engine Memory]: 4,231 mb (+16kb) [00:00:48]
+// Tcl Message: open_bd_design {/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/ipi_prj/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd} 
+// Tcl Message: Adding component instance block -- xilinx.com:ip:processing_system7:5.3 - processing_system7_0 
+// TclEventType: PARAM_UPDATED
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: PARAM_UPDATED
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: PARAM_UPDATED
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: PARAM_UPDATED
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_OPEN_DIAGRAM
+// [Engine Memory]: 4,231 mb (+12kb) [00:00:52]
+// [GUI Memory]: 131 mb (+2721kb) [00:00:52]
+// [Engine Memory]: 4,234 mb (+3145kb) [00:00:53]
+// [Engine Memory]: 4,250 mb (+16056kb) [00:00:53]
+// [Engine Memory]: 4,261 mb (+11632kb) [00:00:53]
+// [Engine Memory]: 4,265 mb (+4325kb) [00:00:53]
+// [Engine Memory]: 4,268 mb (+3186kb) [00:00:53]
+// TclEventType: RSB_CONNECTION_CHANGE
+// [Engine Memory]: 4,278 mb (+10657kb) [00:00:54]
+// Tcl Message: Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - rst_processing_system7_0_50M Adding component instance block -- imperial:F3:vivado_activity_thread:1.0 - vivado_activity_thread_0 Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc Successfully read diagram <zynq_system> from BD file </home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/ipi_prj/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd> 
+// TclEventType: RSB_CONNECTION_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// HMemoryUtils.trashcanNow. Current time: 4/8/14 8:50:51 PM
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: open_bd_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:10 . Memory (MB): peak = 4965.594 ; gain = 59.008 
+// Elapsed time: 10 seconds
+dismissDialog ("Open Block Design"); // cb:I (bT:JFrame)
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// Elapsed time: 90 seconds
+maximizeView (PAResourceItoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // O:J (Workspace:JPanel, bT:JFrame)
+// [GUI Memory]: 132 mb (+1201kb) [00:03:25]
+// Elapsed time: 66 seconds
+selectView (PAResourceItoP.PAViews_SYSTEM, "System", 598, 498, 1270, 871, false, false, false, true, false); // cA:aC (TdiGroup:JideTabbedPane, bT:JFrame) - POPUP TRIGGER
+selectMenuItem (PAResourceQtoZ.SystemBuilderMenu_ADD_IP, "Add IP..."); // ah:JMenuItem (al:JPopupMenu, Popup:JWindow)
+// [GUI Memory]: 135 mb (+2430kb) [00:03:53]
+// [GUI Memory]: 142 mb (+7742kb) [00:04:10]
+// Elapsed time: 35 seconds
+selectView (PAResourceItoP.PAViews_SYSTEM, "System", 600, 419, 1270, 871, false, false, false, true, false); // cA:aC (TdiGroup:JideTabbedPane, bT:JFrame) - POPUP TRIGGER
+selectMenuItem (PAResourceQtoZ.SystemBuilderMenu_ADD_IP, "Add IP..."); // ah:JMenuItem (al:JPopupMenu, Popup:JWindow)
+// [GUI Memory]: 144 mb (+2021kb) [00:04:20]
+// Elapsed time: 12 seconds
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI4-Stream Data FIFO ; xilinx.com:ip:axis_data_fifo:1.1", 125); // F:aj (JViewport:JComponent, ResizableWindow:JWindow)
+// [GUI Memory]: 151 mb (+6842kb) [00:04:31]
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI4-Stream Data FIFO ; xilinx.com:ip:axis_data_fifo:1.1", 125); // F:aj (JViewport:JComponent, ResizableWindow:JWindow)
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI4-Stream Data FIFO ; xilinx.com:ip:axis_data_fifo:1.1", 125, false, false, false, false, true); // F:aj (JViewport:JComponent, ResizableWindow:JWindow) - DOUBLE CLICK
+// TclEventType: PARAM_UPDATED
+// cb:I (bT:JFrame):  Add IP : addNotify
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: startgroup create_bd_cell -type ip -vlnv xilinx.com:ip:axis_data_fifo:1.1 axis_data_fifo_0 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_ADD_OBJECT
+// Tcl Message: endgroup 
+// TclEventType: DG_GRAPH_STALE
+dismissDialog ("Add IP"); // cb:I (bT:JFrame)
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+selectView (PAResourceItoP.PAViews_SYSTEM, "System", 718, 434, 1270, 871, false, false, false, true, false); // cA:aC (TdiGroup:JideTabbedPane, bT:JFrame) - POPUP TRIGGER
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+selectMenuItem (RDIResourceCommand.RDICommands_DELETE, "Delete"); // ah:JMenuItem (al:JPopupMenu, bT:JFrame)
+// [GUI Memory]: 154 mb (+3345kb) [00:04:45]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// [GUI Memory]: 157 mb (+3032kb) [00:04:45]
+// [GUI Memory]: 158 mb (+1011kb) [00:04:45]
+// TclEventType: DG_UPDATE_GRAPH
+// Tcl Message: delete_bd_objs [get_bd_cells axis_data_fifo_0] 
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [GUI Memory]: 160 mb (+2265kb) [00:04:49]
+// TclEventType: DG_UPDATE_GRAPH
+selectView (PAResourceItoP.PAViews_SYSTEM, "System", 716, 470, 1270, 871, false, false, false, true, false); // cA:aC (TdiGroup:JideTabbedPane, bT:JFrame) - POPUP TRIGGER
+selectMenuItem (PAResourceQtoZ.SystemBuilderMenu_ADD_IP, "Add IP..."); // ah:JMenuItem (al:JPopupMenu, bT:JFrame)
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI4-Stream Interconnect ; xilinx.com:ip:axis_interconnect:2.1", 70); // F:aj (JViewport:JComponent, ResizableWindow:JWindow)
+// [GUI Memory]: 160 mb (+545kb) [00:05:08]
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI-Stream FIFO ; xilinx.com:ip:axi_fifo_mm_s:4.0", 108); // F:aj (JViewport:JComponent, ResizableWindow:JWindow)
+// [GUI Memory]: 166 mb (+5986kb) [00:05:09]
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI-Stream FIFO ; xilinx.com:ip:axi_fifo_mm_s:4.0", 108); // F:aj (JViewport:JComponent, ResizableWindow:JWindow)
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI-Stream FIFO ; xilinx.com:ip:axi_fifo_mm_s:4.0", 108, false, false, false, false, true); // F:aj (JViewport:JComponent, ResizableWindow:JWindow) - DOUBLE CLICK
+// TclEventType: PARAM_UPDATED
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_ADD_OBJECT
+// Tcl Message: startgroup create_bd_cell -type ip -vlnv xilinx.com:ip:axi_fifo_mm_s:4.0 axi_fifo_mm_s_0 
+// Tcl Message: endgroup 
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+selectView (PAResourceItoP.PAViews_SYSTEM, "System", 712, 440, 1270, 871, false, false, false, true, false); // cA:aC (TdiGroup:JideTabbedPane, bT:JFrame) - POPUP TRIGGER
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+selectMenuItem (RDIResourceCommand.RDICommands_DELETE, "Delete"); // ah:JMenuItem (al:JPopupMenu, bT:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_OBJECT
+// Tcl Message: delete_bd_objs [get_bd_cells axi_fifo_mm_s_0] 
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// Elapsed time: 236 seconds
+selectView (PAResourceItoP.PAViews_SYSTEM, "System", 625, 479, 1270, 871, false, false, false, true, false); // cA:aC (TdiGroup:JideTabbedPane, bT:JFrame) - POPUP TRIGGER
+selectMenuItem (PAResourceQtoZ.SystemBuilderMenu_ADD_IP, "Add IP..."); // ah:JMenuItem (al:JPopupMenu, Popup:JWindow)
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI Direct Memory Access ; xilinx.com:ip:axi_dma:7.1", 31); // F:aj (JViewport:JComponent, ResizableWindow:JWindow)
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI Direct Memory Access ; xilinx.com:ip:axi_dma:7.1", 31); // F:aj (JViewport:JComponent, ResizableWindow:JWindow)
+expandTreeTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI Direct Memory Access ; xilinx.com:ip:axi_dma:7.1", 31); // F:aj (JViewport:JComponent, ResizableWindow:JWindow)
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI Direct Memory Access ; xilinx.com:ip:axi_dma:7.1", 31, false, false, false, false, true); // F:aj (JViewport:JComponent, ResizableWindow:JWindow) - DOUBLE CLICK
+// TclEventType: PARAM_UPDATED
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// cb:I (bT:JFrame):  Add IP : addNotify
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: startgroup create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_ADD_OBJECT
+// Tcl Message: endgroup 
+dismissDialog ("Add IP"); // cb:I (bT:JFrame)
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 66 seconds
+selectButton (PAResourceQtoZ.RSBApplyAutomationBar_RUN_CONNECTION_AUTOMATION, "Run Connection Automation"); // h:j (JPanel:JComponent, bT:JFrame)
+selectMenuItem ((HResource) null, "/axi_dma_0/S_AXI_LITE"); // ah:JMenuItem (al:JPopupMenu, Popup:JWindow)
+// o:u (bT:JFrame): Run Connection Automation: addNotify
+selectButton (RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, o:u)
+dismissDialog ("Run Connection Automation"); // o:u (bT:JFrame)
+// TclEventType: RSB_SCRIPT_TASK
+// cb:I (bT:JFrame):  Run Connection Automation : addNotify
+// TclEventType: RSB_SCRIPT_TASK
+// Tcl Message: apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Master "/processing_system7_0/M_AXI_GP0" }  [get_bd_intf_pins axi_dma_0/S_AXI_LITE] 
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// Tcl Message: </axi_dma_0/S_AXI_LITE/Reg> is being mapped into </processing_system7_0/Data> at <0x40400000[ 64K ]> 
+dismissDialog ("Run Connection Automation"); // cb:I (bT:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [GUI Memory]: 170 mb (+4283kb) [00:10:50]
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// cb:I (bT:JFrame):  Re-customize IP : addNotify
+// TclEventType: PARAM_UPDATED
+// q:I (bT:JFrame): Re-customize IP: addNotify
+// Elapsed time: 138 seconds
+dismissDialog ("Re-customize IP"); // cb:I (bT:JFrame)
+selectCheckBox ((HResource) null, "Enable Scatter Gather Engine", false); // v:JCheckBox (h:t, q:I): FALSE
+// Elapsed time: 29 seconds
+selectButton (RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, q:I)
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// Tcl Message: startgroup set_property -dict [list CONFIG.Component_Name {zynq_system_axi_dma_0_0} CONFIG.c_include_sg {0}] [get_bd_cells axi_dma_0] 
+// Tcl Message: endgroup 
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// cb:I (bT:JFrame):  Re-customize IP : addNotify
+// TclEventType: PARAM_UPDATED
+// q:I (bT:JFrame): Re-customize IP: addNotify
+// ca:X (q:I): Configuration Presets: addNotify
+// 'M' command handler elapsed time: 8 seconds
+// [Engine Memory]: 4,303 mb (+26329kb) [00:13:51]
+// HMemoryUtils.trashcanNow. Current time: 4/8/14 9:03:47 PM
+// Elapsed time: 16 seconds
+dismissDialog ("Re-customize IP"); // cb:I (bT:JFrame)
+// [GUI Memory]: 173 mb (+2663kb) [00:14:05]
+// [Engine Memory]: 4,320 mb (+17711kb) [00:14:05]
+// Elapsed time: 31 seconds
+selectTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "S AXI HP0 interface ; 0 ; Enables AXI high performance slave interface 0", 5); // ar:cj (JViewport:JComponent, q:I)
+selectCheckBox ((HResource) null, (String) null, true); // cl:v (ar:cj, q:I): TRUE
+expandTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "GP Slave AXI Interface ; GP Slave AXI Interface ; GP Slave AXI Interface", 3); // ar:cj (JViewport:JComponent, q:I)
+collapseTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "GP Slave AXI Interface ; GP Slave AXI Interface ; GP Slave AXI Interface", 3); // ar:cj (JViewport:JComponent, q:I)
+selectTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "GP Slave AXI Interface ; GP Slave AXI Interface ; GP Slave AXI Interface", 3, false, false, false, false, true); // ar:cj (JViewport:JComponent, q:I) - DOUBLE CLICK
+expandTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "GP Master AXI Interface ; GP Master AXI Interface ; GP Master AXI Interface", 2); // ar:cj (JViewport:JComponent, q:I)
+collapseTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "GP Master AXI Interface ; GP Master AXI Interface ; GP Master AXI Interface", 2); // ar:cj (JViewport:JComponent, q:I)
+expandTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "DMA Controller ; DMA Controller ; DMA Controller", 1); // ar:cj (JViewport:JComponent, q:I)
+collapseTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "DMA Controller ; DMA Controller ; DMA Controller", 1); // ar:cj (JViewport:JComponent, q:I)
+selectTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "S AXI HP0 interface ; 1 ; Enables AXI high performance slave interface 0", 5); // ar:cj (JViewport:JComponent, q:I)
+selectCheckBox ((HResource) null, (String) null, false); // cl:v (ar:cj, q:I): FALSE
+// [GUI Memory]: 187 mb (+14706kb) [00:14:36]
+// [GUI Memory]: 195 mb (+9047kb) [00:15:00]
+// [GUI Memory]: 204 mb (+9411kb) [00:15:25]
+// Elapsed time: 125 seconds
+selectButton (RDIResource.BaseDialog_CANCEL, "Cancel"); // a:JButton (JPanel:JComponent, q:I)
+// [GUI Memory]: 206 mb (+1904kb) [00:16:47]
+selectView (PAResourceItoP.PAViews_SYSTEM, "System", 990, 511, 1270, 871, false, false, false, true, false); // cA:aC (TdiGroup:JideTabbedPane, bT:JFrame) - POPUP TRIGGER
+// [GUI Memory]: 212 mb (+6045kb) [00:16:50]
+// TclEventType: RSB_CONNECTION_CHANGE
+// Tcl Message: connect_bd_intf_net [get_bd_intf_pins vivado_activity_thread_0/seed_0_offset] [get_bd_intf_pins axi_dma_0/M_AXIS_MM2S] 
+// TclEventType: RSB_CANVAS_LOCATION
+// [GUI Memory]: 214 mb (+1983kb) [00:17:10]
+// TclEventType: RSB_BLOCK_SIZE
+// cb:I (bT:JFrame):  Re-customize IP : addNotify
+// TclEventType: PARAM_UPDATED
+// q:I (bT:JFrame): Re-customize IP: addNotify
+// ca:X (q:I): Configuration Presets: addNotify
+// 'M' command handler elapsed time: 7 seconds
+// Elapsed time: 30 seconds
+dismissDialog ("Re-customize IP"); // cb:I (bT:JFrame)
+// Elapsed time: 23 seconds
+selectTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "M AXI GP1 interface ; 0 ; Enables General purpose AXI master interface 1", 4); // ar:cj (JViewport:JComponent, q:I)
+selectCheckBox ((HResource) null, (String) null, true); // cl:v (ar:cj, q:I): TRUE
+expandTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "HP Slave AXI Interface ; HP Slave AXI Interface ; HP Slave AXI Interface", 6); // ar:cj (JViewport:JComponent, q:I)
+selectTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "S AXI HP0 interface ; 0 ; Enables AXI high performance slave interface 0", 7); // ar:cj (JViewport:JComponent, q:I)
+selectCheckBox ((HResource) null, (String) null, true); // cl:v (ar:cj, q:I): TRUE
+selectTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "S AXI HP1 interface ; 0 ; Enables AXI high performance slave interface 1", 8); // ar:cj (JViewport:JComponent, q:I)
+selectCheckBox ((HResource) null, (String) null, true); // cl:v (ar:cj, q:I): TRUE
+selectTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "S AXI HP2 interface ; 0 ; Enables AXI high performance slave interface 2", 9); // ar:cj (JViewport:JComponent, q:I)
+selectCheckBox ((HResource) null, (String) null, true); // cl:v (ar:cj, q:I): TRUE
+// [GUI Memory]: 216 mb (+1918kb) [00:17:49]
+selectTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "S AXI HP3 interface ; 0 ; Enables AXI high performance slave interface 3", 10); // ar:cj (JViewport:JComponent, q:I)
+selectCheckBox ((HResource) null, (String) null, true); // cl:v (ar:cj, q:I): TRUE
+expandTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "GP Slave AXI Interface ; GP Slave AXI Interface ; GP Slave AXI Interface", 5); // ar:cj (JViewport:JComponent, q:I)
+collapseTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "GP Slave AXI Interface ; GP Slave AXI Interface ; GP Slave AXI Interface", 5); // ar:cj (JViewport:JComponent, q:I)
+expandTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "ACP Slave AXI Interface ; ACP Slave AXI Interface ; ACP Slave AXI Interface", 11); // ar:cj (JViewport:JComponent, q:I)
+collapseTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "ACP Slave AXI Interface ; ACP Slave AXI Interface ; ACP Slave AXI Interface", 11); // ar:cj (JViewport:JComponent, q:I)
+collapseTreeTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "HP Slave AXI Interface ; HP Slave AXI Interface ; HP Slave AXI Interface", 6); // ar:cj (JViewport:JComponent, q:I)
+selectButton (RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, q:I)
+// [GUI Memory]: 253 mb (+38699kb) [00:17:57]
+// TclEventType: RSB_PROPERTY_CHANGE
+// [Engine Memory]: 4,326 mb (+6701kb) [00:17:58]
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// Tcl Message: startgroup set_property -dict [list CONFIG.PCW_USE_M_AXI_GP1 {1} CONFIG.PCW_USE_S_AXI_HP0 {1} CONFIG.PCW_USE_S_AXI_HP1 {1} CONFIG.PCW_USE_S_AXI_HP2 {1} CONFIG.PCW_USE_S_AXI_HP3 {1}] [get_bd_cells processing_system7_0] 
+// cb:I (q:I):  Customize IP : addNotify
+// [Engine Memory]: 4,333 mb (+7036kb) [00:17:59]
+// [Engine Memory]: 4,349 mb (+16777kb) [00:18:01]
+// Tcl Message: endgroup 
+// HMemoryUtils.trashcanNow. Current time: 4/8/14 9:07:58 PM
+dismissDialog ("Customize IP"); // cb:I (q:I)
+// Elapsed time: 78 seconds
+selectButton (PAResourceQtoZ.RSBApplyAutomationBar_RUN_CONNECTION_AUTOMATION, "Run Connection Automation"); // h:j (JPanel:JComponent, bT:JFrame)
+selectMenuItem ((HResource) null, "/processing_system7_0/S_AXI_HP0"); // ah:JMenuItem (al:JPopupMenu, Popup:JWindow)
+// o:u (bT:JFrame): Run Connection Automation: addNotify
+selectComboBox ("pa.OptGroup_xilinx.com_bd_rule_axi4_Master", "/axi_dma_0/M_AXI_MM2S", 0); // c:JComboBox (JPanel:JComponent, o:u)
+// Elapsed time: 186 seconds
+selectButton (RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, o:u)
+dismissDialog ("Run Connection Automation"); // o:u (bT:JFrame)
+// TclEventType: RSB_SCRIPT_TASK
+// cb:I (bT:JFrame):  Run Connection Automation : addNotify
+// Tcl Message: apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Master "/axi_dma_0/M_AXI_MM2S" }  [get_bd_intf_pins processing_system7_0/S_AXI_HP0] 
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// Tcl Message: </processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM> is being mapped into </axi_dma_0/Data_MM2S> at <0x00000000[ 1G ]> 
+dismissDialog ("Run Connection Automation"); // cb:I (bT:JFrame)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// Elapsed time: 13 seconds
+selectView (PAResourceItoP.PAViews_SYSTEM, "System", 626, 666, 1270, 871, false, false, false, true, false); // cA:aC (TdiGroup:JideTabbedPane, bT:JFrame) - POPUP TRIGGER
+selectMenuItem (PAResourceQtoZ.SystemBuilderMenu_ADD_IP, "Add IP..."); // ah:JMenuItem (al:JPopupMenu, Popup:JWindow)
+// [GUI Memory]: 255 mb (+2727kb) [00:22:58]
+setText ("PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE_SEARCH_FIELD", "axi dma"); // OverlayTextField:JTextField (DefaultOverlayable:JPanel, ResizableWindow:JWindow)
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI Direct Memory Access ; xilinx.com:ip:axi_dma:7.1", 31); // F:aj (JViewport:JComponent, ResizableWindow:JWindow)
+selectTable (PAResourceAtoH.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI Direct Memory Access ; xilinx.com:ip:axi_dma:7.1", 31, false, false, false, false, true); // F:aj (JViewport:JComponent, ResizableWindow:JWindow) - DOUBLE CLICK
+// TclEventType: PARAM_UPDATED
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// cb:I (bT:JFrame):  Add IP : addNotify
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_PROPERTY_CHANGE
+// Tcl Message: startgroup create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_1 
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_ADD_OBJECT
+// [GUI Memory]: 256 mb (+934kb) [00:23:09]
+// Tcl Message: endgroup 
+dismissDialog ("Add IP"); // cb:I (bT:JFrame)
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// TclEventType: FILE_SET_CHANGE
+// cb:I (bT:JFrame):  Re-customize IP : addNotify
+// TclEventType: PARAM_UPDATED
+// q:I (bT:JFrame): Re-customize IP: addNotify
+// Elapsed time: 16 seconds
+dismissDialog ("Re-customize IP"); // cb:I (bT:JFrame)
+selectCheckBox ((HResource) null, "Enable Control / Status Stream", false); // v:JCheckBox (h:t, q:I): FALSE
+selectCheckBox ((HResource) null, "Enable Scatter Gather Engine", false); // v:JCheckBox (h:t, q:I): FALSE
+selectButton (RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, q:I)
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// [GUI Memory]: 259 mb (+2623kb) [00:23:35]
+// [GUI Memory]: 263 mb (+4665kb) [00:23:35]
+// Tcl Message: startgroup set_property -dict [list CONFIG.Component_Name {zynq_system_axi_dma_1_1} CONFIG.c_include_sg {0} CONFIG.c_sg_include_stscntrl_strm {0}] [get_bd_cells axi_dma_1] 
+// Tcl Message: endgroup 
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// cb:I (bT:JFrame):  Re-customize IP : addNotify
+// TclEventType: PARAM_UPDATED
+// q:I (bT:JFrame): Re-customize IP: addNotify
+dismissDialog ("Re-customize IP"); // cb:I (bT:JFrame)
+selectButton (RDIResource.BaseDialog_CANCEL, "Cancel"); // a:JButton (JPanel:JComponent, q:I)
+selectButton (PAResourceQtoZ.RSBApplyAutomationBar_RUN_CONNECTION_AUTOMATION, "Run Connection Automation"); // h:j (JPanel:JComponent, bT:JFrame)
+selectMenuItem ((HResource) null, "/axi_dma_1/S_AXI_LITE"); // ah:JMenuItem (al:JPopupMenu, Popup:JWindow)
+// o:u (bT:JFrame): Run Connection Automation: addNotify
+// [GUI Memory]: 265 mb (+2183kb) [00:23:50]
+selectButton (RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, o:u)
+// [GUI Memory]: 272 mb (+6745kb) [00:23:52]
+dismissDialog ("Run Connection Automation"); // o:u (bT:JFrame)
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// Tcl Message: apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Master "/processing_system7_0/M_AXI_GP0" }  [get_bd_intf_pins axi_dma_1/S_AXI_LITE] 
+// cb:I (bT:JFrame):  Run Connection Automation : addNotify
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// [Engine Memory]: 4,352 mb (+3375kb) [00:23:56]
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// Tcl Message: </axi_dma_1/S_AXI_LITE/Reg> is being mapped into </processing_system7_0/Data> at <0x40410000[ 64K ]> 
+// [Engine Memory]: 4,356 mb (+3964kb) [00:23:57]
+dismissDialog ("Run Connection Automation"); // cb:I (bT:JFrame)
+// [GUI Memory]: 290 mb (+19673kb) [00:23:59]
+selectButton (PAResourceQtoZ.RSBApplyAutomationBar_RUN_CONNECTION_AUTOMATION, "Run Connection Automation"); // h:j (JPanel:JComponent, bT:JFrame)
+// Elapsed time: 121 seconds
+selectMenuItem ((HResource) null, "/axi_dma_1/M_AXI_MM2S"); // ah:JMenuItem (al:JPopupMenu, Popup:JWindow)
+// o:u (bT:JFrame): Run Connection Automation: addNotify
+selectButton (RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, o:u)
+dismissDialog ("Run Connection Automation"); // o:u (bT:JFrame)
+// cb:I (bT:JFrame):  Run Connection Automation : addNotify
+// Tcl Message: apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Slave "/processing_system7_0/S_AXI_HP0" }  [get_bd_intf_pins axi_dma_1/M_AXI_MM2S] 
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// [GUI Memory]: 291 mb (+837kb) [00:26:12]
+// [GUI Memory]: 292 mb (+952kb) [00:26:12]
+// [GUI Memory]: 294 mb (+1901kb) [00:26:12]
+// [GUI Memory]: 295 mb (+950kb) [00:26:12]
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// [GUI Memory]: 296 mb (+950kb) [00:26:12]
+// Tcl Message: </processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM> is being mapped into </axi_dma_1/Data_MM2S> at <0x00000000[ 1G ]> 
+dismissDialog ("Run Connection Automation"); // cb:I (bT:JFrame)
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// cb:I (bT:JFrame):  Re-customize IP : addNotify
+// TclEventType: PARAM_UPDATED
+// q:I (bT:JFrame): Re-customize IP: addNotify
+// ca:X (q:I): Configuration Presets: addNotify
+// 'M' command handler elapsed time: 7 seconds
+dismissDialog ("Re-customize IP"); // cb:I (bT:JFrame)
+// [Engine Memory]: 4,367 mb (+11010kb) [00:26:25]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 29 seconds
+selectTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "S AXI HP1 interface ; 1 ; Enables AXI high performance slave interface 1", 6); // ar:cj (JViewport:JComponent, q:I)
+selectCheckBox ((HResource) null, (String) null, false); // cl:v (ar:cj, q:I): FALSE
+selectTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "S AXI HP2 interface ; 1 ; Enables AXI high performance slave interface 2", 7); // ar:cj (JViewport:JComponent, q:I)
+selectCheckBox ((HResource) null, (String) null, false); // cl:v (ar:cj, q:I): FALSE
+selectTable (PAResourceAtoH.GenSettingTreeTablePanel_GEN_SETTING_TREE_TABLE, "S AXI HP3 interface ; 1 ; Enables AXI high performance slave interface 3", 8); // ar:cj (JViewport:JComponent, q:I)
+selectCheckBox ((HResource) null, (String) null, false); // cl:v (ar:cj, q:I): FALSE
+selectButton (RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, q:I)
+// [GUI Memory]: 297 mb (+1307kb) [00:26:57]
+// TclEventType: RSB_PROPERTY_CHANGE
+// [GUI Memory]: 303 mb (+6641kb) [00:26:57]
+// TclEventType: RSB_CANVAS_LOCATION
+// [GUI Memory]: 305 mb (+1945kb) [00:26:57]
+// [GUI Memory]: 306 mb (+970kb) [00:26:57]
+// [GUI Memory]: 307 mb (+970kb) [00:26:57]
+// [GUI Memory]: 308 mb (+973kb) [00:26:57]
+// [GUI Memory]: 309 mb (+970kb) [00:26:57]
+// TclEventType: RSB_BLOCK_SIZE
+// [GUI Memory]: 317 mb (+9173kb) [00:26:58]
+// Tcl Message: startgroup set_property -dict [list CONFIG.PCW_USE_S_AXI_HP1 {0} CONFIG.PCW_USE_S_AXI_HP2 {0} CONFIG.PCW_USE_S_AXI_HP3 {0}] [get_bd_cells processing_system7_0] 
+// cb:I (q:I):  Customize IP : addNotify
+// Tcl Message: endgroup 
+// TclEventType: DG_UPDATE_GRAPH
+dismissDialog ("Customize IP"); // cb:I (q:I)
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// [GUI Memory]: 320 mb (+2301kb) [00:27:02]
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+selectButton (PAResourceQtoZ.RSBApplyAutomationBar_RUN_CONNECTION_AUTOMATION, "Run Connection Automation"); // h:j (JPanel:JComponent, bT:JFrame)
+// [GUI Memory]: 325 mb (+5715kb) [00:27:07]
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// [GUI Memory]: 326 mb (+1279kb) [00:27:08]
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_UPDATE_GRAPH
+// [GUI Memory]: 345 mb (+19996kb) [00:27:09]
+// [GUI Memory]: 351 mb (+6092kb) [00:27:09]
+// [GUI Memory]: 357 mb (+5672kb) [00:27:15]
+// [GUI Memory]: 362 mb (+5588kb) [00:27:25]
+// Elapsed time: 41 seconds
+selectTab ("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Address Editor", 1); // TdiGroup:JideTabbedPane (CodeEditorDocumentPane:DocumentPane, bT:JFrame)
+selectTab ("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "System", 0); // TdiGroup:JideTabbedPane (CodeEditorDocumentPane:DocumentPane, bT:JFrame)
+unMinimizeFrame (PAResourceItoP.PAViews_SYSTEM_HIERARCHY, "Design Hierarchy"); // ah:DockableFrame
+collapseTree (PAResourceQtoZ.SystemTreeView_SYSTEM_TREE, "[zynq_system, axi_dma_0]", 4); // f:JTree (JViewport:JComponent, bT:JFrame)
+// Elapsed time: 13 seconds
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, zynq_system_wrapper (zynq_system_wrapper.v)]", 1); // o:f (u:JPanel, bT:JFrame)
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, zynq_system_wrapper (zynq_system_wrapper.v)]", 1, false, false, false, false, true); // o:f (u:JPanel, bT:JFrame) - DOUBLE CLICK
+// [GUI Memory]: 363 mb (+922kb) [00:28:11]
+// [GUI Memory]: 364 mb (+997kb) [00:28:11]
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, zynq_system_wrapper (zynq_system_wrapper.v), zynq_system_i - zynq_system (zynq_system.bd)]", 2); // o:f (u:JPanel, bT:JFrame)
+selectTree (PAResourceAtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, zynq_system_wrapper (zynq_system_wrapper.v), zynq_system_i - zynq_system (zynq_system.bd)]", 2, false, false, false, false, true); // o:f (u:JPanel, bT:JFrame) - DOUBLE CLICK
+// cb:I (bT:JFrame):  Open Block Design : addNotify
+// TclEventType: RSB_OPEN_DIAGRAM
+// Tcl Message: open_bd_design {/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/ipi_prj/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd} 
+dismissDialog ("Open Block Design"); // cb:I (bT:JFrame)
+// [GUI Memory]: 367 mb (+3573kb) [00:28:20]

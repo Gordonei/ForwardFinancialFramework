@@ -1,0 +1,67 @@
+#-----------------------------------------------------------
+# Vivado v2013.4 (64-bit)
+# SW Build 353583 on Mon Dec  9 17:26:26 MST 2013
+# IP Build 208076 on Mon Dec  2 12:38:17 MST 2013
+# Start of session at: Tue Apr  8 20:49:47 2014
+# Process ID: 8779
+# Log file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/vivado.log
+# Journal file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/vivado.jou
+#-----------------------------------------------------------
+Attempting to get a license: Implementation
+Feature available: Implementation
+Loading parts and site information from /mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/arch.xml
+Parsing RTL primitives file [/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+open_project /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/ipi_prj/ipi_prj.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/ip'.
+open_project: Time (s): cpu = 00:00:25 ; elapsed = 00:00:10 . Memory (MB): peak = 4872.102 ; gain = 36.832
+open_bd_design {/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/ipi_prj/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd}
+Adding component instance block -- xilinx.com:ip:processing_system7:5.3 - processing_system7_0
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - rst_processing_system7_0_50M
+Adding component instance block -- imperial:F3:vivado_activity_thread:1.0 - vivado_activity_thread_0
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Successfully read diagram <zynq_system> from BD file </home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/ipi_prj/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd>
+open_bd_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:10 . Memory (MB): peak = 4965.594 ; gain = 59.008
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axis_data_fifo:1.1 axis_data_fifo_0
+endgroup
+delete_bd_objs [get_bd_cells axis_data_fifo_0]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_fifo_mm_s:4.0 axi_fifo_mm_s_0
+endgroup
+delete_bd_objs [get_bd_cells axi_fifo_mm_s_0]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0
+endgroup
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Master "/processing_system7_0/M_AXI_GP0" }  [get_bd_intf_pins axi_dma_0/S_AXI_LITE]
+</axi_dma_0/S_AXI_LITE/Reg> is being mapped into </processing_system7_0/Data> at <0x40400000[ 64K ]>
+startgroup
+set_property -dict [list CONFIG.Component_Name {zynq_system_axi_dma_0_0} CONFIG.c_include_sg {0}] [get_bd_cells axi_dma_0]
+WARNING: [BD 5-261] Attempt to change 'Component_Name' on 'axi_dma_0' to 'zynq_system_axi_dma_0_0' is not allowed and is ignored.
+endgroup
+connect_bd_intf_net [get_bd_intf_pins vivado_activity_thread_0/seed_0_offset] [get_bd_intf_pins axi_dma_0/M_AXIS_MM2S]
+startgroup
+set_property -dict [list CONFIG.PCW_USE_M_AXI_GP1 {1} CONFIG.PCW_USE_S_AXI_HP0 {1} CONFIG.PCW_USE_S_AXI_HP1 {1} CONFIG.PCW_USE_S_AXI_HP2 {1} CONFIG.PCW_USE_S_AXI_HP3 {1}] [get_bd_cells processing_system7_0]
+endgroup
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Master "/axi_dma_0/M_AXI_MM2S" }  [get_bd_intf_pins processing_system7_0/S_AXI_HP0]
+</processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM> is being mapped into </axi_dma_0/Data_MM2S> at <0x00000000[ 1G ]>
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_1
+endgroup
+startgroup
+set_property -dict [list CONFIG.Component_Name {zynq_system_axi_dma_1_1} CONFIG.c_include_sg {0} CONFIG.c_sg_include_stscntrl_strm {0}] [get_bd_cells axi_dma_1]
+WARNING: [BD 5-261] Attempt to change 'Component_Name' on 'axi_dma_1' to 'zynq_system_axi_dma_1_1' is not allowed and is ignored.
+endgroup
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Master "/processing_system7_0/M_AXI_GP0" }  [get_bd_intf_pins axi_dma_1/S_AXI_LITE]
+</axi_dma_1/S_AXI_LITE/Reg> is being mapped into </processing_system7_0/Data> at <0x40410000[ 64K ]>
+apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Slave "/processing_system7_0/S_AXI_HP0" }  [get_bd_intf_pins axi_dma_1/M_AXI_MM2S]
+</processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM> is being mapped into </axi_dma_1/Data_MM2S> at <0x00000000[ 1G ]>
+startgroup
+set_property -dict [list CONFIG.PCW_USE_S_AXI_HP1 {0} CONFIG.PCW_USE_S_AXI_HP2 {0} CONFIG.PCW_USE_S_AXI_HP3 {0}] [get_bd_cells processing_system7_0]
+endgroup
+open_bd_design {/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/ipi_prj/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd}

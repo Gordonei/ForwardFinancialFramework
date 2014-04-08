@@ -24,21 +24,33 @@ s_axi_CORE_IO_RDATA,
 s_axi_CORE_IO_RRESP,
 s_axi_CORE_IO_RVALID,
 s_axi_CORE_IO_RREADY,
+seed_0_offset_TVALID,
+seed_0_offset_TREADY,
+seed_0_offset_TDATA,
+seed_0_s1_TVALID,
+seed_0_s1_TREADY,
+seed_0_s1_TDATA,
+seed_0_s2_TVALID,
+seed_0_s2_TREADY,
+seed_0_s2_TDATA,
+seed_0_s3_TVALID,
+seed_0_s3_TREADY,
+seed_0_s3_TDATA,
+thread_result_0_TVALID,
+thread_result_0_TREADY,
+thread_result_0_TDATA,
+thread_result_sqrd_0_TVALID,
+thread_result_sqrd_0_TREADY,
+thread_result_sqrd_0_TDATA,
 aresetn,
 aclk,
-result_0_din,
-result_0_full_n,
-result_0_write,
-result_sqrd_0_din,
-result_sqrd_0_full_n,
-result_sqrd_0_write,
 ap_start,
 ap_ready,
 ap_done,
 ap_idle
 );
 
-parameter C_S_AXI_CORE_IO_ADDR_WIDTH = 6;
+parameter C_S_AXI_CORE_IO_ADDR_WIDTH = 8;
 parameter C_S_AXI_CORE_IO_DATA_WIDTH = 32;
 parameter RESET_ACTIVE_LOW = 1;
 
@@ -60,16 +72,40 @@ output [2 - 1:0] s_axi_CORE_IO_RRESP ;
 output s_axi_CORE_IO_RVALID ;
 input s_axi_CORE_IO_RREADY ;
 
+
+input seed_0_offset_TVALID ;
+output seed_0_offset_TREADY ;
+input [32 - 1:0] seed_0_offset_TDATA ;
+
+
+input seed_0_s1_TVALID ;
+output seed_0_s1_TREADY ;
+input [32 - 1:0] seed_0_s1_TDATA ;
+
+
+input seed_0_s2_TVALID ;
+output seed_0_s2_TREADY ;
+input [32 - 1:0] seed_0_s2_TDATA ;
+
+
+input seed_0_s3_TVALID ;
+output seed_0_s3_TREADY ;
+input [32 - 1:0] seed_0_s3_TDATA ;
+
+
+output thread_result_0_TVALID ;
+input thread_result_0_TREADY ;
+output [32 - 1:0] thread_result_0_TDATA ;
+
+
+output thread_result_sqrd_0_TVALID ;
+input thread_result_sqrd_0_TREADY ;
+output [32 - 1:0] thread_result_sqrd_0_TDATA ;
+
 input aresetn ;
 
 input aclk ;
 
-output [32 - 1:0] result_0_din ;
-input result_0_full_n ;
-output result_0_write ;
-output [32 - 1:0] result_sqrd_0_din ;
-input result_sqrd_0_full_n ;
-output result_sqrd_0_write ;
 input ap_start ;
 output ap_ready ;
 output ap_done ;
@@ -94,33 +130,129 @@ wire [2 - 1:0] s_axi_CORE_IO_RRESP;
 wire s_axi_CORE_IO_RVALID;
 wire s_axi_CORE_IO_RREADY;
 
+
+wire seed_0_offset_TVALID;
+wire seed_0_offset_TREADY;
+wire [32 - 1:0] seed_0_offset_TDATA;
+
+
+wire seed_0_s1_TVALID;
+wire seed_0_s1_TREADY;
+wire [32 - 1:0] seed_0_s1_TDATA;
+
+
+wire seed_0_s2_TVALID;
+wire seed_0_s2_TREADY;
+wire [32 - 1:0] seed_0_s2_TDATA;
+
+
+wire seed_0_s3_TVALID;
+wire seed_0_s3_TREADY;
+wire [32 - 1:0] seed_0_s3_TDATA;
+
+
+wire thread_result_0_TVALID;
+wire thread_result_0_TREADY;
+wire [32 - 1:0] thread_result_0_TDATA;
+
+
+wire thread_result_sqrd_0_TVALID;
+wire thread_result_sqrd_0_TREADY;
+wire [32 - 1:0] thread_result_sqrd_0_TDATA;
+
 wire aresetn;
 
 
-wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_u_a_0_rfir;
-wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_u_a_0_current_price;
-wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_a_0_strike_price;
-wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_a_0_time_period;
-wire [32 - 1:0] sig_vivado_activity_thread_kernel_arg_o_a_0_call;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_rfir;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_current_price;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_volatility;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_initial_volatility;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_volatility_volatility;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_rho;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_kappa;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_theta;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_0_0;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_0_1;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_1_0;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_1_1;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_o_a_0_second_barrier;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_o_a_0_barrier;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_o_a_0_out;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_o_a_0_down;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_o_a_0_strike_price;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_o_a_0_time_period;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_o_a_0_call;
+wire [32 - 1:0] sig_vivado_activity_thread_kernel_o_a_0_points;
+
+wire [32 - 1:0] sig_vivado_activity_thread_seed_0_offset_dout;
+wire sig_vivado_activity_thread_seed_0_offset_empty_n;
+wire sig_vivado_activity_thread_seed_0_offset_read;
+
+wire [32 - 1:0] sig_vivado_activity_thread_seed_0_s1_dout;
+wire sig_vivado_activity_thread_seed_0_s1_empty_n;
+wire sig_vivado_activity_thread_seed_0_s1_read;
+
+wire [32 - 1:0] sig_vivado_activity_thread_seed_0_s2_dout;
+wire sig_vivado_activity_thread_seed_0_s2_empty_n;
+wire sig_vivado_activity_thread_seed_0_s2_read;
+
+wire [32 - 1:0] sig_vivado_activity_thread_seed_0_s3_dout;
+wire sig_vivado_activity_thread_seed_0_s3_empty_n;
+wire sig_vivado_activity_thread_seed_0_s3_read;
+
+wire [32 - 1:0] sig_vivado_activity_thread_thread_result_0_din;
+wire sig_vivado_activity_thread_thread_result_0_full_n;
+wire sig_vivado_activity_thread_thread_result_0_write;
+
+wire [32 - 1:0] sig_vivado_activity_thread_thread_result_sqrd_0_din;
+wire sig_vivado_activity_thread_thread_result_sqrd_0_full_n;
+wire sig_vivado_activity_thread_thread_result_sqrd_0_write;
 
 wire sig_vivado_activity_thread_ap_rst;
 
 
 
 vivado_activity_thread vivado_activity_thread_U(
-    .kernel_arg_u_a_0_rfir(sig_vivado_activity_thread_kernel_arg_u_a_0_rfir),
-    .kernel_arg_u_a_0_current_price(sig_vivado_activity_thread_kernel_arg_u_a_0_current_price),
-    .kernel_arg_o_a_0_strike_price(sig_vivado_activity_thread_kernel_arg_o_a_0_strike_price),
-    .kernel_arg_o_a_0_time_period(sig_vivado_activity_thread_kernel_arg_o_a_0_time_period),
-    .kernel_arg_o_a_0_call(sig_vivado_activity_thread_kernel_arg_o_a_0_call),
+    .kernel_u_a_0_rfir(sig_vivado_activity_thread_kernel_u_a_0_rfir),
+    .kernel_u_a_0_current_price(sig_vivado_activity_thread_kernel_u_a_0_current_price),
+    .kernel_u_a_0_volatility(sig_vivado_activity_thread_kernel_u_a_0_volatility),
+    .kernel_u_a_0_initial_volatility(sig_vivado_activity_thread_kernel_u_a_0_initial_volatility),
+    .kernel_u_a_0_volatility_volatility(sig_vivado_activity_thread_kernel_u_a_0_volatility_volatility),
+    .kernel_u_a_0_rho(sig_vivado_activity_thread_kernel_u_a_0_rho),
+    .kernel_u_a_0_kappa(sig_vivado_activity_thread_kernel_u_a_0_kappa),
+    .kernel_u_a_0_theta(sig_vivado_activity_thread_kernel_u_a_0_theta),
+    .kernel_u_a_0_correlation_matrix_0_0(sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_0_0),
+    .kernel_u_a_0_correlation_matrix_0_1(sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_0_1),
+    .kernel_u_a_0_correlation_matrix_1_0(sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_1_0),
+    .kernel_u_a_0_correlation_matrix_1_1(sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_1_1),
+    .kernel_o_a_0_second_barrier(sig_vivado_activity_thread_kernel_o_a_0_second_barrier),
+    .kernel_o_a_0_barrier(sig_vivado_activity_thread_kernel_o_a_0_barrier),
+    .kernel_o_a_0_out(sig_vivado_activity_thread_kernel_o_a_0_out),
+    .kernel_o_a_0_down(sig_vivado_activity_thread_kernel_o_a_0_down),
+    .kernel_o_a_0_strike_price(sig_vivado_activity_thread_kernel_o_a_0_strike_price),
+    .kernel_o_a_0_time_period(sig_vivado_activity_thread_kernel_o_a_0_time_period),
+    .kernel_o_a_0_call(sig_vivado_activity_thread_kernel_o_a_0_call),
+    .kernel_o_a_0_points(sig_vivado_activity_thread_kernel_o_a_0_points),
+    .seed_0_offset_dout(sig_vivado_activity_thread_seed_0_offset_dout),
+    .seed_0_offset_empty_n(sig_vivado_activity_thread_seed_0_offset_empty_n),
+    .seed_0_offset_read(sig_vivado_activity_thread_seed_0_offset_read),
+    .seed_0_s1_dout(sig_vivado_activity_thread_seed_0_s1_dout),
+    .seed_0_s1_empty_n(sig_vivado_activity_thread_seed_0_s1_empty_n),
+    .seed_0_s1_read(sig_vivado_activity_thread_seed_0_s1_read),
+    .seed_0_s2_dout(sig_vivado_activity_thread_seed_0_s2_dout),
+    .seed_0_s2_empty_n(sig_vivado_activity_thread_seed_0_s2_empty_n),
+    .seed_0_s2_read(sig_vivado_activity_thread_seed_0_s2_read),
+    .seed_0_s3_dout(sig_vivado_activity_thread_seed_0_s3_dout),
+    .seed_0_s3_empty_n(sig_vivado_activity_thread_seed_0_s3_empty_n),
+    .seed_0_s3_read(sig_vivado_activity_thread_seed_0_s3_read),
+    .thread_result_0_din(sig_vivado_activity_thread_thread_result_0_din),
+    .thread_result_0_full_n(sig_vivado_activity_thread_thread_result_0_full_n),
+    .thread_result_0_write(sig_vivado_activity_thread_thread_result_0_write),
+    .thread_result_sqrd_0_din(sig_vivado_activity_thread_thread_result_sqrd_0_din),
+    .thread_result_sqrd_0_full_n(sig_vivado_activity_thread_thread_result_sqrd_0_full_n),
+    .thread_result_sqrd_0_write(sig_vivado_activity_thread_thread_result_sqrd_0_write),
     .ap_rst(sig_vivado_activity_thread_ap_rst),
     .ap_clk(aclk),
-    .result_0_din(result_0_din),
-    .result_0_full_n(result_0_full_n),
-    .result_0_write(result_0_write),
-    .result_sqrd_0_din(result_sqrd_0_din),
-    .result_sqrd_0_full_n(result_sqrd_0_full_n),
-    .result_sqrd_0_write(result_sqrd_0_write),
     .ap_start(ap_start),
     .ap_ready(ap_ready),
     .ap_done(ap_done),
@@ -133,11 +265,26 @@ vivado_activity_thread_CORE_IO_if #(
 vivado_activity_thread_CORE_IO_if_U(
     .ACLK(aclk),
     .ARESETN(aresetn),
-    .I_kernel_arg_u_a_0_rfir(sig_vivado_activity_thread_kernel_arg_u_a_0_rfir),
-    .I_kernel_arg_u_a_0_current_price(sig_vivado_activity_thread_kernel_arg_u_a_0_current_price),
-    .I_kernel_arg_o_a_0_strike_price(sig_vivado_activity_thread_kernel_arg_o_a_0_strike_price),
-    .I_kernel_arg_o_a_0_time_period(sig_vivado_activity_thread_kernel_arg_o_a_0_time_period),
-    .I_kernel_arg_o_a_0_call(sig_vivado_activity_thread_kernel_arg_o_a_0_call),
+    .I_kernel_u_a_0_rfir(sig_vivado_activity_thread_kernel_u_a_0_rfir),
+    .I_kernel_u_a_0_current_price(sig_vivado_activity_thread_kernel_u_a_0_current_price),
+    .I_kernel_u_a_0_volatility(sig_vivado_activity_thread_kernel_u_a_0_volatility),
+    .I_kernel_u_a_0_initial_volatility(sig_vivado_activity_thread_kernel_u_a_0_initial_volatility),
+    .I_kernel_u_a_0_volatility_volatility(sig_vivado_activity_thread_kernel_u_a_0_volatility_volatility),
+    .I_kernel_u_a_0_rho(sig_vivado_activity_thread_kernel_u_a_0_rho),
+    .I_kernel_u_a_0_kappa(sig_vivado_activity_thread_kernel_u_a_0_kappa),
+    .I_kernel_u_a_0_theta(sig_vivado_activity_thread_kernel_u_a_0_theta),
+    .I_kernel_u_a_0_correlation_matrix_0_0(sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_0_0),
+    .I_kernel_u_a_0_correlation_matrix_0_1(sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_0_1),
+    .I_kernel_u_a_0_correlation_matrix_1_0(sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_1_0),
+    .I_kernel_u_a_0_correlation_matrix_1_1(sig_vivado_activity_thread_kernel_u_a_0_correlation_matrix_1_1),
+    .I_kernel_o_a_0_second_barrier(sig_vivado_activity_thread_kernel_o_a_0_second_barrier),
+    .I_kernel_o_a_0_barrier(sig_vivado_activity_thread_kernel_o_a_0_barrier),
+    .I_kernel_o_a_0_out(sig_vivado_activity_thread_kernel_o_a_0_out),
+    .I_kernel_o_a_0_down(sig_vivado_activity_thread_kernel_o_a_0_down),
+    .I_kernel_o_a_0_strike_price(sig_vivado_activity_thread_kernel_o_a_0_strike_price),
+    .I_kernel_o_a_0_time_period(sig_vivado_activity_thread_kernel_o_a_0_time_period),
+    .I_kernel_o_a_0_call(sig_vivado_activity_thread_kernel_o_a_0_call),
+    .I_kernel_o_a_0_points(sig_vivado_activity_thread_kernel_o_a_0_points),
     .AWADDR(s_axi_CORE_IO_AWADDR),
     .AWVALID(s_axi_CORE_IO_AWVALID),
     .AWREADY(s_axi_CORE_IO_AWREADY),
@@ -155,6 +302,66 @@ vivado_activity_thread_CORE_IO_if_U(
     .RRESP(s_axi_CORE_IO_RRESP),
     .RVALID(s_axi_CORE_IO_RVALID),
     .RREADY(s_axi_CORE_IO_RREADY));
+
+vivado_activity_thread_seed_0_offset_if vivado_activity_thread_seed_0_offset_if_U(
+    .ACLK(aclk),
+    .ARESETN(aresetn),
+    .seed_0_offset_dout(sig_vivado_activity_thread_seed_0_offset_dout),
+    .seed_0_offset_empty_n(sig_vivado_activity_thread_seed_0_offset_empty_n),
+    .seed_0_offset_read(sig_vivado_activity_thread_seed_0_offset_read),
+    .TVALID(seed_0_offset_TVALID),
+    .TREADY(seed_0_offset_TREADY),
+    .TDATA(seed_0_offset_TDATA));
+
+vivado_activity_thread_seed_0_s1_if vivado_activity_thread_seed_0_s1_if_U(
+    .ACLK(aclk),
+    .ARESETN(aresetn),
+    .seed_0_s1_dout(sig_vivado_activity_thread_seed_0_s1_dout),
+    .seed_0_s1_empty_n(sig_vivado_activity_thread_seed_0_s1_empty_n),
+    .seed_0_s1_read(sig_vivado_activity_thread_seed_0_s1_read),
+    .TVALID(seed_0_s1_TVALID),
+    .TREADY(seed_0_s1_TREADY),
+    .TDATA(seed_0_s1_TDATA));
+
+vivado_activity_thread_seed_0_s2_if vivado_activity_thread_seed_0_s2_if_U(
+    .ACLK(aclk),
+    .ARESETN(aresetn),
+    .seed_0_s2_dout(sig_vivado_activity_thread_seed_0_s2_dout),
+    .seed_0_s2_empty_n(sig_vivado_activity_thread_seed_0_s2_empty_n),
+    .seed_0_s2_read(sig_vivado_activity_thread_seed_0_s2_read),
+    .TVALID(seed_0_s2_TVALID),
+    .TREADY(seed_0_s2_TREADY),
+    .TDATA(seed_0_s2_TDATA));
+
+vivado_activity_thread_seed_0_s3_if vivado_activity_thread_seed_0_s3_if_U(
+    .ACLK(aclk),
+    .ARESETN(aresetn),
+    .seed_0_s3_dout(sig_vivado_activity_thread_seed_0_s3_dout),
+    .seed_0_s3_empty_n(sig_vivado_activity_thread_seed_0_s3_empty_n),
+    .seed_0_s3_read(sig_vivado_activity_thread_seed_0_s3_read),
+    .TVALID(seed_0_s3_TVALID),
+    .TREADY(seed_0_s3_TREADY),
+    .TDATA(seed_0_s3_TDATA));
+
+vivado_activity_thread_thread_result_0_if vivado_activity_thread_thread_result_0_if_U(
+    .ACLK(aclk),
+    .ARESETN(aresetn),
+    .thread_result_0_din(sig_vivado_activity_thread_thread_result_0_din),
+    .thread_result_0_full_n(sig_vivado_activity_thread_thread_result_0_full_n),
+    .thread_result_0_write(sig_vivado_activity_thread_thread_result_0_write),
+    .TVALID(thread_result_0_TVALID),
+    .TREADY(thread_result_0_TREADY),
+    .TDATA(thread_result_0_TDATA));
+
+vivado_activity_thread_thread_result_sqrd_0_if vivado_activity_thread_thread_result_sqrd_0_if_U(
+    .ACLK(aclk),
+    .ARESETN(aresetn),
+    .thread_result_sqrd_0_din(sig_vivado_activity_thread_thread_result_sqrd_0_din),
+    .thread_result_sqrd_0_full_n(sig_vivado_activity_thread_thread_result_sqrd_0_full_n),
+    .thread_result_sqrd_0_write(sig_vivado_activity_thread_thread_result_sqrd_0_write),
+    .TVALID(thread_result_sqrd_0_TVALID),
+    .TREADY(thread_result_sqrd_0_TREADY),
+    .TDATA(thread_result_sqrd_0_TDATA));
 
 vivado_activity_thread_ap_rst_if #(
     .RESET_ACTIVE_LOW(RESET_ACTIVE_LOW))

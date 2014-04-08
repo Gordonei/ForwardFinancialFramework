@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date         : Mon Mar 31 15:16:09 2014
+| Date         : Tue Apr  8 20:37:24 2014
 | Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_utilization -file zynq_system_wrapper_utilization_synth.rpt -pb zynq_system_wrapper_utilization_synth.pb
 | Design       : zynq_system_wrapper
@@ -29,16 +29,16 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Loced | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 3999 |     0 |     53200 |  7.51 |
-|   LUT as Logic             | 3781 |     0 |     53200 |  7.10 |
-|   LUT as Memory            |  218 |     0 |     17400 |  1.25 |
+| Slice LUTs*                | 3609 |     0 |     53200 |  6.78 |
+|   LUT as Logic             | 3448 |     0 |     53200 |  6.48 |
+|   LUT as Memory            |  161 |     0 |     17400 |  0.92 |
 |     LUT as Distributed RAM |    0 |     0 |           |       |
-|     LUT as Shift Register  |  218 |     0 |           |       |
-| Slice Registers            | 3640 |     0 |    106400 |  3.42 |
-|   Register as Flip Flop    | 3617 |     0 |    106400 |  3.39 |
+|     LUT as Shift Register  |  161 |     0 |           |       |
+| Slice Registers            | 3500 |     0 |    106400 |  3.28 |
+|   Register as Flip Flop    | 3477 |     0 |    106400 |  3.26 |
 |   Register as Latch        |   23 |     0 |    106400 |  0.02 |
-| F7 Muxes                   |  432 |     0 |     26600 |  1.62 |
-| F8 Muxes                   |    1 |     0 |     13300 | <0.01 |
+| F7 Muxes                   |  193 |     0 |     26600 |  0.72 |
+| F8 Muxes                   |    2 |     0 |     13300 |  0.01 |
 +----------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis for a more realistic count.
 
@@ -62,8 +62,8 @@ Table of Contents
 +----------------+------+-------+-----------+-------+
 |    Site Type   | Used | Loced | Available | Util% |
 +----------------+------+-------+-----------+-------+
-| DSPs           |   42 |     0 |       220 | 19.09 |
-|   DSP48E1 only |   42 |       |           |       |
+| DSPs           |   12 |     0 |       220 |  5.45 |
+|   DSP48E1 only |   12 |       |           |       |
 +----------------+------+-------+-----------+-------+
 
 
@@ -131,23 +131,25 @@ Table of Contents
 +----------+------+
 | Ref Name | Used |
 +----------+------+
-| FDRE     | 3533 |
-| LUT6     | 1764 |
-| LUT3     |  764 |
-| LUT5     |  633 |
-| MUXF7    |  432 |
-| LUT4     |  409 |
-| LUT2     |  326 |
-| LUT1     |  264 |
-| SRL16E   |  187 |
-| CARRY4   |  152 |
+| FDRE     | 3363 |
+| LUT3     | 1576 |
+| LUT6     | 1164 |
+| LUT5     |  488 |
+| LUT4     |  372 |
+| CARRY4   |  267 |
+| LUT2     |  256 |
+| MUXF7    |  193 |
+| LUT1     |  186 |
 | BIBUF    |  130 |
-| FDSE     |   84 |
+| SRL16E   |  114 |
+| FDSE     |   82 |
 | SRLC32E  |   47 |
-| DSP48E1  |   42 |
+| FDPE     |   26 |
 | LDCE     |   23 |
+| DSP48E1  |   12 |
+| FDCE     |    6 |
+| MUXF8    |    2 |
 | PS7      |    1 |
-| MUXF8    |    1 |
 | BUFG     |    1 |
 +----------+------+
 

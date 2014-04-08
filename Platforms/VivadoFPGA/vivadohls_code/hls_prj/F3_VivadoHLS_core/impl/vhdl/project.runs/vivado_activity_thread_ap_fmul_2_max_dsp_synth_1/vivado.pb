@@ -55,1148 +55,1148 @@ Starting synthesis...
 xc7z0202default:defaultZ17-349
 ú
 %s*synth2å
-xStarting RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 782.219 ; gain = 160.391
+xStarting RTL Elaboration : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 782.223 ; gain = 160.391
 2default:default
-ñ
+ç
 synthesizing module '%s'638*oasys2<
-(vivado_activity_thread_ap_fmul_2_max_dsp2default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/synth/vivado_activity_thread_ap_fmul_2_max_dsp.vhd2default:default2
+(vivado_activity_thread_ap_fmul_2_max_dsp2default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/synth/vivado_activity_thread_ap_fmul_2_max_dsp.vhd2default:default2
 722default:default8@Z8-638
-î
+Ç
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2'
-floating_point_v7_02default:default2É
-Ó/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0.vhd2default:default2
+floating_point_v7_02default:default2˙
+Â/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0.vhd2default:default2
 1082default:default2
 U02default:default2'
-floating_point_v7_02default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/synth/vivado_activity_thread_ap_fmul_2_max_dsp.vhd2default:default2
+floating_point_v7_02default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/synth/vivado_activity_thread_ap_fmul_2_max_dsp.vhd2default:default2
 1952default:default8@Z8-3491
-è
+Ü
 synthesizing module '%s'638*oasys27
-#floating_point_v7_0__parameterized02default:default2Ö
-Ó/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0.vhd2default:default2
+#floating_point_v7_0__parameterized02default:default2¸
+Â/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0.vhd2default:default2
 2242default:default8@Z8-638
-¢
+ê
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2+
-floating_point_v7_0_viv2default:default2á
-Ú/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
+floating_point_v7_0_viv2default:default2˛
+È/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
 2982default:default2
 i_synth2default:default2+
-floating_point_v7_0_viv2default:default2Ö
-Ó/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0.vhd2default:default2
+floating_point_v7_0_viv2default:default2¸
+Â/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0.vhd2default:default2
 2332default:default8@Z8-3491
-ó
+é
 synthesizing module '%s'638*oasys2;
-'floating_point_v7_0_viv__parameterized02default:default2â
-Ú/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
+'floating_point_v7_0_viv__parameterized02default:default2Ä
+È/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
 4242default:default8@Z8-638
-¯
+Ô
 synthesizing module '%s'638*oasys2&
-xbip_pipe_v3_0_viv2default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-≥
+™
 %done synthesizing module '%s' (%s#%s)256*oasys2&
 xbip_pipe_v3_0_viv2default:default2
 12default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
+È
+synthesizing module '%s'638*oasys2
+flt_mult2default:default2˙
+„/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult.vhd2default:default2
+2242default:default8@Z8-638
 Ú
 synthesizing module '%s'638*oasys2
-flt_mult2default:default2É
-Ï/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult.vhd2default:default2
-2242default:default8@Z8-638
-˚
-synthesizing module '%s'638*oasys2
-fix_mult2default:default2å
-ı/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/fix_mult/fix_mult.vhd2default:default2
+fix_mult2default:default2É
+Ï/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/fix_mult/fix_mult.vhd2default:default2
 1862default:default8@Z8-638
-ì
+ä
 synthesizing module '%s'638*oasys2(
-fix_mult_dsp48e1_sgl2default:default2ò
-Å/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/fix_mult/fix_mult_dsp48e1_sgl.vhd2default:default2
+fix_mult_dsp48e1_sgl2default:default2è
+¯/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/fix_mult/fix_mult_dsp48e1_sgl.vhd2default:default2
 1722default:default8@Z8-638
-˛
+ı
 synthesizing module '%s'638*oasys2#
-dsp48e1_wrapper2default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
+dsp48e1_wrapper2default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
 2522default:default8@Z8-638
-Í
+·
 synthesizing module '%s'638*oasys2
-delay2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-à
+ˇ
 synthesizing module '%s'638*oasys26
-"xbip_pipe_v3_0_viv__parameterized12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+"xbip_pipe_v3_0_viv__parameterized12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-√
+∫
 %done synthesizing module '%s' (%s#%s)256*oasys26
 "xbip_pipe_v3_0_viv__parameterized12default:default2
 12default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-•
+ú
 %done synthesizing module '%s' (%s#%s)256*oasys2
 delay2default:default2
 22default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˙
+Ò
 synthesizing module '%s'638*oasys2)
-delay__parameterized02default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized02default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-à
+ˇ
 synthesizing module '%s'638*oasys26
-"xbip_pipe_v3_0_viv__parameterized32default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+"xbip_pipe_v3_0_viv__parameterized32default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-√
+∫
 %done synthesizing module '%s' (%s#%s)256*oasys26
 "xbip_pipe_v3_0_viv__parameterized32default:default2
 22default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2)
 delay__parameterized02default:default2
 22default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˙
+Ò
 synthesizing module '%s'638*oasys2)
-delay__parameterized12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-à
+ˇ
 synthesizing module '%s'638*oasys26
-"xbip_pipe_v3_0_viv__parameterized52default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+"xbip_pipe_v3_0_viv__parameterized52default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-√
+∫
 %done synthesizing module '%s' (%s#%s)256*oasys26
 "xbip_pipe_v3_0_viv__parameterized52default:default2
 22default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2)
 delay__parameterized12default:default2
 22default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˙
+Ò
 synthesizing module '%s'638*oasys2)
-delay__parameterized22default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized22default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-à
+ˇ
 synthesizing module '%s'638*oasys26
-"xbip_pipe_v3_0_viv__parameterized72default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+"xbip_pipe_v3_0_viv__parameterized72default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-√
+∫
 %done synthesizing module '%s' (%s#%s)256*oasys26
 "xbip_pipe_v3_0_viv__parameterized72default:default2
 22default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2)
 delay__parameterized22default:default2
 22default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˙
+Ò
 synthesizing module '%s'638*oasys2)
-delay__parameterized32default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized32default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-à
+ˇ
 synthesizing module '%s'638*oasys26
-"xbip_pipe_v3_0_viv__parameterized92default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+"xbip_pipe_v3_0_viv__parameterized92default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-√
+∫
 %done synthesizing module '%s' (%s#%s)256*oasys26
 "xbip_pipe_v3_0_viv__parameterized92default:default2
 22default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2)
 delay__parameterized32default:default2
 22default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˙
+Ò
 synthesizing module '%s'638*oasys2)
-delay__parameterized42default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized42default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized112default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized112default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized112default:default2
 22default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2)
 delay__parameterized42default:default2
 22default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˙
+Ò
 synthesizing module '%s'638*oasys2)
-delay__parameterized52default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized52default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized132default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized132default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized132default:default2
 22default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2)
 delay__parameterized52default:default2
 22default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 DSP2default:default2
-DSP48E12default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
+DSP48E12default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
 4852default:default8@Z8-113
-π
+∞
 %done synthesizing module '%s' (%s#%s)256*oasys2#
 dsp48e1_wrapper2default:default2
 32default:default2
-12default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
+12default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
 2522default:default8@Z8-256
-é
+Ö
 synthesizing module '%s'638*oasys23
-dsp48e1_wrapper__parameterized02default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
+dsp48e1_wrapper__parameterized02default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
 2522default:default8@Z8-638
-˙
+Ò
 synthesizing module '%s'638*oasys2)
-delay__parameterized62default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized62default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized152default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized152default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized152default:default2
 32default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2)
 delay__parameterized62default:default2
 32default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 DSP2default:default2
-DSP48E12default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
+DSP48E12default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
 4852default:default8@Z8-113
-…
+¿
 %done synthesizing module '%s' (%s#%s)256*oasys23
 dsp48e1_wrapper__parameterized02default:default2
 32default:default2
-12default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
+12default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
 2522default:default8@Z8-256
-Œ
+≈
 %done synthesizing module '%s' (%s#%s)256*oasys2(
 fix_mult_dsp48e1_sgl2default:default2
 42default:default2
-12default:default2ò
-Å/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/fix_mult/fix_mult_dsp48e1_sgl.vhd2default:default2
+12default:default2è
+¯/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/fix_mult/fix_mult_dsp48e1_sgl.vhd2default:default2
 1722default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2
 fix_mult2default:default2
 52default:default2
-12default:default2å
-ı/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/fix_mult/fix_mult.vhd2default:default2
+12default:default2É
+Ï/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/fix_mult/fix_mult.vhd2default:default2
 1862default:default8@Z8-256
-˙
+Ò
 synthesizing module '%s'638*oasys2 
-flt_mult_exp2default:default2á
-/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_exp.vhd2default:default2
+flt_mult_exp2default:default2˛
+Á/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_exp.vhd2default:default2
 2252default:default8@Z8-638
-˙
+Ò
 synthesizing module '%s'638*oasys2)
-delay__parameterized72default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized72default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized172default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized172default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized172default:default2
 52default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2)
 delay__parameterized72default:default2
 52default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-ˆ
+Ì
 synthesizing module '%s'638*oasys2
-carry_chain2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+carry_chain2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2482default:default8@Z8-638
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-°
+ò
 ,binding component instance '%s' to cell '%s'113*oasys2
 SUM_XOR2default:default2
-XORCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+XORCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2942default:default8@Z8-113
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-°
+ò
 ,binding component instance '%s' to cell '%s'113*oasys2
 SUM_XOR2default:default2
-XORCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+XORCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2942default:default8@Z8-113
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-°
+ò
 ,binding component instance '%s' to cell '%s'113*oasys2
 SUM_XOR2default:default2
-XORCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+XORCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2942default:default8@Z8-113
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-°
+ò
 ,binding component instance '%s' to cell '%s'113*oasys2
 SUM_XOR2default:default2
-XORCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+XORCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2942default:default8@Z8-113
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-°
+ò
 ,binding component instance '%s' to cell '%s'113*oasys2
 SUM_XOR2default:default2
-XORCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+XORCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2942default:default8@Z8-113
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-°
+ò
 ,binding component instance '%s' to cell '%s'113*oasys2
 SUM_XOR2default:default2
-XORCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+XORCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2942default:default8@Z8-113
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-°
+ò
 ,binding component instance '%s' to cell '%s'113*oasys2
 SUM_XOR2default:default2
-XORCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+XORCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2942default:default8@Z8-113
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-°
+ò
 ,binding component instance '%s' to cell '%s'113*oasys2
 SUM_XOR2default:default2
-XORCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+XORCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2942default:default8@Z8-113
-˙
+Ò
 synthesizing module '%s'638*oasys2)
-delay__parameterized82default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized82default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized192default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized192default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized192default:default2
 52default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2)
 delay__parameterized82default:default2
 52default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-±
+®
 %done synthesizing module '%s' (%s#%s)256*oasys2
 carry_chain2default:default2
 62default:default2
-12default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+12default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2482default:default8@Z8-256
-¸
+Û
 synthesizing module '%s'638*oasys2"
-special_detect2default:default2á
-/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/special_detect.vhd2default:default2
+special_detect2default:default2˛
+Á/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/special_detect.vhd2default:default2
 1762default:default8@Z8-638
-˙
+Ò
 synthesizing module '%s'638*oasys2!
-compare_eq_im2default:default2Ü
-Ô/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/compare_eq_im.vhd2default:default2
+compare_eq_im2default:default2˝
+Ê/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/compare_eq_im.vhd2default:default2
 1862default:default8@Z8-638
-Ü
+˝
 synthesizing module '%s'638*oasys2/
-carry_chain__parameterized02default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+carry_chain__parameterized02default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2482default:default8@Z8-638
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 	CARRY_MUX2default:default2
-MUXCY2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+MUXCY2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2842default:default8@Z8-113
-˙
+Ò
 synthesizing module '%s'638*oasys2)
-delay__parameterized92default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized92default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2)
 delay__parameterized92default:default2
 62default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-ª
+≤
 0Net %s in module/entity %s does not have driver.3422*oasys2
 q_int2default:default2/
-carry_chain__parameterized02default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+carry_chain__parameterized02default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2582default:default8@Z8-3848
-¡
+∏
 %done synthesizing module '%s' (%s#%s)256*oasys2/
 carry_chain__parameterized02default:default2
 62default:default2
-12default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+12default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2482default:default8@Z8-256
-¥
+´
 0Net %s in module/entity %s does not have driver.3422*oasys2
 
 CARRYS_OUT2default:default2!
-compare_eq_im2default:default2Ü
-Ô/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/compare_eq_im.vhd2default:default2
+compare_eq_im2default:default2˝
+Ê/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/compare_eq_im.vhd2default:default2
 1812default:default8@Z8-3848
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2!
 compare_eq_im2default:default2
 72default:default2
-12default:default2Ü
-Ô/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/compare_eq_im.vhd2default:default2
+12default:default2˝
+Ê/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/compare_eq_im.vhd2default:default2
 1862default:default8@Z8-256
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized102default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized102default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized212default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized212default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized212default:default2
 72default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized102default:default2
 72default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-∑
+Æ
 %done synthesizing module '%s' (%s#%s)256*oasys2"
 special_detect2default:default2
 82default:default2
-12default:default2á
-/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/special_detect.vhd2default:default2
+12default:default2˛
+Á/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/special_detect.vhd2default:default2
 1762default:default8@Z8-256
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized112default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized112default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized112default:default2
 82default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized122default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized122default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized232default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized232default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized232default:default2
 82default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized122default:default2
 82default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized132default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized132default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized252default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized252default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized252default:default2
 82default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized132default:default2
 82default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized142default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized142default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized272default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized272default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized272default:default2
 82default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized142default:default2
 82default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized152default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized152default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized292default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized292default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized292default:default2
 82default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized152default:default2
 82default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized162default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized162default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized312default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized312default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized312default:default2
 82default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized162default:default2
 82default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized172default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized172default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized332default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized332default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized332default:default2
 82default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized172default:default2
 82default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized182default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized182default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized352default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized352default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized352default:default2
 82default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized182default:default2
 82default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized192default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized192default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized372default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized372default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized372default:default2
 82default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized192default:default2
 82default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-µ
+¨
 %done synthesizing module '%s' (%s#%s)256*oasys2 
 flt_mult_exp2default:default2
 92default:default2
-12default:default2á
-/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_exp.vhd2default:default2
+12default:default2˛
+Á/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_exp.vhd2default:default2
 2252default:default8@Z8-256
-ç
+Ñ
 synthesizing module '%s'638*oasys2"
-flt_mult_round2default:default2ò
-Å/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_mult_round.vhd2default:default2
+flt_mult_round2default:default2è
+¯/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_mult_round.vhd2default:default2
 2162default:default8@Z8-638
-ù
+î
 synthesizing module '%s'638*oasys2*
-flt_round_dsp_opt_full2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+flt_round_dsp_opt_full2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 1852default:default8@Z8-638
-é
+Ö
 synthesizing module '%s'638*oasys23
-dsp48e1_wrapper__parameterized12default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
+dsp48e1_wrapper__parameterized12default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
 2522default:default8@Z8-638
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized202default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized202default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized392default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized392default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized392default:default2
 92default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized202default:default2
 92default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-˚
+Ú
 synthesizing module '%s'638*oasys2*
-delay__parameterized212default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+delay__parameterized212default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-638
-Ü
+Ù
 Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'3392*oasys2&
-xbip_pipe_v3_0_viv2default:default2˝
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2Ù
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1062default:default2
 i_pipe2default:default2&
-xbip_pipe_v3_0_viv2default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+xbip_pipe_v3_0_viv2default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1922default:default8@Z8-3491
-â
+Ä
 synthesizing module '%s'638*oasys27
-#xbip_pipe_v3_0_viv__parameterized412default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+#xbip_pipe_v3_0_viv__parameterized412default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-638
-ƒ
+ª
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #xbip_pipe_v3_0_viv__parameterized412default:default2
 92default:default2
-12default:default2ˇ
-Ë/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
+12default:default2ˆ
+ﬂ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/xbip_pipe_v3_0/hdl/xbip_pipe_v3_0_viv.vhd2default:default2
 1312default:default8@Z8-256
-∂
+≠
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 delay__parameterized212default:default2
 92default:default2
-12default:default2˛
-Á/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
+12default:default2ı
+ﬁ/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/delay.vhd2default:default2
 1722default:default8@Z8-256
-£
+ö
 ,binding component instance '%s' to cell '%s'113*oasys2
 DSP2default:default2
-DSP48E12default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
+DSP48E12default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
 4852default:default8@Z8-113
-…
+¿
 %done synthesizing module '%s' (%s#%s)256*oasys23
 dsp48e1_wrapper__parameterized12default:default2
 92default:default2
-12default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
+12default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/dsp48e1_wrapper.vhd2default:default2
 2522default:default8@Z8-256
-Ÿ
+–
 %done synthesizing module '%s' (%s#%s)256*oasys2*
 flt_round_dsp_opt_full2default:default2
 102default:default2
-12default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+12default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 1852default:default8@Z8-256
-…
+¿
 %done synthesizing module '%s' (%s#%s)256*oasys2"
 flt_mult_round2default:default2
 112default:default2
-12default:default2ò
-Å/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_mult_round.vhd2default:default2
+12default:default2è
+¯/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_mult_round.vhd2default:default2
 2162default:default8@Z8-256
-¸
+Û
 synthesizing module '%s'638*oasys2"
-flt_dec_op_lat2default:default2á
-/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/flt_dec_op_lat.vhd2default:default2
+flt_dec_op_lat2default:default2˛
+Á/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/flt_dec_op_lat.vhd2default:default2
 2352default:default8@Z8-638
-∏
+Ø
 %done synthesizing module '%s' (%s#%s)256*oasys2"
 flt_dec_op_lat2default:default2
 122default:default2
-12default:default2á
-/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/flt_dec_op_lat.vhd2default:default2
+12default:default2˛
+Á/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/flt_dec_op_lat.vhd2default:default2
 2352default:default8@Z8-256
-Æ
+•
 %done synthesizing module '%s' (%s#%s)256*oasys2
 flt_mult2default:default2
 132default:default2
-12default:default2É
-Ï/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult.vhd2default:default2
+12default:default2˙
+„/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult.vhd2default:default2
 2242default:default8@Z8-256
-Ø
+¶
 RTL assertion: "%s"63*oasys2ÿ
-√****** INFORMATION ONLY ******C_A_WIDTH =               32C_A_FRACTION_WIDTH =      24C_RESULT_WIDTH =          32C_RESULT_FRACTION_WIDTH = 24Latency of core =         2Maximum latency of core = 6AXI interface latency =   0Output delay latency =    0Internal latency of core excluding handling AXI flow control = 22default:default2â
-Ú/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
+√****** INFORMATION ONLY ******C_A_WIDTH =               32C_A_FRACTION_WIDTH =      24C_RESULT_WIDTH =          32C_RESULT_FRACTION_WIDTH = 24Latency of core =         2Maximum latency of core = 6AXI interface latency =   0Output delay latency =    0Internal latency of core excluding handling AXI flow control = 22default:default2Ä
+È/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
 16902default:default8@Z8-63
-‚
+Ÿ
 0Net %s in module/entity %s does not have driver.3422*oasys2/
 m_axis_result_tuser_not_abs2default:default2;
-'floating_point_v7_0_viv__parameterized02default:default2â
-Ú/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
+'floating_point_v7_0_viv__parameterized02default:default2Ä
+È/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
 7602default:default8@Z8-3848
-‚
+Ÿ
 0Net %s in module/entity %s does not have driver.3422*oasys2/
 m_axis_result_tlast_not_abs2default:default2;
-'floating_point_v7_0_viv__parameterized02default:default2â
-Ú/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
+'floating_point_v7_0_viv__parameterized02default:default2Ä
+È/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
 7622default:default8@Z8-3848
-”
+ 
 %done synthesizing module '%s' (%s#%s)256*oasys2;
 'floating_point_v7_0_viv__parameterized02default:default2
 142default:default2
-12default:default2â
-Ú/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
+12default:default2Ä
+È/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
 4242default:default8@Z8-256
-À
+¬
 %done synthesizing module '%s' (%s#%s)256*oasys27
 #floating_point_v7_0__parameterized02default:default2
 152default:default2
-12default:default2Ö
-Ó/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0.vhd2default:default2
+12default:default2¸
+Â/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0.vhd2default:default2
 2242default:default8@Z8-256
-“
+…
 %done synthesizing module '%s' (%s#%s)256*oasys2<
 (vivado_activity_thread_ap_fmul_2_max_dsp2default:default2
 162default:default2
-12default:default2à
-Ò/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/synth/vivado_activity_thread_ap_fmul_2_max_dsp.vhd2default:default2
+12default:default2ˇ
+Ë/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/synth/vivado_activity_thread_ap_fmul_2_max_dsp.vhd2default:default2
 722default:default8@Z8-256
 ú
 %s*synth2å
-xFinished RTL Elaboration : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 852.039 ; gain = 230.211
+xFinished RTL Elaboration : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 852.043 ; gain = 230.211
 2default:default
 ;
 %s*synth2,
@@ -1223,257 +1223,257 @@ l
 %s*synth2]
 I+------+------------------+-------+---------+-------+------------------+
 2default:default
-õ
+í
 'tying undriven pin %s:%s to constant 0
 3295*oasys2
 Q_DEL2default:default2
-D[3]2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+D[3]2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 3912default:default8@Z8-3295
-õ
+í
 'tying undriven pin %s:%s to constant 0
 3295*oasys2
 Q_DEL2default:default2
-D[2]2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+D[2]2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 3912default:default8@Z8-3295
-õ
+í
 'tying undriven pin %s:%s to constant 0
 3295*oasys2
 Q_DEL2default:default2
-D[1]2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+D[1]2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 3912default:default8@Z8-3295
-õ
+í
 'tying undriven pin %s:%s to constant 0
 3295*oasys2
 Q_DEL2default:default2
-D[0]2default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+D[0]2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 3912default:default8@Z8-3295
-∫
+±
 'tying undriven pin %s:%s to constant 0
 3295*oasys2
 MANT_DEL2default:default2
-D[0]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+D[0]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 3512default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[31]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[31]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[30]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[30]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[29]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[29]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[28]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[28]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[27]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[27]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[26]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[26]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[25]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[25]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[24]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[24]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[23]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[23]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[22]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[22]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[21]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[21]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[20]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[20]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[19]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[19]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[18]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[18]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[17]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[17]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[16]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[16]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[15]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[15]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[14]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[14]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[13]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[13]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[12]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[12]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[11]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[11]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-÷
+Õ
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[10]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[10]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-’
+Ã
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[9]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[9]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-’
+Ã
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[8]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[8]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-’
+Ã
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[6]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[6]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-’
+Ã
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[5]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[5]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-’
+Ã
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[4]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[4]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-’
+Ã
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[3]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[3]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-’
+Ã
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[2]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[2]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-’
+Ã
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[1]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[1]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
-’
+Ã
 'tying undriven pin %s:%s to constant 0
 3295*oasys24
  \DSP48E1_SGL_EXP_IP.OLD_ADD.ADD 2default:default2
-C_IN[0]2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+C_IN[0]2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 2592default:default8@Z8-3295
 \
 -Analyzing %s Unisim elements for replacement
@@ -1511,24 +1511,24 @@ W/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/./parts/xilinx/zynq/IOStand
 
 Processing XDC Constraints
 244*projectZ1-262
-·
+ÿ
 $Parsing XDC File [%s] for cell '%s'
-848*designutils2Ñ
-Ô/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc2default:default2
+848*designutils2˚
+Ê/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc2default:default2
 U02default:defaultZ20-848
-Í
+·
 -Finished Parsing XDC File [%s] for cell '%s'
-847*designutils2Ñ
-Ô/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc2default:default2
+847*designutils2˚
+Ê/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc2default:default2
 U02default:defaultZ20-847
-î
+ã
 Parsing XDC File [%s]
-179*designutils2›
-»/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fmul_2_max_dsp_synth_1/dont_touch.xdc2default:defaultZ20-179
-ù
+179*designutils2‘
+ø/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fmul_2_max_dsp_synth_1/dont_touch.xdc2default:defaultZ20-179
+î
 Finished Parsing XDC File [%s]
-178*designutils2›
-»/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fmul_2_max_dsp_synth_1/dont_touch.xdc2default:defaultZ20-178
+178*designutils2‘
+ø/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fmul_2_max_dsp_synth_1/dont_touch.xdc2default:defaultZ20-178
 ?
 &Completed Processing XDC Constraints
 
@@ -1540,41 +1540,41 @@ u
 2default:defaultZ1-111
 ∂
 %s*synth2¶
-ëFinished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1061.816 ; gain = 439.988
+ëFinished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 1061.820 ; gain = 439.988
 2default:default
 û
 %s*synth2é
-zFinished RTL Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1061.816 ; gain = 439.988
+zFinished RTL Optimization : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 1061.820 ; gain = 439.988
 2default:default
-ª
+≤
 0Net %s in module/entity %s does not have driver.3422*oasys2
 q_int2default:default2/
-carry_chain__parameterized02default:default2Ñ
-Ì/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
+carry_chain__parameterized02default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/carry_chain.vhd2default:default2
 2582default:default8@Z8-3848
-¥
+´
 0Net %s in module/entity %s does not have driver.3422*oasys2
 
 CARRYS_OUT2default:default2!
-compare_eq_im2default:default2Ü
-Ô/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/compare_eq_im.vhd2default:default2
+compare_eq_im2default:default2˝
+Ê/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/shared/compare_eq_im.vhd2default:default2
 1812default:default8@Z8-3848
-ú
+ì
 !inferring latch for variable '%s'327*oasys2 
-MANT_OUT_reg2default:default2†
-â/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
+MANT_OUT_reg2default:default2ó
+Ä/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/flt_mult/flt_mult_round/flt_round_dsp_opt_full.vhd2default:default2
 4012default:default8@Z8-327
-‚
+Ÿ
 0Net %s in module/entity %s does not have driver.3422*oasys2/
 m_axis_result_tuser_not_abs2default:default2;
-'floating_point_v7_0_viv__parameterized02default:default2â
-Ú/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
+'floating_point_v7_0_viv__parameterized02default:default2Ä
+È/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
 7602default:default8@Z8-3848
-‚
+Ÿ
 0Net %s in module/entity %s does not have driver.3422*oasys2/
 m_axis_result_tlast_not_abs2default:default2;
-'floating_point_v7_0_viv__parameterized02default:default2â
-Ú/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
+'floating_point_v7_0_viv__parameterized02default:default2Ä
+È/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/floating_point_v7_0/hdl/floating_point_v7_0_viv.vhd2default:default2
 7622default:default8@Z8-3848
 <
 %s*synth2-
@@ -1605,7 +1605,7 @@ BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
 2default:default
 ≤
 %s*synth2¢
-çFinished Loading Part and Timing Information : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 1135.164 ; gain = 513.336
+çFinished Loading Part and Timing Information : Time (s): cpu = 00:00:53 ; elapsed = 00:00:56 . Memory (MB): peak = 1135.168 ; gain = 513.336
 2default:default
 È
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2L
@@ -1621,23 +1621,23 @@ ESequential element (%s) is unused and will be removed from module %s.3332*
 'floating_point_v7_0_viv__parameterized02default:defaultZ8-3332
 ™
 %s*synth2ö
-ÖFinished Cross Boundary Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 1135.164 ; gain = 513.336
+ÖFinished Cross Boundary Optimization : Time (s): cpu = 00:00:53 ; elapsed = 00:00:56 . Memory (MB): peak = 1135.168 ; gain = 513.336
 2default:default
 ü
 %s*synth2è
-{Finished Area Optimization : Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 1169.219 ; gain = 547.391
+{Finished Area Optimization : Time (s): cpu = 00:00:54 ; elapsed = 00:00:56 . Memory (MB): peak = 1169.227 ; gain = 547.395
 2default:default
 Æ
 %s*synth2û
-âFinished Applying XDC Timing Constraints : Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 1189.211 ; gain = 567.383
+âFinished Applying XDC Timing Constraints : Time (s): cpu = 00:00:57 ; elapsed = 00:00:59 . Memory (MB): peak = 1189.223 ; gain = 567.391
 2default:default
 °
 %s*synth2ë
-}Finished Timing Optimization : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1189.211 ; gain = 567.383
+}Finished Timing Optimization : Time (s): cpu = 00:00:57 ; elapsed = 00:00:59 . Memory (MB): peak = 1189.223 ; gain = 567.391
 2default:default
 †
 %s*synth2ê
-|Finished Technology Mapping : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1202.227 ; gain = 580.398
+|Finished Technology Mapping : Time (s): cpu = 00:00:58 ; elapsed = 00:01:00 . Memory (MB): peak = 1202.238 ; gain = 580.406
 2default:default
 D
 %s*synth25
@@ -1645,7 +1645,7 @@ D
 2default:default
 ö
 %s*synth2ä
-vFinished IO Insertion : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1202.227 ; gain = 580.398
+vFinished IO Insertion : Time (s): cpu = 00:00:58 ; elapsed = 00:01:00 . Memory (MB): peak = 1202.238 ; gain = 580.406
 2default:default
 ;
 %s*synth2,
@@ -1674,11 +1674,11 @@ I+------+------------------+-------+---------+-------+------------------+
 2default:default
 ´
 %s*synth2õ
-ÜFinished Renaming Generated Instances : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1202.227 ; gain = 580.398
+ÜFinished Renaming Generated Instances : Time (s): cpu = 00:00:58 ; elapsed = 00:01:00 . Memory (MB): peak = 1202.238 ; gain = 580.406
 2default:default
 ®
 %s*synth2ò
-ÉFinished Rebuilding User Hierarchy : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1202.227 ; gain = 580.398
+ÉFinished Rebuilding User Hierarchy : Time (s): cpu = 00:00:58 ; elapsed = 00:01:00 . Memory (MB): peak = 1202.238 ; gain = 580.406
 2default:default
 8
 %s*synth2)
@@ -1776,7 +1776,7 @@ Report Cell Usage:
 2default:default
 ß
 %s*synth2ó
-ÇFinished Writing Synthesis Report : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1202.227 ; gain = 580.398
+ÇFinished Writing Synthesis Report : Time (s): cpu = 00:00:58 ; elapsed = 00:01:00 . Memory (MB): peak = 1202.238 ; gain = 580.406
 2default:default
 i
 %s*synth2Z
@@ -1784,7 +1784,7 @@ FSynthesis finished with 0 errors, 0 critical warnings and 5 warnings.
 2default:default
 •
 %s*synth2ï
-ÄSynthesis Optimization Complete : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1202.227 ; gain = 580.398
+ÄSynthesis Optimization Complete : Time (s): cpu = 00:00:58 ; elapsed = 00:01:01 . Memory (MB): peak = 1202.238 ; gain = 580.406
 2default:default
 ]
 -Analyzing %s Unisim elements for replacement
@@ -1794,15 +1794,15 @@ a
 2Unisim Transformation completed in %s CPU seconds
 28*netlist2
 02default:defaultZ29-28
-·
+ÿ
 $Parsing XDC File [%s] for cell '%s'
-848*designutils2Ñ
-Ô/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc2default:default2
+848*designutils2˚
+Ê/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc2default:default2
 U02default:defaultZ20-848
-Í
+·
 -Finished Parsing XDC File [%s] for cell '%s'
-847*designutils2Ñ
-Ô/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc2default:default2
+847*designutils2˚
+Ê/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fmul_2_max_dsp/vivado_activity_thread_ap_fmul_2_max_dsp_ooc.xdc2default:default2
 U02default:defaultZ20-847
 C
 Pushed %s inverter(s).
@@ -1834,10 +1834,10 @@ U
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2"
 synth_design: 2default:default2
-00:00:562default:default2
-00:00:572default:default2
-1540.7112default:default2
-809.4922default:defaultZ17-268
+00:01:082default:default2
+00:01:092default:default2
+1540.7232default:default2
+809.5002default:defaultZ17-268
 G
 Renamed %s cell refs.
 330*coretcl2
@@ -1846,10 +1846,10 @@ G
 %Done setting XDC timing constraints.
 35*timingZ38-35
 Ç
-vreport_utilization: Time (s): cpu = 00:00:00.45 ; elapsed = 00:00:00.54 . Memory (MB): peak = 1544.766 ; gain = 4.051
+vreport_utilization: Time (s): cpu = 00:00:00.52 ; elapsed = 00:00:00.64 . Memory (MB): peak = 1544.777 ; gain = 4.051
 *common
 w
 Exiting %s at %s...
 206*common2
 Vivado2default:default2,
-Mon Mar 31 15:06:21 20142default:defaultZ17-206
+Tue Apr  8 20:25:22 20142default:defaultZ17-206

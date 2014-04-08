@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date         : Mon Mar 31 15:10:51 2014
+| Date         : Tue Apr  8 20:31:12 2014
 | Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_utilization -file ./report/vivado_activity_thread_utilization_synth.rpt
 | Design       : vivado_activity_thread
@@ -29,16 +29,16 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Loced | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 3295 |     0 |     53200 |  6.19 |
-|   LUT as Logic             | 3145 |     0 |     53200 |  5.91 |
-|   LUT as Memory            |  150 |     0 |     17400 |  0.86 |
+| Slice LUTs*                | 2214 |     0 |     53200 |  4.16 |
+|   LUT as Logic             | 2185 |     0 |     53200 |  4.10 |
+|   LUT as Memory            |   29 |     0 |     17400 |  0.16 |
 |     LUT as Distributed RAM |    0 |     0 |           |       |
-|     LUT as Shift Register  |  150 |     0 |           |       |
-| Slice Registers            | 2787 |     0 |    106400 |  2.61 |
-|   Register as Flip Flop    | 2764 |     0 |    106400 |  2.59 |
+|     LUT as Shift Register  |   29 |     0 |           |       |
+| Slice Registers            | 1987 |     0 |    106400 |  1.86 |
+|   Register as Flip Flop    | 1964 |     0 |    106400 |  1.84 |
 |   Register as Latch        |   23 |     0 |    106400 |  0.02 |
-| F7 Muxes                   |  432 |     0 |     26600 |  1.62 |
-| F8 Muxes                   |    1 |     0 |     13300 | <0.01 |
+| F7 Muxes                   |  193 |     0 |     26600 |  0.72 |
+| F8 Muxes                   |    2 |     0 |     13300 |  0.01 |
 +----------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis for a more realistic count.
 
@@ -62,8 +62,8 @@ Table of Contents
 +----------------+------+-------+-----------+-------+
 |    Site Type   | Used | Loced | Available | Util% |
 +----------------+------+-------+-----------+-------+
-| DSPs           |   42 |     0 |       220 | 19.09 |
-|   DSP48E1 only |   42 |       |           |       |
+| DSPs           |   12 |     0 |       220 |  5.45 |
+|   DSP48E1 only |   12 |       |           |       |
 +----------------+------+-------+-----------+-------+
 
 
@@ -131,20 +131,20 @@ Table of Contents
 +----------+------+
 | Ref Name | Used |
 +----------+------+
-| FDRE     | 2743 |
-| LUT6     | 1689 |
-| MUXF7    |  432 |
-| LUT5     |  428 |
-| LUT3     |  345 |
-| LUT4     |  331 |
-| LUT2     |  306 |
-| SRL16E   |  166 |
-| LUT1     |  136 |
-| CARRY4   |  133 |
-| DSP48E1  |   42 |
+| FDRE     | 1951 |
+| LUT6     |  862 |
+| LUT3     |  675 |
+| CARRY4   |  249 |
+| LUT4     |  232 |
+| LUT2     |  224 |
+| LUT5     |  215 |
+| MUXF7    |  193 |
+| LUT1     |   50 |
+| SRL16E   |   29 |
 | LDCE     |   23 |
-| FDSE     |   21 |
-| MUXF8    |    1 |
+| FDSE     |   13 |
+| DSP48E1  |   12 |
+| MUXF8    |    2 |
 +----------+------+
 
 
@@ -162,13 +162,11 @@ Table of Contents
 +-----------------------------------------------+------+
 |                    Ref Name                   | Used |
 +-----------------------------------------------+------+
-| vivado_activity_thread_ap_fptrunc_1_no_dsp    |    1 |
-| vivado_activity_thread_ap_fpext_1_no_dsp      |    1 |
 | vivado_activity_thread_ap_fmul_2_max_dsp      |    1 |
+| vivado_activity_thread_ap_fexp_7_full_dsp     |    1 |
+| vivado_activity_thread_ap_fdiv_14_no_dsp      |    1 |
 | vivado_activity_thread_ap_fcmp_1_no_dsp       |    1 |
 | vivado_activity_thread_ap_faddfsub_3_full_dsp |    1 |
-| vivado_activity_thread_ap_dmul_4_max_dsp      |    1 |
-| vivado_activity_thread_ap_dexp_16_full_dsp    |    1 |
 +-----------------------------------------------+------+
 
 

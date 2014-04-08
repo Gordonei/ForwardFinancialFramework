@@ -13223,6 +13223,33 @@ void option_derivative_path_init(option_variables* o_v,option_attributes* o_a);
 void option_derivative_path(float price,float time,option_variables* o_v,option_attributes* o_a);
 void option_derivative_payoff(float end_price,option_variables* o_v,option_attributes* o_a);
 #18 "srcs/vivado_core.c" 2
+#1 "srcs/vivado_core.h" 1
+typedef struct{
+    float rfir;
+    float current_price;
+    float volatility;
+    float initial_volatility;
+    float volatility_volatility;
+    float rho;
+    float kappa;
+    float theta;
+    float correlation_matrix_0_0;
+    float correlation_matrix_0_1;
+    float correlation_matrix_1_0;
+    float correlation_matrix_1_1;
+} standard_underlying_attributes;
+
+typedef struct{
+    float second_barrier;
+    float barrier;
+    float out;
+    float down;
+    float strike_price;
+    float time_period;
+    float call;
+    float points;
+} standard_derivative_attributes;
+#19 "srcs/vivado_core.c" 2
 
 //*Intermediate and Communication Variables*
 float discount_0_0;
@@ -13251,49 +13278,78 @@ struct thread_data{
 float setup_time,activity_time;
 struct timespec start, setup_end, end;
 int ret,ret_2;
-typedef struct{
- underlying_attributes u_a_0;
- option_attributes o_a_0;
- } kernel_data;
+
+/*typedef struct{
+	standard_underlying_attributes u_a_0;
+	standard_derivative_attributes o_a_0;
+	rng_state_t seed_0[PATHS];
+	FP_t thread_result_0[PATHS];
+	FP_t thread_result_sqrd_0[PATHS];
+	} kernel_data;*/
 
 //*Vivado HLS Kernel Function*
-void vivado_activity_thread(kernel_data* kernel_arg,float result_0[100],float result_sqrd_0[100]){_ssdm_SpecArrayDimSize(result_sqrd_0,100);_ssdm_SpecArrayDimSize(result_0,100);SSDM_KEEP_name(end.tv_sec, &end.tv_sec); SSDM_KEEP_name(end.tv_nsec, &end.tv_nsec); SSDM_KEEP_name(setup_end.tv_sec, &setup_end.tv_sec); SSDM_KEEP_name(setup_end.tv_nsec, &setup_end.tv_nsec); SSDM_KEEP_name(start.tv_sec, &start.tv_sec); SSDM_KEEP_name(start.tv_nsec, &start.tv_nsec); SSDM_KEEP_name(stderr._flags, &stderr->_flags); SSDM_KEEP_name(stderr._IO_read_ptr, &stderr->_IO_read_ptr); SSDM_KEEP_name(stderr._IO_read_end, &stderr->_IO_read_end); SSDM_KEEP_name(stderr._IO_read_base, &stderr->_IO_read_base); SSDM_KEEP_name(stderr._IO_write_base, &stderr->_IO_write_base); SSDM_KEEP_name(stderr._IO_write_ptr, &stderr->_IO_write_ptr); SSDM_KEEP_name(stderr._IO_write_end, &stderr->_IO_write_end); SSDM_KEEP_name(stderr._IO_buf_base, &stderr->_IO_buf_base); SSDM_KEEP_name(stderr._IO_buf_end, &stderr->_IO_buf_end); SSDM_KEEP_name(stderr._IO_save_base, &stderr->_IO_save_base); SSDM_KEEP_name(stderr._IO_backup_base, &stderr->_IO_backup_base); SSDM_KEEP_name(stderr._IO_save_end, &stderr->_IO_save_end); SSDM_KEEP_name(stderr._markers._next, &stderr->_markers->_next); SSDM_KEEP_name(stderr._markers._sbuf, &stderr->_markers->_sbuf); SSDM_KEEP_name(stderr._markers._pos, &stderr->_markers->_pos); SSDM_KEEP_name(stderr._chain, &stderr->_chain); SSDM_KEEP_name(stderr._fileno, &stderr->_fileno); SSDM_KEEP_name(stderr._flags2, &stderr->_flags2); SSDM_KEEP_name(stderr._old_offset, &stderr->_old_offset); SSDM_KEEP_name(stderr._cur_column, &stderr->_cur_column); SSDM_KEEP_name(stderr._vtable_offset, &stderr->_vtable_offset); SSDM_KEEP_name(stderr._shortbuf, &stderr->_shortbuf); SSDM_KEEP_name(stderr._lock, &stderr->_lock); SSDM_KEEP_name(stderr._offset, &stderr->_offset); SSDM_KEEP_name(stderr.__pad1, &stderr->__pad1); SSDM_KEEP_name(stderr.__pad2, &stderr->__pad2); SSDM_KEEP_name(stderr.__pad3, &stderr->__pad3); SSDM_KEEP_name(stderr.__pad4, &stderr->__pad4); SSDM_KEEP_name(stderr.__pad5, &stderr->__pad5); SSDM_KEEP_name(stderr._mode, &stderr->_mode); SSDM_KEEP_name(stderr._unused2, &stderr->_unused2); SSDM_KEEP_name(stdout._flags, &stdout->_flags); SSDM_KEEP_name(stdout._IO_read_ptr, &stdout->_IO_read_ptr); SSDM_KEEP_name(stdout._IO_read_end, &stdout->_IO_read_end); SSDM_KEEP_name(stdout._IO_read_base, &stdout->_IO_read_base); SSDM_KEEP_name(stdout._IO_write_base, &stdout->_IO_write_base); SSDM_KEEP_name(stdout._IO_write_ptr, &stdout->_IO_write_ptr); SSDM_KEEP_name(stdout._IO_write_end, &stdout->_IO_write_end); SSDM_KEEP_name(stdout._IO_buf_base, &stdout->_IO_buf_base); SSDM_KEEP_name(stdout._IO_buf_end, &stdout->_IO_buf_end); SSDM_KEEP_name(stdout._IO_save_base, &stdout->_IO_save_base); SSDM_KEEP_name(stdout._IO_backup_base, &stdout->_IO_backup_base); SSDM_KEEP_name(stdout._IO_save_end, &stdout->_IO_save_end); SSDM_KEEP_name(stdout._markers._next, &stdout->_markers->_next); SSDM_KEEP_name(stdout._markers._sbuf, &stdout->_markers->_sbuf); SSDM_KEEP_name(stdout._markers._pos, &stdout->_markers->_pos); SSDM_KEEP_name(stdout._chain, &stdout->_chain); SSDM_KEEP_name(stdout._fileno, &stdout->_fileno); SSDM_KEEP_name(stdout._flags2, &stdout->_flags2); SSDM_KEEP_name(stdout._old_offset, &stdout->_old_offset); SSDM_KEEP_name(stdout._cur_column, &stdout->_cur_column); SSDM_KEEP_name(stdout._vtable_offset, &stdout->_vtable_offset); SSDM_KEEP_name(stdout._shortbuf, &stdout->_shortbuf); SSDM_KEEP_name(stdout._lock, &stdout->_lock); SSDM_KEEP_name(stdout._offset, &stdout->_offset); SSDM_KEEP_name(stdout.__pad1, &stdout->__pad1); SSDM_KEEP_name(stdout.__pad2, &stdout->__pad2); SSDM_KEEP_name(stdout.__pad3, &stdout->__pad3); SSDM_KEEP_name(stdout.__pad4, &stdout->__pad4); SSDM_KEEP_name(stdout.__pad5, &stdout->__pad5); SSDM_KEEP_name(stdout._mode, &stdout->_mode); SSDM_KEEP_name(stdout._unused2, &stdout->_unused2); SSDM_KEEP_name(stdin._flags, &stdin->_flags); SSDM_KEEP_name(stdin._IO_read_ptr, &stdin->_IO_read_ptr); SSDM_KEEP_name(stdin._IO_read_end, &stdin->_IO_read_end); SSDM_KEEP_name(stdin._IO_read_base, &stdin->_IO_read_base); SSDM_KEEP_name(stdin._IO_write_base, &stdin->_IO_write_base); SSDM_KEEP_name(stdin._IO_write_ptr, &stdin->_IO_write_ptr); SSDM_KEEP_name(stdin._IO_write_end, &stdin->_IO_write_end); SSDM_KEEP_name(stdin._IO_buf_base, &stdin->_IO_buf_base); SSDM_KEEP_name(stdin._IO_buf_end, &stdin->_IO_buf_end); SSDM_KEEP_name(stdin._IO_save_base, &stdin->_IO_save_base); SSDM_KEEP_name(stdin._IO_backup_base, &stdin->_IO_backup_base); SSDM_KEEP_name(stdin._IO_save_end, &stdin->_IO_save_end); SSDM_KEEP_name(stdin._markers._next, &stdin->_markers->_next); SSDM_KEEP_name(stdin._markers._sbuf, &stdin->_markers->_sbuf); SSDM_KEEP_name(stdin._markers._pos, &stdin->_markers->_pos); SSDM_KEEP_name(stdin._chain, &stdin->_chain); SSDM_KEEP_name(stdin._fileno, &stdin->_fileno); SSDM_KEEP_name(stdin._flags2, &stdin->_flags2); SSDM_KEEP_name(stdin._old_offset, &stdin->_old_offset); SSDM_KEEP_name(stdin._cur_column, &stdin->_cur_column); SSDM_KEEP_name(stdin._vtable_offset, &stdin->_vtable_offset); SSDM_KEEP_name(stdin._shortbuf, &stdin->_shortbuf); SSDM_KEEP_name(stdin._lock, &stdin->_lock); SSDM_KEEP_name(stdin._offset, &stdin->_offset); SSDM_KEEP_name(stdin.__pad1, &stdin->__pad1); SSDM_KEEP_name(stdin.__pad2, &stdin->__pad2); SSDM_KEEP_name(stdin.__pad3, &stdin->__pad3); SSDM_KEEP_name(stdin.__pad4, &stdin->__pad4); SSDM_KEEP_name(stdin.__pad5, &stdin->__pad5); SSDM_KEEP_name(stdin._mode, &stdin->_mode); SSDM_KEEP_name(stdin._unused2, &stdin->_unused2); SSDM_KEEP_name(kernel_arg.u_a_0.rfir, &kernel_arg->u_a_0.rfir); SSDM_KEEP_name(kernel_arg.u_a_0.current_price, &kernel_arg->u_a_0.current_price); SSDM_KEEP_name(kernel_arg.o_a_0.strike_price, &kernel_arg->o_a_0.strike_price); SSDM_KEEP_name(kernel_arg.o_a_0.time_period, &kernel_arg->o_a_0.time_period); SSDM_KEEP_name(kernel_arg.o_a_0.call, &kernel_arg->o_a_0.call); 
-_ssdm_op_SpecResource(kernel_arg, "", "AXI_SLAVE", "", "", "", "-bus_bundle CORE_IO");
-_ssdm_op_SpecFifo(result_0, "ap_fifo", 0, 0, 0, "");
-_ssdm_op_SpecFifo(result_sqrd_0, "ap_fifo", 0, 0, 0, "");
+void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t seed_0[1],float thread_result_0[1],float thread_result_sqrd_0[1]){_ssdm_SpecArrayDimSize(thread_result_sqrd_0,1);_ssdm_SpecArrayDimSize(seed_0,1);_ssdm_SpecArrayDimSize(thread_result_0,1);SSDM_KEEP_name(end.tv_sec, &end.tv_sec); SSDM_KEEP_name(end.tv_nsec, &end.tv_nsec); SSDM_KEEP_name(setup_end.tv_sec, &setup_end.tv_sec); SSDM_KEEP_name(setup_end.tv_nsec, &setup_end.tv_nsec); SSDM_KEEP_name(start.tv_sec, &start.tv_sec); SSDM_KEEP_name(start.tv_nsec, &start.tv_nsec); SSDM_KEEP_name(stderr._flags, &stderr->_flags); SSDM_KEEP_name(stderr._IO_read_ptr, &stderr->_IO_read_ptr); SSDM_KEEP_name(stderr._IO_read_end, &stderr->_IO_read_end); SSDM_KEEP_name(stderr._IO_read_base, &stderr->_IO_read_base); SSDM_KEEP_name(stderr._IO_write_base, &stderr->_IO_write_base); SSDM_KEEP_name(stderr._IO_write_ptr, &stderr->_IO_write_ptr); SSDM_KEEP_name(stderr._IO_write_end, &stderr->_IO_write_end); SSDM_KEEP_name(stderr._IO_buf_base, &stderr->_IO_buf_base); SSDM_KEEP_name(stderr._IO_buf_end, &stderr->_IO_buf_end); SSDM_KEEP_name(stderr._IO_save_base, &stderr->_IO_save_base); SSDM_KEEP_name(stderr._IO_backup_base, &stderr->_IO_backup_base); SSDM_KEEP_name(stderr._IO_save_end, &stderr->_IO_save_end); SSDM_KEEP_name(stderr._markers._next, &stderr->_markers->_next); SSDM_KEEP_name(stderr._markers._sbuf, &stderr->_markers->_sbuf); SSDM_KEEP_name(stderr._markers._pos, &stderr->_markers->_pos); SSDM_KEEP_name(stderr._chain, &stderr->_chain); SSDM_KEEP_name(stderr._fileno, &stderr->_fileno); SSDM_KEEP_name(stderr._flags2, &stderr->_flags2); SSDM_KEEP_name(stderr._old_offset, &stderr->_old_offset); SSDM_KEEP_name(stderr._cur_column, &stderr->_cur_column); SSDM_KEEP_name(stderr._vtable_offset, &stderr->_vtable_offset); SSDM_KEEP_name(stderr._shortbuf, &stderr->_shortbuf); SSDM_KEEP_name(stderr._lock, &stderr->_lock); SSDM_KEEP_name(stderr._offset, &stderr->_offset); SSDM_KEEP_name(stderr.__pad1, &stderr->__pad1); SSDM_KEEP_name(stderr.__pad2, &stderr->__pad2); SSDM_KEEP_name(stderr.__pad3, &stderr->__pad3); SSDM_KEEP_name(stderr.__pad4, &stderr->__pad4); SSDM_KEEP_name(stderr.__pad5, &stderr->__pad5); SSDM_KEEP_name(stderr._mode, &stderr->_mode); SSDM_KEEP_name(stderr._unused2, &stderr->_unused2); SSDM_KEEP_name(stdout._flags, &stdout->_flags); SSDM_KEEP_name(stdout._IO_read_ptr, &stdout->_IO_read_ptr); SSDM_KEEP_name(stdout._IO_read_end, &stdout->_IO_read_end); SSDM_KEEP_name(stdout._IO_read_base, &stdout->_IO_read_base); SSDM_KEEP_name(stdout._IO_write_base, &stdout->_IO_write_base); SSDM_KEEP_name(stdout._IO_write_ptr, &stdout->_IO_write_ptr); SSDM_KEEP_name(stdout._IO_write_end, &stdout->_IO_write_end); SSDM_KEEP_name(stdout._IO_buf_base, &stdout->_IO_buf_base); SSDM_KEEP_name(stdout._IO_buf_end, &stdout->_IO_buf_end); SSDM_KEEP_name(stdout._IO_save_base, &stdout->_IO_save_base); SSDM_KEEP_name(stdout._IO_backup_base, &stdout->_IO_backup_base); SSDM_KEEP_name(stdout._IO_save_end, &stdout->_IO_save_end); SSDM_KEEP_name(stdout._markers._next, &stdout->_markers->_next); SSDM_KEEP_name(stdout._markers._sbuf, &stdout->_markers->_sbuf); SSDM_KEEP_name(stdout._markers._pos, &stdout->_markers->_pos); SSDM_KEEP_name(stdout._chain, &stdout->_chain); SSDM_KEEP_name(stdout._fileno, &stdout->_fileno); SSDM_KEEP_name(stdout._flags2, &stdout->_flags2); SSDM_KEEP_name(stdout._old_offset, &stdout->_old_offset); SSDM_KEEP_name(stdout._cur_column, &stdout->_cur_column); SSDM_KEEP_name(stdout._vtable_offset, &stdout->_vtable_offset); SSDM_KEEP_name(stdout._shortbuf, &stdout->_shortbuf); SSDM_KEEP_name(stdout._lock, &stdout->_lock); SSDM_KEEP_name(stdout._offset, &stdout->_offset); SSDM_KEEP_name(stdout.__pad1, &stdout->__pad1); SSDM_KEEP_name(stdout.__pad2, &stdout->__pad2); SSDM_KEEP_name(stdout.__pad3, &stdout->__pad3); SSDM_KEEP_name(stdout.__pad4, &stdout->__pad4); SSDM_KEEP_name(stdout.__pad5, &stdout->__pad5); SSDM_KEEP_name(stdout._mode, &stdout->_mode); SSDM_KEEP_name(stdout._unused2, &stdout->_unused2); SSDM_KEEP_name(stdin._flags, &stdin->_flags); SSDM_KEEP_name(stdin._IO_read_ptr, &stdin->_IO_read_ptr); SSDM_KEEP_name(stdin._IO_read_end, &stdin->_IO_read_end); SSDM_KEEP_name(stdin._IO_read_base, &stdin->_IO_read_base); SSDM_KEEP_name(stdin._IO_write_base, &stdin->_IO_write_base); SSDM_KEEP_name(stdin._IO_write_ptr, &stdin->_IO_write_ptr); SSDM_KEEP_name(stdin._IO_write_end, &stdin->_IO_write_end); SSDM_KEEP_name(stdin._IO_buf_base, &stdin->_IO_buf_base); SSDM_KEEP_name(stdin._IO_buf_end, &stdin->_IO_buf_end); SSDM_KEEP_name(stdin._IO_save_base, &stdin->_IO_save_base); SSDM_KEEP_name(stdin._IO_backup_base, &stdin->_IO_backup_base); SSDM_KEEP_name(stdin._IO_save_end, &stdin->_IO_save_end); SSDM_KEEP_name(stdin._markers._next, &stdin->_markers->_next); SSDM_KEEP_name(stdin._markers._sbuf, &stdin->_markers->_sbuf); SSDM_KEEP_name(stdin._markers._pos, &stdin->_markers->_pos); SSDM_KEEP_name(stdin._chain, &stdin->_chain); SSDM_KEEP_name(stdin._fileno, &stdin->_fileno); SSDM_KEEP_name(stdin._flags2, &stdin->_flags2); SSDM_KEEP_name(stdin._old_offset, &stdin->_old_offset); SSDM_KEEP_name(stdin._cur_column, &stdin->_cur_column); SSDM_KEEP_name(stdin._vtable_offset, &stdin->_vtable_offset); SSDM_KEEP_name(stdin._shortbuf, &stdin->_shortbuf); SSDM_KEEP_name(stdin._lock, &stdin->_lock); SSDM_KEEP_name(stdin._offset, &stdin->_offset); SSDM_KEEP_name(stdin.__pad1, &stdin->__pad1); SSDM_KEEP_name(stdin.__pad2, &stdin->__pad2); SSDM_KEEP_name(stdin.__pad3, &stdin->__pad3); SSDM_KEEP_name(stdin.__pad4, &stdin->__pad4); SSDM_KEEP_name(stdin.__pad5, &stdin->__pad5); SSDM_KEEP_name(stdin._mode, &stdin->_mode); SSDM_KEEP_name(stdin._unused2, &stdin->_unused2); SSDM_KEEP_name(seed_0.s1, &seed_0[0].s1); SSDM_KEEP_name(seed_0.s2, &seed_0[0].s2); SSDM_KEEP_name(seed_0.s3, &seed_0[0].s3); SSDM_KEEP_name(seed_0.offset, &seed_0[0].offset); SSDM_KEEP_name(kernel_o_a_0.second_barrier, &kernel_o_a_0->second_barrier); SSDM_KEEP_name(kernel_o_a_0.barrier, &kernel_o_a_0->barrier); SSDM_KEEP_name(kernel_o_a_0.out, &kernel_o_a_0->out); SSDM_KEEP_name(kernel_o_a_0.down, &kernel_o_a_0->down); SSDM_KEEP_name(kernel_o_a_0.strike_price, &kernel_o_a_0->strike_price); SSDM_KEEP_name(kernel_o_a_0.time_period, &kernel_o_a_0->time_period); SSDM_KEEP_name(kernel_o_a_0.call, &kernel_o_a_0->call); SSDM_KEEP_name(kernel_o_a_0.points, &kernel_o_a_0->points); SSDM_KEEP_name(kernel_u_a_0.rfir, &kernel_u_a_0->rfir); SSDM_KEEP_name(kernel_u_a_0.current_price, &kernel_u_a_0->current_price); SSDM_KEEP_name(kernel_u_a_0.volatility, &kernel_u_a_0->volatility); SSDM_KEEP_name(kernel_u_a_0.initial_volatility, &kernel_u_a_0->initial_volatility); SSDM_KEEP_name(kernel_u_a_0.volatility_volatility, &kernel_u_a_0->volatility_volatility); SSDM_KEEP_name(kernel_u_a_0.rho, &kernel_u_a_0->rho); SSDM_KEEP_name(kernel_u_a_0.kappa, &kernel_u_a_0->kappa); SSDM_KEEP_name(kernel_u_a_0.theta, &kernel_u_a_0->theta); SSDM_KEEP_name(kernel_u_a_0.correlation_matrix_0_0, &kernel_u_a_0->correlation_matrix_0_0); SSDM_KEEP_name(kernel_u_a_0.correlation_matrix_0_1, &kernel_u_a_0->correlation_matrix_0_1); SSDM_KEEP_name(kernel_u_a_0.correlation_matrix_1_0, &kernel_u_a_0->correlation_matrix_1_0); SSDM_KEEP_name(kernel_u_a_0.correlation_matrix_1_1, &kernel_u_a_0->correlation_matrix_1_1); 
+_ssdm_op_SpecResource(kernel_u_a_0, "", "AXI_SLAVE", "", "", "", "-bus_bundle CORE_IO");
+_ssdm_op_SpecResource(kernel_o_a_0, "", "AXI_SLAVE", "", "", "", "-bus_bundle CORE_IO");
+
+_ssdm_op_SpecFifo(seed_0, "ap_fifo", 0, 0, 0, "");
+_ssdm_op_SpecFifo(thread_result_0, "ap_fifo", 0, 0, 0, "");
+_ssdm_op_SpecFifo(thread_result_sqrd_0, "ap_fifo", 0, 0, 0, "");
+
+_ssdm_op_SpecResource(seed_0, "", "AXI4Stream", "", "", "", "");
+_ssdm_op_SpecResource(thread_result_0, "", "AXI4Stream", "", "", "", "");
+_ssdm_op_SpecResource(thread_result_sqrd_0, "", "AXI4Stream", "", "", "", "");
+
+ //#pragma HLS INTERFACE ap_fifo port=result_0
+ //#pragma HLS INTERFACE ap_fifo port=result_sqrd_0
 
  //**Initialising Kernel Variables*
  unsigned int p,pp;
  underlying_variables u_v_0;
  float spot_price_0,time_0;
  option_variables o_v_0;
- float delta_time_0 = (kernel_arg->o_a_0).time_period/4096;
+
+ option_attributes o_a_0;
+ o_a_0.strike_price = kernel_o_a_0->strike_price;
+ o_a_0.time_period = kernel_o_a_0->time_period;
+ o_a_0.call = kernel_o_a_0->call;
+
+ underlying_attributes u_a_0;
+ u_a_0.rfir = kernel_u_a_0->rfir;
+ u_a_0.current_price = kernel_u_a_0->current_price;
 
  //**Thread Calculation Loop**
- PATHSET_LOOP: for(p=0;p<100;++p){_ssdm_op_SpecLoopName("PATHSET_LOOP");_ssdm_RegionBegin("PATHSET_LOOP");
+ PATHSET_LOOP: for(p=0;p<1;++p){_ssdm_op_SpecLoopName("PATHSET_LOOP");_ssdm_RegionBegin("PATHSET_LOOP");
 
   //**Initiating the Path**
-  underlying_underlying_path_init(&u_v_0,&kernel_arg->u_a_0);
-  spot_price_0 = (kernel_arg->u_a_0).current_price*exp(u_v_0.gamma);
+  underlying_underlying_path_init(&u_v_0,&u_a_0);
+  spot_price_0 = u_a_0.current_price*expf(u_v_0.gamma);
   time_0 = u_v_0.time;
-  option_derivative_path_init(&o_v_0,&kernel_arg->o_a_0);
+  option_derivative_path_init(&o_v_0,&o_a_0);
+  float delta_time_0 = o_a_0.time_period/10;
 
   //**Running the path**
-  PATH_LOOP: for(pp=0;pp<(4096);++pp){_ssdm_op_SpecLoopName("PATH_LOOP");_ssdm_RegionBegin("PATH_LOOP");
-   option_derivative_path(spot_price_0,time_0,&o_v_0,&kernel_arg->o_a_0);
-   underlying_underlying_path(delta_time_0,&u_v_0,&kernel_arg->u_a_0);
-   spot_price_0 = kernel_arg->u_a_0.current_price*exp(u_v_0.gamma);
+  PATH_LOOP: for(pp=0;pp<(10);++pp){_ssdm_op_SpecLoopName("PATH_LOOP");_ssdm_RegionBegin("PATH_LOOP");
+  //#pragma HLS UNROLL factor=2
+  //#pragma HLS PIPELINE II=1
+   option_derivative_path(spot_price_0,time_0,&o_v_0,&o_a_0);
+   underlying_underlying_path(delta_time_0,&u_v_0,&u_a_0);
+   spot_price_0 = u_a_0.current_price*expf(u_v_0.gamma);
    time_0 = u_v_0.time;
-   _ssdm_RegionEnd("PATH_LOOP");}
 
+  _ssdm_RegionEnd("PATH_LOOP");}
+ //if(pp==(PATH_POINTS-1)){
   //**Calculating payoff(s)**
-  option_derivative_payoff(spot_price_0,&o_v_0,&kernel_arg->o_a_0);
+  option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
 
   //**Returning Result**
-  result_0[p] = o_v_0.value;
-  result_sqrd_0[p] = o_v_0.value*o_v_0.value;
-  _ssdm_RegionEnd("PATHSET_LOOP");}
- }
+  float temp_value = o_v_0.value;
+
+  thread_result_0[p] = temp_value;
+  thread_result_sqrd_0[p] = temp_value*temp_value;
+  //}
+ _ssdm_RegionEnd("PATHSET_LOOP");}
+}
 
 //*MC Multicore Activity Thread Function*
 void * multicore_montecarlo_activity_thread(void* thread_arg){
@@ -13312,20 +13368,20 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
  o_v_0.delta_time = o_a_0.time_period/default_points;
 
  //**Creating kernel argument*
- kernel_data * kernel_arg = (kernel_data*) malloc(sizeof(kernel_data));
- kernel_arg->u_a_0 = u_a_0;
- kernel_arg->o_a_0 = o_a_0;
+ //kernel_data * kernel_arg = (kernel_data*) malloc(sizeof(kernel_data));
+ //kernel_arg->u_a_0 = u_a_0;
+ //kernel_arg->o_a_0 = o_a_0;
 
  //**Batching Loop**
- unsigned int chunks = thread_paths/100;
+ unsigned int chunks = thread_paths/1;
  float temp_value_0 = 0.0;
  float temp_value_sqrd_0 = 0.0;
- float kernel_value_0[100];
- float kernel_value_sqrd_0[100];
+ float kernel_value_0[1];
+ float kernel_value_sqrd_0[1];
  for(i=0;i<chunks;++i){
 
   //***Aggregating the result**
-  for(j=0;j<100;++j){
+  for(j=0;j<1;++j){
    temp_value_0 += kernel_value_0[j];
    temp_value_sqrd_0 += kernel_value_sqrd_0[j];
    }

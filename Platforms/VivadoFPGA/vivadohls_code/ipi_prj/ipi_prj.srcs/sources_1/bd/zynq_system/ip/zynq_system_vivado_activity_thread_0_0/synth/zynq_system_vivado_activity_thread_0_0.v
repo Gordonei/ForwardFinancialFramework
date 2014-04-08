@@ -48,18 +48,12 @@
 
 
 // IP VLNV: imperial:F3:vivado_activity_thread:1.0
-// IP Revision: 1403311501
+// IP Revision: 1404082022
 
 (* X_CORE_INFO = "vivado_activity_thread_top,Vivado 2013.4" *)
 (* CHECK_LICENSE_TYPE = "zynq_system_vivado_activity_thread_0_0,vivado_activity_thread_top,{}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module zynq_system_vivado_activity_thread_0_0 (
-  result_0_din,
-  result_0_full_n,
-  result_0_write,
-  result_sqrd_0_din,
-  result_sqrd_0_full_n,
-  result_sqrd_0_write,
   ap_start,
   ap_ready,
   ap_done,
@@ -81,22 +75,34 @@ module zynq_system_vivado_activity_thread_0_0 (
   s_axi_CORE_IO_RRESP,
   s_axi_CORE_IO_RVALID,
   s_axi_CORE_IO_RREADY,
+  seed_0_offset_TVALID,
+  seed_0_offset_TREADY,
+  seed_0_offset_TDATA,
+  seed_0_s1_TVALID,
+  seed_0_s1_TREADY,
+  seed_0_s1_TDATA,
+  seed_0_s2_TVALID,
+  seed_0_s2_TREADY,
+  seed_0_s2_TDATA,
+  seed_0_s3_TVALID,
+  seed_0_s3_TREADY,
+  seed_0_s3_TDATA,
+  thread_result_0_TVALID,
+  thread_result_0_TREADY,
+  thread_result_0_TDATA,
+  thread_result_sqrd_0_TVALID,
+  thread_result_sqrd_0_TREADY,
+  thread_result_sqrd_0_TDATA,
   aclk,
   aresetn
 );
 
-output wire [31 : 0] result_0_din;
-input wire result_0_full_n;
-output wire result_0_write;
-output wire [31 : 0] result_sqrd_0_din;
-input wire result_sqrd_0_full_n;
-output wire result_sqrd_0_write;
 input wire ap_start;
 output wire ap_ready;
 output wire ap_done;
 output wire ap_idle;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWADDR" *)
-input wire [6 : 0] s_axi_CORE_IO_AWADDR;
+input wire [7 : 0] s_axi_CORE_IO_AWADDR;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWVALID" *)
 input wire s_axi_CORE_IO_AWVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWREADY" *)
@@ -116,7 +122,7 @@ output wire s_axi_CORE_IO_BVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO BREADY" *)
 input wire s_axi_CORE_IO_BREADY;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO ARADDR" *)
-input wire [6 : 0] s_axi_CORE_IO_ARADDR;
+input wire [7 : 0] s_axi_CORE_IO_ARADDR;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO ARVALID" *)
 input wire s_axi_CORE_IO_ARVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO ARREADY" *)
@@ -129,21 +135,51 @@ output wire [1 : 0] s_axi_CORE_IO_RRESP;
 output wire s_axi_CORE_IO_RVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO RREADY" *)
 input wire s_axi_CORE_IO_RREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_offset TVALID" *)
+input wire seed_0_offset_TVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_offset TREADY" *)
+output wire seed_0_offset_TREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_offset TDATA" *)
+input wire [31 : 0] seed_0_offset_TDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_s1 TVALID" *)
+input wire seed_0_s1_TVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_s1 TREADY" *)
+output wire seed_0_s1_TREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_s1 TDATA" *)
+input wire [31 : 0] seed_0_s1_TDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_s2 TVALID" *)
+input wire seed_0_s2_TVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_s2 TREADY" *)
+output wire seed_0_s2_TREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_s2 TDATA" *)
+input wire [31 : 0] seed_0_s2_TDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_s3 TVALID" *)
+input wire seed_0_s3_TVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_s3 TREADY" *)
+output wire seed_0_s3_TREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 seed_0_s3 TDATA" *)
+input wire [31 : 0] seed_0_s3_TDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 thread_result_0 TVALID" *)
+output wire thread_result_0_TVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 thread_result_0 TREADY" *)
+input wire thread_result_0_TREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 thread_result_0 TDATA" *)
+output wire [31 : 0] thread_result_0_TDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 thread_result_sqrd_0 TVALID" *)
+output wire thread_result_sqrd_0_TVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 thread_result_sqrd_0 TREADY" *)
+input wire thread_result_sqrd_0_TREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 thread_result_sqrd_0 TDATA" *)
+output wire [31 : 0] thread_result_sqrd_0_TDATA;
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 aclk CLK" *)
 input wire aclk;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 aresetn RST" *)
 input wire aresetn;
 
   vivado_activity_thread_top #(
-    .C_S_AXI_CORE_IO_ADDR_WIDTH(7),
+    .C_S_AXI_CORE_IO_ADDR_WIDTH(8),
     .C_S_AXI_CORE_IO_DATA_WIDTH(32)
   ) inst (
-    .result_0_din(result_0_din),
-    .result_0_full_n(result_0_full_n),
-    .result_0_write(result_0_write),
-    .result_sqrd_0_din(result_sqrd_0_din),
-    .result_sqrd_0_full_n(result_sqrd_0_full_n),
-    .result_sqrd_0_write(result_sqrd_0_write),
     .ap_start(ap_start),
     .ap_ready(ap_ready),
     .ap_done(ap_done),
@@ -165,6 +201,24 @@ input wire aresetn;
     .s_axi_CORE_IO_RRESP(s_axi_CORE_IO_RRESP),
     .s_axi_CORE_IO_RVALID(s_axi_CORE_IO_RVALID),
     .s_axi_CORE_IO_RREADY(s_axi_CORE_IO_RREADY),
+    .seed_0_offset_TVALID(seed_0_offset_TVALID),
+    .seed_0_offset_TREADY(seed_0_offset_TREADY),
+    .seed_0_offset_TDATA(seed_0_offset_TDATA),
+    .seed_0_s1_TVALID(seed_0_s1_TVALID),
+    .seed_0_s1_TREADY(seed_0_s1_TREADY),
+    .seed_0_s1_TDATA(seed_0_s1_TDATA),
+    .seed_0_s2_TVALID(seed_0_s2_TVALID),
+    .seed_0_s2_TREADY(seed_0_s2_TREADY),
+    .seed_0_s2_TDATA(seed_0_s2_TDATA),
+    .seed_0_s3_TVALID(seed_0_s3_TVALID),
+    .seed_0_s3_TREADY(seed_0_s3_TREADY),
+    .seed_0_s3_TDATA(seed_0_s3_TDATA),
+    .thread_result_0_TVALID(thread_result_0_TVALID),
+    .thread_result_0_TREADY(thread_result_0_TREADY),
+    .thread_result_0_TDATA(thread_result_0_TDATA),
+    .thread_result_sqrd_0_TVALID(thread_result_sqrd_0_TVALID),
+    .thread_result_sqrd_0_TREADY(thread_result_sqrd_0_TREADY),
+    .thread_result_sqrd_0_TDATA(thread_result_sqrd_0_TDATA),
     .aclk(aclk),
     .aresetn(aresetn)
   );

@@ -8,24 +8,62 @@ set isOneStateSeq 0
 set C_modelName vivado_activity_thread
 set C_modelType { void 0 }
 set C_modelArgList { 
-	{ kernel_arg_u_a_0_rfir float 32 regular {pointer 0}  }
-	{ kernel_arg_u_a_0_current_price float 32 regular {pointer 0}  }
-	{ kernel_arg_o_a_0_strike_price float 32 regular {pointer 0}  }
-	{ kernel_arg_o_a_0_time_period float 32 regular {pointer 0}  }
-	{ kernel_arg_o_a_0_call float 32 regular {pointer 0}  }
-	{ result_0 float 32 regular {fifo 1 volatile }  }
-	{ result_sqrd_0 float 32 regular {fifo 1 volatile }  }
+	{ kernel_u_a_0_rfir float 32 regular {pointer 0}  }
+	{ kernel_u_a_0_current_price float 32 regular {pointer 0}  }
+	{ kernel_u_a_0_volatility float 32 unused {pointer 0}  }
+	{ kernel_u_a_0_initial_volatility float 32 unused {pointer 0}  }
+	{ kernel_u_a_0_volatility_volatility float 32 unused {pointer 0}  }
+	{ kernel_u_a_0_rho float 32 unused {pointer 0}  }
+	{ kernel_u_a_0_kappa float 32 unused {pointer 0}  }
+	{ kernel_u_a_0_theta float 32 unused {pointer 0}  }
+	{ kernel_u_a_0_correlation_matrix_0_0 float 32 unused {pointer 0}  }
+	{ kernel_u_a_0_correlation_matrix_0_1 float 32 unused {pointer 0}  }
+	{ kernel_u_a_0_correlation_matrix_1_0 float 32 unused {pointer 0}  }
+	{ kernel_u_a_0_correlation_matrix_1_1 float 32 unused {pointer 0}  }
+	{ kernel_o_a_0_second_barrier float 32 unused {pointer 0}  }
+	{ kernel_o_a_0_barrier float 32 unused {pointer 0}  }
+	{ kernel_o_a_0_out float 32 unused {pointer 0}  }
+	{ kernel_o_a_0_down float 32 unused {pointer 0}  }
+	{ kernel_o_a_0_strike_price float 32 regular {pointer 0}  }
+	{ kernel_o_a_0_time_period float 32 regular {pointer 0}  }
+	{ kernel_o_a_0_call float 32 regular {pointer 0}  }
+	{ kernel_o_a_0_points float 32 unused {pointer 0}  }
+	{ seed_0_s1 int 32 unused {fifo 0}  }
+	{ seed_0_s2 int 32 unused {fifo 0}  }
+	{ seed_0_s3 int 32 unused {fifo 0}  }
+	{ seed_0_offset int 32 unused {fifo 0}  }
+	{ thread_result_0 float 32 regular {fifo 1 volatile }  }
+	{ thread_result_sqrd_0 float 32 regular {fifo 1 volatile }  }
 }
 set C_modelArgMapList {[ 
-	{ "rtlName" : "kernel_arg_u_a_0_rfir","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_arg.u_a_0.rfir","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
- 	{ "rtlName" : "kernel_arg_u_a_0_current_price","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_arg.u_a_0.current_price","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
- 	{ "rtlName" : "kernel_arg_o_a_0_strike_price","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_arg.o_a_0.strike_price","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
- 	{ "rtlName" : "kernel_arg_o_a_0_time_period","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_arg.o_a_0.time_period","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
- 	{ "rtlName" : "kernel_arg_o_a_0_call","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_arg.o_a_0.call","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
- 	{ "rtlName" : "result_0","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "result_0","cData": "float","cArray": [{"low" : 0,"up" : 99,"step" : 1}]}]}]} , 
- 	{ "rtlName" : "result_sqrd_0","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "result_sqrd_0","cData": "float","cArray": [{"low" : 0,"up" : 99,"step" : 1}]}]}]} ]}
+	{ "rtlName" : "kernel_u_a_0_rfir","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.rfir","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_u_a_0_current_price","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.current_price","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_u_a_0_volatility","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.volatility","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_u_a_0_initial_volatility","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.initial_volatility","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_u_a_0_volatility_volatility","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.volatility_volatility","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_u_a_0_rho","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.rho","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_u_a_0_kappa","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.kappa","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_u_a_0_theta","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.theta","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_u_a_0_correlation_matrix_0_0","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.correlation_matrix_0_0","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_u_a_0_correlation_matrix_0_1","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.correlation_matrix_0_1","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_u_a_0_correlation_matrix_1_0","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.correlation_matrix_1_0","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_u_a_0_correlation_matrix_1_1","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.correlation_matrix_1_1","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_o_a_0_second_barrier","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_o_a_0.second_barrier","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_o_a_0_barrier","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_o_a_0.barrier","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_o_a_0_out","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_o_a_0.out","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_o_a_0_down","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_o_a_0.down","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_o_a_0_strike_price","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_o_a_0.strike_price","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_o_a_0_time_period","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_o_a_0.time_period","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_o_a_0_call","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_o_a_0.call","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "kernel_o_a_0_points","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_o_a_0.points","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "seed_0_s1","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "seed_0.s1","cData": "uint32","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "seed_0_s2","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "seed_0.s2","cData": "uint32","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "seed_0_s3","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "seed_0.s3","cData": "uint32","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "seed_0_offset","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "seed_0.offset","cData": "uint32","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "thread_result_0","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "thread_result_0","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "rtlName" : "thread_result_sqrd_0","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "thread_result_sqrd_0","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} ]}
 # RTL Port declarations: 
-set portNum 17
+set portNum 44
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
@@ -33,33 +71,83 @@ set portList {
 	{ ap_done sc_out sc_logic 1 predone -1 } 
 	{ ap_idle sc_out sc_logic 1 done -1 } 
 	{ ap_ready sc_out sc_logic 1 ready -1 } 
-	{ kernel_arg_u_a_0_rfir sc_in sc_lv 32 signal 0 } 
-	{ kernel_arg_u_a_0_current_price sc_in sc_lv 32 signal 1 } 
-	{ kernel_arg_o_a_0_strike_price sc_in sc_lv 32 signal 2 } 
-	{ kernel_arg_o_a_0_time_period sc_in sc_lv 32 signal 3 } 
-	{ kernel_arg_o_a_0_call sc_in sc_lv 32 signal 4 } 
-	{ result_0_din sc_out sc_lv 32 signal 5 } 
-	{ result_0_full_n sc_in sc_logic 1 signal 5 } 
-	{ result_0_write sc_out sc_logic 1 signal 5 } 
-	{ result_sqrd_0_din sc_out sc_lv 32 signal 6 } 
-	{ result_sqrd_0_full_n sc_in sc_logic 1 signal 6 } 
-	{ result_sqrd_0_write sc_out sc_logic 1 signal 6 } 
+	{ kernel_u_a_0_rfir sc_in sc_lv 32 signal 0 } 
+	{ kernel_u_a_0_current_price sc_in sc_lv 32 signal 1 } 
+	{ kernel_u_a_0_volatility sc_in sc_lv 32 signal 2 } 
+	{ kernel_u_a_0_initial_volatility sc_in sc_lv 32 signal 3 } 
+	{ kernel_u_a_0_volatility_volatility sc_in sc_lv 32 signal 4 } 
+	{ kernel_u_a_0_rho sc_in sc_lv 32 signal 5 } 
+	{ kernel_u_a_0_kappa sc_in sc_lv 32 signal 6 } 
+	{ kernel_u_a_0_theta sc_in sc_lv 32 signal 7 } 
+	{ kernel_u_a_0_correlation_matrix_0_0 sc_in sc_lv 32 signal 8 } 
+	{ kernel_u_a_0_correlation_matrix_0_1 sc_in sc_lv 32 signal 9 } 
+	{ kernel_u_a_0_correlation_matrix_1_0 sc_in sc_lv 32 signal 10 } 
+	{ kernel_u_a_0_correlation_matrix_1_1 sc_in sc_lv 32 signal 11 } 
+	{ kernel_o_a_0_second_barrier sc_in sc_lv 32 signal 12 } 
+	{ kernel_o_a_0_barrier sc_in sc_lv 32 signal 13 } 
+	{ kernel_o_a_0_out sc_in sc_lv 32 signal 14 } 
+	{ kernel_o_a_0_down sc_in sc_lv 32 signal 15 } 
+	{ kernel_o_a_0_strike_price sc_in sc_lv 32 signal 16 } 
+	{ kernel_o_a_0_time_period sc_in sc_lv 32 signal 17 } 
+	{ kernel_o_a_0_call sc_in sc_lv 32 signal 18 } 
+	{ kernel_o_a_0_points sc_in sc_lv 32 signal 19 } 
+	{ seed_0_s1_dout sc_in sc_lv 32 signal 20 } 
+	{ seed_0_s1_empty_n sc_in sc_logic 1 signal 20 } 
+	{ seed_0_s1_read sc_out sc_logic 1 signal 20 } 
+	{ seed_0_s2_dout sc_in sc_lv 32 signal 21 } 
+	{ seed_0_s2_empty_n sc_in sc_logic 1 signal 21 } 
+	{ seed_0_s2_read sc_out sc_logic 1 signal 21 } 
+	{ seed_0_s3_dout sc_in sc_lv 32 signal 22 } 
+	{ seed_0_s3_empty_n sc_in sc_logic 1 signal 22 } 
+	{ seed_0_s3_read sc_out sc_logic 1 signal 22 } 
+	{ seed_0_offset_dout sc_in sc_lv 32 signal 23 } 
+	{ seed_0_offset_empty_n sc_in sc_logic 1 signal 23 } 
+	{ seed_0_offset_read sc_out sc_logic 1 signal 23 } 
+	{ thread_result_0_din sc_out sc_lv 32 signal 24 } 
+	{ thread_result_0_full_n sc_in sc_logic 1 signal 24 } 
+	{ thread_result_0_write sc_out sc_logic 1 signal 24 } 
+	{ thread_result_sqrd_0_din sc_out sc_lv 32 signal 25 } 
+	{ thread_result_sqrd_0_full_n sc_in sc_logic 1 signal 25 } 
+	{ thread_result_sqrd_0_write sc_out sc_logic 1 signal 25 } 
 }
 
 set Spec2ImplPortList { 
-	kernel_arg_u_a_0_rfir { ap_none {  { kernel_arg_u_a_0_rfir in_data 0 32 } } }
-	kernel_arg_u_a_0_current_price { ap_none {  { kernel_arg_u_a_0_current_price in_data 0 32 } } }
-	kernel_arg_o_a_0_strike_price { ap_none {  { kernel_arg_o_a_0_strike_price in_data 0 32 } } }
-	kernel_arg_o_a_0_time_period { ap_none {  { kernel_arg_o_a_0_time_period in_data 0 32 } } }
-	kernel_arg_o_a_0_call { ap_none {  { kernel_arg_o_a_0_call in_data 0 32 } } }
-	result_0 { ap_fifo {  { result_0_din fifo_data 1 32 }  { result_0_full_n fifo_status 0 1 }  { result_0_write fifo_update 1 1 } } }
-	result_sqrd_0 { ap_fifo {  { result_sqrd_0_din fifo_data 1 32 }  { result_sqrd_0_full_n fifo_status 0 1 }  { result_sqrd_0_write fifo_update 1 1 } } }
+	kernel_u_a_0_rfir { ap_none {  { kernel_u_a_0_rfir in_data 0 32 } } }
+	kernel_u_a_0_current_price { ap_none {  { kernel_u_a_0_current_price in_data 0 32 } } }
+	kernel_u_a_0_volatility { ap_none {  { kernel_u_a_0_volatility in_data 0 32 } } }
+	kernel_u_a_0_initial_volatility { ap_none {  { kernel_u_a_0_initial_volatility in_data 0 32 } } }
+	kernel_u_a_0_volatility_volatility { ap_none {  { kernel_u_a_0_volatility_volatility in_data 0 32 } } }
+	kernel_u_a_0_rho { ap_none {  { kernel_u_a_0_rho in_data 0 32 } } }
+	kernel_u_a_0_kappa { ap_none {  { kernel_u_a_0_kappa in_data 0 32 } } }
+	kernel_u_a_0_theta { ap_none {  { kernel_u_a_0_theta in_data 0 32 } } }
+	kernel_u_a_0_correlation_matrix_0_0 { ap_none {  { kernel_u_a_0_correlation_matrix_0_0 in_data 0 32 } } }
+	kernel_u_a_0_correlation_matrix_0_1 { ap_none {  { kernel_u_a_0_correlation_matrix_0_1 in_data 0 32 } } }
+	kernel_u_a_0_correlation_matrix_1_0 { ap_none {  { kernel_u_a_0_correlation_matrix_1_0 in_data 0 32 } } }
+	kernel_u_a_0_correlation_matrix_1_1 { ap_none {  { kernel_u_a_0_correlation_matrix_1_1 in_data 0 32 } } }
+	kernel_o_a_0_second_barrier { ap_none {  { kernel_o_a_0_second_barrier in_data 0 32 } } }
+	kernel_o_a_0_barrier { ap_none {  { kernel_o_a_0_barrier in_data 0 32 } } }
+	kernel_o_a_0_out { ap_none {  { kernel_o_a_0_out in_data 0 32 } } }
+	kernel_o_a_0_down { ap_none {  { kernel_o_a_0_down in_data 0 32 } } }
+	kernel_o_a_0_strike_price { ap_none {  { kernel_o_a_0_strike_price in_data 0 32 } } }
+	kernel_o_a_0_time_period { ap_none {  { kernel_o_a_0_time_period in_data 0 32 } } }
+	kernel_o_a_0_call { ap_none {  { kernel_o_a_0_call in_data 0 32 } } }
+	kernel_o_a_0_points { ap_none {  { kernel_o_a_0_points in_data 0 32 } } }
+	seed_0_s1 { ap_fifo {  { seed_0_s1_dout fifo_data 0 32 }  { seed_0_s1_empty_n fifo_status 0 1 }  { seed_0_s1_read fifo_update 1 1 } } }
+	seed_0_s2 { ap_fifo {  { seed_0_s2_dout fifo_data 0 32 }  { seed_0_s2_empty_n fifo_status 0 1 }  { seed_0_s2_read fifo_update 1 1 } } }
+	seed_0_s3 { ap_fifo {  { seed_0_s3_dout fifo_data 0 32 }  { seed_0_s3_empty_n fifo_status 0 1 }  { seed_0_s3_read fifo_update 1 1 } } }
+	seed_0_offset { ap_fifo {  { seed_0_offset_dout fifo_data 0 32 }  { seed_0_offset_empty_n fifo_status 0 1 }  { seed_0_offset_read fifo_update 1 1 } } }
+	thread_result_0 { ap_fifo {  { thread_result_0_din fifo_data 1 32 }  { thread_result_0_full_n fifo_status 0 1 }  { thread_result_0_write fifo_update 1 1 } } }
+	thread_result_sqrd_0 { ap_fifo {  { thread_result_sqrd_0_din fifo_data 1 32 }  { thread_result_sqrd_0_full_n fifo_status 0 1 }  { thread_result_sqrd_0_write fifo_update 1 1 } } }
 }
 
 # RTL port scheduling information:
 set fifoSchedulingInfoList { 
-	result_0 { fifo_write 100 no_conditional }
-	result_sqrd_0 { fifo_write 100 no_conditional }
+	seed_0_s1 { fifo_read 0 no_conditional }
+	seed_0_s2 { fifo_read 0 no_conditional }
+	seed_0_s3 { fifo_read 0 no_conditional }
+	seed_0_offset { fifo_read 0 no_conditional }
+	thread_result_0 { fifo_write 1 no_conditional }
+	thread_result_sqrd_0 { fifo_write 1 no_conditional }
 }
 
 # RTL bus port read request latency information:

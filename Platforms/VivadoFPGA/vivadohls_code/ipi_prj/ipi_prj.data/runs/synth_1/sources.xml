@@ -12,16 +12,16 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/bd/zynq_system/hdl/zynq_system_wrapper.vhd">
+    <File Path="$PSRCDIR/sources_1/bd/zynq_system/hdl/zynq_system_wrapper.v">
       <FileInfo>
         <Attr Name="UsedInSynthesis" Val="1"/>
+        <Attr Name="UsedInImplementation" Val="1"/>
         <Attr Name="UsedInSimulation" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/bd/zynq_system/ip/zynq_system_processing_system7_0_axi_periph_0/zynq_system_processing_system7_0_axi_periph_0.upgrade_log"/>
-    <File Path="$PSRCDIR/sources_1/bd/zynq_system/ip/zynq_system_processing_system7_0_0/zynq_system_processing_system7_0_0.upgrade_log"/>
     <File Path="$PSRCDIR/sources_1/bd/zynq_system/ip/zynq_system_vivado_activity_thread_0_0/zynq_system_vivado_activity_thread_0_0.upgrade_log"/>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>

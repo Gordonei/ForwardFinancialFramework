@@ -1,20 +1,16 @@
 <?xml version="1.0"?>
 <Runs Version="1" Minor="0">
-	<Run Id="vivado_activity_thread_ap_dexp_16_full_dsp_synth_1" LaunchDir="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_dexp_16_full_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
-	<Run Id="vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1" LaunchDir="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
-	<Run Id="vivado_activity_thread_ap_fptrunc_1_no_dsp_synth_1" LaunchDir="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fptrunc_1_no_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
-	<Run Id="vivado_activity_thread_ap_fmul_2_max_dsp_synth_1" LaunchDir="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fmul_2_max_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
-	<Run Id="vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1" LaunchDir="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
-	<Run Id="vivado_activity_thread_ap_dmul_4_max_dsp_synth_1" LaunchDir="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_dmul_4_max_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
-	<Run Id="vivado_activity_thread_ap_fpext_1_no_dsp_synth_1" LaunchDir="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fpext_1_no_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
-	<Run Id="synth_1" LaunchDir="/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado">
-		<Parent Id="vivado_activity_thread_ap_dexp_16_full_dsp_synth_1"/>
+	<Run Id="vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1" LaunchDir="/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="vivado_activity_thread_ap_fmul_2_max_dsp_synth_1" LaunchDir="/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fmul_2_max_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1" LaunchDir="/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="vivado_activity_thread_ap_fdiv_14_no_dsp_synth_1" LaunchDir="/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fdiv_14_no_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="vivado_activity_thread_ap_fexp_7_full_dsp_synth_1" LaunchDir="/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_fexp_7_full_dsp_synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado">
 		<Parent Id="vivado_activity_thread_ap_fcmp_1_no_dsp_synth_1"/>
-		<Parent Id="vivado_activity_thread_ap_fptrunc_1_no_dsp_synth_1"/>
 		<Parent Id="vivado_activity_thread_ap_fmul_2_max_dsp_synth_1"/>
 		<Parent Id="vivado_activity_thread_ap_faddfsub_3_full_dsp_synth_1"/>
-		<Parent Id="vivado_activity_thread_ap_dmul_4_max_dsp_synth_1"/>
-		<Parent Id="vivado_activity_thread_ap_fpext_1_no_dsp_synth_1"/>
+		<Parent Id="vivado_activity_thread_ap_fdiv_14_no_dsp_synth_1"/>
+		<Parent Id="vivado_activity_thread_ap_fexp_7_full_dsp_synth_1"/>
 	</Run>
 </Runs>
 

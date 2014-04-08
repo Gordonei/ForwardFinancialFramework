@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date             : Mon Mar 31 15:12:33 2014
+| Date             : Tue Apr  8 20:32:56 2014
 | Host             : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command          : report_power -file vivado_activity_thread_power_routed.rpt -pb vivado_activity_thread_power_summary_routed.pb
 | Design           : vivado_activity_thread
@@ -30,13 +30,13 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.181 |
-| Dynamic (W)              | 0.063 |
-| Device Static (W)        | 0.119 |
+| Total On-Chip Power (W)  | 0.139 |
+| Dynamic (W)              | 0.020 |
+| Device Static (W)        | 0.118 |
 | Total Off-Chip Power (W) | 0.000 |
 | Effective TJA (C/W)      | 11.5  |
-| Max Ambient (C)          | 82.9  |
-| Junction Temperature (C) | 27.1  |
+| Max Ambient (C)          | 83.4  |
+| Junction Temperature (C) | 26.6  |
 | Confidence Level         | Low   |
 | Setting File             | ---   |
 | Simulation Activity File | ---   |
@@ -51,17 +51,17 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.000 |        1 |       --- |             --- |
-| Slice Logic             |     0.016 |     6128 |       --- |             --- |
-|   LUT as Logic          |     0.013 |     2704 |     53200 |            5.08 |
-|   Register              |    <0.001 |     2401 |    106400 |            2.25 |
-|   F7/F8 Muxes           |    <0.001 |      423 |     53200 |            0.79 |
-|   CARRY4                |    <0.001 |      124 |     13300 |            0.93 |
-|   LUT as Shift Register |    <0.001 |       69 |     17400 |            0.39 |
-|   Others                |     0.000 |      273 |       --- |             --- |
-| Signals                 |     0.025 |     6071 |       --- |             --- |
-| DSPs                    |     0.023 |       42 |       220 |           19.09 |
-| Static Power            |     0.119 |          |           |                 |
-| Total                   |     0.181 |          |           |                 |
+| Slice Logic             |     0.009 |     4144 |       --- |             --- |
+|   LUT as Logic          |     0.006 |     2027 |     53200 |            3.81 |
+|   CARRY4                |     0.002 |      242 |     13300 |            1.81 |
+|   Register              |    <0.001 |     1340 |    106400 |            1.25 |
+|   LUT as Shift Register |    <0.001 |       17 |     17400 |            0.09 |
+|   F7/F8 Muxes           |    <0.001 |      193 |     53200 |            0.36 |
+|   Others                |     0.000 |      257 |       --- |             --- |
+| Signals                 |     0.009 |     3150 |       --- |             --- |
+| DSPs                    |     0.003 |       12 |       220 |            5.45 |
+| Static Power            |     0.118 |          |           |                 |
+| Total                   |     0.139 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,7 +71,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.070 |       0.063 |      0.008 |
+| Vccint    |       1.000 |     0.028 |       0.020 |      0.008 |
 | Vccaux    |       1.800 |     0.019 |       0.000 |      0.019 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -147,37 +147,29 @@ Table of Contents
 +--------------------------------------------------------------+-----------+
 | Name                                                         | Power (W) |
 +--------------------------------------------------------------+-----------+
-| vivado_activity_thread                                       |     0.063 |
-|   vivado_activity_thread_dexp_64ns_64ns_64_18_full_dsp_U7    |     0.052 |
-|     vivado_activity_thread_ap_dexp_16_full_dsp_u             |     0.052 |
-|       U0                                                     |     0.052 |
-|         i_synth                                              |     0.052 |
-|           EXP_OP.OP/i_calculate_e2A                          |     0.011 |
-|           EXP_OP.OP/i_calculate_e2zmzm1                      |     0.017 |
-|   vivado_activity_thread_dmul_64ns_64ns_64_6_max_dsp_U6      |     0.006 |
-|     vivado_activity_thread_ap_dmul_4_max_dsp_u               |     0.006 |
-|       U0                                                     |     0.006 |
-|         i_synth                                              |     0.006 |
-|   vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |     0.002 |
-|     vivado_activity_thread_ap_faddfsub_3_full_dsp_u          |     0.002 |
-|       U0                                                     |     0.002 |
-|         i_synth                                              |     0.002 |
-|   vivado_activity_thread_fcmp_32ns_32ns_1_3_U5               |    <0.001 |
+| vivado_activity_thread                                       |     0.020 |
+|   vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |    <0.001 |
+|     vivado_activity_thread_ap_faddfsub_3_full_dsp_u          |    <0.001 |
+|       U0                                                     |    <0.001 |
+|         i_synth                                              |    <0.001 |
+|   vivado_activity_thread_fcmp_32ns_32ns_1_3_U4               |    <0.001 |
 |     vivado_activity_thread_ap_fcmp_1_no_dsp_u                |    <0.001 |
 |       U0                                                     |    <0.001 |
 |         i_synth                                              |    <0.001 |
-|   vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |     0.002 |
-|     vivado_activity_thread_ap_fmul_2_max_dsp_u               |     0.002 |
+|   vivado_activity_thread_fdiv_32ns_32ns_32_16_U3             |     0.015 |
+|     vivado_activity_thread_ap_fdiv_14_no_dsp_u               |     0.015 |
+|       U0                                                     |     0.015 |
+|         i_synth                                              |     0.015 |
+|   vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5     |     0.002 |
+|     vivado_activity_thread_ap_fexp_7_full_dsp_u              |     0.002 |
 |       U0                                                     |     0.002 |
 |         i_synth                                              |     0.002 |
-|   vivado_activity_thread_fpext_32ns_64_3_U4                  |    <0.001 |
-|     vivado_activity_thread_ap_fpext_1_no_dsp_u               |    <0.001 |
-|       U0                                                     |    <0.001 |
-|         i_synth                                              |    <0.001 |
-|   vivado_activity_thread_fptrunc_64ns_32_3_U3                |    <0.001 |
-|     vivado_activity_thread_ap_fptrunc_1_no_dsp_u             |    <0.001 |
-|       U0                                                     |    <0.001 |
-|         i_synth                                              |    <0.001 |
+|           EXP_OP.OP/i_calculate_e2A                          |    <0.001 |
+|           EXP_OP.OP/i_calculate_e2zmzm1                      |    <0.001 |
+|   vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |     0.003 |
+|     vivado_activity_thread_ap_fmul_2_max_dsp_u               |     0.003 |
+|       U0                                                     |     0.003 |
+|         i_synth                                              |     0.003 |
 +--------------------------------------------------------------+-----------+
 
 

@@ -90,117 +90,127 @@
 		<link>
 			<name>testbench</name>
 			<type>2</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/.apc/.tb</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/.apc/.tb</location>
 		</link>
 		<link>
 			<name>F3_VivadoHLS_core/constraints</name>
 			<type>2</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/.tcls</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/.tcls</location>
 		</link>
 		<link>
 			<name>source/asian_option.c</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/asian_option.c</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/asian_option.c</location>
 		</link>
 		<link>
 			<name>source/asian_option.h</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/asian_option.h</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/asian_option.h</location>
 		</link>
 		<link>
 			<name>source/barrier_option.c</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/barrier_option.c</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/barrier_option.c</location>
 		</link>
 		<link>
 			<name>source/barrier_option.h</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/barrier_option.h</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/barrier_option.h</location>
 		</link>
 		<link>
 			<name>source/black_scholes_underlying.c</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/black_scholes_underlying.c</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/black_scholes_underlying.c</location>
 		</link>
 		<link>
 			<name>source/black_scholes_underlying.h</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/black_scholes_underlying.h</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/black_scholes_underlying.h</location>
 		</link>
 		<link>
 			<name>source/digital_double_barrier_option.c</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/digital_double_barrier_option.c</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/digital_double_barrier_option.c</location>
 		</link>
 		<link>
 			<name>source/digital_double_barrier_option.h</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/digital_double_barrier_option.h</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/digital_double_barrier_option.h</location>
 		</link>
 		<link>
 			<name>source/double_barrier_option.c</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/double_barrier_option.c</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/double_barrier_option.c</location>
 		</link>
 		<link>
 			<name>source/double_barrier_option.h</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/double_barrier_option.h</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/double_barrier_option.h</location>
 		</link>
 		<link>
 			<name>source/european_option.c</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/european_option.c</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/european_option.c</location>
 		</link>
 		<link>
 			<name>source/european_option.h</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/european_option.h</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/european_option.h</location>
 		</link>
 		<link>
 			<name>source/gauss.c</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/gauss.c</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/gauss.c</location>
 		</link>
 		<link>
 			<name>source/gauss.h</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/gauss.h</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/gauss.h</location>
 		</link>
 		<link>
 			<name>source/heston_underlying.c</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/heston_underlying.c</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/heston_underlying.c</location>
 		</link>
 		<link>
 			<name>source/heston_underlying.h</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/heston_underlying.h</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/heston_underlying.h</location>
+		</link>
+		<link>
+			<name>source/option.c</name>
+			<type>1</type>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/option.c</location>
+		</link>
+		<link>
+			<name>source/underlying.c</name>
+			<type>1</type>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/MulticoreCPU/multicore_c_code/underlying.c</location>
 		</link>
 		<link>
 			<name>source/vivado_core.c</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/vivado_core.c</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/vivado_core.c</location>
 		</link>
 		<link>
 			<name>testbench/tb.c</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/tb.c</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/srcs/tb.c</location>
 		</link>
 		<link>
 			<name>F3_VivadoHLS_core/constraints/.xml.directive</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/F3_VivadoHLS_core.directive</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/F3_VivadoHLS_core.directive</location>
 		</link>
 		<link>
 			<name>F3_VivadoHLS_core/constraints/directives.tcl</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/directives.tcl</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/directives.tcl</location>
 		</link>
 		<link>
 			<name>F3_VivadoHLS_core/constraints/script.tcl</name>
 			<type>1</type>
-			<location>/home/ee/g/gi11/workspace/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/script.tcl</location>
+			<location>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/script.tcl</location>
 		</link>
 	</linkedResources>
 </projectDescription>

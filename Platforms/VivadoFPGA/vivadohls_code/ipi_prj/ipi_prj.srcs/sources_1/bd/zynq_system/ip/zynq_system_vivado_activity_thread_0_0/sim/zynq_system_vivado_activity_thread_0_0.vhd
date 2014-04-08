@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: imperial:F3:vivado_activity_thread:1.0
--- IP Revision: 1403311501
+-- IP Revision: 1404082022
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -55,17 +55,11 @@ USE ieee.numeric_std.ALL;
 
 ENTITY zynq_system_vivado_activity_thread_0_0 IS
   PORT (
-    result_0_din : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    result_0_full_n : IN STD_LOGIC;
-    result_0_write : OUT STD_LOGIC;
-    result_sqrd_0_din : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    result_sqrd_0_full_n : IN STD_LOGIC;
-    result_sqrd_0_write : OUT STD_LOGIC;
     ap_start : IN STD_LOGIC;
     ap_ready : OUT STD_LOGIC;
     ap_done : OUT STD_LOGIC;
     ap_idle : OUT STD_LOGIC;
-    s_axi_CORE_IO_AWADDR : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+    s_axi_CORE_IO_AWADDR : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
     s_axi_CORE_IO_AWVALID : IN STD_LOGIC;
     s_axi_CORE_IO_AWREADY : OUT STD_LOGIC;
     s_axi_CORE_IO_WDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -75,13 +69,31 @@ ENTITY zynq_system_vivado_activity_thread_0_0 IS
     s_axi_CORE_IO_BRESP : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
     s_axi_CORE_IO_BVALID : OUT STD_LOGIC;
     s_axi_CORE_IO_BREADY : IN STD_LOGIC;
-    s_axi_CORE_IO_ARADDR : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+    s_axi_CORE_IO_ARADDR : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
     s_axi_CORE_IO_ARVALID : IN STD_LOGIC;
     s_axi_CORE_IO_ARREADY : OUT STD_LOGIC;
     s_axi_CORE_IO_RDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     s_axi_CORE_IO_RRESP : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
     s_axi_CORE_IO_RVALID : OUT STD_LOGIC;
     s_axi_CORE_IO_RREADY : IN STD_LOGIC;
+    seed_0_offset_TVALID : IN STD_LOGIC;
+    seed_0_offset_TREADY : OUT STD_LOGIC;
+    seed_0_offset_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    seed_0_s1_TVALID : IN STD_LOGIC;
+    seed_0_s1_TREADY : OUT STD_LOGIC;
+    seed_0_s1_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    seed_0_s2_TVALID : IN STD_LOGIC;
+    seed_0_s2_TREADY : OUT STD_LOGIC;
+    seed_0_s2_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    seed_0_s3_TVALID : IN STD_LOGIC;
+    seed_0_s3_TREADY : OUT STD_LOGIC;
+    seed_0_s3_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    thread_result_0_TVALID : OUT STD_LOGIC;
+    thread_result_0_TREADY : IN STD_LOGIC;
+    thread_result_0_TDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    thread_result_sqrd_0_TVALID : OUT STD_LOGIC;
+    thread_result_sqrd_0_TREADY : IN STD_LOGIC;
+    thread_result_sqrd_0_TDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     aclk : IN STD_LOGIC;
     aresetn : IN STD_LOGIC
   );
@@ -97,17 +109,11 @@ ARCHITECTURE zynq_system_vivado_activity_thread_0_0_arch OF zynq_system_vivado_a
       C_S_AXI_CORE_IO_DATA_WIDTH : INTEGER
     );
     PORT (
-      result_0_din : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-      result_0_full_n : IN STD_LOGIC;
-      result_0_write : OUT STD_LOGIC;
-      result_sqrd_0_din : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-      result_sqrd_0_full_n : IN STD_LOGIC;
-      result_sqrd_0_write : OUT STD_LOGIC;
       ap_start : IN STD_LOGIC;
       ap_ready : OUT STD_LOGIC;
       ap_done : OUT STD_LOGIC;
       ap_idle : OUT STD_LOGIC;
-      s_axi_CORE_IO_AWADDR : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+      s_axi_CORE_IO_AWADDR : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
       s_axi_CORE_IO_AWVALID : IN STD_LOGIC;
       s_axi_CORE_IO_AWREADY : OUT STD_LOGIC;
       s_axi_CORE_IO_WDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -117,13 +123,31 @@ ARCHITECTURE zynq_system_vivado_activity_thread_0_0_arch OF zynq_system_vivado_a
       s_axi_CORE_IO_BRESP : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
       s_axi_CORE_IO_BVALID : OUT STD_LOGIC;
       s_axi_CORE_IO_BREADY : IN STD_LOGIC;
-      s_axi_CORE_IO_ARADDR : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+      s_axi_CORE_IO_ARADDR : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
       s_axi_CORE_IO_ARVALID : IN STD_LOGIC;
       s_axi_CORE_IO_ARREADY : OUT STD_LOGIC;
       s_axi_CORE_IO_RDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
       s_axi_CORE_IO_RRESP : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
       s_axi_CORE_IO_RVALID : OUT STD_LOGIC;
       s_axi_CORE_IO_RREADY : IN STD_LOGIC;
+      seed_0_offset_TVALID : IN STD_LOGIC;
+      seed_0_offset_TREADY : OUT STD_LOGIC;
+      seed_0_offset_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+      seed_0_s1_TVALID : IN STD_LOGIC;
+      seed_0_s1_TREADY : OUT STD_LOGIC;
+      seed_0_s1_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+      seed_0_s2_TVALID : IN STD_LOGIC;
+      seed_0_s2_TREADY : OUT STD_LOGIC;
+      seed_0_s2_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+      seed_0_s3_TVALID : IN STD_LOGIC;
+      seed_0_s3_TREADY : OUT STD_LOGIC;
+      seed_0_s3_TDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+      thread_result_0_TVALID : OUT STD_LOGIC;
+      thread_result_0_TREADY : IN STD_LOGIC;
+      thread_result_0_TDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+      thread_result_sqrd_0_TVALID : OUT STD_LOGIC;
+      thread_result_sqrd_0_TREADY : IN STD_LOGIC;
+      thread_result_sqrd_0_TDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
       aclk : IN STD_LOGIC;
       aresetn : IN STD_LOGIC
     );
@@ -146,21 +170,33 @@ ARCHITECTURE zynq_system_vivado_activity_thread_0_0_arch OF zynq_system_vivado_a
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_RRESP: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO RRESP";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_RVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO RVALID";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_RREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO RREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_offset_TVALID: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_offset TVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_offset_TREADY: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_offset TREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_offset_TDATA: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_offset TDATA";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_s1_TVALID: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_s1 TVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_s1_TREADY: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_s1 TREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_s1_TDATA: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_s1 TDATA";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_s2_TVALID: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_s2 TVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_s2_TREADY: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_s2 TREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_s2_TDATA: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_s2 TDATA";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_s3_TVALID: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_s3 TVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_s3_TREADY: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_s3 TREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF seed_0_s3_TDATA: SIGNAL IS "xilinx.com:interface:axis:1.0 seed_0_s3 TDATA";
+  ATTRIBUTE X_INTERFACE_INFO OF thread_result_0_TVALID: SIGNAL IS "xilinx.com:interface:axis:1.0 thread_result_0 TVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF thread_result_0_TREADY: SIGNAL IS "xilinx.com:interface:axis:1.0 thread_result_0 TREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF thread_result_0_TDATA: SIGNAL IS "xilinx.com:interface:axis:1.0 thread_result_0 TDATA";
+  ATTRIBUTE X_INTERFACE_INFO OF thread_result_sqrd_0_TVALID: SIGNAL IS "xilinx.com:interface:axis:1.0 thread_result_sqrd_0 TVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF thread_result_sqrd_0_TREADY: SIGNAL IS "xilinx.com:interface:axis:1.0 thread_result_sqrd_0 TREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF thread_result_sqrd_0_TDATA: SIGNAL IS "xilinx.com:interface:axis:1.0 thread_result_sqrd_0 TDATA";
   ATTRIBUTE X_INTERFACE_INFO OF aclk: SIGNAL IS "xilinx.com:signal:clock:1.0 aclk CLK";
   ATTRIBUTE X_INTERFACE_INFO OF aresetn: SIGNAL IS "xilinx.com:signal:reset:1.0 aresetn RST";
 BEGIN
   U0 : vivado_activity_thread_top
     GENERIC MAP (
-      C_S_AXI_CORE_IO_ADDR_WIDTH => 7,
+      C_S_AXI_CORE_IO_ADDR_WIDTH => 8,
       C_S_AXI_CORE_IO_DATA_WIDTH => 32
     )
     PORT MAP (
-      result_0_din => result_0_din,
-      result_0_full_n => result_0_full_n,
-      result_0_write => result_0_write,
-      result_sqrd_0_din => result_sqrd_0_din,
-      result_sqrd_0_full_n => result_sqrd_0_full_n,
-      result_sqrd_0_write => result_sqrd_0_write,
       ap_start => ap_start,
       ap_ready => ap_ready,
       ap_done => ap_done,
@@ -182,6 +218,24 @@ BEGIN
       s_axi_CORE_IO_RRESP => s_axi_CORE_IO_RRESP,
       s_axi_CORE_IO_RVALID => s_axi_CORE_IO_RVALID,
       s_axi_CORE_IO_RREADY => s_axi_CORE_IO_RREADY,
+      seed_0_offset_TVALID => seed_0_offset_TVALID,
+      seed_0_offset_TREADY => seed_0_offset_TREADY,
+      seed_0_offset_TDATA => seed_0_offset_TDATA,
+      seed_0_s1_TVALID => seed_0_s1_TVALID,
+      seed_0_s1_TREADY => seed_0_s1_TREADY,
+      seed_0_s1_TDATA => seed_0_s1_TDATA,
+      seed_0_s2_TVALID => seed_0_s2_TVALID,
+      seed_0_s2_TREADY => seed_0_s2_TREADY,
+      seed_0_s2_TDATA => seed_0_s2_TDATA,
+      seed_0_s3_TVALID => seed_0_s3_TVALID,
+      seed_0_s3_TREADY => seed_0_s3_TREADY,
+      seed_0_s3_TDATA => seed_0_s3_TDATA,
+      thread_result_0_TVALID => thread_result_0_TVALID,
+      thread_result_0_TREADY => thread_result_0_TREADY,
+      thread_result_0_TDATA => thread_result_0_TDATA,
+      thread_result_sqrd_0_TVALID => thread_result_sqrd_0_TVALID,
+      thread_result_sqrd_0_TREADY => thread_result_sqrd_0_TREADY,
+      thread_result_sqrd_0_TDATA => thread_result_sqrd_0_TDATA,
       aclk => aclk,
       aresetn => aresetn
     );
