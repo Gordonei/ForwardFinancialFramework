@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date             : Tue Apr  8 20:32:56 2014
+| Date             : Wed Apr  9 11:17:40 2014
 | Host             : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command          : report_power -file vivado_activity_thread_power_routed.rpt -pb vivado_activity_thread_power_summary_routed.pb
 | Design           : vivado_activity_thread
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.139 |
-| Dynamic (W)              | 0.020 |
+| Total On-Chip Power (W)  | 0.140 |
+| Dynamic (W)              | 0.022 |
 | Device Static (W)        | 0.118 |
 | Total Off-Chip Power (W) | 0.000 |
 | Effective TJA (C/W)      | 11.5  |
@@ -51,17 +51,17 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.000 |        1 |       --- |             --- |
-| Slice Logic             |     0.009 |     4144 |       --- |             --- |
-|   LUT as Logic          |     0.006 |     2027 |     53200 |            3.81 |
+| Slice Logic             |     0.009 |     4129 |       --- |             --- |
+|   LUT as Logic          |     0.006 |     2009 |     53200 |            3.77 |
 |   CARRY4                |     0.002 |      242 |     13300 |            1.81 |
 |   Register              |    <0.001 |     1340 |    106400 |            1.25 |
-|   LUT as Shift Register |    <0.001 |       17 |     17400 |            0.09 |
 |   F7/F8 Muxes           |    <0.001 |      193 |     53200 |            0.36 |
-|   Others                |     0.000 |      257 |       --- |             --- |
-| Signals                 |     0.009 |     3150 |       --- |             --- |
+|   LUT as Shift Register |    <0.001 |       16 |     17400 |            0.09 |
+|   Others                |     0.000 |      259 |       --- |             --- |
+| Signals                 |     0.010 |     3134 |       --- |             --- |
 | DSPs                    |     0.003 |       12 |       220 |            5.45 |
 | Static Power            |     0.118 |          |           |                 |
-| Total                   |     0.139 |          |           |                 |
+| Total                   |     0.140 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,7 +71,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.028 |       0.020 |      0.008 |
+| Vccint    |       1.000 |     0.029 |       0.022 |      0.008 |
 | Vccaux    |       1.800 |     0.019 |       0.000 |      0.019 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -147,7 +147,7 @@ Table of Contents
 +--------------------------------------------------------------+-----------+
 | Name                                                         | Power (W) |
 +--------------------------------------------------------------+-----------+
-| vivado_activity_thread                                       |     0.020 |
+| vivado_activity_thread                                       |     0.022 |
 |   vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |    <0.001 |
 |     vivado_activity_thread_ap_faddfsub_3_full_dsp_u          |    <0.001 |
 |       U0                                                     |    <0.001 |
@@ -160,10 +160,10 @@ Table of Contents
 |     vivado_activity_thread_ap_fdiv_14_no_dsp_u               |     0.015 |
 |       U0                                                     |     0.015 |
 |         i_synth                                              |     0.015 |
-|   vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5     |     0.002 |
-|     vivado_activity_thread_ap_fexp_7_full_dsp_u              |     0.002 |
-|       U0                                                     |     0.002 |
-|         i_synth                                              |     0.002 |
+|   vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5     |     0.003 |
+|     vivado_activity_thread_ap_fexp_7_full_dsp_u              |     0.003 |
+|       U0                                                     |     0.003 |
+|         i_synth                                              |     0.003 |
 |           EXP_OP.OP/i_calculate_e2A                          |    <0.001 |
 |           EXP_OP.OP/i_calculate_e2zmzm1                      |    <0.001 |
 |   vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |     0.003 |

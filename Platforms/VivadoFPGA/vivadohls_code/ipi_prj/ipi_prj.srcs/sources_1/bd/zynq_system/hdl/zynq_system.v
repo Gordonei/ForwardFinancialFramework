@@ -235,7 +235,7 @@ module s00_couplers_imp_156Q4UY
   assign s00_couplers_to_auto_pc_WLAST = S_AXI_wlast;
   assign s00_couplers_to_auto_pc_WSTRB = S_AXI_wstrb[3:0];
   assign s00_couplers_to_auto_pc_WVALID = S_AXI_wvalid;
-zynq_system_auto_pc_2 auto_pc
+zynq_system_auto_pc_3 auto_pc
        (.aclk(S_ACLK_1),
         .aresetn(S_ARESETN_1),
         .m_axi_araddr(auto_pc_to_s00_couplers_ARADDR),
@@ -295,7 +295,7 @@ zynq_system_auto_pc_2 auto_pc
         .s_axi_wvalid(s00_couplers_to_auto_pc_WVALID));
 endmodule
 
-(* CORE_GENERATION_INFO = "zynq_system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLanguage=VERILOG,numBlks=6,numReposBlks=4,numNonXlnxBlks=1,numHierBlks=2,maxHierDepth=0,da_axi4_cnt=1,da_ps7_cnt=1}" *) 
+(* CORE_GENERATION_INFO = "zynq_system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLanguage=VERILOG,numBlks=6,numReposBlks=4,numNonXlnxBlks=1,numHierBlks=2,maxHierDepth=0,da_axi4_cnt=2,da_ps7_cnt=1}" *) 
 module zynq_system
    (DDR_addr,
     DDR_ba,
@@ -564,9 +564,8 @@ zynq_system_rst_processing_system7_0_50M_0 rst_processing_system7_0_50M
         .mb_debug_sys_rst(GND_1),
         .peripheral_aresetn(rst_processing_system7_0_50M_peripheral_aresetn),
         .slowest_sync_clk(processing_system7_0_FCLK_CLK0));
-zynq_system_vivado_activity_thread_0_0 vivado_activity_thread_0
+zynq_system_vivado_activity_thread_0_1 vivado_activity_thread_0
        (.aclk(processing_system7_0_FCLK_CLK0),
-        .ap_start(GND_1),
         .aresetn(rst_processing_system7_0_50M_peripheral_aresetn),
         .s_axi_CORE_IO_ARADDR(processing_system7_0_axi_periph_M00_AXI_ARADDR),
         .s_axi_CORE_IO_ARREADY(processing_system7_0_axi_periph_M00_AXI_ARREADY),
@@ -584,17 +583,7 @@ zynq_system_vivado_activity_thread_0_0 vivado_activity_thread_0
         .s_axi_CORE_IO_WDATA(processing_system7_0_axi_periph_M00_AXI_WDATA),
         .s_axi_CORE_IO_WREADY(processing_system7_0_axi_periph_M00_AXI_WREADY),
         .s_axi_CORE_IO_WSTRB(processing_system7_0_axi_periph_M00_AXI_WSTRB),
-        .s_axi_CORE_IO_WVALID(processing_system7_0_axi_periph_M00_AXI_WVALID),
-        .seed_0_offset_TDATA({GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1}),
-        .seed_0_offset_TVALID(GND_1),
-        .seed_0_s1_TDATA({GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1}),
-        .seed_0_s1_TVALID(GND_1),
-        .seed_0_s2_TDATA({GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1}),
-        .seed_0_s2_TVALID(GND_1),
-        .seed_0_s3_TDATA({GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1,GND_1}),
-        .seed_0_s3_TVALID(GND_1),
-        .thread_result_0_TREADY(GND_1),
-        .thread_result_sqrd_0_TREADY(GND_1));
+        .s_axi_CORE_IO_WVALID(processing_system7_0_axi_periph_M00_AXI_WVALID));
 endmodule
 
 module zynq_system_processing_system7_0_axi_periph_0

@@ -11,10 +11,8 @@ target triple = "x86_64-unknown-linux-gnu"
 @p_str124 = private unnamed_addr constant [1 x i8] zeroinitializer, align 1
 @p_str125 = private unnamed_addr constant [10 x i8] c"AXI_SLAVE\00", align 1
 @p_str126 = private unnamed_addr constant [20 x i8] c"-bus_bundle CORE_IO\00", align 1
-@p_str127 = private unnamed_addr constant [8 x i8] c"ap_fifo\00", align 1
-@p_str128 = private unnamed_addr constant [11 x i8] c"AXI4Stream\00", align 1
-@p_str129 = private unnamed_addr constant [13 x i8] c"PATHSET_LOOP\00", align 1
-@p_str130 = private unnamed_addr constant [10 x i8] c"PATH_LOOP\00", align 1
+@p_str127 = private unnamed_addr constant [13 x i8] c"PATHSET_LOOP\00", align 1
+@p_str128 = private unnamed_addr constant [10 x i8] c"PATH_LOOP\00", align 1
 @i = common global i32 0, align 4
 @j = common global i32 0, align 4
 @discount_0_0 = common global float 0.000000e+00, align 4
@@ -29,8 +27,78 @@ target triple = "x86_64-unknown-linux-gnu"
 @llvm_global_ctors_1 = appending global [2 x void ()*] [void ()* @_GLOBAL__I_a, void ()* @_GLOBAL__I_a2027]
 @str = internal constant [23 x i8] c"vivado_activity_thread\00"
 
-define weak void @_ssdm_op_SpecFifo(...) nounwind {
-entry:
+define void @vivado_activity_thread(float* %kernel_u_a_0_rfir, float* %kernel_u_a_0_current_price, float* %kernel_u_a_0_volatility, float* %kernel_u_a_0_initial_volatility, float* %kernel_u_a_0_volatility_volatility, float* %kernel_u_a_0_rho, float* %kernel_u_a_0_kappa, float* %kernel_u_a_0_theta, float* %kernel_u_a_0_correlation_matrix_0_0, float* %kernel_u_a_0_correlation_matrix_0_1, float* %kernel_u_a_0_correlation_matrix_1_0, float* %kernel_u_a_0_correlation_matrix_1_1, float* %kernel_o_a_0_second_barrier, float* %kernel_o_a_0_barrier, float* %kernel_o_a_0_out, float* %kernel_o_a_0_down, float* %kernel_o_a_0_strike_price, float* %kernel_o_a_0_time_period, float* %kernel_o_a_0_call, float* %kernel_o_a_0_points, i32* %seed_0_s1, i32* %seed_0_s2, i32* %seed_0_s3, i32* %seed_0_offset, float* %thread_result_0, float* %thread_result_sqrd_0) {
+.critedge:
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_rfir), !map !94
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_current_price), !map !98
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_volatility), !map !102
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_initial_volatility), !map !106
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_volatility_volatility), !map !110
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_rho), !map !114
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_kappa), !map !118
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_theta), !map !122
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_0_0), !map !126
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_0_1), !map !130
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_1_0), !map !134
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_1_1), !map !138
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_second_barrier), !map !142
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_barrier), !map !146
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_out), !map !150
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_down), !map !154
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_strike_price), !map !158
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_time_period), !map !162
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_call), !map !166
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_points), !map !170
+  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_s1), !map !174
+  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_s2), !map !178
+  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_s3), !map !182
+  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_offset), !map !186
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %thread_result_0), !map !190
+  call void (...)* @_ssdm_op_SpecBitsMap(float* %thread_result_sqrd_0), !map !194
+  call void (...)* @_ssdm_op_SpecTopModule([23 x i8]* @str) nounwind
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_u_a_0_rfir, float* %kernel_u_a_0_current_price, float* %kernel_u_a_0_volatility, float* %kernel_u_a_0_initial_volatility, float* %kernel_u_a_0_volatility_volatility, float* %kernel_u_a_0_rho, float* %kernel_u_a_0_kappa, float* %kernel_u_a_0_theta, float* %kernel_u_a_0_correlation_matrix_0_0, float* %kernel_u_a_0_correlation_matrix_0_1, float* %kernel_u_a_0_correlation_matrix_1_0, float* %kernel_u_a_0_correlation_matrix_1_1, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_o_a_0_second_barrier, float* %kernel_o_a_0_barrier, float* %kernel_o_a_0_out, float* %kernel_o_a_0_down, float* %kernel_o_a_0_strike_price, float* %kernel_o_a_0_time_period, float* %kernel_o_a_0_call, float* %kernel_o_a_0_points, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
+  call void (...)* @_ssdm_op_SpecIFCore(i32* %seed_0_s1, i32* %seed_0_s2, i32* %seed_0_s3, i32* %seed_0_offset, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %thread_result_0, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
+  call void (...)* @_ssdm_op_SpecIFCore(float* %thread_result_sqrd_0, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
+  call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
+  %o_a_0_strike_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_strike_price)
+  %o_a_0_time_period = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_time_period)
+  %o_a_0_call = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_call)
+  %u_a_0_rfir = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_u_a_0_rfir)
+  %u_a_0_current_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_u_a_0_current_price)
+  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str127) nounwind
+  %tmp = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str127)
+  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+  %tmp_i = fmul float %u_a_0_rfir, %delta_time_0
+  br label %0
+
+; <label>:0                                       ; preds = %1, %.critedge
+  %u_v_gamma_read_assign = phi float [ 0.000000e+00, %.critedge ], [ %u_v_0_gamma, %1 ]
+  %pp = phi i4 [ 0, %.critedge ], [ %pp_1, %1 ]
+  %tmp_pn = phi float [ 1.000000e+00, %.critedge ], [ %tmp_7, %1 ]
+  %spot_price_0 = fmul float %u_a_0_current_price, %tmp_pn
+  %exitcond = icmp eq i4 %pp, -6
+  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 10, i64 10, i64 10)
+  %pp_1 = add i4 %pp, 1
+  br i1 %exitcond, label %_ifconv, label %1
+
+; <label>:1                                       ; preds = %0
+  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str128) nounwind
+  %u_v_0_gamma = fadd float %tmp_i, %u_v_gamma_read_assign
+  %tmp_7 = call float @llvm.exp.f32(float %u_v_0_gamma)
+  br label %0
+
+_ifconv:                                          ; preds = %0
+  %tmp_1 = fcmp oeq float %o_a_0_call, 0.000000e+00
+  %tmp_2 = xor i1 %tmp_1, true
+  %tmp_1_i = fsub float %spot_price_0, %o_a_0_strike_price
+  %tmp_2_i = fsub float %o_a_0_strike_price, %spot_price_0
+  %temp_value = select i1 %tmp_2, float %tmp_1_i, float %tmp_2_i
+  call void @_ssdm_op_Write.ap_auto.floatP(float* %thread_result_0, float %temp_value)
+  %tmp_6 = fmul float %temp_value, %temp_value
+  call void @_ssdm_op_Write.ap_auto.floatP(float* %thread_result_sqrd_0, float %tmp_6)
+  %empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str127, i32 %tmp)
   ret void
 }
 
@@ -77,96 +145,17 @@ entry:
   ret i32 0
 }
 
-define void @vivado_activity_thread(float* %kernel_u_a_0_rfir, float* %kernel_u_a_0_current_price, float* %kernel_u_a_0_volatility, float* %kernel_u_a_0_initial_volatility, float* %kernel_u_a_0_volatility_volatility, float* %kernel_u_a_0_rho, float* %kernel_u_a_0_kappa, float* %kernel_u_a_0_theta, float* %kernel_u_a_0_correlation_matrix_0_0, float* %kernel_u_a_0_correlation_matrix_0_1, float* %kernel_u_a_0_correlation_matrix_1_0, float* %kernel_u_a_0_correlation_matrix_1_1, float* %kernel_o_a_0_second_barrier, float* %kernel_o_a_0_barrier, float* %kernel_o_a_0_out, float* %kernel_o_a_0_down, float* %kernel_o_a_0_strike_price, float* %kernel_o_a_0_time_period, float* %kernel_o_a_0_call, float* %kernel_o_a_0_points, i32* %seed_0_s1, i32* %seed_0_s2, i32* %seed_0_s3, i32* %seed_0_offset, float* %thread_result_0, float* %thread_result_sqrd_0) {
-.critedge:
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_rfir), !map !94
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_current_price), !map !98
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_volatility), !map !102
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_initial_volatility), !map !106
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_volatility_volatility), !map !110
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_rho), !map !114
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_kappa), !map !118
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_theta), !map !122
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_0_0), !map !126
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_0_1), !map !130
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_1_0), !map !134
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_1_1), !map !138
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_second_barrier), !map !142
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_barrier), !map !146
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_out), !map !150
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_down), !map !154
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_strike_price), !map !158
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_time_period), !map !162
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_call), !map !166
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_points), !map !170
-  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_s1), !map !174
-  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_s2), !map !178
-  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_s3), !map !182
-  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_offset), !map !186
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %thread_result_0), !map !190
-  call void (...)* @_ssdm_op_SpecBitsMap(float* %thread_result_sqrd_0), !map !194
-  call void (...)* @_ssdm_op_SpecTopModule([23 x i8]* @str) nounwind
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_u_a_0_rfir, float* %kernel_u_a_0_current_price, float* %kernel_u_a_0_volatility, float* %kernel_u_a_0_initial_volatility, float* %kernel_u_a_0_volatility_volatility, float* %kernel_u_a_0_rho, float* %kernel_u_a_0_kappa, float* %kernel_u_a_0_theta, float* %kernel_u_a_0_correlation_matrix_0_0, float* %kernel_u_a_0_correlation_matrix_0_1, float* %kernel_u_a_0_correlation_matrix_1_0, float* %kernel_u_a_0_correlation_matrix_1_1, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_o_a_0_second_barrier, float* %kernel_o_a_0_barrier, float* %kernel_o_a_0_out, float* %kernel_o_a_0_down, float* %kernel_o_a_0_strike_price, float* %kernel_o_a_0_time_period, float* %kernel_o_a_0_call, float* %kernel_o_a_0_points, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
-  call void (...)* @_ssdm_op_SpecFifo(i32* %seed_0_s1, i32* %seed_0_s2, i32* %seed_0_s3, i32* %seed_0_offset, [8 x i8]* @p_str127, i32 0, i32 0, i32 0, [1 x i8]* @p_str124)
-  call void (...)* @_ssdm_op_SpecFifo(float* %thread_result_0, [8 x i8]* @p_str127, i32 0, i32 0, i32 0, [1 x i8]* @p_str124)
-  call void (...)* @_ssdm_op_SpecFifo(float* %thread_result_sqrd_0, [8 x i8]* @p_str127, i32 0, i32 0, i32 0, [1 x i8]* @p_str124)
-  call void (...)* @_ssdm_op_SpecIFCore(i32* %seed_0_s1, i32* %seed_0_s2, i32* %seed_0_s3, i32* %seed_0_offset, [1 x i8]* @p_str124, [11 x i8]* @p_str128, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %thread_result_0, [1 x i8]* @p_str124, [11 x i8]* @p_str128, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124)
-  call void (...)* @_ssdm_op_SpecIFCore(float* %thread_result_sqrd_0, [1 x i8]* @p_str124, [11 x i8]* @p_str128, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124)
-  %o_a_0_strike_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_strike_price)
-  %o_a_0_time_period = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_time_period)
-  %o_a_0_call = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_call)
-  %u_a_0_rfir = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_u_a_0_rfir)
-  %u_a_0_current_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_u_a_0_current_price)
-  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str129) nounwind
-  %tmp = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str129)
-  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
-  %tmp_i = fmul float %u_a_0_rfir, %delta_time_0
-  br label %0
-
-; <label>:0                                       ; preds = %1, %.critedge
-  %u_v_gamma_read_assign = phi float [ 0.000000e+00, %.critedge ], [ %u_v_0_gamma, %1 ]
-  %pp = phi i4 [ 0, %.critedge ], [ %pp_1, %1 ]
-  %tmp_pn = phi float [ 1.000000e+00, %.critedge ], [ %tmp_7, %1 ]
-  %spot_price_0 = fmul float %u_a_0_current_price, %tmp_pn
-  %exitcond = icmp eq i4 %pp, -6
-  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 10, i64 10, i64 10)
-  %pp_1 = add i4 %pp, 1
-  br i1 %exitcond, label %_ifconv, label %1
-
-; <label>:1                                       ; preds = %0
-  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str130) nounwind
-  %u_v_0_gamma = fadd float %tmp_i, %u_v_gamma_read_assign
-  %tmp_7 = call float @llvm.exp.f32(float %u_v_0_gamma)
-  br label %0
-
-_ifconv:                                          ; preds = %0
-  %tmp_1 = fcmp oeq float %o_a_0_call, 0.000000e+00
-  %tmp_2 = xor i1 %tmp_1, true
-  %tmp_1_i = fsub float %spot_price_0, %o_a_0_strike_price
-  %tmp_2_i = fsub float %o_a_0_strike_price, %spot_price_0
-  %temp_value = select i1 %tmp_2, float %tmp_1_i, float %tmp_2_i
-  call void @_ssdm_op_Write.ap_fifo.volatile.floatP(float* %thread_result_0, float %temp_value)
-  %tmp_6 = fmul float %temp_value, %temp_value
-  call void @_ssdm_op_Write.ap_fifo.volatile.floatP(float* %thread_result_sqrd_0, float %tmp_6)
-  %empty_3 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str129, i32 %tmp)
-  ret void
-}
-
 define weak float @_ssdm_op_Read.ap_auto.floatP(float*) {
 entry:
   %empty = load float* %0
   ret float %empty
 }
 
-define weak void @_ssdm_op_Write.ap_fifo.volatile.floatP(float*, float) {
+define weak void @_ssdm_op_Write.ap_auto.floatP(float*, float) {
 entry:
-  %empty = call float @_autotb_FifoWrite_float(float* %0, float %1)
+  store float %1, float* %0
   ret void
 }
-
-declare float @_autotb_FifoWrite_float(float*, float)
 
 !llvm.map.gv = !{!0, !7, !12, !17, !22, !27, !32, !37, !42, !47, !52, !57, !62, !67, !72, !77, !82, !87}
 

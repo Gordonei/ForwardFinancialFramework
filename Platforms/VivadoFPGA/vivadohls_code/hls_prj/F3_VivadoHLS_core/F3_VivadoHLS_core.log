@@ -66,7 +66,7 @@ srcs/vivado_core.c:18:25: warning: extra tokens at end of #include directive [-W
 #include "vivado_core.h";
                         ^
                         //
-srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wreturn-type]
+srcs/vivado_core.c:162:2: warning: control reaches end of non-void function [-Wreturn-type]
         }
         ^
 13 warnings generated.
@@ -74,10 +74,10 @@ srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wr
 @I [HLS-10] Validating synthesis directives ...
 @I [HLS-10] Starting code transformations ...
 @I [HLS-10] Checking synthesizability ...
-@I [XFORM-602] Inlining function 'underlying_underlying_path' into 'vivado_activity_thread' (srcs/vivado_core.c:102) automatically.
-@I [XFORM-602] Inlining function 'option_derivative_payoff' into 'vivado_activity_thread' (srcs/vivado_core.c:109) automatically.
-@I [XFORM-401] Performing if-conversion on hyperblock from (srcs/option.c:25:37) to (srcs/vivado_core.c:118:1) in function 'vivado_activity_thread'... converting 4 basic blocks.
-@I [HLS-111] Elapsed time: 13 seconds; current memory usage: 296 MB.
+@I [XFORM-602] Inlining function 'underlying_underlying_path' into 'vivado_activity_thread' (srcs/vivado_core.c:105) automatically.
+@I [XFORM-602] Inlining function 'option_derivative_payoff' into 'vivado_activity_thread' (srcs/vivado_core.c:112) automatically.
+@I [XFORM-401] Performing if-conversion on hyperblock from (srcs/option.c:25:37) to (srcs/vivado_core.c:121:1) in function 'vivado_activity_thread'... converting 4 basic blocks.
+@I [HLS-111] Elapsed time: 10.44 seconds; current memory usage: 296 MB.
 @I [HLS-10] Starting hardware synthesis ...
 @I [HLS-10] Synthesizing 'vivado_activity_thread' ...
 @I [HLS-10] ----------------------------------------------------------------
@@ -85,7 +85,7 @@ srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wr
 @I [HLS-10] ----------------------------------------------------------------
 @I [SCHED-11] Starting scheduling ...
 @I [SCHED-11] Finished scheduling.
-@I [HLS-111] Elapsed time: 0.13 seconds; current memory usage: 296 MB.
+@I [HLS-111] Elapsed time: 0.12 seconds; current memory usage: 296 MB.
 @I [HLS-10] ----------------------------------------------------------------
 @I [HLS-10] -- Exploring micro-architecture for module 'vivado_activity_thread' 
 @I [HLS-10] ----------------------------------------------------------------
@@ -94,7 +94,7 @@ srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wr
 @I [BIND-101] Exploring resource sharing.
 @I [BIND-101] Binding ...
 @I [BIND-100] Finished micro-architecture generation.
-@I [HLS-111] Elapsed time: 0.05 seconds; current memory usage: 297 MB.
+@I [HLS-111] Elapsed time: 0.06 seconds; current memory usage: 297 MB.
 @I [HLS-10] ----------------------------------------------------------------
 @I [HLS-10] -- Generating RTL for module 'vivado_activity_thread' 
 @I [HLS-10] ----------------------------------------------------------------
@@ -118,12 +118,12 @@ srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wr
 @I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/kernel_o_a_0_time_period' to 'ap_none'.
 @I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/kernel_o_a_0_call' to 'ap_none'.
 @I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/kernel_o_a_0_points' to 'ap_none'.
-@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/seed_0_s1' to 'ap_fifo'.
-@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/seed_0_s2' to 'ap_fifo'.
-@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/seed_0_s3' to 'ap_fifo'.
-@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/seed_0_offset' to 'ap_fifo'.
-@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/thread_result_0' to 'ap_fifo'.
-@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/thread_result_sqrd_0' to 'ap_fifo'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/seed_0_s1' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/seed_0_s2' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/seed_0_s3' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/seed_0_offset' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/thread_result_0' to 'ap_vld'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/thread_result_sqrd_0' to 'ap_vld'.
 @I [RTGEN-500] Setting interface mode on function 'vivado_activity_thread' to 'ap_ctrl_hs'.
 @W [RTGEN-101] Port 'vivado_activity_thread/kernel_u_a_0_volatility' has no fanin or fanout and is left dangling.
                Please use C simulation to confirm this function argument can be read from or written to.
@@ -155,52 +155,26 @@ srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wr
                Please use C simulation to confirm this function argument can be read from or written to.
 @W [RTGEN-101] Port 'vivado_activity_thread/kernel_o_a_0_points' has no fanin or fanout and is left dangling.
                Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s1_dout' has no fanin or fanout and is left dangling.
+@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s1' has no fanin or fanout and is left dangling.
                Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s1_empty_n' has no fanin or fanout and is left dangling.
+@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s2' has no fanin or fanout and is left dangling.
                Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s1_read' has no fanin or fanout and is left dangling.
+@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s3' has no fanin or fanout and is left dangling.
                Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Setting dangling out port 'vivado_activity_thread/seed_0_s1_read' to 0.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s2_dout' has no fanin or fanout and is left dangling.
+@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_offset' has no fanin or fanout and is left dangling.
                Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s2_empty_n' has no fanin or fanout and is left dangling.
-               Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s2_read' has no fanin or fanout and is left dangling.
-               Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Setting dangling out port 'vivado_activity_thread/seed_0_s2_read' to 0.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s3_dout' has no fanin or fanout and is left dangling.
-               Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s3_empty_n' has no fanin or fanout and is left dangling.
-               Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_s3_read' has no fanin or fanout and is left dangling.
-               Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Setting dangling out port 'vivado_activity_thread/seed_0_s3_read' to 0.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_offset_dout' has no fanin or fanout and is left dangling.
-               Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_offset_empty_n' has no fanin or fanout and is left dangling.
-               Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Port 'vivado_activity_thread/seed_0_offset_read' has no fanin or fanout and is left dangling.
-               Please use C simulation to confirm this function argument can be read from or written to.
-@W [RTGEN-101] Setting dangling out port 'vivado_activity_thread/seed_0_offset_read' to 0.
 @I [RTGEN-100] Generating core module 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp': 1 instance(s).
 @I [RTGEN-100] Generating core module 'vivado_activity_thread_fcmp_32ns_32ns_1_3': 1 instance(s).
 @I [RTGEN-100] Generating core module 'vivado_activity_thread_fdiv_32ns_32ns_32_16': 1 instance(s).
 @I [RTGEN-100] Generating core module 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp': 1 instance(s).
 @I [RTGEN-100] Generating core module 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp': 1 instance(s).
 @I [RTGEN-100] Finished creating RTL model for 'vivado_activity_thread'.
-@I [HLS-111] Elapsed time: 0.1 seconds; current memory usage: 297 MB.
+@I [HLS-111] Elapsed time: 0.09 seconds; current memory usage: 297 MB.
 @I [HLS-10] Finished generating all RTL models.
 @I [WSYSC-301] Generating RTL SystemC for 'vivado_activity_thread'.
 @I [WVHDL-304] Generating RTL VHDL for 'vivado_activity_thread'.
 @I [WVLOG-307] Generating RTL Verilog for 'vivado_activity_thread'.
 @I [IMPL-8] Exporting RTL as an IP in IP-XACT.
-@I [IMPL-200] Port 'seed_0_offset' is mapped to 'TDATA' by default.
-@I [IMPL-200] Port 'seed_0_s1' is mapped to 'TDATA' by default.
-@I [IMPL-200] Port 'seed_0_s2' is mapped to 'TDATA' by default.
-@I [IMPL-200] Port 'seed_0_s3' is mapped to 'TDATA' by default.
-@I [IMPL-200] Port 'thread_result_0' is mapped to 'TDATA' by default.
-@I [IMPL-200] Port 'thread_result_sqrd_0' is mapped to 'TDATA' by default.
 @I [IMPL-8] Starting RTL evaluation using Vivado ...
-@I [HLS-112] Total elapsed time: 712.297 seconds; peak memory usage: 297 MB.
+@I [HLS-112] Total elapsed time: 669.9 seconds; peak memory usage: 297 MB.
 @I [LIC-101] Checked in feature [HLS]

@@ -2,8 +2,8 @@
 # Vivado v2013.4 (64-bit)
 # SW Build 353583 on Mon Dec  9 17:26:26 MST 2013
 # IP Build 208076 on Mon Dec  2 12:38:17 MST 2013
-# Start of session at: Tue Apr  8 20:22:04 2014
-# Process ID: 6440
+# Start of session at: Wed Apr  9 11:07:24 2014
+# Process ID: 15979
 # Log file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/ip/vivado.log
 # Journal file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/ip/vivado.jou
 #-----------------------------------------------------------
@@ -26,4 +26,4 @@ INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vivado_activity_th
 WARNING: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fdiv_14_no_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
 INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vivado_activity_thread_ap_fexp_7_full_dsp'...
 WARNING: [IP_Flow 19-1687] The current project language is set to Verilog. However IP 'vivado_activity_thread_ap_fexp_7_full_dsp' does not support 'Verilog Synthesis' output products, delivering 'VHDL Synthesis' output products instead.
-INFO: [Common 17-206] Exiting Vivado at Tue Apr  8 20:22:19 2014...
+INFO: [Common 17-206] Exiting Vivado at Wed Apr  9 11:07:39 2014...

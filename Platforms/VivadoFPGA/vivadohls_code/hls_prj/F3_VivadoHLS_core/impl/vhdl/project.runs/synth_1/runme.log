@@ -64,15 +64,15 @@ Starting synthesis...
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 769.223 ; gain = 147.391
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 769.219 ; gain = 147.391
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:61]
+INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:51]
 	Parameter ID bound to: 1 - type: integer 
 	Parameter NUM_STAGE bound to: 5 - type: integer 
 	Parameter din0_WIDTH bound to: 32 - type: integer 
 	Parameter din1_WIDTH bound to: 32 - type: integer 
 	Parameter dout_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-3491] module 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd:11' bound to instance 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1' of component 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:255]
+INFO: [Synth 8-3491] module 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd:11' bound to instance 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1' of component 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:245]
 INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp__parameterized0' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.vhd:30]
 	Parameter ID bound to: 1 - type: integer 
 	Parameter NUM_STAGE bound to: 5 - type: integer 
@@ -87,7 +87,7 @@ INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread_faddfsub_32
 	Parameter din0_WIDTH bound to: 32 - type: integer 
 	Parameter din1_WIDTH bound to: 32 - type: integer 
 	Parameter dout_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-3491] module 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd:11' bound to instance 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2' of component 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:271]
+INFO: [Synth 8-3491] module 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd:11' bound to instance 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2' of component 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:261]
 INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp__parameterized0' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.vhd:29]
 	Parameter ID bound to: 2 - type: integer 
 	Parameter NUM_STAGE bound to: 4 - type: integer 
@@ -102,7 +102,7 @@ INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread_fmul_32ns_3
 	Parameter din0_WIDTH bound to: 32 - type: integer 
 	Parameter din1_WIDTH bound to: 32 - type: integer 
 	Parameter dout_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-3491] module 'vivado_activity_thread_fdiv_32ns_32ns_32_16' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fdiv_32ns_32ns_32_16.vhd:11' bound to instance 'vivado_activity_thread_fdiv_32ns_32ns_32_16_U3' of component 'vivado_activity_thread_fdiv_32ns_32ns_32_16' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:286]
+INFO: [Synth 8-3491] module 'vivado_activity_thread_fdiv_32ns_32ns_32_16' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fdiv_32ns_32ns_32_16.vhd:11' bound to instance 'vivado_activity_thread_fdiv_32ns_32ns_32_16_U3' of component 'vivado_activity_thread_fdiv_32ns_32ns_32_16' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:276]
 INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_fdiv_32ns_32ns_32_16__parameterized0' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fdiv_32ns_32ns_32_16.vhd:29]
 	Parameter ID bound to: 3 - type: integer 
 	Parameter NUM_STAGE bound to: 16 - type: integer 
@@ -117,7 +117,7 @@ INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread_fdiv_32ns_3
 	Parameter din0_WIDTH bound to: 32 - type: integer 
 	Parameter din1_WIDTH bound to: 32 - type: integer 
 	Parameter dout_WIDTH bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'vivado_activity_thread_fcmp_32ns_32ns_1_3' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd:11' bound to instance 'vivado_activity_thread_fcmp_32ns_32ns_1_3_U4' of component 'vivado_activity_thread_fcmp_32ns_32ns_1_3' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:301]
+INFO: [Synth 8-3491] module 'vivado_activity_thread_fcmp_32ns_32ns_1_3' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd:11' bound to instance 'vivado_activity_thread_fcmp_32ns_32ns_1_3_U4' of component 'vivado_activity_thread_fcmp_32ns_32ns_1_3' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:291]
 INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_fcmp_32ns_32ns_1_3__parameterized0' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fcmp_32ns_32ns_1_3.vhd:30]
 	Parameter ID bound to: 4 - type: integer 
 	Parameter NUM_STAGE bound to: 3 - type: integer 
@@ -133,7 +133,7 @@ INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread_fcmp_32ns_3
 	Parameter din0_WIDTH bound to: 32 - type: integer 
 	Parameter din1_WIDTH bound to: 32 - type: integer 
 	Parameter dout_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-3491] module 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd:11' bound to instance 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5' of component 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:317]
+INFO: [Synth 8-3491] module 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd:11' bound to instance 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5' of component 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:307]
 INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp__parameterized0' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd:29]
 	Parameter ID bound to: 5 - type: integer 
 	Parameter NUM_STAGE bound to: 9 - type: integer 
@@ -143,11 +143,7 @@ INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_fexp_32ns_32ns_3
 INFO: [Synth 8-3491] module 'vivado_activity_thread_ap_fexp_7_full_dsp' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_stub.v:16' bound to instance 'vivado_activity_thread_ap_fexp_7_full_dsp_u' of component 'vivado_activity_thread_ap_fexp_7_full_dsp' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd:51]
 INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_ap_fexp_7_full_dsp' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fexp_7_full_dsp/vivado_activity_thread_ap_fexp_7_full_dsp_stub.v:16]
 INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp__parameterized0' (5#1) [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.vhd:29]
-INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread' (6#1) [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:61]
-WARNING: [Synth 8-3917] design vivado_activity_thread has port seed_0_s1_read driven by constant 0
-WARNING: [Synth 8-3917] design vivado_activity_thread has port seed_0_s2_read driven by constant 0
-WARNING: [Synth 8-3917] design vivado_activity_thread has port seed_0_s3_read driven by constant 0
-WARNING: [Synth 8-3917] design vivado_activity_thread has port seed_0_offset_read driven by constant 0
+INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread' (6#1) [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd:51]
 WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port kernel_u_a_0_volatility[31]
 WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port kernel_u_a_0_volatility[30]
 WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port kernel_u_a_0_volatility[29]
@@ -250,7 +246,7 @@ WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port kerne
 WARNING: [Synth 8-3331] design vivado_activity_thread has unconnected port kernel_u_a_0_rho[28]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 805.043 ; gain = 183.211
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 805.039 ; gain = 183.211
 ---------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------
@@ -322,45 +318,13 @@ Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/Forw
 Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 5).
 Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 5).
 Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 5).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
-Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 6).
 Applied set_property BUFFER_TYPE = NONE. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/synth_1/dont_buffer.xdc, line 8).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1044.820 ; gain = 422.988
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1044.816 ; gain = 422.988
 ---------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------
-Finished RTL Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1044.820 ; gain = 422.988
+Finished RTL Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1044.816 ; gain = 422.988
 ---------------------------------------------------------------------------------
 
 INFO: [Synth 8-802] inferred FSM for state register 'ap_CS_fsm_reg' in module 'vivado_activity_thread'
@@ -381,7 +345,7 @@ Part Resources:
 DSPs: 220 (col length:60)
 BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1122.168 ; gain = 500.336
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1123.164 ; gain = 501.336
 ---------------------------------------------------------------------------------
 
 
@@ -402,12 +366,12 @@ Detailed RTL Component Info :
 +---Muxes : 
 	   3 Input     32 Bit        Muxes := 2     
 	   2 Input     32 Bit        Muxes := 4     
-	   2 Input      6 Bit        Muxes := 4     
+	   2 Input      6 Bit        Muxes := 2     
 	  48 Input      6 Bit        Muxes := 1     
 	  49 Input      6 Bit        Muxes := 1     
 	   8 Input      6 Bit        Muxes := 1     
 	   3 Input      1 Bit        Muxes := 2     
-	   2 Input      1 Bit        Muxes := 6     
+	   2 Input      1 Bit        Muxes := 9     
 
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -431,10 +395,10 @@ Detailed RTL Component Info :
 	   2 Input     32 Bit        Muxes := 4     
 	   3 Input     32 Bit        Muxes := 2     
 	  49 Input      6 Bit        Muxes := 1     
-	   2 Input      6 Bit        Muxes := 4     
+	   2 Input      6 Bit        Muxes := 2     
 	  48 Input      6 Bit        Muxes := 1     
 	   3 Input      1 Bit        Muxes := 2     
-	   2 Input      1 Bit        Muxes := 6     
+	   2 Input      1 Bit        Muxes := 9     
 Module vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp__parameterized0 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -467,12 +431,8 @@ Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-3917] design vivado_activity_thread has port seed_0_s1_read driven by constant 0
-WARNING: [Synth 8-3917] design vivado_activity_thread has port seed_0_s2_read driven by constant 0
-WARNING: [Synth 8-3917] design vivado_activity_thread has port seed_0_s3_read driven by constant 0
-WARNING: [Synth 8-3917] design vivado_activity_thread has port seed_0_offset_read driven by constant 0
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1122.168 ; gain = 500.336
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1123.164 ; gain = 501.336
 ---------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------
@@ -485,45 +445,15 @@ Finished RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
 Start Area Optimization
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/din1_buf1_reg[31] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[30] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[31] )
 WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[4] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[0] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[1] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[2] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[3] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[4] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[5] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[6] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[7] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[8] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[9] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[10] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[11] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[12] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[13] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[14] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[15] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[16] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[17] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[18] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[19] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[20] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[0] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[21] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[22] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[23] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[24] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[25] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[26] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[27] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[28] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[29] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[30] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[31] ) is unused and will be removed from module vivado_activity_thread.
 WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[3] ) is unused and will be removed from module vivado_activity_thread.
-WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[2] ) is unused and will be removed from module vivado_activity_thread.
 WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[1] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[21] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[0] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[0] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[2] ) is unused and will be removed from module vivado_activity_thread.
 WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/din1_buf1_reg[0] ) is unused and will be removed from module vivado_activity_thread.
 WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/din1_buf1_reg[1] ) is unused and will be removed from module vivado_activity_thread.
 WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/din1_buf1_reg[2] ) is unused and will be removed from module vivado_activity_thread.
@@ -556,8 +486,38 @@ WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32
 WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/din1_buf1_reg[29] ) is unused and will be removed from module vivado_activity_thread.
 WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/din1_buf1_reg[30] ) is unused and will be removed from module vivado_activity_thread.
 WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/din1_buf1_reg[31] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[1] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[2] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[3] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[4] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[5] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[6] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[7] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[8] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[9] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[10] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[11] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[12] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[13] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[14] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[15] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[16] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[17] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[18] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[19] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[20] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[22] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[24] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[23] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[25] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[30] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[26] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[27] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[28] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[29] ) is unused and will be removed from module vivado_activity_thread.
+WARNING: [Synth 8-3332] Sequential element (\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[31] ) is unused and will be removed from module vivado_activity_thread.
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1163.223 ; gain = 541.391
+Finished Area Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 ---------------------------------------------------------------------------------
 
 
@@ -570,11 +530,11 @@ Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 Wrong number or type of arguments for overloaded function 'NRealModS_findPins'. at line 1 of file /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1163.223 ; gain = 541.391
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 ---------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1163.223 ; gain = 541.391
+Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 ---------------------------------------------------------------------------------
 
 
@@ -582,7 +542,7 @@ Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . M
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 ---------------------------------------------------------------------------------
 
 
@@ -608,7 +568,7 @@ Finished Final Netlist Cleanup
 Gated Clock Conversion mode: off
 CRITICAL WARNING: [Synth 8-4442] BlackBox module \vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/vivado_activity_thread_ap_fcmp_1_no_dsp_u  has unconnected pin s_axis_operation_tvalid
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 ---------------------------------------------------------------------------------
 
 
@@ -623,7 +583,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 ---------------------------------------------------------------------------------
 
 
@@ -631,7 +591,7 @@ Finished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 ---------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------
@@ -666,11 +626,11 @@ Report Cell Usage:
 |4     |vivado_activity_thread_ap_fexp_7_full_dsp_bbox     |     1|
 |5     |vivado_activity_thread_ap_fmul_2_max_dsp_bbox      |     1|
 |6     |LUT1                                               |     1|
-|7     |LUT2                                               |     9|
+|7     |LUT2                                               |     2|
 |8     |LUT3                                               |     4|
-|9     |LUT4                                               |    35|
-|10    |LUT5                                               |     3|
-|11    |LUT6                                               |   127|
+|9     |LUT4                                               |    34|
+|10    |LUT5                                               |    39|
+|11    |LUT6                                               |    84|
 |12    |FDRE                                               |   425|
 |13    |FDSE                                               |     7|
 +------+---------------------------------------------------+------+
@@ -679,29 +639,29 @@ Report Instance Areas:
 +------+-------------------------------------------------------------+------------------------------------------------------------------------+------+
 |      |Instance                                                     |Module                                                                  |Cells |
 +------+-------------------------------------------------------------+------------------------------------------------------------------------+------+
-|1     |top                                                          |                                                                        |   752|
-|2     |  vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp__parameterized0      |   168|
+|1     |top                                                          |                                                                        |   737|
+|2     |  vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp__parameterized0      |   163|
 |3     |  vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5     |vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp__parameterized0     |    65|
 |4     |  vivado_activity_thread_fcmp_32ns_32ns_1_3_U4               |vivado_activity_thread_fcmp_32ns_32ns_1_3__parameterized0               |    42|
 |5     |  vivado_activity_thread_fdiv_32ns_32ns_32_16_U3             |vivado_activity_thread_fdiv_32ns_32ns_32_16__parameterized0             |    65|
-|6     |  vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp__parameterized0 |   171|
+|6     |  vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp__parameterized0 |   163|
 +------+-------------------------------------------------------------+------------------------------------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1163.219 ; gain = 541.391
 ---------------------------------------------------------------------------------
 
-Synthesis finished with 0 errors, 1 critical warnings and 686 warnings.
-Synthesis Optimization Complete : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+Synthesis finished with 0 errors, 1 critical warnings and 678 warnings.
+Synthesis Optimization Complete : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1163.219 ; gain = 541.391
 INFO: [Opt 31-138] Pushed 0 inverter(s).
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-37 Infos, 179 Warnings, 1 Critical Warnings and 0 Errors encountered.
+37 Infos, 171 Warnings, 1 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 1513.699 ; gain = 795.477
+synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:00:39 . Memory (MB): peak = 1509.695 ; gain = 791.477
 # write_checkpoint vivado_activity_thread.dcp
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 # report_utilization -file vivado_activity_thread_utilization_synth.rpt -pb vivado_activity_thread_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.48 ; elapsed = 00:00:00.58 . Memory (MB): peak = 1517.754 ; gain = 4.051
-INFO: [Common 17-206] Exiting Vivado at Tue Apr  8 20:30:47 2014...
+report_utilization: Time (s): cpu = 00:00:00.56 ; elapsed = 00:00:00.61 . Memory (MB): peak = 1513.750 ; gain = 4.051
+INFO: [Common 17-206] Exiting Vivado at Wed Apr  9 11:15:39 2014...

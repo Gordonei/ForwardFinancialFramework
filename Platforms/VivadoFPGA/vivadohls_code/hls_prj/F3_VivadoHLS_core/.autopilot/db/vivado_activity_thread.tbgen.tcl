@@ -28,12 +28,12 @@ set C_modelArgList {
 	{ kernel_o_a_0_time_period float 32 regular {pointer 0}  }
 	{ kernel_o_a_0_call float 32 regular {pointer 0}  }
 	{ kernel_o_a_0_points float 32 unused {pointer 0}  }
-	{ seed_0_s1 int 32 unused {fifo 0}  }
-	{ seed_0_s2 int 32 unused {fifo 0}  }
-	{ seed_0_s3 int 32 unused {fifo 0}  }
-	{ seed_0_offset int 32 unused {fifo 0}  }
-	{ thread_result_0 float 32 regular {fifo 1 volatile }  }
-	{ thread_result_sqrd_0 float 32 regular {fifo 1 volatile }  }
+	{ seed_0_s1 int 32 unused {pointer 0}  }
+	{ seed_0_s2 int 32 unused {pointer 0}  }
+	{ seed_0_s3 int 32 unused {pointer 0}  }
+	{ seed_0_offset int 32 unused {pointer 0}  }
+	{ thread_result_0 float 32 regular {pointer 1}  }
+	{ thread_result_sqrd_0 float 32 regular {pointer 1}  }
 }
 set C_modelArgMapList {[ 
 	{ "rtlName" : "kernel_u_a_0_rfir","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.rfir","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
@@ -63,7 +63,7 @@ set C_modelArgMapList {[
  	{ "rtlName" : "thread_result_0","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "thread_result_0","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
  	{ "rtlName" : "thread_result_sqrd_0","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "thread_result_sqrd_0","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} ]}
 # RTL Port declarations: 
-set portNum 44
+set portNum 34
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
@@ -91,24 +91,14 @@ set portList {
 	{ kernel_o_a_0_time_period sc_in sc_lv 32 signal 17 } 
 	{ kernel_o_a_0_call sc_in sc_lv 32 signal 18 } 
 	{ kernel_o_a_0_points sc_in sc_lv 32 signal 19 } 
-	{ seed_0_s1_dout sc_in sc_lv 32 signal 20 } 
-	{ seed_0_s1_empty_n sc_in sc_logic 1 signal 20 } 
-	{ seed_0_s1_read sc_out sc_logic 1 signal 20 } 
-	{ seed_0_s2_dout sc_in sc_lv 32 signal 21 } 
-	{ seed_0_s2_empty_n sc_in sc_logic 1 signal 21 } 
-	{ seed_0_s2_read sc_out sc_logic 1 signal 21 } 
-	{ seed_0_s3_dout sc_in sc_lv 32 signal 22 } 
-	{ seed_0_s3_empty_n sc_in sc_logic 1 signal 22 } 
-	{ seed_0_s3_read sc_out sc_logic 1 signal 22 } 
-	{ seed_0_offset_dout sc_in sc_lv 32 signal 23 } 
-	{ seed_0_offset_empty_n sc_in sc_logic 1 signal 23 } 
-	{ seed_0_offset_read sc_out sc_logic 1 signal 23 } 
-	{ thread_result_0_din sc_out sc_lv 32 signal 24 } 
-	{ thread_result_0_full_n sc_in sc_logic 1 signal 24 } 
-	{ thread_result_0_write sc_out sc_logic 1 signal 24 } 
-	{ thread_result_sqrd_0_din sc_out sc_lv 32 signal 25 } 
-	{ thread_result_sqrd_0_full_n sc_in sc_logic 1 signal 25 } 
-	{ thread_result_sqrd_0_write sc_out sc_logic 1 signal 25 } 
+	{ seed_0_s1 sc_in sc_lv 32 signal 20 } 
+	{ seed_0_s2 sc_in sc_lv 32 signal 21 } 
+	{ seed_0_s3 sc_in sc_lv 32 signal 22 } 
+	{ seed_0_offset sc_in sc_lv 32 signal 23 } 
+	{ thread_result_0 sc_out sc_lv 32 signal 24 } 
+	{ thread_result_0_ap_vld sc_out sc_logic 1 outvld 24 } 
+	{ thread_result_sqrd_0 sc_out sc_lv 32 signal 25 } 
+	{ thread_result_sqrd_0_ap_vld sc_out sc_logic 1 outvld 25 } 
 }
 
 set Spec2ImplPortList { 
@@ -132,22 +122,16 @@ set Spec2ImplPortList {
 	kernel_o_a_0_time_period { ap_none {  { kernel_o_a_0_time_period in_data 0 32 } } }
 	kernel_o_a_0_call { ap_none {  { kernel_o_a_0_call in_data 0 32 } } }
 	kernel_o_a_0_points { ap_none {  { kernel_o_a_0_points in_data 0 32 } } }
-	seed_0_s1 { ap_fifo {  { seed_0_s1_dout fifo_data 0 32 }  { seed_0_s1_empty_n fifo_status 0 1 }  { seed_0_s1_read fifo_update 1 1 } } }
-	seed_0_s2 { ap_fifo {  { seed_0_s2_dout fifo_data 0 32 }  { seed_0_s2_empty_n fifo_status 0 1 }  { seed_0_s2_read fifo_update 1 1 } } }
-	seed_0_s3 { ap_fifo {  { seed_0_s3_dout fifo_data 0 32 }  { seed_0_s3_empty_n fifo_status 0 1 }  { seed_0_s3_read fifo_update 1 1 } } }
-	seed_0_offset { ap_fifo {  { seed_0_offset_dout fifo_data 0 32 }  { seed_0_offset_empty_n fifo_status 0 1 }  { seed_0_offset_read fifo_update 1 1 } } }
-	thread_result_0 { ap_fifo {  { thread_result_0_din fifo_data 1 32 }  { thread_result_0_full_n fifo_status 0 1 }  { thread_result_0_write fifo_update 1 1 } } }
-	thread_result_sqrd_0 { ap_fifo {  { thread_result_sqrd_0_din fifo_data 1 32 }  { thread_result_sqrd_0_full_n fifo_status 0 1 }  { thread_result_sqrd_0_write fifo_update 1 1 } } }
+	seed_0_s1 { ap_none {  { seed_0_s1 in_data 0 32 } } }
+	seed_0_s2 { ap_none {  { seed_0_s2 in_data 0 32 } } }
+	seed_0_s3 { ap_none {  { seed_0_s3 in_data 0 32 } } }
+	seed_0_offset { ap_none {  { seed_0_offset in_data 0 32 } } }
+	thread_result_0 { ap_vld {  { thread_result_0 out_data 1 32 }  { thread_result_0_ap_vld out_vld 1 1 } } }
+	thread_result_sqrd_0 { ap_vld {  { thread_result_sqrd_0 out_data 1 32 }  { thread_result_sqrd_0_ap_vld out_vld 1 1 } } }
 }
 
 # RTL port scheduling information:
 set fifoSchedulingInfoList { 
-	seed_0_s1 { fifo_read 0 no_conditional }
-	seed_0_s2 { fifo_read 0 no_conditional }
-	seed_0_s3 { fifo_read 0 no_conditional }
-	seed_0_offset { fifo_read 0 no_conditional }
-	thread_result_0 { fifo_write 1 no_conditional }
-	thread_result_sqrd_0 { fifo_write 1 no_conditional }
 }
 
 # RTL bus port read request latency information:

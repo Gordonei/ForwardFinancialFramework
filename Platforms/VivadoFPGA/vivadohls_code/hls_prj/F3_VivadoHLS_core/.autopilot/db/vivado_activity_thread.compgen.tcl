@@ -539,6 +539,106 @@ set opts {
         width 32
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
+    {
+        id 26
+        name seed_0_s1
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir I
+        width 32
+        mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
+    }
+    {
+        id 27
+        name seed_0_s2
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir I
+        width 32
+        mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
+    }
+    {
+        id 28
+        name seed_0_s3
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir I
+        width 32
+        mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
+    }
+    {
+        id 29
+        name seed_0_offset
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir I
+        width 32
+        mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
+    }
+    {
+        id 30
+        name thread_result_0
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir O
+        width 32
+        mode SIG_OUT_VLD_ON:SIG_OUT_ACC_OFF
+    }
+    {
+        id 31
+        name thread_result_sqrd_0
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir O
+        width 32
+        mode SIG_OUT_VLD_ON:SIG_OUT_ACC_OFF
+    }
+    {
+        id -1
+        name ap_start
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir I
+        width 1
+        mode ap_ctrl
+    }
+    {
+        id -2
+        name ap_ready
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir O
+        width 1
+        mode ap_ctrl
+    }
+    {
+        id -3
+        name ap_done
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir O
+        width 1
+        mode ap_ctrl
+    }
+    {
+        id -4
+        name ap_idle
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir O
+        width 1
+        mode ap_ctrl
+    }
 }
 set portmap { }
 set metadata { -bus_bundle CORE_IO}
@@ -558,206 +658,6 @@ puts "@W Can not find gen function '::AESL_LIB_XILADAPTER::axi_slave_int_gen' in
 }
 
 
-# Adapter definition:
-set corename seed_0_offset
-set opts {
-    {
-        id 29
-        name seed_0_offset
-        reset_level 1
-        sync_rst true
-        type fifo
-        dir I
-        width 32
-    }
-}
-set portmap { }
-set metadata { -bus_bundle seed_0_offset}
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::axis_gen] == "::AESL_LIB_XILADAPTER::axis_gen"} {
-eval "::AESL_LIB_XILADAPTER::axis_gen { \
-    corename ${corename} \
-    reset_level 1 \
-    sync_rst true \
-    opts {${opts}} \
-    portmap {${portmap}} \
-    metadata {${metadata}} \
-}"
-} else {
-puts "@W Can not find gen function '::AESL_LIB_XILADAPTER::axis_gen' in the library. Ignored generation of adapter for '${corename}'"
-}
-}
-
-
-# Adapter definition:
-set corename seed_0_s1
-set opts {
-    {
-        id 26
-        name seed_0_s1
-        reset_level 1
-        sync_rst true
-        type fifo
-        dir I
-        width 32
-    }
-}
-set portmap { }
-set metadata { -bus_bundle seed_0_s1}
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::axis_gen] == "::AESL_LIB_XILADAPTER::axis_gen"} {
-eval "::AESL_LIB_XILADAPTER::axis_gen { \
-    corename ${corename} \
-    reset_level 1 \
-    sync_rst true \
-    opts {${opts}} \
-    portmap {${portmap}} \
-    metadata {${metadata}} \
-}"
-} else {
-puts "@W Can not find gen function '::AESL_LIB_XILADAPTER::axis_gen' in the library. Ignored generation of adapter for '${corename}'"
-}
-}
-
-
-# Adapter definition:
-set corename seed_0_s2
-set opts {
-    {
-        id 27
-        name seed_0_s2
-        reset_level 1
-        sync_rst true
-        type fifo
-        dir I
-        width 32
-    }
-}
-set portmap { }
-set metadata { -bus_bundle seed_0_s2}
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::axis_gen] == "::AESL_LIB_XILADAPTER::axis_gen"} {
-eval "::AESL_LIB_XILADAPTER::axis_gen { \
-    corename ${corename} \
-    reset_level 1 \
-    sync_rst true \
-    opts {${opts}} \
-    portmap {${portmap}} \
-    metadata {${metadata}} \
-}"
-} else {
-puts "@W Can not find gen function '::AESL_LIB_XILADAPTER::axis_gen' in the library. Ignored generation of adapter for '${corename}'"
-}
-}
-
-
-# Adapter definition:
-set corename seed_0_s3
-set opts {
-    {
-        id 28
-        name seed_0_s3
-        reset_level 1
-        sync_rst true
-        type fifo
-        dir I
-        width 32
-    }
-}
-set portmap { }
-set metadata { -bus_bundle seed_0_s3}
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::axis_gen] == "::AESL_LIB_XILADAPTER::axis_gen"} {
-eval "::AESL_LIB_XILADAPTER::axis_gen { \
-    corename ${corename} \
-    reset_level 1 \
-    sync_rst true \
-    opts {${opts}} \
-    portmap {${portmap}} \
-    metadata {${metadata}} \
-}"
-} else {
-puts "@W Can not find gen function '::AESL_LIB_XILADAPTER::axis_gen' in the library. Ignored generation of adapter for '${corename}'"
-}
-}
-
-
-# Adapter definition:
-set corename thread_result_0
-set opts {
-    {
-        id 30
-        name thread_result_0
-        reset_level 1
-        sync_rst true
-        type fifo
-        dir O
-        width 32
-    }
-}
-set portmap { }
-set metadata { -bus_bundle thread_result_0}
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::axis_gen] == "::AESL_LIB_XILADAPTER::axis_gen"} {
-eval "::AESL_LIB_XILADAPTER::axis_gen { \
-    corename ${corename} \
-    reset_level 1 \
-    sync_rst true \
-    opts {${opts}} \
-    portmap {${portmap}} \
-    metadata {${metadata}} \
-}"
-} else {
-puts "@W Can not find gen function '::AESL_LIB_XILADAPTER::axis_gen' in the library. Ignored generation of adapter for '${corename}'"
-}
-}
-
-
-# Adapter definition:
-set corename thread_result_sqrd_0
-set opts {
-    {
-        id 31
-        name thread_result_sqrd_0
-        reset_level 1
-        sync_rst true
-        type fifo
-        dir O
-        width 32
-    }
-}
-set portmap { }
-set metadata { -bus_bundle thread_result_sqrd_0}
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::axis_gen] == "::AESL_LIB_XILADAPTER::axis_gen"} {
-eval "::AESL_LIB_XILADAPTER::axis_gen { \
-    corename ${corename} \
-    reset_level 1 \
-    sync_rst true \
-    opts {${opts}} \
-    portmap {${portmap}} \
-    metadata {${metadata}} \
-}"
-} else {
-puts "@W Can not find gen function '::AESL_LIB_XILADAPTER::axis_gen' in the library. Ignored generation of adapter for '${corename}'"
-}
-}
-
-
-# Direct connection:
-if {${::AESL::PGuard_autoexp_gen}} {
-eval "cg_default_interface_gen_dc { \
-    id -1 \
-    name ap_ctrl \
-    type ap_ctrl \
-    reset_level 1 \
-    sync_rst true \
-    corename ap_ctrl \
-    op interface \
-    ports { ap_start { I 1 bit } ap_ready { O 1 bit } ap_done { O 1 bit } ap_idle { O 1 bit } } \
-} "
-}
-
 
 # Adapter definition:
 set PortName ap_clk
@@ -765,7 +665,7 @@ set DataWd 1
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc cg_default_interface_gen_clock] == "cg_default_interface_gen_clock"} {
 eval "cg_default_interface_gen_clock { \
-    id -2 \
+    id -5 \
     name ${PortName} \
     reset_level 1 \
     sync_rst true \
@@ -785,7 +685,7 @@ set DataWd 1
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc cg_default_interface_gen_reset] == "cg_default_interface_gen_reset"} {
 eval "cg_default_interface_gen_reset { \
-    id -3 \
+    id -6 \
     name ${PortName} \
     reset_level 1 \
     sync_rst true \

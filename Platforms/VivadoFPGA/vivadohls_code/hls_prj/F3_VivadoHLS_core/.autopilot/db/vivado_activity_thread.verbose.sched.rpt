@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'vivado_activity_thread'
 ================================================================
-* Date:           Tue Apr  8 20:22:02 2014
+* Date:           Wed Apr  9 11:07:22 2014
 
 * Version:        2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)
 * Project:        hls_prj
@@ -229,103 +229,103 @@ IsGatedGlobalClock: 0
 
  <State 1>: 6.08ns
 ST_1: o_a_0_time_period [1/1] 0.00ns
-.critedge:36  %o_a_0_time_period = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_time_period)
+.critedge:34  %o_a_0_time_period = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_time_period)
 
 ST_1: delta_time_0 [16/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 2>: 6.08ns
 ST_2: delta_time_0 [15/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 3>: 6.08ns
 ST_3: delta_time_0 [14/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 4>: 6.08ns
 ST_4: delta_time_0 [13/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 5>: 6.08ns
 ST_5: delta_time_0 [12/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 6>: 6.08ns
 ST_6: delta_time_0 [11/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 7>: 6.08ns
 ST_7: delta_time_0 [10/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 8>: 6.08ns
 ST_8: delta_time_0 [9/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 9>: 6.08ns
 ST_9: delta_time_0 [8/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 10>: 6.08ns
 ST_10: delta_time_0 [7/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 11>: 6.08ns
 ST_11: delta_time_0 [6/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 12>: 6.08ns
 ST_12: delta_time_0 [5/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 13>: 6.08ns
 ST_13: delta_time_0 [4/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 14>: 6.08ns
 ST_14: delta_time_0 [3/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 15>: 6.08ns
 ST_15: delta_time_0 [2/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 16>: 6.08ns
 ST_16: delta_time_0 [1/16] 6.08ns
-.critedge:42  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
+.critedge:40  %delta_time_0 = fdiv float %o_a_0_time_period, 1.000000e+01
 
 
  <State 17>: 5.70ns
 ST_17: u_a_0_rfir [1/1] 0.00ns
-.critedge:38  %u_a_0_rfir = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_u_a_0_rfir)
+.critedge:36  %u_a_0_rfir = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_u_a_0_rfir)
 
 ST_17: tmp_i [4/4] 5.70ns
-.critedge:43  %tmp_i = fmul float %u_a_0_rfir, %delta_time_0
+.critedge:41  %tmp_i = fmul float %u_a_0_rfir, %delta_time_0
 
 
  <State 18>: 5.70ns
 ST_18: tmp_i [3/4] 5.70ns
-.critedge:43  %tmp_i = fmul float %u_a_0_rfir, %delta_time_0
+.critedge:41  %tmp_i = fmul float %u_a_0_rfir, %delta_time_0
 
 
  <State 19>: 5.70ns
 ST_19: tmp_i [2/4] 5.70ns
-.critedge:43  %tmp_i = fmul float %u_a_0_rfir, %delta_time_0
+.critedge:41  %tmp_i = fmul float %u_a_0_rfir, %delta_time_0
 
 
  <State 20>: 5.70ns
@@ -417,43 +417,37 @@ ST_20: stg_98 [1/1] 0.00ns
 .critedge:28  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_o_a_0_second_barrier, float* %kernel_o_a_0_barrier, float* %kernel_o_a_0_out, float* %kernel_o_a_0_down, float* %kernel_o_a_0_strike_price, float* %kernel_o_a_0_time_period, float* %kernel_o_a_0_call, float* %kernel_o_a_0_points, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
 
 ST_20: stg_99 [1/1] 0.00ns
-.critedge:29  call void (...)* @_ssdm_op_SpecFifo(i32* %seed_0_s1, i32* %seed_0_s2, i32* %seed_0_s3, i32* %seed_0_offset, [8 x i8]* @p_str127, i32 0, i32 0, i32 0, [1 x i8]* @p_str124)
+.critedge:29  call void (...)* @_ssdm_op_SpecIFCore(i32* %seed_0_s1, i32* %seed_0_s2, i32* %seed_0_s3, i32* %seed_0_offset, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
 
 ST_20: stg_100 [1/1] 0.00ns
-.critedge:30  call void (...)* @_ssdm_op_SpecFifo(float* %thread_result_0, [8 x i8]* @p_str127, i32 0, i32 0, i32 0, [1 x i8]* @p_str124)
+.critedge:30  call void (...)* @_ssdm_op_SpecIFCore(float* %thread_result_0, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
 
 ST_20: stg_101 [1/1] 0.00ns
-.critedge:31  call void (...)* @_ssdm_op_SpecFifo(float* %thread_result_sqrd_0, [8 x i8]* @p_str127, i32 0, i32 0, i32 0, [1 x i8]* @p_str124)
+.critedge:31  call void (...)* @_ssdm_op_SpecIFCore(float* %thread_result_sqrd_0, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
 
 ST_20: stg_102 [1/1] 0.00ns
-.critedge:32  call void (...)* @_ssdm_op_SpecIFCore(i32* %seed_0_s1, i32* %seed_0_s2, i32* %seed_0_s3, i32* %seed_0_offset, [1 x i8]* @p_str124, [11 x i8]* @p_str128, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124)
-
-ST_20: stg_103 [1/1] 0.00ns
-.critedge:33  call void (...)* @_ssdm_op_SpecIFCore(float* %thread_result_0, [1 x i8]* @p_str124, [11 x i8]* @p_str128, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124)
-
-ST_20: stg_104 [1/1] 0.00ns
-.critedge:34  call void (...)* @_ssdm_op_SpecIFCore(float* %thread_result_sqrd_0, [1 x i8]* @p_str124, [11 x i8]* @p_str128, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124)
+.critedge:32  call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @p_str124, [10 x i8]* @p_str125, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [1 x i8]* @p_str124, [20 x i8]* @p_str126)
 
 ST_20: o_a_0_strike_price [1/1] 0.00ns
-.critedge:35  %o_a_0_strike_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_strike_price)
+.critedge:33  %o_a_0_strike_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_strike_price)
 
 ST_20: o_a_0_call [1/1] 0.00ns
-.critedge:37  %o_a_0_call = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_call)
+.critedge:35  %o_a_0_call = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_call)
 
 ST_20: u_a_0_current_price [1/1] 0.00ns
-.critedge:39  %u_a_0_current_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_u_a_0_current_price)
+.critedge:37  %u_a_0_current_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_u_a_0_current_price)
 
-ST_20: stg_108 [1/1] 0.00ns
-.critedge:40  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str129) nounwind
+ST_20: stg_106 [1/1] 0.00ns
+.critedge:38  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str127) nounwind
 
 ST_20: tmp [1/1] 0.00ns
-.critedge:41  %tmp = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str129)
+.critedge:39  %tmp = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str127)
 
 ST_20: tmp_i [1/4] 5.70ns
-.critedge:43  %tmp_i = fmul float %u_a_0_rfir, %delta_time_0
+.critedge:41  %tmp_i = fmul float %u_a_0_rfir, %delta_time_0
 
-ST_20: stg_111 [1/1] 1.57ns
-.critedge:44  br label %0
+ST_20: stg_109 [1/1] 1.57ns
+.critedge:42  br label %0
 
 
  <State 21>: 5.70ns
@@ -493,7 +487,7 @@ ST_24: empty [1/1] 0.00ns
 ST_24: pp_1 [1/1] 0.80ns
 :6  %pp_1 = add i4 %pp, 1
 
-ST_24: stg_122 [1/1] 0.00ns
+ST_24: stg_120 [1/1] 0.00ns
 :7  br i1 %exitcond, label %_ifconv, label %1
 
 ST_24: u_v_0_gamma [5/5] 7.26ns
@@ -564,13 +558,13 @@ ST_36: tmp_7 [2/9] 7.68ns
 
 
  <State 37>: 7.68ns
-ST_37: stg_137 [1/1] 0.00ns
-:0  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str130) nounwind
+ST_37: stg_135 [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str128) nounwind
 
 ST_37: tmp_7 [1/9] 7.68ns
 :2  %tmp_7 = call float @llvm.exp.f32(float %u_v_0_gamma)
 
-ST_37: stg_139 [1/1] 0.00ns
+ST_37: stg_137 [1/1] 0.00ns
 :3  br label %0
 
 
@@ -629,11 +623,11 @@ _ifconv:3  %tmp_2_i = fsub float %o_a_0_strike_price, %spot_price_0
 ST_44: temp_value [1/1] 1.37ns
 _ifconv:4  %temp_value = select i1 %tmp_2, float %tmp_1_i, float %tmp_2_i
 
-ST_44: stg_154 [1/1] 0.00ns
-_ifconv:5  call void @_ssdm_op_Write.ap_fifo.volatile.floatP(float* %thread_result_0, float %temp_value)
-
 
  <State 45>: 5.70ns
+ST_45: stg_152 [1/1] 0.00ns
+_ifconv:5  call void @_ssdm_op_Write.ap_auto.floatP(float* %thread_result_0, float %temp_value)
+
 ST_45: tmp_6 [4/4] 5.70ns
 _ifconv:6  %tmp_6 = fmul float %temp_value, %temp_value
 
@@ -652,13 +646,13 @@ _ifconv:6  %tmp_6 = fmul float %temp_value, %temp_value
 ST_48: tmp_6 [1/4] 5.70ns
 _ifconv:6  %tmp_6 = fmul float %temp_value, %temp_value
 
+ST_48: stg_157 [1/1] 0.00ns
+_ifconv:7  call void @_ssdm_op_Write.ap_auto.floatP(float* %thread_result_sqrd_0, float %tmp_6)
+
+ST_48: empty_2 [1/1] 0.00ns
+_ifconv:8  %empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str127, i32 %tmp)
+
 ST_48: stg_159 [1/1] 0.00ns
-_ifconv:7  call void @_ssdm_op_Write.ap_fifo.volatile.floatP(float* %thread_result_sqrd_0, float %tmp_6)
-
-ST_48: empty_3 [1/1] 0.00ns
-_ifconv:8  %empty_3 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str129, i32 %tmp)
-
-ST_48: stg_161 [1/1] 0.00ns
 _ifconv:9  ret void
 
 

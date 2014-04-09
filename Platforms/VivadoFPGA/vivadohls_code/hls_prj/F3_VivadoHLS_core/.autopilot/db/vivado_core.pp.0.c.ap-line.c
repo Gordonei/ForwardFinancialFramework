@@ -13288,17 +13288,20 @@ int ret,ret_2;
 	} kernel_data;*/
 #pragma empty_line
 //*Vivado HLS Kernel Function*
-void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t seed_0[1],float thread_result_0[1],float thread_result_sqrd_0[1]){
+void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,float *thread_result_0,float *thread_result_sqrd_0){
 #pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_u_a_0 metadata="-bus_bundle CORE_IO"
 #pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_o_a_0 metadata="-bus_bundle CORE_IO"
+#pragma HLS RESOURCE core=AXI_SLAVE variable=seed_0 metadata="-bus_bundle CORE_IO"
+#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_0 metadata="-bus_bundle CORE_IO"
+#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_sqrd_0 metadata="-bus_bundle CORE_IO"
+#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata="-bus_bundle CORE_IO"
 #pragma empty_line
-#pragma HLS INTERFACE ap_fifo port=seed_0
-#pragma HLS INTERFACE ap_fifo port=thread_result_0
-#pragma HLS INTERFACE ap_fifo port=thread_result_sqrd_0
-#pragma empty_line
-#pragma HLS RESOURCE core=AXI4Stream variable=seed_0
-#pragma HLS RESOURCE core=AXI4Stream variable=thread_result_0
-#pragma HLS RESOURCE core=AXI4Stream variable=thread_result_sqrd_0
+ //#pragma HLS INTERFACE ap_fifo port=seed_0
+ //#pragma HLS INTERFACE ap_fifo port=thread_result_0
+ //#pragma HLS INTERFACE ap_fifo port=thread_result_sqrd_0
+ //#pragma HLS RESOURCE core=AXI4Stream variable=seed_0
+ //#pragma HLS RESOURCE core=AXI4Stream variable=thread_result_0
+ //#pragma HLS RESOURCE core=AXI4Stream variable=thread_result_sqrd_0
 #pragma empty_line
  //#pragma HLS INTERFACE ap_fifo port=result_0
  //#pragma HLS INTERFACE ap_fifo port=result_sqrd_0

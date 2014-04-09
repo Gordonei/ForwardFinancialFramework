@@ -40,13 +40,13 @@ Starting synthesis...
 xc7z0202default:defaultZ17-349
 ú
 %s*synth2å
-xStarting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 769.223 ; gain = 147.391
+xStarting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 769.219 ; gain = 147.391
 2default:default
 †
 synthesizing module '%s'638*oasys2*
 vivado_activity_thread2default:default2§
 ç/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-612default:default8@Z8-638
+512default:default8@Z8-638
 N
 %s*synth2?
 +	Parameter ID bound to: 1 - type: integer 
@@ -75,7 +75,7 @@ Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'339
 :vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U12default:default2K
 7vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp2default:default2§
 ç/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-2552default:default8@Z8-3491
+2452default:default8@Z8-3491
 Ú
 synthesizing module '%s'638*oasys2[
 Gvivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp__parameterized02default:default2≈
@@ -150,7 +150,7 @@ Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'339
 5vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U22default:default2F
 2vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp2default:default2§
 ç/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-2712default:default8@Z8-3491
+2612default:default8@Z8-3491
 Ë
 synthesizing module '%s'638*oasys2V
 Bvivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp__parameterized02default:default2¿
@@ -225,7 +225,7 @@ Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'339
 .vivado_activity_thread_fdiv_32ns_32ns_32_16_U32default:default2?
 +vivado_activity_thread_fdiv_32ns_32ns_32_162default:default2§
 ç/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-2862default:default8@Z8-3491
+2762default:default8@Z8-3491
 ⁄
 synthesizing module '%s'638*oasys2O
 ;vivado_activity_thread_fdiv_32ns_32ns_32_16__parameterized02default:default2π
@@ -300,7 +300,7 @@ Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'339
 ,vivado_activity_thread_fcmp_32ns_32ns_1_3_U42default:default2=
 )vivado_activity_thread_fcmp_32ns_32ns_1_32default:default2§
 ç/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-3012default:default8@Z8-3491
+2912default:default8@Z8-3491
 ÷
 synthesizing module '%s'638*oasys2M
 9vivado_activity_thread_fcmp_32ns_32ns_1_3__parameterized02default:default2∑
@@ -381,7 +381,7 @@ Hmodule '%s' declared at '%s:%s' bound to instance '%s' of component '%s'339
 6vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U52default:default2G
 3vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp2default:default2§
 ç/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-3172default:default8@Z8-3491
+3072default:default8@Z8-3491
 Í
 synthesizing module '%s'638*oasys2W
 Cvivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp__parameterized02default:default2¡
@@ -434,27 +434,7 @@ Cvivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp__parameterized02default:d
 62default:default2
 12default:default2§
 ç/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.vhd2default:default2
-612default:default8@Z8-256
-´
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2"
-seed_0_s1_read2default:default2
-02default:defaultZ8-3917
-´
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2"
-seed_0_s2_read2default:default2
-02default:defaultZ8-3917
-´
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2"
-seed_0_s3_read2default:default2
-02default:defaultZ8-3917
-Ø
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2&
-seed_0_offset_read2default:default2
-02default:defaultZ8-3917
+512default:default8@Z8-256
 ó
 !design %s has unconnected port %s3331*oasys2*
 vivado_activity_thread2default:default2/
@@ -862,7 +842,7 @@ Cvivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp__parameterized02default:d
 1002default:defaultZ17-14
 ú
 %s*synth2å
-xFinished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 805.043 ; gain = 183.211
+xFinished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 805.039 ; gain = 183.211
 2default:default
 ;
 %s*synth2,
@@ -950,11 +930,11 @@ u
 2default:defaultZ1-111
 ∂
 %s*synth2¶
-ëFinished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1044.820 ; gain = 422.988
+ëFinished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1044.816 ; gain = 422.988
 2default:default
 û
 %s*synth2é
-zFinished RTL Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1044.820 ; gain = 422.988
+zFinished RTL Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1044.816 ; gain = 422.988
 2default:default
 ô
 3inferred FSM for state register '%s' in module '%s'802*oasys2!
@@ -1001,7 +981,7 @@ BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
 2default:default
 ≤
 %s*synth2¢
-çFinished Loading Part and Timing Information : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1122.168 ; gain = 500.336
+çFinished Loading Part and Timing Information : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1123.164 ; gain = 501.336
 2default:default
 B
 %s*synth23
@@ -1061,7 +1041,7 @@ Q
 2default:default
 Q
 %s*synth2B
-.	   2 Input      6 Bit        Muxes := 4     
+.	   2 Input      6 Bit        Muxes := 2     
 2default:default
 Q
 %s*synth2B
@@ -1081,7 +1061,7 @@ Q
 2default:default
 Q
 %s*synth2B
-.	   2 Input      1 Bit        Muxes := 6     
+.	   2 Input      1 Bit        Muxes := 9     
 2default:default
 F
 %s*synth27
@@ -1145,7 +1125,7 @@ Q
 2default:default
 Q
 %s*synth2B
-.	   2 Input      6 Bit        Muxes := 4     
+.	   2 Input      6 Bit        Muxes := 2     
 2default:default
 Q
 %s*synth2B
@@ -1157,7 +1137,7 @@ Q
 2default:default
 Q
 %s*synth2B
-.	   2 Input      1 Bit        Muxes := 6     
+.	   2 Input      1 Bit        Muxes := 9     
 2default:default
 s
 %s*synth2d
@@ -1255,29 +1235,9 @@ Q
 %s*synth2B
 .	               32 Bit    Registers := 1     
 2default:default
-´
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2"
-seed_0_s1_read2default:default2
-02default:defaultZ8-3917
-´
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2"
-seed_0_s2_read2default:default2
-02default:defaultZ8-3917
-´
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2"
-seed_0_s3_read2default:default2
-02default:defaultZ8-3917
-Ø
-+design %s has port %s driven by constant %s3447*oasys2*
-vivado_activity_thread2default:default2&
-seed_0_offset_read2default:default2
-02default:defaultZ8-3917
 ™
 %s*synth2ö
-ÖFinished Cross Boundary Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1122.168 ; gain = 500.336
+ÖFinished Cross Boundary Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1123.164 ; gain = 501.336
 2default:default
 ¢
 %s*synth2í
@@ -1297,149 +1257,17 @@ u
 %s*synth2f
 R---------------------------------------------------------------------------------
 2default:default
-Ω
+æ
 6propagating constant %s across sequential element (%s)3333*oasys2
-12default:default2U
-A\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[0] 2default:defaultZ8-3333
-º
+12default:default2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[30] 2default:defaultZ8-3333
+æ
 6propagating constant %s across sequential element (%s)3333*oasys2
-02default:default2T
-@\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/din1_buf1_reg[31] 2default:defaultZ8-3333
+02default:default2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[31] 2default:defaultZ8-3333
 ·
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
 A\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[4] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-·
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[0] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-·
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[1] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-·
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[2] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-·
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[3] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-·
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[4] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-·
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[5] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-·
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[6] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-·
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[7] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-·
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[8] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-·
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[9] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[10] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[11] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[12] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[13] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[14] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[15] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[16] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[17] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[18] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[19] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[20] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-·
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[0] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[21] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[22] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[23] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[24] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[25] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[26] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[27] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[28] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[29] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[30] 2default:default2*
-vivado_activity_thread2default:defaultZ8-3332
-‚
-ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
-B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[31] 2default:default2*
 vivado_activity_thread2default:defaultZ8-3332
 ·
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
@@ -1447,11 +1275,23 @@ A\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[3] 2default:def
 vivado_activity_thread2default:defaultZ8-3332
 ·
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[2] 2default:default2*
+A\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[1] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[21] 2default:default2*
 vivado_activity_thread2default:defaultZ8-3332
 ·
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
-A\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[1] 2default:default2*
+A\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[0] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+·
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
+A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[0] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+·
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
+A\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/opcode_buf1_reg[2] 2default:default2*
 vivado_activity_thread2default:defaultZ8-3332
 ﬂ
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2S
@@ -1581,9 +1421,129 @@ ESequential element (%s) is unused and will be removed from module %s.3332*
 ESequential element (%s) is unused and will be removed from module %s.3332*oasys2T
 @\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/din1_buf1_reg[31] 2default:default2*
 vivado_activity_thread2default:defaultZ8-3332
+·
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
+A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[1] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+·
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
+A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[2] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+·
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
+A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[3] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+·
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
+A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[4] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+·
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
+A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[5] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+·
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
+A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[6] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+·
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
+A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[7] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+·
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
+A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[8] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+·
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2U
+A\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[9] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[10] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[11] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[12] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[13] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[14] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[15] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[16] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[17] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[18] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[19] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[20] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[22] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[24] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[23] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[25] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[30] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[26] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[27] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[28] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[29] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
+‚
+ESequential element (%s) is unused and will be removed from module %s.3332*oasys2V
+B\vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/din1_buf1_reg[31] 2default:default2*
+vivado_activity_thread2default:defaultZ8-3332
 ü
 %s*synth2è
-{Finished Area Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1163.223 ; gain = 541.391
+{Finished Area Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 2default:default
 ï
 %s*synth2Ö
@@ -1591,15 +1551,15 @@ ESequential element (%s) is unused and will be removed from module %s.3332*
 2default:default
 Æ
 %s*synth2û
-âFinished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1163.223 ; gain = 541.391
+âFinished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 2default:default
 °
 %s*synth2ë
-}Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1163.223 ; gain = 541.391
+}Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 2default:default
 †
 %s*synth2ê
-|Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+|Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 2default:default
 D
 %s*synth25
@@ -1612,7 +1572,7 @@ X\vivado_activity_thread_fcmp_32ns_32ns_1_3_U4/vivado_activity_thread_ap_fcmp_1_
 s_axis_operation_tvalid2default:defaultZ8-4442
 ö
 %s*synth2ä
-vFinished IO Insertion : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+vFinished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 2default:default
 ;
 %s*synth2,
@@ -1641,11 +1601,11 @@ I+------+------------------+-------+---------+-------+------------------+
 2default:default
 ´
 %s*synth2õ
-ÜFinished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+ÜFinished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 2default:default
 ®
 %s*synth2ò
-ÉFinished Rebuilding User Hierarchy : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+ÉFinished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1163.219 ; gain = 541.391
 2default:default
 ¢
 %s*synth2í
@@ -1749,7 +1709,7 @@ D|6     |LUT1                                               |     1|
 2default:default
 g
 %s*synth2X
-D|7     |LUT2                                               |     9|
+D|7     |LUT2                                               |     2|
 2default:default
 g
 %s*synth2X
@@ -1757,15 +1717,15 @@ D|8     |LUT3                                               |     4|
 2default:default
 g
 %s*synth2X
-D|9     |LUT4                                               |    35|
+D|9     |LUT4                                               |    34|
 2default:default
 g
 %s*synth2X
-D|10    |LUT5                                               |     3|
+D|10    |LUT5                                               |    39|
 2default:default
 g
 %s*synth2X
-D|11    |LUT6                                               |   127|
+D|11    |LUT6                                               |    84|
 2default:default
 g
 %s*synth2X
@@ -1798,11 +1758,11 @@ Report Instance Areas:
 2default:default
 º
 %s*synth2¨
-ó|1     |top                                                          |                                                                        |   752|
+ó|1     |top                                                          |                                                                        |   737|
 2default:default
 º
 %s*synth2¨
-ó|2     |  vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp__parameterized0      |   168|
+ó|2     |  vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp__parameterized0      |   163|
 2default:default
 º
 %s*synth2¨
@@ -1818,7 +1778,7 @@ Report Instance Areas:
 2default:default
 º
 %s*synth2¨
-ó|6     |  vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp__parameterized0 |   171|
+ó|6     |  vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp__parameterized0 |   163|
 2default:default
 º
 %s*synth2¨
@@ -1826,15 +1786,15 @@ Report Instance Areas:
 2default:default
 ß
 %s*synth2ó
-ÇFinished Writing Synthesis Report : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+ÇFinished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1163.219 ; gain = 541.391
 2default:default
 k
 %s*synth2\
-HSynthesis finished with 0 errors, 1 critical warnings and 686 warnings.
+HSynthesis finished with 0 errors, 1 critical warnings and 678 warnings.
 2default:default
 •
 %s*synth2ï
-ÄSynthesis Optimization Complete : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1163.223 ; gain = 541.391
+ÄSynthesis Optimization Complete : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1163.219 ; gain = 541.391
 2default:default
 C
 Pushed %s inverter(s).
@@ -1853,7 +1813,7 @@ L
 G%s Infos, %s Warnings, %s Critical Warnings and %s Errors encountered.
 28*	vivadotcl2
 372default:default2
-1792default:default2
+1712default:default2
 12default:default2
 02default:defaultZ4-41
 U
@@ -1864,18 +1824,18 @@ U
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2"
 synth_design: 2default:default2
-00:00:442default:default2
-00:00:452default:default2
-1513.6992default:default2
-795.4772default:defaultZ17-268
+00:00:392default:default2
+00:00:392default:default2
+1509.6952default:default2
+791.4772default:defaultZ17-268
 <
 %Done setting XDC timing constraints.
 35*timingZ38-35
 Ç
-vreport_utilization: Time (s): cpu = 00:00:00.48 ; elapsed = 00:00:00.58 . Memory (MB): peak = 1517.754 ; gain = 4.051
+vreport_utilization: Time (s): cpu = 00:00:00.56 ; elapsed = 00:00:00.61 . Memory (MB): peak = 1513.750 ; gain = 4.051
 *common
 w
 Exiting %s at %s...
 206*common2
 Vivado2default:default2,
-Tue Apr  8 20:30:47 20142default:defaultZ17-206
+Wed Apr  9 11:15:39 20142default:defaultZ17-206

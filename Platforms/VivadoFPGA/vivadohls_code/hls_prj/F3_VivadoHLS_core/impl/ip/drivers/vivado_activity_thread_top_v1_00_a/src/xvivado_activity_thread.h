@@ -80,6 +80,12 @@ int XVivado_activity_thread_Initialize(XVivado_activity_thread *InstancePtr, con
 int XVivado_activity_thread_Release(XVivado_activity_thread *InstancePtr);
 #endif
 
+void XVivado_activity_thread_Start(XVivado_activity_thread *InstancePtr);
+u32 XVivado_activity_thread_IsDone(XVivado_activity_thread *InstancePtr);
+u32 XVivado_activity_thread_IsIdle(XVivado_activity_thread *InstancePtr);
+u32 XVivado_activity_thread_IsReady(XVivado_activity_thread *InstancePtr);
+void XVivado_activity_thread_EnableAutoRestart(XVivado_activity_thread *InstancePtr);
+void XVivado_activity_thread_DisableAutoRestart(XVivado_activity_thread *InstancePtr);
 
 void XVivado_activity_thread_SetKernel_u_a_0_rfir(XVivado_activity_thread *InstancePtr, u32 Data);
 u32 XVivado_activity_thread_GetKernel_u_a_0_rfir(XVivado_activity_thread *InstancePtr);
@@ -121,6 +127,26 @@ void XVivado_activity_thread_SetKernel_o_a_0_call(XVivado_activity_thread *Insta
 u32 XVivado_activity_thread_GetKernel_o_a_0_call(XVivado_activity_thread *InstancePtr);
 void XVivado_activity_thread_SetKernel_o_a_0_points(XVivado_activity_thread *InstancePtr, u32 Data);
 u32 XVivado_activity_thread_GetKernel_o_a_0_points(XVivado_activity_thread *InstancePtr);
+void XVivado_activity_thread_SetSeed_0_s1(XVivado_activity_thread *InstancePtr, u32 Data);
+u32 XVivado_activity_thread_GetSeed_0_s1(XVivado_activity_thread *InstancePtr);
+void XVivado_activity_thread_SetSeed_0_s2(XVivado_activity_thread *InstancePtr, u32 Data);
+u32 XVivado_activity_thread_GetSeed_0_s2(XVivado_activity_thread *InstancePtr);
+void XVivado_activity_thread_SetSeed_0_s3(XVivado_activity_thread *InstancePtr, u32 Data);
+u32 XVivado_activity_thread_GetSeed_0_s3(XVivado_activity_thread *InstancePtr);
+void XVivado_activity_thread_SetSeed_0_offset(XVivado_activity_thread *InstancePtr, u32 Data);
+u32 XVivado_activity_thread_GetSeed_0_offset(XVivado_activity_thread *InstancePtr);
+u32 XVivado_activity_thread_GetThread_result_0(XVivado_activity_thread *InstancePtr);
+u32 XVivado_activity_thread_GetThread_result_0Vld(XVivado_activity_thread *InstancePtr);
+u32 XVivado_activity_thread_GetThread_result_sqrd_0(XVivado_activity_thread *InstancePtr);
+u32 XVivado_activity_thread_GetThread_result_sqrd_0Vld(XVivado_activity_thread *InstancePtr);
+
+void XVivado_activity_thread_InterruptGlobalEnable(XVivado_activity_thread *InstancePtr);
+void XVivado_activity_thread_InterruptGlobalDisable(XVivado_activity_thread *InstancePtr);
+void XVivado_activity_thread_InterruptEnable(XVivado_activity_thread *InstancePtr, u32 Mask);
+void XVivado_activity_thread_InterruptDisable(XVivado_activity_thread *InstancePtr, u32 Mask);
+void XVivado_activity_thread_InterruptClear(XVivado_activity_thread *InstancePtr, u32 Mask);
+u32 XVivado_activity_thread_InterruptGetEnabled(XVivado_activity_thread *InstancePtr);
+u32 XVivado_activity_thread_InterruptGetStatus(XVivado_activity_thread *InstancePtr);
 
 #ifdef __cplusplus
 }

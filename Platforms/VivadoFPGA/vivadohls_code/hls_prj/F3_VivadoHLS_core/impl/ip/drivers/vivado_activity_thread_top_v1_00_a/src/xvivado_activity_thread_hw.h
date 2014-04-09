@@ -6,10 +6,24 @@
 // ==============================================================
 
 // CORE_IO
-// 0x00 : reserved
-// 0x04 : reserved
-// 0x08 : reserved
-// 0x0c : reserved
+// 0x00 : Control signals
+//        bit 0  - ap_start (Read/Write/COH)
+//        bit 1  - ap_done (Read/COR)
+//        bit 2  - ap_idle (Read)
+//        bit 3  - ap_ready (Read)
+//        bit 7  - auto_restart (Read/Write)
+//        others - reserved
+// 0x04 : Global Interrupt Enable Register
+//        bit 0  - Global Interrupt Enable (Read/Write)
+//        others - reserved
+// 0x08 : IP Interrupt Enable Register (Read/Write)
+//        bit 0  - Channel 0 (ap_done)
+//        bit 1  - Channel 1 (ap_ready)
+//        others - reserved
+// 0x0c : IP Interrupt Status Register (Read/TOW)
+//        bit 0  - Channel 0 (ap_done)
+//        bit 1  - Channel 1 (ap_ready)
+//        others - reserved
 // 0x10 : reserved
 // 0x14 : Data signal of kernel_u_a_0_rfir
 //        bit 31~0 - kernel_u_a_0_rfir[31:0] (Read/Write)
@@ -70,8 +84,34 @@
 // 0xa8 : reserved
 // 0xac : Data signal of kernel_o_a_0_points
 //        bit 31~0 - kernel_o_a_0_points[31:0] (Read/Write)
+// 0xb0 : reserved
+// 0xb4 : Data signal of seed_0_s1
+//        bit 31~0 - seed_0_s1[31:0] (Read/Write)
+// 0xb8 : reserved
+// 0xbc : Data signal of seed_0_s2
+//        bit 31~0 - seed_0_s2[31:0] (Read/Write)
+// 0xc0 : reserved
+// 0xc4 : Data signal of seed_0_s3
+//        bit 31~0 - seed_0_s3[31:0] (Read/Write)
+// 0xc8 : reserved
+// 0xcc : Data signal of seed_0_offset
+//        bit 31~0 - seed_0_offset[31:0] (Read/Write)
+// 0xd0 : Control signal of thread_result_0
+//        bit 0  - thread_result_0_ap_vld (Read/COR)
+//        others - reserved
+// 0xd4 : Data signal of thread_result_0
+//        bit 31~0 - thread_result_0[31:0] (Read)
+// 0xd8 : Control signal of thread_result_sqrd_0
+//        bit 0  - thread_result_sqrd_0_ap_vld (Read/COR)
+//        others - reserved
+// 0xdc : Data signal of thread_result_sqrd_0
+//        bit 31~0 - thread_result_sqrd_0[31:0] (Read)
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_AP_CTRL                                  0x00
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_GIE                                      0x04
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_IER                                      0x08
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_ISR                                      0x0c
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_RFIR_DATA                   0x14
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_KERNEL_U_A_0_RFIR_DATA                   32
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_U_A_0_CURRENT_PRICE_DATA          0x1c
@@ -112,4 +152,18 @@
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_KERNEL_O_A_0_CALL_DATA                   32
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_KERNEL_O_A_0_POINTS_DATA                 0xac
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_KERNEL_O_A_0_POINTS_DATA                 32
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_SEED_0_S1_DATA                           0xb4
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_SEED_0_S1_DATA                           32
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_SEED_0_S2_DATA                           0xbc
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_SEED_0_S2_DATA                           32
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_SEED_0_S3_DATA                           0xc4
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_SEED_0_S3_DATA                           32
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_SEED_0_OFFSET_DATA                       0xcc
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_SEED_0_OFFSET_DATA                       32
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_0_CTRL                     0xd0
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_0_DATA                     0xd4
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_THREAD_RESULT_0_DATA                     32
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_SQRD_0_CTRL                0xd8
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_SQRD_0_DATA                0xdc
+#define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_THREAD_RESULT_SQRD_0_DATA                32
 

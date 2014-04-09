@@ -1,172 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root MajorVersion="0"
-		MinorVersion="27">
-	<CompositeFile CompositeFileTopName="zynq_system"
-			CanBeSetAsTop="true"
-			CanDisplayChildGraph="true">
-		<Description>Composite Fileset</Description>
-		<Generation Name="SYNTHESIS"
-				State="STALE"/>
-		<Generation Name="IMPLEMENTATION"
-				State="STALE"/>
-		<Generation Name="SIMULATION"
-				State="STALE"/>
-		<FileCollection Name="SOURCES"
-				Type="SOURCES">
-			<File Name="ip/zynq_system_processing_system7_0_0/zynq_system_processing_system7_0_0.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="true"
-						Timestamp="1396981867"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="ip/zynq_system_vivado_activity_thread_0_0/zynq_system_vivado_activity_thread_0_0.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="true"
-						Timestamp="1396985608"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="ip/zynq_system_processing_system7_0_axi_periph_0/zynq_system_processing_system7_0_axi_periph_0.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="false"
-						Timestamp="1396981867"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="ip/zynq_system_rst_processing_system7_0_50M_0/zynq_system_rst_processing_system7_0_50M_0.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="true"
-						Timestamp="1396981867"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="ip/zynq_system_auto_pc_2/zynq_system_auto_pc_2.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="false"
-						Timestamp="1396985614"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="hdl/zynq_system.v"
-					Type="Verilog">
-				<Properties IsEditable="false"
-						IsVisible="true"
-						Timestamp="0"
-						IsTrackable="false"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="zynq_system_ooc.xdc"
-					Type="XDC">
-				<Properties IsEditable="false"
-						IsVisible="true"
-						Timestamp="0"
-						IsTrackable="false"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="OUT_OF_CONTEXT"/>
-			</File>
-			<File Name="ip/zynq_system_axis_data_fifo_0_0/zynq_system_axis_data_fifo_0_0.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="false"
-						Timestamp="1396986867"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="ip/zynq_system_axi_fifo_mm_s_0_0/zynq_system_axi_fifo_mm_s_0_0.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="false"
-						Timestamp="0"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="ip/zynq_system_axi_dma_0_0/zynq_system_axi_dma_0_0.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="true"
-						Timestamp="1396987162"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="ip/zynq_system_xbar_0/zynq_system_xbar_0.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="true"
-						Timestamp="1396987236"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="ip/zynq_system_axi_mem_intercon_1/zynq_system_axi_mem_intercon_1.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="false"
-						Timestamp="1396987952"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="ip/zynq_system_axi_dma_1_1/zynq_system_axi_dma_1_1.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="true"
-						Timestamp="1396987983"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-			<File Name="ip/zynq_system_xbar_2/zynq_system_xbar_2.xci"
-					Type="IP">
-				<Properties IsEditable="false"
-						IsVisible="true"
-						Timestamp="1396988164"
-						IsTrackable="true"/>
-				<Library Name="work"/>
-				<UsedIn Val="SYNTHESIS"/>
-				<UsedIn Val="IMPLEMENTATION"/>
-				<UsedIn Val="SIMULATION"/>
-			</File>
-		</FileCollection>
-	</CompositeFile>
+<Root MajorVersion="0" MinorVersion="27">
+  <CompositeFile CompositeFileTopName="zynq_system" CanBeSetAsTop="true" CanDisplayChildGraph="true">
+    <Description>Composite Fileset</Description>
+    <Generation Name="SYNTHESIS" State="GENERATED"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED"/>
+    <Generation Name="SIMULATION" State="GENERATED"/>
+    <FileCollection Name="SOURCES" Type="SOURCES">
+      <File Name="ip/zynq_system_processing_system7_0_0/zynq_system_processing_system7_0_0.xci" Type="IP">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="1397035731" IsTrackable="true"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/zynq_system_processing_system7_0_axi_periph_0/zynq_system_processing_system7_0_axi_periph_0.xci" Type="IP">
+        <Properties IsEditable="false" IsVisible="false" Timestamp="1397035731" IsTrackable="true"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/zynq_system_rst_processing_system7_0_50M_0/zynq_system_rst_processing_system7_0_50M_0.xci" Type="IP">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="1397035731" IsTrackable="true"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/zynq_system_auto_pc_2/zynq_system_auto_pc_2.xci" Type="IP">
+        <Properties IsEditable="false" IsVisible="false" Timestamp="1396985614" IsTrackable="true"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/zynq_system_vivado_activity_thread_0_1/zynq_system_vivado_activity_thread_0_1.xci" Type="IP">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="1397037965" IsTrackable="true"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/zynq_system_auto_pc_3_0/zynq_system_auto_pc_3.xci" Type="IP">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="hdl/zynq_system.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="zynq_system_ooc.xdc" Type="XDC">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="OUT_OF_CONTEXT"/>
+      </File>
+    </FileCollection>
+  </CompositeFile>
 </Root>

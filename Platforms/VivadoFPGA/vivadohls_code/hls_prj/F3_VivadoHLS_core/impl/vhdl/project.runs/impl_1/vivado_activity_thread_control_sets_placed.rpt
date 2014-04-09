@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date         : Tue Apr  8 20:32:12 2014
+| Date         : Wed Apr  9 11:16:57 2014
 | Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_control_sets -verbose -file vivado_activity_thread_control_sets_placed.rpt
 | Design       : vivado_activity_thread
@@ -22,8 +22,8 @@ Table of Contents
 +-------------------------------------------------------------------+-------+
 |                               Status                              | Count |
 +-------------------------------------------------------------------+-------+
-| Number of unique control sets                                     |    13 |
-| Minimum Number of register sites lost to control set restrictions |    28 |
+| Number of unique control sets                                     |    11 |
+| Minimum Number of register sites lost to control set restrictions |    20 |
 +-------------------------------------------------------------------+-------+
 
 
@@ -33,34 +33,32 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             877 |          305 |
+| No           | No                    | No                     |            1122 |          368 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              19 |           11 |
-| Yes          | No                    | No                     |             377 |          112 |
+| No           | Yes                   | No                     |              19 |            8 |
+| Yes          | No                    | No                     |             132 |           35 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              67 |           24 |
+| Yes          | Yes                   | No                     |              67 |           16 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 3. Detailed Control Set Information
 -----------------------------------
 
-+--------------+--------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+
-| Clock Signal |                            Enable Signal                           |                                                                      Set/Reset Signal                                                                     | Slice Load Count | Bel Load Count |
-+--------------+--------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+
-|  ap_clk      | n_0_pp_1_reg_282[3]_i_1                                            |                                                                                                                                                           |                1 |              4 |
-|  ap_clk      |                                                                    | vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/n_0_RESULT_REG.NORMAL.exp_op[6]_i_1           |                4 |              6 |
-|  ap_clk      |                                                                    | ap_rst                                                                                                                                                    |                5 |              6 |
-|  ap_clk      |                                                                    | vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/vivado_activity_thread_ap_fdiv_14_no_dsp_u/U0/i_synth/n_0_DIV_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op[7]_i_1 |                2 |              7 |
-|  ap_clk      | n_0_tmp_pn_reg_152[31]_i_2                                         | n_0_tmp_pn_reg_152[31]_i_1                                                                                                                                |               11 |             31 |
-|  ap_clk      | p_2_in3_in                                                         |                                                                                                                                                           |               10 |             32 |
-|  ap_clk      | n_0_u_v_0_gamma_reg_287[31]_i_1                                    |                                                                                                                                                           |               10 |             32 |
-|  ap_clk      | n_0_delta_time_0_reg_253[31]_i_1                                   |                                                                                                                                                           |               11 |             32 |
-|  ap_clk      | thread_result_0_write                                              |                                                                                                                                                           |                8 |             32 |
-|  ap_clk      | n_0_pp_reg_176[3]_i_2                                              | n_0_pp_reg_176[3]_i_1                                                                                                                                     |               13 |             36 |
-|  ap_clk      | vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/ce           |                                                                                                                                                           |               24 |             73 |
-|  ap_clk      | vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/ce9_out |                                                                                                                                                           |               48 |            172 |
-|  ap_clk      |                                                                    |                                                                                                                                                           |              311 |            903 |
-+--------------+--------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+
++--------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+
+| Clock Signal |           Enable Signal          |                                                                      Set/Reset Signal                                                                     | Slice Load Count | Bel Load Count |
++--------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+
+|  ap_clk      | n_0_pp_1_reg_275[3]_i_1          |                                                                                                                                                           |                1 |              4 |
+|  ap_clk      |                                  | vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/EXP/state_dec[0]                      |                2 |              6 |
+|  ap_clk      |                                  | ap_rst                                                                                                                                                    |                4 |              6 |
+|  ap_clk      |                                  | vivado_activity_thread_fdiv_32ns_32ns_32_16_U3/vivado_activity_thread_ap_fdiv_14_no_dsp_u/U0/i_synth/n_0_DIV_OP.SPD.OP/OP/RESULT_REG.NORMAL.exp_op[7]_i_1 |                2 |              7 |
+|  ap_clk      | n_0_tmp_pn_reg_146[31]_i_2       | n_0_tmp_pn_reg_146[31]_i_1                                                                                                                                |                6 |             31 |
+|  ap_clk      | reg_2100                         |                                                                                                                                                           |                5 |             32 |
+|  ap_clk      | n_0_u_v_0_gamma_reg_280[31]_i_1  |                                                                                                                                                           |                7 |             32 |
+|  ap_clk      | n_0_delta_time_0_reg_246[31]_i_1 |                                                                                                                                                           |               11 |             32 |
+|  ap_clk      | n_0_temp_value_reg_296[31]_i_1   |                                                                                                                                                           |               11 |             32 |
+|  ap_clk      | n_0_pp_reg_170[3]_i_2            | n_0_pp_reg_170[3]_i_1                                                                                                                                     |               10 |             36 |
+|  ap_clk      |                                  |                                                                                                                                                           |              374 |           1148 |
++--------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+
 
 
