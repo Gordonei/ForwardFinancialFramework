@@ -1,3 +1,4 @@
+APP := dummy
 LOOP_II := 0
 LOOP_UNROLL := 0
 THIS_DIR := $(shell pwd)
@@ -19,6 +20,7 @@ system: core
 	cd $(IPI_PRJ);
 	$(VIVADO_SYS_CMD) -source $(IPI_PRJ)/ipi_build.tcl
 	cp $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit $(THIS_DIR)/output/system.bit
+	mv $(THIS_DIR)/output/system.bit $(THIS_DIR)/output/$(APP).bit
 	rm *.log *.jou 
 
 bitstream: $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit
