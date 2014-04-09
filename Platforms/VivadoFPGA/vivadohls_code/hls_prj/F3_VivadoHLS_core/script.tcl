@@ -25,7 +25,7 @@ add_files srcs/asian_option.c -cflags "-DFP_t=float"
 add_files srcs/underlying.c -cflags "-DFP_t=float"
 add_files srcs/option.c -cflags "-DFP_t=float"
 open_solution "F3_VivadoHLS_core"
-set_part {xc7z020clg484-1}
+set_part {xc7z045ffg900-2}
 create_clock -period 10 -name default
 source "./hls_prj/F3_VivadoHLS_core/directives.tcl"
 #csim_design

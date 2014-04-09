@@ -8,9 +8,9 @@
 	<DefaultLaunch Dir="$PRUNDIR"/>
 	<Config>
 		<Option Name="Id" Val="b25d2d2c88fb4ae2befe0ae337fb7e81"/>
-		<Option Name="Part" Val="xc7z020clg484-1"/>
+		<Option Name="Part" Val="xc7z045ffg900-2"/>
 		<Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
-		<Option Name="Board" Val="xilinx.com:zynq:zc702:1.0"/>
+		<Option Name="Board" Val="xilinx.com:zynq:zc706:1.1"/>
 		<Option Name="ActiveSimSet" Val="sim_1"/>
 	</Config>
 </Project>
