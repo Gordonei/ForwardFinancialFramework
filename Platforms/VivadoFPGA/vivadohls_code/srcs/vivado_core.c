@@ -1,8 +1,7 @@
 #define VIVADOHLS
-#define PATHS 1
-#define PATH_POINTS 10
+#define PATHS 100
+#define PATH_POINTS 4096
 #define TAUS_BOXMULLER
-#define FP_t float
 //Libraries
 #include "math.h";
 #include "pthread.h";
@@ -13,9 +12,9 @@
 #include "unistd.h";
 #include "string.h";
 #include "gauss.h";
+#include "vivado_core.h";
 #include "underlying.h";
 #include "option.h";
-#include "vivado_core.h";
 
 //*Intermediate and Communication Variables*
 FP_t discount_0_0;
@@ -44,14 +43,10 @@ struct thread_data{
 FP_t setup_time,activity_time;
 struct timespec start, setup_end, end;
 int ret,ret_2;
-
-/*typedef struct{
-	standard_underlying_attributes u_a_0;
-	standard_derivative_attributes o_a_0;
-	rng_state_t seed_0[PATHS];
-	FP_t thread_result_0[PATHS];
-	FP_t thread_result_sqrd_0[PATHS];
-	} kernel_data;*/
+typedef struct{
+	underlying_attributes u_a_0;
+	option_attributes o_a_0;
+	} kernel_data;
 
 //*Vivado HLS Kernel Function*
 void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,FP_t *thread_result_0,FP_t *thread_result_sqrd_0){
@@ -60,65 +55,56 @@ void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standar
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=seed_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_sqrd_0 metadata="-bus_bundle CORE_IO"
-	#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata="-bus_bundle CORE_IO"	
-
-	//#pragma HLS INTERFACE ap_fifo port=seed_0
-	//#pragma HLS INTERFACE ap_fifo port=thread_result_0
-	//#pragma HLS INTERFACE ap_fifo port=thread_result_sqrd_0
-	//#pragma HLS RESOURCE core=AXI4Stream variable=seed_0
-	//#pragma HLS RESOURCE core=AXI4Stream variable=thread_result_0
-	//#pragma HLS RESOURCE core=AXI4Stream variable=thread_result_sqrd_0
-
-	//#pragma HLS INTERFACE ap_fifo port=result_0
-	//#pragma HLS INTERFACE ap_fifo port=result_sqrd_0
+	#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata="-bus_bundle CORE_IO"
 
 	//**Initialising Kernel Variables*
 	unsigned int p,pp;
 	underlying_variables u_v_0;
-	FP_t spot_price_0,time_0;
-	option_variables o_v_0;
-	
-	option_attributes o_a_0;
-	o_a_0.strike_price = kernel_o_a_0->strike_price;
-	o_a_0.time_period = kernel_o_a_0->time_period;
-	o_a_0.call = kernel_o_a_0->call;
-	
 	underlying_attributes u_a_0;
+
+	//***Underlying Attributes***
 	u_a_0.rfir = kernel_u_a_0->rfir;
 	u_a_0.current_price = kernel_u_a_0->current_price;
+	FP_t spot_price_0,time_0;
+	option_variables o_v_0;
+	option_attributes o_a_0;
+
+	//***Derivative Attributes***
+	o_a_0.time_period = kernel_o_a_0->time_period;
+	o_a_0.call = kernel_o_a_0->call;
+	o_a_0.strike_price = kernel_o_a_0->strike_price;
 
 	//**Thread Calculation Loop**
+	FP_t result_0 = 0;
+	FP_t result_sqrd_0 = 0;
+	FP_t delta_time_0;
 	PATHSET_LOOP: for(p=0;p<PATHS;++p){
 
 		//**Initiating the Path**
 		underlying_underlying_path_init(&u_v_0,&u_a_0);
-		spot_price_0 = u_a_0.current_price*expf(u_v_0.gamma);
+		spot_price_0 = (u_a_0).current_price*exp(u_v_0.gamma);
 		time_0 = u_v_0.time;
 		option_derivative_path_init(&o_v_0,&o_a_0);
-		FP_t delta_time_0 = o_a_0.time_period/PATH_POINTS;
+		delta_time_0 = o_a_0.time_period/PATH_POINTS;
 
 		//**Running the path**
 		PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){
-		//#pragma HLS UNROLL factor=2
-		//#pragma HLS PIPELINE II=1
 			option_derivative_path(spot_price_0,time_0,&o_v_0,&o_a_0);
 			underlying_underlying_path(delta_time_0,&u_v_0,&u_a_0);
-			spot_price_0 = u_a_0.current_price*expf(u_v_0.gamma);
+			spot_price_0 = u_a_0.current_price*exp(u_v_0.gamma);
 			time_0 = u_v_0.time;
+			}
 
-		}
-	//if(pp==(PATH_POINTS-1)){
 		//**Calculating payoff(s)**
 		option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
+		result_0 += o_v_0.value;
+		result_sqrd_0 += o_v_0.value*o_v_0.value;
+		}
 
-		//**Returning Result**
-		FP_t temp_value = o_v_0.value;
-		
-		thread_result_0[p] = temp_value;
-		thread_result_sqrd_0[p] = temp_value*temp_value;
-		//}
+	//**Returning Result**
+	*thread_result_0 = result_0;
+	*thread_result_sqrd_0 = result_sqrd_0;
 	}
-}
 
 //*MC Multicore Activity Thread Function*
 void * multicore_montecarlo_activity_thread(void* thread_arg){
@@ -137,23 +123,24 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	o_v_0.delta_time = o_a_0.time_period/default_points;
 
 	//**Creating kernel argument*
-	//kernel_data * kernel_arg = (kernel_data*) malloc(sizeof(kernel_data));
-	//kernel_arg->u_a_0 = u_a_0;
-	//kernel_arg->o_a_0 = o_a_0;
+	standard_underlying_attributes kernel_u_a_0;
+	standard_derivative_attributes kernel_o_a_0;
+	kernel_u_a_0.rfir = u_a_0.rfir;
+	kernel_u_a_0.current_price = u_a_0.current_price;
+	kernel_o_a_0.time_period = o_a_0.time_period;
+	kernel_o_a_0.call = o_a_0.call;
+	kernel_o_a_0.strike_price = o_a_0.strike_price;
 
 	//**Batching Loop**
 	unsigned int chunks = thread_paths/PATHS;
 	FP_t temp_value_0 = 0.0;
 	FP_t temp_value_sqrd_0 = 0.0;
-	FP_t kernel_value_0[PATHS];
-	FP_t kernel_value_sqrd_0[PATHS];
+	FP_t kernel_value_0;
+	FP_t kernel_value_sqrd_0;
+	rng_state_t seed_0;
 	for(i=0;i<chunks;++i){
-
-		//***Aggregating the result**
-		for(j=0;j<PATHS;++j){
-			temp_value_0 += kernel_value_0[j];
-			temp_value_sqrd_0 += kernel_value_sqrd_0[j];
-			}
+		temp_value_0 = kernel_value_0;
+		temp_value_sqrd_0 = kernel_value_sqrd_0;
 		}
 
 	//**Passing data back to main thread**
