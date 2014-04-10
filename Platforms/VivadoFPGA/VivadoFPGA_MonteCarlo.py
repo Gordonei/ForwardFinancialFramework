@@ -12,7 +12,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   pipelining = 1
   instances = 1
   
-  def __init__(self,derivative,paths,platform,points=4096,reduce_underlyings=True,random_number_generator="taus_boxmuller",floating_point_format="float",c_slow=False,pipelining=1,instances=1,simulation=False):
+  def __init__(self,derivative,paths,platform,points=10,reduce_underlyings=True,random_number_generator="taus_boxmuller",floating_point_format="float",c_slow=False,pipelining=1,instances=1,simulation=False):
     self.pipelining = pipelining
     self.c_slow = c_slow
     self.simulation = simulation
@@ -21,7 +21,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings,random_number_generator=random_number_generator,floating_point_format=floating_point_format)
     self.solver_metadata["threads"] = 1 #In this context this means something different
     
-    self.solver_metadata["instance_paths"] = 100
+    self.solver_metadata["instance_paths"] = 1000
     self.solver_metadata["path_points"] = points
     
     self.utility_libraries.append("gauss.h")
@@ -213,6 +213,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("unsigned int p,pp;")
     
     for index,u in enumerate(self.underlying):
+      if(self.c_slow): output_list.append("%s_variables u_v_%d_array[PATHS];"%(u.name,index))
       output_list.append("%s_variables u_v_%d;"%(u.name,index))
       output_list.append("%s_attributes u_a_%d;"%(u.name,index))
       
@@ -220,16 +221,20 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       for i,u_a in enumerate(self.underlying_attributes):
         for a in u_a:
           output_list.append("u_a_%d.%s = kernel_u_a_%d->%s;" % (i,a,i,a))
+	  
+      if(self.c_slow): output_list.append("FP_t spot_price_%d_paths[PATHS],time_%d_paths[PATHS];"%(index,index))
       
-      if("heston" in u.name or "black_scholes" in u.name):
-	output_list.append("(u_v_%d.rng_state).s1 = seed_%d->s1;"% (index,index))
-	output_list.append("(u_v_%d.rng_state).s2 = seed_%d->s2;"% (index,index))
-	output_list.append("(u_v_%d.rng_state).s3 = seed_%d->s3;" % (index,index))
-	output_list.append("(u_v_%d.rng_state).offset = seed_%d->offset;" % (index,index))
+      if not(self.c_slow):
+	if("heston" in u.name or "black_scholes" in u.name):
+	  output_list.append("(u_v_%d.rng_state).s1 = seed_%d->s1;"% (index,index))
+	  output_list.append("(u_v_%d.rng_state).s2 = seed_%d->s2;"% (index,index))
+	  output_list.append("(u_v_%d.rng_state).s3 = seed_%d->s3;" % (index,index))
+	  output_list.append("(u_v_%d.rng_state).offset = seed_%d->offset;" % (index,index))
       
       output_list.append("FP_t spot_price_%d,time_%d;"%(index,index))
     
     for index,d in enumerate(self.derivative):
+      if(self.c_slow): output_list.append("%s_variables o_v_%d_array[PATHS];"%(d.name,index))
       output_list.append("%s_variables o_v_%d;"%(d.name,index))
       output_list.append("%s_attributes o_a_%d;"%(d.name,index))
     
@@ -247,39 +252,86 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("FP_t result_sqrd_%d = 0;"%index)
       output_list.append("FP_t delta_time_%d;"%index)
       
-    output_list.append("PATHSET_LOOP: for(p=0;p<PATHS;++p){")
+    if(self.c_slow):
+      output_list.append("PATHSET_LOOP_INIT: for(p=0;p<PATHS;++p){")
+    else:
+      output_list.append("PATHSET_LOOP: for(p=0;p<PATHS;++p){")
+    
+    """if(self.c_slow):
+      for index,u in enumerate(self.underlying): output_list.append("u_v_%d = u_v_%d_array[p];"%(index,index))
+      for index,d in enumerate(self.derivative): output_list.append("o_v_%d = o_v_%d_array[p];"%(index,index))"""
     
     output_list.append("//**Initiating the Path**")
-    for index,u in enumerate(self.underlying): 
+    for index,u in enumerate(self.underlying):
+      if(self.c_slow):
+	if("heston" in u.name or "black_scholes" in u.name):
+	    output_list.append("(u_v_%d.rng_state).s1 = seed_%d->s1;"% (index,index))
+	    output_list.append("(u_v_%d.rng_state).s2 = seed_%d->s2;"% (index,index))
+	    output_list.append("(u_v_%d.rng_state).s3 = seed_%d->s3+p;" % (index,index))
+	    output_list.append("(u_v_%d.rng_state).offset = seed_%d->offset;" % (index,index))
+	  
       output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
       output_list.append("spot_price_%d = (u_a_%d).current_price*exp(u_v_%d.gamma);"%(index,index,index))
       output_list.append("time_%d = u_v_%d.time;"%(index,index))
+      if(self.c_slow):
+	output_list.append("spot_price_%d_paths[p] = spot_price_%d;"%(index,index))
+	output_list.append("time_%d_paths[p] = time_%d;"%(index,index))
+      
     
     for index,d in enumerate(self.derivative):
       output_list.append("%s_derivative_path_init(&o_v_%d,&o_a_%d);" % (d.name,index,index))
       output_list.append("delta_time_%d = o_a_%d.time_period/PATH_POINTS;"%(index,index))
+      
+    if(self.c_slow):
+      for index,u in enumerate(self.underlying): output_list.append("u_v_%d_array[p] = u_v_%d;"%(index,index))
+      for index,d in enumerate(self.derivative): output_list.append("o_v_%d_array[p] = o_v_%d;"%(index,index))
+      
+    if(self.c_slow): output_list.append("}")
     
     output_list.append("//**Running the path**")
       
-    output_list.append("PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){")
+    if(self.c_slow):
+      output_list.append("PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){")
+      output_list.append("PATHSET_LOOP: for(p=0;p<PATHS;++p){")
+    else: output_list.append("PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){")
+    
+    if(self.c_slow):
+      for index,u in enumerate(self.underlying): output_list.append("u_v_%d = u_v_%d_array[p];"%(index,index))
+      for index,d in enumerate(self.derivative): output_list.append("o_v_%d = o_v_%d_array[p];"%(index,index))
     
     temp_underlying = self.underlying[:]
     for index,d in enumerate(self.derivative):
       for u in d.underlying: #Calling derivative and underlying path functions
 	u_index = self.underlying.index(u)
+	if(self.c_slow):
+	  output_list.append("spot_price_%d = spot_price_%d_paths[p];" % (u_index,u_index))
+	  output_list.append("time_%d = time_%d_paths[p];" % (u_index,u_index))
 	output_list.append("%s_derivative_path(spot_price_%d,time_%d,&o_v_%d,&o_a_%d);" % (d.name,u_index,u_index,index,index))
 	
 	if(u in temp_underlying):
 	  output_list.append("%s_underlying_path(delta_time_%d,&u_v_%d,&u_a_%d);" % (u.name,index,u_index,u_index))
 	  temp_underlying.remove(u)
 	  output_list.append("spot_price_%d = u_a_%d.current_price*exp(u_v_%d.gamma);"%(u_index,u_index,u_index))
-	  output_list.append("time_%d = u_v_%d.time;"%(u_index,u_index))
+	  if(self.c_slow):
+	    output_list.append("spot_price_%d_paths[p] = spot_price_%d;"%(u_index,u_index))
+	    output_list.append("time_%d_paths[p] = u_v_%d.time;"%(u_index,u_index))
+	  else: output_list.append("time_%d = u_v_%d.time;"%(u_index,u_index))
+	  
+    if(self.c_slow):
+      for index,u in enumerate(self.underlying): output_list.append("u_v_%d = u_v_%d_array[p];"%(index,index))
+      for index,d in enumerate(self.derivative): output_list.append("o_v_%d = o_v_%d_array[p];"%(index,index))
      
     output_list.append("}") #End of the path
+    if(self.c_slow): output_list.append("}")
     
     output_list.append("//**Calculating payoff(s)**")
+    if(self.c_slow):
+      output_list.append("PATHSET_LOOP_PAYOFF: for(p=0;p<PATHS;++p){")
+      for index,d in enumerate(self.derivative): output_list.append("o_v_%d = o_v_%d_array[p];"%(index,index))
+    
     for index,d in enumerate(self.derivative):
       for u_index,u in enumerate(d.underlying):
+	if(self.c_slow): output_list.append("spot_price_%d = spot_price_%d_paths[p];" % (u_index,u_index))
 	output_list.append("%s_derivative_payoff(spot_price_%d,&o_v_%d,&o_a_%d);"%(d.name,u_index,index,index))
 	
       
