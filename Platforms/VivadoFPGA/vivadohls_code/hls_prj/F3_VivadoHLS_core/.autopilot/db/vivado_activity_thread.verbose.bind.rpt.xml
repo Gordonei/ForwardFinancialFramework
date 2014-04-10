@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'vivado_activity_thread'" level="0">
-<item name = "Date">Wed Apr  9 11:07:22 2014
+<item name = "Date">Thu Apr 10 23:53:41 2014
 </item>
 <item name = "Version">2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)</item>
 <item name = "Project">hls_prj</item>
 <item name = "Solution">F3_VivadoHLS_core</item>
 <item name = "Product family">zynq zynq_fpv6 </item>
-<item name = "Target device">xc7z020clg484-1</item>
+<item name = "Target device">xc7z045ffg900-2</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="default">10.00, 8.63, 1.25</column>
+<column name="default">10.00, 8.59, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">204, 204, 205, 205, none</column>
+<column name="">11880506, 11880506, 11880507, 11880507, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,8 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- PATH_LOOP">173, 173, 17, -, -, 10, no</column>
+<column name="- PATHSET_LOOP">11880500, 11880500, 118805, -, -, 100, no</column>
+<column name=" + PATH_LOOP">118791, 118791, 29, -, -, 4096, no</column>
 </table>
 </item>
 </section>
@@ -54,7 +55,7 @@
 <column name="Multiplexer">-, -, -, -</column>
 <column name="Register">-, -, -, -</column>
 <column name="ShiftMemory">-, -, -, -</column>
-<specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
+<specialColumn name="Available">1090, 900, 437200, 218600</specialColumn>
 <specialColumn name="Utilization (%)">0, 0, 0, 0</specialColumn>
 </table>
 </item>

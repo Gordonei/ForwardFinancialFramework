@@ -1,7 +1,7 @@
 make[1]: Entering directory `/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/csim/build'
    Compiling(apcc) ../../../../srcs/tb.c in debug mode
 @I [HLS-10] Running '/mnt/cas_nfs/applications/Xilinx/Vivado_HLS/2013.4/bin/unwrapped/lnx64.o/apcc'
-            for user 'sf306' on host 'ee-boxer0.ee.ic.ac.uk' (Linux_x86_64 version 2.6.32-41-server) on Tue Apr 08 19:16:28 BST 2014
+            for user 'sf306' on host 'ee-boxer0.ee.ic.ac.uk' (Linux_x86_64 version 2.6.32-41-server) on Thu Apr 10 23:26:35 BST 2014
             in directory '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/csim/build'
 ../../../../srcs/tb.c:30:40: error: unknown type name 'thread_data_t'; did you mean 'pthread_attr_t'?
 void opencl_montecarlo_activity_thread(thread_data_t * thread_arg){
@@ -77,7 +77,7 @@ fatal error: too many errors emitted, stopping now [-ferror-limit=]
 20 errors generated.
 @E [APCC-1-1] clang compile failed: child process exited abnormally
 @E [APCC-1] ProcessSources failed
-@I [APCC-3] Tmp directory is /tmp/apcc_db_sf306/299001396980988018846
+@I [APCC-3] Tmp directory is /tmp/apcc_db_sf306/51701397168795974137
 @E [APCC-1] APCC failed.
 make[1]: Leaving directory `/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/csim/build'
 make[1]: *** [obj/tb.o] Error 1

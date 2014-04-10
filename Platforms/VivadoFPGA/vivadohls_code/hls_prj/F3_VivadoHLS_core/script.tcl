@@ -29,7 +29,7 @@ open_solution "F3_VivadoHLS_core"
 set_part {xc7z045ffg900-2}
 create_clock -period 10 -name default
 source "./hls_prj/F3_VivadoHLS_core/directives.tcl"
-csim_design
+#csim_design
 csynth_design
-cosim_design -trace_level none
+#cosim_design -trace_level none
 export_design -evaluate vhdl -format ip_catalog -vendor "imperial" -library "F3" -version "1.0"

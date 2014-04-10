@@ -5,15 +5,17 @@
 	<FileSet Dir="constrs_1" File="fileset.xml"/>
 	<FileSet Dir="sim_1" File="fileset.xml"/>
 	<FileSet Dir="vivado_activity_thread_ap_fcmp_1_no_dsp" File="fileset.xml"/>
-	<FileSet Dir="vivado_activity_thread_ap_fmul_2_max_dsp" File="fileset.xml"/>
-	<FileSet Dir="vivado_activity_thread_ap_faddfsub_3_full_dsp" File="fileset.xml"/>
-	<FileSet Dir="vivado_activity_thread_ap_fdiv_14_no_dsp" File="fileset.xml"/>
-	<FileSet Dir="vivado_activity_thread_ap_fexp_7_full_dsp" File="fileset.xml"/>
+	<FileSet Dir="vivado_activity_thread_ap_fptrunc_1_no_dsp" File="fileset.xml"/>
+	<FileSet Dir="vivado_activity_thread_ap_fmul_1_max_dsp" File="fileset.xml"/>
+	<FileSet Dir="vivado_activity_thread_ap_faddfsub_2_full_dsp" File="fileset.xml"/>
+	<FileSet Dir="vivado_activity_thread_ap_dmul_3_max_dsp" File="fileset.xml"/>
+	<FileSet Dir="vivado_activity_thread_ap_dexp_13_full_dsp" File="fileset.xml"/>
+	<FileSet Dir="vivado_activity_thread_ap_fpext_1_no_dsp" File="fileset.xml"/>
 	<RunSet Dir="runs" File="runs.xml"/>
 	<DefaultLaunch Dir="$PRUNDIR"/>
 	<Config>
-		<Option Name="Id" Val="6ad31eddf37848f895ab90f1ca2739bf"/>
-		<Option Name="Part" Val="xc7z020clg484-1"/>
+		<Option Name="Id" Val="04082ba28cbc4fca9e3f8c6f56efdfa8"/>
+		<Option Name="Part" Val="xc7z045ffg900-2"/>
 		<Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
 		<Option Name="TargetLanguage" Val="VHDL"/>
 		<Option Name="Board" Val=""/>

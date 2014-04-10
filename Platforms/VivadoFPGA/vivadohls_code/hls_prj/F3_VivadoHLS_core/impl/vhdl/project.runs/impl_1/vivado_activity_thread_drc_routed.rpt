@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------
 | Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date         : Wed Apr  9 11:17:33 2014
+| Date         : Fri Apr 11 00:06:05 2014
 | Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_drc
 -----------------------------------------------------------------------------------
@@ -119,7 +119,7 @@ REPORT SUMMARY
                      Hold option missing in multicycle path constraint
                      PS7 block required
            Max violations: <unlimited>
-         Violations found: 254
+         Violations found: 307
 
 2. REPORT DETAILS
 -----------------
@@ -138,117 +138,387 @@ Related violations: <none>
 
 DPIP-1#1 Warning
 DSP input pipelining  
-DSP vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input A B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#2 Warning
 DSP input pipelining  
-DSP vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/SHIFT_RND/DSP input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#3 Warning
 DSP input pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP input A B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#4 Warning
 DSP input pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#5 Warning
 DSP input pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#6 Warning
 DSP input pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#7 Warning
 DSP input pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP input B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#8 Warning
 DSP input pipelining  
-DSP vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP input A B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#9 Warning
 DSP input pipelining  
-DSP vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPIP-1#10 Warning
 DSP input pipelining  
-DSP vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP input A C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_e2zm1/dsp.one.dsp48e1_add/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#11 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_1.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#12 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_1.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#13 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#14 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#15 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#16 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 input C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#17 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.two.dsp48e1_add_hi/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#18 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.two.dsp48e1_add_lo/DSP input A B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#19 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.two.dsp48e1_add_hi/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#20 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.two.dsp48e1_add_lo/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#21 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#22 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[2].i_addsub/dsp.one.dsp48e1_add/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#23 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP input B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#24 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP0/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#25 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP1/DSP input A  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#26 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP2/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#27 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP3/DSP input A  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#28 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP4/DSP input A B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#29 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LOGIC.R_AND_R/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP input B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#30 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_faddfsub_32ns_32ns_32_4_full_dsp_U1/vivado_activity_thread_ap_faddfsub_2_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#31 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_faddfsub_32ns_32ns_32_4_full_dsp_U1/vivado_activity_thread_ap_faddfsub_2_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/SHIFT_RND/DSP input A B C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#32 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP input A B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#33 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP input B  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
+Related violations: <none>
+
+DPIP-1#34 Warning
+DSP input pipelining  
+DSP vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP input A C  is not pipelined. Pipelining DSP48 input will improve performance. Each input of DSP48 has 2 levels of pipelining.
 Related violations: <none>
 
 DPOP-1#1 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#2 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1/vivado_activity_thread_ap_faddfsub_3_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/SHIFT_RND/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#3 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_sp_dsp.i_calculate_Fr/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#4 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_Xf/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#5 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#6 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#7 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#8 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#9 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5/vivado_activity_thread_ap_fexp_7_full_dsp_u/U0/i_synth/EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[2].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#10 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_e2zm1/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#11 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_Xf/dsp.two.dsp48e1_add_hi/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 DPOP-1#12 Warning
 DSP output pipelining  
-DSP vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_Xf/dsp.two.dsp48e1_add_lo/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#13 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_1.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#14 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_1.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#15 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#16 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#17 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[0].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#18 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_calculate_e2zmzm1/g_dp.i_polyomial/g_struct.multadd_2.madd/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[1].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1 output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#19 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.two.dsp48e1_add_hi/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#20 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[0].i_addsub/dsp.two.dsp48e1_add_lo/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#21 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.two.dsp48e1_add_hi/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#22 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_ln2/g_tables[1].i_addsub/dsp.two.dsp48e1_add_lo/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#23 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[0].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#24 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[1].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#25 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_ccm_recip_ln2/g_tables[2].i_addsub/dsp.one.dsp48e1_add/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#26 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_renorm_and_round/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#27 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP0/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#28 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP1/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#29 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP2/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#30 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP3/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#31 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP4/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#32 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP5/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#33 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP6/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#34 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP7/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#35 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP8/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#36 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/FULL_MAX_USAGE.DSP9/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#37 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LOGIC.R_AND_R/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#38 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_faddfsub_32ns_32ns_32_4_full_dsp_U1/vivado_activity_thread_ap_faddfsub_2_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.ALIGN_ADD/DSP2/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#39 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_faddfsub_32ns_32ns_32_4_full_dsp_U1/vivado_activity_thread_ap_faddfsub_2_full_dsp_u/U0/i_synth/ADDSUB_OP.ADDSUB/SPEED_OP.DSP.OP/DSP48E1_BODY.NORM_RND/SHIFT_RND/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#40 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#41 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
+Related violations: <none>
+
+DPOP-1#42 Warning
+DSP output pipelining  
+DSP vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP output P  is not pipelined. Pipelining DSP48 output will improve performance. Both multiplier/adder output can be pipelined.
 Related violations: <none>
 
 NDRV-2#1 Warning
 Out of context terminal  
-Port ap_done does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0_ap_vld. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port ap_done does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal ap_done. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#2 Warning
@@ -1228,167 +1498,162 @@ Related violations: <none>
 
 NDRV-2#197 Warning
 Out of context terminal  
-Port thread_result_0_ap_vld does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_0_ap_vld. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[0] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[0]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#198 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[0] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[0]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[10] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[10]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#199 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[10] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[10]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[11] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[11]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#200 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[11] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[11]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[12] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[12]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#201 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[12] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[12]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[13] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[13]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#202 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[13] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[13]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[14] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[14]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#203 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[14] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[14]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[15] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[15]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#204 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[15] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[15]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[16] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[16]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#205 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[16] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[16]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[17] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[17]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#206 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[17] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[17]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[18] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[18]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#207 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[18] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[18]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[19] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[19]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#208 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[19] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[19]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[1] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[1]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#209 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[1] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[1]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[20] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[20]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#210 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[20] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[20]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[21] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[21]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#211 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[21] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[21]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[22] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[22]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#212 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[22] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[22]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[23] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[23]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#213 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[23] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[23]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[24] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[24]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#214 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[24] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[24]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[25] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[25]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#215 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[25] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[25]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[26] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[26]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#216 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[26] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[26]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[27] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[27]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#217 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[27] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[27]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[28] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[28]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#218 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[28] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[28]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[29] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[29]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#219 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[29] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[29]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[2] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[2]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#220 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[2] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[2]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[30] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[30]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#221 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[30] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[30]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[31] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[31]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#222 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[31] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[31]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[3] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[3]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#223 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[3] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[3]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[4] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[4]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#224 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[4] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[4]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[5] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[5]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#225 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[5] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[5]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[6] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[6]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#226 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[6] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[6]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[7] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[7]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#227 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[7] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[7]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[8] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[8]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 NDRV-2#228 Warning
 Out of context terminal  
-Port thread_result_sqrd_0[8] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[8]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
-Related violations: <none>
-
-NDRV-2#229 Warning
-Out of context terminal  
-Port thread_result_sqrd_0[9] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2/vivado_activity_thread_ap_fmul_2_max_dsp_u/U0/i_synth/m_axis_result_tdata[9]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
+Port thread_result_sqrd_0[9] does not have an associated HD.PARTPIN_LOCS property, which will prevent the partial routing of the signal thread_result_sqrd_0[9]. Without this partial route, timing analysis to/from this port will not be accurate and no routing information for this port can be exported.
 Related violations: <none>
 
 ZPS7-1#1 Warning
@@ -1398,7 +1663,7 @@ Related violations: <none>
 
 RTSTAT-10#1 Advisory
 No routable loads  
-3 net(s) have no routable loads. The problem net(s) are ap_idle, thread_result_0_ap_vld, thread_result_sqrd_0_ap_vld.
+2 net(s) have no routable loads. The problem net(s) are ap_done, ap_idle.
 Related violations: <none>
 
 

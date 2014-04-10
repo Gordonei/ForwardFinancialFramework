@@ -7,7 +7,7 @@
 <UserAssignments>
 <unit>ns</unit>
 <ProductFamily>zynq zynq_fpv6 </ProductFamily>
-<Part>xc7z020clg484-1</Part>
+<Part>xc7z045ffg900-2</Part>
 <TopModelName>vivado_activity_thread</TopModelName>
 <TargetClockPeriod>10.00</TargetClockPeriod>
 <ClockUncertainty>1.25</ClockUncertainty>
@@ -17,37 +17,42 @@
 <PipelineType>none</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>8.63</EstimatedClockPeriod>
+<EstimatedClockPeriod>8.59</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>204</Best-caseLatency>
-<Average-caseLatency>204</Average-caseLatency>
-<Worst-caseLatency>204</Worst-caseLatency>
+<Best-caseLatency>11880506</Best-caseLatency>
+<Average-caseLatency>11880506</Average-caseLatency>
+<Worst-caseLatency>11880506</Worst-caseLatency>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
+<PATHSET_LOOP>
+<TripCount>100</TripCount>
+<Latency>11880500</Latency>
+<IterationLatency>118805</IterationLatency>
 <PATH_LOOP>
-<TripCount>10</TripCount>
-<Latency>173</Latency>
-<IterationLatency>17</IterationLatency>
+<TripCount>4096</TripCount>
+<Latency>118791</Latency>
+<IterationLatency>29</IterationLatency>
 </PATH_LOOP>
+</PATHSET_LOOP>
 </SummaryOfLoopLatency>
 </PerformanceEstimates>
 
 <AreaEstimates>
 <Resources>
-<DSP48E>12</DSP48E>
-<FF>1659</FF>
-<LUT>3108</LUT>
+<DSP48E>42</DSP48E>
+<FF>2715</FF>
+<LUT>4971</LUT>
 <BRAM_18K>0</BRAM_18K>
 <SLICE>0</SLICE>
 </Resources>
 <AvailableResources>
-<BRAM_18K>280</BRAM_18K>
-<DSP48E>220</DSP48E>
-<FF>106400</FF>
-<LUT>53200</LUT>
-<SLICE>13300</SLICE>
+<BRAM_18K>1090</BRAM_18K>
+<DSP48E>900</DSP48E>
+<FF>437200</FF>
+<LUT>218600</LUT>
+<SLICE>54650</SLICE>
 </AvailableResources>
 </AreaEstimates>
 

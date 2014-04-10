@@ -6,4 +6,4 @@
 # ==============================================================
 
 
-vivado  -notrace -mode batch -source ipi_example.tcl -tclargs xc7z020clg484-1 ../imperial_F3_vivado_activity_thread_1_0.zip
+vivado  -notrace -mode batch -source ipi_example.tcl -tclargs xc7z045ffg900-2 ../imperial_F3_vivado_activity_thread_1_0.zip

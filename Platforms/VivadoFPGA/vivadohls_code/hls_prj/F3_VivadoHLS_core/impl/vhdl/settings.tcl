@@ -11,9 +11,9 @@
 set top_module vivado_activity_thread
 set language vhdl
 set family zynq
-set device xc7z020
-set package clg484
-set speed -1
+set device xc7z045
+set package ffg900
+set speed -2
 set clock ap_clk
 set fsm_ext "auto"
 
