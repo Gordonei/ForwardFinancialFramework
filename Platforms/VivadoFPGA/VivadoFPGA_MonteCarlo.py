@@ -318,8 +318,8 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  else: output_list.append("time_%d = u_v_%d.time;"%(u_index,u_index))
 	  
     if(self.c_slow):
-      for index,u in enumerate(self.underlying): output_list.append("u_v_%d = u_v_%d_array[p];"%(index,index))
-      for index,d in enumerate(self.derivative): output_list.append("o_v_%d = o_v_%d_array[p];"%(index,index))
+      for index,u in enumerate(self.underlying): output_list.append("u_v_%d_array[p] = u_v_%d;"%(index,index))
+      for index,d in enumerate(self.derivative): output_list.append("o_v_%d_array[p] = o_v_%d ;"%(index,index))
      
     output_list.append("}") #End of the path
     if(self.c_slow): output_list.append("}")
