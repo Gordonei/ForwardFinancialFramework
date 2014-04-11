@@ -740,17 +740,17 @@
 			</item>
 		</ports>
 		<nodes class_id="8" tracking_level="0" version="0">
-			<count>27</count>
+			<count>40</count>
 			<item_version>0</item_version>
 			<item class_id="9" tracking_level="1" version="0" object_id="_27">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>60</id>
-						<name>o_a_0_strike_price</name>
+						<id>58</id>
+						<name>u_a_0_rfir</name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>82</lineNumber>
+						<lineNumber>66</lineNumber>
 						<contextFuncName>vivado_activity_thread</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -765,133 +765,7 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>82</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName>o_a_0.strike_price</originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>97</item>
-					<item>98</item>
-				</oprand_edges>
-				<opcode>read</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_28">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>61</id>
-						<name>o_a_0_time_period</name>
-						<fileName>srcs/vivado_core.c</fileName>
-						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>83</lineNumber>
-						<contextFuncName>vivado_activity_thread</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>srcs/vivado_core.c</first>
-											<second>vivado_activity_thread</second>
-										</first>
-										<second>83</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName>o_a_0.time_period</originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>99</item>
-					<item>100</item>
-				</oprand_edges>
-				<opcode>read</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_29">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>62</id>
-						<name>o_a_0_call</name>
-						<fileName>srcs/vivado_core.c</fileName>
-						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>84</lineNumber>
-						<contextFuncName>vivado_activity_thread</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>srcs/vivado_core.c</first>
-											<second>vivado_activity_thread</second>
-										</first>
-										<second>84</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName>o_a_0.call</originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>101</item>
-					<item>102</item>
-				</oprand_edges>
-				<opcode>read</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_30">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>63</id>
-						<name>u_a_0_rfir</name>
-						<fileName>srcs/vivado_core.c</fileName>
-						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>87</lineNumber>
-						<contextFuncName>vivado_activity_thread</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>srcs/vivado_core.c</first>
-											<second>vivado_activity_thread</second>
-										</first>
-										<second>87</second>
+										<second>66</second>
 									</item>
 								</second>
 							</item>
@@ -905,8 +779,134 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>103</item>
-					<item>104</item>
+					<item>114</item>
+					<item>115</item>
+				</oprand_edges>
+				<opcode>read</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_28">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>59</id>
+						<name>u_a_0_current_price</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>67</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>67</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>u_a_0.current_price</originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>116</item>
+					<item>117</item>
+				</oprand_edges>
+				<opcode>read</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_29">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>60</id>
+						<name>o_a_0_time_period</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>73</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>73</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>o_a_0.time_period</originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>118</item>
+					<item>119</item>
+				</oprand_edges>
+				<opcode>read</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_30">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>61</id>
+						<name>o_a_0_call</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>74</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>74</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>o_a_0.call</originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>120</item>
+					<item>121</item>
 				</oprand_edges>
 				<opcode>read</opcode>
 			</item>
@@ -914,8 +914,91 @@
 				<Value>
 					<Obj>
 						<type>0</type>
+						<id>62</id>
+						<name>o_a_0_strike_price</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>75</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>75</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>o_a_0.strike_price</originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>122</item>
+					<item>123</item>
+				</oprand_edges>
+				<opcode>read</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_32">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>63</id>
+						<name>tmp</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>85</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>85</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>64</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>124</item>
+				</oprand_edges>
+				<opcode>fpext</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_33">
+				<Value>
+					<Obj>
+						<type>0</type>
 						<id>64</id>
-						<name>u_a_0_current_price</name>
+						<name>delta_time_0</name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
 						<lineNumber>88</lineNumber>
@@ -938,48 +1021,6 @@
 								</second>
 							</item>
 						</inlineStackInfo>
-						<originalName>u_a_0.current_price</originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>105</item>
-					<item>106</item>
-				</oprand_edges>
-				<opcode>read</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_32">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>67</id>
-						<name>delta_time_0</name>
-						<fileName>srcs/vivado_core.c</fileName>
-						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>98</lineNumber>
-						<contextFuncName>vivado_activity_thread</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>srcs/vivado_core.c</first>
-											<second>vivado_activity_thread</second>
-										</first>
-										<second>98</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
 						<originalName>delta_time_0</originalName>
 						<rtlName></rtlName>
 						<coreName></coreName>
@@ -989,16 +1030,16 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>107</item>
-					<item>109</item>
+					<item>125</item>
+					<item>127</item>
 				</oprand_edges>
-				<opcode>fdiv</opcode>
+				<opcode>fmul</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_33">
+			<item class_id_reference="9" object_id="_34">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>68</id>
+						<id>65</id>
 						<name>tmp_i</name>
 						<fileName>srcs/underlying.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
@@ -1024,7 +1065,7 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>105</second>
+										<second>93</second>
 									</item>
 								</second>
 							</item>
@@ -1038,20 +1079,118 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>110</item>
-					<item>111</item>
+					<item>128</item>
+					<item>129</item>
 				</oprand_edges>
 				<opcode>fmul</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_34">
+			<item class_id_reference="9" object_id="_35">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>69</id>
+						<id>66</id>
+						<name>tmp_4</name>
+						<fileName>srcs/option.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>26</lineNumber>
+						<contextFuncName>option_derivative_payoff</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/option.c</first>
+											<second>option_derivative_payoff</second>
+										</first>
+										<second>26</second>
+									</item>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>99</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>1</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>130</item>
+					<item>132</item>
+				</oprand_edges>
+				<opcode>fcmp</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_36">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>67</id>
+						<name>tmp_5</name>
+						<fileName>srcs/option.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>26</lineNumber>
+						<contextFuncName>option_derivative_payoff</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/option.c</first>
+											<second>option_derivative_payoff</second>
+										</first>
+										<second>26</second>
+									</item>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>99</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>1</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>133</item>
+					<item>135</item>
+				</oprand_edges>
+				<opcode>xor</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_37">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>68</id>
 						<name></name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>101</lineNumber>
+						<lineNumber>81</lineNumber>
 						<contextFuncName>vivado_activity_thread</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1066,7 +1205,7 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>101</second>
+										<second>81</second>
 									</item>
 								</second>
 							</item>
@@ -1080,15 +1219,273 @@
 				<oprand_edges>
 					<count>1</count>
 					<item_version>0</item_version>
-					<item>112</item>
+					<item>136</item>
 				</oprand_edges>
 				<opcode>br</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_35">
+			<item class_id_reference="9" object_id="_38">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>70</id>
+						<name>p</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName>p</originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>7</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>4</count>
+					<item_version>0</item_version>
+					<item>138</item>
+					<item>139</item>
+					<item>140</item>
+					<item>141</item>
+				</oprand_edges>
+				<opcode>phi</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_39">
 				<Value>
 					<Obj>
 						<type>0</type>
 						<id>71</id>
+						<name>result_0</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName>result_0</originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>4</count>
+					<item_version>0</item_version>
+					<item>142</item>
+					<item>143</item>
+					<item>144</item>
+					<item>145</item>
+				</oprand_edges>
+				<opcode>phi</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_40">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>72</id>
+						<name>result_sqrd_0</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName>result_sqrd_0</originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>4</count>
+					<item_version>0</item_version>
+					<item>146</item>
+					<item>147</item>
+					<item>148</item>
+					<item>149</item>
+				</oprand_edges>
+				<opcode>phi</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_41">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>73</id>
+						<name>exitcond1</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>81</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>81</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>1</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>150</item>
+					<item>152</item>
+				</oprand_edges>
+				<opcode>icmp</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_42">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>75</id>
+						<name>p_1</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>81</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>81</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>p</originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>7</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>153</item>
+					<item>155</item>
+				</oprand_edges>
+				<opcode>add</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_43">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>76</id>
+						<name></name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>81</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>81</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>156</item>
+					<item>157</item>
+					<item>158</item>
+				</oprand_edges>
+				<opcode>br</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_44">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>80</id>
+						<name></name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>91</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>91</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>159</item>
+				</oprand_edges>
+				<opcode>br</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_45">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>82</id>
 						<name>u_v_gamma_read_assign</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
@@ -1107,18 +1504,18 @@
 				<oprand_edges>
 					<count>4</count>
 					<item_version>0</item_version>
-					<item>114</item>
-					<item>115</item>
-					<item>116</item>
-					<item>117</item>
+					<item>160</item>
+					<item>161</item>
+					<item>162</item>
+					<item>163</item>
 				</oprand_edges>
 				<opcode>phi</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_36">
+			<item class_id_reference="9" object_id="_46">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>72</id>
+						<id>83</id>
 						<name>pp</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
@@ -1132,27 +1529,27 @@
 						<rtlName></rtlName>
 						<coreName></coreName>
 					</Obj>
-					<bitwidth>4</bitwidth>
+					<bitwidth>13</bitwidth>
 				</Value>
 				<oprand_edges>
 					<count>4</count>
 					<item_version>0</item_version>
-					<item>119</item>
-					<item>120</item>
-					<item>121</item>
-					<item>122</item>
+					<item>165</item>
+					<item>166</item>
+					<item>167</item>
+					<item>168</item>
 				</oprand_edges>
 				<opcode>phi</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_37">
+			<item class_id_reference="9" object_id="_47">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>73</id>
-						<name>tmp_pn</name>
+						<id>84</id>
+						<name>tmp_6_pn</name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>106</lineNumber>
+						<lineNumber>94</lineNumber>
 						<contextFuncName>vivado_activity_thread</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1167,7 +1564,7 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>106</second>
+										<second>94</second>
 									</item>
 								</second>
 							</item>
@@ -1176,27 +1573,27 @@
 						<rtlName></rtlName>
 						<coreName></coreName>
 					</Obj>
-					<bitwidth>32</bitwidth>
+					<bitwidth>64</bitwidth>
 				</Value>
 				<oprand_edges>
 					<count>4</count>
 					<item_version>0</item_version>
-					<item>124</item>
-					<item>125</item>
-					<item>126</item>
-					<item>127</item>
+					<item>170</item>
+					<item>171</item>
+					<item>172</item>
+					<item>173</item>
 				</oprand_edges>
 				<opcode>phi</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_38">
+			<item class_id_reference="9" object_id="_48">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>74</id>
-						<name>spot_price_0</name>
+						<id>85</id>
+						<name>spot_price_0_0_in</name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>95</lineNumber>
+						<lineNumber>94</lineNumber>
 						<contextFuncName>vivado_activity_thread</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1211,7 +1608,49 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>95</second>
+										<second>94</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>64</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>174</item>
+					<item>175</item>
+				</oprand_edges>
+				<opcode>dmul</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_49">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>86</id>
+						<name>spot_price_0</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>85</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>85</second>
 									</item>
 								</second>
 							</item>
@@ -1223,22 +1662,21 @@
 					<bitwidth>32</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>2</count>
+					<count>1</count>
 					<item_version>0</item_version>
-					<item>128</item>
-					<item>129</item>
+					<item>176</item>
 				</oprand_edges>
-				<opcode>fmul</opcode>
+				<opcode>fptrunc</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_39">
+			<item class_id_reference="9" object_id="_50">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>75</id>
+						<id>87</id>
 						<name>exitcond</name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>101</lineNumber>
+						<lineNumber>91</lineNumber>
 						<contextFuncName>vivado_activity_thread</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1253,7 +1691,7 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>101</second>
+										<second>91</second>
 									</item>
 								</second>
 							</item>
@@ -1267,20 +1705,20 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>130</item>
-					<item>132</item>
+					<item>177</item>
+					<item>179</item>
 				</oprand_edges>
 				<opcode>icmp</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_40">
+			<item class_id_reference="9" object_id="_51">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>77</id>
+						<id>89</id>
 						<name>pp_1</name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>101</lineNumber>
+						<lineNumber>91</lineNumber>
 						<contextFuncName>vivado_activity_thread</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1295,7 +1733,7 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>101</second>
+										<second>91</second>
 									</item>
 								</second>
 							</item>
@@ -1304,25 +1742,25 @@
 						<rtlName></rtlName>
 						<coreName></coreName>
 					</Obj>
-					<bitwidth>4</bitwidth>
+					<bitwidth>13</bitwidth>
 				</Value>
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>133</item>
-					<item>135</item>
+					<item>180</item>
+					<item>182</item>
 				</oprand_edges>
 				<opcode>add</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_41">
+			<item class_id_reference="9" object_id="_52">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>78</id>
+						<id>90</id>
 						<name></name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>101</lineNumber>
+						<lineNumber>91</lineNumber>
 						<contextFuncName>vivado_activity_thread</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1337,7 +1775,7 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>101</second>
+										<second>91</second>
 									</item>
 								</second>
 							</item>
@@ -1351,17 +1789,17 @@
 				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>136</item>
-					<item>137</item>
-					<item>138</item>
+					<item>183</item>
+					<item>184</item>
+					<item>185</item>
 				</oprand_edges>
 				<opcode>br</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_42">
+			<item class_id_reference="9" object_id="_53">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>81</id>
+						<id>93</id>
 						<name>u_v_0_gamma</name>
 						<fileName>srcs/underlying.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
@@ -1387,7 +1825,7 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>105</second>
+										<second>93</second>
 									</item>
 								</second>
 							</item>
@@ -1401,20 +1839,20 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>139</item>
-					<item>140</item>
+					<item>186</item>
+					<item>187</item>
 				</oprand_edges>
 				<opcode>fadd</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_43">
+			<item class_id_reference="9" object_id="_54">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>82</id>
-						<name>tmp_7</name>
+						<id>94</id>
+						<name>tmp_1</name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>106</lineNumber>
+						<lineNumber>94</lineNumber>
 						<contextFuncName>vivado_activity_thread</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1429,7 +1867,138 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>106</second>
+										<second>94</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>64</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>188</item>
+				</oprand_edges>
+				<opcode>fpext</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_55">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>95</id>
+						<name>tmp_2</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>94</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>94</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>64</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>190</item>
+					<item>191</item>
+				</oprand_edges>
+				<opcode>dexp</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_56">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>96</id>
+						<name></name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>91</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>91</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>192</item>
+				</oprand_edges>
+				<opcode>br</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_57">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>98</id>
+						<name>tmp_1_i</name>
+						<fileName>srcs/option.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>27</lineNumber>
+						<contextFuncName>option_derivative_payoff</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/option.c</first>
+											<second>option_derivative_payoff</second>
+										</first>
+										<second>27</second>
+									</item>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>99</second>
 									</item>
 								</second>
 							</item>
@@ -1443,17 +2012,151 @@
 				<oprand_edges>
 					<count>2</count>
 					<item_version>0</item_version>
-					<item>142</item>
-					<item>143</item>
+					<item>193</item>
+					<item>194</item>
 				</oprand_edges>
-				<opcode>fexp</opcode>
+				<opcode>fsub</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_44">
+			<item class_id_reference="9" object_id="_58">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>83</id>
-						<name></name>
+						<id>99</id>
+						<name>tmp_2_i</name>
+						<fileName>srcs/option.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>30</lineNumber>
+						<contextFuncName>option_derivative_payoff</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>2</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/option.c</first>
+											<second>option_derivative_payoff</second>
+										</first>
+										<second>30</second>
+									</item>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>99</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>195</item>
+					<item>196</item>
+				</oprand_edges>
+				<opcode>fsub</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_59">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>100</id>
+						<name>o_v_0_value</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>99</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>99</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>o_v.value</originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>197</item>
+					<item>198</item>
+					<item>199</item>
+				</oprand_edges>
+				<opcode>select</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_60">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>101</id>
+						<name>result_0_1</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>100</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>100</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>result_0</originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>200</item>
+					<item>201</item>
+				</oprand_edges>
+				<opcode>fadd</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_61">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>102</id>
+						<name>tmp_9</name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
 						<lineNumber>101</lineNumber>
@@ -1480,263 +2183,108 @@
 						<rtlName></rtlName>
 						<coreName></coreName>
 					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>202</item>
+					<item>203</item>
+				</oprand_edges>
+				<opcode>fmul</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_62">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>103</id>
+						<name>result_sqrd_0_1</name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>101</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>101</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName>result_sqrd_0</originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>204</item>
+					<item>205</item>
+				</oprand_edges>
+				<opcode>fadd</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_63">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>105</id>
+						<name></name>
+						<fileName>srcs/vivado_core.c</fileName>
+						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
+						<lineNumber>81</lineNumber>
+						<contextFuncName>vivado_activity_thread</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>srcs/vivado_core.c</first>
+											<second>vivado_activity_thread</second>
+										</first>
+										<second>81</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
 					<bitwidth>0</bitwidth>
 				</Value>
 				<oprand_edges>
 					<count>1</count>
 					<item_version>0</item_version>
-					<item>144</item>
+					<item>206</item>
 				</oprand_edges>
 				<opcode>br</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_45">
+			<item class_id_reference="9" object_id="_64">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>85</id>
-						<name>tmp_1</name>
-						<fileName>srcs/option.c</fileName>
-						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>26</lineNumber>
-						<contextFuncName>option_derivative_payoff</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>srcs/option.c</first>
-											<second>option_derivative_payoff</second>
-										</first>
-										<second>26</second>
-									</item>
-									<item>
-										<first>
-											<first>srcs/vivado_core.c</first>
-											<second>vivado_activity_thread</second>
-										</first>
-										<second>112</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>145</item>
-					<item>146</item>
-				</oprand_edges>
-				<opcode>fcmp</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_46">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>86</id>
-						<name>tmp_2</name>
-						<fileName>srcs/option.c</fileName>
-						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>26</lineNumber>
-						<contextFuncName>option_derivative_payoff</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>srcs/option.c</first>
-											<second>option_derivative_payoff</second>
-										</first>
-										<second>26</second>
-									</item>
-									<item>
-										<first>
-											<first>srcs/vivado_core.c</first>
-											<second>vivado_activity_thread</second>
-										</first>
-										<second>112</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>1</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>147</item>
-					<item>149</item>
-				</oprand_edges>
-				<opcode>xor</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_47">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>87</id>
-						<name>tmp_1_i</name>
-						<fileName>srcs/option.c</fileName>
-						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>27</lineNumber>
-						<contextFuncName>option_derivative_payoff</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>srcs/option.c</first>
-											<second>option_derivative_payoff</second>
-										</first>
-										<second>27</second>
-									</item>
-									<item>
-										<first>
-											<first>srcs/vivado_core.c</first>
-											<second>vivado_activity_thread</second>
-										</first>
-										<second>112</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>150</item>
-					<item>151</item>
-				</oprand_edges>
-				<opcode>fsub</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_48">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>88</id>
-						<name>tmp_2_i</name>
-						<fileName>srcs/option.c</fileName>
-						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>30</lineNumber>
-						<contextFuncName>option_derivative_payoff</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
-								<second>
-									<count>2</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>srcs/option.c</first>
-											<second>option_derivative_payoff</second>
-										</first>
-										<second>30</second>
-									</item>
-									<item>
-										<first>
-											<first>srcs/vivado_core.c</first>
-											<second>vivado_activity_thread</second>
-										</first>
-										<second>112</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>152</item>
-					<item>153</item>
-				</oprand_edges>
-				<opcode>fsub</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_49">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>89</id>
-						<name>temp_value</name>
-						<fileName>srcs/vivado_core.c</fileName>
-						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>115</lineNumber>
-						<contextFuncName>vivado_activity_thread</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>srcs/vivado_core.c</first>
-											<second>vivado_activity_thread</second>
-										</first>
-										<second>115</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName>o_v.value</originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>3</count>
-					<item_version>0</item_version>
-					<item>154</item>
-					<item>155</item>
-					<item>156</item>
-				</oprand_edges>
-				<opcode>select</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_50">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>90</id>
+						<id>107</id>
 						<name></name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>117</lineNumber>
+						<lineNumber>105</lineNumber>
 						<contextFuncName>vivado_activity_thread</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1751,7 +2299,7 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>117</second>
+										<second>105</second>
 									</item>
 								</second>
 							</item>
@@ -1765,63 +2313,21 @@
 				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>158</item>
-					<item>159</item>
-					<item>160</item>
+					<item>208</item>
+					<item>209</item>
+					<item>210</item>
 				</oprand_edges>
 				<opcode>write</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_51">
+			<item class_id_reference="9" object_id="_65">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>91</id>
-						<name>tmp_6</name>
-						<fileName>srcs/vivado_core.c</fileName>
-						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>118</lineNumber>
-						<contextFuncName>vivado_activity_thread</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>srcs/vivado_core.c</first>
-											<second>vivado_activity_thread</second>
-										</first>
-										<second>118</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>161</item>
-					<item>162</item>
-				</oprand_edges>
-				<opcode>fmul</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_52">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>92</id>
+						<id>109</id>
 						<name></name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>118</lineNumber>
+						<lineNumber>106</lineNumber>
 						<contextFuncName>vivado_activity_thread</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1836,7 +2342,7 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>118</second>
+										<second>106</second>
 									</item>
 								</second>
 							</item>
@@ -1850,21 +2356,21 @@
 				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>163</item>
-					<item>164</item>
-					<item>165</item>
+					<item>211</item>
+					<item>212</item>
+					<item>213</item>
 				</oprand_edges>
 				<opcode>write</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_53">
+			<item class_id_reference="9" object_id="_66">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>94</id>
+						<id>111</id>
 						<name></name>
 						<fileName>srcs/vivado_core.c</fileName>
 						<fileDirectory>/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code</fileDirectory>
-						<lineNumber>121</lineNumber>
+						<lineNumber>107</lineNumber>
 						<contextFuncName>vivado_activity_thread</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1879,7 +2385,7 @@
 											<first>srcs/vivado_core.c</first>
 											<second>vivado_activity_thread</second>
 										</first>
-										<second>121</second>
+										<second>107</second>
 									</item>
 								</second>
 							</item>
@@ -1898,13 +2404,13 @@
 			</item>
 		</nodes>
 		<consts class_id="15" tracking_level="0" version="0">
-			<count>7</count>
+			<count>10</count>
 			<item_version>0</item_version>
-			<item class_id="16" tracking_level="1" version="0" object_id="_54">
+			<item class_id="16" tracking_level="1" version="0" object_id="_67">
 				<Value>
 					<Obj>
 						<type>2</type>
-						<id>108</id>
+						<id>126</id>
 						<name>empty</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
@@ -1921,78 +2427,9 @@
 					<bitwidth>32</bitwidth>
 				</Value>
 				<const_type>1</const_type>
-				<content>10</content>
+				<content>0.000244141</content>
 			</item>
-			<item class_id_reference="16" object_id="_55">
-				<Value>
-					<Obj>
-						<type>2</type>
-						<id>113</id>
-						<name>empty</name>
-						<fileName></fileName>
-						<fileDirectory></fileDirectory>
-						<lineNumber>0</lineNumber>
-						<contextFuncName></contextFuncName>
-						<inlineStackInfo>
-							<count>0</count>
-							<item_version>0</item_version>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<const_type>1</const_type>
-				<content>0</content>
-			</item>
-			<item class_id_reference="16" object_id="_56">
-				<Value>
-					<Obj>
-						<type>2</type>
-						<id>118</id>
-						<name>empty</name>
-						<fileName></fileName>
-						<fileDirectory></fileDirectory>
-						<lineNumber>0</lineNumber>
-						<contextFuncName></contextFuncName>
-						<inlineStackInfo>
-							<count>0</count>
-							<item_version>0</item_version>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>4</bitwidth>
-				</Value>
-				<const_type>0</const_type>
-				<content>0</content>
-			</item>
-			<item class_id_reference="16" object_id="_57">
-				<Value>
-					<Obj>
-						<type>2</type>
-						<id>123</id>
-						<name>empty</name>
-						<fileName></fileName>
-						<fileDirectory></fileDirectory>
-						<lineNumber>0</lineNumber>
-						<contextFuncName></contextFuncName>
-						<inlineStackInfo>
-							<count>0</count>
-							<item_version>0</item_version>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<const_type>1</const_type>
-				<content>1</content>
-			</item>
-			<item class_id_reference="16" object_id="_58">
+			<item class_id_reference="16" object_id="_68">
 				<Value>
 					<Obj>
 						<type>2</type>
@@ -2010,39 +2447,16 @@
 						<rtlName></rtlName>
 						<coreName></coreName>
 					</Obj>
-					<bitwidth>4</bitwidth>
+					<bitwidth>32</bitwidth>
 				</Value>
-				<const_type>0</const_type>
-				<content>10</content>
+				<const_type>1</const_type>
+				<content>0</content>
 			</item>
-			<item class_id_reference="16" object_id="_59">
+			<item class_id_reference="16" object_id="_69">
 				<Value>
 					<Obj>
 						<type>2</type>
 						<id>134</id>
-						<name>empty</name>
-						<fileName></fileName>
-						<fileDirectory></fileDirectory>
-						<lineNumber>0</lineNumber>
-						<contextFuncName></contextFuncName>
-						<inlineStackInfo>
-							<count>0</count>
-							<item_version>0</item_version>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>4</bitwidth>
-				</Value>
-				<const_type>0</const_type>
-				<content>1</content>
-			</item>
-			<item class_id_reference="16" object_id="_60">
-				<Value>
-					<Obj>
-						<type>2</type>
-						<id>148</id>
 						<name>empty</name>
 						<fileName></fileName>
 						<fileDirectory></fileDirectory>
@@ -2061,15 +2475,260 @@
 				<const_type>0</const_type>
 				<content>1</content>
 			</item>
+			<item class_id_reference="16" object_id="_70">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>137</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>7</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>0</content>
+			</item>
+			<item class_id_reference="16" object_id="_71">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>151</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>7</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>100</content>
+			</item>
+			<item class_id_reference="16" object_id="_72">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>154</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>7</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>1</content>
+			</item>
+			<item class_id_reference="16" object_id="_73">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>164</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>13</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>0</content>
+			</item>
+			<item class_id_reference="16" object_id="_74">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>169</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>64</bitwidth>
+				</Value>
+				<const_type>1</const_type>
+				<content>1</content>
+			</item>
+			<item class_id_reference="16" object_id="_75">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>178</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>13</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>4096</content>
+			</item>
+			<item class_id_reference="16" object_id="_76">
+				<Value>
+					<Obj>
+						<type>2</type>
+						<id>181</id>
+						<name>empty</name>
+						<fileName></fileName>
+						<fileDirectory></fileDirectory>
+						<lineNumber>0</lineNumber>
+						<contextFuncName></contextFuncName>
+						<inlineStackInfo>
+							<count>0</count>
+							<item_version>0</item_version>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>13</bitwidth>
+				</Value>
+				<const_type>0</const_type>
+				<content>1</content>
+			</item>
 		</consts>
 		<blocks class_id="17" tracking_level="0" version="0">
-			<count>4</count>
+			<count>7</count>
 			<item_version>0</item_version>
-			<item class_id="18" tracking_level="1" version="0" object_id="_61">
+			<item class_id="18" tracking_level="1" version="0" object_id="_77">
 				<Obj>
 					<type>3</type>
-					<id>70</id>
-					<name>.critedge</name>
+					<id>69</id>
+					<name></name>
+					<fileName></fileName>
+					<fileDirectory></fileDirectory>
+					<lineNumber>0</lineNumber>
+					<contextFuncName></contextFuncName>
+					<inlineStackInfo>
+						<count>0</count>
+						<item_version>0</item_version>
+					</inlineStackInfo>
+					<originalName></originalName>
+					<rtlName></rtlName>
+					<coreName></coreName>
+				</Obj>
+				<node_objs>
+					<count>11</count>
+					<item_version>0</item_version>
+					<item>58</item>
+					<item>59</item>
+					<item>60</item>
+					<item>61</item>
+					<item>62</item>
+					<item>63</item>
+					<item>64</item>
+					<item>65</item>
+					<item>66</item>
+					<item>67</item>
+					<item>68</item>
+				</node_objs>
+			</item>
+			<item class_id_reference="18" object_id="_78">
+				<Obj>
+					<type>3</type>
+					<id>77</id>
+					<name></name>
+					<fileName></fileName>
+					<fileDirectory></fileDirectory>
+					<lineNumber>0</lineNumber>
+					<contextFuncName></contextFuncName>
+					<inlineStackInfo>
+						<count>0</count>
+						<item_version>0</item_version>
+					</inlineStackInfo>
+					<originalName></originalName>
+					<rtlName></rtlName>
+					<coreName></coreName>
+				</Obj>
+				<node_objs>
+					<count>6</count>
+					<item_version>0</item_version>
+					<item>70</item>
+					<item>71</item>
+					<item>72</item>
+					<item>73</item>
+					<item>75</item>
+					<item>76</item>
+				</node_objs>
+			</item>
+			<item class_id_reference="18" object_id="_79">
+				<Obj>
+					<type>3</type>
+					<id>81</id>
+					<name></name>
+					<fileName></fileName>
+					<fileDirectory></fileDirectory>
+					<lineNumber>0</lineNumber>
+					<contextFuncName></contextFuncName>
+					<inlineStackInfo>
+						<count>0</count>
+						<item_version>0</item_version>
+					</inlineStackInfo>
+					<originalName></originalName>
+					<rtlName></rtlName>
+					<coreName></coreName>
+				</Obj>
+				<node_objs>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>80</item>
+				</node_objs>
+			</item>
+			<item class_id_reference="18" object_id="_80">
+				<Obj>
+					<type>3</type>
+					<id>91</id>
+					<name></name>
 					<fileName></fileName>
 					<fileDirectory></fileDirectory>
 					<lineNumber>0</lineNumber>
@@ -2085,21 +2744,47 @@
 				<node_objs>
 					<count>8</count>
 					<item_version>0</item_version>
-					<item>60</item>
-					<item>61</item>
-					<item>62</item>
-					<item>63</item>
-					<item>64</item>
-					<item>67</item>
-					<item>68</item>
-					<item>69</item>
+					<item>82</item>
+					<item>83</item>
+					<item>84</item>
+					<item>85</item>
+					<item>86</item>
+					<item>87</item>
+					<item>89</item>
+					<item>90</item>
 				</node_objs>
 			</item>
-			<item class_id_reference="18" object_id="_62">
+			<item class_id_reference="18" object_id="_81">
 				<Obj>
 					<type>3</type>
-					<id>79</id>
+					<id>97</id>
 					<name></name>
+					<fileName></fileName>
+					<fileDirectory></fileDirectory>
+					<lineNumber>0</lineNumber>
+					<contextFuncName></contextFuncName>
+					<inlineStackInfo>
+						<count>0</count>
+						<item_version>0</item_version>
+					</inlineStackInfo>
+					<originalName></originalName>
+					<rtlName></rtlName>
+					<coreName></coreName>
+				</Obj>
+				<node_objs>
+					<count>4</count>
+					<item_version>0</item_version>
+					<item>93</item>
+					<item>94</item>
+					<item>95</item>
+					<item>96</item>
+				</node_objs>
+			</item>
+			<item class_id_reference="18" object_id="_82">
+				<Obj>
+					<type>3</type>
+					<id>106</id>
+					<name>_ifconv</name>
 					<fileName></fileName>
 					<fileDirectory></fileDirectory>
 					<lineNumber>0</lineNumber>
@@ -2115,19 +2800,19 @@
 				<node_objs>
 					<count>7</count>
 					<item_version>0</item_version>
-					<item>71</item>
-					<item>72</item>
-					<item>73</item>
-					<item>74</item>
-					<item>75</item>
-					<item>77</item>
-					<item>78</item>
+					<item>98</item>
+					<item>99</item>
+					<item>100</item>
+					<item>101</item>
+					<item>102</item>
+					<item>103</item>
+					<item>105</item>
 				</node_objs>
 			</item>
-			<item class_id_reference="18" object_id="_63">
+			<item class_id_reference="18" object_id="_83">
 				<Obj>
 					<type>3</type>
-					<id>84</id>
+					<id>112</id>
 					<name></name>
 					<fileName></fileName>
 					<fileDirectory></fileDirectory>
@@ -2144,388 +2829,549 @@
 				<node_objs>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>81</item>
-					<item>82</item>
-					<item>83</item>
-				</node_objs>
-			</item>
-			<item class_id_reference="18" object_id="_64">
-				<Obj>
-					<type>3</type>
-					<id>95</id>
-					<name>_ifconv</name>
-					<fileName></fileName>
-					<fileDirectory></fileDirectory>
-					<lineNumber>0</lineNumber>
-					<contextFuncName></contextFuncName>
-					<inlineStackInfo>
-						<count>0</count>
-						<item_version>0</item_version>
-					</inlineStackInfo>
-					<originalName></originalName>
-					<rtlName></rtlName>
-					<coreName></coreName>
-				</Obj>
-				<node_objs>
-					<count>9</count>
-					<item_version>0</item_version>
-					<item>85</item>
-					<item>86</item>
-					<item>87</item>
-					<item>88</item>
-					<item>89</item>
-					<item>90</item>
-					<item>91</item>
-					<item>92</item>
-					<item>94</item>
+					<item>107</item>
+					<item>109</item>
+					<item>111</item>
 				</node_objs>
 			</item>
 		</blocks>
 		<edges class_id="19" tracking_level="0" version="0">
-			<count>56</count>
+			<count>88</count>
 			<item_version>0</item_version>
-			<item class_id="20" tracking_level="1" version="0" object_id="_65">
-				<id>98</id>
-				<edge_type>1</edge_type>
-				<source_obj>17</source_obj>
-				<sink_obj>60</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_66">
-				<id>100</id>
-				<edge_type>1</edge_type>
-				<source_obj>18</source_obj>
-				<sink_obj>61</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_67">
-				<id>102</id>
-				<edge_type>1</edge_type>
-				<source_obj>19</source_obj>
-				<sink_obj>62</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_68">
-				<id>104</id>
+			<item class_id="20" tracking_level="1" version="0" object_id="_84">
+				<id>115</id>
 				<edge_type>1</edge_type>
 				<source_obj>1</source_obj>
-				<sink_obj>63</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_69">
-				<id>106</id>
-				<edge_type>1</edge_type>
-				<source_obj>2</source_obj>
-				<sink_obj>64</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_70">
-				<id>107</id>
-				<edge_type>1</edge_type>
-				<source_obj>61</source_obj>
-				<sink_obj>67</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_71">
-				<id>109</id>
-				<edge_type>1</edge_type>
-				<source_obj>108</source_obj>
-				<sink_obj>67</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_72">
-				<id>110</id>
-				<edge_type>1</edge_type>
-				<source_obj>63</source_obj>
-				<sink_obj>68</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_73">
-				<id>111</id>
-				<edge_type>1</edge_type>
-				<source_obj>67</source_obj>
-				<sink_obj>68</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_74">
-				<id>112</id>
-				<edge_type>2</edge_type>
-				<source_obj>79</source_obj>
-				<sink_obj>69</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_75">
-				<id>114</id>
-				<edge_type>1</edge_type>
-				<source_obj>113</source_obj>
-				<sink_obj>71</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_76">
-				<id>115</id>
-				<edge_type>2</edge_type>
-				<source_obj>70</source_obj>
-				<sink_obj>71</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_77">
-				<id>116</id>
-				<edge_type>1</edge_type>
-				<source_obj>81</source_obj>
-				<sink_obj>71</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_78">
-				<id>117</id>
-				<edge_type>2</edge_type>
-				<source_obj>84</source_obj>
-				<sink_obj>71</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_79">
-				<id>119</id>
-				<edge_type>1</edge_type>
-				<source_obj>118</source_obj>
-				<sink_obj>72</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_80">
-				<id>120</id>
-				<edge_type>2</edge_type>
-				<source_obj>70</source_obj>
-				<sink_obj>72</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_81">
-				<id>121</id>
-				<edge_type>1</edge_type>
-				<source_obj>77</source_obj>
-				<sink_obj>72</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_82">
-				<id>122</id>
-				<edge_type>2</edge_type>
-				<source_obj>84</source_obj>
-				<sink_obj>72</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_83">
-				<id>124</id>
-				<edge_type>1</edge_type>
-				<source_obj>123</source_obj>
-				<sink_obj>73</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_84">
-				<id>125</id>
-				<edge_type>2</edge_type>
-				<source_obj>70</source_obj>
-				<sink_obj>73</sink_obj>
+				<sink_obj>58</sink_obj>
 			</item>
 			<item class_id_reference="20" object_id="_85">
-				<id>126</id>
+				<id>117</id>
 				<edge_type>1</edge_type>
-				<source_obj>82</source_obj>
-				<sink_obj>73</sink_obj>
+				<source_obj>2</source_obj>
+				<sink_obj>59</sink_obj>
 			</item>
 			<item class_id_reference="20" object_id="_86">
-				<id>127</id>
-				<edge_type>2</edge_type>
-				<source_obj>84</source_obj>
-				<sink_obj>73</sink_obj>
+				<id>119</id>
+				<edge_type>1</edge_type>
+				<source_obj>18</source_obj>
+				<sink_obj>60</sink_obj>
 			</item>
 			<item class_id_reference="20" object_id="_87">
-				<id>128</id>
+				<id>121</id>
 				<edge_type>1</edge_type>
-				<source_obj>64</source_obj>
-				<sink_obj>74</sink_obj>
+				<source_obj>19</source_obj>
+				<sink_obj>61</sink_obj>
 			</item>
 			<item class_id_reference="20" object_id="_88">
-				<id>129</id>
+				<id>123</id>
 				<edge_type>1</edge_type>
-				<source_obj>73</source_obj>
-				<sink_obj>74</sink_obj>
+				<source_obj>17</source_obj>
+				<sink_obj>62</sink_obj>
 			</item>
 			<item class_id_reference="20" object_id="_89">
-				<id>130</id>
+				<id>124</id>
 				<edge_type>1</edge_type>
-				<source_obj>72</source_obj>
-				<sink_obj>75</sink_obj>
+				<source_obj>59</source_obj>
+				<sink_obj>63</sink_obj>
 			</item>
 			<item class_id_reference="20" object_id="_90">
+				<id>125</id>
+				<edge_type>1</edge_type>
+				<source_obj>60</source_obj>
+				<sink_obj>64</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_91">
+				<id>127</id>
+				<edge_type>1</edge_type>
+				<source_obj>126</source_obj>
+				<sink_obj>64</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_92">
+				<id>128</id>
+				<edge_type>1</edge_type>
+				<source_obj>58</source_obj>
+				<sink_obj>65</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_93">
+				<id>129</id>
+				<edge_type>1</edge_type>
+				<source_obj>64</source_obj>
+				<sink_obj>65</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_94">
+				<id>130</id>
+				<edge_type>1</edge_type>
+				<source_obj>61</source_obj>
+				<sink_obj>66</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_95">
 				<id>132</id>
 				<edge_type>1</edge_type>
 				<source_obj>131</source_obj>
-				<sink_obj>75</sink_obj>
+				<sink_obj>66</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_91">
+			<item class_id_reference="20" object_id="_96">
 				<id>133</id>
 				<edge_type>1</edge_type>
-				<source_obj>72</source_obj>
-				<sink_obj>77</sink_obj>
+				<source_obj>66</source_obj>
+				<sink_obj>67</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_92">
+			<item class_id_reference="20" object_id="_97">
 				<id>135</id>
 				<edge_type>1</edge_type>
 				<source_obj>134</source_obj>
-				<sink_obj>77</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_93">
-				<id>136</id>
-				<edge_type>1</edge_type>
-				<source_obj>75</source_obj>
-				<sink_obj>78</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_94">
-				<id>137</id>
-				<edge_type>2</edge_type>
-				<source_obj>84</source_obj>
-				<sink_obj>78</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_95">
-				<id>138</id>
-				<edge_type>2</edge_type>
-				<source_obj>95</source_obj>
-				<sink_obj>78</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_96">
-				<id>139</id>
-				<edge_type>1</edge_type>
-				<source_obj>68</source_obj>
-				<sink_obj>81</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_97">
-				<id>140</id>
-				<edge_type>1</edge_type>
-				<source_obj>71</source_obj>
-				<sink_obj>81</sink_obj>
+				<sink_obj>67</sink_obj>
 			</item>
 			<item class_id_reference="20" object_id="_98">
-				<id>143</id>
+				<id>136</id>
+				<edge_type>2</edge_type>
+				<source_obj>77</source_obj>
+				<sink_obj>68</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_99">
+				<id>138</id>
 				<edge_type>1</edge_type>
+				<source_obj>137</source_obj>
+				<sink_obj>70</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_100">
+				<id>139</id>
+				<edge_type>2</edge_type>
+				<source_obj>69</source_obj>
+				<sink_obj>70</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_101">
+				<id>140</id>
+				<edge_type>1</edge_type>
+				<source_obj>75</source_obj>
+				<sink_obj>70</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_102">
+				<id>141</id>
+				<edge_type>2</edge_type>
+				<source_obj>106</source_obj>
+				<sink_obj>70</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_103">
+				<id>142</id>
+				<edge_type>1</edge_type>
+				<source_obj>131</source_obj>
+				<sink_obj>71</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_104">
+				<id>143</id>
+				<edge_type>2</edge_type>
+				<source_obj>69</source_obj>
+				<sink_obj>71</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_105">
+				<id>144</id>
+				<edge_type>1</edge_type>
+				<source_obj>101</source_obj>
+				<sink_obj>71</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_106">
+				<id>145</id>
+				<edge_type>2</edge_type>
+				<source_obj>106</source_obj>
+				<sink_obj>71</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_107">
+				<id>146</id>
+				<edge_type>1</edge_type>
+				<source_obj>131</source_obj>
+				<sink_obj>72</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_108">
+				<id>147</id>
+				<edge_type>2</edge_type>
+				<source_obj>69</source_obj>
+				<sink_obj>72</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_109">
+				<id>148</id>
+				<edge_type>1</edge_type>
+				<source_obj>103</source_obj>
+				<sink_obj>72</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_110">
+				<id>149</id>
+				<edge_type>2</edge_type>
+				<source_obj>106</source_obj>
+				<sink_obj>72</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_111">
+				<id>150</id>
+				<edge_type>1</edge_type>
+				<source_obj>70</source_obj>
+				<sink_obj>73</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_112">
+				<id>152</id>
+				<edge_type>1</edge_type>
+				<source_obj>151</source_obj>
+				<sink_obj>73</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_113">
+				<id>153</id>
+				<edge_type>1</edge_type>
+				<source_obj>70</source_obj>
+				<sink_obj>75</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_114">
+				<id>155</id>
+				<edge_type>1</edge_type>
+				<source_obj>154</source_obj>
+				<sink_obj>75</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_115">
+				<id>156</id>
+				<edge_type>1</edge_type>
+				<source_obj>73</source_obj>
+				<sink_obj>76</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_116">
+				<id>157</id>
+				<edge_type>2</edge_type>
+				<source_obj>81</source_obj>
+				<sink_obj>76</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_117">
+				<id>158</id>
+				<edge_type>2</edge_type>
+				<source_obj>112</source_obj>
+				<sink_obj>76</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_118">
+				<id>159</id>
+				<edge_type>2</edge_type>
+				<source_obj>91</source_obj>
+				<sink_obj>80</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_119">
+				<id>160</id>
+				<edge_type>1</edge_type>
+				<source_obj>131</source_obj>
+				<sink_obj>82</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_120">
+				<id>161</id>
+				<edge_type>2</edge_type>
 				<source_obj>81</source_obj>
 				<sink_obj>82</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_99">
-				<id>144</id>
+			<item class_id_reference="20" object_id="_121">
+				<id>162</id>
+				<edge_type>1</edge_type>
+				<source_obj>93</source_obj>
+				<sink_obj>82</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_122">
+				<id>163</id>
 				<edge_type>2</edge_type>
-				<source_obj>79</source_obj>
+				<source_obj>97</source_obj>
+				<sink_obj>82</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_123">
+				<id>165</id>
+				<edge_type>1</edge_type>
+				<source_obj>164</source_obj>
 				<sink_obj>83</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_100">
-				<id>145</id>
+			<item class_id_reference="20" object_id="_124">
+				<id>166</id>
+				<edge_type>2</edge_type>
+				<source_obj>81</source_obj>
+				<sink_obj>83</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_125">
+				<id>167</id>
 				<edge_type>1</edge_type>
-				<source_obj>62</source_obj>
+				<source_obj>89</source_obj>
+				<sink_obj>83</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_126">
+				<id>168</id>
+				<edge_type>2</edge_type>
+				<source_obj>97</source_obj>
+				<sink_obj>83</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_127">
+				<id>170</id>
+				<edge_type>1</edge_type>
+				<source_obj>169</source_obj>
+				<sink_obj>84</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_128">
+				<id>171</id>
+				<edge_type>2</edge_type>
+				<source_obj>81</source_obj>
+				<sink_obj>84</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_129">
+				<id>172</id>
+				<edge_type>1</edge_type>
+				<source_obj>95</source_obj>
+				<sink_obj>84</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_130">
+				<id>173</id>
+				<edge_type>2</edge_type>
+				<source_obj>97</source_obj>
+				<sink_obj>84</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_131">
+				<id>174</id>
+				<edge_type>1</edge_type>
+				<source_obj>63</source_obj>
 				<sink_obj>85</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_101">
-				<id>146</id>
+			<item class_id_reference="20" object_id="_132">
+				<id>175</id>
 				<edge_type>1</edge_type>
-				<source_obj>113</source_obj>
+				<source_obj>84</source_obj>
 				<sink_obj>85</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_102">
-				<id>147</id>
+			<item class_id_reference="20" object_id="_133">
+				<id>176</id>
 				<edge_type>1</edge_type>
 				<source_obj>85</source_obj>
 				<sink_obj>86</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_103">
-				<id>149</id>
+			<item class_id_reference="20" object_id="_134">
+				<id>177</id>
 				<edge_type>1</edge_type>
-				<source_obj>148</source_obj>
-				<sink_obj>86</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_104">
-				<id>150</id>
-				<edge_type>1</edge_type>
-				<source_obj>74</source_obj>
+				<source_obj>83</source_obj>
 				<sink_obj>87</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_105">
-				<id>151</id>
+			<item class_id_reference="20" object_id="_135">
+				<id>179</id>
 				<edge_type>1</edge_type>
-				<source_obj>60</source_obj>
+				<source_obj>178</source_obj>
 				<sink_obj>87</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_106">
-				<id>152</id>
+			<item class_id_reference="20" object_id="_136">
+				<id>180</id>
 				<edge_type>1</edge_type>
-				<source_obj>60</source_obj>
-				<sink_obj>88</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_107">
-				<id>153</id>
-				<edge_type>1</edge_type>
-				<source_obj>74</source_obj>
-				<sink_obj>88</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_108">
-				<id>154</id>
-				<edge_type>1</edge_type>
-				<source_obj>86</source_obj>
+				<source_obj>83</source_obj>
 				<sink_obj>89</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_109">
-				<id>155</id>
+			<item class_id_reference="20" object_id="_137">
+				<id>182</id>
+				<edge_type>1</edge_type>
+				<source_obj>181</source_obj>
+				<sink_obj>89</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_138">
+				<id>183</id>
 				<edge_type>1</edge_type>
 				<source_obj>87</source_obj>
-				<sink_obj>89</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_110">
-				<id>156</id>
-				<edge_type>1</edge_type>
-				<source_obj>88</source_obj>
-				<sink_obj>89</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_111">
-				<id>159</id>
-				<edge_type>1</edge_type>
-				<source_obj>25</source_obj>
 				<sink_obj>90</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_112">
-				<id>160</id>
-				<edge_type>1</edge_type>
-				<source_obj>89</source_obj>
+			<item class_id_reference="20" object_id="_139">
+				<id>184</id>
+				<edge_type>2</edge_type>
+				<source_obj>97</source_obj>
 				<sink_obj>90</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_113">
-				<id>161</id>
-				<edge_type>1</edge_type>
-				<source_obj>89</source_obj>
-				<sink_obj>91</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_114">
-				<id>162</id>
-				<edge_type>1</edge_type>
-				<source_obj>89</source_obj>
-				<sink_obj>91</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_115">
-				<id>164</id>
-				<edge_type>1</edge_type>
-				<source_obj>26</source_obj>
-				<sink_obj>92</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_116">
-				<id>165</id>
-				<edge_type>1</edge_type>
-				<source_obj>91</source_obj>
-				<sink_obj>92</sink_obj>
-			</item>
-			<item class_id_reference="20" object_id="_117">
-				<id>317</id>
+			<item class_id_reference="20" object_id="_140">
+				<id>185</id>
 				<edge_type>2</edge_type>
-				<source_obj>70</source_obj>
-				<sink_obj>79</sink_obj>
+				<source_obj>106</source_obj>
+				<sink_obj>90</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_118">
-				<id>318</id>
-				<edge_type>2</edge_type>
-				<source_obj>79</source_obj>
+			<item class_id_reference="20" object_id="_141">
+				<id>186</id>
+				<edge_type>1</edge_type>
+				<source_obj>65</source_obj>
+				<sink_obj>93</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_142">
+				<id>187</id>
+				<edge_type>1</edge_type>
+				<source_obj>82</source_obj>
+				<sink_obj>93</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_143">
+				<id>188</id>
+				<edge_type>1</edge_type>
+				<source_obj>93</source_obj>
+				<sink_obj>94</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_144">
+				<id>191</id>
+				<edge_type>1</edge_type>
+				<source_obj>94</source_obj>
 				<sink_obj>95</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_119">
-				<id>319</id>
+			<item class_id_reference="20" object_id="_145">
+				<id>192</id>
 				<edge_type>2</edge_type>
-				<source_obj>79</source_obj>
-				<sink_obj>84</sink_obj>
+				<source_obj>91</source_obj>
+				<sink_obj>96</sink_obj>
 			</item>
-			<item class_id_reference="20" object_id="_120">
-				<id>320</id>
+			<item class_id_reference="20" object_id="_146">
+				<id>193</id>
+				<edge_type>1</edge_type>
+				<source_obj>86</source_obj>
+				<sink_obj>98</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_147">
+				<id>194</id>
+				<edge_type>1</edge_type>
+				<source_obj>62</source_obj>
+				<sink_obj>98</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_148">
+				<id>195</id>
+				<edge_type>1</edge_type>
+				<source_obj>62</source_obj>
+				<sink_obj>99</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_149">
+				<id>196</id>
+				<edge_type>1</edge_type>
+				<source_obj>86</source_obj>
+				<sink_obj>99</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_150">
+				<id>197</id>
+				<edge_type>1</edge_type>
+				<source_obj>67</source_obj>
+				<sink_obj>100</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_151">
+				<id>198</id>
+				<edge_type>1</edge_type>
+				<source_obj>98</source_obj>
+				<sink_obj>100</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_152">
+				<id>199</id>
+				<edge_type>1</edge_type>
+				<source_obj>99</source_obj>
+				<sink_obj>100</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_153">
+				<id>200</id>
+				<edge_type>1</edge_type>
+				<source_obj>71</source_obj>
+				<sink_obj>101</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_154">
+				<id>201</id>
+				<edge_type>1</edge_type>
+				<source_obj>100</source_obj>
+				<sink_obj>101</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_155">
+				<id>202</id>
+				<edge_type>1</edge_type>
+				<source_obj>100</source_obj>
+				<sink_obj>102</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_156">
+				<id>203</id>
+				<edge_type>1</edge_type>
+				<source_obj>100</source_obj>
+				<sink_obj>102</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_157">
+				<id>204</id>
+				<edge_type>1</edge_type>
+				<source_obj>72</source_obj>
+				<sink_obj>103</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_158">
+				<id>205</id>
+				<edge_type>1</edge_type>
+				<source_obj>102</source_obj>
+				<sink_obj>103</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_159">
+				<id>206</id>
 				<edge_type>2</edge_type>
-				<source_obj>84</source_obj>
-				<sink_obj>79</sink_obj>
+				<source_obj>77</source_obj>
+				<sink_obj>105</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_160">
+				<id>209</id>
+				<edge_type>1</edge_type>
+				<source_obj>25</source_obj>
+				<sink_obj>107</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_161">
+				<id>210</id>
+				<edge_type>1</edge_type>
+				<source_obj>71</source_obj>
+				<sink_obj>107</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_162">
+				<id>212</id>
+				<edge_type>1</edge_type>
+				<source_obj>26</source_obj>
+				<sink_obj>109</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_163">
+				<id>213</id>
+				<edge_type>1</edge_type>
+				<source_obj>72</source_obj>
+				<sink_obj>109</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_164">
+				<id>370</id>
+				<edge_type>2</edge_type>
+				<source_obj>69</source_obj>
+				<sink_obj>77</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_165">
+				<id>371</id>
+				<edge_type>2</edge_type>
+				<source_obj>77</source_obj>
+				<sink_obj>112</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_166">
+				<id>372</id>
+				<edge_type>2</edge_type>
+				<source_obj>77</source_obj>
+				<sink_obj>81</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_167">
+				<id>373</id>
+				<edge_type>2</edge_type>
+				<source_obj>81</source_obj>
+				<sink_obj>91</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_168">
+				<id>374</id>
+				<edge_type>2</edge_type>
+				<source_obj>91</source_obj>
+				<sink_obj>106</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_169">
+				<id>375</id>
+				<edge_type>2</edge_type>
+				<source_obj>91</source_obj>
+				<sink_obj>97</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_170">
+				<id>376</id>
+				<edge_type>2</edge_type>
+				<source_obj>97</source_obj>
+				<sink_obj>91</sink_obj>
+			</item>
+			<item class_id_reference="20" object_id="_171">
+				<id>377</id>
+				<edge_type>2</edge_type>
+				<source_obj>106</source_obj>
+				<sink_obj>77</sink_obj>
 			</item>
 		</edges>
 	</cdfg>
 	<cdfg_regions class_id="21" tracking_level="0" version="0">
-		<count>4</count>
+		<count>7</count>
 		<item_version>0</item_version>
-		<item class_id="22" tracking_level="1" version="0" object_id="_121">
+		<item class_id="22" tracking_level="1" version="0" object_id="_172">
 			<mId>1</mId>
 			<mTag>vivado_activity_thread</mTag>
 			<mType>0</mType>
@@ -2534,7 +3380,7 @@
 				<item_version>0</item_version>
 				<item>2</item>
 				<item>3</item>
-				<item>4</item>
+				<item>7</item>
 			</sub_regions>
 			<basic_blocks>
 				<count>0</count>
@@ -2544,12 +3390,12 @@
 			<mDepth>-1</mDepth>
 			<mMinTripCount>-1</mMinTripCount>
 			<mMaxTripCount>-1</mMaxTripCount>
-			<mMinLatency>204</mMinLatency>
+			<mMinLatency>11880506</mMinLatency>
 			<mMaxLatency>-1</mMaxLatency>
 			<mIsDfPipe>0</mIsDfPipe>
 			<mDfPipe class_id="-1"></mDfPipe>
 		</item>
-		<item class_id_reference="22" object_id="_122">
+		<item class_id_reference="22" object_id="_173">
 			<mId>2</mId>
 			<mTag>Entry</mTag>
 			<mType>0</mType>
@@ -2560,19 +3406,66 @@
 			<basic_blocks>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>70</item>
+				<item>69</item>
 			</basic_blocks>
 			<mII>-1</mII>
 			<mDepth>-1</mDepth>
 			<mMinTripCount>-1</mMinTripCount>
 			<mMaxTripCount>-1</mMaxTripCount>
-			<mMinLatency>19</mMinLatency>
+			<mMinLatency>5</mMinLatency>
 			<mMaxLatency>-1</mMaxLatency>
 			<mIsDfPipe>0</mIsDfPipe>
 			<mDfPipe class_id="-1"></mDfPipe>
 		</item>
-		<item class_id_reference="22" object_id="_123">
+		<item class_id_reference="22" object_id="_174">
 			<mId>3</mId>
+			<mTag>PATHSET_LOOP</mTag>
+			<mType>1</mType>
+			<sub_regions>
+				<count>3</count>
+				<item_version>0</item_version>
+				<item>4</item>
+				<item>5</item>
+				<item>6</item>
+			</sub_regions>
+			<basic_blocks>
+				<count>0</count>
+				<item_version>0</item_version>
+			</basic_blocks>
+			<mII>-1</mII>
+			<mDepth>-1</mDepth>
+			<mMinTripCount>100</mMinTripCount>
+			<mMaxTripCount>100</mMaxTripCount>
+			<mMinLatency>11880500</mMinLatency>
+			<mMaxLatency>-1</mMaxLatency>
+			<mIsDfPipe>0</mIsDfPipe>
+			<mDfPipe class_id="-1"></mDfPipe>
+		</item>
+		<item class_id_reference="22" object_id="_175">
+			<mId>4</mId>
+			<mTag>Region 1</mTag>
+			<mType>0</mType>
+			<sub_regions>
+				<count>0</count>
+				<item_version>0</item_version>
+			</sub_regions>
+			<basic_blocks>
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>77</item>
+				<item>81</item>
+			</basic_blocks>
+			<mII>-1</mII>
+			<mDepth>-1</mDepth>
+			<mMinTripCount>-1</mMinTripCount>
+			<mMaxTripCount>-1</mMaxTripCount>
+			<mMinLatency>0</mMinLatency>
+			<mMaxLatency>-1</mMaxLatency>
+			<mIsDfPipe>0</mIsDfPipe>
+			<mDfPipe class_id="-1"></mDfPipe>
+		</item>
+		<item class_id_reference="22" object_id="_176">
+			<mId>5</mId>
 			<mTag>PATH_LOOP</mTag>
 			<mType>1</mType>
 			<sub_regions>
@@ -2582,21 +3475,21 @@
 			<basic_blocks>
 				<count>2</count>
 				<item_version>0</item_version>
-				<item>79</item>
-				<item>84</item>
+				<item>91</item>
+				<item>97</item>
 			</basic_blocks>
 			<mII>-1</mII>
 			<mDepth>-1</mDepth>
-			<mMinTripCount>10</mMinTripCount>
-			<mMaxTripCount>10</mMaxTripCount>
-			<mMinLatency>173</mMinLatency>
+			<mMinTripCount>4096</mMinTripCount>
+			<mMaxTripCount>4096</mMaxTripCount>
+			<mMinLatency>118791</mMinLatency>
 			<mMaxLatency>-1</mMaxLatency>
 			<mIsDfPipe>0</mIsDfPipe>
 			<mDfPipe class_id="-1"></mDfPipe>
 		</item>
-		<item class_id_reference="22" object_id="_124">
-			<mId>4</mId>
-			<mTag>Return</mTag>
+		<item class_id_reference="22" object_id="_177">
+			<mId>6</mId>
+			<mTag>Region 2</mTag>
 			<mType>0</mType>
 			<sub_regions>
 				<count>0</count>
@@ -2605,7 +3498,7 @@
 			<basic_blocks>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item>95</item>
+				<item>106</item>
 			</basic_blocks>
 			<mII>-1</mII>
 			<mDepth>-1</mDepth>
@@ -2616,9 +3509,31 @@
 			<mIsDfPipe>0</mIsDfPipe>
 			<mDfPipe class_id="-1"></mDfPipe>
 		</item>
+		<item class_id_reference="22" object_id="_178">
+			<mId>7</mId>
+			<mTag>Return</mTag>
+			<mType>0</mType>
+			<sub_regions>
+				<count>0</count>
+				<item_version>0</item_version>
+			</sub_regions>
+			<basic_blocks>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>112</item>
+			</basic_blocks>
+			<mII>-1</mII>
+			<mDepth>-1</mDepth>
+			<mMinTripCount>-1</mMinTripCount>
+			<mMaxTripCount>-1</mMaxTripCount>
+			<mMinLatency>0</mMinLatency>
+			<mMaxLatency>-1</mMaxLatency>
+			<mIsDfPipe>0</mIsDfPipe>
+			<mDfPipe class_id="-1"></mDfPipe>
+		</item>
 	</cdfg_regions>
 	<fsm class_id="-1"></fsm>
-	<res class_id="25" tracking_level="1" version="0" object_id="_125">
+	<res class_id="25" tracking_level="1" version="0" object_id="_179">
 		<dp_component_resource class_id="26" tracking_level="0" version="0">
 			<count>0</count>
 			<item_version>0</item_version>
@@ -2661,227 +3576,339 @@
 		</dp_memory_map>
 	</res>
 	<node_label_latency class_id="28" tracking_level="0" version="0">
-		<count>27</count>
+		<count>40</count>
 		<item_version>0</item_version>
 		<item class_id="29" tracking_level="0" version="0">
-			<first>60</first>
+			<first>58</first>
 			<second class_id="30" tracking_level="0" version="0">
-				<first>19</first>
+				<first>3</first>
+				<second>0</second>
+			</second>
+		</item>
+		<item>
+			<first>59</first>
+			<second>
+				<first>3</first>
+				<second>0</second>
+			</second>
+		</item>
+		<item>
+			<first>60</first>
+			<second>
+				<first>0</first>
 				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>61</first>
 			<second>
-				<first>0</first>
+				<first>3</first>
 				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>62</first>
 			<second>
-				<first>19</first>
+				<first>5</first>
 				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>63</first>
 			<second>
-				<first>16</first>
-				<second>0</second>
+				<first>3</first>
+				<second>2</second>
 			</second>
 		</item>
 		<item>
 			<first>64</first>
 			<second>
-				<first>19</first>
-				<second>0</second>
+				<first>0</first>
+				<second>2</second>
+			</second>
+		</item>
+		<item>
+			<first>65</first>
+			<second>
+				<first>3</first>
+				<second>2</second>
+			</second>
+		</item>
+		<item>
+			<first>66</first>
+			<second>
+				<first>3</first>
+				<second>2</second>
 			</second>
 		</item>
 		<item>
 			<first>67</first>
 			<second>
-				<first>0</first>
-				<second>15</second>
+				<first>5</first>
+				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>68</first>
 			<second>
-				<first>16</first>
-				<second>3</second>
+				<first>5</first>
+				<second>0</second>
 			</second>
 		</item>
 		<item>
-			<first>69</first>
+			<first>70</first>
 			<second>
-				<first>19</first>
+				<first>6</first>
 				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>71</first>
 			<second>
-				<first>23</first>
+				<first>6</first>
 				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>72</first>
 			<second>
-				<first>23</first>
+				<first>6</first>
 				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>73</first>
 			<second>
-				<first>20</first>
+				<first>6</first>
 				<second>0</second>
-			</second>
-		</item>
-		<item>
-			<first>74</first>
-			<second>
-				<first>20</first>
-				<second>3</second>
 			</second>
 		</item>
 		<item>
 			<first>75</first>
 			<second>
-				<first>23</first>
+				<first>6</first>
 				<second>0</second>
 			</second>
 		</item>
 		<item>
-			<first>77</first>
+			<first>76</first>
 			<second>
-				<first>23</first>
+				<first>6</first>
 				<second>0</second>
 			</second>
 		</item>
 		<item>
-			<first>78</first>
+			<first>80</first>
 			<second>
-				<first>23</first>
+				<first>6</first>
 				<second>0</second>
-			</second>
-		</item>
-		<item>
-			<first>81</first>
-			<second>
-				<first>23</first>
-				<second>4</second>
 			</second>
 		</item>
 		<item>
 			<first>82</first>
 			<second>
-				<first>28</first>
-				<second>8</second>
+				<first>14</first>
+				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>83</first>
 			<second>
-				<first>36</first>
+				<first>14</first>
+				<second>0</second>
+			</second>
+		</item>
+		<item>
+			<first>84</first>
+			<second>
+				<first>7</first>
 				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>85</first>
 			<second>
-				<first>23</first>
-				<second>2</second>
+				<first>7</first>
+				<second>4</second>
 			</second>
 		</item>
 		<item>
 			<first>86</first>
 			<second>
-				<first>25</first>
-				<second>0</second>
+				<first>12</first>
+				<second>2</second>
 			</second>
 		</item>
 		<item>
 			<first>87</first>
 			<second>
-				<first>26</first>
-				<second>4</second>
-			</second>
-		</item>
-		<item>
-			<first>88</first>
-			<second>
-				<first>26</first>
-				<second>4</second>
+				<first>14</first>
+				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>89</first>
 			<second>
-				<first>30</first>
+				<first>14</first>
 				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>90</first>
 			<second>
-				<first>31</first>
+				<first>14</first>
 				<second>0</second>
 			</second>
 		</item>
 		<item>
-			<first>91</first>
+			<first>93</first>
 			<second>
-				<first>31</first>
+				<first>14</first>
 				<second>3</second>
-			</second>
-		</item>
-		<item>
-			<first>92</first>
-			<second>
-				<first>34</first>
-				<second>0</second>
 			</second>
 		</item>
 		<item>
 			<first>94</first>
 			<second>
-				<first>34</first>
-				<second>0</second>
-			</second>
-		</item>
-	</node_label_latency>
-	<bblk_ent_exit class_id="31" tracking_level="0" version="0">
-		<count>4</count>
-		<item_version>0</item_version>
-		<item class_id="32" tracking_level="0" version="0">
-			<first>70</first>
-			<second class_id="33" tracking_level="0" version="0">
-				<first>0</first>
-				<second>19</second>
-			</second>
-		</item>
-		<item>
-			<first>79</first>
-			<second>
-				<first>20</first>
-				<second>23</second>
-			</second>
-		</item>
-		<item>
-			<first>84</first>
-			<second>
-				<first>23</first>
-				<second>36</second>
+				<first>18</first>
+				<second>2</second>
 			</second>
 		</item>
 		<item>
 			<first>95</first>
 			<second>
+				<first>21</first>
+				<second>14</second>
+			</second>
+		</item>
+		<item>
+			<first>96</first>
+			<second>
+				<first>35</first>
+				<second>0</second>
+			</second>
+		</item>
+		<item>
+			<first>98</first>
+			<second>
+				<first>15</first>
+				<second>3</second>
+			</second>
+		</item>
+		<item>
+			<first>99</first>
+			<second>
+				<first>15</first>
+				<second>3</second>
+			</second>
+		</item>
+		<item>
+			<first>100</first>
+			<second>
+				<first>19</first>
+				<second>0</second>
+			</second>
+		</item>
+		<item>
+			<first>101</first>
+			<second>
+				<first>20</first>
+				<second>3</second>
+			</second>
+		</item>
+		<item>
+			<first>102</first>
+			<second>
+				<first>20</first>
+				<second>2</second>
+			</second>
+		</item>
+		<item>
+			<first>103</first>
+			<second>
 				<first>23</first>
-				<second>34</second>
+				<second>3</second>
+			</second>
+		</item>
+		<item>
+			<first>105</first>
+			<second>
+				<first>26</first>
+				<second>0</second>
+			</second>
+		</item>
+		<item>
+			<first>107</first>
+			<second>
+				<first>6</first>
+				<second>0</second>
+			</second>
+		</item>
+		<item>
+			<first>109</first>
+			<second>
+				<first>6</first>
+				<second>0</second>
+			</second>
+		</item>
+		<item>
+			<first>111</first>
+			<second>
+				<first>6</first>
+				<second>0</second>
+			</second>
+		</item>
+	</node_label_latency>
+	<bblk_ent_exit class_id="31" tracking_level="0" version="0">
+		<count>7</count>
+		<item_version>0</item_version>
+		<item class_id="32" tracking_level="0" version="0">
+			<first>69</first>
+			<second class_id="33" tracking_level="0" version="0">
+				<first>0</first>
+				<second>5</second>
+			</second>
+		</item>
+		<item>
+			<first>77</first>
+			<second>
+				<first>6</first>
+				<second>6</second>
+			</second>
+		</item>
+		<item>
+			<first>81</first>
+			<second>
+				<first>6</first>
+				<second>6</second>
+			</second>
+		</item>
+		<item>
+			<first>91</first>
+			<second>
+				<first>7</first>
+				<second>14</second>
+			</second>
+		</item>
+		<item>
+			<first>97</first>
+			<second>
+				<first>14</first>
+				<second>35</second>
+			</second>
+		</item>
+		<item>
+			<first>106</first>
+			<second>
+				<first>15</first>
+				<second>26</second>
+			</second>
+		</item>
+		<item>
+			<first>112</first>
+			<second>
+				<first>6</first>
+				<second>6</second>
 			</second>
 		</item>
 	</bblk_ent_exit>

@@ -33,9 +33,9 @@ set ExportMCPathFlag "0"
 set SCTraceFileName "mytrace"
 set SCTraceFileFormat "vcd"
 set SCTraceOption "all"
-set TargetInfo "xc7z020:clg484:-1"
+set TargetInfo "xc7z045:ffg900:-2"
 set SourceFiles {sc {} c {../../srcs/option.c ../../srcs/underlying.c ../../srcs/asian_option.c ../../srcs/barrier_option.c ../../srcs/black_scholes_underlying.c ../../srcs/digital_double_barrier_option.c ../../srcs/double_barrier_option.c ../../srcs/european_option.c ../../srcs/gauss.c ../../srcs/heston_underlying.c ../../srcs/vivado_core.c}}
-set SourceFlags {sc {} c {-DFP_t=float -DFP_t=float -DFP_t=float -DFP_t=float {-DFP_t=float -DTAUS_BOXMULLER -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} -DFP_t=float -DFP_t=float -DFP_t=float {-DFP_t=float -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} {-DFP_t=float -DTAUS_BOXMULLER -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} {}}}
+set SourceFlags {sc {} c {-DFP_t=float -DFP_t=float -DFP_t=float -DFP_t=float {-DFP_t=float -DTAUS_BOXMULLER -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} -DFP_t=float -DFP_t=float -DFP_t=float {-DFP_t=float -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} {-DFP_t=float -DTAUS_BOXMULLER -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS} -DFP_t=float}}
 set DirectiveFile {/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/F3_VivadoHLS_core.directive}
 set TBFiles {verilog ../../srcs/tb.c bc ../../srcs/tb.c vhdl ../../srcs/tb.c sc ../../srcs/tb.c cas ../../srcs/tb.c c {}}
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

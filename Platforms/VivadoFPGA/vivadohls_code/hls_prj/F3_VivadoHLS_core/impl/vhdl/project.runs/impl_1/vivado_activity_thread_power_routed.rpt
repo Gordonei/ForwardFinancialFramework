@@ -1,11 +1,11 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date             : Wed Apr  9 11:17:40 2014
+| Date             : Fri Apr 11 00:06:15 2014
 | Host             : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command          : report_power -file vivado_activity_thread_power_routed.rpt -pb vivado_activity_thread_power_summary_routed.pb
 | Design           : vivado_activity_thread
-| Device           : xc7z020clg484-1
+| Device           : xc7z045ffg900-2
 | Design State     : Routed
 | Grade            : commercial
 | Process          : typical
@@ -30,13 +30,13 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.140 |
-| Dynamic (W)              | 0.022 |
-| Device Static (W)        | 0.118 |
+| Total On-Chip Power (W)  | 0.289 |
+| Dynamic (W)              | 0.065 |
+| Device Static (W)        | 0.225 |
 | Total Off-Chip Power (W) | 0.000 |
-| Effective TJA (C/W)      | 11.5  |
-| Max Ambient (C)          | 83.4  |
-| Junction Temperature (C) | 26.6  |
+| Effective TJA (C/W)      | 1.8   |
+| Max Ambient (C)          | 84.5  |
+| Junction Temperature (C) | 25.5  |
 | Confidence Level         | Low   |
 | Setting File             | ---   |
 | Simulation Activity File | ---   |
@@ -51,17 +51,17 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.000 |        1 |       --- |             --- |
-| Slice Logic             |     0.009 |     4129 |       --- |             --- |
-|   LUT as Logic          |     0.006 |     2009 |     53200 |            3.77 |
-|   CARRY4                |     0.002 |      242 |     13300 |            1.81 |
-|   Register              |    <0.001 |     1340 |    106400 |            1.25 |
-|   F7/F8 Muxes           |    <0.001 |      193 |     53200 |            0.36 |
-|   LUT as Shift Register |    <0.001 |       16 |     17400 |            0.09 |
-|   Others                |     0.000 |      259 |       --- |             --- |
-| Signals                 |     0.010 |     3134 |       --- |             --- |
-| DSPs                    |     0.003 |       12 |       220 |            5.45 |
-| Static Power            |     0.118 |          |           |                 |
-| Total                   |     0.140 |          |           |                 |
+| Slice Logic             |     0.017 |     5942 |       --- |             --- |
+|   LUT as Logic          |     0.015 |     2804 |    218600 |            1.28 |
+|   Register              |    <0.001 |     2305 |    437200 |            0.52 |
+|   CARRY4                |    <0.001 |      125 |     54650 |            0.22 |
+|   F7/F8 Muxes           |    <0.001 |      323 |    218600 |            0.14 |
+|   LUT as Shift Register |    <0.001 |       12 |     70400 |            0.01 |
+|   Others                |     0.000 |      270 |       --- |             --- |
+| Signals                 |     0.025 |     6242 |       --- |             --- |
+| DSPs                    |     0.023 |       42 |       900 |            4.66 |
+| Static Power            |     0.225 |          |           |                 |
+| Total                   |     0.289 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,8 +71,8 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.029 |       0.022 |      0.008 |
-| Vccaux    |       1.800 |     0.019 |       0.000 |      0.019 |
+| Vccint    |       1.000 |     0.116 |       0.065 |      0.051 |
+| Vccaux    |       1.800 |     0.053 |       0.000 |      0.053 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
@@ -80,11 +80,11 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |
+| Vccbram   |       1.000 |     0.002 |       0.000 |      0.002 |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccpint   |       1.000 |     0.017 |       0.000 |      0.017 |
+| Vccpint   |       1.000 |     0.016 |       0.000 |      0.016 |
 | Vccpaux   |       1.800 |     0.010 |       0.000 |      0.010 |
 | Vccpll    |       1.800 |     0.003 |       0.000 |      0.003 |
 | Vcco_ddr  |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -116,16 +116,16 @@ Table of Contents
 2.1 Environment
 ---------------
 
-+-----------------------+------------------------+
-| Ambient Temp (C)      | 25.0                   |
-| ThetaJA (C/W)         | 11.5                   |
-| Airflow (LFM)         | 250                    |
-| Heat Sink             | none                   |
-| ThetaSA (C/W)         | 0.0                    |
-| Board Selection       | medium (10"x10")       |
-| # of Board Layers     | 8to11 (8 to 11 Layers) |
-| Board Temperature (C) | 25.0                   |
-+-----------------------+------------------------+
++-----------------------+--------------------------+
+| Ambient Temp (C)      | 25.0                     |
+| ThetaJA (C/W)         | 1.8                      |
+| Airflow (LFM)         | 250                      |
+| Heat Sink             | medium (Medium Profile)  |
+| ThetaSA (C/W)         | 3.3                      |
+| Board Selection       | medium (10"x10")         |
+| # of Board Layers     | 12to15 (12 to 15 Layers) |
+| Board Temperature (C) | 25.0                     |
++-----------------------+--------------------------+
 
 
 2.2 Clock Constraints
@@ -147,29 +147,37 @@ Table of Contents
 +--------------------------------------------------------------+-----------+
 | Name                                                         | Power (W) |
 +--------------------------------------------------------------+-----------+
-| vivado_activity_thread                                       |     0.022 |
-|   vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1 |    <0.001 |
-|     vivado_activity_thread_ap_faddfsub_3_full_dsp_u          |    <0.001 |
-|       U0                                                     |    <0.001 |
-|         i_synth                                              |    <0.001 |
-|   vivado_activity_thread_fcmp_32ns_32ns_1_3_U4               |    <0.001 |
+| vivado_activity_thread                                       |     0.065 |
+|   vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7    |     0.053 |
+|     vivado_activity_thread_ap_dexp_13_full_dsp_u             |     0.053 |
+|       U0                                                     |     0.053 |
+|         i_synth                                              |     0.053 |
+|           EXP_OP.OP/i_calculate_e2A                          |     0.012 |
+|           EXP_OP.OP/i_calculate_e2zmzm1                      |     0.019 |
+|   vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6      |     0.006 |
+|     vivado_activity_thread_ap_dmul_3_max_dsp_u               |     0.006 |
+|       U0                                                     |     0.006 |
+|         i_synth                                              |     0.006 |
+|   vivado_activity_thread_faddfsub_32ns_32ns_32_4_full_dsp_U1 |     0.003 |
+|     vivado_activity_thread_ap_faddfsub_2_full_dsp_u          |     0.002 |
+|       U0                                                     |     0.002 |
+|         i_synth                                              |     0.002 |
+|   vivado_activity_thread_fcmp_32ns_32ns_1_3_U5               |    <0.001 |
 |     vivado_activity_thread_ap_fcmp_1_no_dsp_u                |    <0.001 |
 |       U0                                                     |    <0.001 |
 |         i_synth                                              |    <0.001 |
-|   vivado_activity_thread_fdiv_32ns_32ns_32_16_U3             |     0.015 |
-|     vivado_activity_thread_ap_fdiv_14_no_dsp_u               |     0.015 |
-|       U0                                                     |     0.015 |
-|         i_synth                                              |     0.015 |
-|   vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5     |     0.003 |
-|     vivado_activity_thread_ap_fexp_7_full_dsp_u              |     0.003 |
-|       U0                                                     |     0.003 |
-|         i_synth                                              |     0.003 |
-|           EXP_OP.OP/i_calculate_e2A                          |    <0.001 |
-|           EXP_OP.OP/i_calculate_e2zmzm1                      |    <0.001 |
-|   vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2      |     0.003 |
-|     vivado_activity_thread_ap_fmul_2_max_dsp_u               |     0.003 |
-|       U0                                                     |     0.003 |
-|         i_synth                                              |     0.003 |
+|   vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2      |     0.002 |
+|     vivado_activity_thread_ap_fmul_1_max_dsp_u               |     0.002 |
+|       U0                                                     |     0.002 |
+|         i_synth                                              |     0.002 |
+|   vivado_activity_thread_fpext_32ns_64_3_U4                  |    <0.001 |
+|     vivado_activity_thread_ap_fpext_1_no_dsp_u               |    <0.001 |
+|       U0                                                     |    <0.001 |
+|         i_synth                                              |    <0.001 |
+|   vivado_activity_thread_fptrunc_64ns_32_3_U3                |    <0.001 |
+|     vivado_activity_thread_ap_fptrunc_1_no_dsp_u             |    <0.001 |
+|       U0                                                     |    <0.001 |
+|         i_synth                                              |    <0.001 |
 +--------------------------------------------------------------+-----------+
 
 

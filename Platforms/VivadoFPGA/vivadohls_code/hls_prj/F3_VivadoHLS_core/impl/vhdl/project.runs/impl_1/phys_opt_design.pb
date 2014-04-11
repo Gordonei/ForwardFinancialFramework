@@ -7,12 +7,12 @@ K
 @Attempting to get a license for feature '%s' and/or device '%s'
 308*common2"
 Implementation2default:default2
-xc7z0202default:defaultZ17-347
+xc7z0452default:defaultZ17-347
 Š
 0Got license for feature '%s' and/or device '%s'
 310*common2"
 Implementation2default:default2
-xc7z0202default:defaultZ17-349
+xc7z0452default:defaultZ17-349
 Q
 7No setup violation found. The netlist was not modified.94*	vivadotclZ4-232
 Q
@@ -23,7 +23,7 @@ Q
 G%s Infos, %s Warnings, %s Critical Warnings and %s Errors encountered.
 28*	vivadotcl2
 332default:default2
-52default:default2
+72default:default2
 02default:default2
 02default:defaultZ4-41
 X
@@ -43,9 +43,9 @@ A
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2)
 Write XDEF Complete: 2default:default2
-00:00:00.462default:default2
-00:00:00.452default:default2
-1471.1842default:default2
+00:00:00.592default:default2
+00:00:00.592default:default2
+1626.4572default:default2
 0.0002default:defaultZ17-268
 
 

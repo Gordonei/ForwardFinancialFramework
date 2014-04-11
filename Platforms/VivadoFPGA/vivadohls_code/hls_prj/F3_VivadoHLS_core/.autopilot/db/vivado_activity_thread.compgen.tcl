@@ -1,10 +1,10 @@
 # This script segment is generated automatically by AutoPilot
 
 set id 1
-set name vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp
+set name vivado_activity_thread_faddfsub_32ns_32ns_32_4_full_dsp
 set corename simcore_faddfsub
 set op faddfsub
-set stage_num 5
+set stage_num 4
 set registered_input 1
 set impl_style full_dsp
 set in0_width 32
@@ -68,10 +68,10 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your p
 
 
 set id 2
-set name vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp
+set name vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp
 set corename simcore_fmul
 set op fmul
-set stage_num 4
+set stage_num 3
 set registered_input 1
 set impl_style max_dsp
 set in0_width 32
@@ -135,19 +135,17 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your p
 
 
 set id 3
-set name vivado_activity_thread_fdiv_32ns_32ns_32_16
-set corename simcore_fdiv
-set op fdiv
-set stage_num 16
+set name vivado_activity_thread_fptrunc_64ns_32_3
+set corename simcore_fptrunc
+set op fptrunc
+set stage_num 3
 set registered_input 1
-set in0_width 32
+set in0_width 64
 set in0_signed 0
-set in1_width 32
-set in1_signed 0
 set out_width 32
 if {${::AESL::PGuard_simmodel_gen}} {
-if {[info proc ap_gen_simcore_fdiv] == "ap_gen_simcore_fdiv"} {
-eval "ap_gen_simcore_fdiv { \
+if {[info proc ap_gen_simcore_fptrunc] == "ap_gen_simcore_fptrunc"} {
+eval "ap_gen_simcore_fptrunc { \
     id ${id} \
     name ${name} \
     corename ${corename} \
@@ -158,12 +156,10 @@ eval "ap_gen_simcore_fdiv { \
     registered_input ${registered_input} \
     in0_width ${in0_width} \
     in0_signed ${in0_signed} \
-    in1_width ${in1_width} \
-    in1_signed ${in1_signed} \
     out_width ${out_width} \
 }"
 } else {
-puts "@W \[IMPL-100\] Cannot find ap_gen_simcore_fdiv, check your AutoPilot builtin lib"
+puts "@W \[IMPL-100\] Cannot find ap_gen_simcore_fptrunc, check your AutoPilot builtin lib"
 }
 }
 
@@ -173,8 +169,8 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 }
 
 
-set op fdiv
-set corename FDiv
+set op fptrunc
+set corename Double2Float
 if {${::AESL::PGuard_autocg_gen} && (${::AESL::PGuard_autocg_fpip} || ${::AESL::PGuard_autocg_fpv6en})} {
 if {[info proc ::AESL_LIB_XILINX_FPV6::fpv6_gen] == "::AESL_LIB_XILINX_FPV6::fpv6_gen"} {
 eval "::AESL_LIB_XILINX_FPV6::fpv6_gen { \
@@ -188,8 +184,6 @@ eval "::AESL_LIB_XILINX_FPV6::fpv6_gen { \
     registered_input ${registered_input} \
     in0_width ${in0_width} \
     in0_signed ${in0_signed} \
-    in1_width ${in1_width} \
-    in1_signed ${in1_signed} \
     out_width ${out_width} \
 }"
 } else {
@@ -199,6 +193,64 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your p
 
 
 set id 4
+set name vivado_activity_thread_fpext_32ns_64_3
+set corename simcore_fpext
+set op fpext
+set stage_num 3
+set registered_input 1
+set in0_width 32
+set in0_signed 0
+set out_width 64
+if {${::AESL::PGuard_simmodel_gen}} {
+if {[info proc ap_gen_simcore_fpext] == "ap_gen_simcore_fpext"} {
+eval "ap_gen_simcore_fpext { \
+    id ${id} \
+    name ${name} \
+    corename ${corename} \
+    op ${op} \
+    reset_level 1 \
+    sync_rst true \
+    stage_num ${stage_num} \
+    registered_input ${registered_input} \
+    in0_width ${in0_width} \
+    in0_signed ${in0_signed} \
+    out_width ${out_width} \
+}"
+} else {
+puts "@W \[IMPL-100\] Cannot find ap_gen_simcore_fpext, check your AutoPilot builtin lib"
+}
+}
+
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler ${name}
+}
+
+
+set op fpext
+set corename Float2Double
+if {${::AESL::PGuard_autocg_gen} && (${::AESL::PGuard_autocg_fpip} || ${::AESL::PGuard_autocg_fpv6en})} {
+if {[info proc ::AESL_LIB_XILINX_FPV6::fpv6_gen] == "::AESL_LIB_XILINX_FPV6::fpv6_gen"} {
+eval "::AESL_LIB_XILINX_FPV6::fpv6_gen { \
+    id ${id} \
+    name ${name} \
+    corename ${corename} \
+    op ${op} \
+    reset_level 1 \
+    sync_rst true \
+    stage_num ${stage_num} \
+    registered_input ${registered_input} \
+    in0_width ${in0_width} \
+    in0_signed ${in0_signed} \
+    out_width ${out_width} \
+}"
+} else {
+puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your platform lib"
+}
+}
+
+
+set id 5
 set name vivado_activity_thread_fcmp_32ns_32ns_1_3
 set corename simcore_fcmp
 set op fcmp
@@ -262,21 +314,21 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your p
 }
 
 
-set id 5
-set name vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp
-set corename simcore_fexp
-set op fexp
-set stage_num 9
+set id 6
+set name vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp
+set corename simcore_dmul
+set op dmul
+set stage_num 5
 set registered_input 1
-set impl_style full_dsp
-set in0_width 32
+set impl_style max_dsp
+set in0_width 64
 set in0_signed 0
-set in1_width 32
+set in1_width 64
 set in1_signed 0
-set out_width 32
+set out_width 64
 if {${::AESL::PGuard_simmodel_gen}} {
-if {[info proc ap_gen_simcore_fexp] == "ap_gen_simcore_fexp"} {
-eval "ap_gen_simcore_fexp { \
+if {[info proc ap_gen_simcore_dmul] == "ap_gen_simcore_dmul"} {
+eval "ap_gen_simcore_dmul { \
     id ${id} \
     name ${name} \
     corename ${corename} \
@@ -293,7 +345,7 @@ eval "ap_gen_simcore_fexp { \
     out_width ${out_width} \
 }"
 } else {
-puts "@W \[IMPL-100\] Cannot find ap_gen_simcore_fexp, check your AutoPilot builtin lib"
+puts "@W \[IMPL-100\] Cannot find ap_gen_simcore_dmul, check your AutoPilot builtin lib"
 }
 }
 
@@ -303,8 +355,75 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 }
 
 
-set op fexp
-set corename FExp
+set op dmul
+set corename DMul
+if {${::AESL::PGuard_autocg_gen} && (${::AESL::PGuard_autocg_fpip} || ${::AESL::PGuard_autocg_fpv6en})} {
+if {[info proc ::AESL_LIB_XILINX_FPV6::fpv6_gen] == "::AESL_LIB_XILINX_FPV6::fpv6_gen"} {
+eval "::AESL_LIB_XILINX_FPV6::fpv6_gen { \
+    id ${id} \
+    name ${name} \
+    corename ${corename} \
+    op ${op} \
+    reset_level 1 \
+    sync_rst true \
+    stage_num ${stage_num} \
+    registered_input ${registered_input} \
+    style ${impl_style} \
+    in0_width ${in0_width} \
+    in0_signed ${in0_signed} \
+    in1_width ${in1_width} \
+    in1_signed ${in1_signed} \
+    out_width ${out_width} \
+}"
+} else {
+puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your platform lib"
+}
+}
+
+
+set id 7
+set name vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp
+set corename simcore_dexp
+set op dexp
+set stage_num 15
+set registered_input 1
+set impl_style full_dsp
+set in0_width 64
+set in0_signed 0
+set in1_width 64
+set in1_signed 0
+set out_width 64
+if {${::AESL::PGuard_simmodel_gen}} {
+if {[info proc ap_gen_simcore_dexp] == "ap_gen_simcore_dexp"} {
+eval "ap_gen_simcore_dexp { \
+    id ${id} \
+    name ${name} \
+    corename ${corename} \
+    op ${op} \
+    reset_level 1 \
+    sync_rst true \
+    stage_num ${stage_num} \
+    registered_input ${registered_input} \
+    style ${impl_style} \
+    in0_width ${in0_width} \
+    in0_signed ${in0_signed} \
+    in1_width ${in1_width} \
+    in1_signed ${in1_signed} \
+    out_width ${out_width} \
+}"
+} else {
+puts "@W \[IMPL-100\] Cannot find ap_gen_simcore_dexp, check your AutoPilot builtin lib"
+}
+}
+
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler ${name}
+}
+
+
+set op dexp
+set corename DExp
 if {${::AESL::PGuard_autocg_gen} && (${::AESL::PGuard_autocg_fpip} || ${::AESL::PGuard_autocg_fpv6en})} {
 if {[info proc ::AESL_LIB_XILINX_FPV6::fpv6_gen] == "::AESL_LIB_XILINX_FPV6::fpv6_gen"} {
 eval "::AESL_LIB_XILINX_FPV6::fpv6_gen { \
@@ -340,7 +459,7 @@ if {${::AESL::PGuard_autoexp_gen}} {
 set corename CORE_IO
 set opts {
     {
-        id 6
+        id 8
         name kernel_u_a_0_rfir
         reset_level 1
         sync_rst true
@@ -350,7 +469,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 7
+        id 9
         name kernel_u_a_0_current_price
         reset_level 1
         sync_rst true
@@ -360,7 +479,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 8
+        id 10
         name kernel_u_a_0_volatility
         reset_level 1
         sync_rst true
@@ -370,7 +489,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 9
+        id 11
         name kernel_u_a_0_initial_volatility
         reset_level 1
         sync_rst true
@@ -380,7 +499,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 10
+        id 12
         name kernel_u_a_0_volatility_volatility
         reset_level 1
         sync_rst true
@@ -390,7 +509,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 11
+        id 13
         name kernel_u_a_0_rho
         reset_level 1
         sync_rst true
@@ -400,7 +519,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 12
+        id 14
         name kernel_u_a_0_kappa
         reset_level 1
         sync_rst true
@@ -410,7 +529,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 13
+        id 15
         name kernel_u_a_0_theta
         reset_level 1
         sync_rst true
@@ -420,7 +539,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 14
+        id 16
         name kernel_u_a_0_correlation_matrix_0_0
         reset_level 1
         sync_rst true
@@ -430,7 +549,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 15
+        id 17
         name kernel_u_a_0_correlation_matrix_0_1
         reset_level 1
         sync_rst true
@@ -440,7 +559,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 16
+        id 18
         name kernel_u_a_0_correlation_matrix_1_0
         reset_level 1
         sync_rst true
@@ -450,7 +569,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 17
+        id 19
         name kernel_u_a_0_correlation_matrix_1_1
         reset_level 1
         sync_rst true
@@ -460,7 +579,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 18
+        id 20
         name kernel_o_a_0_second_barrier
         reset_level 1
         sync_rst true
@@ -470,7 +589,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 19
+        id 21
         name kernel_o_a_0_barrier
         reset_level 1
         sync_rst true
@@ -480,7 +599,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 20
+        id 22
         name kernel_o_a_0_out
         reset_level 1
         sync_rst true
@@ -490,7 +609,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 21
+        id 23
         name kernel_o_a_0_down
         reset_level 1
         sync_rst true
@@ -500,7 +619,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 22
+        id 24
         name kernel_o_a_0_strike_price
         reset_level 1
         sync_rst true
@@ -510,7 +629,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 23
+        id 25
         name kernel_o_a_0_time_period
         reset_level 1
         sync_rst true
@@ -520,7 +639,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 24
+        id 26
         name kernel_o_a_0_call
         reset_level 1
         sync_rst true
@@ -530,7 +649,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 25
+        id 27
         name kernel_o_a_0_points
         reset_level 1
         sync_rst true
@@ -540,7 +659,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 26
+        id 28
         name seed_0_s1
         reset_level 1
         sync_rst true
@@ -550,7 +669,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 27
+        id 29
         name seed_0_s2
         reset_level 1
         sync_rst true
@@ -560,7 +679,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 28
+        id 30
         name seed_0_s3
         reset_level 1
         sync_rst true
@@ -570,7 +689,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 29
+        id 31
         name seed_0_offset
         reset_level 1
         sync_rst true
@@ -580,7 +699,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 30
+        id 32
         name thread_result_0
         reset_level 1
         sync_rst true
@@ -590,7 +709,7 @@ set opts {
         mode SIG_OUT_VLD_ON:SIG_OUT_ACC_OFF
     }
     {
-        id 31
+        id 33
         name thread_result_sqrd_0
         reset_level 1
         sync_rst true

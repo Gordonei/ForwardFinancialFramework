@@ -11,11 +11,13 @@
 #include "systemc.h"
 #include "AESL_pkg.h"
 
-#include "vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp.h"
-#include "vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp.h"
-#include "vivado_activity_thread_fdiv_32ns_32ns_32_16.h"
+#include "vivado_activity_thread_faddfsub_32ns_32ns_32_4_full_dsp.h"
+#include "vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp.h"
+#include "vivado_activity_thread_fptrunc_64ns_32_3.h"
+#include "vivado_activity_thread_fpext_32ns_64_3.h"
 #include "vivado_activity_thread_fcmp_32ns_32ns_1_3.h"
-#include "vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp.h"
+#include "vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp.h"
+#include "vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp.h"
 
 namespace ap_rtl {
 
@@ -67,47 +69,66 @@ struct vivado_activity_thread : public sc_module {
 
     ofstream mHdltvinHandle;
     ofstream mHdltvoutHandle;
-    vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp<1,5,32,32,32>* vivado_activity_thread_faddfsub_32ns_32ns_32_5_full_dsp_U1;
-    vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp<2,4,32,32,32>* vivado_activity_thread_fmul_32ns_32ns_32_4_max_dsp_U2;
-    vivado_activity_thread_fdiv_32ns_32ns_32_16<3,16,32,32,32>* vivado_activity_thread_fdiv_32ns_32ns_32_16_U3;
-    vivado_activity_thread_fcmp_32ns_32ns_1_3<4,3,32,32,1>* vivado_activity_thread_fcmp_32ns_32ns_1_3_U4;
-    vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp<5,9,32,32,32>* vivado_activity_thread_fexp_32ns_32ns_32_9_full_dsp_U5;
+    vivado_activity_thread_faddfsub_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* vivado_activity_thread_faddfsub_32ns_32ns_32_4_full_dsp_U1;
+    vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp<2,3,32,32,32>* vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2;
+    vivado_activity_thread_fptrunc_64ns_32_3<3,3,64,32>* vivado_activity_thread_fptrunc_64ns_32_3_U3;
+    vivado_activity_thread_fpext_32ns_64_3<4,3,32,64>* vivado_activity_thread_fpext_32ns_64_3_U4;
+    vivado_activity_thread_fcmp_32ns_32ns_1_3<5,3,32,32,1>* vivado_activity_thread_fcmp_32ns_32ns_1_3_U5;
+    vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp<6,5,64,64,64>* vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6;
+    vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp<7,15,64,64,64>* vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7;
     sc_signal< sc_lv<6> > ap_CS_fsm;
-    sc_signal< sc_lv<32> > grp_fu_187_p2;
-    sc_signal< sc_lv<32> > reg_210;
-    sc_signal< sc_lv<32> > grp_fu_194_p2;
-    sc_signal< sc_lv<32> > delta_time_0_reg_246;
-    sc_signal< sc_lv<4> > pp_1_fu_222_p2;
-    sc_signal< sc_lv<4> > pp_1_reg_275;
-    sc_signal< sc_lv<32> > grp_fu_182_p2;
-    sc_signal< sc_lv<32> > u_v_0_gamma_reg_280;
-    sc_signal< sc_lv<32> > grp_fu_205_p2;
-    sc_signal< sc_lv<1> > tmp_2_fu_228_p2;
-    sc_signal< sc_lv<1> > tmp_2_reg_291;
-    sc_signal< sc_lv<32> > temp_value_fu_234_p3;
-    sc_signal< sc_lv<32> > temp_value_reg_296;
-    sc_signal< sc_lv<32> > tmp_pn_reg_146;
-    sc_signal< sc_lv<32> > u_v_gamma_read_assign_reg_158;
-    sc_signal< sc_lv<4> > pp_reg_170;
-    sc_signal< sc_lv<32> > grp_fu_182_p0;
-    sc_signal< sc_lv<32> > grp_fu_182_p1;
-    sc_signal< sc_lv<32> > grp_fu_187_p0;
-    sc_signal< sc_lv<32> > grp_fu_187_p1;
-    sc_signal< sc_lv<32> > grp_fu_194_p0;
-    sc_signal< sc_lv<32> > grp_fu_194_p1;
-    sc_signal< sc_lv<32> > grp_fu_200_p0;
-    sc_signal< sc_lv<32> > grp_fu_200_p1;
-    sc_signal< sc_lv<32> > grp_fu_205_p1;
-    sc_signal< sc_lv<1> > grp_fu_200_p2;
-    sc_signal< sc_lv<2> > grp_fu_182_opcode;
-    sc_signal< sc_lv<1> > exitcond_fu_216_p2;
-    sc_signal< sc_logic > grp_fu_182_ce;
-    sc_signal< sc_logic > grp_fu_187_ce;
-    sc_signal< sc_logic > grp_fu_194_ce;
-    sc_signal< sc_logic > grp_fu_200_ce;
-    sc_signal< sc_lv<5> > grp_fu_200_opcode;
-    sc_signal< sc_lv<32> > grp_fu_205_p0;
-    sc_signal< sc_logic > grp_fu_205_ce;
+    sc_signal< sc_lv<32> > grp_fu_234_p2;
+    sc_signal< sc_lv<32> > reg_264;
+    sc_signal< sc_lv<32> > grp_fu_227_p2;
+    sc_signal< sc_lv<32> > reg_270;
+    sc_signal< sc_lv<1> > tmp_5_reg_343;
+    sc_signal< sc_lv<64> > grp_fu_244_p1;
+    sc_signal< sc_lv<64> > tmp_reg_338;
+    sc_signal< sc_lv<1> > tmp_5_fu_275_p2;
+    sc_signal< sc_lv<7> > p_1_fu_287_p2;
+    sc_signal< sc_lv<7> > p_1_reg_351;
+    sc_signal< sc_lv<64> > grp_fu_254_p2;
+    sc_signal< sc_lv<64> > spot_price_0_0_in_reg_356;
+    sc_signal< sc_lv<32> > grp_fu_241_p1;
+    sc_signal< sc_lv<32> > spot_price_0_reg_361;
+    sc_signal< sc_lv<13> > pp_1_fu_299_p2;
+    sc_signal< sc_lv<13> > pp_1_reg_370;
+    sc_signal< sc_lv<32> > u_v_0_gamma_reg_375;
+    sc_signal< sc_lv<64> > tmp_1_reg_381;
+    sc_signal< sc_lv<64> > grp_fu_259_p2;
+    sc_signal< sc_lv<32> > o_v_0_value_fu_305_p3;
+    sc_signal< sc_lv<32> > o_v_0_value_reg_391;
+    sc_signal< sc_lv<32> > tmp_9_reg_398;
+    sc_signal< sc_lv<7> > p_reg_154;
+    sc_signal< sc_lv<32> > result_0_reg_165;
+    sc_signal< sc_lv<32> > result_sqrd_0_reg_178;
+    sc_signal< sc_lv<64> > tmp_6_pn_reg_191;
+    sc_signal< sc_lv<1> > exitcond1_fu_281_p2;
+    sc_signal< sc_lv<32> > u_v_gamma_read_assign_reg_203;
+    sc_signal< sc_lv<13> > pp_reg_215;
+    sc_signal< sc_lv<32> > grp_fu_227_p0;
+    sc_signal< sc_lv<32> > grp_fu_227_p1;
+    sc_signal< sc_lv<32> > grp_fu_234_p0;
+    sc_signal< sc_lv<32> > grp_fu_234_p1;
+    sc_signal< sc_lv<64> > grp_fu_241_p0;
+    sc_signal< sc_lv<32> > grp_fu_244_p0;
+    sc_signal< sc_lv<32> > grp_fu_248_p0;
+    sc_signal< sc_lv<32> > grp_fu_248_p1;
+    sc_signal< sc_lv<64> > grp_fu_254_p0;
+    sc_signal< sc_lv<64> > grp_fu_254_p1;
+    sc_signal< sc_lv<64> > grp_fu_259_p1;
+    sc_signal< sc_lv<1> > grp_fu_248_p2;
+    sc_signal< sc_lv<2> > grp_fu_227_opcode;
+    sc_signal< sc_lv<1> > exitcond_fu_293_p2;
+    sc_signal< sc_logic > grp_fu_227_ce;
+    sc_signal< sc_logic > grp_fu_234_ce;
+    sc_signal< sc_logic > grp_fu_241_ce;
+    sc_signal< sc_logic > grp_fu_244_ce;
+    sc_signal< sc_logic > grp_fu_248_ce;
+    sc_signal< sc_lv<5> > grp_fu_248_opcode;
+    sc_signal< sc_logic > grp_fu_254_ce;
+    sc_signal< sc_lv<64> > grp_fu_259_p0;
+    sc_signal< sc_logic > grp_fu_259_ce;
     sc_signal< sc_lv<6> > ap_NS_fsm;
     static const sc_logic ap_const_logic_1;
     static const sc_logic ap_const_logic_0;
@@ -159,48 +180,57 @@ struct vivado_activity_thread : public sc_module {
     static const sc_lv<6> ap_ST_st46_fsm_45;
     static const sc_lv<6> ap_ST_st47_fsm_46;
     static const sc_lv<6> ap_ST_st48_fsm_47;
-    static const sc_lv<32> ap_const_lv32_3F800000;
-    static const sc_lv<32> ap_const_lv32_0;
-    static const sc_lv<4> ap_const_lv4_0;
     static const sc_lv<1> ap_const_lv1_0;
-    static const sc_lv<32> ap_const_lv32_41200000;
-    static const sc_lv<4> ap_const_lv4_A;
-    static const sc_lv<4> ap_const_lv4_1;
+    static const sc_lv<7> ap_const_lv7_0;
+    static const sc_lv<32> ap_const_lv32_0;
+    static const sc_lv<64> ap_const_lv64_3FF0000000000000;
+    static const sc_lv<13> ap_const_lv13_0;
+    static const sc_lv<32> ap_const_lv32_39800000;
     static const sc_lv<1> ap_const_lv1_1;
+    static const sc_lv<7> ap_const_lv7_64;
+    static const sc_lv<7> ap_const_lv7_1;
+    static const sc_lv<13> ap_const_lv13_1000;
+    static const sc_lv<13> ap_const_lv13_1;
     static const sc_lv<2> ap_const_lv2_0;
     static const sc_lv<2> ap_const_lv2_1;
     static const sc_lv<5> ap_const_lv5_1;
-    static const sc_lv<32> ap_const_lv32_1;
+    static const sc_lv<64> ap_const_lv64_1;
     // Thread declarations
     void thread_ap_clk_no_reset_();
     void thread_ap_done();
     void thread_ap_idle();
     void thread_ap_ready();
-    void thread_exitcond_fu_216_p2();
-    void thread_grp_fu_182_ce();
-    void thread_grp_fu_182_opcode();
-    void thread_grp_fu_182_p0();
-    void thread_grp_fu_182_p1();
-    void thread_grp_fu_187_ce();
-    void thread_grp_fu_187_p0();
-    void thread_grp_fu_187_p1();
-    void thread_grp_fu_194_ce();
-    void thread_grp_fu_194_p0();
-    void thread_grp_fu_194_p1();
-    void thread_grp_fu_200_ce();
-    void thread_grp_fu_200_opcode();
-    void thread_grp_fu_200_p0();
-    void thread_grp_fu_200_p1();
-    void thread_grp_fu_205_ce();
-    void thread_grp_fu_205_p0();
-    void thread_grp_fu_205_p1();
-    void thread_pp_1_fu_222_p2();
-    void thread_temp_value_fu_234_p3();
+    void thread_exitcond1_fu_281_p2();
+    void thread_exitcond_fu_293_p2();
+    void thread_grp_fu_227_ce();
+    void thread_grp_fu_227_opcode();
+    void thread_grp_fu_227_p0();
+    void thread_grp_fu_227_p1();
+    void thread_grp_fu_234_ce();
+    void thread_grp_fu_234_p0();
+    void thread_grp_fu_234_p1();
+    void thread_grp_fu_241_ce();
+    void thread_grp_fu_241_p0();
+    void thread_grp_fu_244_ce();
+    void thread_grp_fu_244_p0();
+    void thread_grp_fu_248_ce();
+    void thread_grp_fu_248_opcode();
+    void thread_grp_fu_248_p0();
+    void thread_grp_fu_248_p1();
+    void thread_grp_fu_254_ce();
+    void thread_grp_fu_254_p0();
+    void thread_grp_fu_254_p1();
+    void thread_grp_fu_259_ce();
+    void thread_grp_fu_259_p0();
+    void thread_grp_fu_259_p1();
+    void thread_o_v_0_value_fu_305_p3();
+    void thread_p_1_fu_287_p2();
+    void thread_pp_1_fu_299_p2();
     void thread_thread_result_0();
     void thread_thread_result_0_ap_vld();
     void thread_thread_result_sqrd_0();
     void thread_thread_result_sqrd_0_ap_vld();
-    void thread_tmp_2_fu_228_p2();
+    void thread_tmp_5_fu_275_p2();
     void thread_ap_NS_fsm();
     void thread_hdltv_gen();
 };

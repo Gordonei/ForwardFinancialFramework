@@ -10,6 +10,7 @@
 
 
 
+
 # 1 "/mnt/cas_nfs/applications/Xilinx/Vivado_HLS/2013.4/common/technology/autopilot/etc/autopilot_ssdm_op.h" 1
 /* autopilot_ssdm_op.h*/
 /*
@@ -155,10 +156,9 @@
 
 /*#define _ssdm_op_WaitUntil(X) while (!(X)) _ssdm_op_Wait(1);
 #define _ssdm_op_Delayed(X) X */
-# 8 "<command line>" 2
+# 9 "<command line>" 2
 # 1 "<built-in>" 2
 # 1 "srcs/vivado_core.c" 2
-
 
 
 
@@ -2111,7 +2111,7 @@ extern int matherr (struct exception *__exc);
 
 
 /* Return nonzero value if arguments are unordered.  */
-# 8 "srcs/vivado_core.c" 2
+# 7 "srcs/vivado_core.c" 2
 # 1 "/usr/include/pthread.h" 1 3 4
 /* Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009
    Free Software Foundation, Inc.
@@ -4022,7 +4022,7 @@ extern int pthread_getcpuclockid (pthread_t __thread_id,
 extern int pthread_atfork (void (*__prepare) (void),
       void (*__parent) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__));
-# 9 "srcs/vivado_core.c" 2
+# 8 "srcs/vivado_core.c" 2
 # 1 "/usr/include/stdlib.h" 1 3 4
 /* Copyright (C) 1991-2007, 2009 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
@@ -5172,7 +5172,7 @@ extern int getloadavg (double __loadavg[], int __nelem)
 
 
 /* Define some macros helping to catch buffer overflows.  */
-# 10 "srcs/vivado_core.c" 2
+# 9 "srcs/vivado_core.c" 2
 # 1 "/usr/include/stdio.h" 1 3 4
 /* Define ISO C stdio on top of C++ iostreams.
    Copyright (C) 1991, 1994-2007, 2008, 2009 Free Software Foundation, Inc.
@@ -6276,7 +6276,7 @@ extern void funlockfile (FILE *__stream) __attribute__ ((__nothrow__));
 # 904 "/usr/include/stdio.h" 3 4
 /* If we are compiling with optimizing read this file.  It contains
    several optimizing inline functions and macros.  */
-# 11 "srcs/vivado_core.c" 2
+# 10 "srcs/vivado_core.c" 2
 
 # 1 "/usr/include/sys/resource.h" 1 3 4
 /* Copyright (C) 1992,94,1996-2000,2002,2004 Free Software Foundation, Inc.
@@ -6585,7 +6585,7 @@ extern int getpriority (__priority_which_t __which, id_t __who) __attribute__ ((
    to PRIO.  Returns 0 on success, -1 on errors.  */
 extern int setpriority (__priority_which_t __which, id_t __who, int __prio)
      __attribute__ ((__nothrow__));
-# 13 "srcs/vivado_core.c" 2
+# 12 "srcs/vivado_core.c" 2
 # 1 "/usr/include/unistd.h" 1 3 4
 /* Copyright (C) 1991-2006, 2007, 2008, 2009 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
@@ -8436,7 +8436,7 @@ extern int fdatasync (int __fildes);
 
 
 /* Define some macros helping to catch buffer overflows.  */
-# 14 "srcs/vivado_core.c" 2
+# 13 "srcs/vivado_core.c" 2
 # 1 "/usr/include/string.h" 1 3 4
 /* Copyright (C) 1991-1993,1995-2004,2007,2009 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
@@ -8742,7 +8742,7 @@ extern char *__stpncpy (char *__restrict __dest,
 extern char *stpncpy (char *__restrict __dest,
         __const char *__restrict __src, size_t __n)
      __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 2)));
-# 15 "srcs/vivado_core.c" 2
+# 14 "srcs/vivado_core.c" 2
 # 1 "srcs/gauss.h" 1
 /* gauss.c - gaussian random numbers, using the Ziggurat method
  *
@@ -13163,6 +13163,33 @@ float taus_ran_gaussian_ziggurat (float sigma, rng_state_t *rng_state);
 
 void taus_ran_gaussian_boxmuller(float *x, float *y,float rho,rng_state_t *rng_state);
 //End of modified code that uses the Combined TAUSWORTHE RNG
+# 15 "srcs/vivado_core.c" 2
+# 1 "srcs/vivado_core.h" 1
+typedef struct{
+    float rfir;
+    float current_price;
+    float volatility;
+    float initial_volatility;
+    float volatility_volatility;
+    float rho;
+    float kappa;
+    float theta;
+    float correlation_matrix_0_0;
+    float correlation_matrix_0_1;
+    float correlation_matrix_1_0;
+    float correlation_matrix_1_1;
+} standard_underlying_attributes;
+
+typedef struct{
+    float second_barrier;
+    float barrier;
+    float out;
+    float down;
+    float strike_price;
+    float time_period;
+    float call;
+    float points;
+} standard_derivative_attributes;
 # 16 "srcs/vivado_core.c" 2
 # 1 "srcs/underlying.h" 1
 /*
@@ -13223,33 +13250,6 @@ void option_derivative_path_init(option_variables* o_v,option_attributes* o_a);
 void option_derivative_path(float price,float time,option_variables* o_v,option_attributes* o_a);
 void option_derivative_payoff(float end_price,option_variables* o_v,option_attributes* o_a);
 # 18 "srcs/vivado_core.c" 2
-# 1 "srcs/vivado_core.h" 1
-typedef struct{
-    float rfir;
-    float current_price;
-    float volatility;
-    float initial_volatility;
-    float volatility_volatility;
-    float rho;
-    float kappa;
-    float theta;
-    float correlation_matrix_0_0;
-    float correlation_matrix_0_1;
-    float correlation_matrix_1_0;
-    float correlation_matrix_1_1;
-} standard_underlying_attributes;
-
-typedef struct{
-    float second_barrier;
-    float barrier;
-    float out;
-    float down;
-    float strike_price;
-    float time_period;
-    float call;
-    float points;
-} standard_derivative_attributes;
-# 19 "srcs/vivado_core.c" 2
 
 //*Intermediate and Communication Variables*
 float discount_0_0;
@@ -13278,14 +13278,10 @@ struct thread_data{
 float setup_time,activity_time;
 struct timespec start, setup_end, end;
 int ret,ret_2;
-
-/*typedef struct{
-	standard_underlying_attributes u_a_0;
-	standard_derivative_attributes o_a_0;
-	rng_state_t seed_0[PATHS];
-	FP_t thread_result_0[PATHS];
-	FP_t thread_result_sqrd_0[PATHS];
-	} kernel_data;*/
+typedef struct{
+ underlying_attributes u_a_0;
+ option_attributes o_a_0;
+ } kernel_data;
 
 //*Vivado HLS Kernel Function*
 void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,float *thread_result_0,float *thread_result_sqrd_0){
@@ -13296,63 +13292,54 @@ void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standar
 #pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_sqrd_0 metadata="-bus_bundle CORE_IO"
 #pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata="-bus_bundle CORE_IO"
 
- //#pragma HLS INTERFACE ap_fifo port=seed_0
- //#pragma HLS INTERFACE ap_fifo port=thread_result_0
- //#pragma HLS INTERFACE ap_fifo port=thread_result_sqrd_0
- //#pragma HLS RESOURCE core=AXI4Stream variable=seed_0
- //#pragma HLS RESOURCE core=AXI4Stream variable=thread_result_0
- //#pragma HLS RESOURCE core=AXI4Stream variable=thread_result_sqrd_0
-
- //#pragma HLS INTERFACE ap_fifo port=result_0
- //#pragma HLS INTERFACE ap_fifo port=result_sqrd_0
-
  //**Initialising Kernel Variables*
  unsigned int p,pp;
  underlying_variables u_v_0;
- float spot_price_0,time_0;
- option_variables o_v_0;
-
- option_attributes o_a_0;
- o_a_0.strike_price = kernel_o_a_0->strike_price;
- o_a_0.time_period = kernel_o_a_0->time_period;
- o_a_0.call = kernel_o_a_0->call;
-
  underlying_attributes u_a_0;
+
+ //***Underlying Attributes***
  u_a_0.rfir = kernel_u_a_0->rfir;
  u_a_0.current_price = kernel_u_a_0->current_price;
+ float spot_price_0,time_0;
+ option_variables o_v_0;
+ option_attributes o_a_0;
+
+ //***Derivative Attributes***
+ o_a_0.time_period = kernel_o_a_0->time_period;
+ o_a_0.call = kernel_o_a_0->call;
+ o_a_0.strike_price = kernel_o_a_0->strike_price;
 
  //**Thread Calculation Loop**
- PATHSET_LOOP: for(p=0;p<1;++p){
+ float result_0 = 0;
+ float result_sqrd_0 = 0;
+ float delta_time_0;
+ PATHSET_LOOP: for(p=0;p<100;++p){
 
   //**Initiating the Path**
   underlying_underlying_path_init(&u_v_0,&u_a_0);
-  spot_price_0 = u_a_0.current_price*expf(u_v_0.gamma);
+  spot_price_0 = (u_a_0).current_price*exp(u_v_0.gamma);
   time_0 = u_v_0.time;
   option_derivative_path_init(&o_v_0,&o_a_0);
-  float delta_time_0 = o_a_0.time_period/10;
+  delta_time_0 = o_a_0.time_period/4096;
 
   //**Running the path**
-  PATH_LOOP: for(pp=0;pp<(10);++pp){
-  //#pragma HLS UNROLL factor=2
-  //#pragma HLS PIPELINE II=1
+  PATH_LOOP: for(pp=0;pp<(4096);++pp){
    option_derivative_path(spot_price_0,time_0,&o_v_0,&o_a_0);
    underlying_underlying_path(delta_time_0,&u_v_0,&u_a_0);
-   spot_price_0 = u_a_0.current_price*expf(u_v_0.gamma);
+   spot_price_0 = u_a_0.current_price*exp(u_v_0.gamma);
    time_0 = u_v_0.time;
+   }
 
-  }
- //if(pp==(PATH_POINTS-1)){
   //**Calculating payoff(s)**
   option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
+  result_0 += o_v_0.value;
+  result_sqrd_0 += o_v_0.value*o_v_0.value;
+  }
 
-  //**Returning Result**
-  float temp_value = o_v_0.value;
-
-  thread_result_0[p] = temp_value;
-  thread_result_sqrd_0[p] = temp_value*temp_value;
-  //}
+ //**Returning Result**
+ *thread_result_0 = result_0;
+ *thread_result_sqrd_0 = result_sqrd_0;
  }
-}
 
 //*MC Multicore Activity Thread Function*
 void * multicore_montecarlo_activity_thread(void* thread_arg){
@@ -13371,23 +13358,24 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
  o_v_0.delta_time = o_a_0.time_period/default_points;
 
  //**Creating kernel argument*
- //kernel_data * kernel_arg = (kernel_data*) malloc(sizeof(kernel_data));
- //kernel_arg->u_a_0 = u_a_0;
- //kernel_arg->o_a_0 = o_a_0;
+ standard_underlying_attributes kernel_u_a_0;
+ standard_derivative_attributes kernel_o_a_0;
+ kernel_u_a_0.rfir = u_a_0.rfir;
+ kernel_u_a_0.current_price = u_a_0.current_price;
+ kernel_o_a_0.time_period = o_a_0.time_period;
+ kernel_o_a_0.call = o_a_0.call;
+ kernel_o_a_0.strike_price = o_a_0.strike_price;
 
  //**Batching Loop**
- unsigned int chunks = thread_paths/1;
+ unsigned int chunks = thread_paths/100;
  float temp_value_0 = 0.0;
  float temp_value_sqrd_0 = 0.0;
- float kernel_value_0[1];
- float kernel_value_sqrd_0[1];
+ float kernel_value_0;
+ float kernel_value_sqrd_0;
+ rng_state_t seed_0;
  for(i=0;i<chunks;++i){
-
-  //***Aggregating the result**
-  for(j=0;j<1;++j){
-   temp_value_0 += kernel_value_0[j];
-   temp_value_sqrd_0 += kernel_value_sqrd_0[j];
-   }
+  temp_value_0 = kernel_value_0;
+  temp_value_sqrd_0 = kernel_value_sqrd_0;
   }
 
  //**Passing data back to main thread**

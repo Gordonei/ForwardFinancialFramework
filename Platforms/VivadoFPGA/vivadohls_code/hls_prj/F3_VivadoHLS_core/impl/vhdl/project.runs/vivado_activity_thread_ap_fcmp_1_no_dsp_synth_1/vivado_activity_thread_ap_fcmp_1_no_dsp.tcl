@@ -4,7 +4,7 @@
 
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
-create_project -in_memory -part xc7z020clg484-1
+create_project -in_memory -part xc7z045ffg900-2
 set_property target_language VHDL [current_project]
 set_param project.compositeFile.enableAutoGeneration 0
 
@@ -17,7 +17,7 @@ set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param synth.vivado.isSynthRun true
 set_property webtalk.parent_dir /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.data/wt [current_project]
 set_property parent.project_dir /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl [current_project]
-synth_design -top vivado_activity_thread_ap_fcmp_1_no_dsp -part xc7z020clg484-1 -mode out_of_context
+synth_design -top vivado_activity_thread_ap_fcmp_1_no_dsp -part xc7z045ffg900-2 -mode out_of_context
 
 rename_ref -prefix_all vivado_activity_thread_ap_fcmp_1_no_dsp
 write_checkpoint -noxdef vivado_activity_thread_ap_fcmp_1_no_dsp.dcp
