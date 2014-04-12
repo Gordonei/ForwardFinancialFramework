@@ -28,8 +28,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     #self.utility_libraries.append("CL/opencl.h") #Because the one thing that people wont standardise on is the name and location of the API header file...
     self.solver_metadata["local_work_items"] = self.instances
     
-    self.utility_libraries.remove("CL/cl.hpp")
-    self.utility_libraries.append("CL/opencl.h")
+    if("CL/cl.hpp" in self.utility_libraries): self.utility_libraries.remove("CL/cl.hpp")
+    if("CL/opencl.h" not in self.utility_libraries): self.utility_libraries.append("CL/opencl.h")
     
   def generate_name(self):
       MonteCarlo.MonteCarlo.generate_name(self)  
@@ -166,6 +166,11 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     #Controlling the degree of task parallelism
     index = output_list.index("kernel void %s_kernel("%self.output_file_name)
     output_list.insert(index,"__attribute__((num_compute_units(COMPUTE_UNITS)))")
+    
+    #Pointing to a NULL value
+    index = output_list.index("const size_t local_kernel_paths = local_work_items;")
+    output_list.insert(index,"const size_t local_kernel_paths = NULL;")
+    output_list.remove("const size_t local_kernel_paths = local_work_items;")
     
     #if(self.instances>1):
         #output_list.insert(index,"__attribute__((reqd_work_group_size(%d,1,1)))"%self.instances)
