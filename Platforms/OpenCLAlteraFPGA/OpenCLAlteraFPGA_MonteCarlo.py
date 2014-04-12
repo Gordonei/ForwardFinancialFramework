@@ -28,6 +28,9 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     #self.utility_libraries.append("CL/opencl.h") #Because the one thing that people wont standardise on is the name and location of the API header file...
     self.solver_metadata["local_work_items"] = self.instances
     
+    self.utility_libraries.remove("CL/cl.hpp")
+    self.utility_libraries.append("CL/opencl.h")
+    
   def generate_name(self):
       MonteCarlo.MonteCarlo.generate_name(self)  
       self.output_file_name = ("%s_cslow_%s_pipe_%d_insts_%d"%(self.output_file_name,str(self.cslow),self.pipelining,self.instances))
@@ -52,36 +55,108 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     output_list.remove("\tconstant int *path_points,")
     #output_list.remove("\tglobal uint *chunk_size,")
     
+    if(self.cslow):
+        for index,u in enumerate(self.underlying):
+            lindex = output_list.index("%s_variables temp_u_v_%d;"%(u.name,index))
+            output_list.insert(lindex,"%s_variables u_v_%d_array[PATHS];"%(u.name,index))
+            output_list.insert(lindex,"FP_t spot_price_%d_array[PATHS],time_%d_array[PATHS];"%(index,index))
+                               
+        for index,d in enumerate(self.derivative):
+            lindex = output_list.index("%s_variables temp_o_v_%d;"%(d.name,index))
+            output_list.insert(lindex,"%s_variables o_v_%d_array[PATHS];"%(d.name,index))
+    
     index = output_list.index("int local_path_points=path_points[0];")
     output_list.insert(index,"const int local_path_points=PATH_POINTS;")
     output_list.remove("int local_path_points=path_points[0];")
     
-    index = output_list.index("for(int j=0;j<local_path_points;++j){")
-    output_list.insert(index,"for(int j=0;j<PATH_POINTS;++j){");
+    #Modifying the outer, path loop
+    lindex = output_list.index("for(int k=0;k<%d;++k){"%self.kernel_loops)
+    if not(self.cslow):
+        #output_list.insert(lindex,"for(int j=0;j<PATH_POINTS;++j){");
+        output_list.insert(lindex,"for(int k=0;k<PATHS;++k){")
+    output_list.remove("for(int k=0;k<%d;++k){"%self.kernel_loops)
+    
+    #Modifying the inner, path simulation loop
+    lindex = output_list.index("for(int j=0;j<local_path_points;++j){")
+    if(self.cslow):
+        for index,u in enumerate(self.underlying):
+            output_list.insert(lindex,"temp_u_v_%d = u_v_%d_array[k];"%(index,index))
+            output_list.insert(lindex,"spot_price_%d = spot_price_%d;"%(index,index))
+            output_list.insert(lindex,"time_%d = time_%d_array[k];"%(index,index))
+        for index,d in enumerate(self.derivative):
+            output_list.insert(lindex,"temp_o_v_%d = o_v_%d_array[k];"%(index,index))
+        
+        output_list.insert(lindex,"for(int k=0;k<PATHS;++k){")
+        output_list.insert(lindex,"for(int j=0;j<PATH_POINTS;++j){")
+        
+        
+        """or index,u in enumerate(self.underlying):
+            output_list.insert(lindex,"u_v_%d_array[k] = temp_u_v_%d;"%(index,index))
+            output_list.insert(lindex,"spot_price_%d_array[k] = spot_price_%d;"%(index,index))
+            output_list.insert(lindex,"time_%d_array[k] = time_%d;"%(index,index))
+        for index,d in enumerate(self.derivative):
+            output_list.insert(lindex,"o_v_%d_array[k] = temp_o_v_%d;"%(index,index))"""
+            
+        output_list.insert(lindex,"}") #end off the initialisation loop
+        
+        for index,u in enumerate(self.underlying):
+            output_list.insert(lindex,"u_v_%d_array[k] = temp_u_v_%d;"%(index,index))
+            output_list.insert(lindex,"spot_price_%d_array[k] = spot_price_%d;"%(index,index))
+            output_list.insert(lindex,"time_%d_array[k] = time_%d;"%(index,index))
+        for index,d in enumerate(self.derivative):
+            output_list.insert(lindex,"o_v_%d_array[k] = temp_o_v_%d;"%(index,index))
+        
+    else:
+        output_list.insert(lindex,"for(int j=0;j<PATH_POINTS;++j){")
+        
     output_list.remove("for(int j=0;j<local_path_points;++j){")
+    
+    if(self.cslow):
+        #Creating the seperate initiation loop
+        lindex = output_list.index("%s_underlying_path_init(&temp_u_v_0,&temp_u_a_0);"%self.underlying[0].name)
+        output_list.insert(lindex,"for(int k=0;k<PATHS;++k){")
+        
+        #copying the state at the end of the path step into the array variables
+        lindex = output_list.index("time_%d = temp_u_v_%d.time;"%(len(self.underlying)-1,len(self.underlying)-1)) + 1
+        lindex = output_list[lindex:].index("time_%d = temp_u_v_%d.time;"%(len(self.underlying)-1,len(self.underlying)-1)) + lindex + 1
+        
+        for index,u in enumerate(self.underlying):
+            output_list.insert(lindex,"u_v_%d_array[k] = temp_u_v_%d;"%(index,index))
+            output_list.insert(lindex,"spot_price_%d_array[k] = spot_price_%d;"%(index,index))
+            output_list.insert(lindex,"time_%d_array[k] = time_%d;"%(index,index))
+        for index,d in enumerate(self.derivative):
+            output_list.insert(lindex,"o_v_%d_array[k] = temp_o_v_%d;"%(index,index))
+        
+        #Creating the separate payoff loop
+        lindex = output_list.index("temp_value_0 += temp_o_v_0.value;") - 1 #this should always work, but doesn't feel right
+        
+        for index,u in enumerate(self.underlying):
+            output_list.insert(lindex,"spot_price_%d = spot_price_%d;"%(index,index))
+        for index,d in enumerate(self.derivative):
+            output_list.insert(lindex,"temp_o_v_%d = o_v_%d_array[k];"%(index,index))
+        
+        output_list.insert(lindex,"for(int k=0;k<PATHS;++k){")
+        output_list.insert(lindex,"}")
     
     """index = output_list.index("uint local_chunk_size = chunk_size[0];")
     output_list.insert(index,"uint local_chunk_size = PATHS;")
     output_list.remove("uint local_chunk_size = chunk_size[0];")"""
     
-    index = output_list.index("for(int k=0;k<%d;++k){"%self.kernel_loops)
-    output_list.insert(index,"for(int k=0;k<PATHS;++k){")
-    output_list.remove("for(int k=0;k<%d;++k){"%self.kernel_loops)
     
     #Adding restrict keyword to struct arguments
     for index,u in enumerate(self.underlying):
-      temp_index = output_list.index("\tglobal %s_attributes *u_a_%d,"%(u.name,index))
+      temp_index = output_list.index("\tglobal const %s_attributes *u_a_%d,"%(u.name,index))
       output_list.insert(temp_index,"\tglobal const %s_attributes *restrict u_a_%d,"%(u.name,index))
-      output_list.remove("\tglobal %s_attributes *u_a_%d,"%(u.name,index))
+      output_list.remove("\tglobal const %s_attributes *u_a_%d,"%(u.name,index))
       
-      temp_index = output_list.index("\tglobal rng_state_t *seed_%d,"%index)
+      temp_index = output_list.index("\tglobal const rng_state_t *seed_%d,"%index)
       output_list.insert(temp_index,"\tglobal const rng_state_t *restrict seed_%d,"%index)
-      output_list.remove("\tglobal rng_state_t *seed_%d,"%index)
+      output_list.remove("\tglobal const rng_state_t *seed_%d,"%index)
       
     for index,d in enumerate(self.derivative):
-      temp_index = output_list.index("\tglobal %s_attributes *o_a_%d,"%(d.name,index))
+      temp_index = output_list.index("\tglobal const %s_attributes *o_a_%d,"%(d.name,index))
       output_list.insert(temp_index,"\tglobal const %s_attributes *restrict o_a_%d,"%(d.name,index))
-      output_list.remove("\tglobal %s_attributes *o_a_%d,"%(d.name,index))
+      output_list.remove("\tglobal const %s_attributes *o_a_%d,"%(d.name,index))
     
     #Controlling the amount of pipeline parallelism
     #if(self.pipelining>1):
@@ -91,6 +166,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     #Controlling the degree of task parallelism
     index = output_list.index("kernel void %s_kernel("%self.output_file_name)
     output_list.insert(index,"__attribute__((num_compute_units(COMPUTE_UNITS)))")
+    
     #if(self.instances>1):
         #output_list.insert(index,"__attribute__((reqd_work_group_size(%d,1,1)))"%self.instances)
         #output_list.insert(index,"__attribute__((num_simd_work_items(%d)))"%self.instances)
@@ -121,6 +197,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
   
   """
   g++ mc_solver_opencl_gpu_un_1_op_1.c -DMULTICORE_CPU -DFP_t=float underlying.c option.c -o mc_solver_opencl_gpu_un_1_op_1Run -lpthread -lrt -O3 -w -ffast-math -fpermissive -march=native -I/opt/altera/13.1/hld/host/include -fpermissive -ggdb -L/opt/altera/13.1/hld/linux64/lib -L/opt/altera/13.1/hld/host/linux64/lib -lalteracl -lalterahalmmd -lalterammdpcie -lelf -lrt
+  g++ mc_solver_opencl_alterafpga_he_1_eu_1_cslow_False_pipe_1_insts_1.c -DMULTICORE_CPU -DFP_t=float european_option.c heston_underlying.c underlying.c option.c gauss.c -o mc_solver_opencl_alterafpga_he_1_eu_1_cslow_False_pipe_1_insts_1Run -lpthread -lrt -O3 -w -ffast-math -fpermissive -march=native -I/opt/altera/13.1/hld/host/include -fpermissive -ggdb -L/opt/altera/13.1/hld/linux64/lib -L/opt/altera/13.1/hld/host/linux64/lib -lalteracl -lalterahalmmd -lalterammdpcie -lelf -lrt -DCOMPUTE_UNITS=1 -DUNROLL_FACTOR=1
   """
   
   def execute(self): pass
