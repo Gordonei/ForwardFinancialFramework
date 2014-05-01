@@ -15,7 +15,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
   cslow = False
   simulation = False
     
-  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=1,random_number_generator="taus_boxmuller",floating_point_format="float",instance_paths=1000,instances=1,pipelining=1,cslow=False,simulation=False,default_points=4096):
+  def __init__(self,derivative,paths,platform,reduce_uNderlyings=True,kernel_path_max=1,random_number_generator="taus_boxmuller",floating_point_format="float",instance_paths=1000,instances=1,pipelining=1,cslow=False,simulation=False,default_points=4096,reduce_underlyings=True):
     self.instance_paths = instance_paths
     self.pipelining = pipelining
     self.simulation = simulation
@@ -42,6 +42,10 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     index = output_list.index("FILE *fp=fopen(\"%s.clbin\", \"r\");"%self.output_file_name)
     output_list.insert(index,"FILE *fp=fopen(\"%s.aocx\", \"r\");"%self.output_file_name)
     output_list.remove("FILE *fp=fopen(\"%s.clbin\", \"r\");"%self.output_file_name)
+
+    index = output_list.index("const size_t local_kernel_paths = local_work_items;")
+    output_list.insert(index,"const size_t local_kernel_paths = NULL;")
+    output_list.remove("const size_t local_kernel_paths = local_work_items;")
     
     return output_list
 
@@ -168,9 +172,13 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     output_list.insert(index,"__attribute__((num_compute_units(COMPUTE_UNITS)))")
     
     #Pointing to a NULL value
-    index = output_list.index("const size_t local_kernel_paths = local_work_items;")
-    output_list.insert(index,"const size_t local_kernel_paths = NULL;")
-    output_list.remove("const size_t local_kernel_paths = local_work_items;")
+    #index = output_list.index("clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, write_events, kernel_event);"%(self.output_file_name,4+len(self.underlying)+len(self.derivative)))
+    #output_list.insert(index,"clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, NULL, 1, write_events, kernel_event);")
+    #output_list.remove("clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, write_events, kernel_event);"%(self.output_file_name,4+len(self.underlying)+len(self.derivative)))
+
+    #index = output_list.index("clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 1, write_events, kernel_event);"%self.output_file_name)
+    #output_list.insert(index,"clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, NULL, 1, write_events, kernel_event);")
+    #output_list.remove("clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 1, write_events, kernel_event);")
     
     #if(self.instances>1):
         #output_list.insert(index,"__attribute__((reqd_work_group_size(%d,1,1)))"%self.instances)
