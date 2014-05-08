@@ -31,7 +31,7 @@ def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=
   elif(platform_name=="OpenCL_AlteraFPGA"):
     from ForwardFinancialFramework.Platforms.OpenCLAlteraFPGA import OpenCLAlteraFPGA_MonteCarlo,OpenCLAlteraFPGA
     platform = OpenCLAlteraFPGA.OpenCLAlteraFPGA()
-    mc_solver = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo(option,paths,platform)
+    mc_solver = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo(option,paths,platform,cslow=True,pipelining=8)
     
   else:
     print "incorrect platform type!"
