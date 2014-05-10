@@ -29,7 +29,6 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
   def generate(self,name_extension=".c",override=True,verbose=False):
     #os.chdir("..")
     #os.chdir(self.platform.platform_directory())
-    self.generate_name() #incase any variables have changed since solver construction
     
     if(override or not os.path.exists("%s.c"%self.output_file_name)):
         #os.chdir(self.platform.root_directory())
@@ -278,7 +277,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     return output_list
   
-  def generate_activity_thread(self):
+  def generate_activity_thread_unpacking(self):
+    output_list = []
     #Generate Path Loop Function
     output_list = []
     output_list.append("//*MC Multicore Activity Thread Function*")
@@ -300,7 +300,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         output_list.append("%s_variables o_v_%d;" % (d.name,index))
     
     
-    output_list.append("//**Initialising Loop Attributes*")
+    output_list.append("//**Initialising Attributes*")
     
     ##Calling Init Functions
     for u_index,u in enumerate(self.underlying):
@@ -318,8 +318,38 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
         if("points" not in self.derivative_attributes[index]): output_list.append("o_v_%d.delta_time = o_a_%d.time_period/default_points;"%(index,index))
     
-    ##Thread calculation loop
-    output_list.append("//**Thread Calculation Loop**")
+    return output_list
+  
+  def generate_underlying_derivative_path_initialisations(self,linking_variables=True):
+    output_list = []
+    
+    output_list.append("//***Underlying and Derivative Path Initiation***")
+    for index,u in enumerate(self.underlying):
+      output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
+      
+      """if("heston" in u.name or "black_scholes" in u.name):
+	  output_list.append("(u_v_%d.rng_state).s1 = 2;"%index)
+	  output_list.append("(u_v_%d.rng_state).s2 = 8;"%index)
+	  output_list.append("(u_v_%d.rng_state).s3 = 16 + rng_seed*thread_paths*%d;" % (index,index+1))
+	  output_list.append("printf(\"%%d\\n\",(u_v_%d.rng_state).s3);"%index)"""
+	
+    
+    
+    for index,d in enumerate(self.derivative):
+        output_list.append("%s_derivative_path_init(&o_v_%d,&o_a_%d);" % (d.name,index,index))
+        
+        if(linking_variables):
+	  for u_index,u in enumerate(d.underlying):
+	      output_list.append("next_time_%d_%d = 0;"%(index,u_index))
+	      output_list.append("price_%d_%d = u_a_%d.current_price*exp(u_v_%d.gamma);"%(index,u_index,u_index,u_index))
+            
+    return output_list
+  
+  def generate_activity_thread(self):
+    output_list = self.generate_activity_thread_unpacking()
+    
+    ##Thread calculation loop variables
+    output_list.append("//**Thread Calculation Loop Variables**")
     
     for r in range(len(self.derivative)):
         output_list.append("FP_t temp_total_%d=0;"%r)
@@ -346,23 +376,14 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       #if(index<(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d,"%(output_list[-1],index))
       #elif(index==(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d;"%(output_list[-1],index))
       
-    output_list.append("for(l=0;l<thread_paths;l++){")
-    
-    output_list.append("//***Underlying and Derivative Path Initiation***")
+    output_list.append("//**Thread Random Number Generator Seeding**")
     for index,u in enumerate(self.underlying):
 	if("heston" in u.name or "black_scholes" in u.name):
-	  output_list.append("(u_v_%d.rng_state).s1 = 2;"%index)
-	  output_list.append("(u_v_%d.rng_state).s2 = 8;"%index)
-	  output_list.append("(u_v_%d.rng_state).s3 = 16 + rng_seed*thread_paths*%d;" % (index,index+1))
-	  
-        output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
+	  output_list.append("ctrng_seed(1000,rng_seed*thread_paths*%d,&(u_v_%d.rng_state));"%(index+1,index))
     
-    
-    for index,d in enumerate(self.derivative):
-        output_list.append("%s_derivative_path_init(&o_v_%d,&o_a_%d);" % (d.name,index,index))
-        for u_index,u in enumerate(d.underlying):
-            output_list.append("next_time_%d_%d = 0;"%(index,u_index))
-            output_list.append("price_%d_%d = u_a_%d.current_price*exp(u_v_%d.gamma);"%(index,u_index,u_index,u_index))
+    output_list.append("//**Thread Path Simulations**")
+    output_list.append("for(l=0;l<thread_paths;l++){")
+    output_list.extend(self.generate_underlying_derivative_path_initialisations(True))
     
     
     output_list.append("done=1;")
@@ -484,7 +505,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         temp = []
         for u in self.underlying:
             if(not(u.name in temp)):
-                compile_cmd.append(("../../MulticoreCPU/multicore_c_code/%s.c" % u.name))
+                compile_cmd.append(("%s.c" % u.name))
                 temp.append(u.name)
             
             base_list = []
@@ -493,10 +514,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
             for b in base_list:
                 if(b not in temp):
-                    compile_cmd.append(("../../MulticoreCPU/multicore_c_code/%s.c" % b))
+                    compile_cmd.append(("%s.c" % b))
                     temp.append(b)
           
-        compile_cmd.append("../../MulticoreCPU/multicore_c_code/gauss.c")
+        compile_cmd.append("gauss.c")
         for d in self.derivative:
             if(not(d.name in temp)):
                 compile_cmd.append(("%s.c" % d.name))
@@ -550,7 +571,6 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         if(debug): print compile_string
         
         result = subprocess.check_output(compile_cmd)
-	
         os.chdir(self.platform.root_directory())
         os.chdir("bin")
         

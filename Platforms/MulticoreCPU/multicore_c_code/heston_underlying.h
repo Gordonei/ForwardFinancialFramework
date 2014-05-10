@@ -33,6 +33,16 @@
 #endif
 #endif
 
+#ifdef VIVADOHLS
+//#include "hls_math.h"
+#include "math.h"
+//#define M_PI 3.1415926535897
+#define native_sqrt rsqrt
+#define native_exp expf
+#define sin sinf
+#define cos cosf
+#endif
+
 typedef struct {
 FP_t gamma;
 FP_t volatility;

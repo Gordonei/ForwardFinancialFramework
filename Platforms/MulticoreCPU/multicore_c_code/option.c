@@ -24,9 +24,9 @@ void option_derivative_path(FP_t price,FP_t time,option_variables* o_v,option_at
 
 void option_derivative_payoff(FP_t end_price,option_variables* o_v,option_attributes* o_a){
 	if((o_a->call)){
-		o_v->value = end_price-o_a->strike_price;
+		o_v->value = end_price - o_a->strike_price;
 	}
 	else{
-		o_v->value = o_a->strike_price-end_price;
+		o_v->value = o_a->strike_price - end_price;
 	}
 }

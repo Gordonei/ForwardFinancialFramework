@@ -29,7 +29,6 @@
 #ifndef GAUSS_H_
 #define GAUSS_H_
 
-
 //#include <assert.h>
 
 #ifdef MULTICORE_CPU
@@ -43,6 +42,18 @@
 
 #ifdef OPENCL_GPU
 #define uint32_t uint
+#endif
+
+#ifdef VIVADOHLS
+#include "ap_cint.h"
+//#include "hls_math.h"
+#include "math.h"
+//#define M_PI 3.1415926535897
+#define native_log logf
+#define native_exp expf
+#define native_sqrt rsqrt
+#define sin sinf
+#define cos cosf
 #endif
 
 //#include <gsl/gsl_rng.h>
@@ -203,6 +214,11 @@ static const double wtab[128] = {
 //  }
 //  return  sign ? sigma*x : -sigma*x;
 //}
+
+#ifdef VIVADOHLS
+typedef uint32 uint32_t;
+#endif
+
 
 //Beginning of modified code that uses the Combined TAUSWORTHE RNG
 typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;uint32_t offset;} rng_state_t;

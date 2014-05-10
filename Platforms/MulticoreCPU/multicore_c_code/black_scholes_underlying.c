@@ -18,7 +18,7 @@ void black_scholes_underlying_underlying_path_init(black_scholes_underlying_vari
 	u_v->time = 0.0;
 	u_v->x = 0.0;
 	
-	#if defined (TAUS_BOXMULLER) || defined (TAUS_ZIGGURAT)
+	#if ((defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT)) && !(defined(VIVADOHLS)))
 	//(u_v->rng_state).s1 = 2; This is done in the kernel proper now
 	//(u_v->rng_state).s2 = 8;
 	//(u_v->rng_state).s3 = 16;
@@ -56,6 +56,6 @@ void black_scholes_underlying_underlying_path(FP_t delta_time,black_scholes_unde
 	u_v->x = taus_ran_gaussian_ziggurat (1.0,&(u_v->rng_state));
 	#endif
 
-	u_v->gamma += (u_a->rfir-pow((u_a->volatility),2)/2)*delta_time+u_a->volatility*u_v->x*native_sqrt(delta_time); //native_sqrt
+	u_v->gamma += (u_a->rfir-u_a->volatility*u_a->volatility/2)*delta_time+u_a->volatility*u_v->x*native_sqrt(delta_time); //native_sqrt
 	u_v->time += delta_time;
 }
