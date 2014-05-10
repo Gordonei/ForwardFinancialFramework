@@ -56,8 +56,13 @@
 #define cos cosf
 #endif
 
+#ifdef VIVADOHLS
+typedef uint32 uint32_t;
+#endif
+
 //#include <gsl/gsl_rng.h>
 
+#ifdef TAUS_ZIGGURAT
 /* position of right-most step */
 #define PARAM_R 3.44428647676
 
@@ -169,56 +174,8 @@ static const double wtab[128] = {
   1.64596952856e-07, 1.68292495203e-07, 1.72541128694e-07, 1.77574279496e-07,
   1.83813550477e-07, 1.92166040885e-07, 2.05295471952e-07, 2.22600839893e-07
 };
-
-
-//static unsigned long gsl_rng_uint32 (gsl_rng *r)
-///* the uniform distribution on 0..2^{32}-1 */
-//{
-//  unsigned long min = gsl_rng_min (r);
-//  unsigned long max = gsl_rng_max (r);
-//
-//  if (min == 0 && max == 4294967295U) { /* we have full 32 bit values */
-//    return  gsl_rng_get (r);
-//  } else {
-//    assert (max-min >= 65536); /* make sure we have at least 16 bit */
-//    unsigned long a = (gsl_rng_get (r)-min)&0xFFFF;
-//    unsigned long b = (gsl_rng_get (r)-min)&0xFFFF;
-//    return  (a<<16)|b;
-//  }
-//}
-//
-//double gsl_ran_gaussian_ziggurat (gsl_rng *r, double sigma)
-//{
-//  unsigned long  U, sign, i, j;
-//  double  x, y;
-//
-//  while (1) {
-//    U = gsl_rng_uint32 (r);
-//    i = U & 0x0000007F;		/* 7 bit to choose the step */
-//    sign = U & 0x00000080;	/* 1 bit for the sign */
-//    j = U>>8;			/* 24 bit for the x-value */
-//
-//    x = j*wtab[i];
-//    if (j < ktab[i])  break;
-//
-//    if (i<127) {
-//      double  y0, y1;
-//      y0 = ytab[i];
-//      y1 = ytab[i+1];
-//      y = y1+(y0-y1)*gsl_rng_uniform(r);
-//    } else {
-//      x = PARAM_R - log(1.0-gsl_rng_uniform(r))/PARAM_R;
-//      y = exp(-PARAM_R*(x-0.5*PARAM_R))*gsl_rng_uniform(r);
-//    }
-//    if (y < exp(-0.5*x*x))  break;
-//  }
-//  return  sign ? sigma*x : -sigma*x;
-//}
-
-#ifdef VIVADOHLS
-typedef uint32 uint32_t;
+FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state);
 #endif
-
 
 //Beginning of modified code that uses the Combined TAUSWORTHE RNG
 typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;uint32_t offset;} rng_state_t;
@@ -230,9 +187,10 @@ uint32_t __random32(rng_state_t *rng_state);
 
 FP_t __drandom32(rng_state_t *rng_state);
 
-FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state);
 
+#ifdef TAUS_BOXMULLER
 void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_state);
+#endif
 //End of modified code that uses the Combined TAUSWORTHE RNG
 
 #endif
