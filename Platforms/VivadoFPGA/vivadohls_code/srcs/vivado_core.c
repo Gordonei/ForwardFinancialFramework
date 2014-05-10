@@ -49,7 +49,7 @@ typedef struct{
 	} kernel_data;
 
 //*Vivado HLS Kernel Function*
-void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,FP_t *thread_result_0,FP_t *thread_result_sqrd_0){
+void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,FP_t *thread_result_0){
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_u_a_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_o_a_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=seed_0 metadata="-bus_bundle CORE_IO"
@@ -103,7 +103,6 @@ void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standar
 
 	//**Returning Result**
 	*thread_result_0 = result_0;
-	*thread_result_sqrd_0 = result_sqrd_0;
 	}
 
 //*MC Multicore Activity Thread Function*
