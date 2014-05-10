@@ -64,8 +64,8 @@ if( __name__ == '__main__' and len(sys.argv)>2):
   
   result = run_test_solver(platform_name,cmd_options)
   
-  print "Compile Output:\n %s\n"%result[0]
-  print "Execute Output:\n %s\n"%result[1]
+  if("Compile" in cmd_options): print "Compile Output:\n %s\n"%result[0]
+  if("Execute" in cmd_options): print "Execute Output:\n %s\n"%result[1]
     
 elif(__name__ == '__main__'):
   print "usage: python mc_solver_test_script {CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA} [Generate] [Compile] [Execute]"
