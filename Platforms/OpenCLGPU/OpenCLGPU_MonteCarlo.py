@@ -496,16 +496,16 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("bin")
     
     output_list.append("kernel void %s_kernel(constant int *path_points,"%self.output_file_name)
-    output_list.append("\tglobal uint *seed,")
-    output_list.append("\tglobal uint *chunk_size,") #constant
-    output_list.append("\tglobal uint *chunk_number,") #constant
+    output_list.append("\tconst global uint *seed,")
+    output_list.append("\tconst global uint *chunk_size,") #constant
+    output_list.append("\tconst global uint *chunk_number,") #constant
     for index,u in enumerate(self.underlying):
-      output_list.append("\tglobal %s_attributes *u_a_%d,"%(u.name,index)) #constant
+      output_list.append("\tconst global %s_attributes *u_a_%d,"%(u.name,index)) #constant
       if(self.random_number_generator=="mwc64x_boxmuller"): output_list.append("\tglobal mwc64x_state_t *seed_%d,"%(index))
       elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): output_list.append("\tglobal rng_state_t *seed_%d,"%(index))
       
     for index,d in enumerate(self.derivative):
-      output_list.append("\tglobal %s_attributes *o_a_%d,"%(d.name,index)) #constant
+      output_list.append("\tconst global %s_attributes *o_a_%d,"%(d.name,index)) #constant
       output_list.append("\tglobal FP_t *value_%d,"%(index))
       output_list.append("\tglobal FP_t *value_sqrd_%d,"%(index))
       
@@ -552,7 +552,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  output_list.append("temp_u_v_%d.rng_state.offset = seed_%d[i].offset;"%(index,index))
 	
 	elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-	  output_list.append("ctrng_seed(1000,local_seed*local_chunk_size*%d + local_chunk_size*local_chunk_number,&(temp_u_v_%d.rng_state));"%(index+1,index))
+	  output_list.append("ctrng_seed(1000,local_seed * %d * (i+local_chunk_size*local_chunk_number),&(temp_u_v_%d.rng_state));"%(index+1,index))
 	  
 	  """output_list.append("temp_u_v_%d.rng_state.s1 = %d + 2;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
 	  output_list.append("temp_u_v_%d.rng_state.s2 = %d + 8;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
