@@ -15,7 +15,7 @@ void option_derivative_init(FP_t t,FP_t c,FP_t k,option_attributes* o_a){
 
 void option_derivative_path_init(option_variables* o_v,option_attributes* o_a){
 	o_v->value=0;
-	//o_v->delta_time=o_a->time_period;
+	o_v->delta_time=o_a->time_period;
 	//o_v->delta_time=o_a->time_period/o_a->points;
 }
 
