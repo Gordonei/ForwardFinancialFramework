@@ -1,6 +1,6 @@
 #define VIVADOHLS
-#define PATHS 100
-#define PATH_POINTS 4096
+#define PATHS 1000
+#define PATH_POINTS 10
 #define TAUS_BOXMULLER
 //Libraries
 #include "math.h";
@@ -97,12 +97,10 @@ void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standar
 
 		//**Calculating payoff(s)**
 		option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
-		result_0 += o_v_0.value;
-		result_sqrd_0 += o_v_0.value*o_v_0.value;
-		}
 
-	//**Returning Result**
-	*thread_result_0 = result_0;
+		//**Returning Result**
+		(*kernel_arg).kernel_result[0*PATHS+p] = (*kernel_arg).o_v_0.value;
+		}
 	}
 
 //*MC Multicore Activity Thread Function*
@@ -135,11 +133,14 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	FP_t temp_value_0 = 0.0;
 	FP_t temp_value_sqrd_0 = 0.0;
 	FP_t kernel_value_0;
-	FP_t kernel_value_sqrd_0;
 	rng_state_t seed_0;
 	for(i=0;i<chunks;++i){
-		temp_value_0 = kernel_value_0;
-		temp_value_sqrd_0 = kernel_value_sqrd_0;
+
+		//***Aggregating the result**
+		for(j=0;j<PATHS;++j){
+			temp_value_0 += kernel_value_0[j];
+			temp_value_sqrd_0 += kernel_value_0[j]*kernel_value_0[j];
+			}
 		}
 
 	//**Passing data back to main thread**
