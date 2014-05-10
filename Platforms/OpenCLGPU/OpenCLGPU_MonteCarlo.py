@@ -552,10 +552,12 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  output_list.append("temp_u_v_%d.rng_state.offset = seed_%d[i].offset;"%(index,index))
 	
 	elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-	  output_list.append("temp_u_v_%d.rng_state.s1 = %d + local_chunk_number*local_chunk_size + 2;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
-	  output_list.append("temp_u_v_%d.rng_state.s2 = %d + local_chunk_number*local_chunk_size + 8;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
+	  output_list.append("ctrng_seed(1000,local_seed*local_chunk_size*%d + local_chunk_size*local_chunk_number,&(temp_u_v_%d.rng_state));"%(index+1,index))
+	  
+	  """output_list.append("temp_u_v_%d.rng_state.s1 = %d + 2;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
+	  output_list.append("temp_u_v_%d.rng_state.s2 = %d + 8;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
 	  output_list.append("temp_u_v_%d.rng_state.s3 = local_seed + %d + local_chunk_number*local_chunk_size + 16;"%(index,index)) #local_seed + %d + 1 + local_chunk_number*local_chunk_size +
-	  output_list.append("temp_u_v_%d.rng_state.offset = 0;"%(index))
+	  output_list.append("temp_u_v_%d.rng_state.offset = 0;"%(index))"""
 	   
       
 	
