@@ -43,7 +43,7 @@ def run_test_solver(platform_name,cmd_option):
   elif(platform_name=="Vivado_FPGA"):
     from ForwardFinancialFramework.Platforms.VivadoFPGA import VivadoFPGA_MonteCarlo,VivadoFPGA
     platform = VivadoFPGA.VivadoFPGA()
-    mc_solver = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo(option,paths,platform,simulation=True)
+    mc_solver = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo(option,paths,platform)
     
   else:
     print "incorrect platform type!"
@@ -65,13 +65,8 @@ if( __name__ == '__main__' and len(sys.argv)>2):
   
   result = run_test_solver(platform_name,cmd_options)
   
-<<<<<<< HEAD:bin/mc_solver_test.py
   if("Compile" in cmd_options): print "Compile Output:\n %s\n"%result[0]
   if("Execute" in cmd_options): print "Execute Output:\n %s\n"%result[1]
-=======
-  print "Compile Output:\n %s\n"%result[0]
-  print "Execute Output:\n %s\n"%result[1]
->>>>>>> 6a32a36e3036dbc95bb75a1a074c308b71f0a88b:bin/test_scripts/mc_solver_test.py
     
 elif(__name__ == '__main__'):
   print "usage: python mc_solver_test_script {CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA} [Generate] [Compile] [Execute]"
