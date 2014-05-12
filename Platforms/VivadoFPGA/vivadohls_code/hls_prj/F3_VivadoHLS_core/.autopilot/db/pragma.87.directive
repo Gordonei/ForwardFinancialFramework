@@ -1,0 +1,54 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="vivado_activity_thread" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="kernel_u_a_0"/>
+<option name="core" value="AXI_SLAVE"/>
+<option name="metadata" value="&quot;-bus_bundle CORE_IO&quot;"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="vivado_activity_thread" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="kernel_o_a_0"/>
+<option name="core" value="AXI_SLAVE"/>
+<option name="metadata" value="&quot;-bus_bundle CORE_IO&quot;"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="vivado_activity_thread" label="">
+<pragma name="INTERFACE">
+<option name="ap_fifo" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="seed_0"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="vivado_activity_thread" label="">
+<pragma name="INTERFACE">
+<option name="ap_memory" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="thread_result_0"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="vivado_activity_thread" label="">
+<pragma name="INTERFACE">
+<option name="ap_memory" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="thread_result_sqrd_0"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="vivado_activity_thread" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="seed_0"/>
+<option name="core" value="AXI4Stream"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="vivado_activity_thread" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="thread_result_0"/>
+<option name="core" value="AXI4Stream"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="vivado_activity_thread" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="thread_result_sqrd_0"/>
+<option name="core" value="AXI4Stream"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

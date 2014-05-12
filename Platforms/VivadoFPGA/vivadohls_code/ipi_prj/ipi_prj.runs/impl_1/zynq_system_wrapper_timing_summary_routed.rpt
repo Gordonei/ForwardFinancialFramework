@@ -1,0 +1,274 @@
+Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
+| Date         : Fri Apr 11 00:32:54 2014
+| Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
+| Command      : report_timing_summary -file zynq_system_wrapper_timing_summary_routed.rpt -pb zynq_system_wrapper_timing_summary_routed.pb
+| Design       : zynq_system_wrapper
+| Device       : 7z045-ffg900
+| Speed File   : -2  PRODUCTION 1.09 2013-11-22
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+------------------------------------------------------------------------------------------------
+| Check Timing
+| ------------
+------------------------------------------------------------------------------------------------
+
+
+Checking 'no_clock'.
+ There are 0 register/latch pins with no clock.
+ There are 0 register/latch pins with constant_clock.
+
+Checking 'unconstrained_internal_endpoints'.
+ There are 0 pins that are not constrained for maximum delay.
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+Checking 'no_input_delay'.
+ There are 0 input ports with no input delay specified.
+
+Checking 'no_output_delay'.
+ There are 0 ports with no output delay specified.
+
+Checking 'multiple_clock'.
+ There are 0 register/latch pins with related clocks.
+ There are 0 register/latch pins with exclusive clocks.
+
+Checking 'generated_clocks'.
+ There are 0 generated clocks that are not connected to a clock source.
+
+Checking 'loops'.
+ There are 0 combinational loops in the design.
+
+Checking 'partial_input_delay'.
+ There are 0 input ports with partial input delay specified.
+
+Checking 'partial_output_delay'.
+ There are 0 ports with partial output delay specified.
+
+Checking 'unexpandable_clocks'.
+ There are 0 related clock pairs.
+ There are 0 User Ignored clock pairs.
+
+Checking 'latch_loops'.
+ There are 0 combinational latch loops in the design through latch input
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+     11.545        0.000                      0                 7191        0.041        0.000                      0                 7191        9.358        0.000                       0                  3736  
+
+
+All user specified timing constraints are met.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+Clock       Waveform(ns)       Period(ns)      Frequency(MHz)
+-----       ------------       ----------      --------------
+clk_fpga_0  {0.000 10.000}     20.000          50.000          
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+clk_fpga_0         11.545        0.000                      0                 7191        0.041        0.000                      0                 7191        9.358        0.000                       0                  3736  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_fpga_0
+  To Clock:  clk_fpga_0
+
+Setup :            0  Failing Endpoints,  Worst Slack       11.545ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.041ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        9.358ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             11.545ns  (required time - arrival time)
+  Source:                 zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/din1_buf1_reg[8]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP3/DSP/PCIN[0]
+                            (rising edge-triggered cell DSP48E1 clocked by clk_fpga_0  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (clk_fpga_0 rise@20.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        6.915ns  (logic 5.473ns (79.143%)  route 1.442ns (20.857%))
+  Logic Levels:           3  (DSP48E1=3)
+  Clock Path Skew:        -0.242ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.464ns = ( 25.464 - 20.000 ) 
+    Source Clock Delay      (SCD):    6.518ns
+    Clock Pessimism Removal (CPR):    0.811ns
+  Clock Uncertainty:      0.302ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.600ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  zynq_system_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           4.698     4.698    zynq_system_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.093     4.791 r  zynq_system_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=3766, routed)        1.727     6.518    zynq_system_i/vivado_activity_thread_0/aclk
+    SLICE_X37Y307                                                     r  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/din1_buf1_reg[8]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X37Y307        FDRE (Prop_fdre_C_Q)         0.204     6.722 r  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/din1_buf1_reg[8]/Q
+                         net (fo=3, routed)           1.393     8.114    zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/s_axis_b_tdata[8]
+    DSP48_X2Y108         DSP48E1 (Prop_dsp48e1_B[8]_PCOUT[47])
+                                                      2.831    10.945 r  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP0/DSP/PCOUT[47]
+                         net (fo=1, routed)           0.000    10.945    zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/dsp0_pc_p3[47]
+    DSP48_X2Y109         DSP48E1 (Prop_dsp48e1_PCIN[47]_PCOUT[47])
+                                                      1.219    12.164 r  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP1/DSP/PCOUT[47]
+                         net (fo=1, routed)           0.050    12.214    zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/dsp1_pc_p4[47]
+    DSP48_X2Y110         DSP48E1 (Prop_dsp48e1_PCIN[47]_PCOUT[0])
+                                                      1.219    13.433 r  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP2/DSP/PCOUT[0]
+                         net (fo=1, routed)           0.000    13.433    zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/dsp2_pc_p5[0]
+    DSP48_X2Y111         DSP48E1                                      r  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP3/DSP/PCIN[0]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     20.000    20.000 r  
+    PS7_X0Y0             PS7                          0.000    20.000 r  zynq_system_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           3.970    23.970    zynq_system_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.083    24.053 r  zynq_system_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=3766, routed)        1.412    25.464    zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/aclk
+    DSP48_X2Y111                                                      r  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP3/DSP/CLK
+                         clock pessimism              0.811    26.275    
+                         clock uncertainty           -0.302    25.973    
+    DSP48_X2Y111         DSP48E1 (Setup_dsp48e1_CLK_PCIN[0])
+                                                     -0.995    24.978    zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6/vivado_activity_thread_ap_dmul_3_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP3/DSP
+  -------------------------------------------------------------------
+                         required time                         24.978    
+                         arrival time                         -13.433    
+  -------------------------------------------------------------------
+                         slack                                 11.545    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.041ns  (arrival time - required time)
+  Source:                 zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/reg_270_reg[22]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/result_0_reg_165_reg[22]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.206ns  (logic 0.100ns (48.532%)  route 0.106ns (51.468%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.118ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    3.976ns
+    Source Clock Delay      (SCD):    3.359ns
+    Clock Pessimism Removal (CPR):    0.499ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  zynq_system_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           2.547     2.547    zynq_system_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     2.573 r  zynq_system_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=3766, routed)        0.786     3.359    zynq_system_i/vivado_activity_thread_0/aclk
+    SLICE_X55Y300                                                     r  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/reg_270_reg[22]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X55Y300        FDRE (Prop_fdre_C_Q)         0.100     3.459 r  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/reg_270_reg[22]/Q
+                         net (fo=2, routed)           0.106     3.565    zynq_system_i/vivado_activity_thread_0/reg_270[22]
+    SLICE_X55Y298        FDRE                                         r  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/result_0_reg_165_reg[22]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  zynq_system_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           2.994     2.994    zynq_system_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.030     3.024 r  zynq_system_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=3766, routed)        0.952     3.976    zynq_system_i/vivado_activity_thread_0/aclk
+    SLICE_X55Y298                                                     r  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/result_0_reg_165_reg[22]/C
+                         clock pessimism             -0.499     3.477    
+    SLICE_X55Y298        FDRE (Hold_fdre_C_D)         0.047     3.524    zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/result_0_reg_165_reg[22]
+  -------------------------------------------------------------------
+                         required time                         -3.524    
+                         arrival time                           3.565    
+  -------------------------------------------------------------------
+                         slack                                  0.041    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         clk_fpga_0
+Waveform:           { 0 10 }
+Period:             20.000
+Sources:            { zynq_system_i/processing_system7_0/inst/PS7_i/FCLKCLK[0] }
+
+Check Type        Corner  Lib Pin      Reference Pin  Required  Actual  Slack   Location       Pin
+Min Period        n/a     DSP48E1/CLK  n/a            2.772     20.000  17.228  DSP48_X2Y127   zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/g_Fr_other.i_calculate_Fr/dsp_extra_fabric_adder.mult_with_add_low/use_prim.appDSP48[0].bppDSP48[2].use_dsp.use_dsp48e1.iDSP48E1/CLK
+Low Pulse Width   Slow    SRL16E/CLK   n/a            0.642     10.000  9.358   SLICE_X48Y317  zynq_system_i/vivado_activity_thread_0/inst/vivado_activity_thread_U/vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7/vivado_activity_thread_ap_dexp_13_full_dsp_u/U0/i_synth/EXP_OP.OP/i_Xi_at_op/i_pipe/opt_has_pipe.i_pipe[8].pipe_reg[8][10]_srl7/CLK
+High Pulse Width  Fast    SRLC32E/CLK  n/a            0.642     10.000  9.358   SLICE_X38Y290  zynq_system_i/processing_system7_0_axi_periph/s00_couplers/auto_pc/inst/gen_axilite.gen_b2s_conv.axilite_b2s/RD.r_channel_0/rd_data_fifo_0/memory_reg[31][0]_srl32/CLK
+
+
+

@@ -60,8 +60,6 @@
 typedef uint32 uint32_t;
 #endif
 
-//#include <gsl/gsl_rng.h>
-
 #ifdef TAUS_ZIGGURAT
 /* position of right-most step */
 #define PARAM_R 3.44428647676
@@ -176,6 +174,11 @@ static const double wtab[128] = {
 };
 FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state);
 #endif
+
+#ifdef VIVADOHLS
+typedef uint32 uint32_t;
+#endif
+
 
 //Beginning of modified code that uses the Combined TAUSWORTHE RNG
 typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;uint32_t offset;} rng_state_t;
