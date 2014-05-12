@@ -99,7 +99,7 @@ void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standar
 		option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
 
 		//**Returning Result**
-		(*kernel_arg).kernel_result[0*PATHS+p] = (*kernel_arg).o_v_0.value;
+		thread_result_0[p] = o_v_0.value;
 		}
 	}
 
@@ -132,7 +132,7 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	unsigned int chunks = thread_paths/PATHS;
 	FP_t temp_value_0 = 0.0;
 	FP_t temp_value_sqrd_0 = 0.0;
-	FP_t kernel_value_0;
+	FP_t kernel_value_0[PATHS];
 	rng_state_t seed_0;
 	for(i=0;i<chunks;++i){
 
@@ -223,8 +223,8 @@ int main(int argc,char* argv[]){
 
 	//**Performance Monitoring Calculation and Return**
 	clock_gettime(CLOCK_MONOTONIC,&end);
-	setup_time = 1000000*(setup_end.tv_sec-start.tv_sec)+(setup_end.tv_nsec-start.tv_nsec)/1000;
-	activity_time = 1000000*(end.tv_sec-setup_end.tv_sec)+(end.tv_nsec-setup_end.tv_nsec)/1000;
+-	setup_time = 1000000*(setup_end.tv_sec-start.tv_sec)+(setup_end.tv_nsec-start.tv_nsec)/1000;
+-	activity_time = 1000000*(end.tv_sec-setup_end.tv_sec)+(end.tv_nsec-setup_end.tv_nsec)/1000;
 	printf("\%f\n",setup_time);
 	printf("\%f\n",activity_time);
 	}
