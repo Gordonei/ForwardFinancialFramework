@@ -367,15 +367,12 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       #if(index<(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d,"%(output_list[-1],index))
       #elif(index==(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d;"%(output_list[-1],index))
       
-<<<<<<< HEAD
     output_list.append("//**Thread Random Number Generator Seeding**")
     for index,u in enumerate(self.underlying):
 	if("heston" in u.name or "black_scholes" in u.name):
 	  output_list.append("ctrng_seed(1000,rng_seed*thread_paths*%d,&(u_v_%d.rng_state));"%(index+1,index))
     
     output_list.append("//**Thread Path Simulations**")
-=======
->>>>>>> 6a32a36e3036dbc95bb75a1a074c308b71f0a88b
     output_list.append("for(l=0;l<thread_paths;l++){")
     output_list.extend(self.generate_underlying_derivative_path_initialisations(True))
     
