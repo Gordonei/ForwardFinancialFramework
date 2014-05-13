@@ -47,7 +47,7 @@
 // DO NOT MODIFY THIS FILE.
 
 // IP VLNV: imperial:F3:vivado_activity_thread:1.0
-// IP Revision: 1404102353
+// IP Revision: 1405131419
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
@@ -55,6 +55,43 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 zynq_system_vivado_activity_thread_0_0 your_instance_name (
+  .m_axi_a_AWID(m_axi_a_AWID),                    // output wire [0 : 0] m_axi_a_AWID
+  .m_axi_a_AWADDR(m_axi_a_AWADDR),                // output wire [31 : 0] m_axi_a_AWADDR
+  .m_axi_a_AWLEN(m_axi_a_AWLEN),                  // output wire [7 : 0] m_axi_a_AWLEN
+  .m_axi_a_AWSIZE(m_axi_a_AWSIZE),                // output wire [2 : 0] m_axi_a_AWSIZE
+  .m_axi_a_AWBURST(m_axi_a_AWBURST),              // output wire [1 : 0] m_axi_a_AWBURST
+  .m_axi_a_AWLOCK(m_axi_a_AWLOCK),                // output wire [1 : 0] m_axi_a_AWLOCK
+  .m_axi_a_AWCACHE(m_axi_a_AWCACHE),              // output wire [3 : 0] m_axi_a_AWCACHE
+  .m_axi_a_AWPROT(m_axi_a_AWPROT),                // output wire [2 : 0] m_axi_a_AWPROT
+  .m_axi_a_AWQOS(m_axi_a_AWQOS),                  // output wire [3 : 0] m_axi_a_AWQOS
+  .m_axi_a_AWVALID(m_axi_a_AWVALID),              // output wire m_axi_a_AWVALID
+  .m_axi_a_AWREADY(m_axi_a_AWREADY),              // input wire m_axi_a_AWREADY
+  .m_axi_a_WDATA(m_axi_a_WDATA),                  // output wire [31 : 0] m_axi_a_WDATA
+  .m_axi_a_WSTRB(m_axi_a_WSTRB),                  // output wire [3 : 0] m_axi_a_WSTRB
+  .m_axi_a_WLAST(m_axi_a_WLAST),                  // output wire m_axi_a_WLAST
+  .m_axi_a_WVALID(m_axi_a_WVALID),                // output wire m_axi_a_WVALID
+  .m_axi_a_WREADY(m_axi_a_WREADY),                // input wire m_axi_a_WREADY
+  .m_axi_a_BID(m_axi_a_BID),                      // input wire [0 : 0] m_axi_a_BID
+  .m_axi_a_BRESP(m_axi_a_BRESP),                  // input wire [1 : 0] m_axi_a_BRESP
+  .m_axi_a_BVALID(m_axi_a_BVALID),                // input wire m_axi_a_BVALID
+  .m_axi_a_BREADY(m_axi_a_BREADY),                // output wire m_axi_a_BREADY
+  .m_axi_a_ARID(m_axi_a_ARID),                    // output wire [0 : 0] m_axi_a_ARID
+  .m_axi_a_ARADDR(m_axi_a_ARADDR),                // output wire [31 : 0] m_axi_a_ARADDR
+  .m_axi_a_ARLEN(m_axi_a_ARLEN),                  // output wire [7 : 0] m_axi_a_ARLEN
+  .m_axi_a_ARSIZE(m_axi_a_ARSIZE),                // output wire [2 : 0] m_axi_a_ARSIZE
+  .m_axi_a_ARBURST(m_axi_a_ARBURST),              // output wire [1 : 0] m_axi_a_ARBURST
+  .m_axi_a_ARLOCK(m_axi_a_ARLOCK),                // output wire [1 : 0] m_axi_a_ARLOCK
+  .m_axi_a_ARCACHE(m_axi_a_ARCACHE),              // output wire [3 : 0] m_axi_a_ARCACHE
+  .m_axi_a_ARPROT(m_axi_a_ARPROT),                // output wire [2 : 0] m_axi_a_ARPROT
+  .m_axi_a_ARQOS(m_axi_a_ARQOS),                  // output wire [3 : 0] m_axi_a_ARQOS
+  .m_axi_a_ARVALID(m_axi_a_ARVALID),              // output wire m_axi_a_ARVALID
+  .m_axi_a_ARREADY(m_axi_a_ARREADY),              // input wire m_axi_a_ARREADY
+  .m_axi_a_RID(m_axi_a_RID),                      // input wire [0 : 0] m_axi_a_RID
+  .m_axi_a_RDATA(m_axi_a_RDATA),                  // input wire [31 : 0] m_axi_a_RDATA
+  .m_axi_a_RRESP(m_axi_a_RRESP),                  // input wire [1 : 0] m_axi_a_RRESP
+  .m_axi_a_RLAST(m_axi_a_RLAST),                  // input wire m_axi_a_RLAST
+  .m_axi_a_RVALID(m_axi_a_RVALID),                // input wire m_axi_a_RVALID
+  .m_axi_a_RREADY(m_axi_a_RREADY),                // output wire m_axi_a_RREADY
   .s_axi_CORE_IO_AWADDR(s_axi_CORE_IO_AWADDR),    // input wire [7 : 0] s_axi_CORE_IO_AWADDR
   .s_axi_CORE_IO_AWVALID(s_axi_CORE_IO_AWVALID),  // input wire s_axi_CORE_IO_AWVALID
   .s_axi_CORE_IO_AWREADY(s_axi_CORE_IO_AWREADY),  // output wire s_axi_CORE_IO_AWREADY

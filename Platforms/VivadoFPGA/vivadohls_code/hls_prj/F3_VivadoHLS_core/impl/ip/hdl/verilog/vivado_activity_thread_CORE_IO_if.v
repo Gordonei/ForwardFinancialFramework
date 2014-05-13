@@ -57,10 +57,7 @@ module vivado_activity_thread_CORE_IO_if
     output wire [31:0]               I_seed_0_s2,
     output wire [31:0]               I_seed_0_s3,
     output wire [31:0]               I_seed_0_offset,
-    input  wire [31:0]               O_thread_result_0,
-    input  wire                      O_thread_result_0_ap_vld,
-    input  wire [31:0]               O_thread_result_sqrd_0,
-    input  wire                      O_thread_result_sqrd_0_ap_vld,
+    output wire [31:0]               I_thread_result_0,
     output wire                      I_ap_start,
     input  wire                      O_ap_ready,
     input  wire                      O_ap_done,
@@ -157,16 +154,9 @@ module vivado_activity_thread_CORE_IO_if
 // 0xc8 : reserved
 // 0xcc : Data signal of seed_0_offset
 //        bit 31~0 - seed_0_offset[31:0] (Read/Write)
-// 0xd0 : Control signal of thread_result_0
-//        bit 0  - thread_result_0_ap_vld (Read/COR)
-//        others - reserved
+// 0xd0 : reserved
 // 0xd4 : Data signal of thread_result_0
-//        bit 31~0 - thread_result_0[31:0] (Read)
-// 0xd8 : Control signal of thread_result_sqrd_0
-//        bit 0  - thread_result_sqrd_0_ap_vld (Read/COR)
-//        others - reserved
-// 0xdc : Data signal of thread_result_sqrd_0
-//        bit 31~0 - thread_result_sqrd_0[31:0] (Read)
+//        bit 31~0 - thread_result_0[31:0] (Read/Write)
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 //------------------------Parameter----------------------
@@ -229,9 +219,7 @@ localparam
     ADDR_SEED_0_OFFSET_CTRL                         = 8'hc8,
     ADDR_SEED_0_OFFSET_DATA_0                       = 8'hcc,
     ADDR_THREAD_RESULT_0_CTRL                       = 8'hd0,
-    ADDR_THREAD_RESULT_0_DATA_0                     = 8'hd4,
-    ADDR_THREAD_RESULT_SQRD_0_CTRL                  = 8'hd8,
-    ADDR_THREAD_RESULT_SQRD_0_DATA_0                = 8'hdc;
+    ADDR_THREAD_RESULT_0_DATA_0                     = 8'hd4;
 
 // axi write fsm
 localparam
@@ -291,10 +279,7 @@ reg  [31:0]          _seed_0_s1;
 reg  [31:0]          _seed_0_s2;
 reg  [31:0]          _seed_0_s3;
 reg  [31:0]          _seed_0_offset;
-wire [31:0]          _thread_result_0;
-reg                  _thread_result_0_ap_vld;
-wire [31:0]          _thread_result_sqrd_0;
-reg                  _thread_result_sqrd_0_ap_vld;
+reg  [31:0]          _thread_result_0;
 
 //------------------------Body---------------------------
 //++++++++++++++++++++++++axi write++++++++++++++++++++++
@@ -471,17 +456,8 @@ always @(posedge ACLK) begin
             ADDR_SEED_0_OFFSET_DATA_0: begin
                 rdata <= _seed_0_offset[31:0];
             end
-            ADDR_THREAD_RESULT_0_CTRL: begin
-                rdata[0] <= _thread_result_0_ap_vld;
-            end
             ADDR_THREAD_RESULT_0_DATA_0: begin
                 rdata <= _thread_result_0[31:0];
-            end
-            ADDR_THREAD_RESULT_SQRD_0_CTRL: begin
-                rdata[0] <= _thread_result_sqrd_0_ap_vld;
-            end
-            ADDR_THREAD_RESULT_SQRD_0_DATA_0: begin
-                rdata <= _thread_result_sqrd_0[31:0];
             end
         endcase
     end
@@ -517,8 +493,7 @@ assign I_seed_0_s1                           = _seed_0_s1;
 assign I_seed_0_s2                           = _seed_0_s2;
 assign I_seed_0_s3                           = _seed_0_s3;
 assign I_seed_0_offset                       = _seed_0_offset;
-assign _thread_result_0                      = O_thread_result_0;
-assign _thread_result_sqrd_0                 = O_thread_result_sqrd_0;
+assign I_thread_result_0                     = _thread_result_0;
 
 // ap_start
 always @(posedge ACLK) begin
@@ -728,24 +703,10 @@ always @(posedge ACLK) begin
         _seed_0_offset[31:0] <= (WDATA[31:0] & wmask) | (_seed_0_offset[31:0] & ~wmask);
 end
 
-// _thread_result_0_ap_vld
+// _thread_result_0[31:0]
 always @(posedge ACLK) begin
-    if (~ARESETN)
-        _thread_result_0_ap_vld <= 1'b0;
-    else if (O_thread_result_0_ap_vld)
-        _thread_result_0_ap_vld <= 1'b1;
-    else if (ar_hs && raddr == ADDR_THREAD_RESULT_0_CTRL)
-        _thread_result_0_ap_vld <= 1'b0; // clear on read
-end
-
-// _thread_result_sqrd_0_ap_vld
-always @(posedge ACLK) begin
-    if (~ARESETN)
-        _thread_result_sqrd_0_ap_vld <= 1'b0;
-    else if (O_thread_result_sqrd_0_ap_vld)
-        _thread_result_sqrd_0_ap_vld <= 1'b1;
-    else if (ar_hs && raddr == ADDR_THREAD_RESULT_SQRD_0_CTRL)
-        _thread_result_sqrd_0_ap_vld <= 1'b0; // clear on read
+    if (w_hs && waddr == ADDR_THREAD_RESULT_0_DATA_0)
+        _thread_result_0[31:0] <= (WDATA[31:0] & wmask) | (_thread_result_0[31:0] & ~wmask);
 end
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++

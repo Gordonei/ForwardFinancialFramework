@@ -135,6 +135,70 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your p
 
 
 set id 3
+set name vivado_activity_thread_fdiv_32ns_32ns_32_12
+set corename simcore_fdiv
+set op fdiv
+set stage_num 12
+set registered_input 1
+set in0_width 32
+set in0_signed 0
+set in1_width 32
+set in1_signed 0
+set out_width 32
+if {${::AESL::PGuard_simmodel_gen}} {
+if {[info proc ap_gen_simcore_fdiv] == "ap_gen_simcore_fdiv"} {
+eval "ap_gen_simcore_fdiv { \
+    id ${id} \
+    name ${name} \
+    corename ${corename} \
+    op ${op} \
+    reset_level 1 \
+    sync_rst true \
+    stage_num ${stage_num} \
+    registered_input ${registered_input} \
+    in0_width ${in0_width} \
+    in0_signed ${in0_signed} \
+    in1_width ${in1_width} \
+    in1_signed ${in1_signed} \
+    out_width ${out_width} \
+}"
+} else {
+puts "@W \[IMPL-100\] Cannot find ap_gen_simcore_fdiv, check your AutoPilot builtin lib"
+}
+}
+
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler ${name}
+}
+
+
+set op fdiv
+set corename FDiv
+if {${::AESL::PGuard_autocg_gen} && (${::AESL::PGuard_autocg_fpip} || ${::AESL::PGuard_autocg_fpv6en})} {
+if {[info proc ::AESL_LIB_XILINX_FPV6::fpv6_gen] == "::AESL_LIB_XILINX_FPV6::fpv6_gen"} {
+eval "::AESL_LIB_XILINX_FPV6::fpv6_gen { \
+    id ${id} \
+    name ${name} \
+    corename ${corename} \
+    op ${op} \
+    reset_level 1 \
+    sync_rst true \
+    stage_num ${stage_num} \
+    registered_input ${registered_input} \
+    in0_width ${in0_width} \
+    in0_signed ${in0_signed} \
+    in1_width ${in1_width} \
+    in1_signed ${in1_signed} \
+    out_width ${out_width} \
+}"
+} else {
+puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your platform lib"
+}
+}
+
+
+set id 4
 set name vivado_activity_thread_fptrunc_64ns_32_3
 set corename simcore_fptrunc
 set op fptrunc
@@ -192,7 +256,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your p
 }
 
 
-set id 4
+set id 5
 set name vivado_activity_thread_fpext_32ns_64_3
 set corename simcore_fpext
 set op fpext
@@ -250,7 +314,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your p
 }
 
 
-set id 5
+set id 6
 set name vivado_activity_thread_fcmp_32ns_32ns_1_3
 set corename simcore_fcmp
 set op fcmp
@@ -314,7 +378,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your p
 }
 
 
-set id 6
+set id 7
 set name vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp
 set corename simcore_dmul
 set op dmul
@@ -381,7 +445,7 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your p
 }
 
 
-set id 7
+set id 8
 set name vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp
 set corename simcore_dexp
 set op dexp
@@ -448,6 +512,87 @@ puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_XILINX_FPV6::fpv6_gen, check your p
 }
 
 
+# Memory (RAM/ROM)  definition:
+set ID 9
+set MemName vivado_activity_thread_thread_result_buff
+set CoreName ap_simcore_mem
+set PortList { 2 3 }
+set DataWd 32
+set AddrRange 1000
+set AddrWd 10
+set impl_style block
+set TrueReset 0
+set HasInitializer 0
+set IsROM 0
+set ROMData {}
+set NumOfStage 2
+set DelayBudget 2.39
+set ClkPeriod 10
+set RegisteredInput 0
+if {${::AESL::PGuard_simmodel_gen}} {
+if {[info proc ap_gen_simcore_mem] == "ap_gen_simcore_mem"} {
+    eval "ap_gen_simcore_mem { \
+    id ${ID} \
+    name ${MemName} \
+    corename ${CoreName}  \
+    op mem \
+    reset_level 1 \
+    sync_rst true \
+    stage_num 2 \
+    registered_input ${RegisteredInput} \
+    port_num 2 \
+    port_list \{${PortList}\} \
+    data_wd ${DataWd} \
+    addr_wd ${AddrWd} \
+    addr_range ${AddrRange} \
+    style ${impl_style} \
+    true_reset ${TrueReset} \
+    delay_budget ${DelayBudget} \
+    clk_period ${ClkPeriod} \
+    HasInitializer ${HasInitializer} \
+    rom_data \{${ROMData}\} \
+ } "
+} else {
+    puts "@W \[IMPL-102\] Cannot find ap_gen_simcore_mem, check your platform lib"
+}
+}
+
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+  ::AP::rtl_comp_handler $MemName
+}
+
+
+set CoreName RAM
+if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
+if {[info proc ::AESL_LIB_VIRTEX::xil_gen_RAM] == "::AESL_LIB_VIRTEX::xil_gen_RAM"} {
+    eval "::AESL_LIB_VIRTEX::xil_gen_RAM { \
+    id ${ID} \
+    name ${MemName} \
+    corename ${CoreName}  \
+    op mem \
+    reset_level 1 \
+    sync_rst true \
+    stage_num 2 \
+    registered_input ${RegisteredInput} \
+    port_num 2 \
+    port_list \{${PortList}\} \
+    data_wd ${DataWd} \
+    addr_wd ${AddrWd} \
+    addr_range ${AddrRange} \
+    style ${impl_style} \
+    true_reset ${TrueReset} \
+    delay_budget ${DelayBudget} \
+    clk_period ${ClkPeriod} \
+    HasInitializer ${HasInitializer} \
+    rom_data \{${ROMData}\} \
+ } "
+  } else {
+    puts "@W \[IMPL-104\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_RAM, check your platform lib"
+  }
+}
+
+
 # clear list
 if {${::AESL::PGuard_autoexp_gen}} {
     cg_default_interface_gen_dc_begin
@@ -456,10 +601,33 @@ if {${::AESL::PGuard_autoexp_gen}} {
 }
 
 # Adapter definition:
+set PortName a
+set DataWd 32
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::axi_master_gen] == "::AESL_LIB_XILADAPTER::axi_master_gen"} {
+eval "::AESL_LIB_XILADAPTER::axi_master_gen { \
+    id 10 \
+    name ${PortName} \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename AXI4M \
+    op interface \
+    metadata {} \
+    latency 1 \
+    data_wd ${DataWd} \
+}"
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for '${PortName}'"
+}
+}
+
+
+# Adapter definition:
 set corename CORE_IO
 set opts {
     {
-        id 8
+        id 11
         name kernel_u_a_0_rfir
         reset_level 1
         sync_rst true
@@ -469,7 +637,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 9
+        id 12
         name kernel_u_a_0_current_price
         reset_level 1
         sync_rst true
@@ -479,7 +647,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 10
+        id 13
         name kernel_u_a_0_volatility
         reset_level 1
         sync_rst true
@@ -489,7 +657,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 11
+        id 14
         name kernel_u_a_0_initial_volatility
         reset_level 1
         sync_rst true
@@ -499,7 +667,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 12
+        id 15
         name kernel_u_a_0_volatility_volatility
         reset_level 1
         sync_rst true
@@ -509,7 +677,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 13
+        id 16
         name kernel_u_a_0_rho
         reset_level 1
         sync_rst true
@@ -519,7 +687,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 14
+        id 17
         name kernel_u_a_0_kappa
         reset_level 1
         sync_rst true
@@ -529,7 +697,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 15
+        id 18
         name kernel_u_a_0_theta
         reset_level 1
         sync_rst true
@@ -539,7 +707,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 16
+        id 19
         name kernel_u_a_0_correlation_matrix_0_0
         reset_level 1
         sync_rst true
@@ -549,7 +717,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 17
+        id 20
         name kernel_u_a_0_correlation_matrix_0_1
         reset_level 1
         sync_rst true
@@ -559,7 +727,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 18
+        id 21
         name kernel_u_a_0_correlation_matrix_1_0
         reset_level 1
         sync_rst true
@@ -569,7 +737,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 19
+        id 22
         name kernel_u_a_0_correlation_matrix_1_1
         reset_level 1
         sync_rst true
@@ -579,7 +747,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 20
+        id 23
         name kernel_o_a_0_second_barrier
         reset_level 1
         sync_rst true
@@ -589,7 +757,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 21
+        id 24
         name kernel_o_a_0_barrier
         reset_level 1
         sync_rst true
@@ -599,7 +767,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 22
+        id 25
         name kernel_o_a_0_out
         reset_level 1
         sync_rst true
@@ -609,7 +777,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 23
+        id 26
         name kernel_o_a_0_down
         reset_level 1
         sync_rst true
@@ -619,7 +787,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 24
+        id 27
         name kernel_o_a_0_strike_price
         reset_level 1
         sync_rst true
@@ -629,7 +797,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 25
+        id 28
         name kernel_o_a_0_time_period
         reset_level 1
         sync_rst true
@@ -639,7 +807,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 26
+        id 29
         name kernel_o_a_0_call
         reset_level 1
         sync_rst true
@@ -649,7 +817,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 27
+        id 30
         name kernel_o_a_0_points
         reset_level 1
         sync_rst true
@@ -659,7 +827,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 28
+        id 31
         name seed_0_s1
         reset_level 1
         sync_rst true
@@ -669,7 +837,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 29
+        id 32
         name seed_0_s2
         reset_level 1
         sync_rst true
@@ -679,7 +847,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 30
+        id 33
         name seed_0_s3
         reset_level 1
         sync_rst true
@@ -689,7 +857,7 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 31
+        id 34
         name seed_0_offset
         reset_level 1
         sync_rst true
@@ -699,24 +867,14 @@ set opts {
         mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
-        id 32
+        id 35
         name thread_result_0
         reset_level 1
         sync_rst true
         type scalar
-        dir O
+        dir I
         width 32
-        mode SIG_OUT_VLD_ON:SIG_OUT_ACC_OFF
-    }
-    {
-        id 33
-        name thread_result_sqrd_0
-        reset_level 1
-        sync_rst true
-        type scalar
-        dir O
-        width 32
-        mode SIG_OUT_VLD_ON:SIG_OUT_ACC_OFF
+        mode SIG_IN_VLD_OFF:SIG_IN_ACC_OFF
     }
     {
         id -1

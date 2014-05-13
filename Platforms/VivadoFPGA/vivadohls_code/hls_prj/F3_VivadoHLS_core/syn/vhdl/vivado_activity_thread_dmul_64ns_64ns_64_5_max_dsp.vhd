@@ -10,7 +10,7 @@ use ieee.std_logic_1164.all;
 
 entity vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp is
     generic (
-        ID         : integer := 6;
+        ID         : integer := 7;
         NUM_STAGE  : integer := 5;
         din0_WIDTH : integer := 64;
         din1_WIDTH : integer := 64;

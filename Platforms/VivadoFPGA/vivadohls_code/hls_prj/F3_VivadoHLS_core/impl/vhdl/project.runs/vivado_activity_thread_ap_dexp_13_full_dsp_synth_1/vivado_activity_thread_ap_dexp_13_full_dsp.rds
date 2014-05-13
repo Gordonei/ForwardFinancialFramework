@@ -2,8 +2,8 @@
 # Vivado v2013.4 (64-bit)
 # SW Build 353583 on Mon Dec  9 17:26:26 MST 2013
 # IP Build 208076 on Mon Dec  2 12:38:17 MST 2013
-# Start of session at: Fri Apr 11 00:00:01 2014
-# Process ID: 7777
+# Start of session at: Tue May 13 14:27:18 2014
+# Process ID: 12022
 # Log file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_dexp_13_full_dsp_synth_1/vivado_activity_thread_ap_dexp_13_full_dsp.rds
 # Journal file: /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_dexp_13_full_dsp_synth_1/vivado.jou
 #-----------------------------------------------------------
@@ -38,7 +38,7 @@ INFO: [IP_Flow 19-2162] IP 'vivado_activity_thread_ap_dexp_13_full_dsp' is locke
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z045'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z045'
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 782.223 ; gain = 160.391
+Starting RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 782.219 ; gain = 160.391
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'vivado_activity_thread_ap_dexp_13_full_dsp' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_dexp_13_full_dsp/synth/vivado_activity_thread_ap_dexp_13_full_dsp.vhd:70]
 INFO: [Synth 8-3491] module 'floating_point_v7_0' declared at '/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_dexp_13_full_dsp/floating_point_v7_0/hdl/floating_point_v7_0.vhd:108' bound to instance 'U0' of component 'floating_point_v7_0' [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_dexp_13_full_dsp/synth/vivado_activity_thread_ap_dexp_13_full_dsp.vhd:191]
@@ -617,7 +617,7 @@ INFO: [Synth 8-256] done synthesizing module 'floating_point_v7_0_viv__parameter
 INFO: [Synth 8-256] done synthesizing module 'floating_point_v7_0__parameterized0' (28#1) [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_dexp_13_full_dsp/floating_point_v7_0/hdl/floating_point_v7_0.vhd:224]
 INFO: [Synth 8-256] done synthesizing module 'vivado_activity_thread_ap_dexp_13_full_dsp' (29#1) [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_dexp_13_full_dsp/synth/vivado_activity_thread_ap_dexp_13_full_dsp.vhd:70]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 876.043 ; gain = 254.211
+Finished RTL Elaboration : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 876.039 ; gain = 254.211
 ---------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------
@@ -761,11 +761,11 @@ Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property DONT_TOUCH = true. (constraint file  /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_dexp_13_full_dsp_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:42 ; elapsed = 00:00:44 . Memory (MB): peak = 1166.273 ; gain = 544.441
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:42 ; elapsed = 00:00:44 . Memory (MB): peak = 1165.770 ; gain = 543.941
 ---------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------
-Finished RTL Optimization : Time (s): cpu = 00:00:42 ; elapsed = 00:00:44 . Memory (MB): peak = 1166.273 ; gain = 544.441
+Finished RTL Optimization : Time (s): cpu = 00:00:42 ; elapsed = 00:00:44 . Memory (MB): peak = 1165.770 ; gain = 543.941
 ---------------------------------------------------------------------------------
 
 Attribute ram_style/rom_style = distributed specified for ROM  "rom". This will be implemented in logic.
@@ -800,7 +800,7 @@ Part Resources:
 DSPs: 900 (col length:140)
 BRAMs: 1090 (col length: RAMB18 140 RAMB36 70)
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:52 ; elapsed = 00:00:53 . Memory (MB): peak = 1213.285 ; gain = 591.453
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:52 ; elapsed = 00:00:54 . Memory (MB): peak = 1213.781 ; gain = 591.953
 ---------------------------------------------------------------------------------
 
 
@@ -824,7 +824,7 @@ Finished RTL Hierarchical Component Statistics
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:00:52 ; elapsed = 00:00:54 . Memory (MB): peak = 1232.324 ; gain = 610.492
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:53 ; elapsed = 00:00:55 . Memory (MB): peak = 1232.820 ; gain = 610.992
 ---------------------------------------------------------------------------------
 
 
@@ -832,7 +832,7 @@ Finished Cross Boundary Optimization : Time (s): cpu = 00:00:52 ; elapsed = 00:0
 Start Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:00:56 ; elapsed = 00:00:58 . Memory (MB): peak = 1301.129 ; gain = 679.297
+Finished Area Optimization : Time (s): cpu = 00:00:57 ; elapsed = 00:00:59 . Memory (MB): peak = 1301.625 ; gain = 679.797
 ---------------------------------------------------------------------------------
 
 
@@ -844,11 +844,11 @@ Start Timing Optimization
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 1347.129 ; gain = 725.297
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 1347.625 ; gain = 725.797
 ---------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:02 ; elapsed = 00:01:04 . Memory (MB): peak = 1352.129 ; gain = 730.297
+Finished Timing Optimization : Time (s): cpu = 00:01:02 ; elapsed = 00:01:04 . Memory (MB): peak = 1352.625 ; gain = 730.797
 ---------------------------------------------------------------------------------
 
 
@@ -856,7 +856,7 @@ Finished Timing Optimization : Time (s): cpu = 00:01:02 ; elapsed = 00:01:04 . M
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:06 ; elapsed = 00:01:08 . Memory (MB): peak = 1372.574 ; gain = 750.742
+Finished Technology Mapping : Time (s): cpu = 00:01:06 ; elapsed = 00:01:08 . Memory (MB): peak = 1373.625 ; gain = 751.797
 ---------------------------------------------------------------------------------
 
 
@@ -881,7 +881,7 @@ Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 Gated Clock Conversion mode: off
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:07 ; elapsed = 00:01:09 . Memory (MB): peak = 1372.574 ; gain = 750.742
+Finished IO Insertion : Time (s): cpu = 00:01:07 ; elapsed = 00:01:09 . Memory (MB): peak = 1373.625 ; gain = 751.797
 ---------------------------------------------------------------------------------
 
 
@@ -896,7 +896,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:07 ; elapsed = 00:01:09 . Memory (MB): peak = 1372.574 ; gain = 750.742
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:07 ; elapsed = 00:01:09 . Memory (MB): peak = 1373.625 ; gain = 751.797
 ---------------------------------------------------------------------------------
 
 
@@ -904,7 +904,7 @@ Finished Renaming Generated Instances : Time (s): cpu = 00:01:07 ; elapsed = 00:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:07 ; elapsed = 00:01:09 . Memory (MB): peak = 1372.574 ; gain = 750.742
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:07 ; elapsed = 00:01:09 . Memory (MB): peak = 1373.625 ; gain = 751.797
 ---------------------------------------------------------------------------------
 
 
@@ -952,11 +952,11 @@ Report Cell Usage:
 |28    |FDRE       |  1249|
 +------+-----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:07 ; elapsed = 00:01:09 . Memory (MB): peak = 1372.574 ; gain = 750.742
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:07 ; elapsed = 00:01:10 . Memory (MB): peak = 1373.625 ; gain = 751.797
 ---------------------------------------------------------------------------------
 
 Synthesis finished with 0 errors, 0 critical warnings and 11 warnings.
-Synthesis Optimization Complete : Time (s): cpu = 00:01:07 ; elapsed = 00:01:09 . Memory (MB): peak = 1372.574 ; gain = 750.742
+Synthesis Optimization Complete : Time (s): cpu = 00:01:07 ; elapsed = 00:01:10 . Memory (MB): peak = 1373.625 ; gain = 751.797
 INFO: [Netlist 29-17] Analyzing 28 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 Parsing XDC File [/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_dexp_13_full_dsp/vivado_activity_thread_ap_dexp_13_full_dsp_ooc.xdc] for cell 'U0'
@@ -970,13 +970,13 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 674 Infos, 22 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:18 ; elapsed = 00:01:19 . Memory (MB): peak = 1738.059 ; gain = 1006.836
+synth_design: Time (s): cpu = 00:01:18 ; elapsed = 00:01:19 . Memory (MB): peak = 1739.109 ; gain = 1007.891
 # rename_ref -prefix_all vivado_activity_thread_ap_dexp_13_full_dsp
 INFO: [Coretcl 2-1174] Renamed 4 cell refs.
 # write_checkpoint -noxdef vivado_activity_thread_ap_dexp_13_full_dsp.dcp
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 # report_utilization -file vivado_activity_thread_ap_dexp_13_full_dsp_utilization_synth.rpt -pb vivado_activity_thread_ap_dexp_13_full_dsp_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.52 ; elapsed = 00:00:00.65 . Memory (MB): peak = 1742.113 ; gain = 4.051
+report_utilization: Time (s): cpu = 00:00:00.62 ; elapsed = 00:00:00.73 . Memory (MB): peak = 1743.164 ; gain = 4.051
 # if { [catch {
 #   file copy -force /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/vivado_activity_thread_ap_dexp_13_full_dsp_synth_1/vivado_activity_thread_ap_dexp_13_full_dsp.dcp /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_dexp_13_full_dsp/vivado_activity_thread_ap_dexp_13_full_dsp.dcp
 #   write_verilog -force -mode synth_stub /home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_dexp_13_full_dsp/vivado_activity_thread_ap_dexp_13_full_dsp_stub.v
@@ -985,4 +985,4 @@ report_utilization: Time (s): cpu = 00:00:00.52 ; elapsed = 00:00:00.65 . Memory
 # } _RESULT ] } { 
 #   puts "Critical Warning: Unable to successfully create or copy supporting IP files."
 # }
-INFO: [Common 17-206] Exiting Vivado at Fri Apr 11 00:01:34 2014...
+INFO: [Common 17-206] Exiting Vivado at Tue May 13 14:28:51 2014...

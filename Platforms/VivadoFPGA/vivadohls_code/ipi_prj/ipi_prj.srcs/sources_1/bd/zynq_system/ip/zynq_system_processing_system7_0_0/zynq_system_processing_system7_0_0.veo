@@ -103,6 +103,45 @@ zynq_system_processing_system7_0_0 your_instance_name (
   .M_AXI_GP0_BRESP(M_AXI_GP0_BRESP),          // input wire [1 : 0] M_AXI_GP0_BRESP
   .M_AXI_GP0_RRESP(M_AXI_GP0_RRESP),          // input wire [1 : 0] M_AXI_GP0_RRESP
   .M_AXI_GP0_RDATA(M_AXI_GP0_RDATA),          // input wire [31 : 0] M_AXI_GP0_RDATA
+  .S_AXI_GP0_ARREADY(S_AXI_GP0_ARREADY),      // output wire S_AXI_GP0_ARREADY
+  .S_AXI_GP0_AWREADY(S_AXI_GP0_AWREADY),      // output wire S_AXI_GP0_AWREADY
+  .S_AXI_GP0_BVALID(S_AXI_GP0_BVALID),        // output wire S_AXI_GP0_BVALID
+  .S_AXI_GP0_RLAST(S_AXI_GP0_RLAST),          // output wire S_AXI_GP0_RLAST
+  .S_AXI_GP0_RVALID(S_AXI_GP0_RVALID),        // output wire S_AXI_GP0_RVALID
+  .S_AXI_GP0_WREADY(S_AXI_GP0_WREADY),        // output wire S_AXI_GP0_WREADY
+  .S_AXI_GP0_BRESP(S_AXI_GP0_BRESP),          // output wire [1 : 0] S_AXI_GP0_BRESP
+  .S_AXI_GP0_RRESP(S_AXI_GP0_RRESP),          // output wire [1 : 0] S_AXI_GP0_RRESP
+  .S_AXI_GP0_RDATA(S_AXI_GP0_RDATA),          // output wire [31 : 0] S_AXI_GP0_RDATA
+  .S_AXI_GP0_BID(S_AXI_GP0_BID),              // output wire [5 : 0] S_AXI_GP0_BID
+  .S_AXI_GP0_RID(S_AXI_GP0_RID),              // output wire [5 : 0] S_AXI_GP0_RID
+  .S_AXI_GP0_ACLK(S_AXI_GP0_ACLK),            // input wire S_AXI_GP0_ACLK
+  .S_AXI_GP0_ARVALID(S_AXI_GP0_ARVALID),      // input wire S_AXI_GP0_ARVALID
+  .S_AXI_GP0_AWVALID(S_AXI_GP0_AWVALID),      // input wire S_AXI_GP0_AWVALID
+  .S_AXI_GP0_BREADY(S_AXI_GP0_BREADY),        // input wire S_AXI_GP0_BREADY
+  .S_AXI_GP0_RREADY(S_AXI_GP0_RREADY),        // input wire S_AXI_GP0_RREADY
+  .S_AXI_GP0_WLAST(S_AXI_GP0_WLAST),          // input wire S_AXI_GP0_WLAST
+  .S_AXI_GP0_WVALID(S_AXI_GP0_WVALID),        // input wire S_AXI_GP0_WVALID
+  .S_AXI_GP0_ARBURST(S_AXI_GP0_ARBURST),      // input wire [1 : 0] S_AXI_GP0_ARBURST
+  .S_AXI_GP0_ARLOCK(S_AXI_GP0_ARLOCK),        // input wire [1 : 0] S_AXI_GP0_ARLOCK
+  .S_AXI_GP0_ARSIZE(S_AXI_GP0_ARSIZE),        // input wire [2 : 0] S_AXI_GP0_ARSIZE
+  .S_AXI_GP0_AWBURST(S_AXI_GP0_AWBURST),      // input wire [1 : 0] S_AXI_GP0_AWBURST
+  .S_AXI_GP0_AWLOCK(S_AXI_GP0_AWLOCK),        // input wire [1 : 0] S_AXI_GP0_AWLOCK
+  .S_AXI_GP0_AWSIZE(S_AXI_GP0_AWSIZE),        // input wire [2 : 0] S_AXI_GP0_AWSIZE
+  .S_AXI_GP0_ARPROT(S_AXI_GP0_ARPROT),        // input wire [2 : 0] S_AXI_GP0_ARPROT
+  .S_AXI_GP0_AWPROT(S_AXI_GP0_AWPROT),        // input wire [2 : 0] S_AXI_GP0_AWPROT
+  .S_AXI_GP0_ARADDR(S_AXI_GP0_ARADDR),        // input wire [31 : 0] S_AXI_GP0_ARADDR
+  .S_AXI_GP0_AWADDR(S_AXI_GP0_AWADDR),        // input wire [31 : 0] S_AXI_GP0_AWADDR
+  .S_AXI_GP0_WDATA(S_AXI_GP0_WDATA),          // input wire [31 : 0] S_AXI_GP0_WDATA
+  .S_AXI_GP0_ARCACHE(S_AXI_GP0_ARCACHE),      // input wire [3 : 0] S_AXI_GP0_ARCACHE
+  .S_AXI_GP0_ARLEN(S_AXI_GP0_ARLEN),          // input wire [3 : 0] S_AXI_GP0_ARLEN
+  .S_AXI_GP0_ARQOS(S_AXI_GP0_ARQOS),          // input wire [3 : 0] S_AXI_GP0_ARQOS
+  .S_AXI_GP0_AWCACHE(S_AXI_GP0_AWCACHE),      // input wire [3 : 0] S_AXI_GP0_AWCACHE
+  .S_AXI_GP0_AWLEN(S_AXI_GP0_AWLEN),          // input wire [3 : 0] S_AXI_GP0_AWLEN
+  .S_AXI_GP0_AWQOS(S_AXI_GP0_AWQOS),          // input wire [3 : 0] S_AXI_GP0_AWQOS
+  .S_AXI_GP0_WSTRB(S_AXI_GP0_WSTRB),          // input wire [3 : 0] S_AXI_GP0_WSTRB
+  .S_AXI_GP0_ARID(S_AXI_GP0_ARID),            // input wire [5 : 0] S_AXI_GP0_ARID
+  .S_AXI_GP0_AWID(S_AXI_GP0_AWID),            // input wire [5 : 0] S_AXI_GP0_AWID
+  .S_AXI_GP0_WID(S_AXI_GP0_WID),              // input wire [5 : 0] S_AXI_GP0_WID
   .FCLK_CLK0(FCLK_CLK0),                      // output wire FCLK_CLK0
   .FCLK_RESET0_N(FCLK_RESET0_N),              // output wire FCLK_RESET0_N
   .MIO(MIO),                                  // inout wire [53 : 0] MIO

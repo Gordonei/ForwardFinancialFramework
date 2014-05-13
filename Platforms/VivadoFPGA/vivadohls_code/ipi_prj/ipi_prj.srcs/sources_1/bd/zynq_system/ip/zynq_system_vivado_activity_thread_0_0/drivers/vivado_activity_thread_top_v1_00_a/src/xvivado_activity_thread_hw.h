@@ -96,16 +96,9 @@
 // 0xc8 : reserved
 // 0xcc : Data signal of seed_0_offset
 //        bit 31~0 - seed_0_offset[31:0] (Read/Write)
-// 0xd0 : Control signal of thread_result_0
-//        bit 0  - thread_result_0_ap_vld (Read/COR)
-//        others - reserved
+// 0xd0 : reserved
 // 0xd4 : Data signal of thread_result_0
-//        bit 31~0 - thread_result_0[31:0] (Read)
-// 0xd8 : Control signal of thread_result_sqrd_0
-//        bit 0  - thread_result_sqrd_0_ap_vld (Read/COR)
-//        others - reserved
-// 0xdc : Data signal of thread_result_sqrd_0
-//        bit 31~0 - thread_result_sqrd_0[31:0] (Read)
+//        bit 31~0 - thread_result_0[31:0] (Read/Write)
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_AP_CTRL                                  0x00
@@ -160,10 +153,6 @@
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_SEED_0_S3_DATA                           32
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_SEED_0_OFFSET_DATA                       0xcc
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_SEED_0_OFFSET_DATA                       32
-#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_0_CTRL                     0xd0
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_0_DATA                     0xd4
 #define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_THREAD_RESULT_0_DATA                     32
-#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_SQRD_0_CTRL                0xd8
-#define XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_SQRD_0_DATA                0xdc
-#define XVIVADO_ACTIVITY_THREAD_CORE_IO_BITS_THREAD_RESULT_SQRD_0_DATA                32
 

@@ -17,7 +17,7 @@
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="true"
-						Timestamp="1397172149"
+						Timestamp="1399989024"
 						IsTrackable="true"/>
 				<Library Name="work"/>
 				<UsedIn Val="SYNTHESIS"/>
@@ -28,7 +28,7 @@
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="true"
-						Timestamp="1397172076"
+						Timestamp="1399988076"
 						IsTrackable="true"/>
 				<Library Name="work"/>
 				<UsedIn Val="SYNTHESIS"/>
@@ -57,22 +57,44 @@
 				<UsedIn Val="IMPLEMENTATION"/>
 				<UsedIn Val="SIMULATION"/>
 			</File>
-			<File Name="ip/zynq_system_auto_pc_1/zynq_system_auto_pc_1.xci"
+			<File Name="ip/zynq_system_auto_pc_3_1/zynq_system_auto_pc_3.xci"
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="false"
-						Timestamp="0"
+						Timestamp="1399988080"
 						IsTrackable="true"/>
 				<Library Name="work"/>
 				<UsedIn Val="SYNTHESIS"/>
 				<UsedIn Val="IMPLEMENTATION"/>
 				<UsedIn Val="SIMULATION"/>
 			</File>
-			<File Name="ip/zynq_system_auto_pc_2/zynq_system_auto_pc_2.xci"
+			<File Name="ip/zynq_system_axi_mem_intercon_1/zynq_system_axi_mem_intercon_1.xci"
+					Type="IP">
+				<Properties IsEditable="false"
+						IsVisible="false"
+						Timestamp="1399988904"
+						IsTrackable="true"/>
+				<Library Name="work"/>
+				<UsedIn Val="SYNTHESIS"/>
+				<UsedIn Val="IMPLEMENTATION"/>
+				<UsedIn Val="SIMULATION"/>
+			</File>
+			<File Name="ip/zynq_system_auto_pc_4_0/zynq_system_auto_pc_4.xci"
 					Type="IP">
 				<Properties IsEditable="false"
 						IsVisible="true"
-						Timestamp="0"
+						Timestamp="1399989025"
+						IsTrackable="true"/>
+				<Library Name="work"/>
+				<UsedIn Val="SYNTHESIS"/>
+				<UsedIn Val="IMPLEMENTATION"/>
+				<UsedIn Val="SIMULATION"/>
+			</File>
+			<File Name="ip/zynq_system_auto_pc_5/zynq_system_auto_pc_5.xci"
+					Type="IP">
+				<Properties IsEditable="false"
+						IsVisible="true"
+						Timestamp="1399989025"
 						IsTrackable="true"/>
 				<Library Name="work"/>
 				<UsedIn Val="SYNTHESIS"/>

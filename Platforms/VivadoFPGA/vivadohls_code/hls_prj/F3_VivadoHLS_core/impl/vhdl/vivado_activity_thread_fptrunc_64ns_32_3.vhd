@@ -10,7 +10,7 @@ use ieee.std_logic_1164.all;
 
 entity vivado_activity_thread_fptrunc_64ns_32_3 is
     generic (
-        ID         : integer := 3;
+        ID         : integer := 4;
         NUM_STAGE  : integer := 3;
         din0_WIDTH : integer := 64;
         dout_WIDTH : integer := 32

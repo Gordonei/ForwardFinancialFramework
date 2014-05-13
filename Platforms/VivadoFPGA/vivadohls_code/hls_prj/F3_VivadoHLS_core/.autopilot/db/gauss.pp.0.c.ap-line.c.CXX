@@ -281,4 +281,6 @@
 #pragma line 396 "/usr/include/math.h" 3 4 ::: 9444
 #pragma line 418 "/usr/include/math.h" 3 4 ::: 9459
 #pragma line 51 "srcs/gauss.h" 2 ::: 9509
-#pragma line 30 "srcs/gauss.c" 2 ::: 9696
+#pragma line 60 "srcs/gauss.h" ::: 9511
+#pragma line 179 "srcs/gauss.h" ::: 9513
+#pragma line 30 "srcs/gauss.c" 2 ::: 9533

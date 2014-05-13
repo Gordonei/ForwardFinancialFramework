@@ -1547,19 +1547,19 @@ ESequential element (%s) is unused and will be removed from module %s.3332*
 2default:default
 ü
 %s*synth2è
-{Finished Area Optimization : Time (s): cpu = 00:00:44 ; elapsed = 00:00:47 . Memory (MB): peak = 1223.055 ; gain = 601.219
+{Finished Area Optimization : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 1224.059 ; gain = 602.223
 2default:default
 Æ
 %s*synth2û
-âFinished Applying XDC Timing Constraints : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1249.047 ; gain = 627.211
+âFinished Applying XDC Timing Constraints : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1249.055 ; gain = 627.219
 2default:default
 °
 %s*synth2ë
-}Finished Timing Optimization : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1250.047 ; gain = 628.211
+}Finished Timing Optimization : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1250.055 ; gain = 628.219
 2default:default
 †
 %s*synth2ê
-|Finished Technology Mapping : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.062 ; gain = 639.227
+|Finished Technology Mapping : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.070 ; gain = 639.234
 2default:default
 D
 %s*synth25
@@ -1567,7 +1567,7 @@ D
 2default:default
 ö
 %s*synth2ä
-vFinished IO Insertion : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.062 ; gain = 639.227
+vFinished IO Insertion : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.070 ; gain = 639.234
 2default:default
 ;
 %s*synth2,
@@ -1596,11 +1596,11 @@ I+------+------------------+-------+---------+-------+------------------+
 2default:default
 ´
 %s*synth2õ
-ÜFinished Renaming Generated Instances : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.062 ; gain = 639.227
+ÜFinished Renaming Generated Instances : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.070 ; gain = 639.234
 2default:default
 ®
 %s*synth2ò
-ÉFinished Rebuilding User Hierarchy : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.062 ; gain = 639.227
+ÉFinished Rebuilding User Hierarchy : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.070 ; gain = 639.234
 2default:default
 8
 %s*synth2)
@@ -1698,7 +1698,7 @@ Report Cell Usage:
 2default:default
 ß
 %s*synth2ó
-ÇFinished Writing Synthesis Report : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.062 ; gain = 639.227
+ÇFinished Writing Synthesis Report : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.070 ; gain = 639.234
 2default:default
 i
 %s*synth2Z
@@ -1706,7 +1706,7 @@ FSynthesis finished with 0 errors, 0 critical warnings and 5 warnings.
 2default:default
 •
 %s*synth2ï
-ÄSynthesis Optimization Complete : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.062 ; gain = 639.227
+ÄSynthesis Optimization Complete : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1261.070 ; gain = 639.234
 2default:default
 ]
 -Analyzing %s Unisim elements for replacement
@@ -1756,10 +1756,10 @@ U
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2"
 synth_design: 2default:default2
-00:00:572default:default2
+00:00:582default:default2
 00:00:592default:default2
-1633.5472default:default2
-902.3202default:defaultZ17-268
+1633.5552default:default2
+902.3282default:defaultZ17-268
 G
 Renamed %s cell refs.
 330*coretcl2
@@ -1768,10 +1768,10 @@ G
 %Done setting XDC timing constraints.
 35*timingZ38-35
 Ç
-vreport_utilization: Time (s): cpu = 00:00:00.58 ; elapsed = 00:00:00.72 . Memory (MB): peak = 1637.602 ; gain = 4.051
+vreport_utilization: Time (s): cpu = 00:00:00.61 ; elapsed = 00:00:00.71 . Memory (MB): peak = 1637.609 ; gain = 4.051
 *common
 w
 Exiting %s at %s...
 206*common2
 Vivado2default:default2,
-Thu Apr 10 23:57:35 20142default:defaultZ17-206
+Tue May 13 14:24:51 20142default:defaultZ17-206

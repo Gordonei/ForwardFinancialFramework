@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'vivado_activity_thread'" level="0">
-<item name = "Date">Thu Apr 10 23:53:41 2014
+<item name = "Date">Tue May 13 14:19:42 2014
 </item>
 <item name = "Version">2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)</item>
 <item name = "Project">hls_prj</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="default">10.00, 8.59, 1.25</column>
+<column name="default">10.00, 8.75, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">11880506, 11880506, 11880507, 11880507, none</column>
+<column name="">305018, 305018, 305019, 305019, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,8 +35,9 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- PATHSET_LOOP">11880500, 11880500, 118805, -, -, 100, no</column>
-<column name=" + PATH_LOOP">118791, 118791, 29, -, -, 4096, no</column>
+<column name="- PATHSET_LOOP">304000, 304000, 304, -, -, 1000, no</column>
+<column name=" + PATH_LOOP">297, 297, 29, -, -, 10, no</column>
+<column name="- Loop 2">1001, 1001, 3, 1, 1, 1000, yes</column>
 </table>
 </item>
 </section>

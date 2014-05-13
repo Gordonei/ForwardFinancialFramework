@@ -484,6 +484,13 @@ u32 XVivado_activity_thread_GetSeed_0_offset(XVivado_activity_thread *InstancePt
     return Data;
 }
 
+void XVivado_activity_thread_SetThread_result_0(XVivado_activity_thread *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XVivado_activity_thread_WriteReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_0_DATA, Data);
+}
+
 u32 XVivado_activity_thread_GetThread_result_0(XVivado_activity_thread *InstancePtr) {
     u32 Data;
 
@@ -492,36 +499,6 @@ u32 XVivado_activity_thread_GetThread_result_0(XVivado_activity_thread *Instance
 
     Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_0_DATA);
     return Data;
-}
-
-u32 XVivado_activity_thread_GetThread_result_0Vld(XVivado_activity_thread *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_0_CTRL);
-    return Data & 0x1;
-}
-
-u32 XVivado_activity_thread_GetThread_result_sqrd_0(XVivado_activity_thread *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_SQRD_0_DATA);
-    return Data;
-}
-
-u32 XVivado_activity_thread_GetThread_result_sqrd_0Vld(XVivado_activity_thread *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XVivado_activity_thread_ReadReg(InstancePtr->Core_io_BaseAddress, XVIVADO_ACTIVITY_THREAD_CORE_IO_ADDR_THREAD_RESULT_SQRD_0_CTRL);
-    return Data & 0x1;
 }
 
 void XVivado_activity_thread_InterruptGlobalEnable(XVivado_activity_thread *InstancePtr) {

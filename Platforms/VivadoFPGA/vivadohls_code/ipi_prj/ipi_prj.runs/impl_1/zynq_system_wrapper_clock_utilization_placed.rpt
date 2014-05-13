@@ -1,7 +1,7 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date         : Fri Apr 11 00:31:25 2014
+| Date         : Tue May 13 14:55:31 2014
 | Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
 | Command      : report_clock_utilization -file zynq_system_wrapper_clock_utilization_placed.rpt
 | Design       : zynq_system_wrapper
@@ -20,7 +20,9 @@ Table of Contents
 6. Details of Local Clocks
 7. Clock Regions : Key Resource Utilization
 8. Net wise resources used in clock region X0Y5
-9. Net wise resources used in clock region X0Y6
+9. Net wise resources used in clock region X1Y5
+10. Net wise resources used in clock region X0Y6
+11. Net wise resources used in clock region X1Y6
 
 1. Clock Primitive Utilization
 ------------------------------
@@ -45,7 +47,7 @@ Table of Contents
 +-------+---------------------------------------------------------------------------+---------------------------------------------------+------+-------+--------+---------------+-----------+
 | Index | BUFG Cell                                                                 | Net Name                                          | BELs | Sites | Locked | MaxDelay (ns) | Skew (ns) |
 +-------+---------------------------------------------------------------------------+---------------------------------------------------+------+-------+--------+---------------+-----------+
-|     1 | zynq_system_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG | zynq_system_i/processing_system7_0/inst/FCLK_CLK0 | 3766 |  1219 |     no |         1.845 |     0.327 |
+|     1 | zynq_system_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG | zynq_system_i/processing_system7_0/inst/FCLK_CLK0 | 4978 |  1853 |     no |         1.845 |     0.347 |
 +-------+---------------------------------------------------------------------------+---------------------------------------------------+------+-------+--------+---------------+-----------+
 
 
@@ -79,10 +81,10 @@ Table of Contents
 | X1Y3              |    0 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     5 |    0 |     1 |    0 |     0 |    0 |     0 |    0 | 28400 |    0 |  4000 |    0 |   140 |    0 |    35 |    0 |    60 |
 | X0Y4              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 | 36000 |    0 |  6400 |    0 |   160 |    0 |    40 |    0 |    80 |
 | X1Y4              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 | 32800 |    0 |  4600 |    0 |   200 |    0 |    50 |    0 |    60 |
-| X0Y5              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 | 1608 | 25600 |   53 |  4000 |    0 |    80 |    0 |    20 |   15 |    40 |
-| X1Y5              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 | 28000 |    0 |  4600 |    0 |   200 |    0 |    50 |    0 |    60 |
-| X0Y6              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 | 2028 | 25600 |   34 |  4000 |    0 |    72 |    0 |    18 |   27 |    40 |
-| X1Y6              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 | 28000 |    0 |  4600 |    0 |   180 |    0 |    45 |    0 |    60 |
+| X0Y5              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 | 2222 | 25600 |   94 |  4000 |    0 |    80 |    0 |    20 |   15 |    40 |
+| X1Y5              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |   16 | 28000 |    0 |  4600 |    0 |   200 |    0 |    50 |    0 |    60 |
+| X0Y6              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 | 2421 | 25600 |  117 |  4000 |    0 |    72 |    1 |    18 |   27 |    40 |
+| X1Y6              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |   64 | 28000 |    0 |  4600 |    0 |   180 |    0 |    45 |    0 |    60 |
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 * RAMB36 site can be used as two RAMB18/FIFO18 sites
 
@@ -93,18 +95,38 @@ Table of Contents
 +-------------+--------+-----------+---------+-----------+---------+---------+------+-------+----------+------+---------------------------------------------------+
 | Source Type | Locked | MMCM Pins | GT Pins | BRAM Pins | ILOGICs | OLOGICs |  FFs | LUTMs | DSP48E1s | PLLs |                                    Clock Net Name |
 +-------------+--------+-----------+---------+-----------+---------+---------+------+-------+----------+------+---------------------------------------------------+
-| BUFG        |   no   |         0 |       0 |         0 |       0 |       0 | 1608 |    53 |       15 |    0 | zynq_system_i/processing_system7_0/inst/FCLK_CLK0 |
+| BUFG        |   no   |         0 |       0 |         0 |       0 |       0 | 2222 |    94 |       15 |    0 | zynq_system_i/processing_system7_0/inst/FCLK_CLK0 |
 +-------------+--------+-----------+---------+-----------+---------+---------+------+-------+----------+------+---------------------------------------------------+
 
 
-9. Net wise resources used in clock region X0Y6
+9. Net wise resources used in clock region X1Y5
 -----------------------------------------------
+
++-------------+--------+-----------+---------+-----------+---------+---------+-----+-------+----------+------+---------------------------------------------------+
+| Source Type | Locked | MMCM Pins | GT Pins | BRAM Pins | ILOGICs | OLOGICs | FFs | LUTMs | DSP48E1s | PLLs |                                    Clock Net Name |
++-------------+--------+-----------+---------+-----------+---------+---------+-----+-------+----------+------+---------------------------------------------------+
+| BUFG        |   no   |         0 |       0 |         0 |       0 |       0 |  16 |     0 |        0 |    0 | zynq_system_i/processing_system7_0/inst/FCLK_CLK0 |
++-------------+--------+-----------+---------+-----------+---------+---------+-----+-------+----------+------+---------------------------------------------------+
+
+
+10. Net wise resources used in clock region X0Y6
+------------------------------------------------
 
 +-------------+--------+-----------+---------+-----------+---------+---------+------+-------+----------+------+---------------------------------------------------+
 | Source Type | Locked | MMCM Pins | GT Pins | BRAM Pins | ILOGICs | OLOGICs |  FFs | LUTMs | DSP48E1s | PLLs |                                    Clock Net Name |
 +-------------+--------+-----------+---------+-----------+---------+---------+------+-------+----------+------+---------------------------------------------------+
-| BUFG        |   no   |         0 |       0 |         0 |       0 |       0 | 2028 |    34 |       27 |    0 | zynq_system_i/processing_system7_0/inst/FCLK_CLK0 |
+| BUFG        |   no   |         0 |       0 |         1 |       0 |       0 | 2421 |   117 |       27 |    0 | zynq_system_i/processing_system7_0/inst/FCLK_CLK0 |
 +-------------+--------+-----------+---------+-----------+---------+---------+------+-------+----------+------+---------------------------------------------------+
+
+
+11. Net wise resources used in clock region X1Y6
+------------------------------------------------
+
++-------------+--------+-----------+---------+-----------+---------+---------+-----+-------+----------+------+---------------------------------------------------+
+| Source Type | Locked | MMCM Pins | GT Pins | BRAM Pins | ILOGICs | OLOGICs | FFs | LUTMs | DSP48E1s | PLLs |                                    Clock Net Name |
++-------------+--------+-----------+---------+-----------+---------+---------+-----+-------+----------+------+---------------------------------------------------+
+| BUFG        |   no   |         0 |       0 |         0 |       0 |       0 |  64 |     0 |        0 |    0 | zynq_system_i/processing_system7_0/inst/FCLK_CLK0 |
++-------------+--------+-----------+---------+-----------+---------+---------+-----+-------+----------+------+---------------------------------------------------+
 
 
 
@@ -131,5 +153,5 @@ set_property LOC BUFGCTRL_X0Y16 [get_cells zynq_system_i/processing_system7_0/in
 #startgroup
 create_pblock CLKAG_zynq_system_i/processing_system7_0/inst/FCLK_CLK0
 add_cells_to_pblock [get_pblocks  CLKAG_zynq_system_i/processing_system7_0/inst/FCLK_CLK0] [get_cells  -filter { IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="zynq_system_i/processing_system7_0/inst/FCLK_CLK0"}]]]
-resize_pblock [get_pblocks CLKAG_zynq_system_i/processing_system7_0/inst/FCLK_CLK0] -add {CLOCKREGION_X0Y5:CLOCKREGION_X0Y5 CLOCKREGION_X0Y6:CLOCKREGION_X0Y6}
+resize_pblock [get_pblocks CLKAG_zynq_system_i/processing_system7_0/inst/FCLK_CLK0] -add {CLOCKREGION_X0Y5:CLOCKREGION_X0Y5 CLOCKREGION_X0Y6:CLOCKREGION_X0Y6 CLOCKREGION_X1Y5:CLOCKREGION_X1Y5 CLOCKREGION_X1Y6:CLOCKREGION_X1Y6}
 #endgroup

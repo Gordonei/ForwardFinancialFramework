@@ -10,7 +10,7 @@
 
 module vivado_activity_thread_fcmp_32ns_32ns_1_3
 #(parameter
-    ID         = 5,
+    ID         = 6,
     NUM_STAGE  = 3,
     din0_WIDTH = 32,
     din1_WIDTH = 32,

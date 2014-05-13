@@ -3,18 +3,18 @@
 #define PATH_POINTS 10
 #define TAUS_BOXMULLER
 //Libraries
-#include "math.h";
-#include "pthread.h";
-#include "stdlib.h";
-#include "stdio.h";
-#include "time.h";
-#include "sys/resource.h";
-#include "unistd.h";
-#include "string.h";
-#include "gauss.h";
-#include "vivado_core.h";
-#include "underlying.h";
-#include "option.h";
+#include "math.h"
+#include "pthread.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "time.h"
+#include "sys/resource.h"
+#include "unistd.h"
+#include "string.h"
+#include "gauss.h"
+#include "vivado_core.h"
+#include "underlying.h"
+#include "option.h"
 
 //*Intermediate and Communication Variables*
 FP_t discount_0_0;
@@ -49,13 +49,19 @@ typedef struct{
 	} kernel_data;
 
 //*Vivado HLS Kernel Function*
-void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,FP_t *thread_result_0){
+void vivado_activity_thread(volatile FP_t *a, standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0, unsigned int thread_result_0){
+	
+	#pragma HLS INTERFACE ap_bus port=a depth=PATHS
+	#pragma HLS RESOURCE variable=a core=AXI4M
+
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_u_a_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_o_a_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=seed_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_0 metadata="-bus_bundle CORE_IO"
-	#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_sqrd_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata="-bus_bundle CORE_IO"
+
+	//Temporary results array that will be transfered back to the PS via the AXI master
+	FP_t thread_result_buff[PATHS];
 
 	//**Initialising Kernel Variables*
 	unsigned int p,pp;
@@ -99,8 +105,12 @@ void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standar
 		option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
 
 		//**Returning Result**
-		thread_result_0[p] = o_v_0.value;
+		thread_result_buff[p] = o_v_0.value;
 		}
+
+	//copy the stuff into the PS DDR via the AXI Master
+	memcpy((FP_t *)(a + thread_result_0/4), thread_result_buff, PATHS*sizeof(FP_t));
+	
 	}
 
 //*MC Multicore Activity Thread Function*
@@ -135,7 +145,7 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	FP_t kernel_value_0[PATHS];
 	rng_state_t seed_0;
 	for(i=0;i<chunks;++i){
-
+		//Add vivado call
 		//***Aggregating the result**
 		for(j=0;j<PATHS;++j){
 			temp_value_0 += kernel_value_0[j];
@@ -149,7 +159,7 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	}
 
 //*Main Function*
-int main(int argc,char* argv[]){
+/*int main(int argc,char* argv[]){
 
 	//**Starting Timers**
 	clock_gettime(CLOCK_MONOTONIC,&start);
@@ -228,3 +238,4 @@ int main(int argc,char* argv[]){
 	printf("\%f\n",setup_time);
 	printf("\%f\n",activity_time);
 	}
+*/
