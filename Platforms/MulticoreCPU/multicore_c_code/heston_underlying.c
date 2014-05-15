@@ -49,10 +49,10 @@ void heston_underlying_underlying_path(FP_t delta_time,heston_underlying_variabl
 	u_v->v = ((FP_t)MWC64X_NextUint(&(u_v->rng_state))/4294967296);
 	
 	FP_t sqr_log_w = native_sqrt(-2*native_log(u_v->w)); //native_log
-	u_v->x = sqr_log_w*native_cos((float)(2*M_PI*u_v->v)); //native_cos
+	u_v->x = sqr_log_w*native_cos((FP_t)(2*M_PI*u_v->v)); //native_cos
 	
-	u_v->y = sqr_log_w*native_sin((float)(2*M_PI*u_v->v)); //native_sin
-	u_v->y = u_v->x*u_a->rho+native_sqrt(1.0f-rho*rho)*u_v->y; //native_sqrt
+	u_v->y = sqr_log_w*native_sin((FP_t)(2*M_PI*u_v->v)); //native_sin
+	u_v->y = u_v->x*u_a->rho+native_sqrt((FP_t)(1.0-u_a->rho*u_a->rho))*u_v->y; //native_sqrt
 	#endif
 	
 	#ifdef DRAND48_BOXMULLER
