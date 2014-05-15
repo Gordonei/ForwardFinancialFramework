@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="9">
+	<Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z045ffg900-2" LaunchPart="xc7z045ffg900-2" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" State="current" Dir="$PRUNDIR/synth_1" LaunchTime="1397172432">
+		<File Type="RDS-UTIL" Name="zynq_system_wrapper_utilization_synth.rpt"/>
+		<File Type="RUN-STRAT" Name="$PDATADIR/runs/synth_1/synth_1.psg"/>
+		<File Type="RDS-UTIL-PB" Name="zynq_system_wrapper_utilization_synth.pb"/>
+		<File Type="RDS-DCP" Name="zynq_system_wrapper.dcp"/>
+		<File Type="VDS-TIMINGSUMMARY" Name="zynq_system_wrapper_timing_summary_synth.rpt"/>
+		<File Type="VDS-TIMING-PB" Name="zynq_system_wrapper_timing_summary_synth.pb"/>
+		<File Type="PA-TCL" Name="zynq_system_wrapper.tcl"/>
+		<File Type="RUN-SRCS" Name="$PDATADIR/runs/synth_1/sources.xml"/>
+		<File Type="RUN-CONSTRS" Name="$PDATADIR/runs/synth_1/constrs_in.xml"/>
+		<File Type="RDS-RDS" Name="zynq_system_wrapper.rds"/>
+	</Run>
+	<Run Id="impl_1" Type="Ft2:EntireDesign" SynthRun="synth_1" Part="xc7z045ffg900-2" LaunchPart="xc7z045ffg900-2" ConstrsSet="constrs_1" Description="Vivado Implementation Defaults" State="current" Dir="$PRUNDIR/impl_1" LaunchTime="1397172610">
+		<File Type="RUN-STRAT" Name="$PDATADIR/runs/impl_1/impl_1.psg"/>
+		<File Type="OPT-DRC" Name="zynq_system_wrapper_drc_opted.rpt"/>
+		<File Type="PLACE-IO" Name="zynq_system_wrapper_io_placed.rpt"/>
+		<File Type="PLACE-CLK" Name="zynq_system_wrapper_clock_utilization_placed.rpt"/>
+		<File Type="PLACE-UTIL" Name="zynq_system_wrapper_utilization_placed.rpt"/>
+		<File Type="PLACE-UTIL-PB" Name="zynq_system_wrapper_utilization_placed.pb"/>
+		<File Type="PLACE-CTRL" Name="zynq_system_wrapper_control_sets_placed.rpt"/>
+		<File Type="PLACE-SIMILARITY" Name="zynq_system_wrapper_incremental_reuse_placed.rpt"/>
+		<File Type="PLACE-PRE-SIMILARITY" Name="zynq_system_wrapper_incremental_reuse_pre_placed.rpt"/>
+		<File Type="PA-TCL" Name="zynq_system_wrapper.tcl"/>
+		<File Type="ROUTE-DRC" Name="zynq_system_wrapper_drc_routed.rpt"/>
+		<File Type="ROUTE-DRC-PB" Name="zynq_system_wrapper_drc_routed.pb"/>
+		<File Type="ROUTE-PWR" Name="zynq_system_wrapper_power_routed.rpt"/>
+		<File Type="ROUTE-PWR-SUM" Name="zynq_system_wrapper_power_summary_routed.pb"/>
+		<File Type="ROUTE-STATUS" Name="zynq_system_wrapper_route_status.rpt"/>
+		<File Type="ROUTE-STATUS-PB" Name="zynq_system_wrapper_route_status.pb"/>
+		<File Type="ROUTE-DCP" Name="zynq_system_wrapper_routed.dcp"/>
+		<File Type="ROUTE-TIMINGSUMMARY" Name="zynq_system_wrapper_timing_summary_routed.rpt"/>
+		<File Type="ROUTE-TIMING-PB" Name="zynq_system_wrapper_timing_summary_routed.pb"/>
+		<File Type="ROUTE-SIMILARITY" Name="zynq_system_wrapper_incremental_reuse_routed.rpt"/>
+		<File Type="OPT-DCP" Name="zynq_system_wrapper_opt.dcp"/>
+		<File Type="RDI-RDI" Name="zynq_system_wrapper.rdi"/>
+		<File Type="PLACE-DCP" Name="zynq_system_wrapper_placed.dcp"/>
+		<File Type="PWROPT-DCP" Name="zynq_system_wrapper_pwropt.dcp"/>
+		<File Type="POSTPLACE-PWROPT-DCP" Name="zynq_system_wrapper_postplace_pwropt.dcp"/>
+		<File Type="PWROPT-DRC" Name="zynq_system_wrapper_drc_pwropted.rpt"/>
+		<File Type="PHYSOPT-DCP" Name="zynq_system_wrapper_physopt.dcp"/>
+		<File Type="PHYSOPT-DRC" Name="zynq_system_wrapper_drc_physopted.rpt"/>
+		<File Type="BG-BIT" Name="zynq_system_wrapper.bit"/>
+		<File Type="BG-DRC" Name="zynq_system_wrapper.drc"/>
+		<File Type="BG-BGN" Name="zynq_system_wrapper.bgn"/>
+		<File Type="BG-BIN" Name="zynq_system_wrapper.bin"/>
+		<File Type="BITSTR-MSK" Name="zynq_system_wrapper.msk"/>
+		<File Type="BITSTR-RBT" Name="zynq_system_wrapper.rbt"/>
+		<File Type="BITSTR-NKY" Name="zynq_system_wrapper.nky"/>
+		<File Type="BITSTR-BMM" Name="zynq_system_wrapper_bd.bmm"/>
+		<File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+		<File Type="RUN-CONSTRS" Name="$PDATADIR/runs/impl_1/constrs_in.xml"/>
+	</Run>
+</Runs>
+
