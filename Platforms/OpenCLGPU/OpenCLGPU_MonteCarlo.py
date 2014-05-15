@@ -425,10 +425,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.platform_directory())
     
     for u in self.underlying: 
-      if(not(os.path.exists("../../MulticoreCPU/multicore_c_code/%s.c"%u.name)) or not(os.path.exists("../../MulticoreCPU/multicore_c_code/%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - ../../MulticoreCPU/multicore_c_code/%s.c or ../../MulticoreCPU/multicore_c_code/%s.h" % (u.name,u.name))
-      else:
-	output_list.remove("#include \"%s.h\";"%u.name)
-	output_list.append("#include \"../../MulticoreCPU/multicore_c_code/%s.h\""%u.name)
+      if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
+      #else:
+	#output_list.remove("#include \"%s.h\";"%u.name)
+	#output_list.append("#include \"%s.h\""%u.name)
 	
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
