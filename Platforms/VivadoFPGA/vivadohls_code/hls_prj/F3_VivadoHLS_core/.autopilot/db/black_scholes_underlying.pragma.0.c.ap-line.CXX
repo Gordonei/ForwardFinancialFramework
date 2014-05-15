@@ -282,8 +282,10 @@
 #pragma line 396 "/usr/include/math.h" 3 4 ::: 9425
 #pragma line 418 "/usr/include/math.h" 3 4 ::: 9440
 #pragma line 51 "srcs/gauss.h" 2 ::: 9490
-#pragma line 12 "srcs/black_scholes_underlying.h" 2 ::: 9677
-#pragma line 39 "srcs/black_scholes_underlying.h" ::: 9678
-#pragma line 9 "srcs/black_scholes_underlying.c" 2 ::: 9710
-#pragma line 32 "srcs/black_scholes_underlying.c" ::: 9722
-#pragma line 51 "srcs/black_scholes_underlying.c" ::: 9729
+#pragma line 60 "srcs/gauss.h" ::: 9492
+#pragma line 179 "srcs/gauss.h" ::: 9494
+#pragma line 12 "srcs/black_scholes_underlying.h" 2 ::: 9514
+#pragma line 39 "srcs/black_scholes_underlying.h" ::: 9515
+#pragma line 9 "srcs/black_scholes_underlying.c" 2 ::: 9547
+#pragma line 32 "srcs/black_scholes_underlying.c" ::: 9559
+#pragma line 51 "srcs/black_scholes_underlying.c" ::: 9566

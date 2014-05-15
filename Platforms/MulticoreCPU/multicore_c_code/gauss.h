@@ -60,8 +60,6 @@
 typedef uint32 uint32_t;
 #endif
 
-//#include <gsl/gsl_rng.h>
-
 #ifdef TAUS_ZIGGURAT
 /* position of right-most step */
 #define PARAM_R 3.44428647676
@@ -174,6 +172,7 @@ static const double wtab[128] = {
   1.64596952856e-07, 1.68292495203e-07, 1.72541128694e-07, 1.77574279496e-07,
   1.83813550477e-07, 1.92166040885e-07, 2.05295471952e-07, 2.22600839893e-07
 };
+
 FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state);
 #endif
 

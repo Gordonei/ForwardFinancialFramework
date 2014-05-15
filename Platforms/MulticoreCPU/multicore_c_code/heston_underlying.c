@@ -27,16 +27,13 @@ void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,hes
 	u_v->time = 0.0;
 	u_v->volatility = sqrt(u_a->initial_volatility);
 	
-	#if ((defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT)) && !(defined(VIVADOHLS)))
-	//(u_v->rng_state).s1 = 2; //this is done in the kernel proper now
-	//(u_v->rng_state).s2 = 8;
-	//(u_v->rng_state).s3 = 16 + ((unsigned int) clock());
+	//#if ((defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT)) && !(defined(VIVADOHLS)))
 	
-	int temp;
-	for(int i=0;i<100;++i){
-	  temp = __random32(&(u_v->rng_state)); //Getting the random number generator suitably random
-	}
-	#endif
+	//int temp;
+	//for(int i=0;i<100;++i){
+	  //temp = __random32(&(u_v->rng_state)); //Getting the random number generator suitably random
+	//}
+	//#endif
 	
 	//#if (defined OPENCL_GPU && !defined AMD_GPU)
 	//MWC64X_SeedStreams(&(u_v->rng_state),0,4096*2*1000); This is done in the kernel proper

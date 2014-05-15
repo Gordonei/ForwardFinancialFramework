@@ -10,7 +10,7 @@
 
 module vivado_activity_thread_fptrunc_64ns_32_3
 #(parameter
-    ID         = 3,
+    ID         = 4,
     NUM_STAGE  = 3,
     din0_WIDTH = 64,
     dout_WIDTH = 32

@@ -135,10 +135,8 @@ void XVivado_activity_thread_SetSeed_0_s3(XVivado_activity_thread *InstancePtr, 
 u32 XVivado_activity_thread_GetSeed_0_s3(XVivado_activity_thread *InstancePtr);
 void XVivado_activity_thread_SetSeed_0_offset(XVivado_activity_thread *InstancePtr, u32 Data);
 u32 XVivado_activity_thread_GetSeed_0_offset(XVivado_activity_thread *InstancePtr);
+void XVivado_activity_thread_SetThread_result_0(XVivado_activity_thread *InstancePtr, u32 Data);
 u32 XVivado_activity_thread_GetThread_result_0(XVivado_activity_thread *InstancePtr);
-u32 XVivado_activity_thread_GetThread_result_0Vld(XVivado_activity_thread *InstancePtr);
-u32 XVivado_activity_thread_GetThread_result_sqrd_0(XVivado_activity_thread *InstancePtr);
-u32 XVivado_activity_thread_GetThread_result_sqrd_0Vld(XVivado_activity_thread *InstancePtr);
 
 void XVivado_activity_thread_InterruptGlobalEnable(XVivado_activity_thread *InstancePtr);
 void XVivado_activity_thread_InterruptGlobalDisable(XVivado_activity_thread *InstancePtr);

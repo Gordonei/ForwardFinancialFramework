@@ -6,7 +6,7 @@
 ]
 -Analyzing %s Unisim elements for replacement
 17*netlist2
-422default:defaultZ29-17
+432default:defaultZ29-17
 a
 2Unisim Transformation completed in %s CPU seconds
 28*netlist2
@@ -39,10 +39,16 @@ e/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/zynq/zynq/xc7z
 Loading io standards from %s
 15*device2k
 W/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/./parts/xilinx/zynq/IOStandards.xml2default:defaultZ21-15
-í
+ì
 Parsing XDC File [%s]
-179*designutils2€
-∆/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-8000-ee-boxer0/dcp/vivado_activity_thread_early.xdc2default:defaultZ20-179
+179*designutils2‹
+«/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-12244-ee-boxer0/dcp/vivado_activity_thread_early.xdc2default:defaultZ20-179
+¡
+nA clock with name '%s' already exists, creating a clock with the same name will overwrite the previous clock.
+576*constraints2
+aclk2default:default2˚
+‰/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fcmp_1_no_dsp/vivado_activity_thread_ap_fcmp_1_no_dsp_ooc.xdc2default:default2
+62default:default8@Z18-619
 «
 nA clock with name '%s' already exists, creating a clock with the same name will overwrite the previous clock.
 576*constraints2
@@ -79,24 +85,24 @@ nA clock with name '%s' already exists, creating a clock with the same name will
 aclk2default:default2˝
 Ê/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.srcs/sources_1/ip/vivado_activity_thread_ap_fpext_1_no_dsp/vivado_activity_thread_ap_fpext_1_no_dsp_ooc.xdc2default:default2
 62default:default8@Z18-619
-õ
+ú
 Finished Parsing XDC File [%s]
-178*designutils2€
-∆/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-8000-ee-boxer0/dcp/vivado_activity_thread_early.xdc2default:defaultZ20-178
-å
+178*designutils2‹
+«/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-12244-ee-boxer0/dcp/vivado_activity_thread_early.xdc2default:defaultZ20-178
+ç
 Parsing XDC File [%s]
-179*designutils2’
-¿/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-8000-ee-boxer0/dcp/vivado_activity_thread.xdc2default:defaultZ20-179
+179*designutils2÷
+¡/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-12244-ee-boxer0/dcp/vivado_activity_thread.xdc2default:defaultZ20-179
 ‹
 DImplicit search of objects for pattern '%s' matched to '%s' objects.1744*	planAhead2
 ap_clk2default:default2
 port2default:default2§
 ç/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/vivado_activity_thread.xdc2default:default2
 12default:default8@Z12-2286
-ï
+ñ
 Finished Parsing XDC File [%s]
-178*designutils2’
-¿/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-8000-ee-boxer0/dcp/vivado_activity_thread.xdc2default:defaultZ20-178
+178*designutils2÷
+¡/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/.Xil/Vivado-12244-ee-boxer0/dcp/vivado_activity_thread.xdc2default:defaultZ20-178
 C
 Pushed %s inverter(s).
 98*opt2
@@ -114,9 +120,9 @@ I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2%
 open_checkpoint: 2default:default2
 00:00:202default:default2
-00:00:202default:default2
-1466.8632default:default2
-749.6412default:defaultZ17-268
+00:00:212default:default2
+1470.8672default:default2
+753.6412default:defaultZ17-268
 
 
 End Record

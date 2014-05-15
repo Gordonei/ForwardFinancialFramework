@@ -207,7 +207,7 @@ void option_derivative_init(float t,float c,float k,option_attributes* o_a){
 #pragma empty_line
 void option_derivative_path_init(option_variables* o_v,option_attributes* o_a){
  o_v->value=0;
- //o_v->delta_time=o_a->time_period;
+ o_v->delta_time=o_a->time_period;
  //o_v->delta_time=o_a->time_period/o_a->points;
 }
 #pragma empty_line

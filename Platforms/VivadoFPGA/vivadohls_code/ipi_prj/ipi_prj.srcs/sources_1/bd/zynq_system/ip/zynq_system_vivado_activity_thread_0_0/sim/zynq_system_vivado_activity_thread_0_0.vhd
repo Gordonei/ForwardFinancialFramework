@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: imperial:F3:vivado_activity_thread:1.0
--- IP Revision: 1404102353
+-- IP Revision: 1405131419
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -55,6 +55,43 @@ USE ieee.numeric_std.ALL;
 
 ENTITY zynq_system_vivado_activity_thread_0_0 IS
   PORT (
+    m_axi_a_AWID : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+    m_axi_a_AWADDR : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_a_AWLEN : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+    m_axi_a_AWSIZE : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+    m_axi_a_AWBURST : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    m_axi_a_AWLOCK : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    m_axi_a_AWCACHE : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    m_axi_a_AWPROT : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+    m_axi_a_AWQOS : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    m_axi_a_AWVALID : OUT STD_LOGIC;
+    m_axi_a_AWREADY : IN STD_LOGIC;
+    m_axi_a_WDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_a_WSTRB : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    m_axi_a_WLAST : OUT STD_LOGIC;
+    m_axi_a_WVALID : OUT STD_LOGIC;
+    m_axi_a_WREADY : IN STD_LOGIC;
+    m_axi_a_BID : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    m_axi_a_BRESP : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    m_axi_a_BVALID : IN STD_LOGIC;
+    m_axi_a_BREADY : OUT STD_LOGIC;
+    m_axi_a_ARID : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+    m_axi_a_ARADDR : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_a_ARLEN : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+    m_axi_a_ARSIZE : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+    m_axi_a_ARBURST : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    m_axi_a_ARLOCK : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    m_axi_a_ARCACHE : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    m_axi_a_ARPROT : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+    m_axi_a_ARQOS : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    m_axi_a_ARVALID : OUT STD_LOGIC;
+    m_axi_a_ARREADY : IN STD_LOGIC;
+    m_axi_a_RID : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    m_axi_a_RDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_a_RRESP : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    m_axi_a_RLAST : IN STD_LOGIC;
+    m_axi_a_RVALID : IN STD_LOGIC;
+    m_axi_a_RREADY : OUT STD_LOGIC;
     s_axi_CORE_IO_AWADDR : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
     s_axi_CORE_IO_AWVALID : IN STD_LOGIC;
     s_axi_CORE_IO_AWREADY : OUT STD_LOGIC;
@@ -84,10 +121,64 @@ ARCHITECTURE zynq_system_vivado_activity_thread_0_0_arch OF zynq_system_vivado_a
 
   COMPONENT vivado_activity_thread_top IS
     GENERIC (
+      C_M_AXI_A_ID_WIDTH : INTEGER;
+      C_M_AXI_A_ADDR_WIDTH : INTEGER;
+      C_M_AXI_A_DATA_WIDTH : INTEGER;
+      C_M_AXI_A_AWUSER_WIDTH : INTEGER;
+      C_M_AXI_A_ARUSER_WIDTH : INTEGER;
+      C_M_AXI_A_WUSER_WIDTH : INTEGER;
+      C_M_AXI_A_RUSER_WIDTH : INTEGER;
+      C_M_AXI_A_BUSER_WIDTH : INTEGER;
+      C_M_AXI_A_TARGET_ADDR : STD_LOGIC_VECTOR;
+      C_M_AXI_A_USER_VALUE : STD_LOGIC_VECTOR;
+      C_M_AXI_A_PROT_VALUE : STD_LOGIC_VECTOR;
+      C_M_AXI_A_CACHE_VALUE : STD_LOGIC_VECTOR;
       C_S_AXI_CORE_IO_ADDR_WIDTH : INTEGER;
       C_S_AXI_CORE_IO_DATA_WIDTH : INTEGER
     );
     PORT (
+      m_axi_a_AWID : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axi_a_AWADDR : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+      m_axi_a_AWLEN : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      m_axi_a_AWSIZE : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+      m_axi_a_AWBURST : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+      m_axi_a_AWLOCK : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+      m_axi_a_AWCACHE : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+      m_axi_a_AWPROT : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+      m_axi_a_AWQOS : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+      m_axi_a_AWUSER : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axi_a_AWVALID : OUT STD_LOGIC;
+      m_axi_a_AWREADY : IN STD_LOGIC;
+      m_axi_a_WDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+      m_axi_a_WSTRB : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+      m_axi_a_WLAST : OUT STD_LOGIC;
+      m_axi_a_WUSER : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axi_a_WVALID : OUT STD_LOGIC;
+      m_axi_a_WREADY : IN STD_LOGIC;
+      m_axi_a_BID : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axi_a_BRESP : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+      m_axi_a_BUSER : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axi_a_BVALID : IN STD_LOGIC;
+      m_axi_a_BREADY : OUT STD_LOGIC;
+      m_axi_a_ARID : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axi_a_ARADDR : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+      m_axi_a_ARLEN : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+      m_axi_a_ARSIZE : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+      m_axi_a_ARBURST : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+      m_axi_a_ARLOCK : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+      m_axi_a_ARCACHE : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+      m_axi_a_ARPROT : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+      m_axi_a_ARQOS : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+      m_axi_a_ARUSER : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axi_a_ARVALID : OUT STD_LOGIC;
+      m_axi_a_ARREADY : IN STD_LOGIC;
+      m_axi_a_RID : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axi_a_RDATA : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+      m_axi_a_RRESP : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+      m_axi_a_RLAST : IN STD_LOGIC;
+      m_axi_a_RUSER : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axi_a_RVALID : IN STD_LOGIC;
+      m_axi_a_RREADY : OUT STD_LOGIC;
       s_axi_CORE_IO_AWADDR : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
       s_axi_CORE_IO_AWVALID : IN STD_LOGIC;
       s_axi_CORE_IO_AWREADY : OUT STD_LOGIC;
@@ -111,6 +202,43 @@ ARCHITECTURE zynq_system_vivado_activity_thread_0_0_arch OF zynq_system_vivado_a
     );
   END COMPONENT vivado_activity_thread_top;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_AWID: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A AWID";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_AWADDR: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A AWADDR";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_AWLEN: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A AWLEN";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_AWSIZE: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A AWSIZE";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_AWBURST: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A AWBURST";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_AWLOCK: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A AWLOCK";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_AWCACHE: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A AWCACHE";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_AWPROT: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A AWPROT";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_AWQOS: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A AWQOS";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_AWVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A AWVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_AWREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A AWREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_WDATA: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A WDATA";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_WSTRB: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A WSTRB";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_WLAST: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A WLAST";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_WVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A WVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_WREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A WREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_BID: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A BID";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_BRESP: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A BRESP";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_BVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A BVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_BREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A BREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_ARID: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A ARID";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_ARADDR: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A ARADDR";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_ARLEN: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A ARLEN";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_ARSIZE: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A ARSIZE";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_ARBURST: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A ARBURST";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_ARLOCK: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A ARLOCK";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_ARCACHE: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A ARCACHE";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_ARPROT: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A ARPROT";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_ARQOS: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A ARQOS";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_ARVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A ARVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_ARREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A ARREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_RID: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A RID";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_RDATA: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A RDATA";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_RRESP: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A RRESP";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_RLAST: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A RLAST";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_RVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A RVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axi_a_RREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_A RREADY";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_AWADDR: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWADDR";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_AWVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWVALID";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_CORE_IO_AWREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 S_AXI_CORE_IO AWREADY";
@@ -134,10 +262,61 @@ ARCHITECTURE zynq_system_vivado_activity_thread_0_0_arch OF zynq_system_vivado_a
 BEGIN
   U0 : vivado_activity_thread_top
     GENERIC MAP (
+      C_M_AXI_A_ID_WIDTH => 1,
+      C_M_AXI_A_ADDR_WIDTH => 32,
+      C_M_AXI_A_DATA_WIDTH => 32,
+      C_M_AXI_A_AWUSER_WIDTH => 1,
+      C_M_AXI_A_ARUSER_WIDTH => 1,
+      C_M_AXI_A_WUSER_WIDTH => 1,
+      C_M_AXI_A_RUSER_WIDTH => 1,
+      C_M_AXI_A_BUSER_WIDTH => 1,
+      C_M_AXI_A_TARGET_ADDR => X"00000000",
+      C_M_AXI_A_USER_VALUE => X"00000000",
+      C_M_AXI_A_PROT_VALUE => B"000",
+      C_M_AXI_A_CACHE_VALUE => B"0011",
       C_S_AXI_CORE_IO_ADDR_WIDTH => 8,
       C_S_AXI_CORE_IO_DATA_WIDTH => 32
     )
     PORT MAP (
+      m_axi_a_AWID => m_axi_a_AWID,
+      m_axi_a_AWADDR => m_axi_a_AWADDR,
+      m_axi_a_AWLEN => m_axi_a_AWLEN,
+      m_axi_a_AWSIZE => m_axi_a_AWSIZE,
+      m_axi_a_AWBURST => m_axi_a_AWBURST,
+      m_axi_a_AWLOCK => m_axi_a_AWLOCK,
+      m_axi_a_AWCACHE => m_axi_a_AWCACHE,
+      m_axi_a_AWPROT => m_axi_a_AWPROT,
+      m_axi_a_AWQOS => m_axi_a_AWQOS,
+      m_axi_a_AWVALID => m_axi_a_AWVALID,
+      m_axi_a_AWREADY => m_axi_a_AWREADY,
+      m_axi_a_WDATA => m_axi_a_WDATA,
+      m_axi_a_WSTRB => m_axi_a_WSTRB,
+      m_axi_a_WLAST => m_axi_a_WLAST,
+      m_axi_a_WVALID => m_axi_a_WVALID,
+      m_axi_a_WREADY => m_axi_a_WREADY,
+      m_axi_a_BID => m_axi_a_BID,
+      m_axi_a_BRESP => m_axi_a_BRESP,
+      m_axi_a_BUSER => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 1)),
+      m_axi_a_BVALID => m_axi_a_BVALID,
+      m_axi_a_BREADY => m_axi_a_BREADY,
+      m_axi_a_ARID => m_axi_a_ARID,
+      m_axi_a_ARADDR => m_axi_a_ARADDR,
+      m_axi_a_ARLEN => m_axi_a_ARLEN,
+      m_axi_a_ARSIZE => m_axi_a_ARSIZE,
+      m_axi_a_ARBURST => m_axi_a_ARBURST,
+      m_axi_a_ARLOCK => m_axi_a_ARLOCK,
+      m_axi_a_ARCACHE => m_axi_a_ARCACHE,
+      m_axi_a_ARPROT => m_axi_a_ARPROT,
+      m_axi_a_ARQOS => m_axi_a_ARQOS,
+      m_axi_a_ARVALID => m_axi_a_ARVALID,
+      m_axi_a_ARREADY => m_axi_a_ARREADY,
+      m_axi_a_RID => m_axi_a_RID,
+      m_axi_a_RDATA => m_axi_a_RDATA,
+      m_axi_a_RRESP => m_axi_a_RRESP,
+      m_axi_a_RLAST => m_axi_a_RLAST,
+      m_axi_a_RUSER => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 1)),
+      m_axi_a_RVALID => m_axi_a_RVALID,
+      m_axi_a_RREADY => m_axi_a_RREADY,
       s_axi_CORE_IO_AWADDR => s_axi_CORE_IO_AWADDR,
       s_axi_CORE_IO_AWVALID => s_axi_CORE_IO_AWVALID,
       s_axi_CORE_IO_AWREADY => s_axi_CORE_IO_AWREADY,

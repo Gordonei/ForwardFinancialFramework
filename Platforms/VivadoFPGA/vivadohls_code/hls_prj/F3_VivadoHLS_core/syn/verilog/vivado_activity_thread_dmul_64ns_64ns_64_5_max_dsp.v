@@ -10,7 +10,7 @@
 
 module vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp
 #(parameter
-    ID         = 6,
+    ID         = 7,
     NUM_STAGE  = 5,
     din0_WIDTH = 64,
     din1_WIDTH = 64,

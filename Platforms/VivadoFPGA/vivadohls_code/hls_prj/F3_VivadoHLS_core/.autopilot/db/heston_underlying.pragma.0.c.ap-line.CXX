@@ -282,9 +282,11 @@
 #pragma line 396 "/usr/include/math.h" 3 4 ::: 9424
 #pragma line 418 "/usr/include/math.h" 3 4 ::: 9439
 #pragma line 51 "srcs/gauss.h" 2 ::: 9489
-#pragma line 12 "srcs/heston_underlying.h" 2 ::: 9676
-#pragma line 37 "srcs/heston_underlying.h" ::: 9677
-#pragma line 8 "srcs/heston_underlying.c" 2 ::: 9725
-#pragma line 41 "srcs/heston_underlying.c" ::: 9747
-#pragma line 68 "srcs/heston_underlying.c" ::: 9754
-#pragma line 79 "srcs/heston_underlying.c" ::: 9756
+#pragma line 60 "srcs/gauss.h" ::: 9491
+#pragma line 179 "srcs/gauss.h" ::: 9493
+#pragma line 12 "srcs/heston_underlying.h" 2 ::: 9513
+#pragma line 37 "srcs/heston_underlying.h" ::: 9514
+#pragma line 8 "srcs/heston_underlying.c" 2 ::: 9562
+#pragma line 41 "srcs/heston_underlying.c" ::: 9584
+#pragma line 68 "srcs/heston_underlying.c" ::: 9591
+#pragma line 79 "srcs/heston_underlying.c" ::: 9593
