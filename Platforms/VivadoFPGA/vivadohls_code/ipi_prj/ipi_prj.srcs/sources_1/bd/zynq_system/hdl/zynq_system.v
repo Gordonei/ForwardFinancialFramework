@@ -235,7 +235,7 @@ module s00_couplers_imp_156Q4UY
   assign s00_couplers_to_auto_pc_WLAST = S_AXI_wlast;
   assign s00_couplers_to_auto_pc_WSTRB = S_AXI_wstrb[3:0];
   assign s00_couplers_to_auto_pc_WVALID = S_AXI_wvalid;
-zynq_system_auto_pc_4 auto_pc
+zynq_system_auto_pc_45 auto_pc
        (.aclk(S_ACLK_1),
         .aresetn(S_ARESETN_1),
         .m_axi_araddr(auto_pc_to_s00_couplers_ARADDR),
@@ -613,7 +613,7 @@ module s00_couplers_imp_5VZGPS
   assign s00_couplers_to_auto_pc_WVALID = S_AXI_wvalid;
 GND GND
        (.G(GND_1));
-zynq_system_auto_pc_5 auto_pc
+zynq_system_auto_pc_44 auto_pc
        (.aclk(S_ACLK_1),
         .aresetn(S_ARESETN_1),
         .m_axi_araddr(auto_pc_to_s00_couplers_ARADDR),
@@ -695,7 +695,7 @@ zynq_system_auto_pc_5 auto_pc
         .s_axi_wvalid(s00_couplers_to_auto_pc_WVALID));
 endmodule
 
-(* CORE_GENERATION_INFO = "zynq_system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLanguage=VERILOG,numBlks=9,numReposBlks=5,numNonXlnxBlks=1,numHierBlks=4,maxHierDepth=0,da_axi4_cnt=5,da_ps7_cnt=3}" *) 
+(* CORE_GENERATION_INFO = "zynq_system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLanguage=VERILOG,numBlks=9,numReposBlks=5,numNonXlnxBlks=1,numHierBlks=4,maxHierDepth=0,da_axi4_cnt=9,da_ps7_cnt=4}" *) 
 module zynq_system
    (DDR_addr,
     DDR_ba,
@@ -902,7 +902,7 @@ GND GND
        (.G(GND_1));
 VCC VCC
        (.P(VCC_1));
-zynq_system_axi_mem_intercon_1 axi_mem_intercon
+zynq_system_axi_mem_intercon_0 axi_mem_intercon
        (.ACLK(processing_system7_0_FCLK_CLK0),
         .ARESETN(rst_processing_system7_0_50M_interconnect_aresetn),
         .M00_ACLK(processing_system7_0_FCLK_CLK0),
@@ -1090,7 +1090,7 @@ zynq_system_processing_system7_0_0 processing_system7_0
         .TTC0_CLK1_IN(GND_1),
         .TTC0_CLK2_IN(GND_1),
         .USB0_VBUS_PWRFAULT(GND_1));
-zynq_system_processing_system7_0_axi_periph_0 processing_system7_0_axi_periph
+zynq_system_processing_system7_0_axi_periph_1 processing_system7_0_axi_periph
        (.ACLK(processing_system7_0_FCLK_CLK0),
         .ARESETN(rst_processing_system7_0_50M_interconnect_aresetn),
         .M00_ACLK(processing_system7_0_FCLK_CLK0),
@@ -1219,7 +1219,7 @@ zynq_system_vivado_activity_thread_0_0 vivado_activity_thread_0
         .s_axi_CORE_IO_WVALID(processing_system7_0_axi_periph_M00_AXI_WVALID));
 endmodule
 
-module zynq_system_axi_mem_intercon_1
+module zynq_system_axi_mem_intercon_0
    (ACLK,
     ARESETN,
     M00_ACLK,
@@ -1624,7 +1624,7 @@ s00_couplers_imp_5VZGPS s00_couplers
         .S_AXI_wvalid(axi_mem_intercon_to_s00_couplers_WVALID));
 endmodule
 
-module zynq_system_processing_system7_0_axi_periph_0
+module zynq_system_processing_system7_0_axi_periph_1
    (ACLK,
     ARESETN,
     M00_ACLK,

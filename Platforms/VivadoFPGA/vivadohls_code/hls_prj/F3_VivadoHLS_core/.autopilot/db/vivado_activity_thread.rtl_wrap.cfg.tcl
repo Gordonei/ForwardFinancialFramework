@@ -1413,13 +1413,13 @@ set gport44 [list $gportName44 $gportInterface44 $gportData44 $gportPointer44 $g
 lappend globalVariable $gport44
 set staticVariable ""
 set moduleName "vivado_activity_thread"
-set rawDecl [list "void" "vivado_activity_thread\(volatile float *a, standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0, unsigned int thread_result_0\)"]
+set rawDecl [list "void" "vivado_activity_thread\(volatile int *a, standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0, unsigned int thread_result_0\)"]
 set argAPint [list uint32]
 set returnAPint ""
 set portList ""
 set portName0 "a"
 set portInterface0 "[list bus 0]"
-set portData0 "float"
+set portData0 "int"
 set portPointer0 "1"
 set portArrayDim0 0
 set portConst0 "0"

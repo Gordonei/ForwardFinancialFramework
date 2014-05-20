@@ -8,7 +8,7 @@ set isOneStateSeq 0
 set C_modelName vivado_activity_thread
 set C_modelType { void 0 }
 set C_modelArgList { 
-	{ a float 32 regular {bus 1}  }
+	{ a int 32 regular {bus 1}  }
 	{ kernel_u_a_0_rfir float 32 regular {pointer 0}  }
 	{ kernel_u_a_0_current_price float 32 regular {pointer 0}  }
 	{ kernel_u_a_0_volatility float 32 unused {pointer 0}  }
@@ -36,7 +36,7 @@ set C_modelArgList {
 	{ thread_result_0 int 32 regular  }
 }
 set C_modelArgMapList {[ 
-	{ "rtlName" : "a","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "a","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+	{ "rtlName" : "a","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "a","cData": "int","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
  	{ "rtlName" : "kernel_u_a_0_rfir","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.rfir","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
  	{ "rtlName" : "kernel_u_a_0_current_price","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.current_price","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
  	{ "rtlName" : "kernel_u_a_0_volatility","bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "kernel_u_a_0.volatility","cData": "float","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 

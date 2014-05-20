@@ -28,5 +28,5 @@
   <xd:arg xd:name="seed_0-&gt;offset" xd:originalName="seed_0" xd:direction="in" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0xCC" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
   <xd:arg xd:name="thread_result_0" xd:originalName="thread_result_0" xd:direction="in" xd:interfaceRef="S_AXI_CORE_IO" xd:busTypeRef="axilite" xd:offset="0xD4" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
   <xd:latencyEstimates xd:best-case="305018" xd:worst-case="305018" xd:average-case="305018"/>
-  <xd:resourceEstimates xd:LUT="5864" xd:FF="3249" xd:BRAM="2" xd:DSP="42"/>
+  <xd:resourceEstimates xd:LUT="5864" xd:FF="3281" xd:BRAM="2" xd:DSP="42"/>
 </xd:acceleratorMap>

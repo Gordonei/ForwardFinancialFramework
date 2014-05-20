@@ -49,7 +49,7 @@
 <Resources>
 <BRAM_18K>2</BRAM_18K>
 <DSP48E>42</DSP48E>
-<FF>3249</FF>
+<FF>3281</FF>
 <LUT>5864</LUT>
 <SLICE>0</SLICE>
 </Resources>
@@ -139,7 +139,7 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>data</Attribute>
-<CType>float</CType>
+<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>a_req_full_n</name>
@@ -151,7 +151,7 @@
 <Dir>in</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>float</CType>
+<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>a_req_write</name>
@@ -163,7 +163,7 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>float</CType>
+<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>a_rsp_empty_n</name>
@@ -175,7 +175,7 @@
 <Dir>in</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>float</CType>
+<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>a_rsp_read</name>
@@ -187,7 +187,7 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-<CType>float</CType>
+<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>a_address</name>
@@ -199,7 +199,7 @@
 <Dir>out</Dir>
 <Bits>32</Bits>
 <Attribute>unknown</Attribute>
-<CType>float</CType>
+<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>a_datain</name>
@@ -211,7 +211,7 @@
 <Dir>in</Dir>
 <Bits>32</Bits>
 <Attribute>unknown</Attribute>
-<CType>float</CType>
+<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>a_dataout</name>
@@ -223,7 +223,7 @@
 <Dir>out</Dir>
 <Bits>32</Bits>
 <Attribute>unknown</Attribute>
-<CType>float</CType>
+<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>a_size</name>
@@ -235,7 +235,7 @@
 <Dir>out</Dir>
 <Bits>32</Bits>
 <Attribute>unknown</Attribute>
-<CType>float</CType>
+<CType>int</CType>
 </RtlPorts>
 <RtlPorts>
 <name>kernel_u_a_0_rfir</name>
@@ -531,7 +531,7 @@
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
-<IOConfig></IOConfig>
+<IOConfig>register</IOConfig>
 <Dir>in</Dir>
 <Bits>32</Bits>
 <Attribute>data</Attribute>

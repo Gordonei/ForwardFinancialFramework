@@ -49,7 +49,7 @@ typedef struct{
 	} kernel_data;
 
 //*Vivado HLS Kernel Function*
-void vivado_activity_thread(volatile FP_t *a, standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0, unsigned int thread_result_0){
+void vivado_activity_thread(volatile int *a, standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0, unsigned int thread_result_0){
 	
 	#pragma HLS INTERFACE ap_bus port=a depth=PATHS
 	#pragma HLS RESOURCE variable=a core=AXI4M
@@ -57,12 +57,17 @@ void vivado_activity_thread(volatile FP_t *a, standard_underlying_attributes *ke
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_u_a_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_o_a_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=seed_0 metadata="-bus_bundle CORE_IO"
-	#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_0 metadata="-bus_bundle CORE_IO"
-	#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata="-bus_bundle CORE_IO"
+
+    #pragma HLS INTERFACE ap_none register port=thread_result_0
+    #pragma HLS RESOURCE core=AXI4LiteS variable=thread_result_0 metadata="-bus_bundle CORE_IO"
+	//#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_0 metadata="-bus_bundle CORE_IO"
+
+    #pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata="-bus_bundle CORE_IO"
 
 	//Temporary results array that will be transfered back to the PS via the AXI master
-	FP_t thread_result_buff[PATHS];
-
+	//FP_t thread_result_buff[PATHS];
+    int thread_result_buff[PATHS];
+        
 	//**Initialising Kernel Variables*
 	unsigned int p,pp;
 	underlying_variables u_v_0;
@@ -79,6 +84,10 @@ void vivado_activity_thread(volatile FP_t *a, standard_underlying_attributes *ke
 	o_a_0.time_period = kernel_o_a_0->time_period;
 	o_a_0.call = kernel_o_a_0->call;
 	o_a_0.strike_price = kernel_o_a_0->strike_price;
+
+    //------DEBUGGING--------
+        FP_t junk_data;
+    //-----------------------
 
 	//**Thread Calculation Loop**
 	FP_t result_0 = 0;
@@ -105,11 +114,13 @@ void vivado_activity_thread(volatile FP_t *a, standard_underlying_attributes *ke
 		option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
 
 		//**Returning Result**
-		thread_result_buff[p] = o_v_0.value;
+        //junk_data = 1.0*p;
+        //thread_result_buff[p] = *(int*)&junk_data;
+		thread_result_buff[p] = *(int*)&o_v_0.value;
 		}
 
 	//copy the stuff into the PS DDR via the AXI Master
-	memcpy((FP_t *)(a + thread_result_0/4), thread_result_buff, PATHS*sizeof(FP_t));
+	memcpy((int *)(a + thread_result_0/4), thread_result_buff, PATHS*sizeof(FP_t));
 	
 	}
 

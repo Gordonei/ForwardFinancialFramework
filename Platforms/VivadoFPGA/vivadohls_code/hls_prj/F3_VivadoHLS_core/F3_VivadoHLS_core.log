@@ -51,50 +51,50 @@ typedef uint32 uint32_t;
 srcs/gauss.h:60:16: note: previous definition is here
 typedef uint32 uint32_t;
                ^
-srcs/vivado_core.c:164:3: warning: '/*' within block comment [-Wcomment]
+srcs/vivado_core.c:175:3: warning: '/*' within block comment [-Wcomment]
         //**Starting Timers**
          ^
-srcs/vivado_core.c:167:3: warning: '/*' within block comment [-Wcomment]
+srcs/vivado_core.c:178:3: warning: '/*' within block comment [-Wcomment]
         //**Unpacking Command Line Variables**
          ^
-srcs/vivado_core.c:169:3: warning: '/*' within block comment [-Wcomment]
+srcs/vivado_core.c:180:3: warning: '/*' within block comment [-Wcomment]
         //***Solver Metadata***
          ^
-srcs/vivado_core.c:177:3: warning: '/*' within block comment [-Wcomment]
+srcs/vivado_core.c:188:3: warning: '/*' within block comment [-Wcomment]
         //***Underlying Attributes***
          ^
-srcs/vivado_core.c:181:3: warning: '/*' within block comment [-Wcomment]
+srcs/vivado_core.c:192:3: warning: '/*' within block comment [-Wcomment]
         //***Derivative Attributes***
          ^
-srcs/vivado_core.c:186:3: warning: '/*' within block comment [-Wcomment]
+srcs/vivado_core.c:197:3: warning: '/*' within block comment [-Wcomment]
         //**Calculating Discount Factor**
          ^
-srcs/vivado_core.c:189:3: warning: '/*' within block comment [-Wcomment]
+srcs/vivado_core.c:200:3: warning: '/*' within block comment [-Wcomment]
         //**Creating Thread Variables**
          ^
-srcs/vivado_core.c:201:3: warning: '/*' within block comment [-Wcomment]
+srcs/vivado_core.c:212:3: warning: '/*' within block comment [-Wcomment]
         //**Packing up data and passing to threads**
          ^
-srcs/vivado_core.c:213:3: warning: '/*' within block comment [-Wcomment]
+srcs/vivado_core.c:224:3: warning: '/*' within block comment [-Wcomment]
         //**Waiting for threads to join**
          ^
-srcs/vivado_core.c:223:3: warning: '/*' within block comment [-Wcomment]
+srcs/vivado_core.c:234:3: warning: '/*' within block comment [-Wcomment]
         //**Calculating Final Option Value and Return**
          ^
-srcs/vivado_core.c:234:3: warning: '/*' within block comment [-Wcomment]
+srcs/vivado_core.c:245:3: warning: '/*' within block comment [-Wcomment]
         //**Performance Monitoring Calculation and Return**
          ^
-srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wreturn-type]
+srcs/vivado_core.c:170:2: warning: control reaches end of non-void function [-Wreturn-type]
         }
         ^
 13 warnings generated.
 @I [HLS-10] Validating synthesis directives ...
 @I [HLS-10] Starting code transformations ...
 @I [HLS-10] Checking synthesizability ...
-@I [XFORM-602] Inlining function 'underlying_underlying_path' into 'vivado_activity_thread' (srcs/vivado_core.c:99) automatically.
-@I [XFORM-602] Inlining function 'option_derivative_payoff' into 'vivado_activity_thread' (srcs/vivado_core.c:105) automatically.
-@I [XFORM-401] Performing if-conversion on hyperblock from (srcs/option.c:25:37) to (srcs/vivado_core.c:87:31) in function 'vivado_activity_thread'... converting 4 basic blocks.
-@I [HLS-111] Elapsed time: 9.61 seconds; current memory usage: 295 MB.
+@I [XFORM-602] Inlining function 'underlying_underlying_path' into 'vivado_activity_thread' (srcs/vivado_core.c:108) automatically.
+@I [XFORM-602] Inlining function 'option_derivative_payoff' into 'vivado_activity_thread' (srcs/vivado_core.c:114) automatically.
+@I [XFORM-401] Performing if-conversion on hyperblock from (srcs/option.c:25:37) to (srcs/vivado_core.c:96:31) in function 'vivado_activity_thread'... converting 4 basic blocks.
+@I [HLS-111] Elapsed time: 7.92 seconds; current memory usage: 295 MB.
 @I [HLS-10] Starting hardware synthesis ...
 @I [HLS-10] Synthesizing 'vivado_activity_thread' ...
 @I [HLS-10] ----------------------------------------------------------------
@@ -104,7 +104,7 @@ srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wr
 @I [SCHED-61] Pipelining loop 'Loop 2'.
 @I [SCHED-61] Pipelining result: Target II: 1, Final II: 1, Depth: 3.
 @I [SCHED-11] Finished scheduling.
-@I [HLS-111] Elapsed time: 0.1 seconds; current memory usage: 296 MB.
+@I [HLS-111] Elapsed time: 0.09 seconds; current memory usage: 296 MB.
 @I [HLS-10] ----------------------------------------------------------------
 @I [HLS-10] -- Exploring micro-architecture for module 'vivado_activity_thread' 
 @I [HLS-10] ----------------------------------------------------------------
@@ -113,7 +113,7 @@ srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wr
 @I [BIND-101] Exploring resource sharing.
 @I [BIND-101] Binding ...
 @I [BIND-100] Finished micro-architecture generation.
-@I [HLS-111] Elapsed time: 0.04 seconds; current memory usage: 296 MB.
+@I [HLS-111] Elapsed time: 0.05 seconds; current memory usage: 297 MB.
 @I [HLS-10] ----------------------------------------------------------------
 @I [HLS-10] -- Generating RTL for module 'vivado_activity_thread' 
 @I [HLS-10] ----------------------------------------------------------------
@@ -142,7 +142,7 @@ srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wr
 @I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/seed_0_s2' to 'ap_none'.
 @I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/seed_0_s3' to 'ap_none'.
 @I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/seed_0_offset' to 'ap_none'.
-@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/thread_result_0' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'vivado_activity_thread/thread_result_0' to 'ap_none' (register).
 @I [RTGEN-500] Setting interface mode on function 'vivado_activity_thread' to 'ap_ctrl_hs'.
 @W [RTGEN-101] Port 'vivado_activity_thread/kernel_u_a_0_volatility' has no fanin or fanout and is left dangling.
                Please use C simulation to confirm this function argument can be read from or written to.
@@ -191,7 +191,7 @@ srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wr
 @I [RTGEN-100] Generating core module 'vivado_activity_thread_fpext_32ns_64_3': 1 instance(s).
 @I [RTGEN-100] Generating core module 'vivado_activity_thread_fptrunc_64ns_32_3': 1 instance(s).
 @I [RTGEN-100] Finished creating RTL model for 'vivado_activity_thread'.
-@I [HLS-111] Elapsed time: 0.08 seconds; current memory usage: 297 MB.
+@I [HLS-111] Elapsed time: 0.07 seconds; current memory usage: 297 MB.
 @I [RTMG-278] Implementing memory 'vivado_activity_thread_thread_result_buff_ram' using block RAMs.
 @I [HLS-10] Finished generating all RTL models.
 @I [WSYSC-301] Generating RTL SystemC for 'vivado_activity_thread'.
@@ -199,5 +199,5 @@ srcs/vivado_core.c:159:2: warning: control reaches end of non-void function [-Wr
 @I [WVLOG-307] Generating RTL Verilog for 'vivado_activity_thread'.
 @I [IMPL-8] Exporting RTL as an IP in IP-XACT.
 @I [IMPL-8] Starting RTL evaluation using Vivado ...
-@I [HLS-112] Total elapsed time: 889.670 seconds; peak memory usage: 297 MB.
-@I [LIC-101] Checked in feature [HLS]
+@I [HLS-112] Total elapsed time: 676.814 seconds; peak memory usage: 297 MB.
+@I [LIC-101] Checked in feature [VIVADO_HLS]

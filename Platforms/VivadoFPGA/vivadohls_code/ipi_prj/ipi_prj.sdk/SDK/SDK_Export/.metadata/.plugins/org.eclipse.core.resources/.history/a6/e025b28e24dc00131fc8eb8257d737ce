@@ -1,0 +1,105 @@
+/*
+ * Copyright (c) 2009-2012 Xilinx, Inc.  All rights reserved.
+ *
+ * Xilinx, Inc.
+ * XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS" AS A
+ * COURTESY TO YOU.  BY PROVIDING THIS DESIGN, CODE, OR INFORMATION AS
+ * ONE POSSIBLE   IMPLEMENTATION OF THIS FEATURE, APPLICATION OR
+ * STANDARD, XILINX IS MAKING NO REPRESENTATION THAT THIS IMPLEMENTATION
+ * IS FREE FROM ANY CLAIMS OF INFRINGEMENT, AND YOU ARE RESPONSIBLE
+ * FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE FOR YOUR IMPLEMENTATION.
+ * XILINX EXPRESSLY DISCLAIMS ANY WARRANTY WHATSOEVER WITH RESPECT TO
+ * THE ADEQUACY OF THE IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO
+ * ANY WARRANTIES OR REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE
+ * FROM CLAIMS OF INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ */
+
+/*
+ * helloworld.c: simple test application
+ *
+ * This application configures UART 16550 to baud rate 9600.
+ * PS7 UART (Zynq) is not initialized by this application, since
+ * bootrom/bsp configures it to baud rate 115200
+ *
+ * ------------------------------------------------
+ * | UART TYPE   BAUD RATE                        |
+ * ------------------------------------------------
+ *   uartns550   9600
+ *   uartlite    Configurable only in HW design
+ *   ps7_uart    115200 (configured by bootrom/bsp)
+ */
+#define VIVADO_CORE_ADDR 0x43C00000
+
+
+#include "vivado_core.h"
+#include "xvivado_activity_thread.h"
+#include <stdio.h>
+#include "platform.h"
+#include "gauss.h"
+
+void vivado_activity_thread_hw(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,unsigned int thread_result_addr);
+
+
+int main()
+{
+    init_platform();
+
+
+
+    return 0;
+}
+
+
+void vivado_activity_thread_hw(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,unsigned int thread_result_addr)
+{
+	//volatile unsigned long * vivado_core_vbase = vivado_core_userspace();
+	XVivado_activity_thread  device_info;
+	device_info.Core_io_BaseAddress = VIVADO_CORE_ADDR;
+	device_info.IsReady = 1;
+
+    //------------------------------------AXI Master Setup------------------------------------------
+    XVivado_activity_thread_SetThread_result_0(&device_info, thread_result_addr); //Okay the base address is now set for the thread result into the AXI master
+
+	//------------------------------------INPUT SECTION---------------------------------------------
+	//PASSING kernel_u_a_0 to the device
+	XVivado_activity_thread_SetKernel_u_a_0_rfir(&device_info, *(int*)&kernel_u_a_0->rfir);
+	XVivado_activity_thread_SetKernel_u_a_0_current_price(&device_info, *(int*)&kernel_u_a_0->current_price);
+	XVivado_activity_thread_SetKernel_u_a_0_volatility(&device_info, *(int*)&kernel_u_a_0->volatility);
+	XVivado_activity_thread_SetKernel_u_a_0_initial_volatility(&device_info, *(int*)&kernel_u_a_0->initial_volatility);
+	XVivado_activity_thread_SetKernel_u_a_0_volatility_volatility(&device_info, *(int*)&kernel_u_a_0->volatility_volatility);
+	XVivado_activity_thread_SetKernel_u_a_0_rho(&device_info, *(int*)&kernel_u_a_0->rho);
+	XVivado_activity_thread_SetKernel_u_a_0_kappa(&device_info, *(int*)&kernel_u_a_0->kappa);
+	XVivado_activity_thread_SetKernel_u_a_0_theta(&device_info, *(int*)&kernel_u_a_0->theta);
+	XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_0_0(&device_info, *(int*)&kernel_u_a_0->correlation_matrix_0_0);
+	XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_0_1(&device_info, *(int*)&kernel_u_a_0->correlation_matrix_0_1);
+	XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_1_0(&device_info, *(int*)&kernel_u_a_0->correlation_matrix_1_0);
+	XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_1_1(&device_info, *(int*)&kernel_u_a_0->correlation_matrix_1_1);
+
+	//PASSING kernel_o_a_0 to the device
+	XVivado_activity_thread_SetKernel_o_a_0_second_barrier(&device_info, *(int*)&kernel_o_a_0->second_barrier);
+	XVivado_activity_thread_SetKernel_o_a_0_barrier(&device_info, *(int*)&kernel_o_a_0->barrier);
+	XVivado_activity_thread_SetKernel_o_a_0_out(&device_info, *(int*)&kernel_o_a_0->out);
+	XVivado_activity_thread_SetKernel_o_a_0_down(&device_info, *(int*)&kernel_o_a_0->down);
+	XVivado_activity_thread_SetKernel_o_a_0_strike_price(&device_info, *(int*)&kernel_o_a_0->strike_price);
+	XVivado_activity_thread_SetKernel_o_a_0_time_period(&device_info, *(int*)&kernel_o_a_0->time_period);
+	XVivado_activity_thread_SetKernel_o_a_0_call(&device_info, *(int*)&kernel_o_a_0->call);
+	XVivado_activity_thread_SetKernel_o_a_0_points(&device_info, *(int*)&kernel_o_a_0->points);
+
+	//PASSING seed_0 to the device
+	XVivado_activity_thread_SetSeed_0_s1(&device_info, *(int*)&seed_0->s1);
+	XVivado_activity_thread_SetSeed_0_s2(&device_info, *(int*)&seed_0->s2);
+	XVivado_activity_thread_SetSeed_0_s3(&device_info, *(int*)&seed_0->s3);
+	XVivado_activity_thread_SetSeed_0_offset(&device_info, *(int*)&seed_0->offset);
+
+	XVivado_activity_thread_Start(&device_info); //Kick the device into starting
+	while(XVivado_activity_thread_IsDone(&device_info) != 1) { } //Waiting for the operation to complete
+
+	//u32 temp_thread_result_0 = XVivado_activity_thread_GetThread_result_0(&device_info);
+	//u32 temp_thread_result_sqrd_0 = XVivado_activity_thread_GetThread_result_sqrd_0(&device_info);
+
+	//Converting the results to float and outputting
+	//*thread_result_0 = *(float*)&temp_thread_result_0;
+	//*thread_result_sqrd_0 = *(float*)&temp_thread_result_sqrd_0;
+}

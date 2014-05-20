@@ -7,20 +7,20 @@ Q
 Feature available: %s
 81*common2"
 Implementation2default:defaultZ17-81
-š
+Œ
 +Loading parts and site information from %s
-36*device2V
-B/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/arch.xml2default:defaultZ21-36
-§
+36*device2H
+4/opt/Xilinx/2013.4/Vivado/2013.4/data/parts/arch.xml2default:defaultZ21-36
+™
 !Parsing RTL primitives file [%s]
-14*netlist2l
-X/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml2default:defaultZ29-14
-°
+14*netlist2^
+J/opt/Xilinx/2013.4/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml2default:defaultZ29-14
+¢
 *Finished parsing RTL primitives file [%s]
-11*netlist2l
-X/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml2default:defaultZ29-11
+11*netlist2^
+J/opt/Xilinx/2013.4/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml2default:defaultZ29-11
 w
 Exiting %s at %s...
 206*common2
 Vivado2default:default2,
-Tue May 13 14:33:47 20142default:defaultZ17-206
+Tue May 20 10:42:54 20142default:defaultZ17-206

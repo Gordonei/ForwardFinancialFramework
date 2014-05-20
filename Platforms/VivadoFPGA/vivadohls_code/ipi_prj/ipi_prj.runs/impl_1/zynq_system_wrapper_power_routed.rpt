@@ -1,8 +1,8 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date             : Tue May 13 14:57:03 2014
-| Host             : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
+| Date             : Tue May 20 10:48:46 2014
+| Host             : ganymede running 64-bit Ubuntu 12.04.3 LTS
 | Command          : report_power -file zynq_system_wrapper_power_routed.rpt -pb zynq_system_wrapper_power_summary_routed.pb
 | Design           : zynq_system_wrapper
 | Device           : xc7z045ffg900-2
@@ -31,7 +31,7 @@ Table of Contents
 
 +--------------------------+-------+
 | Total On-Chip Power (W)  | 1.619 |
-| Dynamic (W)              | 1.379 |
+| Dynamic (W)              | 1.380 |
 | Device Static (W)        | 0.239 |
 | Total Off-Chip Power (W) | 0.121 |
 | Effective TJA (C/W)      | 1.8   |
@@ -51,15 +51,15 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.013 |        2 |       --- |             --- |
-| Slice Logic              |     0.005 |    12300 |       --- |             --- |
-|   LUT as Logic           |     0.004 |     5169 |    218600 |            2.36 |
+| Slice Logic              |     0.005 |    12324 |       --- |             --- |
+|   LUT as Logic           |     0.004 |     5154 |    218600 |            2.35 |
 |   CARRY4                 |    <0.001 |      396 |     54650 |            0.72 |
-|   Register               |    <0.001 |     4723 |    437200 |            1.08 |
-|   F7/F8 Muxes            |    <0.001 |      376 |    218600 |            0.17 |
+|   Register               |    <0.001 |     4753 |    437200 |            1.08 |
+|   F7/F8 Muxes            |    <0.001 |      391 |    218600 |            0.17 |
 |   LUT as Distributed RAM |    <0.001 |        8 |     70400 |            0.01 |
-|   LUT as Shift Register  |    <0.001 |      177 |     70400 |            0.25 |
+|   LUT as Shift Register  |    <0.001 |      178 |     70400 |            0.25 |
 |   Others                 |     0.000 |      635 |       --- |             --- |
-| Signals                  |     0.006 |    10446 |       --- |             --- |
+| Signals                  |     0.006 |    10440 |       --- |             --- |
 | Block RAM                |    <0.001 |        1 |       545 |            0.18 |
 | DSPs                     |     0.009 |       42 |       900 |            4.66 |
 | PS7                      |     1.346 |        1 |       --- |             --- |
@@ -74,7 +74,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.090 |       0.033 |      0.057 |
+| Vccint    |       1.000 |     0.091 |       0.034 |      0.057 |
 | Vccaux    |       1.800 |     0.054 |       0.000 |      0.054 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -151,10 +151,10 @@ Table of Contents
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                                                                                                             | Power (W) |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| zynq_system_wrapper                                                                                                                                                                              |     1.379 |
-|   zynq_system_i                                                                                                                                                                                  |     1.379 |
-|     axi_mem_intercon                                                                                                                                                                             |     0.001 |
-|       s00_couplers/auto_pc                                                                                                                                                                       |     0.001 |
+| zynq_system_wrapper                                                                                                                                                                              |     1.380 |
+|   zynq_system_i                                                                                                                                                                                  |     1.380 |
+|     axi_mem_intercon                                                                                                                                                                             |     0.002 |
+|       s00_couplers/auto_pc                                                                                                                                                                       |     0.002 |
 |         inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm/RAM_reg_0_31_0_4      |    <0.001 |
 |         inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gdm.dm/RAM_reg_0_31_0_4 |    <0.001 |
 |     processing_system7_0                                                                                                                                                                         |     1.347 |

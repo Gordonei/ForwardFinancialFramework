@@ -1,0 +1,65 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <fcntl.h>
+ //#include <sys/mman.h>
+ #include <time.h>
+ #include "xvivado_activity_thread.h" 
+ #define VIVADO_CORE_ADDR     0x43C00000
+ #define MAP_SIZE 4096UL
+ #define MAP_MASK (MAP_SIZE - 1)
+
+typedef struct{
+    FP_t rfir;
+    FP_t current_price;
+    FP_t volatility;
+    FP_t initial_volatility;
+    FP_t volatility_volatility;
+    FP_t rho;
+    FP_t kappa;
+    FP_t theta;
+    FP_t correlation_matrix_0_0;
+    FP_t correlation_matrix_0_1;
+    FP_t correlation_matrix_1_0;
+    FP_t correlation_matrix_1_1;    
+} standard_underlying_attributes;
+
+typedef struct{
+    FP_t second_barrier;
+    FP_t barrier;
+    FP_t out;
+    FP_t down;
+    FP_t strike_price;
+    FP_t time_period;
+    FP_t call;
+    FP_t points;
+} standard_derivative_attributes;
+
+/*
+ volatile unsigned long * vivado_core_userspace() //returns a pointer in userspace to the device
+ {
+
+     int memfd_vivado_core;
+     void *mapped_base_vivado_core;
+     void *mapped_dev_base;
+     off_t dev_base = VIVADO_CORE_ADDR;
+ 
+     memfd_vivado_core = open("/dev/mem", O_RDWR | O_SYNC); //to open this the program needs to be run as root
+         if (memfd_vivado_core == -1) {
+         //printf("Can't open /dev/mem.\n");
+         exit(0);
+     }
+   //printf("/dev/mem opened.\n");
+ 
+     mapped_base_vivado_core = mmap(0, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, memfd_vivado_core, dev_base & ~MAP_MASK);
+         if (mapped_base_vivado_core == (void *) -1) {
+         //printf("Can't map the memory to user space.\n");
+         exit(0);
+     }
+      //printf("Memory mapped at address %p.\n", mapped_base_vivado_core);
+ 
+     mapped_dev_base = mapped_base_vivado_core + (dev_base & MAP_MASK);
+     return mapped_dev_base;
+ }
+*/
+
+

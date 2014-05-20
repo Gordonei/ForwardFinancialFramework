@@ -1,27 +1,27 @@
 {
    guistr: "# # String gsaved with Nlview version 6.3.3  2013-08-16 bk=1.2871 VDI=33 GEI=35
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -y 250 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -y 270 -defaultsOSRD
-preplace inst vivado_activity_thread_0 -pg 1 -lvl 3 -y 130 -defaultsOSRD
-preplace inst rst_processing_system7_0_50M -pg 1 -lvl 1 -y 90 -defaultsOSRD
-preplace inst axi_mem_intercon -pg 1 -lvl 4 -y 380 -defaultsOSRD
-preplace inst processing_system7_0_axi_periph -pg 1 -lvl 2 -y 110 -defaultsOSRD
-preplace inst processing_system7_0 -pg 1 -lvl 1 -y 460 -defaultsOSRD
-preplace netloc processing_system7_0_DDR 1 1 7 480 290 NJ 290 NJ 250 NJ 250 NJ 250 NJ 250 NJ
-preplace netloc vivado_activity_thread_0_M_AXI_A 1 3 1 1140
-preplace netloc processing_system7_0_axi_periph_M00_AXI 1 2 1 N
-preplace netloc rst_processing_system7_0_50M_interconnect_aresetn 1 1 3 440 240 NJ 240 1090
-preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 450
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 30 330 440
-preplace netloc axi_mem_intercon_M00_AXI 1 0 5 40 280 NJ 280 NJ 280 NJ 240 1380
-preplace netloc rst_processing_system7_0_50M_peripheral_aresetn 1 1 3 460 230 750 420 1130
-preplace netloc processing_system7_0_FIXED_IO 1 1 7 N 400 NJ 400 NJ 260 NJ 270 NJ 270 NJ 270 NJ
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 4 20 320 470 410 740 410 1140
-levelinfo -pg 1 0 240 610 930 1260 1410 1460 1510 1560
+preplace port DDR -pg 1 -y 400 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -y 450 -defaultsOSRD
+preplace inst vivado_activity_thread_0 -pg 1 -lvl 3 -y 90 -defaultsOSRD
+preplace inst rst_processing_system7_0_50M -pg 1 -lvl 2 -y 250 -defaultsOSRD
+preplace inst axi_mem_intercon -pg 1 -lvl 4 -y 230 -defaultsOSRD
+preplace inst processing_system7_0_axi_periph -pg 1 -lvl 3 -y 310 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -y 420 -defaultsOSRD
+preplace netloc processing_system7_0_DDR 1 1 7 460 430 NJ 430 NJ 400 NJ 400 NJ 400 NJ 400 NJ
+preplace netloc vivado_activity_thread_0_M_AXI_A 1 3 1 1220
+preplace netloc processing_system7_0_axi_periph_M00_AXI 1 2 2 850 190 1180
+preplace netloc rst_processing_system7_0_50M_interconnect_aresetn 1 2 2 830 180 1200
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 2 450 350 NJ
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 1 1 440
+preplace netloc axi_mem_intercon_M00_AXI 1 0 5 20 160 NJ 160 NJ 10 NJ 110 1490
+preplace netloc rst_processing_system7_0_50M_peripheral_aresetn 1 2 2 810 170 1190
+preplace netloc processing_system7_0_FIXED_IO 1 1 7 420 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ 450 NJ
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 4 20 560 430 360 840 20 1210
+levelinfo -pg 1 0 220 640 1020 1360 1510 1560 1610 1660
 ",
 }
 {
-   da_axi4_cnt: "5",
-   da_ps7_cnt: "3",
+   da_axi4_cnt: "9",
+   da_ps7_cnt: "4",
 }

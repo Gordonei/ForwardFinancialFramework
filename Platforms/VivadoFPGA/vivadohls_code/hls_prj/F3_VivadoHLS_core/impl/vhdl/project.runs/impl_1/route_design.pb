@@ -53,41 +53,196 @@ Phase %s%s
 101*constraints2
 1.1 2default:default2-
 Build Netlist & NodeGraph2default:defaultZ18-101
-Ó
+Í
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[17]2default:default2)
-kernel_o_a_0_call[17]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[18]2default:default2)
-kernel_o_a_0_call[18]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[19]2default:default2)
-kernel_o_a_0_call[19]2default:defaultZ35-198
-Ï
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_o_a_0_call[1]2default:default2(
-kernel_o_a_0_call[1]2default:defaultZ35-198
+89*route2'
+thread_result_0[14]2default:default2'
+thread_result_0[14]2default:defaultZ35-198
 –
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2
 ap_rst2default:default2
 ap_rst2default:defaultZ35-198
-Ó
+Í
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[10]2default:default2)
-kernel_o_a_0_call[10]2default:defaultZ35-198
+89*route2'
+thread_result_0[16]2default:default2'
+thread_result_0[16]2default:defaultZ35-198
+Í
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2'
+thread_result_0[17]2default:default2'
+thread_result_0[17]2default:defaultZ35-198
+Í
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2'
+thread_result_0[28]2default:default2'
+thread_result_0[28]2default:defaultZ35-198
 Ï
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2(
-kernel_o_a_0_call[5]2default:default2(
-kernel_o_a_0_call[5]2default:defaultZ35-198
+kernel_u_a_0_rfir[1]2default:default2(
+kernel_u_a_0_rfir[1]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[20]2default:default2)
+kernel_u_a_0_rfir[20]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_u_a_0_rfir[2]2default:default2(
+kernel_u_a_0_rfir[2]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_u_a_0_rfir[3]2default:default2(
+kernel_u_a_0_rfir[3]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_u_a_0_rfir[0]2default:default2(
+kernel_u_a_0_rfir[0]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[10]2default:default2)
+kernel_u_a_0_rfir[10]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[11]2default:default2)
+kernel_u_a_0_rfir[11]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[13]2default:default2)
+kernel_u_a_0_rfir[13]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_u_a_0_rfir[8]2default:default2(
+kernel_u_a_0_rfir[8]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[22]2default:default2)
+kernel_u_a_0_rfir[22]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_u_a_0_rfir[4]2default:default2(
+kernel_u_a_0_rfir[4]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_u_a_0_rfir[5]2default:default2(
+kernel_u_a_0_rfir[5]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_u_a_0_rfir[6]2default:default2(
+kernel_u_a_0_rfir[6]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_u_a_0_rfir[7]2default:default2(
+kernel_u_a_0_rfir[7]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[12]2default:default2)
+kernel_u_a_0_rfir[12]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[16]2default:default2)
+kernel_u_a_0_rfir[16]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[18]2default:default2)
+kernel_u_a_0_rfir[18]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_u_a_0_rfir[9]2default:default2(
+kernel_u_a_0_rfir[9]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[17]2default:default2)
+kernel_u_a_0_rfir[17]2default:defaultZ35-198
+Ä
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route22
+kernel_u_a_0_current_price[10]2default:default22
+kernel_u_a_0_current_price[10]2default:defaultZ35-198
+Ä
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route22
+kernel_u_a_0_current_price[11]2default:default22
+kernel_u_a_0_current_price[11]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[14]2default:default2)
+kernel_u_a_0_rfir[14]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[15]2default:default2)
+kernel_u_a_0_rfir[15]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[19]2default:default2)
+kernel_u_a_0_rfir[19]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_u_a_0_rfir[21]2default:default2)
+kernel_u_a_0_rfir[21]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[14]2default:default2)
+kernel_o_a_0_call[14]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[17]2default:default2)
+kernel_o_a_0_call[17]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_o_a_0_call[9]2default:default2(
+kernel_o_a_0_call[9]2default:defaultZ35-198
+Ä
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route22
+kernel_u_a_0_current_price[17]2default:default22
+kernel_u_a_0_current_price[17]2default:defaultZ35-198
+Ä
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route22
+kernel_u_a_0_current_price[20]2default:default22
+kernel_u_a_0_current_price[20]2default:defaultZ35-198
+Ä
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route22
+kernel_u_a_0_current_price[14]2default:default22
+kernel_u_a_0_current_price[14]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_o_a_0_call[2]2default:default2(
+kernel_o_a_0_call[2]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_o_a_0_call[6]2default:default2(
+kernel_o_a_0_call[6]2default:defaultZ35-198
 Ï
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2(
@@ -98,26 +253,11 @@ Phase %s%s
 89*route2(
 kernel_o_a_0_call[8]2default:default2(
 kernel_o_a_0_call[8]2default:defaultZ35-198
-Ï
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_o_a_0_call[0]2default:default2(
-kernel_o_a_0_call[0]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[11]2default:default2)
-kernel_o_a_0_call[11]2default:defaultZ35-198
 Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2)
 kernel_o_a_0_call[13]2default:default2)
 kernel_o_a_0_call[13]2default:defaultZ35-198
-Ï
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_o_a_0_call[9]2default:default2(
-kernel_o_a_0_call[9]2default:defaultZ35-198
 Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2)
@@ -133,106 +273,86 @@ Phase %s%s
 89*route2)
 kernel_o_a_0_call[22]2default:default2)
 kernel_o_a_0_call[22]2default:defaultZ35-198
-Ï
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_o_a_0_call[2]2default:default2(
-kernel_o_a_0_call[2]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[24]2default:default2)
-kernel_o_a_0_call[24]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[28]2default:default2)
-kernel_o_a_0_call[28]2default:defaultZ35-198
 Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2)
 kernel_o_a_0_call[31]2default:default2)
 kernel_o_a_0_call[31]2default:defaultZ35-198
-‹
+Ä
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2 
-a_req_full_n2default:default2 
-a_req_full_n2default:defaultZ35-198
+89*route22
+kernel_u_a_0_current_price[12]2default:default22
+kernel_u_a_0_current_price[12]2default:defaultZ35-198
+Ä
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route22
+kernel_u_a_0_current_price[19]2default:default22
+kernel_u_a_0_current_price[19]2default:defaultZ35-198
+˛
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route21
+kernel_u_a_0_current_price[7]2default:default21
+kernel_u_a_0_current_price[7]2default:defaultZ35-198
+Ä
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route22
+kernel_u_a_0_current_price[15]2default:default22
+kernel_u_a_0_current_price[15]2default:defaultZ35-198
+Ä
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route22
+kernel_u_a_0_current_price[21]2default:default22
+kernel_u_a_0_current_price[21]2default:defaultZ35-198
+Ä
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route22
+kernel_u_a_0_current_price[31]2default:default22
+kernel_u_a_0_current_price[31]2default:defaultZ35-198
+˛
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route21
+kernel_u_a_0_current_price[3]2default:default21
+kernel_u_a_0_current_price[3]2default:defaultZ35-198
+˛
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route21
+kernel_u_a_0_current_price[1]2default:default21
+kernel_u_a_0_current_price[1]2default:defaultZ35-198
+Ä
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route22
+kernel_u_a_0_current_price[28]2default:default22
+kernel_u_a_0_current_price[28]2default:defaultZ35-198
+˛
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route21
+kernel_u_a_0_current_price[2]2default:default21
+kernel_u_a_0_current_price[2]2default:defaultZ35-198
+˛
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route21
+kernel_u_a_0_current_price[8]2default:default21
+kernel_u_a_0_current_price[8]2default:defaultZ35-198
+˛
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route21
+kernel_u_a_0_current_price[0]2default:default21
+kernel_u_a_0_current_price[0]2default:defaultZ35-198
 Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2)
-kernel_o_a_0_call[12]2default:default2)
-kernel_o_a_0_call[12]2default:defaultZ35-198
+kernel_u_a_0_rfir[23]2default:default2)
+kernel_u_a_0_rfir[23]2default:defaultZ35-198
 Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2)
-kernel_o_a_0_call[14]2default:default2)
-kernel_o_a_0_call[14]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[15]2default:default2)
-kernel_o_a_0_call[15]2default:defaultZ35-198
+kernel_u_a_0_rfir[30]2default:default2)
+kernel_u_a_0_rfir[30]2default:defaultZ35-198
 Ï
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2(
-kernel_o_a_0_call[6]2default:default2(
-kernel_o_a_0_call[6]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[25]2default:default2)
-kernel_o_a_0_call[25]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[27]2default:default2)
-kernel_o_a_0_call[27]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[29]2default:default2)
-kernel_o_a_0_call[29]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[30]2default:default2)
-kernel_o_a_0_call[30]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_u_a_0_rfir[31]2default:default2)
-kernel_u_a_0_rfir[31]2default:defaultZ35-198
-Ë
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2&
-thread_result_0[2]2default:default2&
-thread_result_0[2]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[29]2default:default2'
-thread_result_0[29]2default:defaultZ35-198
-Ë
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2&
-thread_result_0[5]2default:default2&
-thread_result_0[5]2default:defaultZ35-198
-‘
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2
-ap_start2default:default2
-ap_start2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[16]2default:default2)
-kernel_o_a_0_call[16]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_o_a_0_call[23]2default:default2)
-kernel_o_a_0_call[23]2default:defaultZ35-198
+kernel_o_a_0_call[1]2default:default2(
+kernel_o_a_0_call[1]2default:defaultZ35-198
 Ï
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2(
@@ -243,271 +363,166 @@ Phase %s%s
 89*route2(
 kernel_o_a_0_call[4]2default:default2(
 kernel_o_a_0_call[4]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_o_a_0_call[5]2default:default2(
+kernel_o_a_0_call[5]2default:defaultZ35-198
+Ï
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2(
+kernel_o_a_0_call[0]2default:default2(
+kernel_o_a_0_call[0]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[10]2default:default2)
+kernel_o_a_0_call[10]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[11]2default:default2)
+kernel_o_a_0_call[11]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[15]2default:default2)
+kernel_o_a_0_call[15]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[12]2default:default2)
+kernel_o_a_0_call[12]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[18]2default:default2)
+kernel_o_a_0_call[18]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[19]2default:default2)
+kernel_o_a_0_call[19]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[23]2default:default2)
+kernel_o_a_0_call[23]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[16]2default:default2)
+kernel_o_a_0_call[16]2default:defaultZ35-198
 Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2)
 kernel_o_a_0_call[26]2default:default2)
 kernel_o_a_0_call[26]2default:defaultZ35-198
-Í
+Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[28]2default:default2'
-thread_result_0[28]2default:defaultZ35-198
-Ë
+89*route2)
+kernel_o_a_0_call[27]2default:default2)
+kernel_o_a_0_call[27]2default:defaultZ35-198
+Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2&
-thread_result_0[8]2default:default2&
-thread_result_0[8]2default:defaultZ35-198
-Ë
+89*route2)
+kernel_o_a_0_call[29]2default:default2)
+kernel_o_a_0_call[29]2default:defaultZ35-198
+Ä
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2&
-thread_result_0[9]2default:default2&
-thread_result_0[9]2default:defaultZ35-198
-Í
+89*route22
+kernel_u_a_0_current_price[18]2default:default22
+kernel_u_a_0_current_price[18]2default:defaultZ35-198
+Ä
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[11]2default:default2'
-thread_result_0[11]2default:defaultZ35-198
-¸
+89*route22
+kernel_u_a_0_current_price[23]2default:default22
+kernel_u_a_0_current_price[23]2default:defaultZ35-198
+Ä
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route20
-kernel_o_a_0_time_period[23]2default:default20
-kernel_o_a_0_time_period[23]2default:defaultZ35-198
-¸
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route20
-kernel_o_a_0_time_period[24]2default:default20
-kernel_o_a_0_time_period[24]2default:defaultZ35-198
-¸
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route20
-kernel_o_a_0_time_period[25]2default:default20
-kernel_o_a_0_time_period[25]2default:defaultZ35-198
-¸
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route20
-kernel_o_a_0_time_period[30]2default:default20
-kernel_o_a_0_time_period[30]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[12]2default:default2'
-thread_result_0[12]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[13]2default:default2'
-thread_result_0[13]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[14]2default:default2'
-thread_result_0[14]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[15]2default:default2'
-thread_result_0[15]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[17]2default:default2'
-thread_result_0[17]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[18]2default:default2'
-thread_result_0[18]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[20]2default:default2'
-thread_result_0[20]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[21]2default:default2'
-thread_result_0[21]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[16]2default:default2'
-thread_result_0[16]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[19]2default:default2'
-thread_result_0[19]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[22]2default:default2'
-thread_result_0[22]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[23]2default:default2'
-thread_result_0[23]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[24]2default:default2'
-thread_result_0[24]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[25]2default:default2'
-thread_result_0[25]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[27]2default:default2'
-thread_result_0[27]2default:defaultZ35-198
-¸
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route20
-kernel_o_a_0_time_period[26]2default:default20
-kernel_o_a_0_time_period[26]2default:defaultZ35-198
-¸
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route20
-kernel_o_a_0_time_period[27]2default:default20
-kernel_o_a_0_time_period[27]2default:defaultZ35-198
-¸
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route20
-kernel_o_a_0_time_period[28]2default:default20
-kernel_o_a_0_time_period[28]2default:defaultZ35-198
-¸
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route20
-kernel_o_a_0_time_period[29]2default:default20
-kernel_o_a_0_time_period[29]2default:defaultZ35-198
-Ë
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2&
-thread_result_0[3]2default:default2&
-thread_result_0[3]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[26]2default:default2'
-thread_result_0[26]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[30]2default:default2'
-thread_result_0[30]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[31]2default:default2'
-thread_result_0[31]2default:defaultZ35-198
-Ë
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2&
-thread_result_0[4]2default:default2&
-thread_result_0[4]2default:defaultZ35-198
-Ë
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2&
-thread_result_0[6]2default:default2&
-thread_result_0[6]2default:defaultZ35-198
-Ë
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2&
-thread_result_0[7]2default:default2&
-thread_result_0[7]2default:defaultZ35-198
-Í
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2'
-thread_result_0[10]2default:default2'
-thread_result_0[10]2default:defaultZ35-198
+89*route22
+kernel_u_a_0_current_price[27]2default:default22
+kernel_u_a_0_current_price[27]2default:defaultZ35-198
 ˛
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route21
-kernel_o_a_0_strike_price[31]2default:default21
-kernel_o_a_0_strike_price[31]2default:defaultZ35-198
+kernel_u_a_0_current_price[5]2default:default21
+kernel_u_a_0_current_price[5]2default:defaultZ35-198
+Ä
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route22
+kernel_u_a_0_current_price[22]2default:default22
+kernel_u_a_0_current_price[22]2default:defaultZ35-198
 ˛
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route21
-kernel_o_a_0_strike_price[23]2default:default21
-kernel_o_a_0_strike_price[23]2default:defaultZ35-198
+kernel_u_a_0_current_price[4]2default:default21
+kernel_u_a_0_current_price[4]2default:defaultZ35-198
 ˛
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route21
-kernel_o_a_0_strike_price[26]2default:default21
-kernel_o_a_0_strike_price[26]2default:defaultZ35-198
+kernel_u_a_0_current_price[6]2default:default21
+kernel_u_a_0_current_price[6]2default:defaultZ35-198
 ˛
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route21
-kernel_o_a_0_strike_price[28]2default:default21
-kernel_o_a_0_strike_price[28]2default:defaultZ35-198
-˛
+kernel_u_a_0_current_price[9]2default:default21
+kernel_u_a_0_current_price[9]2default:defaultZ35-198
+Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route21
-kernel_o_a_0_strike_price[29]2default:default21
-kernel_o_a_0_strike_price[29]2default:defaultZ35-198
+89*route2)
+kernel_o_a_0_call[24]2default:default2)
+kernel_o_a_0_call[24]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[25]2default:default2)
+kernel_o_a_0_call[25]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
+kernel_o_a_0_call[28]2default:default2)
+kernel_o_a_0_call[28]2default:defaultZ35-198
 ¸
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route20
-kernel_o_a_0_time_period[31]2default:default20
-kernel_o_a_0_time_period[31]2default:defaultZ35-198
-Ó
+kernel_o_a_0_strike_price[8]2default:default20
+kernel_o_a_0_strike_price[8]2default:defaultZ35-198
+¸
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_u_a_0_rfir[28]2default:default2)
-kernel_u_a_0_rfir[28]2default:defaultZ35-198
-Ï
+89*route20
+kernel_o_a_0_strike_price[1]2default:default20
+kernel_o_a_0_strike_price[1]2default:defaultZ35-198
+˛
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_u_a_0_rfir[0]2default:default2(
-kernel_u_a_0_rfir[0]2default:defaultZ35-198
-Ó
+89*route21
+kernel_o_a_0_strike_price[21]2default:default21
+kernel_o_a_0_strike_price[21]2default:defaultZ35-198
+˛
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_u_a_0_rfir[20]2default:default2)
-kernel_u_a_0_rfir[20]2default:defaultZ35-198
-Ó
+89*route21
+kernel_o_a_0_strike_price[12]2default:default21
+kernel_o_a_0_strike_price[12]2default:defaultZ35-198
+˛
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_u_a_0_rfir[21]2default:default2)
-kernel_u_a_0_rfir[21]2default:defaultZ35-198
-Ï
+89*route21
+kernel_o_a_0_strike_price[19]2default:default21
+kernel_o_a_0_strike_price[19]2default:defaultZ35-198
+˛
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_u_a_0_rfir[2]2default:default2(
-kernel_u_a_0_rfir[2]2default:defaultZ35-198
-Ï
+89*route21
+kernel_o_a_0_strike_price[16]2default:default21
+kernel_o_a_0_strike_price[16]2default:defaultZ35-198
+¸
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_u_a_0_rfir[3]2default:default2(
-kernel_u_a_0_rfir[3]2default:defaultZ35-198
-Ó
+89*route20
+kernel_o_a_0_strike_price[2]2default:default20
+kernel_o_a_0_strike_price[2]2default:defaultZ35-198
+Ä
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_u_a_0_rfir[11]2default:default2)
-kernel_u_a_0_rfir[11]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_u_a_0_rfir[14]2default:default2)
-kernel_u_a_0_rfir[14]2default:defaultZ35-198
-Ï
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_u_a_0_rfir[8]2default:default2(
-kernel_u_a_0_rfir[8]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_u_a_0_rfir[26]2default:default2)
-kernel_u_a_0_rfir[26]2default:defaultZ35-198
-Ó
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_u_a_0_rfir[24]2default:default2)
-kernel_u_a_0_rfir[24]2default:defaultZ35-198
+89*route22
+kernel_u_a_0_current_price[16]2default:default22
+kernel_u_a_0_current_price[16]2default:defaultZ35-198
 Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2)
@@ -516,64 +531,49 @@ Phase %s%s
 Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2)
+kernel_u_a_0_rfir[26]2default:default2)
+kernel_u_a_0_rfir[26]2default:defaultZ35-198
+Ó
+ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+89*route2)
 kernel_u_a_0_rfir[27]2default:default2)
 kernel_u_a_0_rfir[27]2default:defaultZ35-198
 Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2)
-kernel_u_a_0_rfir[29]2default:default2)
-kernel_u_a_0_rfir[29]2default:defaultZ35-198
-Ï
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_u_a_0_rfir[1]2default:default2(
-kernel_u_a_0_rfir[1]2default:defaultZ35-198
-Ï
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_u_a_0_rfir[6]2default:default2(
-kernel_u_a_0_rfir[6]2default:defaultZ35-198
-Ï
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_u_a_0_rfir[7]2default:default2(
-kernel_u_a_0_rfir[7]2default:defaultZ35-198
-Ï
-ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2(
-kernel_u_a_0_rfir[9]2default:default2(
-kernel_u_a_0_rfir[9]2default:defaultZ35-198
+kernel_u_a_0_rfir[28]2default:default2)
+kernel_u_a_0_rfir[28]2default:defaultZ35-198
 Ó
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
 89*route2)
-kernel_u_a_0_rfir[12]2default:default2)
-kernel_u_a_0_rfir[12]2default:defaultZ35-198
-Ó
+kernel_o_a_0_call[30]2default:default2)
+kernel_o_a_0_call[30]2default:defaultZ35-198
+˛
 ÄPort "%s" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "%s". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
-89*route2)
-kernel_u_a_0_rfir[15]2default:default2)
-kernel_u_a_0_rfir[15]2default:defaultZ35-198
+89*route21
+kernel_o_a_0_strike_price[11]2default:default21
+kernel_o_a_0_strike_price[11]2default:defaultZ35-198
 ‘
 ÅMessage '%s' appears more than %s times and has been disabled. User can change this message limit to see more message instances.
 14*common2 
 Route 35-1982default:default2
 1002default:defaultZ17-14
 F
-:Phase 1.1 Build Netlist & NodeGraph | Checksum: 1e6144863
+:Phase 1.1 Build Netlist & NodeGraph | Checksum: 158b11d07
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:17 ; elapsed = 00:00:55 . Memory (MB): peak = 1873.730 ; gain = 200.6482default:default
+]Time (s): cpu = 00:00:57 ; elapsed = 00:00:40 . Memory (MB): peak = 1864.223 ; gain = 201.6482default:default
 :
-.Phase 1 Build RT Design | Checksum: 13c9d5dbb
+.Phase 1 Build RT Design | Checksum: 109b8ee3c
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:17 ; elapsed = 00:00:55 . Memory (MB): peak = 1873.730 ; gain = 200.6482default:default
+]Time (s): cpu = 00:00:57 ; elapsed = 00:00:40 . Memory (MB): peak = 1864.223 ; gain = 201.6482default:default
 m
 
 Phase %s%s
@@ -587,13 +587,13 @@ Phase %s%s
 2.1 2default:default2 
 Create Timer2default:defaultZ18-101
 9
--Phase 2.1 Create Timer | Checksum: 13c9d5dbb
+-Phase 2.1 Create Timer | Checksum: 109b8ee3c
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:17 ; elapsed = 00:00:55 . Memory (MB): peak = 1873.734 ; gain = 200.6522default:default
+]Time (s): cpu = 00:00:57 ; elapsed = 00:00:41 . Memory (MB): peak = 1864.227 ; gain = 201.6522default:default
 i
 
 Phase %s%s
@@ -601,41 +601,41 @@ Phase %s%s
 2.2 2default:default2#
 Restore Routing2default:defaultZ18-101
 <
-0Phase 2.2 Restore Routing | Checksum: 13c9d5dbb
+0Phase 2.2 Restore Routing | Checksum: 109b8ee3c
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:18 ; elapsed = 00:00:56 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:00:58 ; elapsed = 00:00:41 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 m
 
 Phase %s%s
 101*constraints2
 2.3 2default:default2'
 Special Net Routing2default:defaultZ18-101
-@
-4Phase 2.3 Special Net Routing | Checksum: 16280f071
+?
+3Phase 2.3 Special Net Routing | Checksum: b491017f
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:18 ; elapsed = 00:00:56 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:00:58 ; elapsed = 00:00:41 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 q
 
 Phase %s%s
 101*constraints2
 2.4 2default:default2+
 Local Clock Net Routing2default:defaultZ18-101
-D
-8Phase 2.4 Local Clock Net Routing | Checksum: 16280f071
+C
+7Phase 2.4 Local Clock Net Routing | Checksum: b491017f
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:18 ; elapsed = 00:00:56 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:00:58 ; elapsed = 00:00:41 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 g
 
 Phase %s%s
@@ -654,34 +654,34 @@ Phase %s%s
 101*constraints2
 2.5.1.1 2default:default2"
 Hold Budgeting2default:defaultZ18-101
-?
-3Phase 2.5.1.1 Hold Budgeting | Checksum: 16280f071
+>
+2Phase 2.5.1.1 Hold Budgeting | Checksum: b491017f
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:24 ; elapsed = 00:00:58 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
-J
->Phase 2.5.1 Update timing with NCN CRPR | Checksum: 16280f071
+]Time (s): cpu = 00:01:03 ; elapsed = 00:00:43 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
+I
+=Phase 2.5.1 Update timing with NCN CRPR | Checksum: b491017f
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:24 ; elapsed = 00:00:58 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
-:
-.Phase 2.5 Update Timing | Checksum: 16280f071
+]Time (s): cpu = 00:01:03 ; elapsed = 00:00:43 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
+9
+-Phase 2.5 Update Timing | Checksum: b491017f
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:24 ; elapsed = 00:00:58 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:03 ; elapsed = 00:00:43 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 ~
 Estimated Timing Summary %s
 57*route2J
-6| WNS=1.75   | TNS=0      | WHS=-0.409 | THS=-106   |
+6| WNS=2.09   | TNS=0      | WHS=-0.383 | THS=-77.9  |
 2default:defaultZ35-57
 c
 
@@ -689,36 +689,36 @@ Phase %s%s
 101*constraints2
 2.6 2default:default2
 	Budgeting2default:defaultZ18-101
-6
-*Phase 2.6 Budgeting | Checksum: 16280f071
+5
+)Phase 2.6 Budgeting | Checksum: b491017f
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:26 ; elapsed = 00:00:59 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
-@
-4Phase 2 Router Initialization | Checksum: 16280f071
+]Time (s): cpu = 00:01:05 ; elapsed = 00:00:44 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
+?
+3Phase 2 Router Initialization | Checksum: b491017f
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:26 ; elapsed = 00:00:59 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:05 ; elapsed = 00:00:44 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 g
 
 Phase %s%s
 101*constraints2
 3 2default:default2#
 Initial Routing2default:defaultZ18-101
-9
--Phase 3 Initial Routing | Checksum: 5f64f84a
+:
+.Phase 3 Initial Routing | Checksum: 14decdd32
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:29 ; elapsed = 00:01:00 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:07 ; elapsed = 00:00:44 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 j
 
 Phase %s%s
@@ -737,32 +737,32 @@ Phase %s%s
 101*constraints2
 4.1.1 2default:default2#
 Remove Overlaps2default:defaultZ18-101
-=
-1Phase 4.1.1 Remove Overlaps | Checksum: a8b53c97
+>
+2Phase 4.1.1 Remove Overlaps | Checksum: 12c5e9a85
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:32 ; elapsed = 00:01:01 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:10 ; elapsed = 00:00:45 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 i
 
 Phase %s%s
 101*constraints2
 4.1.2 2default:default2!
 Update Timing2default:defaultZ18-101
-;
-/Phase 4.1.2 Update Timing | Checksum: a8b53c97
+<
+0Phase 4.1.2 Update Timing | Checksum: 12c5e9a85
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:33 ; elapsed = 00:01:02 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:11 ; elapsed = 00:00:46 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 ~
 Estimated Timing Summary %s
 57*route2J
-6| WNS=1.95   | TNS=0      | WHS=N/A    | THS=N/A    |
+6| WNS=2.32   | TNS=0      | WHS=N/A    | THS=N/A    |
 2default:defaultZ35-57
 p
 
@@ -771,29 +771,29 @@ Phase %s%s
 4.1.3 2default:default2(
 collectNewHoldAndFix2default:defaultZ18-101
 C
-7Phase 4.1.3 collectNewHoldAndFix | Checksum: 15e9fdf0f
+7Phase 4.1.3 collectNewHoldAndFix | Checksum: 139c5d806
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:33 ; elapsed = 00:01:02 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:11 ; elapsed = 00:00:46 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 ?
-3Phase 4.1 Global Iteration 0 | Checksum: 15e9fdf0f
+3Phase 4.1 Global Iteration 0 | Checksum: 139c5d806
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:34 ; elapsed = 00:01:02 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:11 ; elapsed = 00:00:46 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 =
-1Phase 4 Rip-up And Reroute | Checksum: 15e9fdf0f
+1Phase 4 Rip-up And Reroute | Checksum: 139c5d806
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:34 ; elapsed = 00:01:02 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:11 ; elapsed = 00:00:46 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 e
 
 Phase %s%s
@@ -807,26 +807,26 @@ Phase %s%s
 5.1 2default:default2!
 Update Timing2default:defaultZ18-101
 :
-.Phase 5.1 Update Timing | Checksum: 15e9fdf0f
+.Phase 5.1 Update Timing | Checksum: 139c5d806
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:35 ; elapsed = 00:01:02 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:12 ; elapsed = 00:00:46 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 ~
 Estimated Timing Summary %s
 57*route2J
-6| WNS=2.1    | TNS=0      | WHS=N/A    | THS=N/A    |
+6| WNS=2.41   | TNS=0      | WHS=N/A    | THS=N/A    |
 2default:defaultZ35-57
 8
-,Phase 5 Delay CleanUp | Checksum: 15e9fdf0f
+,Phase 5 Delay CleanUp | Checksum: 139c5d806
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:35 ; elapsed = 00:01:02 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:12 ; elapsed = 00:00:46 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 e
 
 Phase %s%s
@@ -846,34 +846,34 @@ Phase %s%s
 6.1.1 2default:default2!
 Update Timing2default:defaultZ18-101
 <
-0Phase 6.1.1 Update Timing | Checksum: 15e9fdf0f
+0Phase 6.1.1 Update Timing | Checksum: 139c5d806
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:37 ; elapsed = 00:01:03 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:14 ; elapsed = 00:00:47 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 ~
 Estimated Timing Summary %s
 57*route2J
-6| WNS=2.1    | TNS=0      | WHS=0.047  | THS=0      |
+6| WNS=2.41   | TNS=0      | WHS=0.042  | THS=0      |
 2default:defaultZ35-57
 ?
-3Phase 6.1 Full Hold Analysis | Checksum: 15e9fdf0f
+3Phase 6.1 Full Hold Analysis | Checksum: 139c5d806
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:37 ; elapsed = 00:01:03 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:14 ; elapsed = 00:00:47 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 8
-,Phase 6 Post Hold Fix | Checksum: 15e9fdf0f
+,Phase 6 Post Hold Fix | Checksum: 139c5d806
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:37 ; elapsed = 00:01:03 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:14 ; elapsed = 00:00:47 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 m
 
 Phase %s%s
@@ -881,27 +881,27 @@ Phase %s%s
 7 2default:default2)
 Verifying routed nets2default:defaultZ18-101
 @
-4Phase 7 Verifying routed nets | Checksum: 15e9fdf0f
+4Phase 7 Verifying routed nets | Checksum: 139c5d806
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:37 ; elapsed = 00:01:03 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:14 ; elapsed = 00:00:47 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 i
 
 Phase %s%s
 101*constraints2
 8 2default:default2%
 Depositing Routes2default:defaultZ18-101
-<
-0Phase 8 Depositing Routes | Checksum: 16b68c766
+;
+/Phase 8 Depositing Routes | Checksum: e7636e44
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:38 ; elapsed = 00:01:04 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:15 ; elapsed = 00:00:47 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 j
 
 Phase %s%s
@@ -911,35 +911,35 @@ Phase %s%s
 Å
 Post Routing Timing Summary %s
 20*route2J
-6| WNS=2.107  | TNS=0.000  | WHS=0.047  | THS=0.000  |
+6| WNS=2.415  | TNS=0.000  | WHS=0.042  | THS=0.000  |
 2default:defaultZ35-20
 =
 'The design met the timing requirement.
 61*routeZ35-61
-=
-1Phase 9 Post Router Timing | Checksum: 16b68c766
+<
+0Phase 9 Post Router Timing | Checksum: e7636e44
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:45 ; elapsed = 00:01:06 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:21 ; elapsed = 00:00:49 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 4
 Router Completed Successfully
 16*routeZ35-16
-4
-(Ending Route Task | Checksum: 16b68c766
+3
+'Ending Route Task | Checksum: e7636e44
 *common
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:45 ; elapsed = 00:01:06 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:21 ; elapsed = 00:00:49 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 à
 
 %s
 *constraints2q
-]Time (s): cpu = 00:01:45 ; elapsed = 00:01:06 . Memory (MB): peak = 1904.137 ; gain = 231.0552default:default
+]Time (s): cpu = 00:01:21 ; elapsed = 00:00:49 . Memory (MB): peak = 1893.629 ; gain = 231.0552default:default
 Q
 Releasing license: %s
 83*common2"
@@ -959,18 +959,18 @@ U
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2"
 route_design: 2default:default2
-00:01:472default:default2
-00:01:072default:default2
-1904.1372default:default2
-266.0512default:defaultZ17-268
+00:01:222default:default2
+00:00:502default:default2
+1893.6292default:default2
+270.0512default:defaultZ17-268
 G
 Running DRC with %s threads
 24*drc2
 82default:defaultZ23-27
-≥
+€
 #The results of DRC are in file %s.
-168*coretcl2Ú
-¨/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/vivado_activity_thread_drc_routed.rpt¨/home/ee/s/sf306/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/vivado_activity_thread_drc_routed.rpt2default:default8Z2-168
+168*coretcl2ö
+¿/home/sf306/phd_codebase/FPL2014/FFF/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/vivado_activity_thread_drc_routed.rpt¿/home/sf306/phd_codebase/FPL2014/FFF/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/hls_prj/F3_VivadoHLS_core/impl/vhdl/project.runs/impl_1/vivado_activity_thread_drc_routed.rpt2default:default8Z2-168
 B
 ,Running Vector-less Activity Propagation...
 51*powerZ33-51
@@ -982,9 +982,9 @@ Finished Running Vector-less Activity Propagation
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2"
 report_power: 2default:default2
-00:00:252default:default2
-00:00:112default:default2
-1904.1372default:default2
+00:00:202default:default2
+00:00:082default:default2
+1893.6292default:default2
 0.0002default:defaultZ17-268
 Ä
 UpdateTimingParams:%s.
@@ -1006,9 +1006,9 @@ A
 I%sTime (s): cpu = %s ; elapsed = %s . Memory (MB): peak = %s ; gain = %s
 268*common2)
 Write XDEF Complete: 2default:default2
-00:00:00.872default:default2
-00:00:00.882default:default2
-1904.1412default:default2
+00:00:00.722default:default2
+00:00:00.742default:default2
+1893.6332default:default2
 0.0002default:defaultZ17-268
 
 

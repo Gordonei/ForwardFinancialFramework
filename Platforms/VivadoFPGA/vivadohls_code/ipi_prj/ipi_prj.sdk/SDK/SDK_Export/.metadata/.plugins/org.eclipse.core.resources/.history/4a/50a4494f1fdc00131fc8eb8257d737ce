@@ -1,0 +1,117 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <fcntl.h>
+ //#include <sys/mman.h>
+ #include <time.h>
+ #include "xvivado_activity_thread.h" 
+ #include "gauss.h"
+ #define VIVADO_CORE_ADDR     0x43C00000
+ #define MAP_SIZE 4096UL
+ #define MAP_MASK (MAP_SIZE - 1)
+ #define FP_t float
+
+typedef struct{
+    FP_t rfir;
+    FP_t current_price;
+    FP_t volatility;
+    FP_t initial_volatility;
+    FP_t volatility_volatility;
+    FP_t rho;
+    FP_t kappa;
+    FP_t theta;
+    FP_t correlation_matrix_0_0;
+    FP_t correlation_matrix_0_1;
+    FP_t correlation_matrix_1_0;
+    FP_t correlation_matrix_1_1;    
+} standard_underlying_attributes;
+
+typedef struct{
+    FP_t second_barrier;
+    FP_t barrier;
+    FP_t out;
+    FP_t down;
+    FP_t strike_price;
+    FP_t time_period;
+    FP_t call;
+    FP_t points;
+} standard_derivative_attributes;
+
+/*
+ volatile unsigned long * vivado_core_userspace() //returns a pointer in userspace to the device
+ {
+
+     int memfd_vivado_core;
+     void *mapped_base_vivado_core;
+     void *mapped_dev_base;
+     off_t dev_base = VIVADO_CORE_ADDR;
+ 
+     memfd_vivado_core = open("/dev/mem", O_RDWR | O_SYNC); //to open this the program needs to be run as root
+         if (memfd_vivado_core == -1) {
+         //printf("Can't open /dev/mem.\n");
+         exit(0);
+     }
+   //printf("/dev/mem opened.\n");
+ 
+     mapped_base_vivado_core = mmap(0, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, memfd_vivado_core, dev_base & ~MAP_MASK);
+         if (mapped_base_vivado_core == (void *) -1) {
+         //printf("Can't map the memory to user space.\n");
+         exit(0);
+     }
+      //printf("Memory mapped at address %p.\n", mapped_base_vivado_core);
+ 
+     mapped_dev_base = mapped_base_vivado_core + (dev_base & MAP_MASK);
+     return mapped_dev_base;
+ }
+*/
+
+void vivado_activity_thread_hw(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,unsigned int thread_result_addr)
+{
+	//volatile unsigned long * vivado_core_vbase = vivado_core_userspace();
+	XVivado_activity_thread  device_info;
+	device_info.Core_io_BaseAddress = VIVADO_CORE_ADDR;
+	device_info.IsReady = 1;
+
+    //------------------------------------AXI Master Setup------------------------------------------
+    XVivado_activity_thread_SetThread_result_0(&device_info, thread_result_addr); //Okay the base address is now set for the thread result into the AXI master
+
+	//------------------------------------INPUT SECTION---------------------------------------------
+	//PASSING kernel_u_a_0 to the device
+	XVivado_activity_thread_SetKernel_u_a_0_rfir(&device_info, *(int*)&kernel_u_a_0->rfir);
+	XVivado_activity_thread_SetKernel_u_a_0_current_price(&device_info, *(int*)&kernel_u_a_0->current_price);
+	XVivado_activity_thread_SetKernel_u_a_0_volatility(&device_info, *(int*)&kernel_u_a_0->volatility);
+	XVivado_activity_thread_SetKernel_u_a_0_initial_volatility(&device_info, *(int*)&kernel_u_a_0->initial_volatility);
+	XVivado_activity_thread_SetKernel_u_a_0_volatility_volatility(&device_info, *(int*)&kernel_u_a_0->volatility_volatility);	
+	XVivado_activity_thread_SetKernel_u_a_0_rho(&device_info, *(int*)&kernel_u_a_0->rho);
+	XVivado_activity_thread_SetKernel_u_a_0_kappa(&device_info, *(int*)&kernel_u_a_0->kappa);
+	XVivado_activity_thread_SetKernel_u_a_0_theta(&device_info, *(int*)&kernel_u_a_0->theta);
+	XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_0_0(&device_info, *(int*)&kernel_u_a_0->correlation_matrix_0_0);
+	XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_0_1(&device_info, *(int*)&kernel_u_a_0->correlation_matrix_0_1);
+	XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_1_0(&device_info, *(int*)&kernel_u_a_0->correlation_matrix_1_0);
+	XVivado_activity_thread_SetKernel_u_a_0_correlation_matrix_1_1(&device_info, *(int*)&kernel_u_a_0->correlation_matrix_1_1);
+
+	//PASSING kernel_o_a_0 to the device
+	XVivado_activity_thread_SetKernel_o_a_0_second_barrier(&device_info, *(int*)&kernel_o_a_0->second_barrier);
+	XVivado_activity_thread_SetKernel_o_a_0_barrier(&device_info, *(int*)&kernel_o_a_0->barrier);	
+	XVivado_activity_thread_SetKernel_o_a_0_out(&device_info, *(int*)&kernel_o_a_0->out);
+	XVivado_activity_thread_SetKernel_o_a_0_down(&device_info, *(int*)&kernel_o_a_0->down);
+	XVivado_activity_thread_SetKernel_o_a_0_strike_price(&device_info, *(int*)&kernel_o_a_0->strike_price);
+	XVivado_activity_thread_SetKernel_o_a_0_time_period(&device_info, *(int*)&kernel_o_a_0->time_period);
+	XVivado_activity_thread_SetKernel_o_a_0_call(&device_info, *(int*)&kernel_o_a_0->call);
+	XVivado_activity_thread_SetKernel_o_a_0_points(&device_info, *(int*)&kernel_o_a_0->points);
+
+	//PASSING seed_0 to the device
+	XVivado_activity_thread_SetSeed_0_s1(&device_info, *(int*)&seed_0->s1);
+	XVivado_activity_thread_SetSeed_0_s2(&device_info, *(int*)&seed_0->s2);
+	XVivado_activity_thread_SetSeed_0_s3(&device_info, *(int*)&seed_0->s3);
+	XVivado_activity_thread_SetSeed_0_offset(&device_info, *(int*)&seed_0->offset);
+	
+	XVivado_activity_thread_Start(&device_info); //Kick the device into starting
+	while(XVivado_activity_thread_IsDone(&device_info) != 1) { } //Waiting for the operation to complete
+
+	//u32 temp_thread_result_0 = XVivado_activity_thread_GetThread_result_0(&device_info);
+	//u32 temp_thread_result_sqrd_0 = XVivado_activity_thread_GetThread_result_sqrd_0(&device_info);
+
+	//Converting the results to float and outputting
+	//*thread_result_0 = *(float*)&temp_thread_result_0;
+	//*thread_result_sqrd_0 = *(float*)&temp_thread_result_sqrd_0;
+}

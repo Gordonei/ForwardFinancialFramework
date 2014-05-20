@@ -1,4 +1,10 @@
 <AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <config>
+        <schedule model="vivado_activity_thread"/>
+    </config>
+    <ExportDesign askAgain="true" evaluate="true" rtl="vhdl" formatName="ip_catalog">
+        <Format formatName="ip_catalog" description="" vendor="imperial" library="F3" version="1.0" display_name="" taxonomy=""/>
+    </ExportDesign>
     <name>
         <value string="F3_VivadoHLS_core"/>
     </name>
@@ -15,11 +21,5 @@
     <clockList>
         <clock name="default" default="false" period="10"/>
     </clockList>
-    <config>
-        <schedule model="vivado_activity_thread"/>
-    </config>
-    <ExportDesign askAgain="true" evaluate="true" rtl="vhdl" formatName="ip_catalog">
-        <Format formatName="ip_catalog" description="" vendor="imperial" library="F3" version="1.0" display_name="" taxonomy=""/>
-    </ExportDesign>
 </AutoPilot:solution>
 

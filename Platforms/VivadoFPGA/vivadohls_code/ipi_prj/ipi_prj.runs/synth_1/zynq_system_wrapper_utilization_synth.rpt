@@ -1,8 +1,8 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date         : Tue May 13 14:53:55 2014
-| Host         : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
+| Date         : Tue May 20 10:46:16 2014
+| Host         : ganymede running 64-bit Ubuntu 12.04.3 LTS
 | Command      : report_utilization -file zynq_system_wrapper_utilization_synth.rpt -pb zynq_system_wrapper_utilization_synth.pb
 | Design       : zynq_system_wrapper
 | Device       : xc7z045
@@ -29,16 +29,16 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Loced | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 6114 |     0 |    218600 |  2.79 |
-|   LUT as Logic             | 5899 |     0 |    218600 |  2.69 |
+| Slice LUTs*                | 6094 |     0 |    218600 |  2.78 |
+|   LUT as Logic             | 5879 |     0 |    218600 |  2.68 |
 |   LUT as Memory            |  215 |     0 |     70400 |  0.30 |
 |     LUT as Distributed RAM |   10 |     0 |           |       |
 |     LUT as Shift Register  |  205 |     0 |           |       |
-| Slice Registers            | 5612 |     0 |    437200 |  1.28 |
-|   Register as Flip Flop    | 5589 |     0 |    437200 |  1.27 |
+| Slice Registers            | 5642 |     0 |    437200 |  1.29 |
+|   Register as Flip Flop    | 5619 |     0 |    437200 |  1.28 |
 |   Register as Latch        |   23 |     0 |    437200 | <0.01 |
-| F7 Muxes                   |  355 |     0 |    109300 |  0.32 |
-| F8 Muxes                   |   25 |     0 |     54650 |  0.04 |
+| F7 Muxes                   |  365 |     0 |    109300 |  0.33 |
+| F8 Muxes                   |   30 |     0 |     54650 |  0.05 |
 +----------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis for a more realistic count.
 
@@ -136,15 +136,15 @@ Table of Contents
 +----------+------+
 | Ref Name | Used |
 +----------+------+
-| FDRE     | 5412 |
-| LUT6     | 2322 |
-| LUT3     | 2131 |
-| LUT5     |  893 |
-| LUT2     |  538 |
-| LUT4     |  517 |
+| FDRE     | 5442 |
+| LUT6     | 2312 |
+| LUT3     | 2124 |
+| LUT5     |  887 |
+| LUT2     |  541 |
+| LUT4     |  515 |
 | CARRY4   |  411 |
 | LUT1     |  380 |
-| MUXF7    |  355 |
+| MUXF7    |  365 |
 | SRLC32E  |  142 |
 | BIBUF    |  130 |
 | FDSE     |   78 |
@@ -152,7 +152,7 @@ Table of Contents
 | FDCE     |   66 |
 | DSP48E1  |   42 |
 | FDPE     |   33 |
-| MUXF8    |   25 |
+| MUXF8    |   30 |
 | LDCE     |   23 |
 | RAMD32   |   14 |
 | RAMS32   |    4 |
