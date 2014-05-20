@@ -172,13 +172,9 @@ static const double wtab[128] = {
   1.64596952856e-07, 1.68292495203e-07, 1.72541128694e-07, 1.77574279496e-07,
   1.83813550477e-07, 1.92166040885e-07, 2.05295471952e-07, 2.22600839893e-07
 };
+
 FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state);
 #endif
-
-#ifdef VIVADOHLS
-typedef uint32 uint32_t;
-#endif
-
 
 //Beginning of modified code that uses the Combined TAUSWORTHE RNG
 typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;uint32_t offset;} rng_state_t;
