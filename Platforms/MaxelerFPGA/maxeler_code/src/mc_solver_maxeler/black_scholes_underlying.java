@@ -17,8 +17,8 @@ public class black_scholes_underlying extends underlying {
 	//private final int seed,seed2;
 
 
-	public black_scholes_underlying(MC_Solver_Maxeler_Base_Kernel kernel,CombinedTauswortheRNG u,CombinedTauswortheRNG v,DFEVar pp,DFEVar p,black_scholes_underlying_parameters bsp){
-		super(kernel,pp,p,bsp);
+	public black_scholes_underlying(MC_Solver_Maxeler_Base_Kernel kernel,CombinedTauswortheRNG u,CombinedTauswortheRNG v,DFEVar pp,DFEVar p,DFEVar d,black_scholes_underlying_parameters bsp){
+		super(kernel,pp,p,d,bsp);
 
 		this.parameters = bsp;
 		this.gauss = new GaussianBoxMuller(this.kernel,this.kernel.constant.var(this.kernel.dfeFloat(8, 24),0.0),u,v,false);
@@ -52,14 +52,6 @@ public class black_scholes_underlying extends underlying {
 		
 		this.new_gamma = this.gamma + (this.parameters.rfir-(this.parameters.volatility*this.parameters.volatility)/2)*delta_time + this.parameters.volatility*this.x*(KernelMath.sqrt(delta_time));
 		this.new_time = this.time + delta_time;
-	}
-
-	@Override
-	public void connect_path(){
-		super.connect_path();
-		//this.mt_carried <== this.mt.createTwister(this.parameters.seed); //this.parameters.seed
-		//this.mt2_carried <== this.mt2.createTwister(this.parameters.seed); //this.parameters.seed2
-
 	}
 
 }

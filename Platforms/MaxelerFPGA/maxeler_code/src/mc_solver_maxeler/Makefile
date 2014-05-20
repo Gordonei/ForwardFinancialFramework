@@ -8,7 +8,6 @@ KERNELCODE=$(APP)_Kernel.java
 
 CFLAGS+=-DFP_t=float
 CFLAGS+=-DMULTICORE_CPU
-CFLAGS+=-D_XOPEN_SOURCE=600
 
 #include $(MAXCOMPILERDIR)/lib/Makefile.include
 ######################################################################
@@ -148,7 +147,7 @@ clean-maxfiles:
 ################## Host Code for hardware .max files ################
 
 gauss.o:
-	$(CC) gauss.c -DMULTICORE_CPU -DFP_t=float -lm
+	$(CC) gauss.c -DMULTICORE_CPU -DFP_t=float -lm -c
 
 $(APP)FPGA.o:
 	$(MAXFILECOMPILE) "$(BUILD_RESULTS)/$(HWMAXFILE)" "$@" "$(APP)"

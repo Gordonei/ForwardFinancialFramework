@@ -10,9 +10,9 @@ public class option extends KernelLib{
 
 	protected option_parameters parameters;
 
-	protected DFEVar delta_time;
+	/*protected DFEVar delta_time;
 	protected DFEVar carried_delta_time;
-	protected DFEVar new_delta_time;
+	protected DFEVar new_delta_time;*/
 
 	protected DFEVar value;
 
@@ -25,12 +25,14 @@ public class option extends KernelLib{
 	Kernel kernel;
 	DFEVar path;
 	DFEVar point;
+	DFEVar delay;
 
-	public option(MC_Solver_Maxeler_Base_Kernel kernel,DFEVar pp,DFEVar p,DFEVar enable,option_parameters op) {
+	public option(MC_Solver_Maxeler_Base_Kernel kernel,DFEVar pp,DFEVar p,DFEVar d,DFEVar enable,option_parameters op) {
 		super(kernel);
 		this.kernel = kernel;
 		this.point = pp;
 		this.path = p;
+		this.delay = d;
 		this.enable = enable;
 
 		//this.temp_price = temp_price;
@@ -39,19 +41,18 @@ public class option extends KernelLib{
 	}
 
 	public void path_init(){
-		carried_delta_time = ((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType.newInstance(((MC_Solver_Maxeler_Base_Kernel)this.kernel));
+		//carried_delta_time = ((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType.newInstance(((MC_Solver_Maxeler_Base_Kernel)this.kernel));
 
-		this.delta_time = this.point.eq(0) ? ((this.parameters.time_period)).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType) : this.carried_delta_time;
+		//this.delta_time = this.point.eq(0) ? ((this.parameters.time_period)).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType) : this.carried_delta_time;
 		}
 
 	public void path(DFEVar temp_price,DFEVar time){
-		this.new_delta_time = this.enable.eq(true)?this.parameters.time_period:0.0;
-		this.new_enable = this.enable;
+		//this.new_delta_time = this.parameters.time_period;
 		//this.value = (this.point.eq(this.kernel.path_points-1)) ? this.payoff(temp_price) : this.kernel.constant.var(this.kernel.doubleType,0.0);
 	}
 
-	public void connect_path(){
-		this.carried_delta_time <== ((MC_Solver_Maxeler_Base_Kernel)this.kernel).stream.offset(this.new_delta_time,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+	public void connect_path(boolean pipeline){
+		//this.carried_delta_time <== ((MC_Solver_Maxeler_Base_Kernel)this.kernel).stream.offset(this.new_delta_time,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
 	}
 
 	public DFEVar payoff(DFEVar end_price){

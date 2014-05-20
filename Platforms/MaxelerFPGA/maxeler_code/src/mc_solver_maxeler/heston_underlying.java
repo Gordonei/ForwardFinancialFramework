@@ -23,8 +23,8 @@ public class heston_underlying extends underlying {
 
 	protected DFEVar theta_v_approx,moment_1,moment_2,moment_difference;
 
-	public heston_underlying(MC_Solver_Maxeler_Base_Kernel k,CombinedTauswortheRNG u,CombinedTauswortheRNG v,DFEVar pp,DFEVar p,heston_underlying_parameters hup){
-		super(k,pp,p,hup);
+	public heston_underlying(MC_Solver_Maxeler_Base_Kernel k,CombinedTauswortheRNG u,CombinedTauswortheRNG v,DFEVar pp,DFEVar p,DFEVar d,heston_underlying_parameters hup){
+		super(k,pp,p,d,hup);
 
 		this.parameters = hup;
 		this.gauss = new GaussianBoxMuller(this.kernel,this.parameters.rho,u,v,true);
@@ -86,13 +86,17 @@ public class heston_underlying extends underlying {
 		this.new_time = this.time + delta_time;
 	}
 
-	@Override
-	public void connect_path(){
-		super.connect_path();
+	public void connect_path(boolean pipeline,DFEVar path_gamma,DFEVar path_time,DFEVar path_volatility){
+		super.connect_path(pipeline,path_gamma,path_time);
 		//this.mt_carried <== this.mt.createTwister(this.parameters.seed); //this.parameters.seed
 		//this.mt2_carried <== this.mt2.createTwister(this.parameters.seed2); //this.parameters.seed2
 
-		this.carried_volatility <== this.stream.offset(this.new_volatility,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+		if(pipeline){
+			this.carried_volatility <== path_volatility;
+		}
+		else{
+			this.carried_volatility <== this.stream.offset(path_volatility,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+		}
 	}
 
 }

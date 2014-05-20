@@ -425,10 +425,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir(self.platform.platform_directory())
     
     for u in self.underlying: 
-      if(not(os.path.exists("../../MulticoreCPU/multicore_c_code/%s.c"%u.name)) or not(os.path.exists("../../MulticoreCPU/multicore_c_code/%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - ../../MulticoreCPU/multicore_c_code/%s.c or ../../MulticoreCPU/multicore_c_code/%s.h" % (u.name,u.name))
-      else:
-	output_list.remove("#include \"%s.h\";"%u.name)
-	output_list.append("#include \"../../MulticoreCPU/multicore_c_code/%s.h\""%u.name)
+      if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
+      #else:
+	#output_list.remove("#include \"%s.h\";"%u.name)
+	#output_list.append("#include \"%s.h\""%u.name)
 	
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
@@ -496,16 +496,16 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("bin")
     
     output_list.append("kernel void %s_kernel(constant int *path_points,"%self.output_file_name)
-    output_list.append("\tglobal uint *seed,")
-    output_list.append("\tglobal uint *chunk_size,") #constant
-    output_list.append("\tglobal uint *chunk_number,") #constant
+    output_list.append("\tconst global uint *seed,")
+    output_list.append("\tconst global uint *chunk_size,") #constant
+    output_list.append("\tconst global uint *chunk_number,") #constant
     for index,u in enumerate(self.underlying):
-      output_list.append("\tglobal %s_attributes *u_a_%d,"%(u.name,index)) #constant
+      output_list.append("\tconst global %s_attributes *u_a_%d,"%(u.name,index)) #constant
       if(self.random_number_generator=="mwc64x_boxmuller"): output_list.append("\tglobal mwc64x_state_t *seed_%d,"%(index))
       elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): output_list.append("\tglobal rng_state_t *seed_%d,"%(index))
       
     for index,d in enumerate(self.derivative):
-      output_list.append("\tglobal %s_attributes *o_a_%d,"%(d.name,index)) #constant
+      output_list.append("\tconst global %s_attributes *o_a_%d,"%(d.name,index)) #constant
       output_list.append("\tglobal FP_t *value_%d,"%(index))
       output_list.append("\tglobal FP_t *value_sqrd_%d,"%(index))
       
@@ -552,10 +552,12 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  output_list.append("temp_u_v_%d.rng_state.offset = seed_%d[i].offset;"%(index,index))
 	
 	elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-	  output_list.append("temp_u_v_%d.rng_state.s1 = %d + local_chunk_number*local_chunk_size + 2;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
-	  output_list.append("temp_u_v_%d.rng_state.s2 = %d + local_chunk_number*local_chunk_size + 8;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
+	  output_list.append("ctrng_seed(1000,local_seed * %d * (i+local_chunk_size*local_chunk_number),&(temp_u_v_%d.rng_state));"%(index+1,index))
+	  
+	  """output_list.append("temp_u_v_%d.rng_state.s1 = %d + 2;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
+	  output_list.append("temp_u_v_%d.rng_state.s2 = %d + 8;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
 	  output_list.append("temp_u_v_%d.rng_state.s3 = local_seed + %d + local_chunk_number*local_chunk_size + 16;"%(index,index)) #local_seed + %d + 1 + local_chunk_number*local_chunk_size +
-	  output_list.append("temp_u_v_%d.rng_state.offset = 0;"%(index))
+	  output_list.append("temp_u_v_%d.rng_state.offset = 0;"%(index))"""
 	   
       
 	
@@ -730,16 +732,16 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     opencl_compile_flags = ""
     path_string = ""
     if(self.random_number_generator=="mwc64x_boxmuller"):
-      path_string = "mwc64x/cl"
+      #path_string = ""
       opencl_compile_flags = "%s -DMWC64X_BOXMULLER"%opencl_compile_flags
     
     elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
-      path_string = ""
+      #path_string = ""
       opencl_compile_flags = "%s -DTAUS_BOXMULLER"%opencl_compile_flags
     
     #if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
-    if(path_string==""): path_string = os.getcwd()
-    else: path_string = "%s/%s"%(os.getcwd(),path_string)
+    path_string = os.getcwd()
+    #else: path_string = "%s/%s"%(os.getcwd(),path_string)
     
     opencl_compile_flags = "-DOPENCL_GPU -I%s %s"% (path_string,opencl_compile_flags)
     #else: opencl_compile_flags = "-I . %s"% (opencl_compile_flags)

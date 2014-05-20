@@ -8,8 +8,8 @@ public class european_option extends option {
 
 	protected european_option_parameters parameters;
 
-	public european_option(MC_Solver_Maxeler_Base_Kernel kernel,DFEVar pp,DFEVar p,DFEVar enable,european_option_parameters eop){
-		super(kernel,pp,p,enable,eop);
+	public european_option(MC_Solver_Maxeler_Base_Kernel kernel,DFEVar pp,DFEVar p,DFEVar d,DFEVar enable,european_option_parameters eop){
+		super(kernel,pp,p,d,enable,eop);
 
 		this.parameters = eop;
 	}

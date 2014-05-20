@@ -15,13 +15,13 @@ public class CombinedTauswortheRNG extends KernelLib{
   protected Kernel kernel;
   public DFEVar s1,s2,s3,offset,count;
 
-  public CombinedTauswortheRNG(Kernel kernel,int delay,DFEVar s1,DFEVar s2,DFEVar s3,DFEVar offset){    
+  public CombinedTauswortheRNG(Kernel kernel,long period,DFEVar s1,DFEVar s2,DFEVar s3,DFEVar offset){    
       super(kernel);
       
       this.kernel = kernel;
       
-      int period = delay; //can at most be 2**88
-      Count.Params countParams = control.count.makeParams(MathUtils.bitsToRepresent(period))
+      
+      Count.Params countParams = control.count.makeParams(MathUtils.bitsToRepresent(period)) //can at most be 2**88
         .withWrapMode(WrapMode.COUNT_LT_MAX_THEN_WRAP)
         .withMax(period+1);
       count = control.count.makeCounter(countParams).getCount();
@@ -55,8 +55,9 @@ public class CombinedTauswortheRNG extends KernelLib{
     
       t_s2 = (((this.s2).cast(Kernel.dfeUInt(64))&s2_c).cast(Kernel.dfeUInt(32))<<4) ^ (((this.s2 <<2) ^ this.s2)>>25); //TAUSWORTHE(rng_state->s2, 2, 25, 4294967288UL, 4);
   
-      t_s3 = ((((this.s3).cast(Kernel.dfeUInt(64))+this.offset)&s3_c).cast(Kernel.dfeUInt(32))<<17) ^ (((this.s3 <<3) ^ this.s3)>>11); //TAUSWORTHE(rng_state->s3+rng_state->offset, 3, 11, 4294967280UL, 17);
-
+      t_s3 = ((((this.s3).cast(Kernel.dfeUInt(64)))&s3_c).cast(Kernel.dfeUInt(32))<<17) ^ (((this.s3 <<3) ^ this.s3)>>11); //TAUSWORTHE(rng_state->s3+rng_state->offset, 3, 11, 4294967280UL, 17);
+      //t_s3 = ((((this.s3).cast(Kernel.dfeUInt(64))+this.offset)&s3_c).cast(Kernel.dfeUInt(32))<<17) ^ (((this.s3 <<3) ^ this.s3)>>11); //TAUSWORTHE(rng_state->s3+rng_state->offset, 3, 11, 4294967280UL, 17);
+      
       t_offset = this.offset + 1;
       
       loop_s1.connect(t_s1);
