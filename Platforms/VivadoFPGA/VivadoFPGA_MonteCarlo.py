@@ -26,6 +26,8 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     self.utility_libraries.append("gauss.h")
     self.utility_libraries.append("vivado_core.h")
+    self.utility_libraries.append("xvivado_activity_thread.h") #driver library for doing cool library stuff
+    
     self.utility_libraries.remove("stdint.h") #don't need std int and it confuses the overriding of the uint32_t
     
   def generate_name(self):
@@ -82,7 +84,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,d in enumerate(self.derivative):
       output_list.append("FP_t temp_value_%d = 0.0;"%index)
       output_list.append("FP_t temp_value_sqrd_%d = 0.0;"%index)
-      output_list.append("FP_t kernel_value_%d[PATHS];"%index)
+      output_list.append("FP_t kernel_value_%d[PATHS];"%index) #TODO - reserved memory allocation function goes here
       #output_list.append("FP_t kernel_value_sqrd_%d;"%index)
     
     for index,u in enumerate(self.underlying):
@@ -99,11 +101,10 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	output_list.append("(u_v_%d.rng_state).s2 = 8;"%index)
 	output_list.append("(u_v_%d.rng_state).s3 = 16 + rng_seed*thread_paths*%d;" % (index,index+1))"""
 	output_list.append("ctrng_seed(100,rng_seed*thread_paths*%d,*u_v_%d.rng_state);"%(index+1,index))
-	  
 	#output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
 	
 	output_list.append("seed_%d = u_v_%d.rng_state;"%(index,index))
-
+	
     #Call the function
     if(self.simulation):
       output_list.append("vivado_activity_thread(&kernel_u_a_0,&kernel_o_a_0,&seed_0,kernel_value_%d);"%(index))
@@ -115,7 +116,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list[-1] = "%s);"%output_list[-1]"""
       
     else:
-      pass
+      output_list.append("vivado_activity_thread_hw(kernel_u_a_0,kernel_o_a_0,seed_0,RESV_MEM_ADDRESS);")
           
     #Read the result back and aggregate it
     """for index,d in enumerate(self.derivative):
@@ -141,7 +142,6 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     return output_list
     
-
   def compile(self,overide=True,compile_options=[],debug=False):
     result = []
     
@@ -177,12 +177,21 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list = []
     output_list.append("//*Vivado HLS Kernel Function*")
 
-    output_list.append("void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,FP_t *thread_result_0){")
+    output_list.append("void vivado_activity_thread(volatile int *a,standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,unsigned int thread_result_0){")
+    #AXI Master interface
+    output_list.append("#pragma HLS INTERFACE ap_bus port=a depth=PATHS")
+    output_list.append("#pragma HLS RESOURCE variable=a core=AXI4M")
+    
+    #Parameter passing via AXI Slave
     output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_u_a_0 metadata=\"-bus_bundle CORE_IO\"")
     output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_o_a_0 metadata=\"-bus_bundle CORE_IO\"")
     output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=seed_0 metadata=\"-bus_bundle CORE_IO\"")
-    output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_0 metadata=\"-bus_bundle CORE_IO\"")
-    output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_sqrd_0 metadata=\"-bus_bundle CORE_IO\"")
+    
+    #Result magic
+    output_list.append("#pragma HLS INTERFACE ap_none register port=thread_result_0")
+    output_list.append("#pragma HLS RESOURCE core=AXI4LiteS variable=thread_result_0 metadata= \"-bus_bundle CORE_IO\"")
+    
+    #Bundling the done signal into the AXI_SLAVE
     output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata=\"-bus_bundle CORE_IO\"")
     
     """
@@ -213,6 +222,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #output_list.append("kernel_data * kernel_arg = (kernel_data*) void_kernel_arg;")
     output_list.append("unsigned int p,pp;")
     
+    
     for index,u in enumerate(self.underlying):
       if(self.c_slow): output_list.append("%s_variables u_v_%d_array[PATHS];"%(u.name,index))
       output_list.append("%s_variables u_v_%d;"%(u.name,index))
@@ -236,6 +246,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     for index,d in enumerate(self.derivative):
       if(self.c_slow): output_list.append("%s_variables o_v_%d_array[PATHS];"%(d.name,index))
+      output_list.append("int thread_result_buff_%d[PATHS];"%index)
       output_list.append("%s_variables o_v_%d;"%(d.name,index))
       output_list.append("%s_attributes o_a_%d;"%(d.name,index))
     
@@ -337,18 +348,16 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("%s_derivative_payoff(spot_price_%d,&o_v_%d,&o_a_%d);"%(d.name,u_index,index,index))
 	
       
-      #output_list.append("result_%d += o_v_%d.value;"% (index,index))
-      #output_list.append("result_sqrd_%d += o_v_%d.value*o_v_%d.value;"%(index,index,index))
       output_list.append("//**Returning Result**")
-      output_list.append("thread_result_%d[p] = o_v_%d.value;"%(index,index))
-      #output_list.append("(*kernel_arg).kernel_result[%d*PATHS+p] = powf((*kernel_arg).o_v_%d.value,2);"%(index,index))
-    
+      output_list.append("thread_result_buff_%d[p] = *(int*)&o_v_%d.value;"%(index,index))
+      
     output_list.append("}") #End of the thread calculation loop
     """output_list.append("//**Returning Result**")
     for index,d in enumerate(self.derivative):
       output_list.append("*thread_result_%d = result_%d;"% (index,index))
       output_list.append("*thread_result_sqrd_%d = result_sqrd_%d;"%(index,index))"""
     
+    output_list.append("memcpy((int *)(a + thread_result_0/4), thread_result_buff, PATHS*sizeof(FP_t));"%index)
     output_list.append("}") #End of Kernel
     
     return output_list
