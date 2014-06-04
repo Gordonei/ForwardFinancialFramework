@@ -188,6 +188,7 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 		vivado_activity_thread_hw(&kernel_u_a_0, &kernel_o_a_0,&seed_0, RESERVED_MEM_START_ADDRESS);
 		//***Aggregating the result**
 		for(j=0;j<PATHS;++j){
+			printf("%d,%f\n" ,j, kernel_value_0[j]);
 			temp_value_0 += kernel_value_0[j];
 			temp_value_sqrd_0 += kernel_value_0[j]*kernel_value_0[j];
 			}
