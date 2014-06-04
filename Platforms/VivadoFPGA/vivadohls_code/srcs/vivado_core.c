@@ -17,6 +17,9 @@
 #include "xvivado_activity_thread.h"
 
 
+#define VIVADO_ACTIVITY_THREAD_ADDRESS 0x43C00000 
+#define RESERVED_MEM_START_ADDRESS 0x38400000
+
 //*Intermediate and Communication Variables*
 FP_t discount_0_0;
 FP_t option_price_0;
@@ -182,7 +185,7 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	for(i=0;i<chunks;++i){
 		ctrng_seed(1000,rng_seed+i,&seed_0);
 		//Add vivado call
-		vivado_activity_thread_hw(&kernel_u_a_0, &kernel_o_a_0,&seed_0, VIVADO_ACTIVITY_THREAD_ADDRESS);
+		vivado_activity_thread_hw(&kernel_u_a_0, &kernel_o_a_0,&seed_0, RESERVED_MEM_START_ADDRESS);
 		//***Aggregating the result**
 		for(j=0;j<PATHS;++j){
 			temp_value_0 += kernel_value_0[j];

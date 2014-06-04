@@ -70,15 +70,6 @@ typedef struct {
 #define XIL_COMPONENT_IS_READY  1
 #endif
 
-
-#define RESERVED_MEM_START_ADDRESS 0x38400000
-#define RESERVED_MEM_MAP_SIZE 40960000UL
-#define RESERVED_MEM_MAP_MASK (RESERVED_MEM_MAP_SIZE - 1)
-
-#define VIVADO_ACTIVITY_THREAD_ADDRESS 0x43C00000 
-#define MAP_SIZE 4096UL
-#define MAP_MASK (MAP_SIZE - 1)
-
 /************************** Function Prototypes *****************************/
 #ifndef __linux__
 int XVivado_activity_thread_Initialize(XVivado_activity_thread *InstancePtr, u16 DeviceId);

@@ -10,7 +10,7 @@ SRCS := $(THIS_DIR)/srcs
 IP_NAME := imperial_F3_vivado_activity_thread_1_0
 VIVADO_HLS_CMD := vivado_hls
 VIVADO_SYS_CMD := vivado -mode batch
-CFLAGS := -DFP_t=float -DTAUS_BOXMULLER -DMULTICORE_CPU -O3 -ffast-math -fpermissive -march=native -lm -lrt -lpthread
+CFLAGS := -DFP_t=float -DTAUS_BOXMULLER -DMULTICORE_CPU -O3 -ffast-math -fpermissive -march=native -lm -lrt -lpthread -ggdb
 
 all: core system
 

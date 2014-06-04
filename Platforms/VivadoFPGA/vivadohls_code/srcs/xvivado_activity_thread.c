@@ -8,6 +8,14 @@
 /***************************** Include Files *********************************/
 #include "xvivado_activity_thread.h"
 
+#define RESERVED_MEM_START_ADDRESS 0x38400000
+#define RESERVED_MEM_MAP_SIZE 4096UL
+#define RESERVED_MEM_MAP_MASK (RESERVED_MEM_MAP_SIZE - 1)
+
+#define MAP_SIZE 4096UL
+#define MAP_MASK (MAP_SIZE - 1)
+#define VIVADO_ACTIVITY_THREAD_ADDRESS 0x43C00000 
+
 /************************** Function Implementation *************************/
 #ifndef __linux__
 int XVivado_activity_thread_CfgInitialize(XVivado_activity_thread *InstancePtr, XVivado_activity_thread_Config *ConfigPtr) {
@@ -160,7 +168,7 @@ void vivado_activity_thread_hw(standard_underlying_attributes *kernel_u_a_0,stan
         printf("\n\n");
         XVivado_activity_thread_Start(&device_info); //Kick the device into starting
         usleep(2000);
-        while(XVivado_activity_thread_IsDone(&device_info) != 1) { printf("Running\n"); } //Waiting for the operation to complete
+        while(XVivado_activity_thread_IsDone(&device_info) != 1) { } //Waiting for the operation to complete
 
         //u32 temp_thread_result_0 = XVivado_activity_thread_GetThread_result_0(&device_info);
         //u32 temp_thread_result_sqrd_0 = XVivado_activity_thread_GetThread_result_sqrd_0(&device_info);
