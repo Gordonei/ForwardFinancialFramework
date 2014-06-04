@@ -1,4 +1,3 @@
-#define VIVADOHLS
 #define PATHS 1000
 #define PATH_POINTS 4096
 #define TAUS_BOXMULLER
@@ -15,6 +14,8 @@
 #include "vivado_core.h"
 #include "heston_underlying.h";
 #include "european_option.h";
+#include "xvivado_activity_thread.h"
+
 
 //*Intermediate and Communication Variables*
 FP_t discount_0_0;
@@ -88,7 +89,7 @@ void vivado_activity_thread(volatile int *a, standard_underlying_attributes *ker
 	//***Underlying Attributes***
 	heston_underlying_underlying_init(kernel_u_a_0->rfir,kernel_u_a_0->current_price,kernel_u_a_0->initial_volatility,kernel_u_a_0->volatility_volatility,kernel_u_a_0->rho,kernel_u_a_0->kappa,kernel_u_a_0->theta,kernel_u_a_0->correlation_matrix_0_0,kernel_u_a_0->correlation_matrix_0_1,kernel_u_a_0->correlation_matrix_1_0,kernel_u_a_0->correlation_matrix_1_1,&u_a_0);
 
-	u_v_0.rng.rng_state = *seed_0;
+	u_v_0.rng_state = *seed_0;
 		
 	FP_t spot_price_0,time_0;
 	european_option_variables o_v_0;
@@ -143,13 +144,13 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	//**Loop Data Structures**
 	unsigned int thread_paths = ((struct thread_data*) thread_arg)->thread_paths;
 	unsigned int rng_seed = ((struct thread_data*) thread_arg)->thread_rng_seed;
-	underlying_attributes u_a_0;
+	/*underlying_attributes u_a_0;
 	underlying_variables u_v_0;
 	option_attributes o_a_0;
-	option_variables o_v_0;
+	option_variables o_v_0;*/
 
 	//**Initialising Attributes*
-	o_v_0.delta_time = o_a_0.time_period/default_points;
+	//o_v_0.delta_time = o_a_0.time_period/default_points;
 
 	//**Creating kernel argument*
 	standard_underlying_attributes kernel_u_a_0;
@@ -175,11 +176,13 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	unsigned int chunks = thread_paths/PATHS;
 	FP_t temp_value_0 = 0.0;
 	FP_t temp_value_sqrd_0 = 0.0;
-	FP_t kernel_value_0[PATHS];
+	FP_t * kernel_value_0;
+	kernel_value_0 = (FP_t*)setup_reserved_mem(); // Point it to a virtual address that is using the shared memory region
 	rng_state_t seed_0;
 	for(i=0;i<chunks;++i){
 		ctrng_seed(1000,rng_seed+i,&seed_0);
 		//Add vivado call
+		vivado_activity_thread_hw(&kernel_u_a_0, &kernel_o_a_0,&seed_0, VIVADO_ACTIVITY_THREAD_ADDRESS);
 		//***Aggregating the result**
 		for(j=0;j<PATHS;++j){
 			temp_value_0 += kernel_value_0[j];
@@ -193,7 +196,7 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	}
 
 //*Main Function*
-/*int main(int argc,char* argv[]){
+int main(int argc,char* argv[]){
 
 	//**Starting Timers**
 	clock_gettime(CLOCK_MONOTONIC,&start);
@@ -227,7 +230,7 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	european_option_0_strike_price = strtod(argv[20],NULL);
 
 	//**Calculating Discount Factor**
-	discount_0_0 = exp(-underlying_0_rfir*option_0_time_period);
+	discount_0_0 = exp(-heston_underlying_0_rfir*european_option_0_time_period);
 
 	//**Creating Thread Variables**
 	thread_paths = paths/threads;
@@ -276,9 +279,8 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 
 	//**Performance Monitoring Calculation and Return**
 	clock_gettime(CLOCK_MONOTONIC,&end);
--	setup_time = 1000000*(setup_end.tv_sec-start.tv_sec)+(setup_end.tv_nsec-start.tv_nsec)/1000;
--	activity_time = 1000000*(end.tv_sec-setup_end.tv_sec)+(end.tv_nsec-setup_end.tv_nsec)/1000;
+	setup_time = 1000000*(setup_end.tv_sec-start.tv_sec)+(setup_end.tv_nsec-start.tv_nsec)/1000;
+	activity_time = 1000000*(end.tv_sec-setup_end.tv_sec)+(end.tv_nsec-setup_end.tv_nsec)/1000;
 	printf("\%f\n",setup_time);
 	printf("\%f\n",activity_time);
 	}
-*/

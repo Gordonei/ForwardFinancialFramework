@@ -1,3 +1,6 @@
+#ifndef VIVADO_CORE_H_
+#define VIVADO_CORE_H_
+
 typedef struct{
     FP_t rfir;
     FP_t current_price;
@@ -23,3 +26,5 @@ typedef struct{
     FP_t call;
     FP_t points;
 } standard_derivative_attributes;
+
+#endif
