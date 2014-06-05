@@ -10,7 +10,7 @@ SRCS := $(THIS_DIR)/srcs
 IP_NAME := imperial_F3_vivado_activity_thread_1_0
 VIVADO_HLS_CMD := vivado_hls
 VIVADO_SYS_CMD := vivado -mode batch
-CFLAGS := -DFP_t=float -DTAUS_BOXMULLER -DMULTICORE_CPU -O3 -ffast-math -fpermissive -march=native -lm -lrt -lpthread
+CFLAGS := -DFP_t=float -DTAUS_BOXMULLER -DMULTICORE_CPU -O3 -ffast-math -march=native -lm -lrt -lpthread
 
 all: core system
 
@@ -25,14 +25,15 @@ system: core
 	$(VIVADO_SYS_CMD) -source $(IPI_PRJ)/ipi_build.tcl
 	cp $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit $(THIS_DIR)/output/system.bit
 	mv $(THIS_DIR)/output/system.bit $(THIS_DIR)/output/$(APP).bit
-	#add promgen stuff here
 	cp $(THIS_DIR)/srcs/vivado_core.c $(THIS_DIR)/output/$(APP).c
+	cp $(THIS_DIR)ipi_prj/ipi_prj.runs/impl_1/zynq_system_wrapper_utilization_placed.rpt $(THIS_DIR)/output/$(APP).rpt
+	sh $(THIS_DIR)/output/promgen_script $(THIS_DIR)/output/$(APP)
 	#cp $(THIS_DIR)/output/$(APP).bit $(IPI_PRJ)/ipi_prj.sdk/SDK/SDK_Export/hw_platform_0/system.bit
 	#cp $(THIS_DIR)/output/$(APP).bit $(IPI_PRJ)/ipi_prj.sdk/SDK/SDK_Export/hw/zynq_system_wrapper.bit
 	rm *.log *.jou
 	
 host:
-	g++ -o $(APP) srcs/vivado_core.c srcs/xvivado_activity_thread.c srcs/asian_option.c srcs/digital_double_barrier_option.c srcs/double_barrier_option.c srcs/barrier_option.c srcs/european_option.c srcs/heston_underlying.c srcs/black_scholes_underlying.c srcs/underlying.c srcs/option.c srcs/gauss.c $(CFLAGS)
+	$(CC) -o $(APP) srcs/vivado_core.c srcs/xvivado_activity_thread.c srcs/asian_option.c srcs/digital_double_barrier_option.c srcs/double_barrier_option.c srcs/barrier_option.c srcs/european_option.c srcs/heston_underlying.c srcs/black_scholes_underlying.c srcs/underlying.c srcs/option.c srcs/gauss.c $(CFLAGS)
 
 clean: 
 	rm $(HLS_PRJ)/impl/ip/$(IP_NAME).zip
