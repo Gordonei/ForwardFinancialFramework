@@ -70,11 +70,11 @@ void vivado_activity_thread(volatile int *a, standard_underlying_attributes *ker
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_o_a_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=seed_0 metadata="-bus_bundle CORE_IO"
 
-    #pragma HLS INTERFACE ap_none register port=thread_result_0
-    #pragma HLS RESOURCE core=AXI4LiteS variable=thread_result_0 metadata="-bus_bundle CORE_IO"
+	#pragma HLS INTERFACE ap_none register port=thread_result_0
+	#pragma HLS RESOURCE core=AXI4LiteS variable=thread_result_0 metadata="-bus_bundle CORE_IO"
 	//#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_0 metadata="-bus_bundle CORE_IO"
 
-    #pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata="-bus_bundle CORE_IO"
+	#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata="-bus_bundle CORE_IO"
 
 	//Temporary results array that will be transfered back to the PS via the AXI master
 	//FP_t thread_result_buff[PATHS];
