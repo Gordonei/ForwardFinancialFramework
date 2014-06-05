@@ -1,13 +1,16 @@
+CC=gcc
+
 APP := dummy
 LOOP_II := 0
 LOOP_UNROLL := 0
 THIS_DIR := $(shell pwd)
 HLS_PRJ := $(THIS_DIR)/hls_prj/F3_VivadoHLS_core
 IPI_PRJ := $(THIS_DIR)/ipi_prj
+SRCS := $(THIS_DIR)/srcs
 IP_NAME := imperial_F3_vivado_activity_thread_1_0
 VIVADO_HLS_CMD := vivado_hls
 VIVADO_SYS_CMD := vivado -mode batch
-CFLAGS := -DFP_t=float -DTAUS_BOXMULLER -DVIVADOHLS -O3 -lpthread -ffast-math -fpermissive -march=native
+CFLAGS := -DFP_t=float -DTAUS_BOXMULLER -DMULTICORE_CPU -O3 -ffast-math -fpermissive -march=native -lm -lrt -lpthread
 
 all: core system
 
@@ -29,9 +32,17 @@ system: core
 	rm *.log *.jou
 	
 host:
-	g++ $(CFLAGS) -o $(APP) $(APP).c srcs/asian_option.c srcs/digital_double_barrier_option.c srcs/double_barrier_option.c srcs/barrier_option.c srcs/european_option.c srcs/heston_underlying.c srcs/black_scholes_underlying.c srcs/underlying.c srcs/option.c srcs/gauss.c
+	g++ -o $(APP) srcs/vivado_core.c srcs/xvivado_activity_thread.c srcs/asian_option.c srcs/digital_double_barrier_option.c srcs/double_barrier_option.c srcs/barrier_option.c srcs/european_option.c srcs/heston_underlying.c srcs/black_scholes_underlying.c srcs/underlying.c srcs/option.c srcs/gauss.c $(CFLAGS)
 
 clean: 
 	rm $(HLS_PRJ)/impl/ip/$(IP_NAME).zip
 	rm $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit
 	rm $(THIS_DIR)/output/system.bit
+
+experiment_sw: XVivado_activity_thread.o vivado_core.o
+
+vivado_core.o: $(SRCS)/vivado_core.c $(SRCS)/vivado_core.h
+	$(CC) -c $(SRCS)/vivado_core.c $(CFLAGS)
+
+xvivado_activity_thread.o: $(SRCS)/xvivado_activity_thread.c $(SRCS)/xvivado_activity_thread.h $(SRCS)/xvivado_activity_thread_hw.h
+	$(CC) -c $(SRCS)/xvivado_activity_thread.c $(CFLAGS)	 
