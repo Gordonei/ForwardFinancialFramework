@@ -1,6 +1,10 @@
 #ifndef VIVADO_CORE_H_
 #define VIVADO_CORE_H_
 
+#define VIVADO_ACTIVITY_THREAD_ADDRESS 0x43C00000 
+#define RESERVED_MEM_START_ADDRESS 0x38400000
+
+
 typedef struct{
     FP_t rfir;
     FP_t current_price;
