@@ -26,7 +26,7 @@ system: core
 	cp $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit $(THIS_DIR)/output/system.bit
 	mv $(THIS_DIR)/output/system.bit $(THIS_DIR)/output/$(APP).bit
 	cp $(THIS_DIR)/srcs/vivado_core.c $(THIS_DIR)/output/$(APP).c
-	cp $(THIS_DIR)ipi_prj/ipi_prj.runs/impl_1/zynq_system_wrapper_utilization_placed.rpt $(THIS_DIR)/output/$(APP).rpt
+	cp $(THIS_DIR)/ipi_prj/ipi_prj.runs/impl_1/zynq_system_wrapper_utilization_placed.rpt $(THIS_DIR)/output/$(APP).rpt
 	sh $(THIS_DIR)/output/promgen_script $(THIS_DIR)/output/$(APP)
 	#cp $(THIS_DIR)/output/$(APP).bit $(IPI_PRJ)/ipi_prj.sdk/SDK/SDK_Export/hw_platform_0/system.bit
 	#cp $(THIS_DIR)/output/$(APP).bit $(IPI_PRJ)/ipi_prj.sdk/SDK/SDK_Export/hw/zynq_system_wrapper.bit
@@ -38,7 +38,8 @@ host:
 clean: 
 	rm $(HLS_PRJ)/impl/ip/$(IP_NAME).zip
 	rm $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit
-	rm $(THIS_DIR)/output/system.bit
+	rm $(THIS_DIR)/output/$(APP).bit
+	rm $(THIS_DIR)/output/$(APP).c
 
 experiment_sw: XVivado_activity_thread.o vivado_core.o
 
