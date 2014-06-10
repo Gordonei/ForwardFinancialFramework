@@ -54,7 +54,7 @@ uint32_t __random32(rng_state_t *rng_state)
 
 FP_t __drandom32(rng_state_t *rng_state)
 {
-     return (__random32(rng_state)/4294967296.0);
+    return (__random32(rng_state)/4294967296.0);
 }
 
 #ifdef TAUS_ZIGGURAT

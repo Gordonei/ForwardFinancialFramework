@@ -1,24 +1,21 @@
-#define PATHS 1000
-#define PATH_POINTS 4096
+#define VIVADOHLS
+#define PATHS 4096
+#define PATH_POINTS 1
 #define TAUS_BOXMULLER
 //Libraries
-#include "math.h"
-#include "pthread.h"
-#include "stdlib.h"
-#include "stdio.h"
-#include "time.h"
-#include "sys/resource.h"
-#include "unistd.h"
-#include "string.h"
-#include "gauss.h"
-#include "vivado_core.h"
+#include "math.h";
+#include "pthread.h";
+#include "stdlib.h";
+#include "stdio.h";
+#include "time.h";
+#include "sys/resource.h";
+#include "unistd.h";
+#include "string.h";
+#include "gauss.h";
+#include "vivado_core.h";
+#include "xvivado_activity_thread.h";
 #include "heston_underlying.h";
 #include "european_option.h";
-#include "xvivado_activity_thread.h"
-
-
-#define VIVADO_ACTIVITY_THREAD_ADDRESS 0x43C00000 
-#define RESERVED_MEM_START_ADDRESS 0x38400000
 
 //*Intermediate and Communication Variables*
 FP_t discount_0_0;
@@ -56,62 +53,64 @@ struct thread_data{
 FP_t setup_time,activity_time;
 struct timespec start, setup_end, end;
 int ret,ret_2;
-
-/*typedef struct{
+typedef struct{
 	heston_underlying_attributes u_a_0;
-	
 	european_option_attributes o_a_0;
-	european_option_variables o_v_0[1*PATHS];
-	} kernel_data;*/
+	} kernel_data;
 
 //*Vivado HLS Kernel Function*
-void vivado_activity_thread(volatile int *a, standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0, unsigned int thread_result_0){
-	
+void vivado_activity_thread(volatile int *a,standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,unsigned int thread_result_0){
 	#pragma HLS INTERFACE ap_bus port=a depth=PATHS
 	#pragma HLS RESOURCE variable=a core=AXI4M
-
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_u_a_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_o_a_0 metadata="-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=seed_0 metadata="-bus_bundle CORE_IO"
-
 	#pragma HLS INTERFACE ap_none register port=thread_result_0
-	#pragma HLS RESOURCE core=AXI4LiteS variable=thread_result_0 metadata="-bus_bundle CORE_IO"
-	//#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_0 metadata="-bus_bundle CORE_IO"
-
+	#pragma HLS RESOURCE core=AXI4LiteS variable=thread_result_0 metadata= "-bus_bundle CORE_IO"
 	#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata="-bus_bundle CORE_IO"
 
-	//Temporary results array that will be transfered back to the PS via the AXI master
-	//FP_t thread_result_buff[PATHS];
-	int thread_result_buff[PATHS];
-        
 	//**Initialising Kernel Variables*
 	unsigned int p,pp;
 	heston_underlying_variables u_v_0;
 	heston_underlying_attributes u_a_0;
 
 	//***Underlying Attributes***
-	heston_underlying_underlying_init(kernel_u_a_0->rfir,kernel_u_a_0->current_price,kernel_u_a_0->initial_volatility,kernel_u_a_0->volatility_volatility,kernel_u_a_0->rho,kernel_u_a_0->kappa,kernel_u_a_0->theta,kernel_u_a_0->correlation_matrix_0_0,kernel_u_a_0->correlation_matrix_0_1,kernel_u_a_0->correlation_matrix_1_0,kernel_u_a_0->correlation_matrix_1_1,&u_a_0);
-
-	u_v_0.rng_state = *seed_0;
-		
+	u_a_0.rfir = kernel_u_a_0->rfir;
+	u_a_0.current_price = kernel_u_a_0->current_price;
+	u_a_0.initial_volatility = kernel_u_a_0->initial_volatility;
+	u_a_0.volatility_volatility = kernel_u_a_0->volatility_volatility;
+	u_a_0.rho = kernel_u_a_0->rho;
+	u_a_0.kappa = kernel_u_a_0->kappa;
+	u_a_0.theta = kernel_u_a_0->theta;
+	u_a_0.correlation_matrix_0_0 = kernel_u_a_0->correlation_matrix_0_0;
+	u_a_0.correlation_matrix_0_1 = kernel_u_a_0->correlation_matrix_0_1;
+	u_a_0.correlation_matrix_1_0 = kernel_u_a_0->correlation_matrix_1_0;
+	u_a_0.correlation_matrix_1_1 = kernel_u_a_0->correlation_matrix_1_1;
+	(u_v_0.rng_state).s1 = seed_0->s1;
+	(u_v_0.rng_state).s2 = seed_0->s2;
+	(u_v_0.rng_state).s3 = seed_0->s3;
+	(u_v_0.rng_state).offset = seed_0->offset;
 	FP_t spot_price_0,time_0;
+	int thread_result_buff_0[PATHS];
 	european_option_variables o_v_0;
 	european_option_attributes o_a_0;
 
 	//***Derivative Attributes***
-	european_option_derivative_init(kernel_o_a_0->time_period,kernel_o_a_0->call,kernel_o_a_0->strike_price,&o_a_0);
-
-	
-    //------DEBUGGING--------
-        FP_t junk_data;
-    //-----------------------
+	o_a_0.time_period = kernel_o_a_0->time_period;
+	o_a_0.call = kernel_o_a_0->call;
+	o_a_0.strike_price = kernel_o_a_0->strike_price;
 
 	//**Thread Calculation Loop**
 	FP_t result_0 = 0;
 	FP_t result_sqrd_0 = 0;
 	FP_t delta_time_0;
+	FP_t gamma;
+
+	heston_underlying_underlying_path_init(&u_v_0,&u_a_0);
+	delta_time_0 = o_a_0.time_period/PATHS;
 	PATHSET_LOOP: for(p=0;p<PATHS;++p){
 
+		/*
 		//**Initiating the Path**
 		heston_underlying_underlying_path_init(&u_v_0,&u_a_0);
 		spot_price_0 = (u_a_0).current_price*exp(u_v_0.gamma);
@@ -125,21 +124,28 @@ void vivado_activity_thread(volatile int *a, standard_underlying_attributes *ker
 			heston_underlying_underlying_path(delta_time_0,&u_v_0,&u_a_0);
 			spot_price_0 = u_a_0.current_price*exp(u_v_0.gamma);
 			time_0 = u_v_0.time;
+
+			//**Calculating payoff(s)**
+			if(p==0){
+				//european_option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
+
+				//**Returning Result**
+				thread_result_buff_0[pp] = *(int*)&u_v_0.gamma;
+				
+				}
+			if(p==(PATHS-1)) memcpy((int *)(a + thread_result_0/4), thread_result_buff_0, PATHS*sizeof(FP_t));
 			}
-
-		//**Calculating payoff(s)**
-		european_option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
-
-		//**Returning Result**
-        //junk_data = 1.0*p;
-        //thread_result_buff[p] = *(int*)&junk_data;
-		thread_result_buff[p] = *(int*)&o_v_0.value;
 		}
-
-	//copy the stuff into the PS DDR via the AXI Master
-	memcpy((int *)(a + thread_result_0/4), thread_result_buff, PATHS*sizeof(FP_t));
-	
+		*/
+		//taus_ran_gaussian_boxmuller(&(u_v_0.x),&(u_v_0.y),(u_a_0.rho),&(u_v_0.rng_state));
+		heston_underlying_underlying_path(delta_time_0,&u_v_0,&u_a_0);
+		//spot_price_0 = u_a_0.current_price*exp(u_v_0.gamma);
+		gamma = u_v_0.gamma;
+		thread_result_buff_0[p] = *(int*)&gamma;
+		//thread_result_buff_0[p] = *(int*)& __drandom32(&(u_v_0.rng_state));
+		if(p==(PATHS-1)) memcpy((int *)(a + thread_result_0/4), thread_result_buff_0, PATHS*sizeof(FP_t));
 	}
+}
 
 //*MC Multicore Activity Thread Function*
 void * multicore_montecarlo_activity_thread(void* thread_arg){
@@ -147,48 +153,47 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	//**Loop Data Structures**
 	unsigned int thread_paths = ((struct thread_data*) thread_arg)->thread_paths;
 	unsigned int rng_seed = ((struct thread_data*) thread_arg)->thread_rng_seed;
-	/*underlying_attributes u_a_0;
-	underlying_variables u_v_0;
-	option_attributes o_a_0;
-	option_variables o_v_0;*/
+	heston_underlying_attributes u_a_0;
+	heston_underlying_variables u_v_0;
+	european_option_attributes o_a_0;
+	european_option_variables o_v_0;
 
 	//**Initialising Attributes*
-	//o_v_0.delta_time = o_a_0.time_period/default_points;
+	heston_underlying_underlying_init(heston_underlying_0_rfir,heston_underlying_0_current_price,heston_underlying_0_initial_volatility,heston_underlying_0_volatility_volatility,heston_underlying_0_rho,heston_underlying_0_kappa,heston_underlying_0_theta,heston_underlying_0_correlation_matrix_0_0,heston_underlying_0_correlation_matrix_0_1,heston_underlying_0_correlation_matrix_1_0,heston_underlying_0_correlation_matrix_1_1,&u_a_0);
+	european_option_derivative_init(european_option_0_time_period,european_option_0_call,european_option_0_strike_price,&o_a_0);
+	o_v_0.delta_time = o_a_0.time_period/default_points;
 
 	//**Creating kernel argument*
 	standard_underlying_attributes kernel_u_a_0;
 	standard_derivative_attributes kernel_o_a_0;
-	
-	kernel_u_a_0.rfir = heston_underlying_0_rfir;
-	kernel_u_a_0.current_price = heston_underlying_0_current_price,
-	kernel_u_a_0.initial_volatility = heston_underlying_0_initial_volatility;
-	kernel_u_a_0.volatility_volatility = heston_underlying_0_volatility_volatility;
-	kernel_u_a_0.rho = heston_underlying_0_rho;
-	kernel_u_a_0.kappa = heston_underlying_0_kappa;
-	kernel_u_a_0.theta = heston_underlying_0_theta;
-	kernel_u_a_0.correlation_matrix_0_0 = heston_underlying_0_correlation_matrix_0_0;
-	kernel_u_a_0.correlation_matrix_0_1 = heston_underlying_0_correlation_matrix_0_1;
-	kernel_u_a_0.correlation_matrix_1_0 = heston_underlying_0_correlation_matrix_1_0;
-	kernel_u_a_0.correlation_matrix_1_1 = heston_underlying_0_correlation_matrix_1_1;
-	
-	kernel_o_a_0.time_period = european_option_0_time_period;
-	kernel_o_a_0.call = european_option_0_call;
-	kernel_o_a_0.strike_price = european_option_0_strike_price;
+	kernel_u_a_0.rfir = u_a_0.rfir;
+	kernel_u_a_0.current_price = u_a_0.current_price;
+	kernel_u_a_0.initial_volatility = u_a_0.initial_volatility;
+	kernel_u_a_0.volatility_volatility = u_a_0.volatility_volatility;
+	kernel_u_a_0.rho = u_a_0.rho;
+	kernel_u_a_0.kappa = u_a_0.kappa;
+	kernel_u_a_0.theta = u_a_0.theta;
+	kernel_u_a_0.correlation_matrix_0_0 = u_a_0.correlation_matrix_0_0;
+	kernel_u_a_0.correlation_matrix_0_1 = u_a_0.correlation_matrix_0_1;
+	kernel_u_a_0.correlation_matrix_1_0 = u_a_0.correlation_matrix_1_0;
+	kernel_u_a_0.correlation_matrix_1_1 = u_a_0.correlation_matrix_1_1;
+	kernel_o_a_0.time_period = o_a_0.time_period;
+	kernel_o_a_0.call = o_a_0.call;
+	kernel_o_a_0.strike_price = o_a_0.strike_price;
 
 	//**Batching Loop**
 	unsigned int chunks = thread_paths/PATHS;
 	FP_t temp_value_0 = 0.0;
 	FP_t temp_value_sqrd_0 = 0.0;
-	FP_t * kernel_value_0;
-	kernel_value_0 = (FP_t*)setup_reserved_mem(); // Point it to a virtual address that is using the shared memory region
+	FP_t *kernel_value_0 = (FP_t*)setup_reserved_mem();
 	rng_state_t seed_0;
 	for(i=0;i<chunks;++i){
-		ctrng_seed(1000,rng_seed+i,&seed_0);
-		//Add vivado call
-		vivado_activity_thread_hw(&kernel_u_a_0, &kernel_o_a_0,&seed_0, RESERVED_MEM_START_ADDRESS);
+		ctrng_seed(100,rng_seed*thread_paths*1,&(u_v_0.rng_state));
+		seed_0 = u_v_0.rng_state;
+		vivado_activity_thread_hw(&kernel_u_a_0,&kernel_o_a_0,&seed_0,RESERVED_MEM_START_ADDRESS);
+
 		//***Aggregating the result**
 		for(j=0;j<PATHS;++j){
-			printf("%d,%f\n" ,j, kernel_value_0[j]);
 			temp_value_0 += kernel_value_0[j];
 			temp_value_sqrd_0 += kernel_value_0[j]*kernel_value_0[j];
 			}
@@ -259,7 +264,7 @@ int main(int argc,char* argv[]){
 		pthread_create(&pthreads[i],&attr,multicore_montecarlo_activity_thread,&temp_data[i]);
 		}
 	clock_gettime(CLOCK_MONOTONIC,&setup_end);
-	
+
 	//**Waiting for threads to join**
 	void *status;
 	option_price_0 = 0;

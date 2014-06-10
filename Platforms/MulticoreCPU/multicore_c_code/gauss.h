@@ -45,6 +45,7 @@
 #endif
 
 #ifdef VIVADOHLS
+#include "stdint.h"
 #include "ap_cint.h"
 //#include "hls_math.h"
 #include "math.h"
@@ -54,10 +55,6 @@
 #define native_sqrt rsqrt
 #define sin sinf
 #define cos cosf
-#endif
-
-#ifdef VIVADOHLS
-typedef uint32 uint32_t;
 #endif
 
 #ifdef TAUS_ZIGGURAT
@@ -174,10 +171,6 @@ static const double wtab[128] = {
 };
 
 FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state);
-#endif
-
-#ifdef VIVADOHLS
-typedef uint32 uint32_t;
 #endif
 
 //Beginning of modified code that uses the Combined TAUSWORTHE RNG
