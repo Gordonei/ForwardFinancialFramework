@@ -57,6 +57,7 @@ void * setup_reserved_mem() //returns a pointer in userspace to the device
     // that was mapped as memory is mapped at the start of a page 
 
     mapped_dev_base = mapped_base_reserved_mem + (dev_base & RESERVED_MEM_MAP_MASK);
+    close(memfd_reserved_mem);
     return mapped_dev_base;
 }
 
@@ -89,7 +90,7 @@ XVivado_activity_thread setup_XVivado_activity_thread(void)
 
     mapped_dev_base = mapped_base_activity_thread + (dev_base & MAP_MASK);
     XVivado_activity_thread device;
-
+    close(memfd_activity_thread);
     device.Core_io_BaseAddress = mapped_dev_base;
     device.IsReady = XIL_COMPONENT_IS_READY;
 
