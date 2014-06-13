@@ -11,14 +11,14 @@
 #pragma empty_line
 #pragma empty_line
 #pragma empty_line
-#pragma line 1 "/mnt/cas_nfs/applications/Xilinx/Vivado_HLS/2013.4/common/technology/autopilot/etc/autopilot_ssdm_op.h" 1
+#pragma line 1 "/opt/Xilinx/2013.4/Vivado_HLS/2013.4/common/technology/autopilot/etc/autopilot_ssdm_op.h" 1
 /* autopilot_ssdm_op.h*/
 /*
  * Copyright (C) 2013 XILINX, Inc. 
  *
  * $Id$
  */
-#pragma line 238 "/mnt/cas_nfs/applications/Xilinx/Vivado_HLS/2013.4/common/technology/autopilot/etc/autopilot_ssdm_op.h"
+#pragma line 238 "/opt/Xilinx/2013.4/Vivado_HLS/2013.4/common/technology/autopilot/etc/autopilot_ssdm_op.h"
 /*#define AP_SPEC_ATTR __attribute__ ((pure))*/
 #pragma empty_line
 #pragma empty_line
@@ -207,7 +207,7 @@ void option_derivative_init(float t,float c,float k,option_attributes* o_a){
 #pragma empty_line
 void option_derivative_path_init(option_variables* o_v,option_attributes* o_a){
  o_v->value=0;
- //o_v->delta_time=o_a->time_period;
+ o_v->delta_time=o_a->time_period;
  //o_v->delta_time=o_a->time_period/o_a->points;
 }
 #pragma empty_line

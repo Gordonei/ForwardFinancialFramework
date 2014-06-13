@@ -10,7 +10,7 @@
 
 module vivado_activity_thread_fpext_32ns_64_3
 #(parameter
-    ID         = 4,
+    ID         = 5,
     NUM_STAGE  = 3,
     din0_WIDTH = 32,
     dout_WIDTH = 64

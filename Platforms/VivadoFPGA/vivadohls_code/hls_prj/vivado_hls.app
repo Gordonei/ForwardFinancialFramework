@@ -5,7 +5,6 @@
         <SimFlow name="csim" ldflags="" mflags="" setup="false" optimizeCompile="false" clean="false"/>
     </Simulation>
     <files xmlns="">
-        <file name="../../srcs/tb.c" sc="0" tb="1" cflags=" "/>
         <file name="srcs/option.c" sc="0" tb="false" cflags="-DFP_t=float"/>
         <file name="srcs/underlying.c" sc="0" tb="false" cflags="-DFP_t=float"/>
         <file name="srcs/asian_option.c" sc="0" tb="false" cflags="-DFP_t=float"/>

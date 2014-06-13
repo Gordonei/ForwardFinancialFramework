@@ -10,7 +10,7 @@
 
 module vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp
 #(parameter
-    ID         = 7,
+    ID         = 8,
     NUM_STAGE  = 15,
     din0_WIDTH = 64,
     din1_WIDTH = 64,

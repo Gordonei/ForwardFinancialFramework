@@ -7,16 +7,16 @@
 # 
 
 if [ -z "$PATH" ]; then
-  PATH=/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/EDK/bin/lin64:/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/ISE/bin/lin64:/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/bin
+  PATH=/opt/Xilinx/2013.4/Vivado/2013.4/ids_lite/EDK/bin/lin64:/opt/Xilinx/2013.4/Vivado/2013.4/ids_lite/ISE/bin/lin64:/opt/Xilinx/2013.4/Vivado/2013.4/bin
 else
-  PATH=/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/EDK/bin/lin64:/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/ISE/bin/lin64:/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/bin:$PATH
+  PATH=/opt/Xilinx/2013.4/Vivado/2013.4/ids_lite/EDK/bin/lin64:/opt/Xilinx/2013.4/Vivado/2013.4/ids_lite/ISE/bin/lin64:/opt/Xilinx/2013.4/Vivado/2013.4/bin:$PATH
 fi
 export PATH
 
 if [ -z "$LD_LIBRARY_PATH" ]; then
-  LD_LIBRARY_PATH=/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/EDK/lib/lin64:/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/ISE/lib/lin64
+  LD_LIBRARY_PATH=/opt/Xilinx/2013.4/Vivado/2013.4/ids_lite/EDK/lib/lin64:/opt/Xilinx/2013.4/Vivado/2013.4/ids_lite/ISE/lib/lin64
 else
-  LD_LIBRARY_PATH=/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/EDK/lib/lin64:/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/ids_lite/ISE/lib/lin64:$LD_LIBRARY_PATH
+  LD_LIBRARY_PATH=/opt/Xilinx/2013.4/Vivado/2013.4/ids_lite/EDK/lib/lin64:/opt/Xilinx/2013.4/Vivado/2013.4/ids_lite/ISE/lib/lin64:$LD_LIBRARY_PATH
 fi
 export LD_LIBRARY_PATH
 

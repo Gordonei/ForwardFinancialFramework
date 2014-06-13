@@ -1,8 +1,8 @@
 Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
-| Date             : Fri Apr 11 00:06:15 2014
-| Host             : ee-boxer0 running 64-bit Ubuntu 10.04.4 LTS
+| Date             : Tue May 20 10:42:51 2014
+| Host             : ganymede running 64-bit Ubuntu 12.04.3 LTS
 | Command          : report_power -file vivado_activity_thread_power_routed.rpt -pb vivado_activity_thread_power_summary_routed.pb
 | Design           : vivado_activity_thread
 | Device           : xc7z045ffg900-2
@@ -30,10 +30,9 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.289 |
-| Dynamic (W)              | 0.065 |
+| Total On-Chip Power (W)  | 0.300 |
+| Dynamic (W)              | 0.075 |
 | Device Static (W)        | 0.225 |
-| Total Off-Chip Power (W) | 0.000 |
 | Effective TJA (C/W)      | 1.8   |
 | Max Ambient (C)          | 84.5  |
 | Junction Temperature (C) | 25.5  |
@@ -51,17 +50,18 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.000 |        1 |       --- |             --- |
-| Slice Logic             |     0.017 |     5942 |       --- |             --- |
-|   LUT as Logic          |     0.015 |     2804 |    218600 |            1.28 |
-|   Register              |    <0.001 |     2305 |    437200 |            0.52 |
-|   CARRY4                |    <0.001 |      125 |     54650 |            0.22 |
-|   F7/F8 Muxes           |    <0.001 |      323 |    218600 |            0.14 |
-|   LUT as Shift Register |    <0.001 |       12 |     70400 |            0.01 |
-|   Others                |     0.000 |      270 |       --- |             --- |
-| Signals                 |     0.025 |     6242 |       --- |             --- |
+| Slice Logic             |     0.022 |     7295 |       --- |             --- |
+|   LUT as Logic          |     0.018 |     3373 |    218600 |            1.54 |
+|   CARRY4                |     0.003 |      316 |     54650 |            0.57 |
+|   Register              |     0.001 |     2703 |    437200 |            0.61 |
+|   F7/F8 Muxes           |    <0.001 |      304 |    218600 |            0.13 |
+|   LUT as Shift Register |    <0.001 |       22 |     70400 |            0.03 |
+|   Others                |     0.000 |      469 |       --- |             --- |
+| Signals                 |     0.030 |     7204 |       --- |             --- |
+| Block RAM               |    <0.001 |        1 |       545 |            0.18 |
 | DSPs                    |     0.023 |       42 |       900 |            4.66 |
 | Static Power            |     0.225 |          |           |                 |
-| Total                   |     0.289 |          |           |                 |
+| Total                   |     0.300 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,7 +71,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.116 |       0.065 |      0.051 |
+| Vccint    |       1.000 |     0.126 |       0.075 |      0.051 |
 | Vccaux    |       1.800 |     0.053 |       0.000 |      0.053 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -147,34 +147,40 @@ Table of Contents
 +--------------------------------------------------------------+-----------+
 | Name                                                         | Power (W) |
 +--------------------------------------------------------------+-----------+
-| vivado_activity_thread                                       |     0.065 |
-|   vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U7    |     0.053 |
-|     vivado_activity_thread_ap_dexp_13_full_dsp_u             |     0.053 |
-|       U0                                                     |     0.053 |
-|         i_synth                                              |     0.053 |
-|           EXP_OP.OP/i_calculate_e2A                          |     0.012 |
-|           EXP_OP.OP/i_calculate_e2zmzm1                      |     0.019 |
-|   vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U6      |     0.006 |
+| vivado_activity_thread                                       |     0.075 |
+|   thread_result_buff_U                                       |    <0.001 |
+|     vivado_activity_thread_thread_result_buff_ram_U          |    <0.001 |
+|   vivado_activity_thread_dexp_64ns_64ns_64_15_full_dsp_U8    |     0.050 |
+|     vivado_activity_thread_ap_dexp_13_full_dsp_u             |     0.050 |
+|       U0                                                     |     0.050 |
+|         i_synth                                              |     0.050 |
+|           EXP_OP.OP/i_calculate_e2A                          |     0.011 |
+|           EXP_OP.OP/i_calculate_e2zmzm1                      |     0.017 |
+|   vivado_activity_thread_dmul_64ns_64ns_64_5_max_dsp_U7      |     0.006 |
 |     vivado_activity_thread_ap_dmul_3_max_dsp_u               |     0.006 |
 |       U0                                                     |     0.006 |
 |         i_synth                                              |     0.006 |
-|   vivado_activity_thread_faddfsub_32ns_32ns_32_4_full_dsp_U1 |     0.003 |
-|     vivado_activity_thread_ap_faddfsub_2_full_dsp_u          |     0.002 |
-|       U0                                                     |     0.002 |
-|         i_synth                                              |     0.002 |
-|   vivado_activity_thread_fcmp_32ns_32ns_1_3_U5               |    <0.001 |
+|   vivado_activity_thread_faddfsub_32ns_32ns_32_4_full_dsp_U1 |    <0.001 |
+|     vivado_activity_thread_ap_faddfsub_2_full_dsp_u          |    <0.001 |
+|       U0                                                     |    <0.001 |
+|         i_synth                                              |    <0.001 |
+|   vivado_activity_thread_fcmp_32ns_32ns_1_3_U6               |    <0.001 |
 |     vivado_activity_thread_ap_fcmp_1_no_dsp_u                |    <0.001 |
 |       U0                                                     |    <0.001 |
 |         i_synth                                              |    <0.001 |
-|   vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2      |     0.002 |
-|     vivado_activity_thread_ap_fmul_1_max_dsp_u               |     0.002 |
-|       U0                                                     |     0.002 |
-|         i_synth                                              |     0.002 |
-|   vivado_activity_thread_fpext_32ns_64_3_U4                  |    <0.001 |
+|   vivado_activity_thread_fdiv_32ns_32ns_32_12_U3             |     0.014 |
+|     vivado_activity_thread_ap_fdiv_10_no_dsp_u               |     0.014 |
+|       U0                                                     |     0.014 |
+|         i_synth                                              |     0.014 |
+|   vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2      |     0.003 |
+|     vivado_activity_thread_ap_fmul_1_max_dsp_u               |     0.003 |
+|       U0                                                     |     0.003 |
+|         i_synth                                              |     0.003 |
+|   vivado_activity_thread_fpext_32ns_64_3_U5                  |    <0.001 |
 |     vivado_activity_thread_ap_fpext_1_no_dsp_u               |    <0.001 |
 |       U0                                                     |    <0.001 |
 |         i_synth                                              |    <0.001 |
-|   vivado_activity_thread_fptrunc_64ns_32_3_U3                |    <0.001 |
+|   vivado_activity_thread_fptrunc_64ns_32_3_U4                |    <0.001 |
 |     vivado_activity_thread_ap_fptrunc_1_no_dsp_u             |    <0.001 |
 |       U0                                                     |    <0.001 |
 |         i_synth                                              |    <0.001 |

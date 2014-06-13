@@ -42,8 +42,6 @@ clean:
 	rm $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit
 	rm $(THIS_DIR)/output/$(APP).bit
 	rm $(THIS_DIR)/output/$(APP).c
-	rm $(THIS_DIR)/output/$(APP).prm
-	rm $(THIS_DIR)/output/$(APP).pri
 
 experiment_sw: XVivado_activity_thread.o vivado_core.o
 

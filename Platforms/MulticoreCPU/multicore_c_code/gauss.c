@@ -54,7 +54,7 @@ uint32_t __random32(rng_state_t *rng_state)
 
 FP_t __drandom32(rng_state_t *rng_state)
 {
-     return (__random32(rng_state)/4294967296.0);
+    return ((FP_t)__random32(rng_state)/4294967296.0f);
 }
 
 #ifdef TAUS_ZIGGURAT
@@ -95,9 +95,9 @@ void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_stat
   u = __drandom32(rng_state);
   v = __drandom32(rng_state);
   
-  t_x = sqrt(-2*native_log(u))*cos((FP_t)(2*M_PI*v));
-  t_y = sqrt(-2*native_log(u))*sin((FP_t)(2*M_PI*v));
-  t_y = t_x*rho+native_sqrt((FP_t)(1.0-rho*rho))*t_y;
+  t_x = sqrt(-2.0f*native_log(u))*cos((FP_t)(6.2831855f*v));
+  t_y = sqrt(-2.0f*native_log(u))*sin((FP_t)(6.2831855f*v));
+  t_y = t_x*rho+native_sqrt((FP_t)(1.0f-rho*rho))*t_y;
   
   *x = t_x;
   *y = t_y;
