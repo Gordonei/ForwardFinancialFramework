@@ -1,4 +1,5 @@
 '''
+Gordon Inggs
 Created on 24 March 2014
 
 '''
@@ -12,7 +13,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   pipelining = 1
   instances = 1
   
-  def __init__(self,derivative,paths,platform,points=10,reduce_underlyings=True,random_number_generator="taus_boxmuller",floating_point_format="float",c_slow=False,pipelining=1,instances=1,simulation=False):
+  def __init__(self,derivative,paths,platform,points=4096,reduce_underlyings=True,random_number_generator="taus_boxmuller",floating_point_format="float",c_slow=False,pipelining=1,instances=1,simulation=False):
     self.pipelining = pipelining
     self.c_slow = c_slow
     self.simulation = simulation
@@ -26,6 +27,8 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     self.utility_libraries.append("gauss.h")
     self.utility_libraries.append("vivado_core.h")
+    self.utility_libraries.append("xvivado_activity_thread.h") #driver library for doing cool library stuff
+    
     self.utility_libraries.remove("stdint.h") #don't need std int and it confuses the overriding of the uint32_t
     
   def generate_name(self):
@@ -82,7 +85,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,d in enumerate(self.derivative):
       output_list.append("FP_t temp_value_%d = 0.0;"%index)
       output_list.append("FP_t temp_value_sqrd_%d = 0.0;"%index)
-      output_list.append("FP_t kernel_value_%d[PATHS];"%index)
+      output_list.append("FP_t *kernel_value_%d = (FP_t*)setup_reserved_mem();"%index)
       #output_list.append("FP_t kernel_value_sqrd_%d;"%index)
     
     for index,u in enumerate(self.underlying):
@@ -98,12 +101,11 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	"""output_list.append("(u_v_%d.rng_state).s1 = 2;"%index)
 	output_list.append("(u_v_%d.rng_state).s2 = 8;"%index)
 	output_list.append("(u_v_%d.rng_state).s3 = 16 + rng_seed*thread_paths*%d;" % (index,index+1))"""
-	output_list.append("ctrng_seed(100,rng_seed*thread_paths*%d,*u_v_%d.rng_state);"%(index+1,index))
-	  
+	output_list.append("ctrng_seed(100,rng_seed*thread_paths*%d,&(u_v_%d.rng_state));"%(index+1,index))
 	#output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
 	
 	output_list.append("seed_%d = u_v_%d.rng_state;"%(index,index))
-
+	
     #Call the function
     if(self.simulation):
       output_list.append("vivado_activity_thread(&kernel_u_a_0,&kernel_o_a_0,&seed_0,kernel_value_%d);"%(index))
@@ -115,7 +117,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list[-1] = "%s);"%output_list[-1]"""
       
     else:
-      pass
+      output_list.append("vivado_activity_thread_hw(&kernel_u_a_0,&kernel_o_a_0,&seed_0,RESERVED_MEM_START_ADDRESS);")
           
     #Read the result back and aggregate it
     """for index,d in enumerate(self.derivative):
@@ -141,7 +143,6 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     return output_list
     
-
   def compile(self,overide=True,compile_options=[],debug=False):
     result = []
     
@@ -152,11 +153,11 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
       
-      subprocess.check_output(["cp", "%s.c"%self.output_file_name, "vivado_core.c"])
+      #subprocess.check_output(["cp", "%s.c"%self.output_file_name, "vivado_core.c"]) Do this in the Makefile rather
       
       os.chdir("..")
       
-      try: subprocess.check_output(["make","clean"])
+      try: subprocess.check_output(["make","clean","APP=%s"%self.output_file_name])
       except: pass
       
       compile_cmd = ["make","all","APP=%s"%self.output_file_name]
@@ -177,12 +178,21 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list = []
     output_list.append("//*Vivado HLS Kernel Function*")
 
-    output_list.append("void vivado_activity_thread(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,FP_t *thread_result_0){")
+    output_list.append("void vivado_activity_thread(volatile int *a,standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,unsigned int thread_result_0){")
+    #AXI Master interface
+    output_list.append("#pragma HLS INTERFACE ap_bus port=a depth=PATHS")
+    output_list.append("#pragma HLS RESOURCE variable=a core=AXI4M")
+    
+    #Parameter passing via AXI Slave
     output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_u_a_0 metadata=\"-bus_bundle CORE_IO\"")
     output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=kernel_o_a_0 metadata=\"-bus_bundle CORE_IO\"")
     output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=seed_0 metadata=\"-bus_bundle CORE_IO\"")
-    output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_0 metadata=\"-bus_bundle CORE_IO\"")
-    output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=thread_result_sqrd_0 metadata=\"-bus_bundle CORE_IO\"")
+    
+    #Result magic
+    output_list.append("#pragma HLS INTERFACE ap_none register port=thread_result_0")
+    output_list.append("#pragma HLS RESOURCE core=AXI4LiteS variable=thread_result_0 metadata= \"-bus_bundle CORE_IO\"")
+    
+    #Bundling the done signal into the AXI_SLAVE
     output_list.append("#pragma HLS RESOURCE core=AXI_SLAVE variable=return metadata=\"-bus_bundle CORE_IO\"")
     
     """
@@ -213,8 +223,9 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #output_list.append("kernel_data * kernel_arg = (kernel_data*) void_kernel_arg;")
     output_list.append("unsigned int p,pp;")
     
+    
     for index,u in enumerate(self.underlying):
-      if(self.c_slow): output_list.append("%s_variables u_v_%d_array[PATHS];"%(u.name,index))
+      #if(self.c_slow): output_list.append("%s_variables u_v_%d_array[PATHS];"%(u.name,index))
       output_list.append("%s_variables u_v_%d;"%(u.name,index))
       output_list.append("%s_attributes u_a_%d;"%(u.name,index))
       
@@ -223,7 +234,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         for a in u_a:
           output_list.append("u_a_%d.%s = kernel_u_a_%d->%s;" % (i,a,i,a))
 	  
-      if(self.c_slow): output_list.append("FP_t spot_price_%d_paths[PATHS],time_%d_paths[PATHS];"%(index,index))
+      #if(self.c_slow): output_list.append("FP_t spot_price_%d_paths[PATHS],time_%d_paths[PATHS];"%(index,index))
       
       if not(self.c_slow):
 	if("heston" in u.name or "black_scholes" in u.name):
@@ -235,7 +246,8 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("FP_t spot_price_%d,time_%d;"%(index,index))
     
     for index,d in enumerate(self.derivative):
-      if(self.c_slow): output_list.append("%s_variables o_v_%d_array[PATHS];"%(d.name,index))
+      #if(self.c_slow): output_list.append("%s_variables o_v_%d_array[PATHS];"%(d.name,index))
+      output_list.append("int thread_result_buff_%d[PATHS];"%index)
       output_list.append("%s_variables o_v_%d;"%(d.name,index))
       output_list.append("%s_attributes o_a_%d;"%(d.name,index))
     
@@ -253,101 +265,98 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("FP_t result_sqrd_%d = 0;"%index)
       output_list.append("FP_t delta_time_%d;"%index)
       
-    if(self.c_slow):
-      output_list.append("PATHSET_LOOP_INIT: for(p=0;p<PATHS;++p){")
-    else:
-      output_list.append("PATHSET_LOOP: for(p=0;p<PATHS;++p){")
-    
-    """if(self.c_slow):
-      for index,u in enumerate(self.underlying): output_list.append("u_v_%d = u_v_%d_array[p];"%(index,index))
-      for index,d in enumerate(self.derivative): output_list.append("o_v_%d = o_v_%d_array[p];"%(index,index))"""
+    #if(self.c_slow):
+    #  output_list.append("PATHSET_LOOP_INIT: for(p=0;p<PATHS;++p){")
+    #else:
+    #  output_list.append("PATHSET_LOOP: for(p=0;p<PATHS;++p){")
+    output_list.append("PATHSET_LOOP: for(p=0;p<PATHS;++p){")
     
     output_list.append("//**Initiating the Path**")
     for index,u in enumerate(self.underlying):
-      if(self.c_slow):
-	if("heston" in u.name or "black_scholes" in u.name):
-	    output_list.append("(u_v_%d.rng_state).s1 = seed_%d->s1;"% (index,index))
-	    output_list.append("(u_v_%d.rng_state).s2 = seed_%d->s2;"% (index,index))
-	    output_list.append("(u_v_%d.rng_state).s3 = seed_%d->s3+p;" % (index,index))
-	    output_list.append("(u_v_%d.rng_state).offset = seed_%d->offset;" % (index,index))
+#      if(self.c_slow):
+#	if("heston" in u.name or "black_scholes" in u.name):
+#	    output_list.append("(u_v_%d.rng_state).s1 = seed_%d->s1;"% (index,index))
+#	    output_list.append("(u_v_%d.rng_state).s2 = seed_%d->s2;"% (index,index))
+#	    output_list.append("(u_v_%d.rng_state).s3 = seed_%d->s3+p;" % (index,index))
+#	    output_list.append("(u_v_%d.rng_state).offset = seed_%d->offset;" % (index,index))
 	  
       output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
       output_list.append("spot_price_%d = (u_a_%d).current_price*exp(u_v_%d.gamma);"%(index,index,index))
       output_list.append("time_%d = u_v_%d.time;"%(index,index))
-      if(self.c_slow):
-	output_list.append("spot_price_%d_paths[p] = spot_price_%d;"%(index,index))
-	output_list.append("time_%d_paths[p] = time_%d;"%(index,index))
+#      if(self.c_slow):
+#	output_list.append("spot_price_%d_paths[p] = spot_price_%d;"%(index,index))
+#	output_list.append("time_%d_paths[p] = time_%d;"%(index,index))
       
     
     for index,d in enumerate(self.derivative):
       output_list.append("%s_derivative_path_init(&o_v_%d,&o_a_%d);" % (d.name,index,index))
       output_list.append("delta_time_%d = o_a_%d.time_period/PATH_POINTS;"%(index,index))
       
-    if(self.c_slow):
-      for index,u in enumerate(self.underlying): output_list.append("u_v_%d_array[p] = u_v_%d;"%(index,index))
-      for index,d in enumerate(self.derivative): output_list.append("o_v_%d_array[p] = o_v_%d;"%(index,index))
-      
-    if(self.c_slow): output_list.append("}")
+    #if(self.c_slow):
+    #  for index,u in enumerate(self.underlying): output_list.append("u_v_%d_array[p] = u_v_%d;"%(index,index))
+    #  for index,d in enumerate(self.derivative): output_list.append("o_v_%d_array[p] = o_v_%d;"%(index,index))
+    #  
+    #if(self.c_slow): output_list.append("}")
     
     output_list.append("//**Running the path**")
       
-    if(self.c_slow):
-      output_list.append("PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){")
-      output_list.append("PATHSET_LOOP: for(p=0;p<PATHS;++p){")
-    else: output_list.append("PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){")
+    #if(self.c_slow):
+    #  output_list.append("PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){")
+    #  output_list.append("PATHSET_LOOP: for(p=0;p<PATHS;++p){")
+    #else:
+    output_list.append("PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){")
     
-    if(self.c_slow):
-      for index,u in enumerate(self.underlying): output_list.append("u_v_%d = u_v_%d_array[p];"%(index,index))
-      for index,d in enumerate(self.derivative): output_list.append("o_v_%d = o_v_%d_array[p];"%(index,index))
+    #if(self.c_slow):
+    #  for index,u in enumerate(self.underlying): output_list.append("u_v_%d = u_v_%d_array[p];"%(index,index))
+    #  for index,d in enumerate(self.derivative): output_list.append("o_v_%d = o_v_%d_array[p];"%(index,index))
     
     temp_underlying = self.underlying[:]
     for index,d in enumerate(self.derivative):
       for u in d.underlying: #Calling derivative and underlying path functions
 	u_index = self.underlying.index(u)
-	if(self.c_slow):
-	  output_list.append("spot_price_%d = spot_price_%d_paths[p];" % (u_index,u_index))
-	  output_list.append("time_%d = time_%d_paths[p];" % (u_index,u_index))
+	#if(self.c_slow):
+	#  output_list.append("spot_price_%d = spot_price_%d_paths[p];" % (u_index,u_index))
+	#  output_list.append("time_%d = time_%d_paths[p];" % (u_index,u_index))
 	output_list.append("%s_derivative_path(spot_price_%d,time_%d,&o_v_%d,&o_a_%d);" % (d.name,u_index,u_index,index,index))
 	
 	if(u in temp_underlying):
 	  output_list.append("%s_underlying_path(delta_time_%d,&u_v_%d,&u_a_%d);" % (u.name,index,u_index,u_index))
 	  temp_underlying.remove(u)
 	  output_list.append("spot_price_%d = u_a_%d.current_price*exp(u_v_%d.gamma);"%(u_index,u_index,u_index))
-	  if(self.c_slow):
-	    output_list.append("spot_price_%d_paths[p] = spot_price_%d;"%(u_index,u_index))
-	    output_list.append("time_%d_paths[p] = u_v_%d.time;"%(u_index,u_index))
-	  else: output_list.append("time_%d = u_v_%d.time;"%(u_index,u_index))
+	  #if(self.c_slow):
+	  #  output_list.append("spot_price_%d_paths[p] = spot_price_%d;"%(u_index,u_index))
+	  #  output_list.append("time_%d_paths[p] = u_v_%d.time;"%(u_index,u_index))
+	  #else: output_list.append("time_%d = u_v_%d.time;"%(u_index,u_index))
+	  output_list.append("time_%d = u_v_%d.time;"%(u_index,u_index))
 	  
-    if(self.c_slow):
-      for index,u in enumerate(self.underlying): output_list.append("u_v_%d_array[p] = u_v_%d;"%(index,index))
-      for index,d in enumerate(self.derivative): output_list.append("o_v_%d_array[p] = o_v_%d ;"%(index,index))
-     
-    output_list.append("}") #End of the path
-    if(self.c_slow): output_list.append("}")
+	output_list.append("//**Calculating payoff(s)**")
+	#if(self.c_slow):
+	#  output_list.append("PATHSET_LOOP_PAYOFF: for(p=0;p<PATHS;++p){")
+	#  for index,d in enumerate(self.derivative): output_list.append("o_v_%d = o_v_%d_array[p];"%(index,index))
     
-    output_list.append("//**Calculating payoff(s)**")
-    if(self.c_slow):
-      output_list.append("PATHSET_LOOP_PAYOFF: for(p=0;p<PATHS;++p){")
-      for index,d in enumerate(self.derivative): output_list.append("o_v_%d = o_v_%d_array[p];"%(index,index))
-    
-    for index,d in enumerate(self.derivative):
-      for u_index,u in enumerate(d.underlying):
-	if(self.c_slow): output_list.append("spot_price_%d = spot_price_%d_paths[p];" % (u_index,u_index))
-      
-      output_list.append("%s_derivative_payoff(spot_price_%d,&o_v_%d,&o_a_%d);"%(d.name,u_index,index,index))
+	for index,d in enumerate(self.derivative):
+	# for u_index,u in enumerate(d.underlying):
+	#	if(self.c_slow): output_list.append("spot_price_%d = spot_price_%d_paths[p];" % (u_index,u_index))
+	  output_list.append("if(pp==(PATH_POINTS-1)){")
+	  output_list.append("%s_derivative_payoff(spot_price_%d,&o_v_%d,&o_a_%d);"%(d.name,u_index,index,index))
 	
       
-      #output_list.append("result_%d += o_v_%d.value;"% (index,index))
-      #output_list.append("result_sqrd_%d += o_v_%d.value*o_v_%d.value;"%(index,index,index))
-      output_list.append("//**Returning Result**")
-      output_list.append("thread_result_%d[p] = o_v_%d.value;"%(index,index))
-      #output_list.append("(*kernel_arg).kernel_result[%d*PATHS+p] = powf((*kernel_arg).o_v_%d.value,2);"%(index,index))
+	  output_list.append("//**Returning Result**")
+	  output_list.append("thread_result_buff_%d[p] = *(int*)&o_v_%d.value;"%(index,index))
+	  output_list.append("if(p==(PATHS-1)) memcpy((int *)(a + thread_result_%d/4), thread_result_buff_%d, PATHS*sizeof(FP_t));"%(index,index))
+	  output_list.append("}")
+	  
+    #if(self.c_slow):
+    #  for index,u in enumerate(self.underlying): output_list.append("u_v_%d_array[p] = u_v_%d;"%(index,index))
+    #  for index,d in enumerate(self.derivative): output_list.append("o_v_%d_array[p] = o_v_%d ;"%(index,index))
+     
+    output_list.append("}") #End of the path
+    #if(self.c_slow): output_list.append("}")
     
+    
+      
     output_list.append("}") #End of the thread calculation loop
-    """output_list.append("//**Returning Result**")
-    for index,d in enumerate(self.derivative):
-      output_list.append("*thread_result_%d = result_%d;"% (index,index))
-      output_list.append("*thread_result_sqrd_%d = result_sqrd_%d;"%(index,index))"""
+    
     
     output_list.append("}") #End of Kernel
     
@@ -393,3 +402,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         
     #os.chdir(self.platform.root_directory())
     #os.chdir("bin")
+    
+  def execute(self): pass
+    #cat reversed_config_bitstream.bit.bin > /dev/xdevcfg
+    #run code as per normal

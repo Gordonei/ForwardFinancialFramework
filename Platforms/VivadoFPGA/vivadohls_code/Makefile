@@ -1,18 +1,24 @@
+CC=gcc
+
 APP := dummy
 LOOP_II := 0
 LOOP_UNROLL := 0
 THIS_DIR := $(shell pwd)
 HLS_PRJ := $(THIS_DIR)/hls_prj/F3_VivadoHLS_core
 IPI_PRJ := $(THIS_DIR)/ipi_prj
+SRCS := $(THIS_DIR)/srcs
 IP_NAME := imperial_F3_vivado_activity_thread_1_0
 VIVADO_HLS_CMD := vivado_hls
-VIVADO_SYS_CMD := vivado -mode batch 
+VIVADO_SYS_CMD := vivado -mode batch
+CFLAGS := -DFP_t=float -DTAUS_BOXMULLER -DMULTICORE_CPU -O3 -ffast-math -march=native -lm -lrt -lpthread
 
 all: core system
 
 core: $(HLS_PRJ)/impl/ip/$(IP_NAME).zip
 
-$(HLS_PRJ)/impl/ip/$(IP_NAME).zip: 
+$(HLS_PRJ)/impl/ip/$(IP_NAME).zip:
+	cp srcs/$(APP).c srcs/vivado_core.c
+	cp $(HLS_PRJ)/../vivado_hls.app.bak $(HLS_PRJ)/../vivado_hls.app
 	$(VIVADO_HLS_CMD) $(HLS_PRJ)/script.tcl $(LOOP_II) $(LOOP_UNROLL)
 	rm *.log 
 
@@ -21,11 +27,28 @@ system: core
 	$(VIVADO_SYS_CMD) -source $(IPI_PRJ)/ipi_build.tcl
 	cp $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit $(THIS_DIR)/output/system.bit
 	mv $(THIS_DIR)/output/system.bit $(THIS_DIR)/output/$(APP).bit
-	rm *.log *.jou 
-
-bitstream: $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit
+	cp $(THIS_DIR)/srcs/vivado_core.c $(THIS_DIR)/output/$(APP).c
+	cp $(THIS_DIR)/ipi_prj/ipi_prj.runs/impl_1/zynq_system_wrapper_utilization_placed.rpt $(THIS_DIR)/output/$(APP).rpt
+	sh $(THIS_DIR)/output/promgen_script $(THIS_DIR)/output/$(APP)
+	#cp $(THIS_DIR)/output/$(APP).bit $(IPI_PRJ)/ipi_prj.sdk/SDK/SDK_Export/hw_platform_0/system.bit
+	#cp $(THIS_DIR)/output/$(APP).bit $(IPI_PRJ)/ipi_prj.sdk/SDK/SDK_Export/hw/zynq_system_wrapper.bit
+	rm *.log *.jou
+	
+host:
+	$(CC) -o $(APP) srcs/vivado_core.c srcs/xvivado_activity_thread.c srcs/asian_option.c srcs/digital_double_barrier_option.c srcs/double_barrier_option.c srcs/barrier_option.c srcs/european_option.c srcs/heston_underlying.c srcs/black_scholes_underlying.c srcs/underlying.c srcs/option.c srcs/gauss.c $(CFLAGS)
 
 clean: 
 	rm $(HLS_PRJ)/impl/ip/$(IP_NAME).zip
 	rm $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit
-	rm $(THIS_DIR)/output/system.bit
+	rm $(THIS_DIR)/output/$(APP).bit
+	rm $(THIS_DIR)/output/$(APP).c
+	rm $(THIS_DIR)/output/$(APP).prm
+	rm $(THIS_DIR)/output/$(APP).pri
+
+experiment_sw: XVivado_activity_thread.o vivado_core.o
+
+vivado_core.o: $(SRCS)/vivado_core.c $(SRCS)/vivado_core.h
+	$(CC) -c $(SRCS)/vivado_core.c $(CFLAGS)
+
+xvivado_activity_thread.o: $(SRCS)/xvivado_activity_thread.c $(SRCS)/xvivado_activity_thread.h $(SRCS)/xvivado_activity_thread_hw.h
+	$(CC) -c $(SRCS)/xvivado_activity_thread.c $(CFLAGS)	 
