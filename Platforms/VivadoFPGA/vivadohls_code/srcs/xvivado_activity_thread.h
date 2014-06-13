@@ -82,7 +82,9 @@ int XVivado_activity_thread_Release(XVivado_activity_thread *InstancePtr);
 
 void * setup_reserved_mem();
 XVivado_activity_thread setup_XVivado_activity_thread(void);
-void vivado_activity_thread_hw(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,unsigned int thread_result_addr);
+void vivado_activity_thread_hw(standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,unsigned int thread_result_addr,XVivado_activity_thread  *device_info);
+
+
 
 
 void XVivado_activity_thread_Start(XVivado_activity_thread *InstancePtr);
@@ -91,6 +93,7 @@ u32 XVivado_activity_thread_IsIdle(XVivado_activity_thread *InstancePtr);
 u32 XVivado_activity_thread_IsReady(XVivado_activity_thread *InstancePtr);
 void XVivado_activity_thread_EnableAutoRestart(XVivado_activity_thread *InstancePtr);
 void XVivado_activity_thread_DisableAutoRestart(XVivado_activity_thread *InstancePtr);
+void xVivado_activity_thread_Wait(XVivado_activity_thread *device_info);
 
 void XVivado_activity_thread_SetKernel_u_a_0_rfir(XVivado_activity_thread *InstancePtr, u32 Data);
 u32 XVivado_activity_thread_GetKernel_u_a_0_rfir(XVivado_activity_thread *InstancePtr);
