@@ -88,7 +88,7 @@ void vivado_activity_thread(volatile int *a,standard_underlying_attributes *kern
 	//**Thread Calculation Loop**
 	FP_t result_0 = 0;
 	FP_t result_sqrd_0 = 0;
-	FP_t delta_time_0;
+	FP_t delta_time_0,value_0;
 	PATHSET_LOOP: for(p=0;p<PATHS;++p){
 
 		//**Initiating the Path**
@@ -113,7 +113,8 @@ void vivado_activity_thread(volatile int *a,standard_underlying_attributes *kern
 				asian_option_derivative_payoff(spot_price_0,o_v_0,&o_a_0);
 
 				//**Returning Result**
-				thread_result_buff_0[p] = *(int*)&o_v_0->value;
+				value_0 = o_v_0->value;
+				thread_result_buff_0[p] = *(int*)&value_0;
 				if(p==(PATHS-1)) memcpy((int *)(a + thread_result_0/4), thread_result_buff_0, PATHS*sizeof(FP_t));
 				}
 			}
