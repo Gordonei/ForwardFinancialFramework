@@ -5,11 +5,11 @@
 ############################################################
 open_project hls_prj
 set_top vivado_activity_thread
-add_files srcs/vivado_core.c -cflags "-DFP_t=float"
+add_files srcs/vivado_core.c -cflags "-DTAUS_BOXMULLER -DFP_t=float"
 add_files srcs/heston_underlying.h -cflags "-DFP_t=float -DTAUS_BOXMULLER -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS"
 add_files srcs/heston_underlying.c -cflags "-DFP_t=float -DTAUS_BOXMULLER -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS"
-add_files srcs/gauss.h -cflags "-DFP_t=float -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS"
-add_files srcs/gauss.c -cflags "-DFP_t=float -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS"
+add_files srcs/gauss.h -cflags "-DTAUS_BOXMULLER -DFP_t=float -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS"
+add_files srcs/gauss.c -cflags "-DTAUS_BOXMULLER -DFP_t=float -Dpow=powr -Dsqrt=rsqrt -Dsin=sinf -Dcos=cosf -DVIVADOHLS"
 add_files srcs/european_option.h -cflags "-DFP_t=float"
 add_files srcs/european_option.c -cflags "-DFP_t=float"
 add_files srcs/double_barrier_option.h -cflags "-DFP_t=float"
@@ -30,5 +30,4 @@ create_clock -period 10 -name default
 source "./hls_prj/F3_VivadoHLS_core/directives.tcl"
 #csim_design
 csynth_design
-#cosim_design -trace_level none
 export_design -evaluate vhdl -format ip_catalog -vendor "imperial" -library "F3" -version "1.0"
