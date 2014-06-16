@@ -16,8 +16,9 @@ all: core system
 
 core: $(HLS_PRJ)/impl/ip/$(IP_NAME).zip
 
-$(HLS_PRJ)/impl/ip/$(IP_NAME).zip: 
+$(HLS_PRJ)/impl/ip/$(IP_NAME).zip:
 	cp srcs/$(APP).c srcs/vivado_core.c
+	cp $(HLS_PRJ)/../vivado_hls.app.bak $(HLS_PRJ)/../vivado_hls.app
 	$(VIVADO_HLS_CMD) $(HLS_PRJ)/script.tcl $(LOOP_II) $(LOOP_UNROLL)
 	rm *.log 
 

@@ -95,8 +95,8 @@ void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_stat
   u = __drandom32(rng_state);
   v = __drandom32(rng_state);
   
-  t_x = native_sqrt(-2.0f*native_log(u))*cos((FP_t)(6.2831855f*v));
-  t_y = native_sqrt(-2.0f*native_log(u))*sin((FP_t)(6.2831855f*v));
+  t_x = native_sqrt(-2.0f*native_log(u))*native_cos((FP_t)(6.2831855f*v));
+  t_y = native_sqrt(-2.0f*native_log(u))*native_sin((FP_t)(6.2831855f*v));
   t_y = t_x*rho+native_sqrt((FP_t)(1.0f-rho*rho))*t_y;
   
   *x = t_x;

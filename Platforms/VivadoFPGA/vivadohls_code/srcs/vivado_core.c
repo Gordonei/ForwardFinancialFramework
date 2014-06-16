@@ -1,6 +1,6 @@
 #define VIVADOHLS
-#define PATHS 4096
-#define PATH_POINTS 1
+#define PATHS 1000
+#define PATH_POINTS 4096
 #define TAUS_BOXMULLER
 //Libraries
 #include "math.h";
@@ -14,27 +14,20 @@
 #include "gauss.h";
 #include "vivado_core.h";
 #include "xvivado_activity_thread.h";
-#include "heston_underlying.h";
-#include "european_option.h";
+#include "black_scholes_underlying.h";
+#include "asian_option.h";
 
 //*Intermediate and Communication Variables*
 FP_t discount_0_0;
 FP_t option_price_0;
 FP_t option_price_0_confidence_interval;
-static FP_t heston_underlying_0_rfir;
-static FP_t heston_underlying_0_current_price;
-static FP_t heston_underlying_0_initial_volatility;
-static FP_t heston_underlying_0_volatility_volatility;
-static FP_t heston_underlying_0_rho;
-static FP_t heston_underlying_0_kappa;
-static FP_t heston_underlying_0_theta;
-static FP_t heston_underlying_0_correlation_matrix_0_0;
-static FP_t heston_underlying_0_correlation_matrix_0_1;
-static FP_t heston_underlying_0_correlation_matrix_1_0;
-static FP_t heston_underlying_0_correlation_matrix_1_1;
-static FP_t european_option_0_time_period;
-static FP_t european_option_0_call;
-static FP_t european_option_0_strike_price;
+static FP_t black_scholes_underlying_0_rfir;
+static FP_t black_scholes_underlying_0_current_price;
+static FP_t black_scholes_underlying_0_volatility;
+static FP_t asian_option_0_time_period;
+static FP_t asian_option_0_call;
+static FP_t asian_option_0_strike_price;
+static FP_t asian_option_0_points;
 static int paths;
 static int default_points;
 static int path_points;
@@ -54,9 +47,13 @@ FP_t setup_time,activity_time;
 struct timespec start, setup_end, end;
 int ret,ret_2;
 typedef struct{
-	heston_underlying_attributes u_a_0;
-	european_option_attributes o_a_0;
+	black_scholes_underlying_attributes u_a_0;
+	asian_option_attributes o_a_0;
 	} kernel_data;
+void * vivado_wait_thread_func(void* thread_device_info){
+	XVivado_activity_thread *device_info = (XVivado_activity_thread*)thread_device_info;
+	xVivado_activity_thread_Wait(device_info);
+	}
 
 //*Vivado HLS Kernel Function*
 void vivado_activity_thread(volatile int *a,standard_underlying_attributes *kernel_u_a_0,standard_derivative_attributes *kernel_o_a_0,rng_state_t *seed_0,unsigned int thread_result_0){
@@ -71,81 +68,58 @@ void vivado_activity_thread(volatile int *a,standard_underlying_attributes *kern
 
 	//**Initialising Kernel Variables*
 	unsigned int p,pp;
-	heston_underlying_variables u_v_0;
-	heston_underlying_attributes u_a_0;
+	black_scholes_underlying_variables *u_v_0;
+	black_scholes_underlying_variables u_v_0_arr[1];
+	u_v_0 = u_v_0_arr;
+	black_scholes_underlying_attributes u_a_0;
 
-	//***Underlying Attributes***
-	u_a_0.rfir = kernel_u_a_0->rfir;
-	u_a_0.current_price = kernel_u_a_0->current_price;
-	u_a_0.initial_volatility = kernel_u_a_0->initial_volatility;
-	u_a_0.volatility_volatility = kernel_u_a_0->volatility_volatility;
-	u_a_0.rho = kernel_u_a_0->rho;
-	u_a_0.kappa = kernel_u_a_0->kappa;
-	u_a_0.theta = kernel_u_a_0->theta;
-	u_a_0.correlation_matrix_0_0 = kernel_u_a_0->correlation_matrix_0_0;
-	u_a_0.correlation_matrix_0_1 = kernel_u_a_0->correlation_matrix_0_1;
-	u_a_0.correlation_matrix_1_0 = kernel_u_a_0->correlation_matrix_1_0;
-	u_a_0.correlation_matrix_1_1 = kernel_u_a_0->correlation_matrix_1_1;
-	(u_v_0.rng_state).s1 = seed_0->s1;
-	(u_v_0.rng_state).s2 = seed_0->s2;
-	(u_v_0.rng_state).s3 = seed_0->s3;
-	(u_v_0.rng_state).offset = seed_0->offset;
+	//***Underlying Attributes Initialisation***
+	black_scholes_underlying_underlying_init(kernel_u_a_0->rfir,kernel_u_a_0->current_price,kernel_u_a_0->volatility,&u_a_0);
 	FP_t spot_price_0,time_0;
 	int thread_result_buff_0[PATHS];
-	european_option_variables o_v_0;
-	european_option_attributes o_a_0;
+	asian_option_attributes o_a_0;
+	asian_option_variables *o_v_0;
+	asian_option_variables o_v_0_arr[1];
+	o_v_0 = o_v_0_arr;
 
-	//***Derivative Attributes***
-	o_a_0.time_period = kernel_o_a_0->time_period;
-	o_a_0.call = kernel_o_a_0->call;
-	o_a_0.strike_price = kernel_o_a_0->strike_price;
+	//***Derivative Attributes Initialisation***
+	asian_option_derivative_init(kernel_o_a_0->time_period,kernel_o_a_0->call,kernel_o_a_0->strike_price,kernel_o_a_0->points,&o_a_0);
 
 	//**Thread Calculation Loop**
 	FP_t result_0 = 0;
 	FP_t result_sqrd_0 = 0;
-	FP_t delta_time_0;
-	FP_t gamma;
-
-	heston_underlying_underlying_path_init(&u_v_0,&u_a_0);
-	delta_time_0 = o_a_0.time_period/PATHS;
+	FP_t delta_time_0,value_0;
 	PATHSET_LOOP: for(p=0;p<PATHS;++p){
 
-		/*
 		//**Initiating the Path**
-		heston_underlying_underlying_path_init(&u_v_0,&u_a_0);
-		spot_price_0 = (u_a_0).current_price*exp(u_v_0.gamma);
-		time_0 = u_v_0.time;
-		european_option_derivative_path_init(&o_v_0,&o_a_0);
+		(u_v_0->rng_state).s1 = seed_0->s1+2;
+		(u_v_0->rng_state).s2 = seed_0->s2+p*8;
+		(u_v_0->rng_state).s3 = seed_0->s3+p*p*16;
+		black_scholes_underlying_underlying_path_init(u_v_0,&u_a_0);
+		spot_price_0 = (u_a_0).current_price*exp(u_v_0->gamma);
+		time_0 = u_v_0->time;
+		asian_option_derivative_path_init(o_v_0,&o_a_0);
 		delta_time_0 = o_a_0.time_period/PATH_POINTS;
 
 		//**Running the path**
 		PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){
-			european_option_derivative_path(spot_price_0,time_0,&o_v_0,&o_a_0);
-			heston_underlying_underlying_path(delta_time_0,&u_v_0,&u_a_0);
-			spot_price_0 = u_a_0.current_price*exp(u_v_0.gamma);
-			time_0 = u_v_0.time;
+			asian_option_derivative_path(spot_price_0,time_0,o_v_0,&o_a_0);
+			black_scholes_underlying_underlying_path(delta_time_0,u_v_0,&u_a_0);
+			spot_price_0 = u_a_0.current_price*exp(u_v_0->gamma);
+			time_0 = u_v_0->time;
 
 			//**Calculating payoff(s)**
-			if(p==0){
-				//european_option_derivative_payoff(spot_price_0,&o_v_0,&o_a_0);
+			if(pp==(PATH_POINTS-1)){
+				asian_option_derivative_payoff(spot_price_0,o_v_0,&o_a_0);
 
 				//**Returning Result**
-				thread_result_buff_0[pp] = *(int*)&u_v_0.gamma;
-				
+				value_0 = o_v_0->value;
+				thread_result_buff_0[p] = *(int*)&value_0;
+				if(p==(PATHS-1)) memcpy((int *)(a + thread_result_0/4), thread_result_buff_0, PATHS*sizeof(FP_t));
 				}
-			if(p==(PATHS-1)) memcpy((int *)(a + thread_result_0/4), thread_result_buff_0, PATHS*sizeof(FP_t));
 			}
 		}
-		*/
-		//taus_ran_gaussian_boxmuller(&(u_v_0.x),&(u_v_0.y),(u_a_0.rho),&(u_v_0.rng_state));
-		heston_underlying_underlying_path(delta_time_0,&u_v_0,&u_a_0);
-		//spot_price_0 = u_a_0.current_price*exp(u_v_0.gamma);
-		gamma = u_v_0.gamma;
-		thread_result_buff_0[p] = *(int*)&gamma;
-		//thread_result_buff_0[p] = *(int*)& __drandom32(&(u_v_0.rng_state));
-		if(p==(PATHS-1)) memcpy((int *)(a + thread_result_0/4), thread_result_buff_0, PATHS*sizeof(FP_t));
 	}
-}
 
 //*MC Multicore Activity Thread Function*
 void * multicore_montecarlo_activity_thread(void* thread_arg){
@@ -153,50 +127,61 @@ void * multicore_montecarlo_activity_thread(void* thread_arg){
 	//**Loop Data Structures**
 	unsigned int thread_paths = ((struct thread_data*) thread_arg)->thread_paths;
 	unsigned int rng_seed = ((struct thread_data*) thread_arg)->thread_rng_seed;
-	heston_underlying_attributes u_a_0;
-	heston_underlying_variables u_v_0;
-	european_option_attributes o_a_0;
-	european_option_variables o_v_0;
+	black_scholes_underlying_attributes u_a_0;
+	black_scholes_underlying_variables u_v_0;
+	asian_option_attributes o_a_0;
+	asian_option_variables o_v_0;
 
 	//**Initialising Attributes*
-	heston_underlying_underlying_init(heston_underlying_0_rfir,heston_underlying_0_current_price,heston_underlying_0_initial_volatility,heston_underlying_0_volatility_volatility,heston_underlying_0_rho,heston_underlying_0_kappa,heston_underlying_0_theta,heston_underlying_0_correlation_matrix_0_0,heston_underlying_0_correlation_matrix_0_1,heston_underlying_0_correlation_matrix_1_0,heston_underlying_0_correlation_matrix_1_1,&u_a_0);
-	european_option_derivative_init(european_option_0_time_period,european_option_0_call,european_option_0_strike_price,&o_a_0);
-	o_v_0.delta_time = o_a_0.time_period/default_points;
+	black_scholes_underlying_underlying_init(black_scholes_underlying_0_rfir,black_scholes_underlying_0_current_price,black_scholes_underlying_0_volatility,&u_a_0);
+	asian_option_derivative_init(asian_option_0_time_period,asian_option_0_call,asian_option_0_strike_price,asian_option_0_points,&o_a_0);
 
 	//**Creating kernel argument*
 	standard_underlying_attributes kernel_u_a_0;
 	standard_derivative_attributes kernel_o_a_0;
 	kernel_u_a_0.rfir = u_a_0.rfir;
 	kernel_u_a_0.current_price = u_a_0.current_price;
-	kernel_u_a_0.initial_volatility = u_a_0.initial_volatility;
-	kernel_u_a_0.volatility_volatility = u_a_0.volatility_volatility;
-	kernel_u_a_0.rho = u_a_0.rho;
-	kernel_u_a_0.kappa = u_a_0.kappa;
-	kernel_u_a_0.theta = u_a_0.theta;
-	kernel_u_a_0.correlation_matrix_0_0 = u_a_0.correlation_matrix_0_0;
-	kernel_u_a_0.correlation_matrix_0_1 = u_a_0.correlation_matrix_0_1;
-	kernel_u_a_0.correlation_matrix_1_0 = u_a_0.correlation_matrix_1_0;
-	kernel_u_a_0.correlation_matrix_1_1 = u_a_0.correlation_matrix_1_1;
+	kernel_u_a_0.volatility = u_a_0.volatility;
 	kernel_o_a_0.time_period = o_a_0.time_period;
 	kernel_o_a_0.call = o_a_0.call;
 	kernel_o_a_0.strike_price = o_a_0.strike_price;
+	kernel_o_a_0.points = o_a_0.points;
 
 	//**Batching Loop**
 	unsigned int chunks = thread_paths/PATHS;
+	chunks--;
 	FP_t temp_value_0 = 0.0;
 	FP_t temp_value_sqrd_0 = 0.0;
 	FP_t *kernel_value_0 = (FP_t*)setup_reserved_mem();
 	rng_state_t seed_0;
+	XVivado_activity_thread  device_info;
+	device_info = setup_XVivado_activity_thread();
+	pthread_t waitthread;
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+	void *status;
+	ctrng_seed(100,0,&(u_v_0.rng_state));
+	seed_0 = u_v_0.rng_state;
+	vivado_activity_thread_hw(&kernel_u_a_0,&kernel_o_a_0,&seed_0,RESERVED_MEM_START_ADDRESS,&device_info);
+	pthread_create(&waitthread,&attr,vivado_wait_thread_func,&device_info);
 	for(i=0;i<chunks;++i){
 		ctrng_seed(100,rng_seed*thread_paths*1,&(u_v_0.rng_state));
 		seed_0 = u_v_0.rng_state;
-		vivado_activity_thread_hw(&kernel_u_a_0,&kernel_o_a_0,&seed_0,RESERVED_MEM_START_ADDRESS);
+		pthread_join(waitthread,&status);
+		vivado_activity_thread_hw(&kernel_u_a_0,&kernel_o_a_0,&seed_0,RESERVED_MEM_START_ADDRESS,&device_info);
+		pthread_create(&waitthread,&attr,vivado_wait_thread_func,&device_info);
 
 		//***Aggregating the result**
 		for(j=0;j<PATHS;++j){
 			temp_value_0 += kernel_value_0[j];
 			temp_value_sqrd_0 += kernel_value_0[j]*kernel_value_0[j];
 			}
+		}
+	pthread_join(waitthread,&status);
+	for(j=0;j<PATHS;++j){
+		temp_value_0 += kernel_value_0[j];
+		temp_value_sqrd_0 += kernel_value_0[j]*kernel_value_0[j];
 		}
 
 	//**Passing data back to main thread**
@@ -221,25 +206,18 @@ int main(int argc,char* argv[]){
 	rng_seed = atoi(argv[6]);
 
 	//***Underlying Attributes***
-	heston_underlying_0_rfir = strtod(argv[7],NULL);
-	heston_underlying_0_current_price = strtod(argv[8],NULL);
-	heston_underlying_0_initial_volatility = strtod(argv[9],NULL);
-	heston_underlying_0_volatility_volatility = strtod(argv[10],NULL);
-	heston_underlying_0_rho = strtod(argv[11],NULL);
-	heston_underlying_0_kappa = strtod(argv[12],NULL);
-	heston_underlying_0_theta = strtod(argv[13],NULL);
-	heston_underlying_0_correlation_matrix_0_0 = strtod(argv[14],NULL);
-	heston_underlying_0_correlation_matrix_0_1 = strtod(argv[15],NULL);
-	heston_underlying_0_correlation_matrix_1_0 = strtod(argv[16],NULL);
-	heston_underlying_0_correlation_matrix_1_1 = strtod(argv[17],NULL);
+	black_scholes_underlying_0_rfir = strtod(argv[7],NULL);
+	black_scholes_underlying_0_current_price = strtod(argv[8],NULL);
+	black_scholes_underlying_0_volatility = strtod(argv[9],NULL);
 
 	//***Derivative Attributes***
-	european_option_0_time_period = strtod(argv[18],NULL);
-	european_option_0_call = strtod(argv[19],NULL);
-	european_option_0_strike_price = strtod(argv[20],NULL);
+	asian_option_0_time_period = strtod(argv[10],NULL);
+	asian_option_0_call = strtod(argv[11],NULL);
+	asian_option_0_strike_price = strtod(argv[12],NULL);
+	asian_option_0_points = strtod(argv[13],NULL);
 
 	//**Calculating Discount Factor**
-	discount_0_0 = exp(-heston_underlying_0_rfir*european_option_0_time_period);
+	discount_0_0 = exp(-black_scholes_underlying_0_rfir*asian_option_0_time_period);
 
 	//**Creating Thread Variables**
 	thread_paths = paths/threads;
