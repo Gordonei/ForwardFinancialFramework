@@ -44,6 +44,9 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("#define PATH_POINTS %d"%self.solver_metadata["path_points"])
     output_list.append("#define TAUS_BOXMULLER")
     
+    if(self.simulation):
+      output_list.append("#define native_sin sin")
+      output_list.append("#define native_cos cos:")    
     #output_list.remove("#define MULTICORE_CPU")
     
     return output_list
@@ -137,7 +140,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,u in enumerate(self.underlying):
       #RNG seeding
       if("heston" in u.name or "black_scholes" in u.name):
-	output_list.append("ctrng_seed(100,rng_seed*thread_paths*%d*(i+2),&seed_%d);"%(index+1,index,index))
+	output_list.append("ctrng_seed(100,rng_seed*thread_paths*%d*(i+2),&seed_%d);"%(index+1,index))
 	#output_list.append("seed_%d = u_v_%d.rng_state;"%(index,index))
 	
     #Call the FPGA IO function again
@@ -329,27 +332,31 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  output_list.append("spot_price_%d = u_a_%d.current_price*exp(u_v_%d->gamma);"%(u_index,u_index,u_index))
 	  output_list.append("time_%d = u_v_%d->time;"%(u_index,u_index))
 	  
-	output_list.append("//**Calculating payoff(s)**")
+    output_list.append("}")
+    output_list.append("//**Calculating payoff(s)**")
 	
-	for index,d in enumerate(self.derivative):
-	  output_list.append("if(pp==(PATH_POINTS-1)){")
-	  output_list.append("%s_derivative_payoff(spot_price_%d,o_v_%d,&o_a_%d);"%(d.name,u_index,index,index))
+    for index,d in enumerate(self.derivative):
+	  #output_list.append("if(pp==(PATH_POINTS-1)){")
+      output_list.append("%s_derivative_payoff(spot_price_%d,o_v_%d,&o_a_%d);"%(d.name,u_index,index,index))
 	
-	  output_list.append("//**Returning Result**")
-	  if(self.simulation):
-	    output_list.append("thread_result_%d[p] = o_v_%d->value;"%(index,index))
-	  else:
-	    output_list.append("value_%d = o_v_%d->value;"%(index,index))
-	    output_list.append("thread_result_buff_%d[p] = *(int*)&value_%d;"%(index,index))
-	    output_list.append("if(p==(PATHS-1)) memcpy((int *)(a + thread_result_%d/4), thread_result_buff_%d, PATHS*sizeof(FP_t));"%(index,index))
-	  output_list.append("}")
+      output_list.append("//**Returning Result**")
+      if(self.simulation):
+        output_list.append("thread_result_%d[p] = o_v_%d->value;"%(index,index))
+      else:
+	output_list.append("value_%d = o_v_%d->value;"%(index,index))
+	output_list.append("thread_result_buff_%d[p] = *(int*)&value_%d;"%(index,index))
+	
+      output_list.append("}") #End of the path
+      output_list.append("memcpy((int *)(a + thread_result_%d/4), thread_result_buff_%d, PATHS*sizeof(FP_t));"%(index,index))  
+	  #output_list.append("if(p==(PATHS-1)) memcpy((int *)(a + thread_result_%d/4), thread_result_buff_%d, PATHS*sizeof(FP_t));"%(index,index))
+	  #output_list.append("}")
      
-    output_list.append("}") #End of the path
+    #output_list.append("}") #End of the path
     #if(self.c_slow): output_list.append("}")
     
     
       
-    output_list.append("}") #End of the thread calculation loop
+    #output_list.append("}") #End of the thread calculation loop
     
     
     output_list.append("}") #End of Kernel
