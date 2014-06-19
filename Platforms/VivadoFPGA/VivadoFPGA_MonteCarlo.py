@@ -98,7 +98,6 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,d in enumerate(self.derivative):
       output_list.append("FP_t temp_value_%d = 0.0;"%index)
       output_list.append("FP_t temp_value_sqrd_%d = 0.0;"%index)
-    
       if(self.simulation): output_list.append("FP_t kernel_value_%d[PATHS];"%index)
       else: output_list.append("FP_t *kernel_value_%d = (FP_t*)setup_reserved_mem();"%index)
       #output_list.append("FP_t kernel_value_sqrd_%d;"%index)
