@@ -119,8 +119,11 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     #Running the FPGA for the first time
     #output_list.append("ctrng_seed(100,rng_seed*thread_paths*1,&(u_v_0.rng_state));")
-    output_list.append("ctrng_seed(100,0,&(u_v_0.rng_state));")
-    output_list.append("seed_0 = u_v_0.rng_state;")
+    
+    for index,u in enumerate(self.underlying): 
+      if("heston" in u.name or "black_scholes" in u.name):
+      	output_list.append("ctrng_seed(100,rng_seed*thread_paths*%d,&seed_%d);"%(index+1,index))
+    #output_list.append("seed_0 = u_v_0.rng_state;")
     
     index = 0
     if (self.simulation): output_list.append("vivado_activity_thread(&kernel_u_a_0,&kernel_o_a_0,&seed_0,kernel_value_%d);"%(index))
@@ -135,8 +138,8 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,u in enumerate(self.underlying):
       #RNG seeding
       if("heston" in u.name or "black_scholes" in u.name):
-	output_list.append("ctrng_seed(100,rng_seed*thread_paths*%d,&(u_v_%d.rng_state));"%(index+1,index))
-	output_list.append("seed_%d = u_v_%d.rng_state;"%(index,index))
+	output_list.append("ctrng_seed(100,rng_seed*thread_paths*%d*(i+2),&seed_%d);"%(index+1,index,index))
+	#output_list.append("seed_%d = u_v_%d.rng_state;"%(index,index))
 	
     #Call the FPGA IO function again
     if(self.simulation): output_list.append("vivado_activity_thread(&kernel_u_a_0,&kernel_o_a_0,&seed_0,kernel_value_%d);"%(index))
@@ -281,7 +284,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,d in enumerate(self.derivative):
       output_list.append("FP_t result_%d = 0;"%index)
       output_list.append("FP_t result_sqrd_%d = 0;"%index)
-      output_list.append("FP_t delta_time_%d;"%index)
+      output_list.append("FP_t delta_time_%d,value_%d;"%(index,index))
     
     if(self.c_slow):
       output_list.append("PATH_LOOP: for(pp=0;pp<(PATH_POINTS);++pp){")
@@ -337,13 +340,10 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  if(self.simulation):
 	    output_list.append("thread_result_%d[p] = o_v_%d->value;"%(index,index))
 	  else:
-	    output_list.append("thread_result_buff_%d[p] = *(int*)&o_v_%d->value;"%(index,index))
+	    output_list.append("value_%d = o_v_%d->value;"%(index,index))
+	    output_list.append("thread_result_buff_%d[p] = *(int*)&value_%d;"%(index,index))
 	    output_list.append("if(p==(PATHS-1)) memcpy((int *)(a + thread_result_%d/4), thread_result_buff_%d, PATHS*sizeof(FP_t));"%(index,index))
 	  output_list.append("}")
-	  
-    #if(self.c_slow):
-    #  for index,u in enumerate(self.underlying): output_list.append("u_v_%d_array[p] = u_v_%d;"%(index,index))
-    #  for index,d in enumerate(self.derivative): output_list.append("o_v_%d_array[p] = o_v_%d ;"%(index,index))
      
     output_list.append("}") #End of the path
     #if(self.c_slow): output_list.append("}")

@@ -25,7 +25,7 @@ void heston_underlying_underlying_init(FP_t r,FP_t p,FP_t i_v,FP_t v_v,FP_t rh,F
 void heston_underlying_underlying_path_init(heston_underlying_variables* u_v,heston_underlying_attributes* u_a){
 	u_v->gamma = 0.0;
 	u_v->time = 0.0;
-	u_v->volatility = sqrt(u_a->initial_volatility);
+	u_v->volatility = native_sqrt(u_a->initial_volatility);
 	
 	//#if ((defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT)) && !(defined(VIVADOHLS)))
 	
@@ -81,10 +81,8 @@ void heston_underlying_underlying_path(FP_t delta_time,heston_underlying_variabl
         
 	//moment matching
 	u_v->moment_difference = u_a->theta + (u_v->volatility*u_v->volatility-u_a->theta)*native_exp(-u_a->kappa*delta_time) - u_a->volatility_volatility*u_a->volatility_volatility/4/u_a->kappa*(1-native_exp(-u_a->kappa*delta_time)); //native_ex[
-	if(u_v->moment_difference<0){
-		u_v->moment_difference = 0;
-	}
-	u_v->theta_v_approx = (sqrt(u_v->moment_difference)-u_v->volatility*native_exp(-0.5f*u_a->kappa*delta_time))/(1-native_exp(-0.5f*u_a->kappa*delta_time)); //native_sqrt, native_exp
+	if(u_v->moment_difference<0) u_v->moment_difference = 0;
+	u_v->theta_v_approx = (native_sqrt(u_v->moment_difference)-u_v->volatility*native_exp(-0.5f*u_a->kappa*delta_time))/(1-native_exp(-0.5f*u_a->kappa*delta_time)); //native_sqrt, native_exp
 	
 	u_v->gamma += (u_a->rfir-0.5f*u_v->volatility*u_v->volatility)*delta_time+u_v->volatility*u_v->x*native_sqrt(delta_time); //native_sqrt
 	u_v->volatility += 0.5f*u_a->kappa*(u_v->theta_v_approx-u_v->volatility)*delta_time+0.5f*u_a->volatility_volatility*u_v->y*native_sqrt(delta_time);

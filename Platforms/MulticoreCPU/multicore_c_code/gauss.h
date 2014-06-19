@@ -53,8 +53,8 @@
 #define native_log logf
 #define native_exp expf
 #define native_sqrt rsqrtf
-#define sin sinf
-#define cos cosf
+#define native_sin sinf
+#define native_cos cosf
 #endif
 
 #ifdef TAUS_ZIGGURAT
