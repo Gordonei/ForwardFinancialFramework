@@ -200,8 +200,12 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       compile_cmd = ["make","all","APP=%s"%self.output_file_name]
       
       #Configuring optimisations
-      if(self.instances>1): compile_cmd.append("LOOP_UNROLL=%d"%self.instances)
-      if(self.pipelining>1): compile_cmd.append("LOOP_II=%d" % (self.solver_metadata["path_points"]/self.pipelining))
+      if(self.pipelining>1):
+	compile_cmd.append("LOOP_UNROLL=%d"%self.pipelining)
+	compile_cmd.append("LOOP_II=1")
+      else:
+	compile_cmd.append("LOOP_UNROLL=0")
+	compile_cmd.append("LOOP_II=0")
       
       result = subprocess.check_output(compile_cmd)
       
