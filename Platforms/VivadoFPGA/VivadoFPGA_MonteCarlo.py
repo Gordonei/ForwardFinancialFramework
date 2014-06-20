@@ -353,7 +353,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  output_list.append("thread_result_%d[p_%d+PATHS/%d*%d] = o_v_%d_%d->value;"%(index,inst,self.instances,inst,index,inst))
 	else:
 	  output_list.append("value_%d_%d = o_v_%d_%d->value;"%(index,inst,index,inst))
-	  output_list.append("thread_result_buff_%d[p_%d+PATHS/%d*%d] = *(int*)&value_%d_%d;"%(index,self.instances,inst,inst,index,inst))
+	  output_list.append("thread_result_buff_%d[p_%d+PATHS/%d*%d] = *(int*)&value_%d_%d;"%(index,inst,self.instances,inst,index,inst))
 	  
 	if(self.c_slow):
 	  output_list.append("}") #End of the payoff behaviour at the end of the loop
