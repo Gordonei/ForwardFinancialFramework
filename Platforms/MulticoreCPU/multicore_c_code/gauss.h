@@ -38,6 +38,8 @@
 #define native_exp exp
 #define native_log log
 #define native_powr pow
+#define native_sin sin
+#define native_cos cos
 #endif
 
 #ifdef OPENCL_GPU
@@ -52,7 +54,7 @@
 //#define M_PI 3.1415926535897
 #define native_log logf
 #define native_exp expf
-#define native_sqrt rsqrtf
+#define native_sqrt sqrtf
 #define native_sin sinf
 #define native_cos cosf
 #endif

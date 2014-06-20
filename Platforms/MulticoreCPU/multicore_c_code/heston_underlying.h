@@ -39,7 +39,7 @@
 //#include "hls_math.h"
 #include "math.h"
 //#define M_PI 3.1415926535897
-#define native_sqrt rsqrtf
+#define native_sqrt sqrtf
 #define native_exp expf
 #define native_sin sinf
 #define native_cos cosf

@@ -38,7 +38,7 @@
 #ifdef VIVADOHLS
 //#include "hls_math.h"
 //#define M_PI 3.1415926535897f
-#define native_sqrt rsqrtf
+#define native_sqrt sqrtf
 #define native_exp expf
 #define native_log logf
 #define native_sin sinf
