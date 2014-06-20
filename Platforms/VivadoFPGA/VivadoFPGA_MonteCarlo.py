@@ -295,7 +295,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       
       if(self.c_slow):
 	output_list.append("PATH_LOOP_%d: for(pp_%d=0;pp_%d<(PATH_POINTS);++pp_%d){"%(inst,inst,inst,inst))
-	output_list.append("#pragma HLS unroll skip_exit_check factor=LOOP_UNROLL")
+	if(self.pipelining>1): output_list.append("#pragma HLS unroll skip_exit_check factor=%d"%self.pipelining)
 	output_list.append("PATHSET_LOOP_%d: for(p_%d=0;p_%d<PATHS/%d;++p_%d){"%(inst,inst,inst,self.instances,inst))
 	for index,d in enumerate(self.derivative): output_list.append("o_v_%d_%d = &o_v_%d_arr_%d[p_%d];"%(index,inst,index,inst,inst))
 	for index,u in enumerate(self.underlying): output_list.append("u_v_%d_%d = &u_v_%d_arr_%d[p_%d];"%(index,inst,index,inst,inst))
@@ -326,7 +326,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	
       if not(self.c_slow):
 	output_list.append("PATH_LOOP_%d: for(pp_%d=0;pp_%d<(PATH_POINTS);++pp_%d){"%(inst,inst,inst,inst))
-	output_list.append("#pragma HLS unroll skip_exit_check factor=LOOP_UNROLL")
+	if(self.pipelining>1): output_list.append("#pragma HLS unroll skip_exit_check factor=%d"%self.pipelining)
       
       temp_underlying = self.underlying[:]
       for index,d in enumerate(self.derivative):
