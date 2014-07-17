@@ -20,15 +20,17 @@ Current Underlyings and Derivatives Supported:
  * European Asian Options
  
 Platforms:
- * Multicore CPUs (via C and Posix threads)
- * Maxeler FPGA platform
+ * Multicore CPUs (via GCC and Posix threads)
+ * Maxeler FPGA Platforms
+ * Xilinx FPGAs (via VivadoHLS)
+ * Altera FPGAs (via OpenCL)
  * GPUs (via OpenCL)
  
 In Progress:
-* Automatic scheduling of tasks across a range of platforms
+ * Derivatives with American exercise properties
+ * Automatic scheduling of tasks across a range of platforms
  
 Coming Soon:
- * Derivatives with American exercise properties
  * Interest-rate derivatives
  * IP-based Network execution
  * Lattice-based Solvers
@@ -51,17 +53,19 @@ F^3 requires:
 2. GCC (http://gcc.gnu.org/)    
 3. Python >= 2.7 (http://www.python.org/getit/releases/2.7.3/)  
 4. Numpy (http://numpy.scipy.org/)  
-5. Maxcompiler version 12.1 (For Maxeler code)  
-6. PyOpenCL (https://pypi.python.org/pypi/pyopencl) 
+5. Maxcompiler version 12.1 >= (For Maxeler code)  
+6. PyOpenCL (https://pypi.python.org/pypi/pyopencl)
+7. * OpenCL SDK (where * is the vendor of the OpenCL platform in question)
+8. VivadoHLS 2013.4
 
 Getting Started
 ---------------
 
-1. Change to the script directory (i.e. ForwardFinancialFramework/bin)  
+1. Change to the test_script directory (i.e. ForwardFinancialFramework/bin/test_scripts)  
 2. Run the following command in the script directory:  
         "python \<script file name\> script options"  
 i.e.  
-        "python mc_solver_test_script.py CPU Execute"  
+        "python mc_solver_test.py CPU Execute"  
 would run a very basic, CPU-based bond valuation.  
 
 Extending the Framework
