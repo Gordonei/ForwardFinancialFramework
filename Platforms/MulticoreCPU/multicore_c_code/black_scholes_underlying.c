@@ -17,21 +17,6 @@ void black_scholes_underlying_underlying_path_init(black_scholes_underlying_vari
 	u_v->gamma = 0.0;
 	u_v->time = 0.0;
 	u_v->x = 0.0;
-	
-	#if ((defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT)) && !(defined(VIVADOHLS)))
-	//(u_v->rng_state).s1 = 2; This is done in the kernel proper now
-	//(u_v->rng_state).s2 = 8;
-	//(u_v->rng_state).s3 = 16;
-	
-	int temp;
-	for(int i=0;i<100;++i){
-	  temp = __random32(&(u_v->rng_state)); //Getting the random number generator suitably random
-	}
-	#endif
-	
-	//#if (defined OPENCL_GPU && !defined AMD_GPU) This is done in the kernel proper now
-	//MWC64X_SeedStreams(&(u_v->rng_state),0,4096*2*1000);
-	//#endif
 }
 
 void black_scholes_underlying_underlying_path(FP_t delta_time,black_scholes_underlying_variables* u_v,black_scholes_underlying_attributes* u_a){
