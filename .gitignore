@@ -52,4 +52,4 @@ MC_Solver_Test_*
  *.jou
  *.log
  *.autopilot/
- *impl/ip/
+ *impl/
