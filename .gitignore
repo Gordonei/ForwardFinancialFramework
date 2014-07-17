@@ -30,11 +30,11 @@ pip-log.txt
 mc_solver_multicore_*
 mc_solver_maxeler_fpga_*
 mc_solver_opencl_*
+mc_solver_vivado_*
 #Makefile
 
 #Example Code
 MC_Solver_Test_*
-MC_Solver_prototype_maxeler
 
 #Tilda Backups
 *~
@@ -52,3 +52,4 @@ MC_Solver_prototype_maxeler
  *.jou
  *.log
  *.autopilot/
+ *impl/ip/
