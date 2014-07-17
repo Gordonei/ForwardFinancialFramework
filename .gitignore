@@ -52,4 +52,13 @@ MC_Solver_Test_*
  *.jou
  *.log
  *.autopilot/
- *impl/
+ *.cproject
+ *.project
+ *.settings/
+ *F3_VivadoHLS_core/impl/
+ *F3_VivadoHLS_core/syn/
+ *ipi_prj/ipi_prj.srcs/
+ *ipi_prj/ipi_prj.runs/
+ *ipi_prj/ipi_prj.data/
+ *output/
+ vivado_core.c
