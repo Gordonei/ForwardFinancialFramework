@@ -23,6 +23,7 @@ class VivadoFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     self.solver_metadata["threads"] = 1 #In this context this means something different
     
     self.solver_metadata["instance_paths"] = 1000
+    if(self.c_slow): self.solver_metadata["instance_paths"] = 100
     self.solver_metadata["path_points"] = points
     
     self.utility_libraries.append("gauss.h")
