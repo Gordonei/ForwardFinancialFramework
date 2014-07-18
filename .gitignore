@@ -55,8 +55,7 @@ MC_Solver_Test_*
  *.cproject
  *.project
  *.settings/
- F3_VivadoHLS_core/impl/
- F3_VivadoHLS_core/syn/
+ F3_VivadoHLS_core/
  ipi_prj/ipi_prj.srcs/
  ipi_prj/ipi_prj.runs/
  ipi_prj/ipi_prj.data/
