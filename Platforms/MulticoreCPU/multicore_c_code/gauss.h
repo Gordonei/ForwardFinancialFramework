@@ -63,6 +63,7 @@
 /* position of right-most step */
 #define PARAM_R 3.44428647676
 
+#ifdef TAUS_ZIGGURAT
 /* tabulated values for the heigt of the Ziggurat levels */
 static const double ytab[128] = {
   1, 0.963598623011, 0.936280813353, 0.913041104253,

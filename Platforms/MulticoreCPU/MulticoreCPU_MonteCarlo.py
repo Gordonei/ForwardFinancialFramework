@@ -6,10 +6,10 @@ import os,time,subprocess,sys,time,math,platform,random
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
-  def __init__(self,derivative,paths,platform,reduce_underlyings=True,random_number_generator="taus_ziggurat",floating_point_format="double"):
+  def __init__(self,derivative,paths,platform,reduce_underlyings=True,random_number_generator="taus_ziggurat",floating_point_format="double",default_points=10):
     MonteCarlo.MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     self.solver_metadata["threads"] = self.platform.threads #Number of threads set by the platform
-    self.solver_metadata["default_points"] = 10
+    self.solver_metadata["default_points"] = default_points
     self.solver_metadata["rng_seed"] = 0
     
     self.utility_libraries = ["math.h","pthread.h","stdint.h","stdlib.h","stdio.h","time.h","sys/resource.h","unistd.h","string.h"]

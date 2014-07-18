@@ -60,6 +60,7 @@ FP_t __drandom32(rng_state_t *rng_state)
 #ifdef TAUS_ZIGGURAT
 FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state)
 {
+    
   unsigned long  U, sign, i, j;
   FP_t  x, y;
 

@@ -28,7 +28,7 @@ def run_test_solver(platform_name,cmd_option):
   if(platform_name=="OpenCL_GPU"):
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
     platform = OpenCLGPU.OpenCLGPU()
-    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform)
+    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform,random_number_generator="taus_boxmuller")
     
   elif(platform_name=="CPU"):
     from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
@@ -44,6 +44,11 @@ def run_test_solver(platform_name,cmd_option):
     from ForwardFinancialFramework.Platforms.VivadoFPGA import VivadoFPGA_MonteCarlo,VivadoFPGA
     platform = VivadoFPGA.VivadoFPGA()
     mc_solver = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo(option,paths,platform)
+    
+  elif(platform_name=="OpenCL_AlteraFPGA"):
+    from ForwardFinancialFramework.Platforms.OpenCLAlteraFPGA import OpenCLAlteraFPGA_MonteCarlo,OpenCLAlteraFPGA
+    platform = OpenCLAlteraFPGA.OpenCLAlteraFPGA()
+    mc_solver = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo(option,paths,platform)
     
   else:
     print "incorrect platform type!"
@@ -69,4 +74,4 @@ if( __name__ == '__main__' and len(sys.argv)>2):
   if("Execute" in cmd_options): print "Execute Output:\n %s\n"%result[1]
     
 elif(__name__ == '__main__'):
-  print "usage: python mc_solver_test_script {CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA} [Generate] [Compile] [Execute]"
+  print "usage: python mc_solver_test_script {CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA|OpenCL_AlteraFPGA} [Generate] [Compile] [Execute]"

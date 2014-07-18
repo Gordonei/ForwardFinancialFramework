@@ -13,11 +13,13 @@ def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
     platform = OpenCLGPU.OpenCLGPU()
     mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform)
+    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform)
     
   elif(platform_name=="CPU"):
     from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
     platform = MulticoreCPU.MulticoreCPU()
-    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform,random_number_generator="taus_boxmuller")
+    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform)
+    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform)
     
   elif(platform_name=="Maxeler_FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
@@ -28,6 +30,11 @@ def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=
     from ForwardFinancialFramework.Platforms.VivadoFPGA import VivadoFPGA_MonteCarlo,VivadoFPGA
     platform = VivadoFPGA.VivadoFPGA()
     mc_solver = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo(option,paths,platform)
+    
+  elif(platform_name=="OpenCL_AlteraFPGA"):
+    from ForwardFinancialFramework.Platforms.OpenCLAlteraFPGA import OpenCLAlteraFPGA_MonteCarlo,OpenCLAlteraFPGA
+    platform = OpenCLAlteraFPGA.OpenCLAlteraFPGA()
+    mc_solver = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo(option,paths,platform)
     
   else:
     print "incorrect platform type!"
@@ -73,4 +80,4 @@ if(__name__ == '__main__' and len(sys.argv)>3):
     print "Latency: %s uS (%s uS Setup Time + %s uS Activity Time)"%(results[1]["Total time"],results[1]["User time"],results[1]["Kernel time"])
     
 elif(__name__ == '__main__'):
-  print "usage: python mc_solver_ks_test_script [CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA] [Generate|&Compile|&Execute] [Number of Paths] [KS Option Number 1] [KS Option Number 2] [...] [KS Option Number N]"
+  print "usage: python mc_solver_ks_test_script [CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA|OpenCL_AlteraFPGA] [Generate|&Compile|&Execute] [Number of Paths] [KS Option Number 1] [KS Option Number 2] [...] [KS Option Number N]"
