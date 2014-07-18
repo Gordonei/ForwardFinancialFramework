@@ -52,6 +52,7 @@ MC_Solver_Test_*
  *.jou
  *.log
  .autopilot/
+ .Xil/
  *.cproject
  *.project
  *.settings/
