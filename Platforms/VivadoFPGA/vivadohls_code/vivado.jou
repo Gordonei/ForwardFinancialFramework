@@ -2,11 +2,9 @@
 # Vivado v2013.4 (64-bit)
 # SW Build 353583 on Mon Dec  9 17:26:26 MST 2013
 # IP Build 208076 on Mon Dec  2 12:38:17 MST 2013
-# Start of session at: Tue May 20 11:19:13 2014
-# Process ID: 18638
-# Log file: /home/sf306/phd_codebase/FPL2014/FFF/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/vivado.log
-# Journal file: /home/sf306/phd_codebase/FPL2014/FFF/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/vivado.jou
+# Start of session at: Sat Jul 19 13:46:35 2014
+# Process ID: 18883
+# Log file: /mnt/cas_nfs/gi11/workspace/scratch/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/vivado.log
+# Journal file: /mnt/cas_nfs/gi11/workspace/scratch/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/vivado.jou
 #-----------------------------------------------------------
-start_gui
-open_project /home/sf306/phd_codebase/FPL2014/FFF/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/ipi_prj/ipi_prj.xpr
-open_run impl_1
+source /mnt/cas_nfs/gi11/workspace/scratch/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/build/mc_solver_vivado_fpga_un_1_op_1_cslow_False_pipe_1_insts_1/ipi_prj/ipi_build.tcl
