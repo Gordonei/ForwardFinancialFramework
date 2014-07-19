@@ -9,7 +9,7 @@ class VivadoFPGA:
   platform_directory_string = ""
   root_directory_string = ""
   
-  def __init__(self,threads=0,platform_directory_string="Platforms/VivadoFPGA/vivadohls_code/srcs",root_directory_string="../../../..",platform_name=""):
+  def __init__(self,threads=0,platform_directory_string="Platforms/VivadoFPGA/vivadohls_code/output",root_directory_string="../../../..",platform_name=""):
     self.threads = threads
     self.platform_directory_string = platform_directory_string
     self.root_directory_string = root_directory_string

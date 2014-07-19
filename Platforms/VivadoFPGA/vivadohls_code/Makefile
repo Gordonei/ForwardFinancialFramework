@@ -4,9 +4,9 @@ APP := dummy
 LOOP_II := 0
 LOOP_UNROLL := 0
 THIS_DIR := $(shell pwd)
-HLS_PRJ := $(THIS_DIR)/hls_prj/F3_VivadoHLS_core
-IPI_PRJ := $(THIS_DIR)/ipi_prj
-SRCS := $(THIS_DIR)/srcs
+HLS_PRJ := $(THIS_DIR)/build/$(APP)/hls_prj/F3_VivadoHLS_core
+IPI_PRJ := $(THIS_DIR)/build/$(APP)/ipi_prj
+SRCS := $(THIS_DIR)/build/$(APP)/srcs
 IP_NAME := imperial_F3_vivado_activity_thread_1_0
 VIVADO_HLS_CMD := vivado_hls
 VIVADO_SYS_CMD := vivado -mode batch
@@ -14,21 +14,22 @@ CFLAGS := -DFP_t=float -DTAUS_BOXMULLER -DMULTICORE_CPU -O3 -ffast-math -march=n
 
 all: core system
 
-core: $(HLS_PRJ)/impl/ip/$(IP_NAME).zip
+build/$(APP): 
+	mkdir -p build/$(APP)
+	cp -fr template/* build/$(APP)/
+	cp output/$(APP).c $(SRCS)/vivado_core.c
+	cp $(HLS_PRJ)/../vivado_hls.app.bak $(HLS_PRJ)/../vivado_hls.app
+
+core: build/$(APP) $(HLS_PRJ)/impl/ip/$(IP_NAME).zip
 
 $(HLS_PRJ)/impl/ip/$(IP_NAME).zip:
-	cp srcs/$(APP).c srcs/vivado_core.c
-	cp $(HLS_PRJ)/../vivado_hls.app.bak $(HLS_PRJ)/../vivado_hls.app
-	$(VIVADO_HLS_CMD) $(HLS_PRJ)/script.tcl $(LOOP_II) $(LOOP_UNROLL)
-	rm *.log 
+	cd build/$(APP) && $(VIVADO_HLS_CMD) $(HLS_PRJ)/script.tcl $(LOOP_II) $(LOOP_UNROLL)
+	#rm *.log
 
 system: core
-	cd $(IPI_PRJ);
-	$(VIVADO_SYS_CMD) -source $(IPI_PRJ)/ipi_build.tcl
-	cp $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit $(THIS_DIR)/output/system.bit
-	mv $(THIS_DIR)/output/system.bit $(THIS_DIR)/output/$(APP).bit
-	cp $(THIS_DIR)/srcs/vivado_core.c $(THIS_DIR)/output/$(APP).c
-	cp $(THIS_DIR)/ipi_prj/ipi_prj.runs/impl_1/zynq_system_wrapper_utilization_placed.rpt $(THIS_DIR)/output/$(APP).rpt
+	cd $(IPI_PRJ) && $(VIVADO_SYS_CMD) -source ipi_build.tcl
+	cp $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit $(THIS_DIR)/output/$(APP).bit
+	cp $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper_utilization_placed.rpt $(THIS_DIR)/output/$(APP).rpt
 	sh $(THIS_DIR)/output/promgen_script $(THIS_DIR)/output/$(APP)
 	#cp $(THIS_DIR)/output/$(APP).bit $(IPI_PRJ)/ipi_prj.sdk/SDK/SDK_Export/hw_platform_0/system.bit
 	#cp $(THIS_DIR)/output/$(APP).bit $(IPI_PRJ)/ipi_prj.sdk/SDK/SDK_Export/hw/zynq_system_wrapper.bit
@@ -42,6 +43,8 @@ clean:
 	rm $(IPI_PRJ)/ipi_prj.runs/impl_1/zynq_system_wrapper.bit
 	rm $(THIS_DIR)/output/$(APP).bit
 	rm $(THIS_DIR)/output/$(APP).c
+	rm $(THIS_DIR)/output/$(APP).pri
+	rm $(THIS_DIR)/output/$(APP).cfi
 
 experiment_sw: XVivado_activity_thread.o vivado_core.o
 
