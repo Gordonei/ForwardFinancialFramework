@@ -16,7 +16,7 @@ all: core system
 
 build/$(APP): 
 	mkdir -p build/$(APP)
-	cp -fr template/* build/$(APP)/
+	cp -fr template/template_instance/* build/$(APP)/
 	cp output/$(APP).c $(SRCS)/vivado_core.c
 	cp $(HLS_PRJ)/../vivado_hls.app.bak $(HLS_PRJ)/../vivado_hls.app
 

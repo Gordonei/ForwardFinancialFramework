@@ -2,8 +2,8 @@
 #zynq system
 
 set current_dir [pwd]
-set project_location "${current_dir}/ipi_prj/ipi_prj.xpr"
-set bd_location "${current_dir}/ipi_prj/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd"
+set project_location "${current_dir}/ipi_prj.xpr"
+set bd_location "${current_dir}/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd"
 
 puts stdout $project_location
 #cd ipi_prj
@@ -22,8 +22,8 @@ upgrade_bd_cells [get_bd_cells [list /vivado_activity_thread_0 ] ]
 
 
 
-reset_target all [get_files  $current_dir/ipi_prj/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd]
-generate_target all [get_files  $current_dir/ipi_prj/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd]
+reset_target all [get_files  $current_dir/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd]
+generate_target all [get_files  $current_dir/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd]
 
 reset_run synth_1
 reset_run impl_1
