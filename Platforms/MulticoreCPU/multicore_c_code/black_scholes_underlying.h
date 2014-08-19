@@ -49,7 +49,7 @@ typedef struct {
 FP_t gamma;
 FP_t time;
 FP_t x;
-#if defined (TAUS_BOXMULLER) || defined (TAUS_ZIGGURAT)
+#if defined(TAUS_BOXMULLER) || defined(TAUS_ZIGGURAT)
 rng_state_t rng_state;
 #endif
 #ifdef MWC64X_BOXMULLER
