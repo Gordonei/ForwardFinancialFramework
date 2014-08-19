@@ -469,13 +469,15 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     return output_list
   
   def compile(self,overide=True,compile_options=[],debug=False):
+    start_directory = os.getcwd()
+    
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
       
     except:
-      os.chdir("bin")
-      return "Multicore C directory doesn't exist!"
+      os.chdir(start_directory)
+      return "%s doesn't exist!"%self.platform.platform_directory()
     
     if(overide or not os.path.exists("%s"%self.output_file_name)):
         compile_cmd = ["g++","%s.c"%self.output_file_name]
@@ -527,9 +529,6 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         #for u_l in self.non_system_libraries:
             #if(not(("%s.c" % u_l) in compile_cmd)): compile_cmd.append(("%s.c" % u_l))
             
-        #Output flag
-        compile_cmd.append("-o")
-        compile_cmd.append(self.output_file_name)
         
         #Linking pthread library
         compile_cmd.append("-lpthread")
@@ -557,13 +556,19 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 	#Adding other compile flags
         for c_o in compile_options: compile_cmd.append(c_o)
         
-        compile_string = ""
+        #Output flag
+        compile_cmd.append("-o")
+        compile_cmd.append(self.output_file_name)
+	
+	compile_string = ""
         for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
         if(debug): print compile_string
         
         result = subprocess.check_output(compile_cmd)
-        os.chdir(self.platform.root_directory())
-        os.chdir("bin")
+	
+	os.chdir(start_directory)
+        #os.chdir(self.platform.root_directory())
+        #os.chdir("bin")
         
         return result
       

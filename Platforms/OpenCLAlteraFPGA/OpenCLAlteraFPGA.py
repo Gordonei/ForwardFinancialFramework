@@ -9,12 +9,14 @@ class OpenCLAlteraFPGA:
     root_directory_string = ""
     threads = 0
     device_type = pyopencl.device_type.ALL
+    board = ""
     
-    def __init__(self,platform_directory_string="Platforms/OpenCLAlteraFPGA/openclalterafpga_code/",root_directory_string="../../..",platform_name="Altera Corporation"):
+    def __init__(self,platform_directory_string="Platforms/OpenCLAlteraFPGA/openclalterafpga_code/",root_directory_string="../../..",platform_name="Altera Corporation",board="pcie385n_d5"):
         self.platform_directory_string = platform_directory_string
         self.root_directory_string = root_directory_string
     
         self.platform_name = platform_name
+        self.board = board
         
     def platform_directory(self):
         return self.platform_directory_string

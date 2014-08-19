@@ -203,17 +203,64 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     
     return output_list
 
-  def compile(self): pass
-  """
-  aoc mc_solver_opencl_gpu_un_1_op_1.cl -v --report -DOPENCL_GPU -DTAUS_BOXMULLER
-  """
+  def compile(self,override=True,debug=False,simulation=False):
+    #compile_flags = ["-lOpenCL","-I/usr/include","-fpermissive"]
+    
+    start_directory = os.getcwd()
+    
+    os.chdir("..")
+    os.chdir(self.platform.platform_directory())
+    
+    opencl_compile_flags = ["-v","--report"]
+    opencl_compile_flags.extend(["--board",self.platform.board])
+    
+    path_string = ""
+    if(self.random_number_generator=="mwc64x_boxmuller"):
+      #path_string = ""
+      opencl_compile_flags.append("-DMWC64X_BOXMULLER")
+    
+    elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
+      #path_string = ""
+      opencl_compile_flags.append("-DTAUS_BOXMULLER")
+    
+    #if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
+    path_string = os.getcwd()
+    #else: path_string = "%s/%s"%(os.getcwd(),path_string)
+    
+    opencl_compile_flags.extend(["-DOPENCL_GPU","-I%s"%path_string,"-DCOMPUTE_UNITS=%d"%self.instances,"-DUNROLL_FACTOR=%d"%self.pipelining])
+    if(simulation): opencl_compile_flags.append("-march=emulator")
+    
+    compile_cmd = ["aoc"]
+    compile_cmd.extend(opencl_compile_flags)
+    compile_cmd.append("%s.cl"%self.output_file_name)
+    
+    compile_string = ""
+    for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
+    if(debug): print compile_string
+    
+    result = [subprocess.check_output(compile_cmd)]
+    
+    subprocess.call(["rm","-rf","%s"%self.output_file_name])
+    
+    os.chdir(start_directory)
+    
+    compile_flags = subprocess.check_output(["aocl","compile-config"]).strip("\n").split(" ")
+    compile_flags.extend(subprocess.check_output(["aocl","ldflags"]).strip("\n").split(" "))
+    compile_flags.extend(subprocess.check_output(["aocl","ldlibs"]).strip("\n").split(" "))
+    
+    compile_flags.extend(["-fpermissive", "-DCOMPUTE_UNITS=%d"%self.instances,"-DUNROLL_FACTOR=%d"%self.pipelining])
+    if(debug): compile_flags.append("-ggdb")
+    while('' in compile_flags): compile_flags.remove('')
+    
+    result.append(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_flags,debug)) #Compiling Host C Code
+
+    
+    return result
+    
+    #os.chdir("..")
+    #os.chdir(self.platform.platform_directory())
   
-  """
-  g++ mc_solver_opencl_gpu_un_1_op_1.c -DMULTICORE_CPU -DFP_t=float underlying.c option.c -o mc_solver_opencl_gpu_un_1_op_1Run -lpthread -lrt -O3 -w -ffast-math -fpermissive -march=native -I/opt/altera/13.1/hld/host/include -fpermissive -ggdb -L/opt/altera/13.1/hld/linux64/lib -L/opt/altera/13.1/hld/host/linux64/lib -lalteracl -lalterahalmmd -lalterammdpcie -lelf -lrt
-  g++ mc_solver_opencl_alterafpga_he_1_eu_1_cslow_False_pipe_1_insts_1.c -DMULTICORE_CPU -DFP_t=float european_option.c heston_underlying.c underlying.c option.c gauss.c -o mc_solver_opencl_alterafpga_he_1_eu_1_cslow_False_pipe_1_insts_1Run -lpthread -lrt -O3 -w -ffast-math -fpermissive -march=native -I/opt/altera/13.1/hld/host/include -fpermissive -ggdb -L/opt/altera/13.1/hld/linux64/lib -L/opt/altera/13.1/hld/host/linux64/lib -lalteracl -lalterahalmmd -lalterammdpcie -lelf -lrt -DCOMPUTE_UNITS=1 -DUNROLL_FACTOR=1
-  """
-  
-  def execute(self): pass
+  #def execute(self): pass
   """
   ./mc_solver_opencl_gpu_un_1_op_1Run 1000 10 10 1 8 1 2 4253708855 0.1 100 1.0 1.0 100
   """
