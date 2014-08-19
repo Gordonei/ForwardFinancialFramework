@@ -40,11 +40,11 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     
     #Looking for an aocx file instead of a clbin file
     index = output_list.index("FILE *fp=fopen(\"%s.clbin\", \"r\");"%self.output_file_name)
-    output_list.insert(index,"FILE *fp=fopen(\"%s.aocx\", \"r\");"%self.output_file_name)
+    output_list.insert(index,"FILE *fp=fopen(\"%s_kernel.aocx\", \"r\");"%self.output_file_name)
     output_list.remove("FILE *fp=fopen(\"%s.clbin\", \"r\");"%self.output_file_name)
 
     index = output_list.index("const size_t local_kernel_paths = local_work_items;")
-    output_list.insert(index,"const size_t local_kernel_paths = NULL;")
+    output_list.insert(index,"const size_t local_kernel_paths = 1;")
     output_list.remove("const size_t local_kernel_paths = local_work_items;")
     
     return output_list
@@ -233,6 +233,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     compile_cmd = ["aoc"]
     compile_cmd.extend(opencl_compile_flags)
     compile_cmd.append("%s.cl"%self.output_file_name)
+    compile_cmd.extend(["-o","%s_kernel.aocx"%self.output_file_name])
     
     compile_string = ""
     for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
@@ -240,7 +241,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     
     result = [subprocess.check_output(compile_cmd)]
     
-    subprocess.call(["rm","-rf","%s"%self.output_file_name])
+    #subprocess.call(["rm","-rf","%s"%self.output_file_name])
     
     os.chdir(start_directory)
     
