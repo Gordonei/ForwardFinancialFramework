@@ -44,7 +44,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     output_list.remove("FILE *fp=fopen(\"%s.clbin\", \"r\");"%self.output_file_name)
 
     index = output_list.index("const size_t local_kernel_paths = local_work_items;")
-    output_list.insert(index,"const size_t local_kernel_paths = 1;")
+    output_list.insert(index,"const size_t local_kernel_paths = 1;") #ToDo I should rather be getting the OpenCL runtime to do this
     output_list.remove("const size_t local_kernel_paths = local_work_items;")
     
     return output_list
@@ -191,7 +191,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     output_list.insert(index,"__attribute__((reqd_work_group_size(1,1,1)))")
     
     #Ammending the seeding operation
-    for index,u in enumerate(self.underlying):
+    """for index,u in enumerate(self.underlying):
         if("black_scholes" in u.name or "heston" in u.name):
             temp_index = output_list.index("temp_u_v_%d.rng_state.s1 = %d + local_chunk_number*local_chunk_size + 2;"%(index,index))
             output_list.insert(temp_index,"temp_u_v_%d.rng_state.s1 = local_seed + %d + local_chunk_number*local_chunk_size + 2;"%(index,index))
@@ -199,7 +199,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
             
             temp_index = output_list.index("temp_u_v_%d.rng_state.s2 = %d + local_chunk_number*local_chunk_size + 8;"%(index,index))
             output_list.insert(temp_index,"temp_u_v_%d.rng_state.s2 = local_seed + %d + local_chunk_number*local_chunk_size + 8;"%(index,index))
-            output_list.remove("temp_u_v_%d.rng_state.s2 = %d + local_chunk_number*local_chunk_size + 8;"%(index,index))
+            output_list.remove("temp_u_v_%d.rng_state.s2 = %d + local_chunk_number*local_chunk_size + 8;"%(index,index))"""
     
     return output_list
 
