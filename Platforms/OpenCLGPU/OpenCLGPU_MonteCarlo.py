@@ -13,13 +13,15 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings,default_points=default_points,random_number_generator=random_number_generator,floating_point_format=floating_point_format)
     self.solver_metadata["threads"] = 1 #In this context this means something different
     
-    if(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): self.platform.amd_gpu_flag = False
+    #if(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): self.platform.amd_gpu_flag = False
+    if(("Advanced Micro Devices" in self.platform.platform_name or "AMD" in self.platform.platform_name) and (self.random_number_generator=="mwc64x_boxmuller")): self.random_number_generator = "taus_boxmuller"
     
     if("Darwin" in plat.system()):
       self.utility_libraries.extend(["OpenCL/opencl.h"])
       #mwc64x_path_string = "%s/../%s/%s"%(os.getcwd(),self.platform.platform_directory(),mwc64x_path_string)
     else:
-      self.utility_libraries.extend(["CL/cl.hpp"])
+      self.utility_libraries.append("CL/opencl.h")
+      self.utility_libraries.append("assert.h")
     
     for u in self.underlying:
       if((self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat")):
@@ -89,6 +91,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         
     ##Declaring OpenCL Data Structures
     output_list.append("//**Creating OpenCL Infrastructure**")
+    output_list.append("cl_int ret;")
     
     ###Creating OpenCL Platform
     #TODO Use PyOpenCL to find this information out
@@ -100,7 +103,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("clGetPlatformIDs(num_platforms, platform_id, &num_platforms);")
     output_list.append("for(unsigned int i = 0; i < num_platforms; ++i){")
     output_list.append("char pbuff[100];")
-    output_list.append("clGetPlatformInfo(platform_id[i],CL_PLATFORM_VENDOR,sizeof(pbuff),pbuff,NULL);")
+    output_list.append("ret = clGetPlatformInfo(platform_id[i],CL_PLATFORM_VENDOR,sizeof(pbuff),pbuff,NULL);")
+    output_list.append("assert(ret==CL_SUCCESS);")
     output_list.append("platform = platform_id[i];")
     output_list.append("if(!strcmp(pbuff, \"%s\")){break;}"%(self.platform.platform_name))
     output_list.append("}")
@@ -108,28 +112,31 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     ###Creating OpenCL Context
     output_list.append("//***Creating Context***")
     output_list.append("cl_context_properties cps[3] = { CL_CONTEXT_PLATFORM, (cl_context_properties)platform, 0 };")
-    output_list.append("cl_context context = clCreateContextFromType(cps, CL_DEVICE_TYPE_%s, NULL, NULL, NULL);"%pyopencl.device_type.to_string(self.platform.device_type))
+    output_list.append("cl_context context = clCreateContextFromType(cps, CL_DEVICE_TYPE_%s, NULL, NULL, &ret);"%pyopencl.device_type.to_string(self.platform.device_type))
+    output_list.append("assert(ret==CL_SUCCESS);")
     
-    if(self.platform.amd_gpu_flag):
+    """if(self.platform.amd_gpu_flag):
       ###Creating OpenCL CPU Context
       output_list.append("//***Creating CPU Context***")
       output_list.append("cl_context_properties cpu_cps[3] = { CL_CONTEXT_PLATFORM, (cl_context_properties)platform, 0 };")
-      output_list.append("cl_context cpu_context = clCreateContextFromType(cpu_cps, CL_DEVICE_TYPE_CPU, NULL, NULL, NULL);")
+      output_list.append("cl_context cpu_context = clCreateContextFromType(cpu_cps, CL_DEVICE_TYPE_CPU, NULL, NULL, NULL);")"""
     
     ###Creating OpenCL Device
     output_list.append("//***Creating Device***")
     output_list.append("size_t deviceListSize;")
-    output_list.append("clGetContextInfo(context,CL_CONTEXT_DEVICES,0, NULL,&deviceListSize);")
+    output_list.append("ret = clGetContextInfo(context,CL_CONTEXT_DEVICES,0, NULL,&deviceListSize);")
+    output_list.append("assert(ret==CL_SUCCESS);")
     output_list.append("cl_device_id *devices = (cl_device_id *)malloc(deviceListSize);")
-    output_list.append("clGetContextInfo(context, CL_CONTEXT_DEVICES, deviceListSize,devices,NULL);")
+    output_list.append("ret = clGetContextInfo(context, CL_CONTEXT_DEVICES, deviceListSize,devices,NULL);")
+    output_list.append("assert(ret==CL_SUCCESS);")
     output_list.append("cl_device_id device = devices[0];")
     
-    if(self.platform.amd_gpu_flag):
+    """if(self.platform.amd_gpu_flag):
       output_list.append("//***Creating CPU Device***")
       output_list.append("clGetContextInfo(cpu_context,CL_CONTEXT_DEVICES,0, NULL,&deviceListSize);")
       output_list.append("cl_device_id *cpu_devices = (cl_device_id *)malloc(deviceListSize);")
       output_list.append("clGetContextInfo(cpu_context, CL_CONTEXT_DEVICES, deviceListSize,cpu_devices,NULL);")
-      output_list.append("cl_device_id cpu_device = cpu_devices[0];")
+      output_list.append("cl_device_id cpu_device = cpu_devices[0];")"""
      
     ###Creating the OpenCL Program from the precompiled binary
     if('Darwin' not in plat.system()):
@@ -138,10 +145,13 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("char *binary_buf = (char *)malloc(0x40000000);")
       output_list.append("size_t binary_size = fread(binary_buf, 1, 0x40000000, fp);")
       output_list.append("fclose(fp);")
-      output_list.append("cl_program program = clCreateProgramWithBinary(context, 1, &device, (const size_t *)&binary_size,(const unsigned char **)&binary_buf, NULL, NULL);")
-      output_list.append("clBuildProgram(program, 1, &device, NULL, NULL, NULL);")
+      output_list.append("cl_program program = clCreateProgramWithBinary(context, 1, &device, (const size_t *)&binary_size,(const unsigned char **)&binary_buf, NULL, &ret);")
+      output_list.append("assert(ret==CL_SUCCESS);")
+      output_list.append("ret = clBuildProgram(program, 1, &device, NULL, NULL, NULL);")
+      #output_list.append("printf(\"%d\\n\",ret==CL_INVALID_PROGRAM);")
+      output_list.append("assert(ret==CL_SUCCESS);")
       
-      if(self.platform.amd_gpu_flag):
+      """if(self.platform.amd_gpu_flag):
         ###Creating the OpenCL CPU Program from the precompiled binary
         output_list.append("//***Creating CPU Program***")
         output_list.append("FILE *cpu_fp=fopen(\"%s_cpu_seed.clbin\", \"r\");"%self.output_file_name)
@@ -149,7 +159,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         output_list.append("size_t cpu_binary_size = fread(cpu_binary_buf, 1, 0x100000, cpu_fp);")
         output_list.append("fclose(cpu_fp);")
         output_list.append("cl_program cpu_program = clCreateProgramWithBinary(cpu_context, 1, &cpu_device, (const size_t *)&cpu_binary_size,(const unsigned char **)&cpu_binary_buf, NULL, NULL);")
-        output_list.append("clBuildProgram(cpu_program, 1, &cpu_device, NULL, NULL, NULL);")
+        output_list.append("clBuildProgram(cpu_program, 1, &cpu_device, NULL, NULL, NULL);")"""
       
     else: #The Apple OpenCL implementation doesn't seem to support binary precompilation for some reason
       output_list.append("FILE *fp;")
@@ -160,12 +170,15 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("source_size = fread(source_str, 1, 0x100000, fp);")
       output_list.append("fclose(fp);")
       output_list.append("cl_program program = clCreateProgramWithSource(context, 1, (const char **)&source_str, (const size_t *)&source_size, &ret);")
+      output_list.append("assert(ret==CL_SUCCESS);")
+      
       path_string = "."
       if(self.random_number_generator=="mwc64x_boxmuller"): path_string = "mwc64x/cl"
       #elif(self.random_number_generator=="taus_boxmuller"): path_string = ""
       if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
       output_list.append("const char* buildOption =\"-I . -I %s\";"%path_string) #-x clc++
       output_list.append("ret = clBuildProgram(program, 1, &device, buildOption, NULL, NULL);")
+      output_list.append("assert(ret==CL_SUCCESS);")
       #output_list.append("clBuildProgram(program, 1, &device, NULL, NULL, NULL);")"""
 
    ###Outputing the Build Log
@@ -179,61 +192,87 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     ###Creating the OpenCL Kernel
     output_list.append("//***Creating Kernel Object***")
     output_list.append("cl_kernel %s_kernel = clCreateKernel(program,\"%s_kernel\",&ret);"%(self.output_file_name,self.output_file_name))
+    output_list.append("assert(ret==CL_SUCCESS);")
     
-    if(self.platform.amd_gpu_flag): output_list.append("cl_kernel %s_cpu_seed_kernel = clCreateKernel(cpu_program,\"%s_cpu_seed_kernel\",&ret);"%(self.output_file_name,self.output_file_name))
+    #if(self.platform.amd_gpu_flag): output_list.append("cl_kernel %s_cpu_seed_kernel = clCreateKernel(cpu_program,\"%s_cpu_seed_kernel\",&ret);"%(self.output_file_name,self.output_file_name))
       
     ###Creating the Memory Objects for each underlying and derivative
     output_list.append("//***Creating OpenCL Memory Objects***")
-    output_list.append("cl_mem path_points_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(cl_int),NULL,NULL);")
-    output_list.append("cl_mem seed_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
-    output_list.append("cl_mem chunk_size_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
-    output_list.append("cl_mem chunk_number_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
+    #output_list.append("cl_mem path_points_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(cl_int),NULL,NULL);")
+    #output_list.append("cl_mem seed_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
+    #output_list.append("cl_mem chunk_size_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
+    #output_list.append("cl_mem chunk_number_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
     
     for index,u in enumerate(self.underlying):
-        output_list.append("%s_attributes u_a_%d[1];" % (u.name,index))
-        output_list.append("cl_mem u_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,NULL);" % (index,u.name))
+        output_list.append("%s_attributes u_a_%d;" % (u.name,index))
+        #output_list.append("cl_mem u_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,NULL);" % (index,u.name))
         
         
-        if(self.random_number_generator=="mwc64x_boxmuller"): output_list.append("cl_mem seed_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,chunk_paths*sizeof(mwc64x_state_t),NULL,NULL);" % (index))
-        elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): output_list.append("cl_mem seed_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,chunk_paths*sizeof(rng_state_t),NULL,NULL);" % (index))
+        #if(self.random_number_generator=="mwc64x_boxmuller"): output_list.append("cl_mem seed_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,chunk_paths*sizeof(mwc64x_state_t),NULL,NULL);" % (index))
+        #elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): output_list.append("cl_mem seed_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,chunk_paths*sizeof(rng_state_t),NULL,NULL);" % (index))
         
-        if(self.platform.amd_gpu_flag):
+        """if(self.platform.amd_gpu_flag):
 	  if(self.random_number_generator=="mwc64x_boxmuller"):
 	    output_list.append("mwc64x_state_t *seed_%d = (mwc64x_state_t*) malloc(chunk_paths*sizeof(mwc64x_state_t));" % (index))
 	    output_list.append("cl_mem seed_%d_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(mwc64x_state_t),NULL,NULL);" % (index))
 	  elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
 	    output_list.append("rng_state_t *seed_%d = (rng_state_t*) malloc(chunk_paths*sizeof(rng_state_t));" % (index))
-	    output_list.append("cl_mem seed_%d_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(rng_state_t),NULL,NULL);" % (index))
+	    output_list.append("cl_mem seed_%d_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(rng_state_t),NULL,NULL);" % (index))"""
 	    
     
     for index,d in enumerate(self.derivative):
-        output_list.append("%s_attributes o_a_%d[1];" % (d.name,index))
-        output_list.append("cl_mem o_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,NULL);" % (index,d.name))
+        output_list.append("%s_attributes o_a_%d;" % (d.name,index))
+        #output_list.append("cl_mem o_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,NULL);" % (index,d.name))
         
         output_list.append("FP_t *value_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % (index))
-        output_list.append("cl_mem value_%d_buff = clCreateBuffer(context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(FP_t),NULL,NULL);" % (index))
-        output_list.append("FP_t *value_sqrd_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % (index))
-        output_list.append("cl_mem value_sqrd_%d_buff = clCreateBuffer(context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(FP_t),NULL,NULL);" % (index))
+        output_list.append("cl_mem value_%d_buff = clCreateBuffer(context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(FP_t),NULL,&ret);" % (index))
+	output_list.append("assert(ret==CL_SUCCESS);")
+        #output_list.append("FP_t *value_sqrd_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % (index))
+        #output_list.append("cl_mem value_sqrd_%d_buff = clCreateBuffer(context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(FP_t),NULL,NULL);" % (index))
         #output_list.append("%s_variables *o_v_%d = (%s_variables*) malloc(chunk_paths*sizeof(%s_variables));" % (d.name,index,d.name,d.name))
         #output_list.append("cl_mem o_v_%d_buff = clCreateBuffer(context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(%s_variables),NULL,NULL);" % (index,d.name))
     
     ##Binding the Memory Objects to the Kernel
     output_list.append("//**Setting Kernel Arguments**")
-    output_list.append("clSetKernelArg(%s_kernel, 0, sizeof(cl_mem), (void *)&path_points_buff);"%(self.output_file_name))
-    output_list.append("clSetKernelArg(%s_kernel, 1, sizeof(cl_mem), (void *)&seed_buff);"%(self.output_file_name))
-    output_list.append("clSetKernelArg(%s_kernel, 2, sizeof(cl_mem), (void *)&chunk_size_buff);"%(self.output_file_name))
-    output_list.append("clSetKernelArg(%s_kernel, 3, sizeof(cl_mem), (void *)&chunk_number_buff);"%(self.output_file_name))
+    output_list.append("ret = clSetKernelArg(%s_kernel, 0, sizeof(cl_uint), &path_points);"%(self.output_file_name))
+    output_list.append("assert(ret==CL_SUCCESS);")
+    output_list.append("uint seed = (cl_uint) (temp_data->thread_rng_seed);")
+    output_list.append("ret = clSetKernelArg(%s_kernel, 1, sizeof(cl_uint), &seed);"%(self.output_file_name))
+    output_list.append("assert(ret==CL_SUCCESS);")
+    output_list.append("cl_uint chunk_size = chunk_paths*kernel_loops;")
+    output_list.append("ret = clSetKernelArg(%s_kernel, 2, sizeof(cl_uint), &chunk_size);"%(self.output_file_name))
+    output_list.append("assert(ret==CL_SUCCESS);")
+    output_list.append("uint chunk_number = 0;")
+    output_list.append("ret = clSetKernelArg(%s_kernel, 3, sizeof(cl_uint), &chunk_number);"%(self.output_file_name))
+    output_list.append("assert(ret==CL_SUCCESS);")
     
     for index,u in enumerate(self.underlying):
-      output_list.append("clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&u_a_%d_buff);"%(self.output_file_name,4 + index*2,index))
-      output_list.append("clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&seed_%d_buff);"%(self.output_file_name,4 + index*2 + 1,index))
+      temp = ("%s_underlying_init("%u.name)
+      for u_a in self.underlying_attributes[index][:-1]: temp=("%s%s_%d_%s,"%(temp,u.name,index,u_a))
+      temp=("%s%s_%d_%s,&u_a_%d);"%(temp,u.name,index,self.underlying_attributes[index][-1],index))   
+      output_list.append(temp)
+      output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,4 + index,u.name,index))
+      output_list.append("assert(ret==CL_SUCCESS);")
+      
+      """if(self.random_number_generator=="mwc64x_boxmuller"):
+	output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(mwc64x_state_t), &seed_%d);"%(self.output_file_name,4 + index*2 + 1,index))
+	output_list.append("assert(ret==CL_SUCCESS);")
+      elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
+	output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(rng_state_t), &seed_%d);"%(self.output_file_name,4 + index*2 + 1,index))
+	output_list.append("assert(ret==CL_SUCCESS);")"""
       
     for index,d in enumerate(self.derivative):
-      output_list.append("clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&o_a_%d_buff);"%(self.output_file_name,4 + index*3 + 2*len(self.underlying),index))
-      output_list.append("clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_%d_buff);"%(self.output_file_name,4 + index*3 + 1 + 2*len(self.underlying),index))
-      output_list.append("clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,4 + index*3 + 2 + 2*len(self.underlying),index))
+      temp = ("%s_derivative_init("%d.name)
+      for o_a in self.derivative_attributes[index][:-1]: temp=("%s%s_%d_%s,"%(temp,d.name,index,o_a))
+      temp=("%s%s_%d_%s,&o_a_%d);"%(temp,d.name,index,self.derivative_attributes[index][-1],index))
+      output_list.append(temp)
+      output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,4 + index*2 + len(self.underlying),d.name,index))
+      output_list.append("assert(ret==CL_SUCCESS);")
+      output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_%d_buff);"%(self.output_file_name,4 + index*2 + 1 + len(self.underlying),index))
+      output_list.append("assert(ret==CL_SUCCESS);")
+      #output_list.append("clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,4 + index*3 + 2 + 2*len(self.underlying),index))
       
-    if(self.platform.amd_gpu_flag):
+    """if(self.platform.amd_gpu_flag):
       output_list.append("cl_mem seed_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
       output_list.append("cl_mem chunk_size_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
       output_list.append("cl_mem chunk_number_cpu_buff = clCreateBuffer(cpu_context, CL_MEM_READ_ONLY,sizeof(cl_uint),NULL,NULL);")
@@ -241,37 +280,33 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 0, sizeof(cl_mem), (void *)&seed_cpu_buff);"%(self.output_file_name))
       output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 1, sizeof(cl_mem), (void *)&chunk_size_cpu_buff);"%(self.output_file_name))
       output_list.append("clSetKernelArg(%s_cpu_seed_kernel, 2, sizeof(cl_mem), (void *)&chunk_number_cpu_buff);"%(self.output_file_name))
-      for index,u in enumerate(self.underlying): output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(cl_mem), (void *)&seed_%d_cpu_buff);"%(self.output_file_name,2*index+3,index))
+      for index,u in enumerate(self.underlying): output_list.append("clSetKernelArg(%s_cpu_seed_kernel, %d, sizeof(cl_mem), (void *)&seed_%d_cpu_buff);"%(self.output_file_name,2*index+3,index))"""
         
     ##Creating the Command Queue for the Kernel
     output_list.append("//**Creating OpenCL Command Queue**")
     output_list.append("cl_command_queue command_queue = clCreateCommandQueue(context, device, 0, &ret);")
+    output_list.append("assert(ret==CL_SUCCESS);")
     
-    if(self.platform.amd_gpu_flag): output_list.append("cl_command_queue cpu_command_queue = clCreateCommandQueue(cpu_context, cpu_device, 0, &ret);")
+    #if(self.platform.amd_gpu_flag): output_list.append("cl_command_queue cpu_command_queue = clCreateCommandQueue(cpu_context, cpu_device, 0, &ret);")
       
     output_list.append("//**Initialising Attributes and writing to OpenCL Memory Objects**")
     ###Writing Control Parameters
-    output_list.append("cl_event write_events[%d];"%(4+len(self.underlying)+len(self.derivative)));
-    output_list.append("cl_int *path_points_array = (cl_int*)malloc(sizeof(cl_int));")
-    output_list.append("path_points_array[0] = path_points;")
-    output_list.append("clEnqueueWriteBuffer(command_queue, path_points_buff, CL_TRUE, 0, sizeof(cl_int), path_points_array, 0, NULL, &write_events[0]);")
-    output_list.append("cl_uint *seed_array = (cl_uint*)malloc(sizeof(cl_uint));")
-    #output_list.append("time_t seed_timer;")
-    #output_list.append("time(&seed_timer);")
-    #output_list.append("struct tm y2k;")
-    #output_list.append("y2k.tm_hour = 0; y2k.tm_min = 0; y2k.tm_sec = 0; y2k.tm_year = 100; y2k.tm_mon = 0; y2k.tm_mday = 1;")
-    #output_list.append("seed_array[0] = (unsigned int)difftime(seed_timer,mktime(&y2k));") #time since 1 January, 2000
-    output_list.append("seed_array[0] = (cl_uint) (temp_data->thread_rng_seed);") #(unsigned int) temp_data->thread_rng_seed
-    output_list.append("clEnqueueWriteBuffer(command_queue, seed_buff, CL_TRUE, 0, sizeof(cl_uint), seed_array, 0, NULL, &write_events[1]);")
-    output_list.append("cl_uint *chunk_size_array = (cl_uint*)malloc(sizeof(cl_uint));")
-    output_list.append("chunk_size_array[0] = chunk_paths*kernel_loops;")
-    output_list.append("clEnqueueWriteBuffer(command_queue, chunk_size_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_size_array, 0, NULL, &write_events[2]);")
-    output_list.append("cl_uint *chunk_number_array = (cl_uint*)malloc(sizeof(cl_uint));")
-    output_list.append("chunk_number_array[0] = 0;")
-    output_list.append("clEnqueueWriteBuffer(command_queue, chunk_number_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, &write_events[3]);")
+    #output_list.append("cl_event write_events[%d];"%(len(self.underlying)+len(self.derivative)));
+    #output_list.append("cl_int *path_points_array = (cl_int*)malloc(sizeof(cl_int));")
+    #output_list.append("path_points_array[0] = path_points;")
+    #output_list.append("clEnqueueWriteBuffer(command_queue, path_points_buff, CL_TRUE, 0, sizeof(cl_int), path_points_array, 0, NULL, &write_events[0]);")
+    #output_list.append("cl_uint *seed_array = (cl_uint*)malloc(sizeof(cl_uint));")
+    #output_list.append("seed_array[0] = (cl_uint) (temp_data->thread_rng_seed);") #(unsigned int) temp_data->thread_rng_seed
+    #output_list.append("clEnqueueWriteBuffer(command_queue, seed_buff, CL_TRUE, 0, sizeof(cl_uint), seed_array, 0, NULL, &write_events[1]);")
+    #output_list.append("cl_uint *chunk_size_array = (cl_uint*)malloc(sizeof(cl_uint));")
+    #output_list.append("chunk_size_array[0] = chunk_paths*kernel_loops;")
+    #output_list.append("clEnqueueWriteBuffer(command_queue, chunk_size_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_size_array, 0, NULL, &write_events[2]);")
+    #output_list.append("cl_uint *chunk_number_array = (cl_uint*)malloc(sizeof(cl_uint));")
+    #output_list.append("chunk_number_array[0] = 0;")
+    #output_list.append("clEnqueueWriteBuffer(command_queue, chunk_number_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, &write_events[3]);")
     
     ###Calling Init Functions
-    for u_index,u in enumerate(self.underlying):
+    """for u_index,u in enumerate(self.underlying):
         temp = ("%s_underlying_init("%u.name)
         for u_a in self.underlying_attributes[u_index][:-1]: temp=("%s%s_%d_%s,"%(temp,u.name,u_index,u_a))
         temp=("%s%s_%d_%s,u_a_%d);"%(temp,u.name,u_index,self.underlying_attributes[u_index][-1],u_index))   
@@ -292,18 +327,14 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("clEnqueueWriteBuffer(cpu_command_queue, chunk_number_cpu_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, 0, NULL, NULL);")
       output_list.append("clFinish(cpu_command_queue);")
     
-    output_list.append("clFinish(command_queue);")
-      
-      #for index,u in enumerate(self.underlying):
-        #output_list.append("clEnqueueReadBuffer(cpu_command_queue, u_v_%d_buff, CL_TRUE, 0, temp_data->thread_paths * sizeof(%s_variables),u_v_%d, 0, NULL, NULL);"%(index,u.name,index))
-	#output_list.append("clFinish(command_queue);")
+    output_list.append("clFinish(command_queue);")"""
     
     for d in range(len(self.derivative)): 
       output_list.append("double temp_total_%d=0;"%d)
       output_list.append("double temp_value_sqrd_%d=0;"%d)
       
     ##Running the actual kernel for the first time
-    if(self.platform.amd_gpu_flag):
+    """if(self.platform.amd_gpu_flag):
       output_list.append("//**Run the CPU Seed kernel for the 1st 2 Times**")
       output_list.append("const size_t cpu_kernel_paths = chunk_paths;")
       output_list.append("clEnqueueNDRangeKernel(cpu_command_queue, %s_cpu_seed_kernel, (cl_uint) 1, NULL, &cpu_kernel_paths, NULL, 0, NULL, NULL);"%(self.output_file_name))
@@ -323,14 +354,15 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	for index,u in enumerate(self.underlying): output_list.append("clEnqueueWriteBuffer(command_queue, seed_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t), seed_%d, 0, NULL, NULL);"%(index,index))
       elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
 	for index,u in enumerate(self.underlying): output_list.append("clEnqueueWriteBuffer(command_queue, seed_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(rng_state_t), seed_%d, 0, NULL, NULL);"%(index,index))
-      #output_list.append("clFinish(command_queue);")
+      #output_list.append("clFinish(command_queue);")"""
     
     output_list.append("//**Run the kernel for the 1st Time**")
     output_list.append("cl_event kernel_event[1];")
-    output_list.append("cl_event read_events[%d];"%(len(self.derivative)*2))
+    output_list.append("cl_event read_events[%d];"%(len(self.derivative)))
     output_list.append("const size_t kernel_paths = chunk_paths;")
     output_list.append("const size_t local_kernel_paths = local_work_items;")
-    output_list.append("clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, write_events, kernel_event);"%(self.output_file_name,4+len(self.underlying)+len(self.derivative)))
+    output_list.append("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, kernel_event);"%(self.output_file_name))
+    output_list.append("assert(ret==CL_SUCCESS);")
     
     output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
     #output_list.append("chunks = !(chunks)? 1: chunks;")
@@ -344,10 +376,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("while(")
     for index,d in enumerate(self.derivative): output_list.append("remaining_paths_%d>0 &&"%index)
     output_list.append("1){")
-    output_list.append("clFinish(command_queue);")
-    output_list.append("chunk_number_array[0] = j;")
+    #output_list.append("clFinish(command_queue);")
+    #output_list.append("chunk_number_array[0] = j;")
+    output_list.append("chunk_number = j;")
     
-    if(self.platform.amd_gpu_flag):
+    """if(self.platform.amd_gpu_flag):
       output_list.append("clFinish(cpu_command_queue);")
       if(self.random_number_generator=="mwc64x_boxmuller"):
 	for index,u in enumerate(self.underlying): output_list.append("clEnqueueReadBuffer(cpu_command_queue, seed_%d_cpu_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t),seed_%d, 0, NULL, NULL);"%(index,index))
@@ -363,20 +396,24 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	for index,u in enumerate(self.underlying): output_list.append("clEnqueueWriteBuffer(command_queue, seed_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(mwc64x_state_t), seed_%d, 0, NULL, NULL);"%(index,index))
       elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
 	for index,u in enumerate(self.underlying): output_list.append("clEnqueueWriteBuffer(command_queue, seed_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(rng_state_t), seed_%d, 0, NULL, NULL);"%(index,index))
-      #output_list.append("clFinish(command_queue);")
+      #output_list.append("clFinish(command_queue);")"""
     
     ##Reading the Results out
     output_list.append("//**Reading the results**")
     for d_index,d in enumerate(self.derivative):
-        output_list.append("clEnqueueReadBuffer(command_queue, value_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(FP_t),value_%d, 1, kernel_event, &read_events[%d]);"%(d_index,d_index,d_index*2))
-        output_list.append("clEnqueueReadBuffer(command_queue, value_sqrd_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(FP_t),value_sqrd_%d, 1, kernel_event, &read_events[%d]);"%(d_index,d_index,d_index*2+1))
+        output_list.append("clEnqueueReadBuffer(command_queue, value_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(FP_t),value_%d, 1, kernel_event, &read_events[%d]);"%(d_index,d_index,d_index))
+        #output_list.append("clEnqueueReadBuffer(command_queue, value_sqrd_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(FP_t),value_sqrd_%d, 1, kernel_event, &read_events[%d]);"%(d_index,d_index,d_index*2+1))
     
-    output_list.append("clEnqueueWriteBuffer(command_queue, chunk_number_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, %d, read_events, write_events);"%(2*len(self.derivative)))
-    output_list.append("clFinish(command_queue);")
+    
+    #output_list.append("clEnqueueWriteBuffer(command_queue, chunk_number_buff, CL_TRUE, 0, sizeof(cl_uint), chunk_number_array, %d, read_events, write_events);"%(2*len(self.derivative)))
+    #output_list.append("clFinish(command_queue);")
+    output_list.append("ret = clSetKernelArg(%s_kernel, 3, sizeof(cl_uint), &chunk_number);"%(self.output_file_name))
+    output_list.append("assert(ret==CL_SUCCESS);")
     
     ##Running the actual kernel
     output_list.append("//**Run the kernel**")
-    output_list.append("clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 1, write_events, kernel_event);"%(self.output_file_name))
+    output_list.append("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, read_events, kernel_event);"%(self.output_file_name,len(self.derivative)))
+    output_list.append("assert(ret==CL_SUCCESS);")
     
     output_list.append("//**Post-Kernel Calculations**")
     output_list.append("for(int i=0;i<chunk_paths;i++){")
@@ -385,7 +422,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #output_list.append("printf(\"%%d:%%d - %%f - %%f\\n\",j,i,value_%d[i],value_sqrd_%d[i]);"%(index,index))
       output_list.append("if((remaining_paths_%d>0)){"%(index)) #&& !(isnan(value_%d[i])||isinf(value_%d[i])) index,index
       output_list.append("temp_total_%d += value_%d[i];"%(index,index))
-      output_list.append("temp_value_sqrd_%d += value_sqrd_%d[i];"%(index,index))
+      output_list.append("temp_value_sqrd_%d += pow(value_%d[i],2);"%(index,index))
       output_list.append("remaining_paths_%d = remaining_paths_%d - kernel_loops;"%(index,index))
       output_list.append("}")
       #output_list.append("else{printf(\"%d-%%d is a nan!\\n\",i);}"%index)
@@ -393,8 +430,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     output_list.append("j++;")
     output_list.append("}")
-    output_list.append("clFinish(command_queue);")
-    if(self.platform.amd_gpu_flag): output_list.append("clFinish(cpu_command_queue);")
+    output_list.append("ret = clFinish(command_queue);")
+    output_list.append("assert(ret==CL_SUCCESS);")
+    #if(self.platform.amd_gpu_flag): output_list.append("clFinish(cpu_command_queue);")
     
     output_list.append("//**Returning Result**")
     #output_list.append("printf(\"path_points_array[0]=%d\\n\",path_points_array[0]);")
@@ -408,19 +446,19 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("clReleaseProgram(program);")
     output_list.append("clReleaseCommandQueue(command_queue);")
     output_list.append("clReleaseContext(context);")
-    output_list.append("clReleaseMemObject(path_points_buff);")
-    output_list.append("clReleaseMemObject(seed_buff);")
-    output_list.append("clReleaseMemObject(chunk_size_buff);")
-    output_list.append("clReleaseMemObject(chunk_number_buff);")
+    #output_list.append("clReleaseMemObject(path_points_buff);")
+    #output_list.append("clReleaseMemObject(seed_buff);")
+    #output_list.append("clReleaseMemObject(chunk_size_buff);")
+    #output_list.append("clReleaseMemObject(chunk_number_buff);")
     
-    for index,u in enumerate(self.underlying):
-        output_list.append("clReleaseMemObject(u_a_%d_buff);" % (index))
-        output_list.append("clReleaseMemObject(seed_%d_buff);" % (index))
+    #for index,u in enumerate(self.underlying):
+        #output_list.append("clReleaseMemObject(u_a_%d_buff);" % (index))
+        #output_list.append("clReleaseMemObject(seed_%d_buff);" % (index))
         
     for index,d in enumerate(self.derivative):
-	output_list.append("clReleaseMemObject(o_a_%d_buff);" % (index))
+	#output_list.append("clReleaseMemObject(o_a_%d_buff);" % (index))
         output_list.append("clReleaseMemObject(value_%d_buff);" % (index))
-        output_list.append("clReleaseMemObject(value_sqrd_%d_buff);" % (index))
+        #output_list.append("clReleaseMemObject(value_sqrd_%d_buff);" % (index))
     
     output_list.append("}")
     
@@ -511,19 +549,19 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("bin")
     
     output_list.append("kernel void %s_kernel("%self.output_file_name)
-    output_list.append("\tconstant int *path_points,")
-    output_list.append("\tglobal const uint *seed,")
-    output_list.append("\tglobal const uint *chunk_size,") #constant
-    output_list.append("\tglobal const uint *chunk_number,") #constant
+    output_list.append("\tconst uint path_points,")
+    output_list.append("\tconst uint seed,")
+    output_list.append("\tconst uint chunk_size,") #constant
+    output_list.append("\tconst uint chunk_number,") #constant
     for index,u in enumerate(self.underlying):
-      output_list.append("\tglobal const %s_attributes *u_a_%d,"%(u.name,index)) #constant
-      if(self.random_number_generator=="mwc64x_boxmuller"): output_list.append("\tglobal const mwc64x_state_t *seed_%d,"%(index))
-      elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): output_list.append("\tglobal const rng_state_t *seed_%d,"%(index))
+      output_list.append("\tconst %s_attributes u_a_%d,"%(u.name,index)) #constant
+      #if(self.random_number_generator=="mwc64x_boxmuller"): output_list.append("\tconstant mwc64x_state_t seed_%d,"%(index))
+      #elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): output_list.append("\tconstant rng_state_t seed_%d,"%(index))
       
     for index,d in enumerate(self.derivative):
-      output_list.append("\tglobal const %s_attributes *o_a_%d,"%(d.name,index)) #constant
+      output_list.append("\tconst %s_attributes o_a_%d,"%(d.name,index)) #constant
       output_list.append("\tglobal FP_t *value_%d,"%(index))
-      output_list.append("\tglobal FP_t *value_sqrd_%d,"%(index))
+      #output_list.append("\tglobal FP_t *value_sqrd_%d,"%(index))
       
     output_list[-1] = "%s){" % (output_list[-1][:-1])
     
@@ -543,31 +581,31 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #output_list.append("time = (ulong)mach_absolute_time();")"""
     
     output_list.append("//**reading parameters from host**")
-    output_list.append("int local_path_points=path_points[0];")
-    output_list.append("uint local_chunk_size = chunk_size[0];")
-    output_list.append("uint local_chunk_number = chunk_number[0];")
-    output_list.append("uint local_seed = seed[0];")
+    output_list.append("uint local_path_points = path_points;")
+    output_list.append("uint local_chunk_size = chunk_size;")
+    output_list.append("uint local_chunk_number = chunk_number;")
+    output_list.append("uint local_seed = seed;")
       
     output_list.append("//**Creating Kernel variables and Copying parameters from host**")
     for index,u in enumerate(self.underlying):
-      output_list.append("%s_attributes temp_u_a_%d = u_a_%d[0];"%(u.name,index,index))
+      output_list.append("%s_attributes temp_u_a_%d = u_a_%d;"%(u.name,index,index))
       output_list.append("%s_variables temp_u_v_%d;"%(u.name,index))
       
       if(self.random_number_generator=="mwc64x_boxmuller"):
-	if(self.platform.amd_gpu_flag and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): 
-	  output_list.append("temp_u_v_%d.rng_state.x = seed_%d[i].x;"%(index,index))
-	  output_list.append("temp_u_v_%d.rng_state.c = seed_%d[i].c;"%(index,index))
-	elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
+	#if(self.platform.amd_gpu_flag and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): 
+	  #output_list.append("temp_u_v_%d.rng_state.x = seed_%d[i].x;"%(index,index))
+	  #output_list.append("temp_u_v_%d.rng_state.c = seed_%d[i].c;"%(index,index))
+	if("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
 	  output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),local_seed + 4096*2*local_chunk_size*(local_chunk_number*%d + %d),4096*2);"%(index,len(self.underlying),index))
 	  
       elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
-	if(self.platform.amd_gpu_flag and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): 
-	  output_list.append("temp_u_v_%d.rng_state.s1 = seed_%d[i].s1;"%(index,index))
-	  output_list.append("temp_u_v_%d.rng_state.s2 = seed_%d[i].s2;"%(index,index))
-	  output_list.append("temp_u_v_%d.rng_state.s3 = seed_%d[i].s3;"%(index,index))
-	  output_list.append("temp_u_v_%d.rng_state.offset = seed_%d[i].offset;"%(index,index))
+	#if(self.platform.amd_gpu_flag and ("heston_underlying" in u.name or "black_scholes_underlying" in u.name)): 
+	  #output_list.append("temp_u_v_%d.rng_state.s1 = seed_%d[i].s1;"%(index,index))
+	  #output_list.append("temp_u_v_%d.rng_state.s2 = seed_%d[i].s2;"%(index,index))
+	  #output_list.append("temp_u_v_%d.rng_state.s3 = seed_%d[i].s3;"%(index,index))
+	  #output_list.append("temp_u_v_%d.rng_state.offset = seed_%d[i].offset;"%(index,index))
 	
-	elif("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
+	if("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
 	  output_list.append("ctrng_seed(1000,local_seed * %d * (i+local_chunk_size*local_chunk_number),&(temp_u_v_%d.rng_state));"%(index+1,index))
 	  
 	  """output_list.append("temp_u_v_%d.rng_state.s1 = %d + 2;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
@@ -583,10 +621,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("FP_t spot_price_%d,time_%d;"%(index,index))
     
     for index,d in enumerate(self.derivative):
-      output_list.append("%s_attributes temp_o_a_%d = o_a_%d[0];"%(d.name,index,index))
+      output_list.append("%s_attributes temp_o_a_%d = o_a_%d;"%(d.name,index,index))
       output_list.append("%s_variables temp_o_v_%d;"%(d.name,index))
       output_list.append("FP_t temp_value_%d = 0.0;"%index)
-      output_list.append("FP_t temp_value_sqrd_%d = 0.0;"%index)
+      #output_list.append("FP_t temp_value_sqrd_%d = 0.0;"%index)
     
     output_list.append("for(int k=0;k<%d;++k){"%self.kernel_loops)
     
@@ -626,14 +664,14 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	u_index = self.underlying.index(u)
 	output_list.append("%s_derivative_payoff(spot_price_%d,&temp_o_v_%d,&temp_o_a_%d);"%(d.name,u_index,index,index))
 	output_list.append("temp_value_%d += temp_o_v_%d.value;"%(index,index))
-        output_list.append("temp_value_sqrd_%d += native_powr(temp_o_v_%d.value,2);"%(index,index))
+        #output_list.append("temp_value_sqrd_%d += native_powr(temp_o_v_%d.value,2);"%(index,index))
 	
     output_list.append("}") #End of Kernel For Loop
     
     output_list.append("//**Copying the result to global memory**")
     for index,d in enumerate(self.derivative):
       output_list.append("value_%d[i] = temp_value_%d;"%(index,index))
-      output_list.append("value_sqrd_%d[i] = temp_value_sqrd_%d;"%(index,index))
+      #output_list.append("value_sqrd_%d[i] = temp_value_sqrd_%d;"%(index,index))
     
     output_list.append("}") #End of Kernel
     
@@ -737,8 +775,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     if(debug): compile_flags.append("-ggdb")
     if("darwin" in sys.platform):
       compile_flags.remove("-lOpenCL")
-      compile_flags.append("-framework")
-      compile_flags.append("OpenCL")
+      compile_flags.extend(["-framework","OpenCL"])
     result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_flags,debug) #Compiling Host C Code
       
     os.chdir("..")
