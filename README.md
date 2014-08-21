@@ -1,11 +1,8 @@
-==========================
 #ForwardFinancialFramework
-==========================
 
 F^3 is Python-based application framework for valuing forward looking financial frameworks on Heterogeneous Parallel Computing Platforms.  
 
 ##Introduction
---------------
 
 The vision of F^3 is to allow financial engineers to express valuation computations naturally while taking advantage of the plethora of new computing platforms available.
 
@@ -36,7 +33,6 @@ Coming Soon:
  * Lattice-based Solvers
 
 ##Framework Layout
--------------------
 
 * ForwardFinancialFramework  
   * bin - the experimental scripts for various portfolios 
@@ -46,7 +42,6 @@ Coming Soon:
   * Underlyings - the underlyings classes  
 
 ##Installation
---------------
 
 F^3 requires:  
 1. A *nix-based Operating System    
@@ -59,14 +54,12 @@ F^3 requires:
 8. Xilinx Vivado HLS 2013.4 (For VivadoHLS code)
 
 ##Getting Started
------------------
 
 1. Change to the test_script directory (i.e. ForwardFinancialFramework/bin/test_scripts)  
 2. Run the following command in the script directory:  `python \<script file name\> script options`
   e.g. `python mc_solver_test.py CPU Execute` would run a very basic, CPU-based bond valuation.  
 
 ##Extending the Framework
---==---------------------
 
 * To add a new derivative or underlying, look at the existing derivatives and underlyings as an example. The basic procedure:
  1. Create a new class in the correct directory, inheriting from Option.py or Underlying.py respectively.
@@ -76,6 +69,5 @@ F^3 requires:
 * To add a new solver or platform, its a bit more involved. Again, look at the existing ones for ideas.
 
 ##Contact Info
---------------
 
 Please, feel free to get in touch with me (gordon.inggs (at) gmail.com). I'm particularly happy to provide comparison data for your option evaluations.
