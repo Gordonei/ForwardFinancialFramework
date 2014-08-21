@@ -44,8 +44,56 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     output_list.remove("FILE *fp=fopen(\"%s.clbin\", \"r\");"%self.output_file_name)
 
     index = output_list.index("const size_t local_kernel_paths = local_work_items;")
-    output_list.insert(index,"const size_t local_kernel_paths = 1;") #ToDo I should rather be getting the OpenCL runtime to do this
+    output_list.insert(index,"const size_t local_kernel_paths = 1;") #TODO I should rather be getting the OpenCL runtime to do this
     output_list.remove("const size_t local_kernel_paths = local_work_items;")
+    
+    #Creating attribute struct buffers as Altera OpenCL doesn't support passing structs as kernel arguments directly
+    for u_index,u in enumerate(self.underlying):
+      index = output_list.index("%s_attributes u_a_%d;" % (u.name,u_index))
+      output_list.insert(index+1,"cl_mem u_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,&ret);" % (u_index,u.name))
+      output_list.insert(index+2,"assert(ret==CL_SUCCESS);")
+    
+    for d_index,d in enumerate(self.derivative):
+      index = output_list.index("%s_attributes o_a_%d;" % (d.name,d_index))
+      output_list.insert(index+1,"cl_mem o_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,&ret);" % (d_index,d.name))
+      output_list.insert(index+2,"assert(ret==CL_SUCCESS);")
+    
+    #Setting attribute struct buffers as the kernel arguments 
+    for u_index,u in enumerate(self.underlying):
+      index = output_list.index("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,4 + u_index,u.name,u_index))
+      output_list.insert(index,"ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&u_a_%d_buff);"%(self.output_file_name,4 + u_index,u_index))
+      output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,4 + u_index,u.name,u_index))
+      
+    for d_index,d in enumerate(self.derivative):
+      index = output_list.index("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,4 + len(self.underlying) + d_index,d.name,d_index))
+      output_list.insert(index,"ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&o_a_%d_buff);"%(self.output_file_name,4 + len(self.underlying) + d_index,d_index))
+      output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,4 + len(self.underlying) + d_index,d.name,d_index))
+    
+    #Writing to the attribute struct buffers
+    index = output_list.index("double temp_total_0=0;")
+    output_list.insert(index,"cl_event write_events[%d];"%(len(self.underlying)+len(self.derivative)))
+    index += 1
+    
+    for u_index,u in enumerate(self.underlying):
+        output_list.insert(index,"ret = clEnqueueWriteBuffer(command_queue, u_a_%d_buff, CL_TRUE, 0, sizeof(%s_attributes), &u_a_%d, 0, NULL, &write_events[%d]);"%(u_index,u.name,u_index,u_index))
+        output_list.insert(index+1,"assert(ret==CL_SUCCESS);")
+        index += 2
+    
+    for d_index,d in enumerate(self.derivative):
+        output_list.insert(index,"ret = clEnqueueWriteBuffer(command_queue, o_a_%d_buff, CL_TRUE, 0, sizeof(%s_attributes), &o_a_%d, 0, NULL, &write_events[%d]);"%(d_index,d.name,d_index,len(self.underlying)+d_index))
+        output_list.insert(index+1,"assert(ret==CL_SUCCESS);")
+        index += 2
+        
+        
+    #Changing 1st kernel call to be dependent on the option and underlying write events. Also, the number of work items per work group is left up to the compiler
+    index = output_list.index("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, kernel_event);"%(self.output_file_name))
+    output_list.insert(index,"ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, NULL, %d, write_events, kernel_event);"%(self.output_file_name,len(self.underlying)+len(self.derivative)))
+    output_list.remove("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, kernel_event);"%(self.output_file_name))
+    
+    #Changing the following kernel calls to let the compiler determine the number of work items per work group is left up to the compiler
+    index  = output_list.index("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, read_events, kernel_event);"%(self.output_file_name,len(self.derivative)))
+    output_list.insert(index,"ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, NULL, %d, read_events, kernel_event);"%(self.output_file_name,len(self.derivative)))
+    output_list.remove("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, read_events, kernel_event);"%(self.output_file_name,len(self.derivative)))
     
     return output_list
 
@@ -56,7 +104,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     output_list.insert(0,"#define PATHS %d"%self.solver_metadata["kernel_loops"])
     output_list.insert(1,"#define PATH_POINTS %d"%self.solver_metadata["path_points"])
     
-    output_list.remove("\tconstant int *path_points,")
+    #output_list.remove("\tconstant int *path_points,")
     #output_list.remove("\tglobal uint *chunk_size,")
     
     if(self.cslow):
@@ -69,9 +117,9 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
             lindex = output_list.index("%s_variables temp_o_v_%d;"%(d.name,index))
             output_list.insert(lindex,"%s_variables o_v_%d_array[PATHS];"%(d.name,index))
     
-    index = output_list.index("int local_path_points=path_points[0];")
-    output_list.insert(index,"const int local_path_points=PATH_POINTS;")
-    output_list.remove("int local_path_points=path_points[0];")
+    index = output_list.index("uint local_path_points = path_points;")
+    output_list.insert(index,"const uint local_path_points = PATH_POINTS;")
+    output_list.remove("uint local_path_points = path_points;")
     
     #Modifying the outer, path loop
     lindex = output_list.index("for(int k=0;k<%d;++k){"%self.kernel_loops)
@@ -147,20 +195,39 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     output_list.remove("uint local_chunk_size = chunk_size[0];")"""
     
     
-    #Adding restrict keyword to struct arguments
+    #Making struct arguments into memory operations. Also, adding the restrict keyword to arguments
     for index,u in enumerate(self.underlying):
-      temp_index = output_list.index("\tglobal const %s_attributes *u_a_%d,"%(u.name,index))
-      output_list.insert(temp_index,"\tglobal const %s_attributes *restrict u_a_%d,"%(u.name,index))
-      output_list.remove("\tglobal const %s_attributes *u_a_%d,"%(u.name,index))
+      temp_index = output_list.index("\tconst %s_attributes u_a_%d,"%(u.name,index))
+      output_list.insert(temp_index,"\tglobal %s_attributes *restrict u_a_%d,"%(u.name,index))
+      output_list.remove("\tconst %s_attributes u_a_%d,"%(u.name,index))
       
-      temp_index = output_list.index("\tglobal const rng_state_t *seed_%d,"%index)
-      output_list.insert(temp_index,"\tglobal const rng_state_t *restrict seed_%d,"%index)
-      output_list.remove("\tglobal const rng_state_t *seed_%d,"%index)
+      temp_index = output_list.index("%s_attributes temp_u_a_%d = u_a_%d;"%(u.name,index,index))
+      output_list.insert(temp_index,"%s_attributes temp_u_a_%d = *u_a_%d;"%(u.name,index,index))
+      output_list.remove("%s_attributes temp_u_a_%d = u_a_%d;"%(u.name,index,index))
+      
+      #temp_index = output_list.index("\tglobal const rng_state_t *seed_%d,"%index)
+      #output_list.insert(temp_index,"\tglobal const rng_state_t *restrict seed_%d,"%index)
+      #output_list.remove("\tglobal const rng_state_t *seed_%d,"%index)
       
     for index,d in enumerate(self.derivative):
-      temp_index = output_list.index("\tglobal const %s_attributes *o_a_%d,"%(d.name,index))
-      output_list.insert(temp_index,"\tglobal const %s_attributes *restrict o_a_%d,"%(d.name,index))
-      output_list.remove("\tglobal const %s_attributes *o_a_%d,"%(d.name,index))
+      temp_index = output_list.index("\tconst %s_attributes o_a_%d,"%(d.name,index))
+      output_list.insert(temp_index,"\tglobal %s_attributes *restrict o_a_%d,"%(d.name,index))
+      output_list.remove("\tconst %s_attributes o_a_%d,"%(d.name,index))
+      
+      temp_index = output_list.index("%s_attributes temp_o_a_%d = o_a_%d;"%(d.name,index,index))
+      output_list.insert(temp_index,"%s_attributes temp_o_a_%d = *o_a_%d;"%(d.name,index,index))
+      output_list.remove("%s_attributes temp_o_a_%d = o_a_%d;"%(d.name,index,index))
+      
+      temp_index = 0
+      if(index<(len(self.derivative)-1)):
+        temp_index = output_list.index("\tglobal FP_t *value_%d,"%(index))
+        output_list.insert(temp_index,"\tglobal FP_t *restrict value_%d,"%(index))
+        output_list.remove("\tglobal FP_t *value_%d,"%(index))
+      
+      else:
+        temp_index = output_list.index("\tglobal FP_t *value_%d){"%(index))
+        output_list.insert(temp_index,"\tglobal FP_t *restrict value_%d){"%(index))
+        output_list.remove("\tglobal FP_t *value_%d){"%(index))
     
     #Controlling the amount of pipeline parallelism
     #if(self.pipelining>1):
