@@ -1,11 +1,11 @@
-=========================
-ForwardFinancialFramework
-=========================
+==========================
+#ForwardFinancialFramework
+==========================
 
 F^3 is Python-based application framework for valuing forward looking financial frameworks on Heterogeneous Parallel Computing Platforms.  
 
-Introduction
-------------
+##Introduction
+--------------
 
 The vision of F^3 is to allow financial engineers to express valuation computations naturally while taking advantage of the plethora of new computing platforms available.
 
@@ -35,8 +35,8 @@ Coming Soon:
  * IP-based Network execution
  * Lattice-based Solvers
 
-Framework Layout
-----------------
+##Framework Layout
+-------------------
 
 * ForwardFinancialFramework  
   * bin - the experimental scripts for various portfolios 
@@ -45,8 +45,8 @@ Framework Layout
   * Solvers - the solver alogrithms  
   * Underlyings - the underlyings classes  
 
-Installation
-------------
+##Installation
+--------------
 
 F^3 requires:  
 1. A *nix-based Operating System    
@@ -55,21 +55,18 @@ F^3 requires:
 4. Numpy (http://numpy.scipy.org/)  
 5. Maxcompiler version 12.1 >= (For Maxeler code)  
 6. PyOpenCL (https://pypi.python.org/pypi/pyopencl)
-7. * OpenCL SDK (where * is the vendor of the OpenCL platform in question)
-8. VivadoHLS 2013.4
+7. X OpenCL SDK (where X is the vendor of the OpenCL platform in question)
+8. Xilinx Vivado HLS 2013.4 (For VivadoHLS code)
 
-Getting Started
----------------
+##Getting Started
+-----------------
 
 1. Change to the test_script directory (i.e. ForwardFinancialFramework/bin/test_scripts)  
-2. Run the following command in the script directory:  
-        "python \<script file name\> script options"  
-i.e.  
-        "python mc_solver_test.py CPU Execute"  
-would run a very basic, CPU-based bond valuation.  
+2. Run the following command in the script directory:  `python \<script file name\> script options`
+  e.g. `python mc_solver_test.py CPU Execute` would run a very basic, CPU-based bond valuation.  
 
-Extending the Framework
------------------------
+##Extending the Framework
+--==---------------------
 
 * To add a new derivative or underlying, look at the existing derivatives and underlyings as an example. The basic procedure:
  1. Create a new class in the correct directory, inheriting from Option.py or Underlying.py respectively.
@@ -78,7 +75,7 @@ Extending the Framework
  
 * To add a new solver or platform, its a bit more involved. Again, look at the existing ones for ideas.
 
-Contact Info
-------------
+##Contact Info
+--------------
 
 Please, feel free to get in touch with me (gordon.inggs (at) gmail.com). I'm particularly happy to provide comparison data for your option evaluations.
