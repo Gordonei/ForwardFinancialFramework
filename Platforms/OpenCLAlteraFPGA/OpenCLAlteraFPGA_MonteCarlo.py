@@ -46,7 +46,15 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     index = output_list.index("const size_t local_kernel_paths = local_work_items;")
     output_list.insert(index,"const size_t local_kernel_paths = 1;") #TODO I should rather be getting the OpenCL runtime to do this
     output_list.remove("const size_t local_kernel_paths = local_work_items;")
-    
+
+    #Aligning to 64 Bytes for DMA
+    for d_index,d in enumerate(self.derivative):
+    	index = output_list.index("FP_t *value_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % d_index)
+	output_list.insert(index,"FP_t *value_%d;"%d_index)
+	output_list.insert(index+1,"ret = posix_memalign((void**)&value_%d, 64, chunk_paths*sizeof(FP_t));" % d_index)
+	output_list.insert(index+2,"assert(ret==0);")
+	output_list.remove("FP_t *value_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % d_index)
+ 
     #Creating attribute struct buffers as Altera OpenCL doesn't support passing structs as kernel arguments directly
     for u_index,u in enumerate(self.underlying):
       index = output_list.index("%s_attributes u_a_%d;" % (u.name,u_index))
