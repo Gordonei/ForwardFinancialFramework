@@ -59,6 +59,8 @@
 #define native_cos cosf
 #endif
 
+typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;uint32_t offset;} rng_state_t;
+
 #ifdef TAUS_ZIGGURAT
 /* position of right-most step */
 #define PARAM_R 3.44428647676
@@ -176,7 +178,7 @@ FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state);
 #endif
 
 //Beginning of modified code that uses the Combined TAUSWORTHE RNG
-typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;uint32_t offset;} rng_state_t;
+//typedef struct{uint32_t s1;uint32_t s2; uint32_t s3;uint32_t offset;} rng_state_t;
 //uint32_t s1=2, s2=8, s3=16;
 
 void ctrng_seed(int index,uint32_t initial_seed,rng_state_t *rng_state);
