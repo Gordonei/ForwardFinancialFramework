@@ -2,8 +2,9 @@
 Created on 19 January 2014
 '''
 import sys,os
-sys.path.append("../..")
-import KS_ProblemSet, mc_solver_ks_test
+#sys.path.append("%s/../../.."%os.getcwd())
+#os.chdir("..")
+import mc_solver_ks_test
 
 if( __name__ == '__main__' and len(sys.argv)>6):
   platform_name = sys.argv[1]
@@ -21,7 +22,7 @@ if( __name__ == '__main__' and len(sys.argv)>6):
   
   data_file.write("Forward Financial Framework Kaiserslatuarn+ Benchmark Results,\n")
   data_file.write("%s,%s,\n"%(platform_name,hostname))
-  data_file.write("Option Number,Simulation Paths,Threads,Option Value,95%% CI,User Time,CPU Time,Total Time,\n")
+  data_file.write("Option Number,Simulation Paths,Threads,Option Value,95% CI,User Time,CPU Time,Total Time,\n")
   
   for p in range(paths,paths*(path_steps+1),paths):
     for t in range(threads,threads+thread_steps): #Threads increase in powers of 2

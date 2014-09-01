@@ -2,23 +2,21 @@
 Created on 6 May 2013
 '''
 import sys,os
+sys.path.append("%s/../../.."%os.getcwd())
 os.chdir("..")
-sys.path.append("../..")
-import ForwardFinancialFramework.bin.KS_ProblemSet
+import ForwardFinancialFramework.bin.KS_ProblemSet as KS_ProblemSet
 
 def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=0):  
-  option = ForwardFinancialFramework.bin.KS_ProblemSet.KS_Options(options)
+  option = KS_ProblemSet.KS_Options(options)
  
   if(platform_name=="OpenCL_GPU"):
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
     platform = OpenCLGPU.OpenCLGPU()
     mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform)
-    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform)
     
   elif(platform_name=="CPU"):
-    from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
+    from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo, MulticoreCPU
     platform = MulticoreCPU.MulticoreCPU()
-    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform)
     mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform)
     
   elif(platform_name=="Maxeler_FPGA"):
