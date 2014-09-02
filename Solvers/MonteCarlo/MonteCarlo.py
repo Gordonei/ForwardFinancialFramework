@@ -34,10 +34,7 @@ class MonteCarlo:
         self.derivative = derivative
         self.reduce_underlyings = reduce_underlyings
         self.setup_underlyings(self.reduce_underlyings)
-    
-    """def __getstate__(self):
-      state = self.__dict__.copy()
-      return state"""
+	if(derivative): self.generate_name()
     
     def __setstate__(self,state):
       self.__dict__.update(state)
@@ -72,22 +69,6 @@ class MonteCarlo:
                   d.underlying[j] = self.underlying[new_u_index]
                     
                 else: self.underlying.append(u)
-                    
-                #if((len(self.underlying)==0) or not reduce_underlyings): 
-		  #self.underlying.append(u)
-		  #underlying_list.append(u)
-	
-	"""for d in self.derivative:
-            for u in d.underlying:
-	      print d
-	      print u
-	      print "\n"
-        print self.underlying"""
-         
-        
-        self.generate_name()
-	  
-    
         
         self.underlying_dependencies = [] #Creating a dependency list for each underlying, detailing the derivative that depends on it
         for u in self.underlying:
@@ -357,34 +338,28 @@ class MonteCarlo:
 	latency.append(numpy.mean(temp_latency))
 	latency_var.append(numpy.var(temp_latency))
 
-      return [accuracy,latency,accuracy_var,latency_var,path_set]
+      return (accuracy,latency,accuracy_var,latency_var,path_set)
     
-    def generate_latency_prediction_function_coefficients(self,benchmark_paths,data_points,latencies,paths,degree=1):
-      benchmark_matrix = numpy.zeros((data_points,degree+1))
+    def generate_latency_prediction_function_coefficients(self,latencies,paths,degree=1):
+      benchmark_matrix = numpy.zeros((len(paths),degree+1))
       
-      for i in range(data_points):
-	benchmark_matrix[i][0] = 1.0
-	for j in range(1,degree+1): benchmark_matrix[i][j] = paths[i]**j
+      for i in range(len(paths)):
+	for j in range(degree+1): benchmark_matrix[i][j] = paths[i]**j
 	  
-      temp_coefficients = numpy.linalg.lstsq(benchmark_matrix,latencies)[0]
-      predicition_function_coefficients = temp_coefficients[:]
+      coefficients = numpy.linalg.lstsq(benchmark_matrix,latencies)[0]
 
-      return predicition_function_coefficients
+      return tuple(coefficients)
 
-    def generate_accuracy_prediction_function_coefficients(self,benchmark_paths,data_points,accuracy_data,paths,degree=2):
-      benchmark_matrix = numpy.zeros((data_points,degree+1))
+    def generate_accuracy_prediction_function_coefficients(self,accuracy_data,paths,degree=2):
+      benchmark_matrix = numpy.zeros((len(paths),degree+1))
       
-      for i in range(data_points):
+      for i in range(len(paths)):
 	benchmark_matrix[i][0] = 1.0
 	for j in range(1,degree+1):
-	  #if(j%2): benchmark_matrix[i][j] = 0.0
-	  benchmark_matrix[i][j] = paths[i]**-(1.0/j)
-	  
-      #print benchmark_matrix
-      #print accuracy_data
+	  benchmark_matrix[i][j] = paths[i]**(-1.0/j)
     
-      temp_coefficients = numpy.linalg.lstsq(benchmark_matrix,accuracy_data)[0]
-      predicition_function_coefficients = temp_coefficients[:]
+      coefficients = numpy.linalg.lstsq(benchmark_matrix,accuracy_data)[0]
 
-      return predicition_function_coefficients
+      return tuple(coefficients)
+    
     
