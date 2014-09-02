@@ -76,8 +76,8 @@ for i,host_name in enumerate(host_names):
     model_latency_total = numpy.zeros(len(model_paths))
     model_accuracy_total = numpy.zeros(len(model_paths))
     
-    actual_latency_total = numpy.zeros(len(model_paths))
-    actual_accuracy_total = numpy.zeros(len(model_paths))
+    actual_latency_total = numpy.zeros(len(paths))
+    actual_accuracy_total = numpy.zeros(len(paths))
     
     for k,o in enumerate(options):
         option_selection = data_matrices[i]["Option Number"]==o
@@ -92,8 +92,8 @@ for i,host_name in enumerate(host_names):
         model_latency_total += model_latency
         model_accuracy_total = array_max(model_accuracy_total,model_accuracy)
         
-        actual_latency_total += model_latency
-        actual_accuracy_total = array_max(model_accuracy_total,model_accuracy)
+        actual_latency_total += actual_latency
+        actual_accuracy_total = array_max(actual_accuracy_total,actual_accuracy)
         
     platform_colours.append(numpy.random.random((3)))
     
