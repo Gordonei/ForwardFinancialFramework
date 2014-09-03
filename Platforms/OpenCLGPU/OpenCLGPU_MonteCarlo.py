@@ -442,6 +442,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("temp_data->thread_result_sqrd[%d] = temp_value_sqrd_%d;"%(index,index)) #*scaling_factor
     
     output_list.append("//**Cleaning up**")
+    output_list.append("clReleaseEvent(*kernel_event);")
+    for index,d in enumerate(self.derivative): output_list.append("clReleaseEvent(read_events[%d]);"%index)
     output_list.append("clReleaseKernel(%s_kernel);"%self.output_file_name)
     output_list.append("clReleaseProgram(program);")
     output_list.append("clReleaseCommandQueue(command_queue);")
