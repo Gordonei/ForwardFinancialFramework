@@ -25,8 +25,8 @@ def accuracy_latency_model(target_accuracy,latency_coefficients,accuracy_coeffic
     L1 = latency_coefficients[1]
     
     paths_req = accuracy_path(target_accuracy,accuracy_coefficients)
-    if(L0>0): return L0 + L1*paths_req
-    else: return L1*paths_req
+    #if(L0>0): return L0 + L1*paths_req
+    return L1*paths_req
 
 def array_max(initial_list,new_list):
     return_list = initial_list[:]
@@ -40,7 +40,7 @@ def find_nearest(array,value):
     idx = (numpy.abs(array-value)).argmin()
     return idx
 
-options = ["1","2","3","4","5","6","7","8","9","10","11","12","13"]
+options = ["1","2","3"] #map(str,range(1,14))
 
 #Reading in data
 datafiles  = sys.argv[1:]
@@ -91,6 +91,9 @@ for i,host_name in enumerate(host_names):
     
 #Plotting the platform data
 platform_colours = []
+for i,host_name in enumerate(host_names): platform_colours.append(numpy.random.random((3)))
+"""
+platform_colours = []
 for i,host_name in enumerate(host_names):
     #option_selection = data_matrices[i]["Option Number"]==options[0]
     paths = platform_paths[i] #data_matrices[i]["Simulation Paths"][option_selection]
@@ -122,16 +125,7 @@ for i,host_name in enumerate(host_names):
     
     #pyplot.plot(actual_latency_total,actual_accuracy_total,"-x",color=platform_colours[-1],label="%s actual"%host_name)
     pyplot.plot(model_latency_total,model_accuracy_total,"--",color=platform_colours[-1],label="%s model"%host_name)
-    
-"""for i,host_name in enumerate(host_names):
-    paths = data_matrices[i]["Simulation Paths"]
-    model_paths = numpy.arange(min(paths)/100,max(paths)*100,1000) #stretching things out a bit
-    model_accuracy = sum([accuracy_coefficients[i][j]*model_paths**(-1.0/j) for j in range(1,3)]) + accuracy_coefficients[i][0]*numpy.ones(model_paths.shape)
-    
-    model_latency = []
-    for m_a in model_accuracy:
-        model_latency.append(accuracy_latency_model(m_a,latency_coefficients[i],accuracy_coefficients[i]))
-    pyplot.plot(model_latency,model_accuracy,"-o",color=platform_colours[i],label="%s conversion model"%host_name)"""
+"""
     
 #Writing Parameters to datafile for SCIP
 accuracy_target = range(10,1,-1)
@@ -170,12 +164,12 @@ for t,target in enumerate(accuracy_target):
     for s_o in scip_output:
         if("A$e" in s_o and "con_task_max" not in s_o and "linear" not in s_o): 
 		identifier = s_o.split()[0]
-		proportion = s_o.split()[1]
+		proportion = float(s_o.split()[1])
 		
 		identifier_list = identifier.split("$")
 		platform = host_names.index(identifier_list[1])
 		task = options.index(identifier_list[2])
-		pareto_schedule[t,platform,task] = float(proportion)
+		if(proportion): pareto_schedule[t,platform,task] = proportion
         if("objective value" in s_o and "integral" not in s_o):
             print s_o
             print "$%s vs \t %s S"%(target,float(s_o.split()[2])/1000000)
@@ -198,38 +192,94 @@ for t,target in enumerate(accuracy_target):
         for t,task in enumerate(options):
             target_paths[p][t] = accuracy_path(target,accuracy_coefficients[p][t])*target_schedule[p][t]
     
-    #Checking if the paths required to meet the target exist within the current ranges
+    #Checking if the paths in the schedule exist within the current ranges
     flag = True
     for p,platform in enumerate(host_names):
         for t,task in enumerate(options):
             option_selection = data_matrices[p]["Option Number"]==task
             if (target_paths[p][t] > max(data_matrices[p]["Simulation Paths"][option_selection])): flag = False
             
-    #Using the existing data points
+    #Only using the existing data points
     if(flag):
-        #latency is the longest running platform
+        #latency is the longest running platform of the set
         latency = []
-        accuracy = []
+        
+        temp_accuracy = numpy.zeros(len(options))
+        temp_paths = numpy.zeros(len(options))
         for p,platform in enumerate(host_names):
             temp_latency = 0.0
             for t,task in enumerate(options):
                 option_selection = data_matrices[p]["Option Number"]==task
                 if(target_paths[p][t]):
-                    print target_paths[p][t]
-                    print data_matrices[p][option_selection]["Simulation Paths"][find_nearest(data_matrices[p][option_selection]["Simulation Paths"],target_paths[p][t])]
-                    temp_latency += data_matrices[p][option_selection]["Total Time"][find_nearest(data_matrices[p][option_selection]["Simulation Paths"],target_paths[p][t])]/1000000
-                
+                    #print target_paths[p][t]
+                    #print data_matrices[p][option_selection]["Simulation Paths"][find_nearest(data_matrices[p][option_selection]["Simulation Paths"],target_paths[p][t])]
+                    nearest_paths_index = find_nearest(data_matrices[p][option_selection]["Simulation Paths"],target_paths[p][t])
+                    temp_latency += data_matrices[p][option_selection]["Total Time"][nearest_paths_index]/1000000
+                    temp_accuracy[t] += (data_matrices[p][option_selection]["95% CI"][nearest_paths_index]*(data_matrices[p][option_selection]["Simulation Paths"][nearest_paths_index])**0.5)**2/1.96
+                    temp_paths[t] += data_matrices[p][option_selection]["Simulation Paths"][nearest_paths_index]
+            
             latency.append(temp_latency)
+        
+        accuracy = 1.96*(temp_accuracy/temp_paths)**0.5
                 
         verification_latency.append(max(latency))
-        verification_accuracy.append(target)
-            
+        verification_accuracy.append(max(accuracy))
         
-        #accuracy is the largest 95% CI
+pyplot.plot(verification_latency,verification_accuracy,label="pareto verification")
+                    
+#Platform Model and Verification Curves
+for p,platform in enumerate(host_names):
+    actual_latencies = []
+    model_latencies = []
+    actual_accuracies = []
+    for t_a in accuracy_target: 
+        flag = True
+        latency = 0.0
+        model_latency = 0.0
+        for t,task in enumerate(options):
+            option_selection = data_matrices[p]["Option Number"]==task
+            
+            model_latency += latency_coefficients[p][t][0] + latency_coefficients[p][t][1]*accuracy_path(t_a,accuracy_coefficients[p][t])
+            if(min(data_matrices[p][option_selection]["95% CI"])>=t_a): flag = False
+            else:
+                nearest_index = find_nearest(data_matrices[p][option_selection]["95% CI"],t_a)
+                latency += data_matrices[p][option_selection]["Total Time"][nearest_index]
+            
+        model_latencies.append(model_latency/1000000)
+        if(flag):
+            actual_accuracies.append(t_a)
+            actual_latencies.append(latency/1000000)
+            
+
+    pyplot.plot(model_latencies,accuracy_target,"--",color=platform_colours[p],label="%s model"%platform)
+    pyplot.plot(actual_latencies,actual_accuracies,color=platform_colours[p],label="%s"%platform)        
     
-#print verification_accuracy
-#print verification_latency
-pyplot.plot(verification_latency,verification_accuracy,label="pareto verfication")
+    
+
+"""
+for p,platform in enumerate(host_names):
+        flag = True
+        
+        option_selection = data_matrices[p]["Option Number"]==options[0]
+        paths = data_matrices[p]["Simulation Paths"][option_selection]
+        
+        #Making sure that all the options are there for that number of paths
+        remove_list = []
+        for s in paths:
+            for t,task in enumerate(options):
+                option_selection = data_matrices[p]["Option Number"]==task
+                if (s not in data_matrices[p]["Simulation Paths"][option_selection]): remove_list.append(s)
+                
+        latency = []
+        accuracy = []
+        for s in paths:
+            if(s not in remove_list):
+                paths_selection = data_matrices[p]["Simulation Paths"]==s
+                latency.append(sum(data_matrices[p][paths_selection]["Total Time"]/1000000))
+                accuracy.append(max(data_matrices[p][paths_selection]["95% CI"]))
+                
+        pyplot.plot(latency,accuracy,color=platform_colours[p],label=platform)
+"""
 
 pyplot.yscale("log")
 pyplot.xlabel("latency (S)")
