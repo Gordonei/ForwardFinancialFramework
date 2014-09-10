@@ -2,13 +2,17 @@
 Created on 1 September 2014
 '''
 import sys,subprocess,os,copy
-import numpy,matplotlib.pyplot as pyplot
+import numpy
+#import matplotlib.pyplot as pyplot
 
 sys.path.append("%s/../../.."%os.getcwd())
 import ForwardFinancialFramework.bin.KS_datafile as KS_datafile
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
-def accuracy_path(target_accuracy,accuracy_coefficients):
+def accuracy_to_path(target_accuracy,accuracy_coefficients):
+    """
+    converts a 95% CI value into a number of paths using the cofficients of the function. It computes the function's inverse value.
+    """
     a = target_accuracy
     A0 = accuracy_coefficients[0]
     A1 = accuracy_coefficients[1]
@@ -21,12 +25,13 @@ def accuracy_path(target_accuracy,accuracy_coefficients):
 
 
 def accuracy_latency_model(target_accuracy,latency_coefficients,accuracy_coefficients):
+    """converts a 95% CI value into a latency value. This is done using the accuracy function inverse"""
     L0 = latency_coefficients[0]
     L1 = latency_coefficients[1]
     
-    paths_req = accuracy_path(target_accuracy,accuracy_coefficients)
-    #if(L0>0): return L0 + L1*paths_req
-    return L1*paths_req
+    paths_req = accuracy_to_path(target_accuracy,accuracy_coefficients)
+    if(L0>0): return L0 + L1*paths_req
+    else: return L1*paths_req
 
 def array_max(initial_list,new_list):
     return_list = initial_list[:]
@@ -37,10 +42,11 @@ def array_max(initial_list,new_list):
     return return_list
 
 def find_nearest(array,value):
+    """returns the index of the nearest value to a particular value in an array"""
     idx = (numpy.abs(array-value)).argmin()
     return idx
 
-options = ["1","2","3"] #map(str,range(1,14))
+options = map(str,range(1,14))
 
 #Reading in data
 datafiles  = sys.argv[1:]
@@ -75,10 +81,10 @@ for i,data_matrix in enumerate(data_matrices):
 	platform_paths[-1] = numpy.array(platform_paths[-1])
     else: platform_paths[-1] = numpy.array(paths_pool[0])
 
-#Computing co-efficients
+#Computing co-efficients for prediction models
 latency_coefficients = []
 accuracy_coefficients = []
-benchmark_ratio = 1.0 #use 10% of data available to create model
+benchmark_ratio = 1.0 #use 20% of data available to create model
 mc_solver = MonteCarlo.MonteCarlo([],1,None) #Creating dummy solver instance
 for i,host_name in enumerate(host_names):
     latency_coefficients.append([])
@@ -89,56 +95,17 @@ for i,host_name in enumerate(host_names):
         latency_coefficients[-1].append(copy.deepcopy(mc_solver.generate_latency_prediction_function_coefficients(data_matrices[i][option_selection]["Total Time"][:benchmark_datapoints],data_matrices[i][option_selection]["Simulation Paths"][:benchmark_datapoints])))
         accuracy_coefficients[-1].append(copy.deepcopy(mc_solver.generate_accuracy_prediction_function_coefficients(data_matrices[i][option_selection]["95% CI"][:benchmark_datapoints],data_matrices[i][option_selection]["Simulation Paths"][:benchmark_datapoints])))
     
-#Plotting the platform data
-platform_colours = []
-for i,host_name in enumerate(host_names): platform_colours.append(numpy.random.random((3)))
-"""
-platform_colours = []
-for i,host_name in enumerate(host_names):
-    #option_selection = data_matrices[i]["Option Number"]==options[0]
-    paths = platform_paths[i] #data_matrices[i]["Simulation Paths"][option_selection]
-    model_paths = numpy.arange(min(paths)/100,max(paths)*100,1000) #stretching things out a bit
-    
-    model_latency_total = numpy.zeros(len(model_paths))
-    model_accuracy_total = numpy.zeros(len(model_paths))
-    
-    #actual_latency_total = numpy.zeros(len(paths))
-    #actual_accuracy_total = numpy.zeros(len(paths))
-    
-    for k,o in enumerate(options):
-        option_selection = data_matrices[i]["Option Number"]==o
-        
-        #paths = data_matrices[i]["Simulation Paths"][option_selection]
-        actual_accuracy = data_matrices[i]["95% CI"][option_selection]
-        actual_latency = data_matrices[i]["Total Time"][option_selection]/1000000
-        
-        model_accuracy = sum([accuracy_coefficients[i][k][j]*model_paths**(-1.0/j) for j in range(1,3)]) + accuracy_coefficients[i][k][0]*numpy.ones(model_paths.shape)
-        model_latency = sum([latency_coefficients[i][k][j]*model_paths**j for j in range(2)])/1000000
-        
-        model_latency_total += model_latency
-        model_accuracy_total = array_max(model_accuracy_total,model_accuracy)
-        
-        #actual_latency_total += actual_latency
-        #actual_accuracy_total = array_max(actual_accuracy_total,actual_accuracy)
-        
-    platform_colours.append(numpy.random.random((3)))
-    
-    #pyplot.plot(actual_latency_total,actual_accuracy_total,"-x",color=platform_colours[-1],label="%s actual"%host_name)
-    pyplot.plot(model_latency_total,model_accuracy_total,"--",color=platform_colours[-1],label="%s model"%host_name)
-"""
-    
-#Writing Parameters to datafile for SCIP
 accuracy_target = range(10,1,-1)
 accuracy_target.extend(numpy.arange(1,0.1,-0.1)) #[1,0.5,0.1,0.05,0.01]
-accuracy_target.extend(numpy.arange(0.1,0.01,-0.01))
+#accuracy_target.extend(numpy.arange(0.1,0.01,-0.01))
 #accuracy_target.extend(numpy.arange(0.01,0.001,-0.001))
 #accuracy_target.extend(numpy.arange(0.001,0.0001,-0.0001)) #seems to cause some sort of numerical trouble
 accuracy_target = numpy.array(accuracy_target)
 pareto_schedule_latency = numpy.zeros(accuracy_target.shape)
 
-#pareto_schedule_latency = []
 pareto_schedule = numpy.zeros((len(accuracy_target),len(host_names),len(options)))
 for t,target in enumerate(accuracy_target):
+    #Writing Parameters to datafile for SCIP
     platform_file = open("platforms.txt","w")
     for i,host_name in enumerate(host_names): platform_file.write("%s\n"%host_name)
     platform_file.close()
@@ -153,14 +120,16 @@ for t,target in enumerate(accuracy_target):
         for j,o in enumerate(options):
             latencysetup_file.write("%s %s %s\n"%(host_name,o,latency_coefficients[i][j][0])) #Just need the latency setup time which is constant
             
-            paths_req = accuracy_path(target,accuracy_coefficients[i][j]) #need to know how many simulation paths are required to achieve the desired performance
+            paths_req = accuracy_to_path(target,accuracy_coefficients[i][j]) #need to know how many simulation paths are required to achieve the desired performance
             latencypp_file.write("%s %s %s\n"%(host_name,o,paths_req*latency_coefficients[i][j][1]))
             
     latencypp_file.close()
     latencysetup_file.close()
   
+    #Running SCIP
     scip_output = subprocess.check_output(["scip","-f","platform_schedule.zpl","-l","output.dat"])
     scip_output = scip_output.split("\n")
+    #Parsing output from SCIP
     for s_o in scip_output:
         if("A$e" in s_o and "con_task_max" not in s_o and "linear" not in s_o): 
 		identifier = s_o.split()[0]
@@ -176,21 +145,67 @@ for t,target in enumerate(accuracy_target):
             pareto_schedule_latency[t] = float(s_o.split()[2])/1000000
 
     print pareto_schedule[t]
+    
+#Writing Pareto Curve to output file
+pareto_output_file = open("pareto_output.csv","w")
+pareto_output_file.write("Forward Financial Framework Kaiserslatuarn+ Pareto Curve and Model Results,\n")
+pareto_output_file.write("Various,Pareto Combination,\n")
+pareto_output_file.write("Platform,95% CI,Total Time,\n")
+for CI,latency in zip(accuracy_target,pareto_schedule_latency):
+    pareto_output_file.write("Pareto Combination,%f,%f,\n"%(CI,latency))
    
-pyplot.plot(pareto_schedule_latency,accuracy_target,"-o",label="pareto combination")
-   
-#Plotting Verification Curve
-verification_accuracy = []
-verification_latency = []
+#Plotting the pareto combination
+#pyplot.plot(pareto_schedule_latency,accuracy_target,"--o",label="pareto combination")
+
+#Writing the Pareto task allocation to sparse format output file
+pareto_allocation_output_file = open("pareto_allocation_output.csv","w")
+for host_name in host_names: pareto_allocation_output_file.write("%s,"%host_name)
+pareto_allocation_output_file.write("\n")
+for option in options: pareto_allocation_output_file.write("%s,"%option)
+pareto_allocation_output_file.write("\n")
+for target in accuracy_target: pareto_allocation_output_file.write("%f,"%target)
+pareto_allocation_output_file.write("\n")
 
 for t,target in enumerate(accuracy_target):
-    target_schedule = pareto_schedule[t]
+    for i,host_name in enumerate(host_names):
+        for j,o in enumerate(options):
+            if(pareto_schedule[t,i,j]): pareto_allocation_output_file.write("%d,%d,%f,"%(i,j,pareto_schedule[t,i,j]))
+            
+    pareto_allocation_output_file.write("\n")
+    
+pareto_allocation_output_file.close()
+
+#Converting from allocation schedule into number of simulation paths to run upon each platform
+platform_allocation_output_file = open("platform_allocation_output.csv","w")
+platform_allocation_output_file.write("Forward Financial Framework Kaiserslatuarn+ Platform Verfication Parameters,\n")
+platform_allocation_output_file.write("Various,Various,\n")
+platform_allocation_output_file.write("Platform,Option,Simulation Paths,Target 95% CI,\n")
+for a,target in enumerate(accuracy_target):
+    target_schedule = pareto_schedule[a]
     
     #Converting schedule allocation into paths
     target_paths = numpy.zeros(target_schedule.shape)
     for p,platform in enumerate(host_names):
         for t,task in enumerate(options):
-            target_paths[p][t] = accuracy_path(target,accuracy_coefficients[p][t])*target_schedule[p][t]
+            target_paths[p][t] = accuracy_to_path(target,accuracy_coefficients[p][t])*target_schedule[p][t]
+        
+            if(target_paths[p][t]): platform_allocation_output_file.write("%s,%s,%d,%f,\n"%(platform,task,numpy.ceil(target_paths[p][t]),target))
+
+platform_allocation_output_file.close()
+
+"""
+#Plotting Verification Curve
+verification_accuracy = []
+verification_latency = []
+
+for a,target in enumerate(accuracy_target):
+    target_schedule = pareto_schedule[a]
+    
+    #Converting schedule allocation into paths
+    target_paths = numpy.zeros(target_schedule.shape)
+    for p,platform in enumerate(host_names):
+        for t,task in enumerate(options):
+            target_paths[p][t] = accuracy_to_path(target,accuracy_coefficients[p][t])*target_schedule[p][t]
     
     #Checking if the paths in the schedule exist within the current ranges
     flag = True
@@ -225,9 +240,9 @@ for t,target in enumerate(accuracy_target):
         verification_latency.append(max(latency))
         verification_accuracy.append(max(accuracy))
         
-pyplot.plot(verification_latency,verification_accuracy,label="pareto verification")
-                    
-#Platform Model and Verification Curves
+pyplot.plot(verification_latency,verification_accuracy,"-x",label="pareto verification")
+""" 
+
 for p,platform in enumerate(host_names):
     actual_latencies = []
     model_latencies = []
@@ -239,8 +254,10 @@ for p,platform in enumerate(host_names):
         for t,task in enumerate(options):
             option_selection = data_matrices[p]["Option Number"]==task
             
-            model_latency += latency_coefficients[p][t][0] + latency_coefficients[p][t][1]*accuracy_path(t_a,accuracy_coefficients[p][t])
-            if(min(data_matrices[p][option_selection]["95% CI"])>=t_a): flag = False
+            model_latency += latency_coefficients[p][t][0] + latency_coefficients[p][t][1]*accuracy_to_path(t_a,accuracy_coefficients[p][t])
+            
+	    #first check that the target accuracy is within the range of the verification data
+	    if(min(data_matrices[p][option_selection]["95% CI"])>=t_a>=max(data_matrices[p][option_selection]["95% CI"])): flag = False
             else:
                 nearest_index = find_nearest(data_matrices[p][option_selection]["95% CI"],t_a)
                 latency += data_matrices[p][option_selection]["Total Time"][nearest_index]
@@ -250,37 +267,14 @@ for p,platform in enumerate(host_names):
             actual_accuracies.append(t_a)
             actual_latencies.append(latency/1000000)
             
+        pareto_output_file.write("%s,%f,%f,\n"%(platform,t_a,model_latencies[-1]))
 
-    pyplot.plot(model_latencies,accuracy_target,"--",color=platform_colours[p],label="%s model"%platform)
-    pyplot.plot(actual_latencies,actual_accuracies,color=platform_colours[p],label="%s"%platform)        
-    
-    
+    #pyplot.plot(model_latencies,accuracy_target,"--",color=platform_colours[p],label="%s model"%platform)
+    #pyplot.plot(actual_latencies,actual_accuracies,"-x",color=platform_colours[p],label="%s"%platform)
+
+pareto_output_file.close()
 
 """
-for p,platform in enumerate(host_names):
-        flag = True
-        
-        option_selection = data_matrices[p]["Option Number"]==options[0]
-        paths = data_matrices[p]["Simulation Paths"][option_selection]
-        
-        #Making sure that all the options are there for that number of paths
-        remove_list = []
-        for s in paths:
-            for t,task in enumerate(options):
-                option_selection = data_matrices[p]["Option Number"]==task
-                if (s not in data_matrices[p]["Simulation Paths"][option_selection]): remove_list.append(s)
-                
-        latency = []
-        accuracy = []
-        for s in paths:
-            if(s not in remove_list):
-                paths_selection = data_matrices[p]["Simulation Paths"]==s
-                latency.append(sum(data_matrices[p][paths_selection]["Total Time"]/1000000))
-                accuracy.append(max(data_matrices[p][paths_selection]["95% CI"]))
-                
-        pyplot.plot(latency,accuracy,color=platform_colours[p],label=platform)
-"""
-
 pyplot.yscale("log")
 pyplot.xlabel("latency (S)")
 
@@ -289,5 +283,4 @@ pyplot.ylabel("95% CI ($)")
 
 pyplot.legend(loc='best')
 pyplot.show()
-
-    
+""" 
