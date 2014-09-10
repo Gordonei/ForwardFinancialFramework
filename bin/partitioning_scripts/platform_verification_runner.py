@@ -23,7 +23,6 @@ for point in platform_matrix:
     latency = 0.0
     CI = 0.0
     for r in range(redudancy):
-        print point
         execution_output = mc_solver_ks_test.run_ks_solver(platform_type,point["Simulation Paths"],["Generate","Compile","Execute"],[int(point["Option"])])[1]
         #print execution_output
         
@@ -32,6 +31,9 @@ for point in platform_matrix:
         
     latency = latency/redudancy
     CI = 1.96*CI**0.5/(redudancy*point["Simulation Paths"])**0.5
-    output_file.write("%s,%s,%s,%s,%s,\n"%(point["Option"],point["Simulation Paths"],point["Target 95%%CI"],CI,latency))
+    
+    output = "%s,%s,%s,%s,%s,\n"%(point["Option"],point["Simulation Paths"],point["Target 95% CI"],CI,latency)
+    print output
+    output_file.write(output)
     
 output_file.close()
