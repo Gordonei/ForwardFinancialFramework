@@ -5,14 +5,15 @@ sys.path.append("%s/../../.."%os.getcwd())
 import ForwardFinancialFramework.bin.test_scripts.mc_solver_ks_test as mc_solver_ks_test
 import ForwardFinancialFramework.bin.KS_datafile as KS_datafile
 
-platform_allocation_file = sys.argv[1]
-platform_name = sys.argv[2]
-platform_type = sys.argv[3]
+test_string = sys.argv[1]
+platform_allocation_file = sys.argv[2]
+platform_name = sys.argv[3]
+platform_type = sys.argv[4]
 
 data_matrix,null,null = KS_datafile.read_datafile("%s/%s"%(root,platform_allocation_file))
 platform_matrix = data_matrix[data_matrix["Platform"]==platform_name]
 
-output_file = open("%s_%s_pareto_verfication.csv"%(platform_name,platform_type),"w")
+output_file = open("%s_%s_%s_pareto_verfication.csv"%(platform_name,platform_type,test_string),"w")
 output_file.write("Forward Financial Framework Kaiserslatuarn+ Benchmark Results,\n")
 output_file.write("%s,%s,\n"%(platform_type,platform_name))
 output_file.write("Option Number,Simulation Paths,Target 95% CI,95% CI,Total Time,\n")
@@ -21,6 +22,7 @@ output_file.write("Option Number,Simulation Paths,Target 95% CI,95% CI,Total Tim
 redudancy = 10
 for point in platform_matrix:
     latency = 0.0
+    
     CI = 0.0
     for r in range(redudancy):
         execution_output = mc_solver_ks_test.run_ks_solver(platform_type,point["Simulation Paths"],["Generate","Compile","Execute"],[int(point["Option"])])[1]
