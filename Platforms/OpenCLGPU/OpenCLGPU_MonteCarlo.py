@@ -77,9 +77,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     self.generate_source(self.kernel_code_list,".cl")
     
     #If using an AMD Platform, Generate OpenCL Kernel Code for seeding using the Host CPU
-    if(self.platform.amd_gpu_flag):
+    """if(self.platform.amd_gpu_flag):
       self.cpu_seed_kernel_code_list = self.generate_cpu_seed_kernel()
-      self.generate_source(self.cpu_seed_kernel_code_list,"_cpu_seed.cl")
+      self.generate_source(self.cpu_seed_kernel_code_list,"_cpu_seed.cl")"""
   
   def generate_activity_thread(self):
     output_list = []
@@ -420,7 +420,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for index,d in enumerate(self.derivative):
       #output_list.append("printf(\"%%f\\n\",o_a_%d[0].time_period);"%index)
       #output_list.append("printf(\"%%d:%%d - %%f - %%f\\n\",j,i,value_%d[i],value_sqrd_%d[i]);"%(index,index))
-      output_list.append("if((remaining_paths_%d>0)){"%(index)) #&& !(isnan(value_%d[i])||isinf(value_%d[i])) index,index
+      output_list.append("if((remaining_paths_%d>0) && !(isnan(value_%d[i])||isinf(value_%d[i]))){"%(index,index,index)) #&& !(isnan(value_%d[i])||isinf(value_%d[i])) index,index
       output_list.append("temp_total_%d += value_%d[i];"%(index,index))
       output_list.append("temp_value_sqrd_%d += pow(value_%d[i],2);"%(index,index))
       output_list.append("remaining_paths_%d = remaining_paths_%d - kernel_loops;"%(index,index))
@@ -497,7 +497,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("..")
     os.chdir(self.platform.platform_directory())
     
-    if(self.platform.amd_gpu_flag): output_list.append("#define AMD_GPU")
+    #if(self.platform.amd_gpu_flag): output_list.append("#define AMD_GPU")
     #elif("darwin" not in sys.platform): output_list.append("#include <sys/times.h>")
     #else: output_list.append("#include \"mach/mach_time.h\"")
     
@@ -608,7 +608,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  #output_list.append("temp_u_v_%d.rng_state.offset = seed_%d[i].offset;"%(index,index))
 	
 	if("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-	  output_list.append("ctrng_seed(1000,local_seed * %d * (i+local_chunk_size*local_chunk_number),&(temp_u_v_%d.rng_state));"%(index+1,index))
+	  output_list.append("ctrng_seed(20,local_seed + %d * (i+local_chunk_size*local_chunk_number),&(temp_u_v_%d.rng_state));"%(index+1,index))
 	  
 	  """output_list.append("temp_u_v_%d.rng_state.s1 = %d + 2;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
 	  output_list.append("temp_u_v_%d.rng_state.s2 = %d + 8;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
