@@ -9,7 +9,7 @@ from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
-  def __init__(self,derivative,paths,platform,default_points=10,reduce_underlyings=True,kernel_path_max=8,random_number_generator="mwc64x_boxmuller",floating_point_format="float"):
+  def __init__(self,derivative,paths,platform,default_points=4096,reduce_underlyings=True,kernel_path_max=8,random_number_generator="mwc64x_boxmuller",floating_point_format="float"):
     MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings,default_points=default_points,random_number_generator=random_number_generator,floating_point_format=floating_point_format)
     self.solver_metadata["threads"] = 1 #In this context this means something different
     
