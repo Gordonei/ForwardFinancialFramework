@@ -18,6 +18,8 @@
 #define native_exp exp
 #define native_log log
 #define native_powr pow
+#define native_sin sin
+#define native_cos cos
 #endif
 
 #ifdef OPENCL_GPU
@@ -31,6 +33,16 @@
 #pragma OPENCL EXTENSION cl_khr_fp64 : enable
 #endif
 #endif
+#endif
+
+#ifdef VIVADOHLS
+//#include "hls_math.h"
+#include "math.h"
+//#define M_PI 3.1415926535897
+#define native_sqrt sqrtf
+#define native_exp expf
+#define native_sin sinf
+#define native_cos cosf
 #endif
 
 typedef struct {

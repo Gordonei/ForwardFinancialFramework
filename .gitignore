@@ -30,14 +30,27 @@ pip-log.txt
 mc_solver_multicore_*
 mc_solver_maxeler_fpga_*
 mc_solver_opencl_*
-Makefile
+mc_solver_vivado_*
+
+#Makefile
 
 #Example Code
 MC_Solver_Test_*
-MC_Solver_prototype_maxeler
 
 #Tilda Backups
 *~
 
 #Random Files
 .DS_Store
+
+
+# Vivado/PlanAhead
+*.xpr
+*.ppr
+*.cache/
+*.runs/
+*.sdk/
+*.jou
+*.log
+build/
+.autopilot/

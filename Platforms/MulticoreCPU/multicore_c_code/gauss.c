@@ -29,8 +29,8 @@
 #include "gauss.h"
 
 void ctrng_seed(int index,uint32_t initial_seed,rng_state_t *rng_state){
-    rng_state->s1 = initial_seed + 2;
-    rng_state->s2 = initial_seed + 8;
+    rng_state->s1 = 2;
+    rng_state->s2 = 8;
     rng_state->s3 = initial_seed + 16;
     rng_state->offset = 0;
     
@@ -44,21 +44,23 @@ uint32_t __random32(rng_state_t *rng_state)
 
     rng_state->s1 = TAUSWORTHE(rng_state->s1, 13, 19, 4294967294UL, 12);
     rng_state->s2 = TAUSWORTHE(rng_state->s2, 2, 25, 4294967288UL, 4);
-    //rng_state->s3 = TAUSWORTHE(rng_state->s3+rng_state->offset, 3, 11, 4294967280UL, 17);
     rng_state->s3 = TAUSWORTHE(rng_state->s3, 3, 11, 4294967280UL, 17);
-    
-    rng_state->offset++;
+    //rng_state->s3 = TAUSWORTHE(rng_state->s3+rng_state->offset, 3, 11, 4294967280UL, 17);
+
+    //rng_state->offset++;
     
     return (rng_state->s1 ^ rng_state->s2 ^ rng_state->s3);
 }
 
 FP_t __drandom32(rng_state_t *rng_state)
 {
-     return (__random32(rng_state)/4294967296.0);
+    return ((FP_t)__random32(rng_state)/4294967296.0f);
 }
 
+#ifdef TAUS_ZIGGURAT
 FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state)
 {
+    
   unsigned long  U, sign, i, j;
   FP_t  x, y;
 
@@ -84,7 +86,9 @@ FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state)
   }
   return  sign ? sigma*x : -sigma*x;
 }
+#endif
 
+#ifdef TAUS_BOXMULLER
 void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_state)
 {
   FP_t t_x,t_y,u,v;
@@ -92,11 +96,12 @@ void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_stat
   u = __drandom32(rng_state);
   v = __drandom32(rng_state);
   
-  t_x = sqrt(-2*native_log(u))*cos(2*M_PI*v);
-  t_y = sqrt(-2*native_log(u))*sin(2*M_PI*v);
-  t_y = t_x*rho+native_sqrt(1.0-native_powr(rho,2))*t_y;
+  t_x = native_sqrt(-2.0f*native_log(u))*native_cos((FP_t)(6.2831855f*v));
+  t_y = native_sqrt(-2.0f*native_log(u))*native_sin((FP_t)(6.2831855f*v));
+  t_y = t_x*rho+native_sqrt((FP_t)(1.0f-rho*rho))*t_y;
   
   *x = t_x;
   *y = t_y;
   
 }
+#endif

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DARoots Version="1" Minor="30">
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/bd/zynq_system/zynq_system.bd">
+      <FileInfo>
+        <Attr Name="UsedInSynthesis" Val="1"/>
+        <Attr Name="UsedInImplementation" Val="1"/>
+        <Attr Name="UsedInSimulation" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/zynq_system/hdl/zynq_system_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedInSynthesis" Val="1"/>
+        <Attr Name="UsedInImplementation" Val="1"/>
+        <Attr Name="UsedInSimulation" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/zynq_system/ip/zynq_system_vivado_activity_thread_0_0/zynq_system_vivado_activity_thread_0_0.upgrade_log"/>
+    <File Path="$PSRCDIR/sources_1/bd/zynq_system/ip/zynq_system_vivado_activity_thread_0_1/zynq_system_vivado_activity_thread_0_1.upgrade_log"/>
+    <File Path="$PSRCDIR/sources_1/bd/zynq_system/ip/zynq_system_vivado_activity_thread_0_0_0/zynq_system_vivado_activity_thread_0_0.upgrade_log"/>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="zynq_system_wrapper"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+</DARoots>

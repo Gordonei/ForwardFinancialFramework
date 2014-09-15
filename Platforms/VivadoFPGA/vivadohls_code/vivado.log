@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2013.4 (64-bit)
+# SW Build 353583 on Mon Dec  9 17:26:26 MST 2013
+# IP Build 208076 on Mon Dec  2 12:38:17 MST 2013
+# Start of session at: Sat Jul 19 13:46:35 2014
+# Process ID: 18883
+# Log file: /mnt/cas_nfs/gi11/workspace/scratch/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/vivado.log
+# Journal file: /mnt/cas_nfs/gi11/workspace/scratch/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/vivado.jou
+#-----------------------------------------------------------
+Attempting to get a license: Implementation
+Feature available: Implementation
+Loading parts and site information from /mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/arch.xml
+Parsing RTL primitives file [/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/mnt/cas_nfs/applications/Xilinx/Vivado/2013.4/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+source /mnt/cas_nfs/gi11/workspace/scratch/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/build/mc_solver_vivado_fpga_un_1_op_1_cslow_False_pipe_1_insts_1/ipi_prj/ipi_build.tcl
+# set current_dir [pwd]
+# set project_location "${current_dir}/ipi_prj/ipi_prj.xpr"
+# set bd_location "${current_dir}/ipi_prj/ipi_prj.srcs/sources_1/bd/zynq_system/zynq_system.bd"
+# puts stdout $project_location
+/mnt/cas_nfs/gi11/workspace/scratch/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/ipi_prj/ipi_prj.xpr
+# open_project $project_location
+ERROR: [Coretcl 2-27] Can't find specified project.
+
+    while executing
+"open_project $project_location"
+    (file "/mnt/cas_nfs/gi11/workspace/scratch/ForwardFinancialFramework/Platforms/VivadoFPGA/vivadohls_code/build/mc_solver_vivado_fpga_un_1_op_1_cslow_False_pi..." line 12)
+INFO: [Common 17-206] Exiting Vivado at Sat Jul 19 13:46:40 2014...

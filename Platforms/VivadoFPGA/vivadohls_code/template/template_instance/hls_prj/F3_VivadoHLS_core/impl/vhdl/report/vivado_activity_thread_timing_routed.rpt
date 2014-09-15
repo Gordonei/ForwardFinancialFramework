@@ -1,0 +1,268 @@
+Copyright 1986-1999, 2001-2013 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2013.4 (lin64) Build 353583 Mon Dec  9 17:26:26 MST 2013
+| Date         : Fri Jul 18 12:06:54 2014
+| Host         : ee-boxer1 running 64-bit Ubuntu 10.04.4 LTS
+| Command      : report_timing_summary -file ./report/vivado_activity_thread_timing_routed.rpt
+| Design       : vivado_activity_thread
+| Device       : 7z045-ffg900
+| Speed File   : -2  PRODUCTION 1.09 2013-11-22
+-----------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+------------------------------------------------------------------------------------------------
+| Check Timing
+| ------------
+------------------------------------------------------------------------------------------------
+
+
+Checking 'no_clock'.
+ There are 0 register/latch pins with no clock.
+ There are 0 register/latch pins with constant_clock.
+
+Checking 'unconstrained_internal_endpoints'.
+ There are 295 pins that are not constrained for maximum delay.
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+Checking 'no_input_delay'.
+ There are 193 input ports with no input delay specified.
+
+Checking 'no_output_delay'.
+ There are 67 ports with no output delay specified.
+
+Checking 'multiple_clock'.
+ There are 0 register/latch pins with related clocks.
+ There are 0 register/latch pins with exclusive clocks.
+
+Checking 'generated_clocks'.
+ There are 0 generated clocks that are not connected to a clock source.
+
+Checking 'loops'.
+ There are 0 combinational loops in the design.
+
+Checking 'partial_input_delay'.
+ There are 0 input ports with partial input delay specified.
+
+Checking 'partial_output_delay'.
+ There are 0 ports with partial output delay specified.
+
+Checking 'unexpandable_clocks'.
+ There are 0 related clock pairs.
+ There are 0 User Ignored clock pairs.
+
+Checking 'latch_loops'.
+ There are 0 combinational latch loops in the design through latch input
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+      2.625        0.000                      0                 1669        0.041        0.000                      0                 1669        4.335        0.000                       0                   964  
+
+
+All user specified timing constraints are met.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+Clock  Waveform(ns)       Period(ns)      Frequency(MHz)
+-----  ------------       ----------      --------------
+CLK    {0.000 5.000}      10.000          100.000         
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+CLK                 2.625        0.000                      0                 1669        0.041        0.000                      0                 1669        4.335        0.000                       0                   964  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  CLK
+  To Clock:  CLK
+
+Setup :            0  Failing Endpoints,  Worst Slack        2.625ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.041ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        4.335ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             2.625ns  (required time - arrival time)
+  Source:                 vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/din0_buf1_reg[21]/C
+                            (rising edge-triggered cell FDRE clocked by CLK  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[7]/D
+                            (rising edge-triggered cell FDRE clocked by CLK  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             CLK
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (CLK rise@10.000ns - CLK rise@0.000ns)
+  Data Path Delay:        7.363ns  (logic 5.527ns (75.063%)  route 1.836ns (24.937%))
+  Logic Levels:           6  (DSP48E1=3 LUT4=3)
+  Clock Path Skew:        -0.043ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.483ns = ( 11.483 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.709ns
+    Clock Pessimism Removal (CPR):    0.183ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock CLK rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk
+                         net (fo=972, unset)          1.709     1.709    vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/ap_clk
+    SLICE_X37Y326                                                     r  vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/din0_buf1_reg[21]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X37Y326        FDRE (Prop_fdre_C_Q)         0.223     1.932 r  vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/din0_buf1_reg[21]/Q
+                         net (fo=2, routed)           0.638     2.570    vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/s_axis_a_tdata[21]
+    DSP48_X2Y128         DSP48E1 (Prop_dsp48e1_A[21]_PCOUT[47])
+                                                      2.879     5.449 r  vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP/PCOUT[47]
+                         net (fo=1, routed)           0.000     5.449    vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/dsp1_pc_p3[47]
+    DSP48_X2Y129         DSP48E1 (Prop_dsp48e1_PCIN[47]_PCOUT[47])
+                                                      1.219     6.668 r  vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP/PCOUT[47]
+                         net (fo=1, routed)           0.050     6.717    vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/mant_casc_rnd[47]
+    DSP48_X2Y130         DSP48E1 (Prop_dsp48e1_PCIN[47]_P[30])
+                                                      1.077     7.794 f  vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP/P[30]
+                         net (fo=8, routed)           0.572     8.366    vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/n_75_MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP
+    SLICE_X37Y329        LUT4 (Prop_lut4_I3_O)        0.043     8.409 r  vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/RESULT_REG.NORMAL.exp_op[7]_i_20/O
+                         net (fo=1, routed)           0.267     8.676    vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/n_0_RESULT_REG.NORMAL.exp_op[7]_i_20
+    SLICE_X37Y328        LUT4 (Prop_lut4_I2_O)        0.043     8.719 r  vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/RESULT_REG.NORMAL.exp_op[7]_i_9/O
+                         net (fo=1, routed)           0.310     9.029    vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/n_0_RESULT_REG.NORMAL.exp_op[7]_i_9
+    SLICE_X42Y328        LUT4 (Prop_lut4_I0_O)        0.043     9.072 r  vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/RESULT_REG.NORMAL.exp_op[7]_i_2/O
+                         net (fo=1, routed)           0.000     9.072    vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/n_0_RESULT_REG.NORMAL.exp_op[7]_i_2
+    SLICE_X42Y328        FDRE                                         r  vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock CLK rise edge)       10.000    10.000 r  
+                                                      0.000    10.000 r  ap_clk
+                         net (fo=972, unset)          1.483    11.483    vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/aclk
+    SLICE_X42Y328                                                     r  vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[7]/C
+                         clock pessimism              0.183    11.666    
+                         clock uncertainty           -0.035    11.631    
+    SLICE_X42Y328        FDRE (Setup_fdre_C_D)        0.066    11.697    vivado_activity_thread_fmul_32ns_32ns_32_3_max_dsp_U2/vivado_activity_thread_ap_fmul_1_max_dsp_u/U0/i_synth/MULT.OP/OP/RESULT_REG.NORMAL.exp_op_reg[7]
+  -------------------------------------------------------------------
+                         required time                         11.697    
+                         arrival time                          -9.072    
+  -------------------------------------------------------------------
+                         slack                                  2.625    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.041ns  (arrival time - required time)
+  Source:                 vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/EXP_OP.OP/i_special_detect/input_sign_delay_balance/i_pipe/opt_has_pipe.first_q_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by CLK  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/EXP_OP.OP/i_special_detect/input_sign_delay_balance/i_pipe/opt_has_pipe.i_pipe[4].pipe_reg[4][0]_srl3/D
+                            (rising edge-triggered cell SRL16E clocked by CLK  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             CLK
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (CLK rise@0.000ns - CLK rise@0.000ns)
+  Data Path Delay:        0.155ns  (logic 0.100ns (64.566%)  route 0.055ns (35.434%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.012ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.067ns
+    Source Clock Delay      (SCD):    0.802ns
+    Clock Pessimism Removal (CPR):    0.253ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock CLK rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk
+                         net (fo=972, unset)          0.802     0.802    vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/aclk
+    SLICE_X27Y331                                                     r  vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/EXP_OP.OP/i_special_detect/input_sign_delay_balance/i_pipe/opt_has_pipe.first_q_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X27Y331        FDRE (Prop_fdre_C_Q)         0.100     0.902 r  vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/EXP_OP.OP/i_special_detect/input_sign_delay_balance/i_pipe/opt_has_pipe.first_q_reg[0]/Q
+                         net (fo=1, routed)           0.055     0.957    vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/EXP_OP.OP/i_special_detect/input_sign_delay_balance/i_pipe/first_q
+    SLICE_X26Y331        SRL16E                                       r  vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/EXP_OP.OP/i_special_detect/input_sign_delay_balance/i_pipe/opt_has_pipe.i_pipe[4].pipe_reg[4][0]_srl3/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock CLK rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk
+                         net (fo=972, unset)          1.067     1.067    vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/aclk
+    SLICE_X26Y331                                                     r  vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/EXP_OP.OP/i_special_detect/input_sign_delay_balance/i_pipe/opt_has_pipe.i_pipe[4].pipe_reg[4][0]_srl3/CLK
+                         clock pessimism             -0.253     0.814    
+    SLICE_X26Y331        SRL16E (Hold_srl16e_CLK_D)
+                                                      0.102     0.916    vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/EXP_OP.OP/i_special_detect/input_sign_delay_balance/i_pipe/opt_has_pipe.i_pipe[4].pipe_reg[4][0]_srl3
+  -------------------------------------------------------------------
+                         required time                         -0.916    
+                         arrival time                           0.957    
+  -------------------------------------------------------------------
+                         slack                                  0.041    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         CLK
+Waveform:           { 0 5 }
+Period:             10.000
+Sources:            { ap_clk }
+
+Check Type        Corner  Lib Pin             Reference Pin  Required  Actual  Slack  Location       Pin
+Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            1.839     10.000  8.161  RAMB36_X2Y63   thread_result_buff_0_0_U/vivado_activity_thread_thread_result_buff_0_ram_U/ram_reg/CLKARDCLK
+Low Pulse Width   Slow    SRL16E/CLK          n/a            0.642     4.977   4.335  SLICE_X26Y331  vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/EXP_OP.OP/i_special_detect/input_sign_delay_balance/i_pipe/opt_has_pipe.i_pipe[4].pipe_reg[4][0]_srl3/CLK
+High Pulse Width  Slow    SRL16E/CLK          n/a            0.642     4.977   4.335  SLICE_X26Y331  vivado_activity_thread_fexp_32ns_32ns_32_8_full_dsp_U4/vivado_activity_thread_ap_fexp_6_full_dsp_u/U0/i_synth/EXP_OP.OP/i_special_detect/input_sign_delay_balance/i_pipe/opt_has_pipe.i_pipe[4].pipe_reg[4][0]_srl3/CLK
+
+
+

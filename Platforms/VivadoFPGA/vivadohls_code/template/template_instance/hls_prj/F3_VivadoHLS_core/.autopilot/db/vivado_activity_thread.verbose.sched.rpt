@@ -1,0 +1,762 @@
+
+
+================================================================
+== Vivado HLS Report for 'vivado_activity_thread'
+================================================================
+* Date:           Fri Jul 18 11:52:39 2014
+
+* Version:        2013.4 (build date: Mon Dec 09 17:07:59 PM 2013)
+* Project:        hls_prj
+* Solution:       F3_VivadoHLS_core
+* Product family: zynq zynq_fpv6 
+* Target device:  xc7z045ffg900-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |  10.00|      8.75|        1.25|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +----------+----------+----------+----------+---------+
+    |       Latency       |       Interval      | Pipeline|
+    |    min   |    max   |    min   |    max   |   Type  |
+    +----------+----------+----------+----------+---------+
+    |  16404010|  16404010|  16404011|  16404011|   none  |
+    +----------+----------+----------+----------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------------+----------+----------+----------+-----------+-----------+------+----------+
+        |                |       Latency       | Iteration|  Initiation Interval  | Trip |          |
+        |    Loop Name   |    min   |    max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------------+----------+----------+----------+-----------+-----------+------+----------+
+        |- PATHSET_LOOP  |  16401000|  16401000|     16401|          -|          -|  1000|    no    |
+        | + PATH_LOOP    |     16394|     16394|        15|          4|          1|  4096|    yes   |
+        |- Loop 2        |      2000|      2000|         2|          -|          -|  1000|    no    |
+        |- Loop 3        |      1001|      1001|         3|          1|          1|  1000|    yes   |
+        +----------------+----------+----------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|Expression       |        -|      -|       -|       -|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       -|       -|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|       -|
+|Register         |        -|      -|       -|       -|
+|ShiftMemory      |        -|      -|       -|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+|Available        |     1090|    900|  437200|  218600|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|       0|       0|
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Shift register: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 4, depth = 15
+  * Pipeline-1: initiation interval (II) = 1, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 33
+* Pipeline: 2
+  Pipeline-0: II = 4, D = 15, States = { 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 }
+  Pipeline-1: II = 1, D = 3, States = { 30 31 32 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	28  / (exitcond2_i)
+	8  / (!exitcond2_i)
+8 --> 
+	23  / (exitcond_i)
+	9  / (!exitcond_i)
+9 --> 
+	10  / true
+10 --> 
+	11  / true
+11 --> 
+	12  / true
+12 --> 
+	13  / true
+13 --> 
+	14  / true
+14 --> 
+	15  / true
+15 --> 
+	16  / true
+16 --> 
+	17  / true
+17 --> 
+	18  / true
+18 --> 
+	19  / true
+19 --> 
+	20  / true
+20 --> 
+	21  / true
+21 --> 
+	22  / true
+22 --> 
+	8  / true
+23 --> 
+	24  / true
+24 --> 
+	25  / true
+25 --> 
+	26  / true
+26 --> 
+	27  / true
+27 --> 
+	7  / true
+28 --> 
+	29  / (!exitcond)
+	30  / (exitcond)
+29 --> 
+	28  / true
+30 --> 
+	33  / (exitcond1)
+	31  / (!exitcond1)
+31 --> 
+	32  / true
+32 --> 
+	30  / true
+33 --> 
+* FSM state operations: 
+
+ <State 1>: 8.43ns
+ST_1: spot_price_0_i [1/1] 0.00ns
+:0  %spot_price_0_i = alloca float, align 4
+
+ST_1: thread_result_0_read [2/2] 0.00ns
+:28  %thread_result_0_read = call i32 @_ssdm_op_Read.ap_none.i32(i32 %thread_result_0)
+
+ST_1: thread_result_buff_0 [1/1] 0.00ns
+:29  %thread_result_buff_0 = alloca [1000 x i32], align 16
+
+ST_1: thread_result_buff_0_0 [1/1] 0.00ns
+:30  %thread_result_buff_0_0 = alloca [1000 x i32], align 16
+
+ST_1: o_a_0_time_period [1/1] 0.00ns
+:41  %o_a_0_time_period = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_time_period)
+
+ST_1: delta_time_0 [3/3] 8.43ns
+:48  %delta_time_0 = fmul float %o_a_0_time_period, 0x3F30000000000000
+
+
+ <State 2>: 8.43ns
+ST_2: thread_result_0_read [1/2] 0.00ns
+:28  %thread_result_0_read = call i32 @_ssdm_op_Read.ap_none.i32(i32 %thread_result_0)
+
+ST_2: delta_time_0 [2/3] 8.43ns
+:48  %delta_time_0 = fmul float %o_a_0_time_period, 0x3F30000000000000
+
+
+ <State 3>: 8.43ns
+ST_3: delta_time_0 [1/3] 8.43ns
+:48  %delta_time_0 = fmul float %o_a_0_time_period, 0x3F30000000000000
+
+
+ <State 4>: 8.43ns
+ST_4: u_a_0_rfir [1/1] 0.00ns
+:39  %u_a_0_rfir = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_u_a_0_rfir)
+
+ST_4: o_a_0_call [1/1] 0.00ns
+:42  %o_a_0_call = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_call)
+
+ST_4: tmp_i_i [3/3] 8.43ns
+:49  %tmp_i_i = fmul float %delta_time_0, %u_a_0_rfir
+
+ST_4: tmp_3 [3/3] 3.50ns
+:50  %tmp_3 = fcmp oeq float %o_a_0_call, 0.000000e+00
+
+
+ <State 5>: 8.43ns
+ST_5: tmp_i_i [2/3] 8.43ns
+:49  %tmp_i_i = fmul float %delta_time_0, %u_a_0_rfir
+
+ST_5: tmp_3 [2/3] 3.50ns
+:50  %tmp_3 = fcmp oeq float %o_a_0_call, 0.000000e+00
+
+
+ <State 6>: 8.43ns
+ST_6: stg_49 [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecBitsMap(i32* %a), !map !94
+
+ST_6: stg_50 [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_rfir), !map !98
+
+ST_6: stg_51 [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_current_price), !map !102
+
+ST_6: stg_52 [1/1] 0.00ns
+:4  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_volatility), !map !106
+
+ST_6: stg_53 [1/1] 0.00ns
+:5  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_initial_volatility), !map !110
+
+ST_6: stg_54 [1/1] 0.00ns
+:6  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_volatility_volatility), !map !114
+
+ST_6: stg_55 [1/1] 0.00ns
+:7  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_rho), !map !118
+
+ST_6: stg_56 [1/1] 0.00ns
+:8  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_kappa), !map !122
+
+ST_6: stg_57 [1/1] 0.00ns
+:9  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_theta), !map !126
+
+ST_6: stg_58 [1/1] 0.00ns
+:10  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_0_0), !map !130
+
+ST_6: stg_59 [1/1] 0.00ns
+:11  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_0_1), !map !134
+
+ST_6: stg_60 [1/1] 0.00ns
+:12  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_1_0), !map !138
+
+ST_6: stg_61 [1/1] 0.00ns
+:13  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_u_a_0_correlation_matrix_1_1), !map !142
+
+ST_6: stg_62 [1/1] 0.00ns
+:14  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_second_barrier), !map !146
+
+ST_6: stg_63 [1/1] 0.00ns
+:15  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_barrier), !map !150
+
+ST_6: stg_64 [1/1] 0.00ns
+:16  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_out), !map !154
+
+ST_6: stg_65 [1/1] 0.00ns
+:17  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_down), !map !158
+
+ST_6: stg_66 [1/1] 0.00ns
+:18  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_strike_price), !map !162
+
+ST_6: stg_67 [1/1] 0.00ns
+:19  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_time_period), !map !166
+
+ST_6: stg_68 [1/1] 0.00ns
+:20  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_call), !map !170
+
+ST_6: stg_69 [1/1] 0.00ns
+:21  call void (...)* @_ssdm_op_SpecBitsMap(float* %kernel_o_a_0_points), !map !174
+
+ST_6: stg_70 [1/1] 0.00ns
+:22  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_s1), !map !178
+
+ST_6: stg_71 [1/1] 0.00ns
+:23  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_s2), !map !182
+
+ST_6: stg_72 [1/1] 0.00ns
+:24  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_s3), !map !186
+
+ST_6: stg_73 [1/1] 0.00ns
+:25  call void (...)* @_ssdm_op_SpecBitsMap(i32* %seed_0_offset), !map !190
+
+ST_6: stg_74 [1/1] 0.00ns
+:26  call void (...)* @_ssdm_op_SpecBitsMap(i32 %thread_result_0), !map !194
+
+ST_6: stg_75 [1/1] 0.00ns
+:27  call void (...)* @_ssdm_op_SpecTopModule([23 x i8]* @str) nounwind
+
+ST_6: stg_76 [1/1] 0.00ns
+:31  call void (...)* @_ssdm_op_SpecBus(i32* %a, [7 x i8]* @p_str127, i32 0, i32 0, i32 0, [1 x i8]* @p_str2) nounwind
+
+ST_6: stg_77 [1/1] 0.00ns
+:32  call void (...)* @_ssdm_op_SpecIFCore(i32* %a, [1 x i8]* @p_str2, [6 x i8]* @p_str128, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [1 x i8]* @p_str2)
+
+ST_6: stg_78 [1/1] 0.00ns
+:33  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_u_a_0_rfir, float* %kernel_u_a_0_current_price, float* %kernel_u_a_0_volatility, float* %kernel_u_a_0_initial_volatility, float* %kernel_u_a_0_volatility_volatility, float* %kernel_u_a_0_rho, float* %kernel_u_a_0_kappa, float* %kernel_u_a_0_theta, float* %kernel_u_a_0_correlation_matrix_0_0, float* %kernel_u_a_0_correlation_matrix_0_1, float* %kernel_u_a_0_correlation_matrix_1_0, float* %kernel_u_a_0_correlation_matrix_1_1, [1 x i8]* @p_str2, [10 x i8]* @p_str129, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [20 x i8]* @p_str130)
+
+ST_6: stg_79 [1/1] 0.00ns
+:34  call void (...)* @_ssdm_op_SpecIFCore(float* %kernel_o_a_0_second_barrier, float* %kernel_o_a_0_barrier, float* %kernel_o_a_0_out, float* %kernel_o_a_0_down, float* %kernel_o_a_0_strike_price, float* %kernel_o_a_0_time_period, float* %kernel_o_a_0_call, float* %kernel_o_a_0_points, [1 x i8]* @p_str2, [10 x i8]* @p_str129, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [20 x i8]* @p_str130)
+
+ST_6: stg_80 [1/1] 0.00ns
+:35  call void (...)* @_ssdm_op_SpecIFCore(i32* %seed_0_s1, i32* %seed_0_s2, i32* %seed_0_s3, i32* %seed_0_offset, [1 x i8]* @p_str2, [10 x i8]* @p_str129, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [20 x i8]* @p_str130)
+
+ST_6: stg_81 [1/1] 0.00ns
+:36  call void (...)* @_ssdm_op_SpecWire(i32 %thread_result_0, [8 x i8]* @p_str131, i32 1, i32 1, i32 0, [1 x i8]* @p_str2) nounwind
+
+ST_6: stg_82 [1/1] 0.00ns
+:37  call void (...)* @_ssdm_op_SpecIFCore(i32 %thread_result_0, [1 x i8]* @p_str2, [10 x i8]* @p_str132, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [20 x i8]* @p_str130)
+
+ST_6: stg_83 [1/1] 0.00ns
+:38  call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @p_str2, [10 x i8]* @p_str129, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [20 x i8]* @p_str130)
+
+ST_6: u_a_0_current_price [1/1] 0.00ns
+:40  %u_a_0_current_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_u_a_0_current_price)
+
+ST_6: o_a_0_strike_price [1/1] 0.00ns
+:43  %o_a_0_strike_price = call float @_ssdm_op_Read.ap_auto.floatP(float* %kernel_o_a_0_strike_price)
+
+ST_6: stg_86 [1/1] 0.00ns
+:44  call void (...)* @_ssdm_op_SpecIFCore(i32* %seed_0_offset, [1 x i8]* @p_str2, [10 x i8]* @p_str129, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [20 x i8]* @p_str130)
+
+ST_6: stg_87 [1/1] 0.00ns
+:45  call void (...)* @_ssdm_op_SpecIFCore(i32* %seed_0_s3, [1 x i8]* @p_str2, [10 x i8]* @p_str129, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [20 x i8]* @p_str130)
+
+ST_6: stg_88 [1/1] 0.00ns
+:46  call void (...)* @_ssdm_op_SpecIFCore(i32* %seed_0_s2, [1 x i8]* @p_str2, [10 x i8]* @p_str129, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [20 x i8]* @p_str130)
+
+ST_6: stg_89 [1/1] 0.00ns
+:47  call void (...)* @_ssdm_op_SpecIFCore(i32* %seed_0_s1, [1 x i8]* @p_str2, [10 x i8]* @p_str129, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [1 x i8]* @p_str2, [20 x i8]* @p_str130)
+
+ST_6: tmp_i_i [1/3] 8.43ns
+:49  %tmp_i_i = fmul float %delta_time_0, %u_a_0_rfir
+
+ST_6: tmp_3 [1/3] 3.50ns
+:50  %tmp_3 = fcmp oeq float %o_a_0_call, 0.000000e+00
+
+ST_6: tmp_4 [1/1] 1.15ns
+:51  %tmp_4 = xor i1 %tmp_3, true
+
+ST_6: stg_93 [1/1] 1.12ns
+:52  br label %1
+
+
+ <State 7>: 2.81ns
+ST_7: p_i [1/1] 0.00ns
+:0  %p_i = phi i10 [ 0, %0 ], [ %p_2, %_ifconv.i ]
+
+ST_7: exitcond2_i [1/1] 1.69ns
+:1  %exitcond2_i = icmp eq i10 %p_i, -24
+
+ST_7: p_2 [1/1] 1.50ns
+:2  %p_2 = add i10 %p_i, 1
+
+ST_7: stg_97 [1/1] 1.12ns
+:3  br i1 %exitcond2_i, label %vivado_kernel_loop.exit, label %2
+
+ST_7: empty [1/1] 0.00ns
+:0  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1000, i64 1000, i64 1000)
+
+ST_7: stg_99 [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str) nounwind
+
+ST_7: tmp_3_i [1/1] 0.00ns
+:2  %tmp_3_i = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str)
+
+ST_7: stg_101 [1/1] 1.22ns
+:3  br label %3
+
+
+ <State 8>: 8.59ns
+ST_8: u_v_0_gamma_read_assign [1/1] 0.00ns
+:0  %u_v_0_gamma_read_assign = phi float [ 0.000000e+00, %2 ], [ %u_v_0_arr_0_gamma, %4 ]
+
+ST_8: pp_i [1/1] 0.00ns
+:1  %pp_i = phi i13 [ 0, %2 ], [ %pp, %4 ]
+
+ST_8: exitcond_i [1/1] 1.79ns
+:2  %exitcond_i = icmp eq i13 %pp_i, -4096
+
+ST_8: pp [1/1] 1.60ns
+:3  %pp = add i13 %pp_i, 1
+
+ST_8: stg_106 [1/1] 0.00ns
+:4  br i1 %exitcond_i, label %_ifconv.i, label %4
+
+ST_8: u_v_0_arr_0_gamma [4/4] 8.59ns
+:4  %u_v_0_arr_0_gamma = fadd float %tmp_i_i, %u_v_0_gamma_read_assign
+
+
+ <State 9>: 8.59ns
+ST_9: u_v_0_arr_0_gamma [3/4] 8.59ns
+:4  %u_v_0_arr_0_gamma = fadd float %tmp_i_i, %u_v_0_gamma_read_assign
+
+
+ <State 10>: 8.59ns
+ST_10: u_v_0_arr_0_gamma [2/4] 8.59ns
+:4  %u_v_0_arr_0_gamma = fadd float %tmp_i_i, %u_v_0_gamma_read_assign
+
+
+ <State 11>: 8.59ns
+ST_11: u_v_0_arr_0_gamma [1/4] 8.59ns
+:4  %u_v_0_arr_0_gamma = fadd float %tmp_i_i, %u_v_0_gamma_read_assign
+
+
+ <State 12>: 7.13ns
+ST_12: tmp_6_i [8/8] 7.13ns
+:5  %tmp_6_i = call float @llvm.exp.f32(float %u_v_0_arr_0_gamma)
+
+
+ <State 13>: 7.13ns
+ST_13: tmp_6_i [7/8] 7.13ns
+:5  %tmp_6_i = call float @llvm.exp.f32(float %u_v_0_arr_0_gamma)
+
+
+ <State 14>: 7.13ns
+ST_14: tmp_6_i [6/8] 7.13ns
+:5  %tmp_6_i = call float @llvm.exp.f32(float %u_v_0_arr_0_gamma)
+
+
+ <State 15>: 7.13ns
+ST_15: tmp_6_i [5/8] 7.13ns
+:5  %tmp_6_i = call float @llvm.exp.f32(float %u_v_0_arr_0_gamma)
+
+
+ <State 16>: 7.13ns
+ST_16: tmp_6_i [4/8] 7.13ns
+:5  %tmp_6_i = call float @llvm.exp.f32(float %u_v_0_arr_0_gamma)
+
+
+ <State 17>: 7.13ns
+ST_17: tmp_6_i [3/8] 7.13ns
+:5  %tmp_6_i = call float @llvm.exp.f32(float %u_v_0_arr_0_gamma)
+
+
+ <State 18>: 7.13ns
+ST_18: tmp_6_i [2/8] 7.13ns
+:5  %tmp_6_i = call float @llvm.exp.f32(float %u_v_0_arr_0_gamma)
+
+
+ <State 19>: 7.13ns
+ST_19: tmp_6_i [1/8] 7.13ns
+:5  %tmp_6_i = call float @llvm.exp.f32(float %u_v_0_arr_0_gamma)
+
+
+ <State 20>: 8.43ns
+ST_20: spot_price_0 [3/3] 8.43ns
+:6  %spot_price_0 = fmul float %tmp_6_i, %u_a_0_current_price
+
+
+ <State 21>: 8.43ns
+ST_21: spot_price_0 [2/3] 8.43ns
+:6  %spot_price_0 = fmul float %tmp_6_i, %u_a_0_current_price
+
+
+ <State 22>: 8.43ns
+ST_22: empty_5 [1/1] 0.00ns
+:0  %empty_5 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4096, i64 4096, i64 4096)
+
+ST_22: stg_122 [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str1) nounwind
+
+ST_22: tmp_4_i [1/1] 0.00ns
+:2  %tmp_4_i = call i32 (...)* @_ssdm_op_SpecRegionBegin([10 x i8]* @p_str1)
+
+ST_22: stg_124 [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecPipeline(i32 0, i32 2, i32 1, [1 x i8]* @p_str2) nounwind
+
+ST_22: spot_price_0 [1/3] 8.43ns
+:6  %spot_price_0 = fmul float %tmp_6_i, %u_a_0_current_price
+
+ST_22: empty_6 [1/1] 0.00ns
+:7  %empty_6 = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_str1, i32 %tmp_4_i)
+
+ST_22: stg_127 [1/1] 0.00ns
+:8  store float %spot_price_0, float* %spot_price_0_i, align 4
+
+ST_22: stg_128 [1/1] 0.00ns
+:9  br label %3
+
+
+ <State 23>: 8.59ns
+ST_23: spot_price_0_i_load [1/1] 0.00ns
+_ifconv.i:0  %spot_price_0_i_load = load float* %spot_price_0_i, align 4
+
+ST_23: tmp_1_i_i [4/4] 8.59ns
+_ifconv.i:1  %tmp_1_i_i = fsub float %spot_price_0_i_load, %o_a_0_strike_price
+
+ST_23: tmp_2_i_i [4/4] 8.59ns
+_ifconv.i:2  %tmp_2_i_i = fsub float %o_a_0_strike_price, %spot_price_0_i_load
+
+
+ <State 24>: 8.59ns
+ST_24: tmp_1_i_i [3/4] 8.59ns
+_ifconv.i:1  %tmp_1_i_i = fsub float %spot_price_0_i_load, %o_a_0_strike_price
+
+ST_24: tmp_2_i_i [3/4] 8.59ns
+_ifconv.i:2  %tmp_2_i_i = fsub float %o_a_0_strike_price, %spot_price_0_i_load
+
+
+ <State 25>: 8.59ns
+ST_25: tmp_1_i_i [2/4] 8.59ns
+_ifconv.i:1  %tmp_1_i_i = fsub float %spot_price_0_i_load, %o_a_0_strike_price
+
+ST_25: tmp_2_i_i [2/4] 8.59ns
+_ifconv.i:2  %tmp_2_i_i = fsub float %o_a_0_strike_price, %spot_price_0_i_load
+
+
+ <State 26>: 8.59ns
+ST_26: tmp_1_i_i [1/4] 8.59ns
+_ifconv.i:1  %tmp_1_i_i = fsub float %spot_price_0_i_load, %o_a_0_strike_price
+
+ST_26: tmp_2_i_i [1/4] 8.59ns
+_ifconv.i:2  %tmp_2_i_i = fsub float %o_a_0_strike_price, %spot_price_0_i_load
+
+
+ <State 27>: 3.54ns
+ST_27: o_v_0_arr_0_value [1/1] 1.15ns
+_ifconv.i:3  %o_v_0_arr_0_value = select i1 %tmp_4, float %tmp_1_i_i, float %tmp_2_i_i
+
+ST_27: value_0 [1/1] 0.00ns
+_ifconv.i:4  %value_0 = bitcast float %o_v_0_arr_0_value to i32
+
+ST_27: tmp_i [1/1] 0.00ns
+_ifconv.i:5  %tmp_i = zext i10 %p_i to i64
+
+ST_27: thread_result_buff_0_0_addr_1 [1/1] 0.00ns
+_ifconv.i:6  %thread_result_buff_0_0_addr_1 = getelementptr [1000 x i32]* %thread_result_buff_0_0, i64 0, i64 %tmp_i
+
+ST_27: stg_142 [1/1] 2.39ns
+_ifconv.i:7  store i32 %value_0, i32* %thread_result_buff_0_0_addr_1, align 4
+
+ST_27: empty_7 [1/1] 0.00ns
+_ifconv.i:8  %empty_7 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str, i32 %tmp_3_i)
+
+ST_27: stg_144 [1/1] 0.00ns
+_ifconv.i:9  br label %1
+
+
+ <State 28>: 2.39ns
+ST_28: p [1/1] 0.00ns
+vivado_kernel_loop.exit:0  %p = phi i10 [ %p_1, %5 ], [ 0, %1 ]
+
+ST_28: exitcond [1/1] 1.69ns
+vivado_kernel_loop.exit:1  %exitcond = icmp eq i10 %p, -24
+
+ST_28: empty_8 [1/1] 0.00ns
+vivado_kernel_loop.exit:2  %empty_8 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1000, i64 1000, i64 1000)
+
+ST_28: p_1 [1/1] 1.50ns
+vivado_kernel_loop.exit:3  %p_1 = add i10 %p, 1
+
+ST_28: stg_149 [1/1] 0.00ns
+vivado_kernel_loop.exit:4  br i1 %exitcond, label %6, label %5
+
+ST_28: tmp_1 [1/1] 0.00ns
+:0  %tmp_1 = zext i10 %p to i64
+
+ST_28: thread_result_buff_0_0_addr [1/1] 0.00ns
+:1  %thread_result_buff_0_0_addr = getelementptr inbounds [1000 x i32]* %thread_result_buff_0_0, i64 0, i64 %tmp_1
+
+ST_28: thread_result_buff_0_0_load [2/2] 2.39ns
+:2  %thread_result_buff_0_0_load = load i32* %thread_result_buff_0_0_addr, align 4
+
+ST_28: tmp [1/1] 0.00ns
+:0  %tmp = call i30 @_ssdm_op_PartSelect.i30.i32.i32.i32(i32 %thread_result_0_read, i32 2, i32 31)
+
+ST_28: tmp_8 [1/1] 0.00ns
+:1  %tmp_8 = zext i30 %tmp to i64
+
+ST_28: a_addr [1/1] 0.00ns
+:2  %a_addr = getelementptr inbounds i32* %a, i64 %tmp_8
+
+ST_28: stg_156 [1/1] 1.12ns
+:3  br label %burst.wr.header
+
+
+ <State 29>: 4.78ns
+ST_29: thread_result_buff_0_0_load [1/2] 2.39ns
+:2  %thread_result_buff_0_0_load = load i32* %thread_result_buff_0_0_addr, align 4
+
+ST_29: thread_result_buff_0_addr [1/1] 0.00ns
+:3  %thread_result_buff_0_addr = getelementptr inbounds [1000 x i32]* %thread_result_buff_0, i64 0, i64 %tmp_1
+
+ST_29: stg_159 [1/1] 2.39ns
+:4  store i32 %thread_result_buff_0_0_load, i32* %thread_result_buff_0_addr, align 4
+
+ST_29: stg_160 [1/1] 0.00ns
+:5  br label %vivado_kernel_loop.exit
+
+
+ <State 30>: 2.39ns
+ST_30: indvar [1/1] 0.00ns
+burst.wr.header:0  %indvar = phi i10 [ %indvar_next, %burst.wr.body3 ], [ 0, %6 ]
+
+ST_30: exitcond1 [1/1] 1.69ns
+burst.wr.header:1  %exitcond1 = icmp eq i10 %indvar, -24
+
+ST_30: indvar_next [1/1] 1.50ns
+burst.wr.header:2  %indvar_next = add i10 %indvar, 1
+
+ST_30: stg_164 [1/1] 0.00ns
+burst.wr.header:3  br i1 %exitcond1, label %burst.wr.end, label %burst.wr.body1
+
+ST_30: tmp_2 [1/1] 0.00ns
+burst.wr.body1:3  %tmp_2 = zext i10 %indvar to i64
+
+ST_30: thread_result_buff_0_addr_1 [1/1] 0.00ns
+burst.wr.body1:4  %thread_result_buff_0_addr_1 = getelementptr [1000 x i32]* %thread_result_buff_0, i64 0, i64 %tmp_2
+
+ST_30: thread_result_buff_0_load [2/2] 2.39ns
+burst.wr.body1:5  %thread_result_buff_0_load = load i32* %thread_result_buff_0_addr_1, align 4
+
+ST_30: isIter0 [1/1] 1.69ns
+burst.wr.body1:6  %isIter0 = icmp eq i10 %indvar, 0
+
+ST_30: stg_169 [1/1] 0.00ns
+burst.wr.body1:7  br i1 %isIter0, label %burst.wr.body2, label %burst.wr.body3
+
+
+ <State 31>: 2.39ns
+ST_31: thread_result_buff_0_load [1/2] 2.39ns
+burst.wr.body1:5  %thread_result_buff_0_load = load i32* %thread_result_buff_0_addr_1, align 4
+
+
+ <State 32>: 8.75ns
+ST_32: empty_9 [1/1] 0.00ns
+burst.wr.body1:0  %empty_9 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1000, i64 1000, i64 1000)
+
+ST_32: burstwrite_rbegin [1/1] 0.00ns
+burst.wr.body1:1  %burstwrite_rbegin = call i32 (...)* @_ssdm_op_SpecRegionBegin([18 x i8]* @p_str664)
+
+ST_32: stg_173 [1/1] 0.00ns
+burst.wr.body1:2  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, [1 x i8]* @str663)
+
+ST_32: a_addr_req [1/1] 8.75ns
+burst.wr.body2:0  %a_addr_req = call i1 @_ssdm_op_WriteReq.ap_bus.i32P(i32* %a_addr, i32 1000)
+
+ST_32: stg_175 [1/1] 0.00ns
+burst.wr.body2:1  br label %burst.wr.body3
+
+ST_32: stg_176 [1/1] 8.75ns
+burst.wr.body3:0  call void @_ssdm_op_Write.ap_bus.i32P(i32* %a_addr, i32 %thread_result_buff_0_load)
+
+ST_32: burstwrite_rend [1/1] 0.00ns
+burst.wr.body3:1  %burstwrite_rend = call i32 (...)* @_ssdm_op_SpecRegionEnd([18 x i8]* @p_str664, i32 %burstwrite_rbegin)
+
+ST_32: stg_178 [1/1] 0.00ns
+burst.wr.body3:2  br label %burst.wr.header
+
+
+ <State 33>: 0.00ns
+ST_33: stg_179 [1/1] 0.00ns
+burst.wr.end:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

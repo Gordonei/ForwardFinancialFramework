@@ -6,10 +6,10 @@ import os,time,subprocess,sys,time,math,platform,random
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
-  def __init__(self,derivative,paths,platform,reduce_underlyings=True,random_number_generator="taus_ziggurat",floating_point_format="double"):
+  def __init__(self,derivative,paths,platform,reduce_underlyings=True,random_number_generator="taus_ziggurat",floating_point_format="double",default_points=10):
     MonteCarlo.MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     self.solver_metadata["threads"] = self.platform.threads #Number of threads set by the platform
-    self.solver_metadata["default_points"] = 10
+    self.solver_metadata["default_points"] = default_points
     self.solver_metadata["rng_seed"] = 0
     
     self.utility_libraries = ["math.h","pthread.h","stdint.h","stdlib.h","stdio.h","time.h","sys/resource.h","unistd.h","string.h"]
@@ -29,7 +29,6 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
   def generate(self,name_extension=".c",override=True,verbose=False):
     #os.chdir("..")
     #os.chdir(self.platform.platform_directory())
-    self.generate_name() #incase any variables have changed since solver construction
     
     if(override or not os.path.exists("%s.c"%self.output_file_name)):
         #os.chdir(self.platform.root_directory())
@@ -278,7 +277,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     return output_list
   
-  def generate_activity_thread(self):
+  def generate_activity_thread_unpacking(self):
+    output_list = []
     #Generate Path Loop Function
     output_list = []
     output_list.append("//*MC Multicore Activity Thread Function*")
@@ -300,7 +300,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         output_list.append("%s_variables o_v_%d;" % (d.name,index))
     
     
-    output_list.append("//**Initialising Loop Attributes*")
+    output_list.append("//**Initialising Attributes*")
     
     ##Calling Init Functions
     for u_index,u in enumerate(self.underlying):
@@ -318,8 +318,29 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
         if("points" not in self.derivative_attributes[index]): output_list.append("o_v_%d.delta_time = o_a_%d.time_period/default_points;"%(index,index))
     
-    ##Thread calculation loop
-    output_list.append("//**Thread Calculation Loop**")
+    return output_list
+  
+  def generate_underlying_derivative_path_initialisations(self,linking_variables=True):
+    output_list = []
+    
+    output_list.append("//***Underlying and Derivative Path Initiation***")
+    for index,u in enumerate(self.underlying): output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
+    
+    for index,d in enumerate(self.derivative):
+        output_list.append("%s_derivative_path_init(&o_v_%d,&o_a_%d);" % (d.name,index,index))
+        
+        if(linking_variables):
+	  for u_index,u in enumerate(d.underlying):
+	      output_list.append("next_time_%d_%d = 0;"%(index,u_index))
+	      output_list.append("price_%d_%d = u_a_%d.current_price*exp(u_v_%d.gamma);"%(index,u_index,u_index,u_index))
+            
+    return output_list
+  
+  def generate_activity_thread(self):
+    output_list = self.generate_activity_thread_unpacking()
+    
+    ##Thread calculation loop variables
+    output_list.append("//**Thread Calculation Loop Variables**")
     
     for r in range(len(self.derivative)):
         output_list.append("FP_t temp_total_%d=0;"%r)
@@ -346,23 +367,14 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       #if(index<(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d,"%(output_list[-1],index))
       #elif(index==(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d;"%(output_list[-1],index))
       
-    output_list.append("for(l=0;l<thread_paths;l++){")
-    
-    output_list.append("//***Underlying and Derivative Path Initiation***")
+    output_list.append("//**Thread Random Number Generator Seeding**")
     for index,u in enumerate(self.underlying):
 	if("heston" in u.name or "black_scholes" in u.name):
-	  output_list.append("(u_v_%d.rng_state).s1 = 2;"%index)
-	  output_list.append("(u_v_%d.rng_state).s2 = 8;"%index)
-	  output_list.append("(u_v_%d.rng_state).s3 = 16 + rng_seed*thread_paths*%d;" % (index,index+1))
-	  
-        output_list.append("%s_underlying_path_init(&u_v_%d,&u_a_%d);" % (u.name,index,index))
+	  output_list.append("ctrng_seed(1000,rng_seed*thread_paths*%d,&(u_v_%d.rng_state));"%(index+1,index))
     
-    
-    for index,d in enumerate(self.derivative):
-        output_list.append("%s_derivative_path_init(&o_v_%d,&o_a_%d);" % (d.name,index,index))
-        for u_index,u in enumerate(d.underlying):
-            output_list.append("next_time_%d_%d = 0;"%(index,u_index))
-            output_list.append("price_%d_%d = u_a_%d.current_price*exp(u_v_%d.gamma);"%(index,u_index,u_index,u_index))
+    output_list.append("//**Thread Path Simulations**")
+    output_list.append("for(l=0;l<thread_paths;l++){")
+    output_list.extend(self.generate_underlying_derivative_path_initialisations(True))
     
     
     output_list.append("done=1;")
@@ -457,13 +469,15 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     return output_list
   
   def compile(self,overide=True,compile_options=[],debug=False):
+    start_directory = os.getcwd()
+    
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
       
     except:
-      os.chdir("bin")
-      return "Multicore C directory doesn't exist!"
+      os.chdir(start_directory)
+      return "%s doesn't exist!"%self.platform.platform_directory()
     
     if(overide or not os.path.exists("%s"%self.output_file_name)):
         compile_cmd = ["g++","%s.c"%self.output_file_name]
@@ -484,7 +498,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         temp = []
         for u in self.underlying:
             if(not(u.name in temp)):
-                compile_cmd.append(("../../MulticoreCPU/multicore_c_code/%s.c" % u.name))
+                compile_cmd.append(("%s.c" % u.name))
                 temp.append(u.name)
             
             base_list = []
@@ -493,10 +507,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
             for b in base_list:
                 if(b not in temp):
-                    compile_cmd.append(("../../MulticoreCPU/multicore_c_code/%s.c" % b))
+                    compile_cmd.append(("%s.c" % b))
                     temp.append(b)
           
-        compile_cmd.append("../../MulticoreCPU/multicore_c_code/gauss.c")
+        compile_cmd.append("gauss.c")
         for d in self.derivative:
             if(not(d.name in temp)):
                 compile_cmd.append(("%s.c" % d.name))
@@ -515,9 +529,6 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         #for u_l in self.non_system_libraries:
             #if(not(("%s.c" % u_l) in compile_cmd)): compile_cmd.append(("%s.c" % u_l))
             
-        #Output flag
-        compile_cmd.append("-o")
-        compile_cmd.append(self.output_file_name)
         
         #Linking pthread library
         compile_cmd.append("-lpthread")
@@ -545,14 +556,19 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 	#Adding other compile flags
         for c_o in compile_options: compile_cmd.append(c_o)
         
-        compile_string = ""
+        #Output flag
+        compile_cmd.append("-o")
+        compile_cmd.append(self.output_file_name)
+	
+	compile_string = ""
         for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
         if(debug): print compile_string
         
         result = subprocess.check_output(compile_cmd)
 	
-        os.chdir(self.platform.root_directory())
-        os.chdir("bin")
+	os.chdir(start_directory)
+        #os.chdir(self.platform.root_directory())
+        #os.chdir("bin")
         
         return result
       
