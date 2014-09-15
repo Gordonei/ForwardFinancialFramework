@@ -24,7 +24,7 @@ public class black_scholes_underlying extends underlying {
 		this.gauss = new GaussianBoxMuller(this.kernel,this.kernel.constant.var(this.kernel.dfeFloat(8, 24),0.0),u,v,false);
 		}
 
-	@Override
+	/*Override
 	public void path_init(){
 		super.path_init();
 		
@@ -34,7 +34,7 @@ public class black_scholes_underlying extends underlying {
 		//this.rangeS = new KernelMath.Range(0.0, 100.0);
 		//this.mt_carried = dfeUInt(32).newInstance(this);
 		//this.mt2_carried = dfeUInt(32).newInstance(this);
-		}
+		}*/
 
 	@Override
 	public void path(DFEVar delta_time){

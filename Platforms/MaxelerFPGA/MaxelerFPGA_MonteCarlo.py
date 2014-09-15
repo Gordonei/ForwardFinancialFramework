@@ -304,6 +304,14 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       temp_string = "%s,%s_%d_%s);"%(temp_string,d.name,index,self.derivative_attributes[index][-1])
       
       output_list.append(temp_string)
+      
+    for index,u in enumerate(self.underlying):
+      #Creating the parameter object
+      temp_string = "%s_parameters %s_%d_parameters = new %s_parameters(this" % (u.name,u.name,index,u.name)
+      for u_a in self.underlying_attributes[index][:-1]: temp_string = ("%s,%s_%d_%s"%(temp_string,u.name,index,u_a))
+      temp_string = "%s,%s_%d_%s);"%(temp_string,u.name,index,self.underlying_attributes[index][-1])
+      
+      output_list.append(temp_string)
     
     temp_path_call_underlying = []
     temp_path_call_derivative = []
@@ -363,7 +371,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       else: #loop back to the end for the first value in the pipeline
 	output_list.append("%s.connect_path(false,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-1],self.pipelining-1,tpc[:-1],self.pipelining-1))
 	if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)
-	
+      print output_list[-1]	
+
     for index,tpc in enumerate(temp_path_call_derivative):
       if(int(tpc[-1])>0): #connect each point in the pipeline to the value that proceeded it
 	output_list.append("%s.connect_path(true);"%tpc)
@@ -371,7 +380,6 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
       else: #loop back to the end for the first value in the pipeline
 	output_list.append("%s.connect_path(false);"%tpc)
-	if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
 	if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)
 	if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)
 	    
