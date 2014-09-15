@@ -37,5 +37,6 @@ for point in platform_matrix:
     output = "%s,%s,%s,%s,%s,\n"%(point["Option"],point["Simulation Paths"],point["Target 95% CI"],CI,latency)
     print output
     output_file.write(output)
+    output_file.flush()
     
 output_file.close()
