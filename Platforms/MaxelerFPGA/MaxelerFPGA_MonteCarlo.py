@@ -325,11 +325,11 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  #output_list.append("%s_%d_parameters.seed2 = input_array[%d*2+1];"%(u.name,index,rng_index))
 	  
 	  if(self.c_slow):
-	    output_list.append("CombinedTauswortheRNG %s_%d_x_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2],input_array[%d*8+3]);"%(u.name,index,pipe,index,index,index,index));
-	    output_list.append("CombinedTauswortheRNG %s_%d_y_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6],input_array[%d*8+7]);"%(u.name,index,pipe,index,index,index,index));
+	    output_list.append("CombinedTauswortheRNG %s_%d_x_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8],input_array[%d*8+1]+i,input_array[%d*8+2]+i,input_array[%d*8+3]);"%(u.name,index,pipe,index,index,index,index));
+	    output_list.append("CombinedTauswortheRNG %s_%d_y_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1),input_array[%d*8+4],input_array[%d*8+5]+i,input_array[%d*8+6]+i,input_array[%d*8+7]);"%(u.name,index,pipe,index,index,index,index));
 	  else:
-	    output_list.append("CombinedTauswortheRNG %s_%d_x_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1)*this.delay,input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2],input_array[%d*8+3]);"%(u.name,index,pipe,index,index,index,index));
-	    output_list.append("CombinedTauswortheRNG %s_%d_y_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1)*this.delay,input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6],input_array[%d*8+7]);"%(u.name,index,pipe,index,index,index,index));
+	    output_list.append("CombinedTauswortheRNG %s_%d_x_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1)*this.delay,input_array[%d*8],input_array[%d*8+1],input_array[%d*8+2]+i,input_array[%d*8+3]+i);"%(u.name,index,pipe,index,index,index,index));
+	    output_list.append("CombinedTauswortheRNG %s_%d_y_%d = new CombinedTauswortheRNG(this,this.instance_paths*(this.path_points+1)*this.delay,input_array[%d*8+4],input_array[%d*8+5],input_array[%d*8+6]+i,input_array[%d*8+7]+i);"%(u.name,index,pipe,index,index,index,index));
 	  
 	  output_list.append("%s %s_%d_%d = new %s(this,%s_%d_x_%d,%s_%d_y_%d,pp,p,d,%s_%d_parameters);"%(u.name,u.name,index,pipe,u.name,u.name,index,pipe,u.name,index,pipe,u.name,index))
 	  
@@ -370,8 +370,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
       else: #loop back to the end for the first value in the pipeline
 	output_list.append("%s.connect_path(false,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-1],self.pipelining-1,tpc[:-1],self.pipelining-1))
-	if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)
-      print output_list[-1]	
+	if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)	
 
     for index,tpc in enumerate(temp_path_call_derivative):
       if(int(tpc[-1])>0): #connect each point in the pipeline to the value that proceeded it
