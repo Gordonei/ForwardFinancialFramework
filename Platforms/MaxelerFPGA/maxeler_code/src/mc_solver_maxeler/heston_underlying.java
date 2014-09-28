@@ -44,7 +44,7 @@ public class heston_underlying extends underlying {
 		this.carried_volatility = (Kernel.dfeFloat(8, 24)).newInstance(this);
 		DFEVar initial = KernelMath.sqrt(this.parameters.initial_volatility);
 		
-		this.volatility = this.point.eq(0)? initial : carried_volatility;
+		this.volatility = this.point.eq(0) ? initial : carried_volatility;
 		}
 
 

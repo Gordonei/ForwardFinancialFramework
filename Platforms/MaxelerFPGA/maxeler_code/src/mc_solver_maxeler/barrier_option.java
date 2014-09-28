@@ -21,7 +21,7 @@ public class barrier_option extends european_option {
 		//this.delta_time = this.point.eq(0) ? ((this.parameters.time_period/this.parameters.points)).cast(((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType) : this.carried_delta_time;
 
 		carried_barrier_event = ((MC_Solver_Maxeler_Base_Kernel)this.kernel).inputDoubleType.newInstance(this);
-		this.barrier_event = this.point.eq(0)&this.delay.eq(0) ? 0.0 : this.carried_barrier_event;
+		this.barrier_event = this.point.eq(0) ? 0.0 : this.carried_barrier_event;
 	}
 
 	@Override
