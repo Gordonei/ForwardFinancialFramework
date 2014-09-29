@@ -1,12 +1,12 @@
 #ForwardFinancialFramework
 
-F^3 is Python-based application framework for valuing forward looking financial frameworks on Heterogeneous Parallel Computing Platforms.  
+F^3 is a Python-based application framework for valuing forward looking financial products on Heterogeneous Parallel Computing Platforms.  
 
 ##Introduction
 
 The vision of F^3 is to allow financial engineers to express valuation computations naturally while taking advantage of the plethora of new computing platforms available.
 
-The application framework also serves as a test case for research into domain-oriented heterogeneous computing.
+The application framework also serves as a test case for research into domain specific heterogeneous computing.
 
 Current Underlyings and Derivatives Supported:
  * Black-Scholes Stochastic Underlyings
@@ -21,7 +21,7 @@ Platforms:
  * Maxeler FPGA Platforms
  * Xilinx FPGAs (via VivadoHLS)
  * Altera FPGAs (via OpenCL)
- * GPUs (via OpenCL)
+ * GPUs and Co-Processors (via OpenCL)
  
 In Progress:
  * Derivatives with American exercise properties
