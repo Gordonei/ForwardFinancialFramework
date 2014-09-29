@@ -34,22 +34,24 @@ Coming Soon:
 
 ##Framework Layout
 
-* ForwardFinancialFramework  
-  * bin - the experimental scripts for various portfolios 
-  * Derivatives - the financial derivatives classes  
-  * Platforms - the platform classes   
-  * Solvers - the solver alogrithms  
-  * Underlyings - the underlyings classes  
+```
+ForwardFinancialFramework  
+    /bin - the experimental scripts for various portfolios 
+    /Derivatives - the financial derivatives classes  
+    /Platforms - the platform classes   
+    /Solvers - the solver alogrithms  
+    /Underlyings - the underlyings classes
+```
 
 ##Installation
 
 F^3 requires:  
 1. A *nix-based Operating System    
-2. GCC (http://gcc.gnu.org/)    
-3. Python >= 2.7 (http://www.python.org/)  
-4. Numpy (http://numpy.scipy.org/)  
+2. [http://gcc.gnu.org/](GCC)
+3. [http://www.python.org/](Python >= 2.7)  
+4. [http://numpy.scipy.org/](Numpy)
 5. Maxcompiler version 12.1 >= (For Maxeler code)  
-6. PyOpenCL (https://pypi.python.org/pypi/pyopencl/)
+6. [https://pypi.python.org/pypi/pyopencl/](PyOpenCL)
 7. X OpenCL SDK (where X is the vendor of the OpenCL platform in question)
 8. Xilinx Vivado HLS 2013.4 (For VivadoHLS code)
 
