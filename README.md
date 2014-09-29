@@ -47,11 +47,11 @@ ForwardFinancialFramework
 
 F^3 requires:  
 1. A *nix-based Operating System    
-2. [GCC](http://gcc.gnu.org/)
-3. [Python >= 2.7](http://www.python.org/)
-4. [Numpy](http://numpy.scipy.org/)
+2. [GCC](http://gcc.gnu.org)
+3. [Python] >= 2.7(http://www.python.org)
+4. [Numpy](http://numpy.scipy.org)
 5. Maxcompiler version 12.1 >= (For Maxeler code)  
-6. [PyOpenCL](http://mathema.tician.de/software/pyopencl/)
+6. [PyOpenCL](http://mathema.tician.de/software/pyopencl)
 7. X OpenCL SDK (where X is the vendor of the OpenCL platform in question)
 8. Xilinx Vivado HLS 2013.4 (For VivadoHLS code)
 
