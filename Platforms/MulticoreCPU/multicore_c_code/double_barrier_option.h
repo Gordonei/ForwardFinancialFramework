@@ -10,23 +10,21 @@
 #include "barrier_option.h"
 
 typedef struct {
-        
-        FP_t barrier_event;
+        char barrier_event;
 	FP_t delta_time;
 	FP_t value;
         barrier_option_variables barrier_option;
-	//barrier_option_opt_var barrier_option;
 } double_barrier_option_variables;
 
 typedef struct {
         FP_t second_barrier;
         
         FP_t barrier;
-        FP_t out;
-        FP_t down;
+        char out;
+        char down;
 	FP_t strike_price;
 	FP_t time_period;
-	FP_t call;
+	char call;
 	FP_t points;
         barrier_option_attributes barrier_option;
 } double_barrier_option_attributes;

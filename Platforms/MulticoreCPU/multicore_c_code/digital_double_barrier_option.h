@@ -11,7 +11,7 @@
 
 typedef struct {
         
-        FP_t barrier_event;
+        char barrier_event;
 	FP_t delta_time;
 	FP_t value;
         double_barrier_option_variables double_barrier_option;
@@ -21,11 +21,11 @@ typedef struct {
         
         FP_t second_barrier;
         FP_t barrier;
-        FP_t out;
-        FP_t down;
+        char out;
+        char down;
 	FP_t strike_price;
 	FP_t time_period;
-	FP_t call;
+	char call;
 	FP_t points;
         double_barrier_option_attributes double_barrier_option;
 } digital_double_barrier_option_attributes;

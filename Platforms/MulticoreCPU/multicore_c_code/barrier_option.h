@@ -19,12 +19,12 @@ typedef struct{
 
 typedef struct {
         FP_t barrier;
-        FP_t out;
-        FP_t down;
+        char out;
+        char down;
     
 	FP_t strike_price;
 	FP_t time_period;
-	FP_t call;
+	char call;
 	FP_t points;
         european_option_attributes european;
 } barrier_option_attributes;

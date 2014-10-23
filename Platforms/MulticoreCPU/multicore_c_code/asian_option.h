@@ -19,7 +19,7 @@ typedef struct {
 typedef struct {
         FP_t strike_price;
 	FP_t time_period;
-	FP_t call;
+	char call;
 	FP_t points;
         european_option_attributes european_option;
 } asian_option_attributes;
