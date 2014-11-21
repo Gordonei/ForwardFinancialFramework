@@ -6,7 +6,7 @@ import os,time,subprocess,sys,time,math,platform,random
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
-  def __init__(self,derivative,paths,platform,reduce_underlyings=True,random_number_generator="taus_ziggurat",floating_point_format="double",default_points=10):
+  def __init__(self,derivative,paths,platform,reduce_underlyings=True,random_number_generator="taus_ziggurat",floating_point_format="double",default_points=4096):
     MonteCarlo.MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings)
     self.solver_metadata["threads"] = self.platform.threads #Number of threads set by the platform
     self.solver_metadata["default_points"] = default_points
