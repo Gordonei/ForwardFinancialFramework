@@ -643,7 +643,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  #output_list.append("temp_u_v_%d.rng_state.offset = seed_%d[i].offset;"%(index,index))
 	
 	if("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-	  output_list.append("ctrng_seed(20,local_seed + %d * (i+local_chunk_size*local_chunk_number),&(temp_u_v_%d.rng_state));"%(index+1,index))
+	  output_list.append("ctrng_seed(20,local_seed + %d * (i*%d+local_chunk_size*local_chunk_number),&(temp_u_v_%d.rng_state));"%(index+1,self.kernel_loops,index))
 	  
 	  """output_list.append("temp_u_v_%d.rng_state.s1 = %d + 2;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
 	  output_list.append("temp_u_v_%d.rng_state.s2 = %d + 8;"%(index,index)) #%d + local_chunk_number*local_chunk_size +
