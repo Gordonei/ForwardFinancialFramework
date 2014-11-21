@@ -8,17 +8,20 @@ sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Underlying,Heston,Black_Scholes
 from ForwardFinancialFramework.Derivatives import Option,European_Option,Barrier_Option,Double_Barrier_Option,Digital_Double_Barrier_Option,Asian_Option
 
-def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100),volatility_range=(0.0384,0.15),volatility_volatility_range=(0.425,1.0),rho_range=(-0.4644,0),kappa_range=(0.5,2.75),theta_range=(0.035,0.35)):
+def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100),volatility_range=(0.0384,0.15),volatility_volatility_range=(0.425,1.0),rho_range=(-0.4644,0),kappa_range=(0.5,2.75),theta_range=(0.035,0.35),strike_price_range=(90,120),time_period_range=(1.0,5.0),barrier_range=(110,150),second_barrier_range=(66,90)):
     
     numpy.random.seed(seed)
     
     #Underlying
     rfir = numpy.random.random()*abs(rfir_range[1]-rfir_range[0]) + rfir_range[0]
-    current_price = numpy.random.random()*abs(current_price_range[1]-current_price_range[0]) + current_price_range[0]
+    current_price = 100 #numpy.random.randint(current_price_range[0],current_price_range[1])
     
     #Underlying Type
-    underlying_type = "black_scholes"
-    if (numpy.random.randint(0,13) > 1): underlying_type = "heston"
+    underlying_type_code = numpy.random.randint(0,13)
+    
+    underlying_type = "underlying"
+    if (underlying_type_code == 0): underlying_type = "black_scholes"
+    else: underlying_type = "heston"
     
     if(underlying_type=="black_scholes"):
         volatility = numpy.random.random()*abs(volatility_range[1]-volatility_range[0]) + volatility_range[0]
@@ -35,10 +38,58 @@ def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100)
     else:
         underlying = Underlying.Underlying(rfir,current_price)
         
-    return underlying
+    #Option
+    strike_price = numpy.random.randint(strike_price_range[0],strike_price_range[1])
+    time_period = numpy.random.randint(time_period_range[0],time_period_range[1])
+    call = bool(numpy.random.randint(0,2))
+    
+    #Option Type
+    option_type_code = numpy.random.randint(0,13)
+    
+    if(option_type_code == 0): option_type = "european"
+    elif(0 < option_type_code < 4): option_type = "barrier"
+    elif(3 < option_type_code < 11): option_type = "double_barrier"
+    elif(option_type_code == 11): option_type = "digital_double_barrier"
+    elif(option_type_code == 12): option_type = "asian"
+    else: option_type = "option"
+    
+    if(option_type=="european"):
+        
+        option = European_Option.European_Option([underlying],time_period,call,strike_price)
+    elif(option_type=="asian"):
+        points = 4096
+        
+        option = Asian_Option.Asian_Option([underlying],time_period,call,strike_price,points)
+    elif(option_type=="barrier"):
+        points = 4096
+        barrier = numpy.random.randint(barrier_range[0],barrier_range[1])
+        out = numpy.random.randint(0,13)>0
+        down = barrier<current_price
+        
+        option = Barrier_Option.Barrier_Option([underlying],time_period,call,strike_price,points,barrier,out,down)
+        
+    elif(option_type=="double_barrier"):
+        points = 4096
+        second_barrier = numpy.random.randint(barrier_range[0],barrier_range[1])
+        barrier = numpy.random.randint(second_barrier_range[0],second_barrier_range[1])
+        out = True
+        
+        option = Double_Barrier_Option.Double_Barrier_Option([underlying],time_period,call,strike_price,points,barrier,out,second_barrier)
+        
+    elif(option_type=="digital_double_barrier"):
+        points = 4096
+        second_barrier = numpy.random.randint(barrier_range[0],barrier_range[1])
+        barrier = numpy.random.randint(second_barrier_range[0],second_barrier_range[1])
+        out = True
+        
+        option = Digital_Double_Barrier_Option.Digital_Double_Barrier_Option([underlying],time_period,call,strike_price,points,barrier,out,second_barrier)
+    else: 
+        option = Option.Option([underlying],time_period,call,strike_price)
+        
+    return option
         
         
 if __name__=="__main__":
-    underlying = generate_option()
-    
-    print underlying
+    for i in range(128): 
+        print(generate_option(1234+i))
+        print("\n")
