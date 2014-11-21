@@ -38,7 +38,7 @@ def run_test_solver(platform_name,cmd_option):
   elif(platform_name=="Maxeler_FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
     platform = MaxelerFPGA.MaxelerFPGA()
-    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform)
+    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform,c_slow=True)
     
   elif(platform_name=="Vivado_FPGA"):
     from ForwardFinancialFramework.Platforms.VivadoFPGA import VivadoFPGA_MonteCarlo,VivadoFPGA
@@ -48,7 +48,7 @@ def run_test_solver(platform_name,cmd_option):
   elif(platform_name=="OpenCL_AlteraFPGA"):
     from ForwardFinancialFramework.Platforms.OpenCLAlteraFPGA import OpenCLAlteraFPGA_MonteCarlo,OpenCLAlteraFPGA
     platform = OpenCLAlteraFPGA.OpenCLAlteraFPGA()
-    mc_solver = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo(option,paths,platform)
+    mc_solver = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo(option,paths,platform,pipelining=1,instances=1,kernel_path_max=20,cslow=True,simulation=True)
     
   else:
     print "incorrect platform type!"
@@ -60,7 +60,8 @@ def run_test_solver(platform_name,cmd_option):
   if("Compile" in cmd_option): compile_output = mc_solver.compile(debug=True)
   
   execution_output = ""
-  if("Execute" in cmd_option): execution_output = mc_solver.execute(debug=True)
+  if("Execute" in cmd_option):
+    execution_output = mc_solver.execute(debug=True)
   
   return (compile_output,execution_output)
   
