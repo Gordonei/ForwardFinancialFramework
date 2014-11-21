@@ -28,6 +28,10 @@ class Underlying:
         
         self.latency_model_coefficients = []
 	self.accuracy_model_coefficients = []
+	
+    def __repr__(self):
+	return str(self.name+" Underlying"+" rfir="+str(self.rfir)+" current_price="+str(self.current_price))
+    
         
     def path_init(self):
         self.gamma = 0.0

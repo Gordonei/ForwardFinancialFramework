@@ -20,6 +20,10 @@ class Black_Scholes(Underlying.Underlying):
         '''
         Underlying.Underlying.__init__(self,rfir,current_price)
         self.volatility = volatility
+    
+    def __repr__(self):
+        return str(Underlying.Underlying.__repr__(self)+" volatility="+str(self.volatility))
+    
         
     def path(self,delta_time):
         self.gamma += (self.rfir-self.volatility**2/2)*delta_time + self.volatility*numpy.random.randn()*delta_time**0.5
