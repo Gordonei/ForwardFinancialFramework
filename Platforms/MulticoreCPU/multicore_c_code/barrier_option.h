@@ -10,7 +10,7 @@
 #include "european_option.h"
 
 typedef struct{
-        FP_t barrier_event;
+        char barrier_event;
     
 	FP_t delta_time;
 	FP_t value;
