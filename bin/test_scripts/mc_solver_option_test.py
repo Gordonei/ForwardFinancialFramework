@@ -42,7 +42,7 @@ def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=
     sys.exit()
     
   platform = platform_class()
-  mc_solver = mc_solver_class(option,paths,platform,random_number_generator="taus_boxmuller")#,instances=1)
+  mc_solver = mc_solver_class(option,paths,platform)#,instances=1)
     
   if("Generate" in script_option): mc_solver.generate()
   
