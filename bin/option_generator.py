@@ -10,7 +10,7 @@ from ForwardFinancialFramework.Derivatives import Option,European_Option,Barrier
 
 def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100),volatility_range=(0.0384,0.15),volatility_volatility_range=(0.425,1.0),rho_range=(-0.4644,0),kappa_range=(0.5,2.75),theta_range=(0.035,0.35),strike_price_range=(90,120),time_period_range=(1.0,5.0),barrier_range=(110,150),second_barrier_range=(66,90)):
     
-    numpy.random.seed(seed)
+    numpy.random.seed(int(seed))
     
     #Underlying
     rfir = numpy.random.random()*abs(rfir_range[1]-rfir_range[0]) + rfir_range[0]
