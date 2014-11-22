@@ -810,7 +810,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return output_list
   
   def compile(self,override=True,cleanup=True,debug=False):
-    compile_flags = ["-lOpenCL","-I/opt/AMDAPP/include","-fpermissive"]
+    compile_flags = ["-lOpenCL","-I/opt/AMDAPP/include","-I/opt/nvidia/cuda/include","-fpermissive"]
     if(debug): compile_flags.append("-ggdb")
     if("darwin" in sys.platform):
       compile_flags.remove("-lOpenCL")
