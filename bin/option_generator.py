@@ -41,7 +41,7 @@ def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100)
     #Option
     strike_price = numpy.random.randint(strike_price_range[0],strike_price_range[1])
     time_period = numpy.random.randint(time_period_range[0],time_period_range[1])
-    call = bool(numpy.random.randint(0,2))
+    call = numpy.random.randint(0,2)
     
     #Option Type
     option_type_code = numpy.random.randint(0,13)
@@ -63,8 +63,8 @@ def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100)
     elif(option_type=="barrier"):
         points = 4096
         barrier = numpy.random.randint(barrier_range[0],barrier_range[1])
-        out = numpy.random.randint(0,13)>0
-        down = barrier<current_price
+        out = int(numpy.random.randint(0,3)>0)
+        down = int(barrier<current_price)
         
         option = Barrier_Option.Barrier_Option([underlying],time_period,call,strike_price,points,barrier,out,down)
         
@@ -72,7 +72,7 @@ def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100)
         points = 4096
         second_barrier = numpy.random.randint(barrier_range[0],barrier_range[1])
         barrier = numpy.random.randint(second_barrier_range[0],second_barrier_range[1])
-        out = True
+        out = int(numpy.random.randint(0,9)>0)
         
         option = Double_Barrier_Option.Double_Barrier_Option([underlying],time_period,call,strike_price,points,barrier,out,second_barrier)
         
@@ -80,7 +80,7 @@ def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100)
         points = 4096
         second_barrier = numpy.random.randint(barrier_range[0],barrier_range[1])
         barrier = numpy.random.randint(second_barrier_range[0],second_barrier_range[1])
-        out = True
+        out = int(numpy.random.randint(0,9)>0)
         
         option = Digital_Double_Barrier_Option.Digital_Double_Barrier_Option([underlying],time_period,call,strike_price,points,barrier,out,second_barrier)
     else: 
@@ -90,6 +90,13 @@ def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100)
         
         
 if __name__=="__main__":
+    combination = []
     for i in range(128): 
-        print(generate_option(1234+i))
-        print("\n")
+        option = generate_option(1234+i)
+        print("%s\n"%str(option))
+	
+	option_string = "%s %s"%(option.underlying[0].name[:2],option.name[:2])
+	if(option_string not in combination): combination.append(option_string)
+
+    print combination
+    
