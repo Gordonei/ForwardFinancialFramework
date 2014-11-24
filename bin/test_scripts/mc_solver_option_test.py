@@ -7,7 +7,7 @@ sys.path.append("%s/../../.."%os.getcwd())
 os.chdir("..")
 import ForwardFinancialFramework.bin.option_generator as option_generator
 
-def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=0):
+def run_option_solver(platform_name,paths,script_option,options,debug=False,threads=0):
   option = []
   for o in options:
     option.append(option_generator.generate_option(o))
@@ -73,7 +73,7 @@ if(__name__ == '__main__' and len(sys.argv)>3):
   script_option = sys.argv[2]
   options = sys.argv[4:]
   
-  results = run_ks_solver(platform_name,paths,script_option,options,debug=True,threads=0)
+  results = run_option_solver(platform_name,paths,script_option,options,debug=True,threads=0)
   
   if(len(results[0])>0):
     print "compiler output:"

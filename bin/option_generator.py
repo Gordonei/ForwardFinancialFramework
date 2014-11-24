@@ -92,11 +92,11 @@ def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100)
 if __name__=="__main__":
     combination = []
     for i in range(128): 
-        option = generate_option(1234+i)
-        print("%s\n"%str(option))
+       option = generate_option(1234+i)
+       print("%s\n"%str(option))
 	
-	option_string = "%s %s"%(option.underlying[0].name[:2],option.name[:2])
-	if(option_string not in combination): combination.append(option_string)
+       option_string = "%s %s"%(option.underlying[0].name[:2],option.name[:2])
+       if(option_string not in combination): combination.append(option_string)
 
-    print combination
+    print(combination)
     
