@@ -471,6 +471,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
   def compile(self,overide=True,compile_options=[],debug=False):
     start_directory = os.getcwd()
     
+    """
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -478,9 +479,11 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     except:
       os.chdir(start_directory)
       return "%s doesn't exist!"%self.platform.platform_directory()
+    """
     
-    if(overide or not os.path.exists("%s"%self.output_file_name)):
-        compile_cmd = ["g++","%s.c"%self.output_file_name]
+    if(overide or not os.path.exists("%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name))):
+        compile_cmd = ["g++","%s%s%s.c"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name)]
+	compile_cmd.append("-I%s%s"%(self.platform.root_directory(),self.platform.platform_directory()))
         #compile_cmd.append("-D%s"%self.platform.name.upper())
         compile_cmd.append("-DMULTICORE_CPU")
 
@@ -498,7 +501,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         temp = []
         for u in self.underlying:
             if(not(u.name in temp)):
-                compile_cmd.append(("%s.c" % u.name))
+                compile_cmd.append(("%s%s/%s.c" % (self.platform.root_directory(),self.platform.platform_directory(),u.name)))
                 temp.append(u.name)
             
             base_list = []
@@ -507,13 +510,13 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
             for b in base_list:
                 if(b not in temp):
-                    compile_cmd.append(("%s.c" % b))
+                    compile_cmd.append(("%s%s/%s.c" % (self.platform.root_directory(),self.platform.platform_directory(),b)))
                     temp.append(b)
           
-        compile_cmd.append("gauss.c")
+        compile_cmd.append("%s%s/gauss.c"%(self.platform.root_directory(),self.platform.platform_directory()))
         for d in self.derivative:
             if(not(d.name in temp)):
-                compile_cmd.append(("%s.c" % d.name))
+                compile_cmd.append(("%s%s/%s.c" % (self.platform.root_directory(),self.platform.platform_directory(),d.name)))
                 temp.append(d.name)
                 
             base_list = []
@@ -522,7 +525,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
                 
             for b in base_list:
                 if(b not in temp):
-                    compile_cmd.append(("%s.c" % b))
+                    compile_cmd.append(("%s%s/%s.c" % (self.platform.root_directory(),self.platform.platform_directory(),b)))
                     temp.append(b) 
         
         #Including all of the non system libraries used
@@ -558,7 +561,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
         #Output flag
         compile_cmd.append("-o")
-        compile_cmd.append(self.output_file_name)
+        compile_cmd.append("%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name))
 	
 	compile_string = ""
         for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
@@ -566,7 +569,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
         result = subprocess.check_output(compile_cmd)
 	
-	os.chdir(start_directory)
+	#os.chdir(start_directory)
         #os.chdir(self.platform.root_directory())
         #os.chdir("bin")
         
@@ -574,20 +577,22 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       
     else:
       print "multicore binary already exists, using previous version. Set overide to True if you would like to force the code to be recompiled"
-      os.chdir(self.platform.root_directory)
-      os.chdir("bin")
+      #os.chdir(self.platform.root_directory)
+      #os.chdir("bin")
           
   def execute(self,cleanup=False,debug=False,seed=int(random.randint(0,2**32-16))):
+    """
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
     except:
       os.chdir("bin")
       return "Multicore C directory doesn't exist!"
+    """
 
     self.solver_metadata["rng_seed"] = seed
 
-    run_cmd = ["./%s"%self.output_file_name]
+    run_cmd = ["%s%s/%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name)]
     for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k])) 
     
     for index,u_a in enumerate(self.underlying_attributes):
@@ -608,8 +613,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     results = results.split("\n")[:-1]
     results.append((finish-start)*1000000)
     
+    """
     os.chdir(self.platform.root_directory())
     os.chdir("bin")
+    """
     
     if(cleanup): self.cleanup()
     
@@ -623,10 +630,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     subprocess.call(["rm","%s"%self.output_file_name])
   
   def generate_source(self,code_string,name_extension=".c",verbose=False):
-    os.chdir("..")
-    os.chdir(self.platform.platform_directory())
+    #os.chdir("..")
+    #os.chdir(self.platform.platform_directory())
     
-    output_file = open("%s%s"%(self.output_file_name,name_extension),"w")
+    output_file = open("%s%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name,name_extension),"w")
     tab_count = 0;
     for c_s in code_string:
         if("*" in c_s and "//" in c_s):
@@ -643,8 +650,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         if("}" in c_s): tab_count = max(tab_count-1,0)
     output_file.close()
     
-    os.chdir(self.platform.root_directory())
-    os.chdir("bin")
+    #os.chdir(self.platform.root_directory())
+    #os.chdir("bin")
   
   def generate_base_class_names(self,tempclass,templist):
     """Another Helper Method, uses to help pull in various super classes during compilation """

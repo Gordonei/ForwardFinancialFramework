@@ -21,7 +21,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #mwc64x_path_string = "%s/../%s/%s"%(os.getcwd(),self.platform.platform_directory(),mwc64x_path_string)
     else:
       self.utility_libraries.append("CL/opencl.h")
-      self.utility_libraries.append("assert.h")
+      
+    self.utility_libraries.append("assert.h")
     
     for u in self.underlying:
       if((self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat")):
@@ -529,8 +530,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list = []
     
     #Changing to code generation directory for underlying and derivatives
-    os.chdir("..")
-    os.chdir(self.platform.platform_directory())
+    #os.chdir("..")
+    #os.chdir(self.platform.platform_directory())
     
     #if(self.platform.amd_gpu_flag): output_list.append("#define AMD_GPU")
     #elif("darwin" not in sys.platform): output_list.append("#include <sys/times.h>")
@@ -551,13 +552,13 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     path_string = ""
     if(self.random_number_generator=="mwc64x_boxmuller"): path_string = "mwc64x/cl/mwc64x.cl"
     elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): path_string = "gauss.c"
-    if('darwin' in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
+    if('darwin' in sys.platform): path_string = "%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),path_string)
     output_list.append("#include \"%s\""%path_string)
     
     #Checking that the source code for the derivative and underlying required is avaliable
     for u in self.underlying: 
-      if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
-      elif("#include \"%s.c\""%u.name not in output_list): output_list.append("#include \"%s.c\""%u.name) #Include source code body files as it all gets compiled at once
+      #if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
+      if("#include \"%s.c\""%u.name not in output_list): output_list.append("#include \"%s%s%s.c\""%(self.platform.root_directory(),self.platform.platform_directory(),u.name)) #Include source code body files as it all gets compiled at once
         
     #for d in self.derivative:
       #if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
@@ -566,9 +567,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     temp = []
     for d in self.derivative:
             if(not(d.name in temp)):
-		if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
+		#if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))):
+		  #raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
                 
-                output_list.append("#include \"%s.c\"" % d.name)
+                output_list.append("#include \"%s%s%s.c\"" % (self.platform.root_directory(),self.platform.platform_directory(),d.name))
                 temp.append(d.name)
                 
 		base_list = []
@@ -577,8 +579,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
                 
 		for b in base_list:
 		    if(b not in temp):
-			if(not(os.path.exists("%s.c"%b)) or not(os.path.exists("%s.h"%b))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (b,b))
-			output_list.append("#include \"%s.c\"" % b)
+			#if(not(os.path.exists("%s.c"%b)) or not(os.path.exists("%s.h"%b))):
+			  #raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (b,b))
+			output_list.append("#include \"%s%s%s.c\"" % (self.platform.root_directory(),self.platform.platform_directory(),b))
 			temp.append(b)
                     
     #Leaving code generation directory
@@ -738,7 +741,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     if(self.random_number_generator=="mwc64x_boxmuller"): path_string = "mwc64x/cl/mwc64x.cl"
     elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): path_string = "gauss.c"
     
-    if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
+    if("darwin" in sys.platform): path_string = "%s%s/%s"%(self.platform.root_directory(),self.platform.platform_directory(),path_string)
     output_list.append("#include \"%s\""%path_string)
     
     #Checking that the source code for the derivative and underlying required is avaliable
@@ -817,8 +820,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       compile_flags.extend(["-framework","OpenCL"])
     result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_flags,debug) #Compiling Host C Code
       
-    os.chdir("..")
-    os.chdir(self.platform.platform_directory())
+    #os.chdir("..")
+    #os.chdir(self.platform.platform_directory())
     
     
     opencl_compile_flags = ""
@@ -832,7 +835,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       opencl_compile_flags = "%s -DTAUS_BOXMULLER"%opencl_compile_flags
     
     #if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
-    path_string = os.getcwd()
+    path_string = "%s%s"%(self.platform.root_directory(),self.platform.platform_directory()) #os.getcwd()
     #else: path_string = "%s/%s"%(os.getcwd(),path_string)
     
     opencl_compile_flags = "-DOPENCL_GPU -I%s %s"% (path_string,opencl_compile_flags)
@@ -859,8 +862,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       binary_kernel_file.write(binary_kernel)
       binary_kernel_file.close()"""
     
-    os.chdir(self.platform.root_directory())
-    os.chdir("bin")
+    #os.chdir(self.platform.root_directory())
+    #os.chdir("bin")
       
     return result
  
