@@ -513,7 +513,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
                     compile_cmd.append(("%s/%s.c" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),b)))
                     temp.append(b)
           
-        compile_cmd.append("%s%s/gauss.c"%(self.platform.root_directory(),self.platform.platform_directory()))
+        compile_cmd.append("%s/gauss.c"%os.path.join(self.platform.root_directory(),self.platform.platform_directory()))
         for d in self.derivative:
             if(not(d.name in temp)):
                 compile_cmd.append(("%s/%s.c" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name)))

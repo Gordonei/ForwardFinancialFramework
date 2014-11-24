@@ -38,9 +38,9 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
       for u in self.underlying:
         if ("heston" in u.name): units += 2
         elif("black_scholes" in u.name): units += 1
-        else: units += 8
+        else: units += 1
 
-      self.pipelining = 8/units
+      self.pipelining = 20/units
 
   def generate_name(self):
       self.set_default_parameters()
@@ -377,10 +377,10 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
   def compile(self,override=True,debug=False):
     #compile_flags = ["-lOpenCL","-I/usr/include","-fpermissive"]
     
-    start_directory = os.getcwd()
+    #start_directory = os.getcwd()
     
-    os.chdir("..")
-    os.chdir(self.platform.platform_directory())
+    #os.chdir("..")
+    #os.chdir(self.platform.platform_directory())
     
     opencl_compile_flags = ["-v","--report"]
     opencl_compile_flags.extend(["--board",self.platform.board])
@@ -395,7 +395,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
       opencl_compile_flags.append("-DTAUS_BOXMULLER")
     
     #if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
-    path_string = os.getcwd()
+    #path_string = os.getcwd()
     #else: path_string = "%s/%s"%(os.getcwd(),path_string)
     
     opencl_compile_flags.extend(["-DOPENCL_GPU","-I%s"%path_string,"-DCOMPUTE_UNITS=%d"%self.instances,"-DUNROLL_FACTOR=%d"%self.pipelining])
@@ -404,19 +404,19 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     
     compile_cmd = ["aoc"]
     compile_cmd.extend(opencl_compile_flags)
-    compile_cmd.append("%s.cl"%self.output_file_name)
-    compile_cmd.extend(["-o","%s_kernel.aocx"%self.output_file_name])
+    compile_cmd.append("%s/%s.cl"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
+    compile_cmd.extend(["-o","%s/%s_kernel.aocx"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)])
     
     compile_string = ""
     for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
     if(debug): print compile_string
     
-    result = [subprocess.check_output(compile_cmd)]
-    #result = []
+    #result = [subprocess.check_output(compile_cmd)]
+    result = []
 
     #subprocess.call(["rm","-rf","%s"%self.output_file_name])
     
-    os.chdir(start_directory)
+    #os.chdir(start_directory)
     
     compile_flags = subprocess.check_output(["aocl","compile-config"]).strip("\n").split(" ")
     compile_flags.extend(subprocess.check_output(["aocl","ldflags"]).strip("\n").split(" "))
