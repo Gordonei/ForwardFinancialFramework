@@ -2,19 +2,11 @@
 Created on 26 October 2012
 
 '''
+import ForwardFinancialFramework.Platforms.Platform as Platform
 
-class MaxelerFPGA:
+class MaxelerFPGA(Platform.Platform):
   name = "maxeler_fpga"
   threads = 1
-  platform_directory_string = ""
-  root_directory_string = ""
   
-  def __init__(self,platform_directory_string="Platforms/MaxelerFPGA/maxeler_code/src/mc_solver_maxeler",root_directory_string="../../../../.."):
-    self.platform_directory_string = platform_directory_string
-    self.root_directory_string = root_directory_string
-    
-  def platform_directory(self):
-    return self.platform_directory_string
-  
-  def root_directory(self):
-    return self.root_directory_string
+  def __init__(self,platform_directory_string="Platforms/MaxelerFPGA/maxeler_code/src/mc_solver_maxeler",root_directory_string="None"):
+    Platform.Platform.__init__(self,platform_directory_string,root_directory_string)

@@ -2,19 +2,17 @@
 Created on 23 February 2013
 
 '''
+import ForwardFinancialFramework.Platforms.Platform as Platform
 import pyopencl
 
-class OpenCLGPU:
+class OpenCLGPU(Platform.Platform):
   name = "opencl_gpu"
   threads = 0
-  platform_directory_string = ""
-  root_directory_string = ""
   device_type = pyopencl.device_type.ALL
   
-  def __init__(self,threads=0,platform_directory_string="Platforms/OpenCLGPU/opencl_code/",root_directory_string="../../..",platform_name="",device_type=pyopencl.device_type.GPU):
+  def __init__(self,threads=0,platform_directory_string="Platforms/OpenCLGPU/opencl_code/",root_directory_string=None,platform_name="",device_type=pyopencl.device_type.GPU):
     self.threads = threads
-    self.platform_directory_string = platform_directory_string
-    self.root_directory_string = root_directory_string
+    Platform.Platform.__init__(self,platform_directory_string,root_directory_string)
     
     self.platform_name = platform_name
     
@@ -67,9 +65,3 @@ class OpenCLGPU:
       self.cpu_device = self.platform.get_devices(pyopencl.device_type.CPU)[0] #Taking the first CPU available, needed for AMD GPUs
       self.cpu_context = pyopencl.Context(devices=[self.cpu_device])
       self.amd_gpu_flag = True
-  
-  def platform_directory(self):
-    return self.platform_directory_string
-  
-  def root_directory(self):
-    return self.root_directory_string
