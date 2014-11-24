@@ -1,10 +1,7 @@
-#!python
 '''
-Created on 6 May 2013
+Created on 21 November 2014
 '''
 import sys,os
-sys.path.append("%s/../../.."%os.getcwd())
-os.chdir("..")
 import ForwardFinancialFramework.bin.option_generator as option_generator
 
 def run_option_solver(platform_name,paths,script_option,options,debug=False,threads=0):
@@ -44,7 +41,7 @@ def run_option_solver(platform_name,paths,script_option,options,debug=False,thre
   platform = platform_class()
   mc_solver = mc_solver_class(option,paths,platform)#,instances=1)
     
-  if("Generate" in script_option): mc_solver.generate()
+  if("Generate" in script_option): mc_solver.generate(debug=debug)
   
   compile_output = [""]
   if ("Compile" in script_option): compile_output = mc_solver.compile(debug=debug)

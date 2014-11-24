@@ -2,8 +2,6 @@
 Created on 6 May 2013
 '''
 import sys,os
-os.chdir("..")
-sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Underlying
 from ForwardFinancialFramework.Derivatives import Option
 
@@ -54,7 +52,7 @@ def run_test_solver(platform_name,cmd_option):
     print "incorrect platform type!"
     sys.exit()
     
-  if("Generate" in cmd_option): mc_solver.generate()
+  if("Generate" in cmd_option): mc_solver.generate(debug=True)
     
   compile_output = ""
   if("Compile" in cmd_option): compile_output = mc_solver.compile(debug=True)

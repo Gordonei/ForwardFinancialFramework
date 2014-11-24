@@ -3,8 +3,6 @@
 Created on 6 May 2013
 '''
 import sys,os
-sys.path.append("%s/../../.."%os.getcwd())
-os.chdir("..")
 import ForwardFinancialFramework.bin.KS_ProblemSet as KS_ProblemSet
 
 def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=0):  
@@ -42,7 +40,7 @@ def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=
   platform = platform_class()
   mc_solver = mc_solver_class(option,paths,platform,random_number_generator="taus_boxmuller")#,instances=1)
     
-  if("Generate" in script_option): mc_solver.generate()
+  if("Generate" in script_option): mc_solver.generate(debug=debug)
   
   compile_output = [""]
   if ("Compile" in script_option): compile_output = mc_solver.compile(debug=debug)
