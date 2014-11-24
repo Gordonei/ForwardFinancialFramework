@@ -20,15 +20,14 @@ class Underlying:
     accuracy_model_coefficients = []
 
     def __init__(self,rfir,current_price):
-        '''
-        Constructor
-        '''
-        self.rfir = rfir
-        self.current_price = current_price
-        
-        self.latency_model_coefficients = []
-	self.accuracy_model_coefficients = []
-	
+       '''
+       Constructor
+       '''
+       self.rfir = rfir
+       self.current_price = current_price
+       self.latency_model_coefficients = []
+       self.accuracy_model_coefficients = []
+
     def __repr__(self):
 	return str(self.name+" Underlying"+" rfir="+str(self.rfir)+" current_price="+str(self.current_price))
     
