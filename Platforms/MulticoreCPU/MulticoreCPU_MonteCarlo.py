@@ -592,7 +592,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 
     self.solver_metadata["rng_seed"] = seed
 
-    run_cmd = ["%s%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
+    run_cmd = ["%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
     for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k])) 
     
     for index,u_a in enumerate(self.underlying_attributes):

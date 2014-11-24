@@ -550,19 +550,22 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("#endif")
       
     path_string = ""
-    if(self.random_number_generator=="mwc64x_boxmuller"): path_string = "mwc64x/cl/mwc64x.cl"
-    elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): path_string = "gauss.c"
-    if('darwin' in sys.platform): path_string = "%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),path_string)
+    if(self.random_number_generator=="mwc64x_boxmuller"): path_string = "%s/mwc64x/cl/mwc64x.cl"%os.path.join(self.platform.root_directory(),self.platform.platform_directory())
+    elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): path_string = "%s/gauss.c"%os.path.join(self.platform.root_directory(),self.platform.platform_directory())
+    #if('darwin' in sys.platform): path_string = "%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),path_string)
     output_list.append("#include \"%s\""%path_string)
     
     #Checking that the source code for the derivative and underlying required is avaliable
     for u in self.underlying: 
       #if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
-      if("#include \"%s.c\""%u.name not in output_list): output_list.append("#include \"%s%s%s.c\""%(self.platform.root_directory(),self.platform.platform_directory(),u.name)) #Include source code body files as it all gets compiled at once
+      if("#include \"%s/%s.c\""%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),u.name) not in output_list): output_list.append("#include \"%s/%s.c\""%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),u.name)) #Include source code body files as it all gets compiled at once
         
-    #for d in self.derivative:
+    """
+    for d in self.derivative:
       #if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
+      if("#include \"%s/%s.c\""%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name) not in output_list): output_list.append("#include \"%s/%s.c\""%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name)) #Include source code body files as it all gets compiled at once
       #else: output_list.append("#include \"%s.c\""%d.name) #Include source code body files as it all gets compiled at once
+    """
     
     temp = []
     for d in self.derivative:
@@ -570,7 +573,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		#if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))):
 		  #raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
                 
-                output_list.append("#include \"%s%s%s.c\"" % (self.platform.root_directory(),self.platform.platform_directory(),d.name))
+                output_list.append("#include \"%s/%s.c\"" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name))
                 temp.append(d.name)
                 
 		base_list = []
@@ -581,7 +584,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		    if(b not in temp):
 			#if(not(os.path.exists("%s.c"%b)) or not(os.path.exists("%s.h"%b))):
 			  #raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (b,b))
-			output_list.append("#include \"%s%s%s.c\"" % (self.platform.root_directory(),self.platform.platform_directory(),b))
+			output_list.append("#include \"%s/%s.c\"" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),b))
 			temp.append(b)
                     
     #Leaving code generation directory
@@ -838,7 +841,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     path_string = "%s%s"%(self.platform.root_directory(),self.platform.platform_directory()) #os.getcwd()
     #else: path_string = "%s/%s"%(os.getcwd(),path_string)
     
-    opencl_compile_flags = "-DOPENCL_GPU -I%s %s"% (path_string,opencl_compile_flags)
+    opencl_compile_flags = "-DOPENCL_GPU %s "% (opencl_compile_flags)
+    #opencl_compile_flags += "-I%s"%path_string
     #else: opencl_compile_flags = "-I . %s"% (opencl_compile_flags)
     self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build([opencl_compile_flags]) #Creating OpenCL program based upon Kernel
     
