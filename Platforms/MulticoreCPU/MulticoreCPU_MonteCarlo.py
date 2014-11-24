@@ -26,11 +26,11 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
   #def __setstate__(self,state):
      #MonteCarlo.MonteCarlo.__setstate__(self,state)
   
-  def generate(self,name_extension=".c",override=True,verbose=False):
+  def generate(self,name_extension=".c",override=True,verbose=False,debug=False):
     #os.chdir("..")
     #os.chdir(self.platform.platform_directory())
     
-    if(override or not os.path.exists("%s.c"%self.output_file_name)):
+    if(override or not os.path.exists("%s/%s%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name,name_extension))):
         #os.chdir(self.platform.root_directory())
         #os.chdir("bin")
       
@@ -42,7 +42,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         code_string.extend(self.generate_main_thread())
         
         #Actually writing to the file
-        self.generate_source(code_string,name_extension,verbose)
+        self.generate_source(code_string,name_extension,verbose,debug)
         
     #os.chdir(self.platform.root_directory())
     #os.chdir("bin")
@@ -60,21 +60,21 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
   def generate_libraries(self):
     #Checking that the platform source code for the derivatives and underlyings required are present
-    os.chdir("..")
-    os.chdir(self.platform.platform_directory())
+    #os.chdir("..")
+    #os.chdir(self.platform.platform_directory())
     
     underlying_libraries = []
-    for u in self.underlying: 
-      if(not(os.path.exists("%s.c"%u.name)) or not(os.path.exists("%s.h"%u.name))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
+    for u in self.underlying:
+      if(not(os.path.exists("%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),u.name))) or not(os.path.exists("%s/%s.h"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),u.name)))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
       else: underlying_libraries.append("%s.h"%u.name)
         
     derivative_libraries = []    
     for d in self.derivative:
-      if(not(os.path.exists("%s.c"%d.name)) or not(os.path.exists("%s.h"%d.name))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
+      if(not(os.path.exists("%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name))) or not(os.path.exists("%s/%s.h"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name)))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
       else: derivative_libraries.append("%s.h"%d.name)
       
-    os.chdir(self.platform.root_directory())
-    os.chdir("bin")
+    #os.chdir(self.platform.root_directory())
+    #os.chdir("bin")
     
     output_list = ["//Libraries"]
     for u in self.utility_libraries: output_list.append("#include \"%s\";"%u)
@@ -482,7 +482,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     """
     
     if(overide or not os.path.exists("%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name))):
-        compile_cmd = ["g++","%s%s%s.c"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name)]
+        compile_cmd = ["g++","%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
 	compile_cmd.append("-I%s%s"%(self.platform.root_directory(),self.platform.platform_directory()))
         #compile_cmd.append("-D%s"%self.platform.name.upper())
         compile_cmd.append("-DMULTICORE_CPU")
@@ -501,7 +501,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         temp = []
         for u in self.underlying:
             if(not(u.name in temp)):
-                compile_cmd.append(("%s%s/%s.c" % (self.platform.root_directory(),self.platform.platform_directory(),u.name)))
+                compile_cmd.append(("%s/%s.c" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),u.name)))
                 temp.append(u.name)
             
             base_list = []
@@ -510,13 +510,13 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
             for b in base_list:
                 if(b not in temp):
-                    compile_cmd.append(("%s%s/%s.c" % (self.platform.root_directory(),self.platform.platform_directory(),b)))
+                    compile_cmd.append(("%s/%s.c" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),b)))
                     temp.append(b)
           
         compile_cmd.append("%s%s/gauss.c"%(self.platform.root_directory(),self.platform.platform_directory()))
         for d in self.derivative:
             if(not(d.name in temp)):
-                compile_cmd.append(("%s%s/%s.c" % (self.platform.root_directory(),self.platform.platform_directory(),d.name)))
+                compile_cmd.append(("%s/%s.c" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name)))
                 temp.append(d.name)
                 
             base_list = []
@@ -525,7 +525,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
                 
             for b in base_list:
                 if(b not in temp):
-                    compile_cmd.append(("%s%s/%s.c" % (self.platform.root_directory(),self.platform.platform_directory(),b)))
+                    compile_cmd.append(("%s/%s.c" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),b)))
                     temp.append(b) 
         
         #Including all of the non system libraries used
@@ -561,7 +561,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
         #Output flag
         compile_cmd.append("-o")
-        compile_cmd.append("%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name))
+        compile_cmd.append("%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
 	
 	compile_string = ""
         for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
@@ -592,16 +592,15 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 
     self.solver_metadata["rng_seed"] = seed
 
-    run_cmd = ["%s%s/%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name)]
+    run_cmd = ["%s%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
     for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k])) 
     
     for index,u_a in enumerate(self.underlying_attributes):
         for a in u_a: run_cmd.append(str(self.underlying[index].__dict__[a])) #mirrors generation code to preserve order of variable loading
     
     for index,o_a in enumerate(self.derivative_attributes): 
-        for a in o_a:
-	  run_cmd.append(str(self.derivative[index].__dict__[a]))
-        
+        for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
+
     run_string = ""
     for r_c in run_cmd: run_string = "%s %s"%(run_string,r_c)
     if(debug): print run_string
@@ -629,11 +628,13 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     subprocess.call(["rm","%s.c"%self.output_file_name])
     subprocess.call(["rm","%s"%self.output_file_name])
   
-  def generate_source(self,code_string,name_extension=".c",verbose=False):
+  def generate_source(self,code_string,name_extension=".c",verbose=False,debug=False):
     #os.chdir("..")
     #os.chdir(self.platform.platform_directory())
     
-    output_file = open("%s%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name,name_extension),"w")
+    temp_filename = "%s/%s%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name,name_extension)
+    if(debug): print("Generated %s"%temp_filename)
+    output_file = open(temp_filename,"w")
     tab_count = 0;
     for c_s in code_string:
         if("*" in c_s and "//" in c_s):
