@@ -12,11 +12,11 @@ class Digital_Double_Barrier_Option(Double_Barrier_Option.Double_Barrier_Option)
     
     #class attributes
     
-    def __init__(self,underlying,time_period,call,strike_price,points,barrier,out,second_barrier,down=1.0):
+    def __init__(self,underlying,time_period,call,strike_price,points,barrier,out,down,second_barrier):
         '''
         Constructor
         '''
-        Double_Barrier_Option.Double_Barrier_Option.__init__(self,underlying,time_period,call,strike_price,points,barrier,out,second_barrier,down)
+        Double_Barrier_Option.Double_Barrier_Option.__init__(self,underlying,time_period,call,strike_price,points,barrier,out,down,second_barrier)
         
     def payoff(self,end_price):
         Double_Barrier_Option.Double_Barrier_Option.payoff(self,end_price)

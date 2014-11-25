@@ -19,11 +19,11 @@ typedef struct {
 typedef struct {
 	FP_t strike_price;
 	FP_t time_period;
-	FP_t call;
+	char call;
 } option_attributes;
 
 //time_period, call, strike_price, points
-void option_derivative_init(FP_t t,FP_t c,FP_t k,option_attributes* o_a);
+void option_derivative_init(FP_t t,char c,FP_t k,option_attributes* o_a);
 void option_derivative_path_init(option_variables* o_v,option_attributes* o_a);
 void option_derivative_path(FP_t price,FP_t time,option_variables* o_v,option_attributes* o_a);
 void option_derivative_payoff(FP_t end_price,option_variables* o_v,option_attributes* o_a);

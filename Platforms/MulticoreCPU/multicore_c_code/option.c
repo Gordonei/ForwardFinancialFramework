@@ -6,7 +6,7 @@
  */
 #include "option.h"
 
-void option_derivative_init(FP_t t,FP_t c,FP_t k,option_attributes* o_a){
+void option_derivative_init(FP_t t,char c,FP_t k,option_attributes* o_a){
 	o_a->strike_price = k;
 	o_a->call=c;
 	o_a->time_period=t;

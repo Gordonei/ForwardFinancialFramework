@@ -14,7 +14,7 @@ class Double_Barrier_Option(Barrier_Option.Barrier_Option):
     second_barrier = 0.0
     down = 1.0 #By default this is now true, as the double barrier is between two points. By enforced convention, the first is the lower barrier
     
-    def __init__(self,underlying,time_period,call,strike_price,points,barrier,out,second_barrier,down=1.0):
+    def __init__(self,underlying,time_period,call,strike_price,points,barrier,out,down,second_barrier):
         '''
         Constructor
         '''
