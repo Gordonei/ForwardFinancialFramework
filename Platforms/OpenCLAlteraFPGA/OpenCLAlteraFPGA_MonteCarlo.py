@@ -16,12 +16,13 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
   simulation = False
   simd_width = 1
     
-  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=1,random_number_generator="taus_boxmuller",floating_point_format="float",instances=None,pipelining=None,cslow=True,simulation=False,default_points=4096,optimisation=False,instance_paths=None):
+  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=1,random_number_generator="taus_boxmuller",floating_point_format="float",instances=None,pipelining=None,cslow=True,simulation=False,default_points=4096,optimisation=False,instance_paths=None,simd_width=1):
     self.simulation = simulation
     self.optimisation = optimisation #use the built-in optimisation flag
     self.pipelining = pipelining
     self.cslow = cslow
     self.instances = instances
+    self.simd_width = 1
 
     OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings=reduce_underlyings,kernel_path_max=kernel_path_max,random_number_generator=random_number_generator,floating_point_format=floating_point_format,default_points=default_points)
     
@@ -32,7 +33,10 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     if("CL/opencl.h" not in self.utility_libraries): self.utility_libraries.append("CL/opencl.h")
   
   def set_default_parameters(self):
-    self.pipelining = 10
+    if ("heston" in self.underlying[0].name): self.pipelining = 10
+    else: self.pipelining = 20
+    
+    self.simd_width = 2
     self.instances = 1
     
     """if not(self.pipelining):
@@ -48,7 +52,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
   def generate_name(self):
       self.set_default_parameters()
       MonteCarlo.MonteCarlo.generate_name(self)  
-      self.output_file_name = ("%s_cslow_%s_pipe_%d_insts_%d"%(self.output_file_name,str(self.cslow),self.pipelining,self.instances))
+      self.output_file_name = ("%s_cslow_%s_pipe_%d_insts_%d_simd_%d"%(self.output_file_name,str(self.cslow),self.pipelining,self.instances,self.simd_width))
       if(self.simulation): self.output_file_name = ("%s_sim"%(self.output_file_name))
   
   def generate_activity_thread(self):
@@ -245,7 +249,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
         for index,u in enumerate(self.underlying):
           if("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
                 output_list.remove("ctrng_seed(20,local_seed + %d * (i*%d+local_chunk_size*local_chunk_number),&(temp_u_v_%d.rng_state));"%(index+1,self.kernel_loops,index))
-		output_list.insert(lindex,"ctrng_seed(1,local_seed + %d * (i*PATHS*PATH_POINTS+p*PATH_POINTS+local_chunk_size*local_chunk_number*PATHS*PATH_POINTS),&(temp_u_v_%d.rng_state));"%(index+1,index))
+		output_list.insert(lindex,"ctrng_seed(1,local_seed + %d * (i*PATHS*PATH_POINTS+k*PATH_POINTS+local_chunk_size*local_chunk_number*PATHS*PATH_POINTS),&(temp_u_v_%d.rng_state));"%(index+1,index))
           
           #if("heston_underlying" in u.name or "black_scholes_underlying" in u.name): output_list.insert(lindex,"ctrng_seed(20,local_seed + %d * (k*PATH_POINTS+local_chunk_size*local_chunk_number*PATHS*PATH_POINTS),&(temp_u_v_%d.rng_state));"%(index+1,index))
         #output_list.insert(lindex,"for(int k=0;k<PATHS;++k){")
@@ -413,8 +417,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
     if(debug): print compile_string
     
-    #result = [subprocess.check_output(compile_cmd)]
-    result = []
+    result = [subprocess.check_output(compile_cmd)]
+    #result = []
 
     #subprocess.call(["rm","-rf","%s"%self.output_file_name])
     
