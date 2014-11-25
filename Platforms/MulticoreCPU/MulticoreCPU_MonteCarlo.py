@@ -157,17 +157,20 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         output_list.append("%s = atoi(argv[%d]);"%(k,temp))
         temp += 1
     
+    conversion_function = "strtod"
+    if(self.floating_point_format=="float"): conversion_function = "strtof"
+    
     output_list.append("//***Underlying Attributes***")
     for i,u_a in enumerate(self.underlying_attributes):
         for a in u_a:
-            output_list.append("%s_%d_%s = strtod(argv[%d],NULL);"%(self.underlying[i].name,i,a,temp))
+            output_list.append("%s_%d_%s = %s(argv[%d],NULL);"%(self.underlying[i].name,i,a,conversion_function,temp))
             temp += 1
         i += 1
     
     output_list.append("//***Derivative Attributes***")
     for i,o_a in enumerate(self.derivative_attributes):
         for a in o_a:
-            output_list.append("%s_%d_%s = strtod(argv[%d],NULL);"%(self.derivative[i].name,i,a,temp))
+            output_list.append("%s_%d_%s = %s(argv[%d],NULL);"%(self.derivative[i].name,i,a,conversion_function,temp))
             temp += 1
         i += 1
     
