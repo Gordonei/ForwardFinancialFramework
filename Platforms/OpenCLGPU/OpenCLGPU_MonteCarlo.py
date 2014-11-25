@@ -138,9 +138,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     ###Creating the OpenCL Program from the precompiled binary
     if('Darwin' not in plat.system()):
       output_list.append("//***Creating Program***")
-      output_list.append("FILE *fp=fopen(\"%s.clbin\", \"r\");"%self.output_file_name)
-      output_list.append("char *binary_buf = (char *)malloc(0x40000000);")
-      output_list.append("size_t binary_size = fread(binary_buf, 1, 0x40000000, fp);")
+      output_list.append("FILE *fp=fopen(\"%s/%s.clbin\", \"r\");"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
+      output_list.append("char *binary_buf = (char *)malloc(0x55000000);")
+      output_list.append("size_t binary_size = fread(binary_buf, 1, 0x55000000, fp);")
       output_list.append("fclose(fp);")
       output_list.append("cl_program program = clCreateProgramWithBinary(context, 1, &device, (const size_t *)&binary_size,(const unsigned char **)&binary_buf, NULL, &ret);")
       output_list.append("assert(ret==CL_SUCCESS);")
