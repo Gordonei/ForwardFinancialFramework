@@ -29,7 +29,7 @@ typedef struct {
         barrier_option_attributes barrier_option;
 } double_barrier_option_attributes;
 
-void double_barrier_option_derivative_init(FP_t t,FP_t c,FP_t k,FP_t p,FP_t b,FP_t o,FP_t d,FP_t s_b,double_barrier_option_attributes* o_a);
+void double_barrier_option_derivative_init(FP_t t,char c,FP_t k,FP_t p,FP_t b,char o,char d,FP_t s_b,double_barrier_option_attributes* o_a);
 void double_barrier_option_derivative_path_init(double_barrier_option_variables* o_v,double_barrier_option_attributes* o_a);
 void double_barrier_option_derivative_path(FP_t price,FP_t time,double_barrier_option_variables* o_v,double_barrier_option_attributes* o_a);
 void double_barrier_option_derivative_payoff(FP_t end_price,double_barrier_option_variables* o_v,double_barrier_option_attributes* o_a);

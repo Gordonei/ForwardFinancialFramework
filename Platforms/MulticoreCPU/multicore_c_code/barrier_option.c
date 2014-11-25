@@ -6,7 +6,7 @@
  */
 #include "barrier_option.h"
 
-void barrier_option_derivative_init(FP_t t,FP_t c,FP_t k,FP_t p,FP_t b,FP_t o,FP_t d,barrier_option_attributes* o_a){
+void barrier_option_derivative_init(FP_t t,char c,FP_t k,FP_t p,FP_t b,char o,char d,barrier_option_attributes* o_a){
 	//Calling European Behaviour
         european_option_derivative_init(t,c,k,&(o_a->european));
         o_a->strike_price = (o_a->european).strike_price;
@@ -36,7 +36,7 @@ void barrier_option_derivative_path(FP_t price,FP_t time,barrier_option_variable
         
         //Barrier Specific Behaviour
         //if((self.out and (price<=self.barrier)) or (not(self.out) and (price>=self.barrier))): self.barrier_event = True
-	o_v->barrier_event = (((o_a->down) && (price<=o_a->barrier))||((o_a->down==0.0) && (price>=o_a->barrier)))?
+	o_v->barrier_event = (((o_a->down==1.0) && (price<=o_a->barrier))||((o_a->down==0.0) && (price>=o_a->barrier)))?
 			      1.0: 
 			      o_v->barrier_event;
         

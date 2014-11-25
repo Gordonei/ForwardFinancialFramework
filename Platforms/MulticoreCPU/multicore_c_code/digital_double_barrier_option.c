@@ -6,7 +6,7 @@
  */
 #include "digital_double_barrier_option.h"
 
-void digital_double_barrier_option_derivative_init(FP_t t,FP_t c,FP_t k,FP_t p,FP_t b,FP_t o,FP_t d,FP_t s_b,digital_double_barrier_option_attributes* o_a){
+void digital_double_barrier_option_derivative_init(FP_t t,char c,FP_t k,FP_t p,FP_t b,char o,char d,FP_t s_b,digital_double_barrier_option_attributes* o_a){
     //Calling Double Barrier Behaviour
     double_barrier_option_derivative_init(t,c,k,p,b,o,1.0,s_b,&(o_a->double_barrier_option));
     o_a->strike_price = (o_a->double_barrier_option).strike_price;
