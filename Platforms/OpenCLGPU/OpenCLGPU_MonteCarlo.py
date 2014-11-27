@@ -136,7 +136,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("cl_device_id cpu_device = cpu_devices[0];")"""
      
     ###Creating the OpenCL Program from the precompiled binary
-    if('Darwin' not in plat.system()):
+    if('darwin' not in plat.system()):
       output_list.append("//***Creating Program***")
       output_list.append("FILE *fp=fopen(\"%s/%s.clbin\", \"r\");"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
       output_list.append("char *binary_buf = (char *)malloc(0x55000000);")
@@ -263,13 +263,13 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**Setting Kernel Arguments**")
     output_list.append("ret = clSetKernelArg(%s_kernel, 0, sizeof(cl_uint), &path_points);"%(self.output_file_name))
     output_list.append("assert(ret==CL_SUCCESS);")
-    output_list.append("uint seed = (cl_uint) (temp_data->thread_rng_seed);")
+    output_list.append("cl_uint seed = (cl_uint) (temp_data->thread_rng_seed);")
     output_list.append("ret = clSetKernelArg(%s_kernel, 1, sizeof(cl_uint), &seed);"%(self.output_file_name))
     output_list.append("assert(ret==CL_SUCCESS);")
     output_list.append("cl_uint chunk_size = chunk_paths*kernel_loops;")
     output_list.append("ret = clSetKernelArg(%s_kernel, 2, sizeof(cl_uint), &chunk_size);"%(self.output_file_name))
     output_list.append("assert(ret==CL_SUCCESS);")
-    output_list.append("uint chunk_number = 0;")
+    output_list.append("cl_uint chunk_number = 0;")
     output_list.append("ret = clSetKernelArg(%s_kernel, 3, sizeof(cl_uint), &chunk_number);"%(self.output_file_name))
     output_list.append("assert(ret==CL_SUCCESS);")
     
@@ -826,37 +826,37 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #os.chdir("..")
     #os.chdir(self.platform.platform_directory())
     
-    
-    opencl_compile_flags = ""
-    path_string = ""
-    if(self.random_number_generator=="mwc64x_boxmuller"):
-      #path_string = ""
-      opencl_compile_flags = "%s -DMWC64X_BOXMULLER"%opencl_compile_flags
-    
-    elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
-      #path_string = ""
-      opencl_compile_flags = "%s -DTAUS_BOXMULLER"%opencl_compile_flags
-    
-    #if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
-    path_string = "%s%s"%(self.platform.root_directory(),self.platform.platform_directory()) #os.getcwd()
-    #else: path_string = "%s/%s"%(os.getcwd(),path_string)
-    
-    opencl_compile_flags = "-DOPENCL_GPU %s "% (opencl_compile_flags)
-    #opencl_compile_flags += "-I%s"%path_string
-    #else: opencl_compile_flags = "-I . %s"% (opencl_compile_flags)
-    self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build([opencl_compile_flags]) #Creating OpenCL program based upon Kernel
-    
-    #preferred_wg_size_multiple = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)
-    #max_wg_size = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.WORK_GROUP_SIZE,self.platform.device)
-    #num_wg = math.floor(max_wg_size/preferred_wg_size_multiple/self.work_groups_per_compute_unit)
-    
-    #self.solver_metadata["local_work_items"] = max([preferred_wg_size_multiple*num_wg,1])
-    #self.set_chunk_paths()
-    
-    binary_kernel = self.program.get_info(pyopencl.program_info.BINARIES)[0] #Getting the binary code for the OpenCL code
-    binary_kernel_file = open("%s.clbin"%self.output_file_name,"w") #Writing the binary code to a file to be read by the Host C Code
-    binary_kernel_file.write(binary_kernel)
-    binary_kernel_file.close()
+    if ("darwin" not in sys.platform):
+      opencl_compile_flags = ""
+      path_string = ""
+      if(self.random_number_generator=="mwc64x_boxmuller"):
+	#path_string = ""
+	opencl_compile_flags = "%s -DMWC64X_BOXMULLER"%opencl_compile_flags
+      
+      elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
+	#path_string = ""
+	opencl_compile_flags = "%s -DTAUS_BOXMULLER"%opencl_compile_flags
+      
+      #if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
+      path_string = "%s%s"%(self.platform.root_directory(),self.platform.platform_directory()) #os.getcwd()
+      #else: path_string = "%s/%s"%(os.getcwd(),path_string)
+      
+      opencl_compile_flags = "-DOPENCL_GPU %s "% (opencl_compile_flags)
+      #opencl_compile_flags += "-I%s"%path_string
+      #else: opencl_compile_flags = "-I . %s"% (opencl_compile_flags)
+      self.program = pyopencl.Program(self.platform.context,self.kernel_code_string).build([opencl_compile_flags]) #Creating OpenCL program based upon Kernel
+      
+      #preferred_wg_size_multiple = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.PREFERRED_WORK_GROUP_SIZE_MULTIPLE,self.platform.device)
+      #max_wg_size = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.WORK_GROUP_SIZE,self.platform.device)
+      #num_wg = math.floor(max_wg_size/preferred_wg_size_multiple/self.work_groups_per_compute_unit)
+      
+      #self.solver_metadata["local_work_items"] = max([preferred_wg_size_multiple*num_wg,1])
+      #self.set_chunk_paths()
+      
+      binary_kernel = self.program.get_info(pyopencl.program_info.BINARIES)[0] #Getting the binary code for the OpenCL code
+      binary_kernel_file = open("%s.clbin"%self.output_file_name,"w") #Writing the binary code to a file to be read by the Host C Code
+      binary_kernel_file.write(binary_kernel)
+      binary_kernel_file.close()
     
     #If using an AMD Platform, Compile OpenCL Kernel Code for seeding using the Host CPU
     """if(self.platform.amd_gpu_flag):
