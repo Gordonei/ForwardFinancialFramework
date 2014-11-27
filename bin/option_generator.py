@@ -72,16 +72,18 @@ def generate_option(seed=1234,underlying_type="underlying",option_type="option",
         second_barrier = numpy.random.randint(barrier_range[0],barrier_range[1])
         barrier = numpy.random.randint(second_barrier_range[0],second_barrier_range[1])
         out = int(numpy.random.randint(0,9)>0)
+	down = 1.0
         
-        option = Double_Barrier_Option.Double_Barrier_Option([underlying],time_period,call,strike_price,points,barrier,out,second_barrier)
+        option = Double_Barrier_Option.Double_Barrier_Option([underlying],time_period,call,strike_price,points,barrier,out,down,second_barrier)
         
     elif(option_type=="digital_double_barrier"):
         points = 4096
         second_barrier = numpy.random.randint(barrier_range[0],barrier_range[1])
         barrier = numpy.random.randint(second_barrier_range[0],second_barrier_range[1])
         out = int(numpy.random.randint(0,9)>0)
+	down = 1.0
         
-        option = Digital_Double_Barrier_Option.Digital_Double_Barrier_Option([underlying],time_period,call,strike_price,points,barrier,out,second_barrier)
+        option = Digital_Double_Barrier_Option.Digital_Double_Barrier_Option([underlying],time_period,call,strike_price,points,barrier,out,down,second_barrier)
     else: 
         option = Option.Option([underlying],time_period,call,strike_price)
         
@@ -90,9 +92,9 @@ def generate_option(seed=1234,underlying_type="underlying",option_type="option",
         
 if __name__=="__main__":
     combination = []
-    for i in range(128): 
+    for i in range(1): 
        option = generate_option(1234+i)
-       print("%s\n"%str(option))
+       print("%d %s\n"%(1234+i,str(option)))
 	
        option_string = "%s %s"%(option.underlying[0].name[:2],option.name[:2])
        if(option_string not in combination): combination.append(option_string)
