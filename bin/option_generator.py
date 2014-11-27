@@ -4,11 +4,11 @@ Created on 21 November 2014
 
 import sys
 import numpy
-sys.path.append("../..")
+#sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Underlying,Heston,Black_Scholes
 from ForwardFinancialFramework.Derivatives import Option,European_Option,Barrier_Option,Double_Barrier_Option,Digital_Double_Barrier_Option,Asian_Option
 
-def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100),volatility_range=(0.0384,0.15),volatility_volatility_range=(0.425,1.0),rho_range=(-0.4644,0),kappa_range=(0.5,2.75),theta_range=(0.035,0.35),strike_price_range=(90,120),time_period_range=(1.0,5.0),barrier_range=(110,150),second_barrier_range=(66,90)):
+def generate_option(seed=1234,underlying_type="underlying",option_type="option",rfir_range=(0.0,0.1),current_price_range=(100,100),volatility_range=(0.0384,0.15),volatility_volatility_range=(0.425,1.0),rho_range=(-0.4644,0),kappa_range=(0.5,2.75),theta_range=(0.035,0.35),strike_price_range=(90,120),time_period_range=(1.0,5.0),barrier_range=(110,150),second_barrier_range=(66,90)):
     
     numpy.random.seed(int(seed))
     
@@ -19,9 +19,8 @@ def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100)
     #Underlying Type
     underlying_type_code = numpy.random.randint(0,13)
     
-    underlying_type = "underlying"
-    if (underlying_type_code == 0): underlying_type = "black_scholes"
-    else: underlying_type = "heston"
+    if(underlying_type_code == 0 and underlying_type=="underlying"): underlying_type = "black_scholes"
+    elif(underlying_type=="underlying"): underlying_type = "heston"
     
     if(underlying_type=="black_scholes"):
         volatility = numpy.random.random()*abs(volatility_range[1]-volatility_range[0]) + volatility_range[0]
@@ -46,12 +45,12 @@ def generate_option(seed=1234,rfir_range=(0.0,0.1),current_price_range=(100,100)
     #Option Type
     option_type_code = numpy.random.randint(0,13)
     
-    if(option_type_code == 0): option_type = "european"
-    elif(0 < option_type_code < 4): option_type = "barrier"
-    elif(3 < option_type_code < 11): option_type = "double_barrier"
-    elif(option_type_code == 11): option_type = "digital_double_barrier"
-    elif(option_type_code == 12): option_type = "asian"
-    else: option_type = "option"
+    if(option_type=="option"):
+        if(option_type_code == 0): option_type = "european"
+        elif(0 < option_type_code < 4): option_type = "barrier"
+        elif(3 < option_type_code < 11): option_type = "double_barrier"
+        elif(option_type_code == 11): option_type = "digital_double_barrier"
+        elif(option_type_code == 12): option_type = "asian"
     
     if(option_type=="european"):
         

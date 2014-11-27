@@ -854,7 +854,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #self.set_chunk_paths()
       
       binary_kernel = self.program.get_info(pyopencl.program_info.BINARIES)[0] #Getting the binary code for the OpenCL code
-      binary_kernel_file = open("%s.clbin"%self.output_file_name,"w") #Writing the binary code to a file to be read by the Host C Code
+      binary_kernel_file = open("%s/%s.clbin"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name),"w") #Writing the binary code to a file to be read by the Host C Code
       binary_kernel_file.write(binary_kernel)
       binary_kernel_file.close()
     
