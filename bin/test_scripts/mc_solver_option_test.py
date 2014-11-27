@@ -74,7 +74,7 @@ if(__name__ == '__main__' and len(sys.argv)>3):
   
   if(len(compile_results)>0):
     print "compiler output:"
-    for r in results[0]: print r
+    for r in compile_results: print r
     
   if(len(execute_results.keys())>3):
     for k in sorted(execute_results.keys()): 
