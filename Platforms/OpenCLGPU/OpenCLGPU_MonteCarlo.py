@@ -3,7 +3,7 @@ Created on 23 February 2013
 
 '''
 import os,time,subprocess,sys,time,math,pyopencl
-import platform as plat
+#import platform as plat
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo
 from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
@@ -16,7 +16,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #if(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): self.platform.amd_gpu_flag = False
     if(("Advanced Micro Devices" in self.platform.platform_name or "AMD" in self.platform.platform_name or "Intel" in self.platform.platform_name) and (self.random_number_generator=="mwc64x_boxmuller")): self.random_number_generator = "taus_boxmuller"
     
-    if("Darwin" in plat.system()):
+    if("darwin" in sys.platform):
       self.utility_libraries.extend(["OpenCL/opencl.h"])
       #mwc64x_path_string = "%s/../%s/%s"%(os.getcwd(),self.platform.platform_directory(),mwc64x_path_string)
     else:
@@ -136,7 +136,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("cl_device_id cpu_device = cpu_devices[0];")"""
      
     ###Creating the OpenCL Program from the precompiled binary
-    if('darwin' not in plat.system()):
+    if('darwin' not in sys.platform):
       output_list.append("//***Creating Program***")
       output_list.append("FILE *fp=fopen(\"%s/%s.clbin\", \"r\");"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
       output_list.append("char *binary_buf = (char *)malloc(0x55000000);")
@@ -162,29 +162,40 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("FILE *fp;")
       output_list.append("char *source_str;")
       output_list.append("size_t source_size;")
-      output_list.append("fp=fopen(\"%s.cl\",\"r\");"%self.output_file_name)
+      output_list.append("fp=fopen(\"%s/%s.cl\",\"r\");"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
       output_list.append("source_str = (char *)malloc(0x100000);")
       output_list.append("source_size = fread(source_str, 1, 0x100000, fp);")
       output_list.append("fclose(fp);")
       output_list.append("cl_program program = clCreateProgramWithSource(context, 1, (const char **)&source_str, (const size_t *)&source_size, &ret);")
       output_list.append("assert(ret==CL_SUCCESS);")
       
-      path_string = "."
-      if(self.random_number_generator=="mwc64x_boxmuller"): path_string = "mwc64x/cl"
+      #if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
+      #else: path_string = "%s/%s"%(os.getcwd(),path_string)
+      
+      opencl_compile_flags = "-DOPENCL_GPU"
+      
+      if(self.random_number_generator=="mwc64x_boxmuller"):
+	opencl_compile_flags += " -DMWC64X_BOXMULLER"
+	
+      elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
+	opencl_compile_flags += " -DTAUS_BOXMULLER"
+      
       #elif(self.random_number_generator=="taus_boxmuller"): path_string = ""
-      if("darwin" in sys.platform): path_string = "%s/%s"%(os.getcwd(),path_string)
-      output_list.append("const char* buildOption =\"-I . -I %s\";"%path_string) #-x clc++
+      #path_string = "%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),path_string)
+      #output_list.append("const char* buildOption =\"-I %s\";"%path_string) #-x clc++
+      output_list.append("const char* buildOption =\"%s\";"%opencl_compile_flags) #-x clc++
       output_list.append("ret = clBuildProgram(program, 1, &device, buildOption, NULL, NULL);")
+      
+      ###Outputing the Build Log
+      output_list.append("size_t ret_val_size;")
+      output_list.append("clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &ret_val_size);")   
+      output_list.append("char build_log[ret_val_size+1];")
+      output_list.append("clGetProgramBuildInfo(program,device,CL_PROGRAM_BUILD_LOG,sizeof(build_log),build_log,NULL);")
+      output_list.append("build_log[ret_val_size] = '\0';")
+      output_list.append("printf(\"OpenCL Build Log: %s\\n\",build_log);")
+      
       output_list.append("assert(ret==CL_SUCCESS);")
       #output_list.append("clBuildProgram(program, 1, &device, NULL, NULL, NULL);")"""
-
-   ###Outputing the Build Log
-    """output_list.append("size_t ret_val_size;")
-    output_list.append("clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &ret_val_size);")   
-    output_list.append("char build_log[ret_val_size+1];")
-    output_list.append("clGetProgramBuildInfo(program,device,CL_PROGRAM_BUILD_LOG,sizeof(build_log),build_log,NULL);")
-    output_list.append("build_log[ret_val_size] = '\0';")
-    output_list.append("printf(\"OpenCL Build Log: %s\\n\",build_log);")"""
 
     ###Creating the OpenCL Kernel
     output_list.append("//***Creating Kernel Object***")
@@ -552,7 +563,6 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     path_string = ""
     if(self.random_number_generator=="mwc64x_boxmuller"): path_string = "%s/mwc64x/cl/mwc64x.cl"%os.path.join(self.platform.root_directory(),self.platform.platform_directory())
     elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): path_string = "%s/gauss.c"%os.path.join(self.platform.root_directory(),self.platform.platform_directory())
-    #if('darwin' in sys.platform): path_string = "%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),path_string)
     output_list.append("#include \"%s\""%path_string)
     
     #Checking that the source code for the derivative and underlying required is avaliable
@@ -685,7 +695,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	if("points" not in self.derivative_attributes[index]): output_list.append("temp_o_v_%d.delta_time = temp_o_a_%d.time_period/local_path_points;"%(index,index))
 	
     output_list.append("//**Running the path**")
-    output_list.append("for(int j=0;j<local_path_points;++j){")
+    output_list.append("for(uint j=0;j<local_path_points;++j){")
     
     temp_underlying = self.underlying[:]
     for index,d in enumerate(self.derivative):
