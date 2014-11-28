@@ -27,7 +27,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings=reduce_underlyings,kernel_path_max=kernel_path_max,random_number_generator=random_number_generator,floating_point_format=floating_point_format,default_points=default_points)
     
     self.set_instance_paths(instance_paths)
-    self.solver_metadata["local_work_items"] = self.instances
+    self.solver_metadata["local_work_items"] = self.instances #this is required by the OpenCL flow
     
     if("CL/cl.hpp" in self.utility_libraries): self.utility_libraries.remove("CL/cl.hpp")
     if("CL/opencl.h" not in self.utility_libraries): self.utility_libraries.append("CL/opencl.h")
@@ -439,8 +439,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
   def set_instance_paths(self,instance_paths):
     if(instance_paths): self.instance_paths = instance_paths
     else: 
-      self.instance_paths = self.paths/self.kernel_loops #ideally we want to minimse the number of kernel calls
-      if(self.instance_paths%self.instances): self.instance_paths = self.instances*(self.instance_paths/self.instances + 1) #Making sure the instance paths are divisible by the SIMD work units
+      self.instance_paths = self.paths/self.kernel_loops/10 #ideally we want to minimse the number of kernel calls but still allow the reduce behaviour to be hidden
+      if(self.instance_paths%self.simd_width): self.instance_paths = self.instances*(self.instance_paths/self.instances + 1) #Making sure the instance paths are divisible by the SIMD work units
     
     self.solver_metadata["instance_paths"] = self.instance_paths
     
