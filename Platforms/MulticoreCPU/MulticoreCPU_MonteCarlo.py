@@ -43,6 +43,14 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         
         #Actually writing to the file
         self.generate_source(code_string,name_extension,verbose,debug)
+	
+	#If remote connection
+	if(self.platform.remote):
+	  copy_command = ["scp"]
+	  copy_command +=  ["%s/%s%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name,name_extension)]
+	  copy_command += ["%s:/home/gordon/workspace/ForwardFinancialFramework/%s"%(self.platform.ssh_alias,self.platform.platform_directory())]
+	  subprocess.check_output(copy_command)
+	  if(debug): print("Copied %s to %s"%(copy_command[1],copy_command[-1]))
         
     #os.chdir(self.platform.root_directory())
     #os.chdir("bin")
@@ -65,13 +73,15 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     underlying_libraries = []
     for u in self.underlying:
-      if(not(os.path.exists("%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),u.name))) or not(os.path.exists("%s/%s.h"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),u.name)))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
-      else: underlying_libraries.append("%s.h"%u.name)
+      #if(not(os.path.exists("%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),u.name))) or not(os.path.exists("%s/%s.h"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),u.name)))): raise IOError, ("missing the source code for the underlying - %s.c or %s.h" % (u.name,u.name))
+      #else:
+      underlying_libraries.append("%s.h"%u.name)
         
     derivative_libraries = []    
     for d in self.derivative:
-      if(not(os.path.exists("%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name))) or not(os.path.exists("%s/%s.h"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name)))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
-      else: derivative_libraries.append("%s.h"%d.name)
+      #if(not(os.path.exists("%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name))) or not(os.path.exists("%s/%s.h"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name)))): raise IOError, ("missing the source code for the derivative - %s.c or %s.h" %  (d.name,d.name))
+      #else:
+      derivative_libraries.append("%s.h"%d.name)
       
     #os.chdir(self.platform.root_directory())
     #os.chdir("bin")
