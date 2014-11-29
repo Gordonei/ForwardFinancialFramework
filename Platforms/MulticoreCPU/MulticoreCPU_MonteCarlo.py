@@ -107,7 +107,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
           for o in o_a: output_list.append("static FP_t %s_%d_%s;"%(self.derivative[index].name,index,o)) #execution code must mirror this ordering
           index += 1
           
-      for k in self.solver_metadata.keys(): output_list.append("static int %s;"%k) 
+      for k in sorted(self.solver_metadata): output_list.append("static int %s;"%k) 
           
       output_list.append("int thread_paths,i,j;")
       
@@ -596,7 +596,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     self.solver_metadata["rng_seed"] = seed
 
     run_cmd = ["%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
-    for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k])) 
+    for k in sorted(self.solver_metadata): run_cmd.append(str(self.solver_metadata[k])) 
     
     for index,u_a in enumerate(self.underlying_attributes):
         for a in u_a: run_cmd.append(str(self.underlying[index].__dict__[a])) #mirrors generation code to preserve order of variable loading
