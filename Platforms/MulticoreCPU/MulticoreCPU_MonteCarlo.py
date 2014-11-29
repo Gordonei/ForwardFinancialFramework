@@ -163,7 +163,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     output_list.append("//**Unpacking Command Line Variables**")
     temp = 1
     output_list.append("//***Solver Metadata***")
-    for k in self.solver_metadata.keys(): 
+    for k in sorted(self.solver_metadata): 
         output_list.append("%s = atoi(argv[%d]);"%(k,temp))
         temp += 1
     
@@ -607,6 +607,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 
     run_cmd = ["%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
     for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k])) 
+    #Solver metadata
+    for k in sorted(self.solver_metadata): run_cmd.append(str(self.solver_metadata[k])) 
     
     for index,u_a in enumerate(self.underlying_attributes):
         for a in u_a: run_cmd.append(str(self.underlying[index].__dict__[a])) #mirrors generation code to preserve order of variable loading
