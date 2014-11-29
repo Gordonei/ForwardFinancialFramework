@@ -1,7 +1,7 @@
 '''
 Created on 23 November 2014
 '''
-import os,sys,socket
+import os,sys,socket,subprocess
 
 class Platform:
     name = "platform"
@@ -16,11 +16,26 @@ class Platform:
         self.ssh_alias = ssh_alias
         self.remote = remote
         
+        if(self.remote and not(self.ssh_alias)): raise ValueError("ssh alias needs to be set")
+        
         #in case the environmental variable isn't set
-        if not(self.root_directory_string):
+        if not(self.root_directory_string) and not(self.remote):
             try: self.root_directory_string = os.environ["F3_ROOT"]
             except KeyError:
                 print("F3_ROOT environmental variable not set")
+                sys.exit(1)
+                
+        #if the environmental variable isn't set, and its on a remote server
+        elif not(self.root_directory_string):
+            try:
+                ssh_cmd = ["ssh","%s"%self.ssh_alias,"source",".profile;","printenv","|","grep","F3_ROOT"]
+                output = subprocess.check_output(ssh_cmd)
+                if not(output): raise KeyError("F3_ROOT environmental variable not set on %s"%self.ssh_alias)
+                output= output.split("=")[1].strip("\r\n")
+        
+                self.root_directory_string = output
+            except KeyError:
+                print("F3_ROOT environmental variable not set on %s"%self.ssh_alias)
                 sys.exit(1)
         
     def platform_directory(self):

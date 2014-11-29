@@ -605,8 +605,13 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 
     self.solver_metadata["rng_seed"] = seed
 
-    run_cmd = ["%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
-    for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k])) 
+    #Remote running
+    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias]
+    else: run_cmd = [""]
+    
+    #Absolute run path
+    run_cmd += ["%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
+    
     #Solver metadata
     for k in sorted(self.solver_metadata): run_cmd.append(str(self.solver_metadata[k])) 
     
