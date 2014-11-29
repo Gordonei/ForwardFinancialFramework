@@ -191,8 +191,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     #output_list.append("FP_t thread_results[threads][%d];"%len(self.derivative))
     output_list.append("struct thread_data temp_data[threads];")
     output_list.append("for(i=0;i<threads;i++){")
-    output_list.append("temp_data[i].thread_result=(double*)malloc(%d*sizeof(FP_t));"%len(self.derivative))
-    output_list.append("temp_data[i].thread_result_sqrd=(double*)malloc(%d*sizeof(FP_t));"%len(self.derivative))
+    output_list.append("temp_data[i].thread_result=(FP_t*)malloc(%d*sizeof(FP_t));"%len(self.derivative))
+    output_list.append("temp_data[i].thread_result_sqrd=(FP_t*)malloc(%d*sizeof(FP_t));"%len(self.derivative))
     output_list.append("}")
     
     output_list.append("pthread_attr_t attr;")
