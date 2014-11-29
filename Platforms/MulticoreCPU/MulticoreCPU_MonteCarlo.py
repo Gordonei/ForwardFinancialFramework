@@ -114,8 +114,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       output_list.append("struct thread_data{")
       output_list.append("int thread_paths;")
       output_list.append("unsigned int thread_rng_seed;")
-      output_list.append("double *thread_result;")
-      output_list.append("double *thread_result_sqrd;")
+      output_list.append("long double *thread_result;")
+      output_list.append("long double *thread_result_sqrd;")
       output_list.append("};")
       
       #Performance Monitoring Variables
@@ -191,8 +191,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     #output_list.append("FP_t thread_results[threads][%d];"%len(self.derivative))
     output_list.append("struct thread_data temp_data[threads];")
     output_list.append("for(i=0;i<threads;i++){")
-    output_list.append("temp_data[i].thread_result=(FP_t*)malloc(%d*sizeof(FP_t));"%len(self.derivative))
-    output_list.append("temp_data[i].thread_result_sqrd=(FP_t*)malloc(%d*sizeof(FP_t));"%len(self.derivative))
+    output_list.append("temp_data[i].thread_result=(long double*)malloc(%d*sizeof(long double));"%len(self.derivative))
+    output_list.append("temp_data[i].thread_result_sqrd=(long double*)malloc(%d*sizeof(long double));"%len(self.derivative))
     output_list.append("}")
     
     output_list.append("pthread_attr_t attr;")
@@ -345,28 +345,27 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     ##Thread calculation loop variables
     output_list.append("//**Thread Calculation Loop Variables**")
     
-    for r in range(len(self.derivative)):
-        output_list.append("FP_t temp_total_%d=0;"%r)
-    
-    temp="FP_t dummy_2"
+    temp="FP_t "
     for d in self.derivative:
         index = self.derivative.index(d)
         for u in d.underlying:
             u_index = self.underlying.index(u)
-            temp=("%s,price_%d_%d,next_time_%d_%d"%(temp,index,u_index,index,u_index))
+            temp += "price_%d_%d,next_time_%d_%d,"%(index,u_index,index,u_index)
             
     for u in self.underlying:
         u_index = self.underlying.index(u)
-        temp=("%s,very_next_time_%d"%(temp,u_index))
+        temp += "very_next_time_%d,"%(u_index)
             
-    temp = "%s;"%temp
+    temp = temp[:-1]
+    temp += ";"
     output_list.append(temp)
     
     output_list.append("int l,k,done;")
     
     for d in self.derivative:
       index = self.derivative.index(d)
-      output_list.append("FP_t temp_total_sqrd_%d=0;"%(index))
+      output_list.append("long double temp_total_%d=0;"%index)
+      output_list.append("long double temp_total_sqrd_%d=0;"%index)
       #if(index<(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d,"%(output_list[-1],index))
       #elif(index==(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d;"%(output_list[-1],index))
       
