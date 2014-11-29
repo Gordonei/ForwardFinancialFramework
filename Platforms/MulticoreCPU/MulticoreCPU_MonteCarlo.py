@@ -607,7 +607,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 
     #Remote running
     if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias]
-    else: run_cmd = [""]
+    else: run_cmd = []
     
     #Absolute run path
     run_cmd += ["%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
