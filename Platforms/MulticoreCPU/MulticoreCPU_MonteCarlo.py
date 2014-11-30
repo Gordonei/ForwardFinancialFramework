@@ -609,7 +609,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     else: run_cmd = []
     
     #Absolute run path
-    run_cmd += ["%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
+    run_cmd += ["source","/etc/profile;","%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
     
     #Solver metadata
     for k in sorted(self.solver_metadata): run_cmd+= [str(self.solver_metadata[k])]
