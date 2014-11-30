@@ -25,11 +25,13 @@ def run_test_solver(platform_name,cmd_option):
  
   if(platform_name=="OpenCL_GPU"):
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
-    platform = OpenCLGPU.OpenCLGPU()
+    #
+    platform = OpenCLGPU.OpenCLGPU(ssh_alias="ee-snowball1-external",remote=True)
     mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform)
     
   elif(platform_name=="CPU"):
     from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
+    #ssh_alias="ee-gi11-external",remote=True
     platform = MulticoreCPU.MulticoreCPU()
     mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform)
     
