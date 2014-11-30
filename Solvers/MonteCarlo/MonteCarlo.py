@@ -93,7 +93,8 @@ class MonteCarlo:
     
     def generate_name(self):
       self.output_file_name = "mc_solver"  
-      self.output_file_name += "_%s_%s"%(self.platform.name,self.platform.hostname.replace('-','_'))
+      self.output_file_name += "_%s"%(self.platform.name)
+      if(self.platform.hostname): self.output_file_name += "_%s"%self.platform.hostname.replace('-','_')
 
       temp = [] #Generating Filename - based on underlyings,derivatives and platforms used
       for u in self.underlying:
