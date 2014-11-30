@@ -70,12 +70,12 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Generate Maxeler Kernel Code
     kernel_code_string = self.generate_kernel()
     self.generate_source(kernel_code_string,"_Kernel.java")
-    if(debug): print("Generated","%s/%s_Kernel.java"%(self.platform.absolute_platform_directory(),self.output_file_name))    
+    if(debug): print "Generated %s/%s_Kernel.java"%(self.platform.absolute_platform_directory(),self.output_file_name)    
 
     #Generate Maxeler HW Builder Code
     hw_builder_code_string = self.generate_hw_builder()
     self.generate_source(hw_builder_code_string,"_HW_Builder.java")
-    if(debug): print("Generated","%s/%s_HW_Builder.java"%(self.platform.absolute_platform_directory(),self.output_file_name))
+    if(debug): print "Generated %s/%s_HW_Builder.java"%(self.platform.absolute_platform_directory(),self.output_file_name)
 
     #Generate Maxeler Makefile
     #self.generate_makefile()
@@ -542,11 +542,11 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       compile_cmd = ["make","-C",self.platform.absolute_platform_directory(),"build-hw","APP=%s"%self.output_file_name]
       
       compile_string = ""
-      for c_c in compile_cmd: compile_string += "%s"%c_c
+      for c_c in compile_cmd: compile_string += " %s"%c_c
       if(debug): print compile_string
       
-      #hw_result = subprocess.check_output(compile_cmd)
-      hw_result = []   
+      hw_result = subprocess.check_output(compile_cmd)
+      #hw_result = []   
 
       #subprocess.check_output(["rm -r ../../scratch/*"]) #cleaning up majority of HDL source code generated for synthesis
       #print hw_result
