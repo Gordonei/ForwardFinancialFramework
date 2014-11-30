@@ -70,12 +70,12 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Generate Maxeler Kernel Code
     kernel_code_string = self.generate_kernel()
     self.generate_source(kernel_code_string,"_Kernel.java")
-    if(self.debug): print("Generated ",kernel_code_string+"_Kernel.java")    
+    if(debug): print("Generated","%s/%s_Kernel.java"%(self.platform.absolute_platform_directory(),self.output_file_name))    
 
     #Generate Maxeler HW Builder Code
     hw_builder_code_string = self.generate_hw_builder()
     self.generate_source(hw_builder_code_string,"_HW_Builder.java")
-    if(self.debug): print("Generated ",hw_builder_code_String,"_HW_Builder.java")
+    if(debug): print("Generated","%s/%s_HW_Builder.java"%(self.platform.absolute_platform_directory(),self.output_file_name))
 
     #Generate Maxeler Makefile
     #self.generate_makefile()
@@ -226,10 +226,10 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       
     #Checking that the source code for the derivative and underlying is present
     for u in self.underlying:
-      if(not(os.path.exists("%s.java"%u.name))): raise IOError, ("missing the source code for the underlying - %s.java" % (u.name))
+      if(not(os.path.exists("%s/%s.java"%(self.platform.absolute_platform_directory(),u.name)))): raise IOError, ("missing the source code for the underlying - %s.java" % (u.name))
       #if(not(os.path.exists("%s_parameters.java"%u.name))): raise IOError, ("missing the source code for the underlying parameter set - %s_parameters.java" % (u.name))
     for d in self.derivative:
-      if(not(os.path.exists("%s.java"%d.name))): raise IOError, ("missing the source code for the derivative - %s.java" %  (d.name))
+      if(not(os.path.exists("%s/%s.java"%(self.platform.absolute_platform_directory(),d.name)))): raise IOError, ("missing the source code for the derivative - %s.java" %  (d.name))
       #if(not(os.path.exists("%s_parameters.java"%d.name))): raise IOError, ("missing the source code for the derivative parameter set - %s_parameters.java" %  (d.name))
     
     #os.chdir(self.platform.root_directory())
@@ -668,7 +668,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     """
     
     run_cmd = ["%s/%sRun"%(self.platform.absolute_platform_directory(),self.output_file_name)]
-    for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k]))
+    for k in sorted(self.solver_metadata): run_cmd += [str(self.solver_metadata[k])]
     
     for index,u_a in enumerate(self.underlying_attributes):
         for a in u_a: run_cmd.append(str(self.underlying[index].__dict__[a])) #mirrors generation code to preserve order of variable loading
