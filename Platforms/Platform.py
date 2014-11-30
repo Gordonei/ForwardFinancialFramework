@@ -10,11 +10,12 @@ class Platform:
     ssh_alias = ""
     remote = False
     
-    def __init__(self,platform_directory_string=None,root_directory_string=None,ssh_alias="",remote=False):
+    def __init__(self,platform_directory_string=None,root_directory_string=None,ssh_alias="",remote=False,hostname=""):
         self.platform_directory_string = platform_directory_string
         self.root_directory_string = root_directory_string
         self.ssh_alias = ssh_alias
         self.remote = remote
+        self.hostname = hostname
         
         if(self.remote and not(self.ssh_alias)): raise ValueError("ssh alias needs to be set")
         
@@ -37,6 +38,17 @@ class Platform:
             except KeyError:
                 print("F3_ROOT environmental variable not set on %s"%self.ssh_alias)
                 sys.exit(1)
+                
+        if(not(self.hostname) and not(self.remote)):
+            self.hostname = os.uname()[1] #System hostname
+            
+        elif(not(self.hostname)):
+            ssh_cmd = ["ssh","%s"%self.ssh_alias,"hostname"]
+            output = subprocess.check_output(ssh_cmd)
+            #if not(output): raise KeyError("F3_ROOT environmental variable not set on %s"%self.ssh_alias)
+            output = output[0]#output.split("=")[1].strip("\r\n")
+        
+            self.hostname = output
         
     def platform_directory(self):
         return self.platform_directory_string

@@ -612,17 +612,16 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     run_cmd += ["%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
     
     #Solver metadata
-    run_cmd = ["%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
-    for k in sorted(self.solver_metadata): run_cmd.append(str(self.solver_metadata[k]))
+    for k in sorted(self.solver_metadata): run_cmd+= [str(self.solver_metadata[k])]
     
     for index,u_a in enumerate(self.underlying_attributes):
-        for a in u_a: run_cmd.append(str(self.underlying[index].__dict__[a])) #mirrors generation code to preserve order of variable loading
+        for a in u_a: run_cmd += [str(self.underlying[index].__dict__[a])] #mirrors generation code to preserve order of variable loading
     
     for index,o_a in enumerate(self.derivative_attributes): 
-        for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
+        for a in o_a: run_cmd += [str(self.derivative[index].__dict__[a])]
 
     run_string = ""
-    for r_c in run_cmd: run_string = "%s %s"%(run_string,r_c)
+    for r_c in run_cmd: run_string += " %s"%r_c
     if(debug): print run_string
     
     start = time.time() #Wall-time is measured by framework, as well as in the generated application to measure overhead in calling code

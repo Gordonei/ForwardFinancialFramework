@@ -66,12 +66,12 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     self.platform = OpenCLGPU.OpenCLGPU()
   
   def generate(self,override=True,verbose=False,debug=False):
-    #Generate C Host Code largely using Multicore C infrastructure
-    MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate(self,".c",override,verbose,debug)
-    
     #Generate OpenCL Kernel Code
     self.kernel_code_list = self.generate_kernel()
     self.generate_source(self.kernel_code_list,".cl")
+    
+    #Generate C Host Code largely using Multicore C infrastructure
+    MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate(self,".c",override,verbose,debug)
     
     #If using an AMD Platform, Generate OpenCL Kernel Code for seeding using the Host CPU
     """if(self.platform.amd_gpu_flag):
