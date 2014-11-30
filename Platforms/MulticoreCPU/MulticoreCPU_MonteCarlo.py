@@ -116,16 +116,16 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       for o_a in self.derivative_attributes:
           for o in o_a: output_list.append("static FP_t %s_%d_%s;"%(self.derivative[index].name,index,o)) #execution code must mirror this ordering
           index += 1
-          
-      for k in self.solver_metadata.keys(): output_list.append("static int %s;"%k) 
+      
+      for k in sorted(self.solver_metadata): output_list.append("static int %s;"%k) 
           
       output_list.append("int thread_paths,i,j;")
       
       output_list.append("struct thread_data{")
       output_list.append("int thread_paths;")
       output_list.append("unsigned int thread_rng_seed;")
-      output_list.append("double *thread_result;")
-      output_list.append("double *thread_result_sqrd;")
+      output_list.append("long double *thread_result;")
+      output_list.append("long double *thread_result_sqrd;")
       output_list.append("};")
       
       #Performance Monitoring Variables
@@ -201,8 +201,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     #output_list.append("FP_t thread_results[threads][%d];"%len(self.derivative))
     output_list.append("struct thread_data temp_data[threads];")
     output_list.append("for(i=0;i<threads;i++){")
-    output_list.append("temp_data[i].thread_result=(double*)malloc(%d*sizeof(FP_t));"%len(self.derivative))
-    output_list.append("temp_data[i].thread_result_sqrd=(double*)malloc(%d*sizeof(FP_t));"%len(self.derivative))
+    output_list.append("temp_data[i].thread_result=(long double*)malloc(%d*sizeof(long double));"%len(self.derivative))
+    output_list.append("temp_data[i].thread_result_sqrd=(long double*)malloc(%d*sizeof(long double));"%len(self.derivative))
     output_list.append("}")
     
     output_list.append("pthread_attr_t attr;")
@@ -355,28 +355,27 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     ##Thread calculation loop variables
     output_list.append("//**Thread Calculation Loop Variables**")
     
-    for r in range(len(self.derivative)):
-        output_list.append("FP_t temp_total_%d=0;"%r)
-    
-    temp="FP_t dummy_2"
+    temp="FP_t "
     for d in self.derivative:
         index = self.derivative.index(d)
         for u in d.underlying:
             u_index = self.underlying.index(u)
-            temp=("%s,price_%d_%d,next_time_%d_%d"%(temp,index,u_index,index,u_index))
+            temp += "price_%d_%d,next_time_%d_%d,"%(index,u_index,index,u_index)
             
     for u in self.underlying:
         u_index = self.underlying.index(u)
-        temp=("%s,very_next_time_%d"%(temp,u_index))
+        temp += "very_next_time_%d,"%(u_index)
             
-    temp = "%s;"%temp
+    temp = temp[:-1]
+    temp += ";"
     output_list.append(temp)
     
     output_list.append("int l,k,done;")
     
     for d in self.derivative:
       index = self.derivative.index(d)
-      output_list.append("FP_t temp_total_sqrd_%d=0;"%(index))
+      output_list.append("long double temp_total_%d=0;"%index)
+      output_list.append("long double temp_total_sqrd_%d=0;"%index)
       #if(index<(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d,"%(output_list[-1],index))
       #elif(index==(len(self.derivative)-1)): output_list[-1] = ("%stemp_value_sqrd_%d;"%(output_list[-1],index))
       
@@ -613,7 +612,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     run_cmd += ["%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
     
     #Solver metadata
-    for k in sorted(self.solver_metadata): run_cmd.append(str(self.solver_metadata[k])) 
+    run_cmd = ["%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
+    for k in sorted(self.solver_metadata): run_cmd.append(str(self.solver_metadata[k]))
     
     for index,u_a in enumerate(self.underlying_attributes):
         for a in u_a: run_cmd.append(str(self.underlying[index].__dict__[a])) #mirrors generation code to preserve order of variable loading
