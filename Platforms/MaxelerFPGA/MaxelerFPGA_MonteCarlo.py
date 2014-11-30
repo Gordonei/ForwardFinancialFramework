@@ -117,8 +117,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #output_list.append("posix_memalign(&values_out,%d,sizeof(float)*%d);"%(values_out*4,self.iterations*values_out*4))
     
     for d in range(len(self.derivative)): 
-      output_list.append("double temp_total_%d=0;"%d)
-      output_list.append("double temp_value_sqrd_%d=0;"%d)
+      output_list.append("long double temp_total_%d=0;"%d)
+      output_list.append("long double temp_value_sqrd_%d=0;"%d)
     
     output_list.append("//**Generating initial random seed**")
     output_list.append("uint32_t initial_seed;") #%%((uint32_t)pow(2,31)-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
@@ -216,8 +216,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
   
   def generate_kernel(self,overide=True):
     #Changing to code generation directory
-    os.chdir("..")
-    os.chdir(self.platform.platform_directory())
+    #os.chdir("..")
+    #os.chdir(self.platform.platform_directory())
       
     #Checking that the source code for the derivative and underlying is present
     for u in self.underlying:
@@ -227,8 +227,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       if(not(os.path.exists("%s.java"%d.name))): raise IOError, ("missing the source code for the derivative - %s.java" %  (d.name))
       #if(not(os.path.exists("%s_parameters.java"%d.name))): raise IOError, ("missing the source code for the derivative parameter set - %s_parameters.java" %  (d.name))
     
-    os.chdir(self.platform.root_directory())
-    os.chdir("bin")
+    #os.chdir(self.platform.root_directory())
+    #os.chdir("bin")
     
     output_list = []
     
@@ -487,8 +487,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return output_list
   
   def generate_makefile(self):
-    os.chdir("..")
-    os.chdir(self.platform.platform_directory())
+    #os.chdir("..")
+    #os.chdir(self.platform.platform_directory())
     
     makefile = open("Makefile","w")
     makefile.write("BASEDIR=../..\n")
@@ -522,6 +522,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     os.chdir("bin")
     
   def compile(self,override=True,cleanup=True,debug=True):
+    """
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -529,13 +530,14 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     except:
       os.chdir("bin")
       return "Maxeler Code directory doesn't exist!"
+    """
     
-    if(override or not os.path.exists("hardware/%s/"%self.output_file_name)):
+    if(override or not os.path.exists("%s/../../hardware/%s/"%(self.platform.absolute_platform_directory(),self.output_file_name))):
       #Hardware Build Process
-      compile_cmd = ["make","build-hw","APP=%s"%self.output_file_name]
+      compile_cmd = ["make","-C",self.platform.absolute_platform_directory(),"build-hw","APP=%s"%self.output_file_name]
       
       compile_string = ""
-      for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
+      for c_c in compile_cmd: compile_string += "%s"%c_c
       if(debug): print compile_string
       
       hw_result = subprocess.check_output(compile_cmd)
@@ -544,19 +546,18 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #print hw_result
       
       #Host Code Compile
-      #compile_cmd = ["FP_t=%s"%self.floating_point_format, "make","app-hw","APP=%s"%self.output_file_name]
-      compile_cmd = ["make","app-hw","APP=%s"%self.output_file_name]
+      compile_cmd = ["make","-C",self.platform.absolute_platform_directory(),"app-hw","APP=%s"%self.output_file_name]
       
       compile_string = ""
-      for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
+      for c_c in compile_cmd: compile_string += " %s"%(c_c)
       if(debug): print compile_string
       
       try: sw_result = subprocess.check_output(compile_cmd)
       except: pass
       #print sw_result
       
-      os.chdir(self.platform.root_directory())
-      os.chdir("bin")
+      #os.chdir(self.platform.root_directory())
+      #os.chdir("bin")
       
       return (hw_result,sw_result)
       
@@ -650,6 +651,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       self.accuracy_model = self.generate_aggregate_accuracy_model()"""
   
   def execute(self,cleanup=False,debug=False):
+    """
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -657,22 +659,19 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     except:
       os.chdir("bin")
       return "Maxeler Code directory doesn't exist!"
+    """
     
-    run_cmd = ["./%sRun"%self.output_file_name]
+    run_cmd = ["%s/%sRun"%(self.platform.absolute_platform_directory(),self.output_file_name)]
     for k in self.solver_metadata.keys(): run_cmd.append(str(self.solver_metadata[k]))
     
-    index = 0
-    for u_a in self.underlying_attributes:
+    for index,u_a in enumerate(self.underlying_attributes):
         for a in u_a: run_cmd.append(str(self.underlying[index].__dict__[a])) #mirrors generation code to preserve order of variable loading
-        index += 1
     
-    index = 0
-    for o_a in self.derivative_attributes: 
+    for index,o_a in enumerate(self.derivative_attributes): 
         for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
-        index +=1
     
     run_string = ""
-    for r_c in run_cmd: run_string = "%s %s"%(run_string,r_c)
+    for r_c in run_cmd: run_string += " %s"%(r_c)
     if(debug): print run_string
     
     start = time.time() #Wall-time is measured by framework, not the generated application to measure overhead in calling code
@@ -682,8 +681,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     results = results.split("\n")[:-1]
     results.append((finish-start)*1000000)
     
-    os.chdir(self.platform.root_directory())
-    os.chdir("bin")
+    #os.chdir(self.platform.root_directory())
+    #os.chdir("bin")
     
     if(cleanup): self.cleanup()
     
