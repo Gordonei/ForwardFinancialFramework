@@ -218,7 +218,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     output_list.remove("for(int k=0;k<%d;++k){"%self.kernel_loops)
     
     #Modifying the inner, path simulation loop
-    lindex = output_list.index("for(int j=0;j<local_path_points;++j){")+1
+    lindex = output_list.index("for(uint j=0;j<local_path_points;++j){")+1
     if(self.cslow):
 	#output_list.insert(lindex,"}")
         #When c-slowing, we need to reload the derivative and underlying state from their arrays. Some variables need to be calculated in this loop
@@ -241,7 +241,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     #else:
         #output_list.insert(lindex,"for(int j=0;j<PATH_POINTS;++j){")
         
-    output_list.remove("for(int j=0;j<local_path_points;++j){")
+    output_list.remove("for(uint j=0;j<local_path_points;++j){")
     
     if(self.cslow):
         #Creating the separate initialisation
@@ -417,8 +417,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
     if(debug): print compile_string
     
-    result = [subprocess.check_output(compile_cmd)]
-    #result = []
+    #result = [subprocess.check_output(compile_cmd)]
+    result = []
 
     #subprocess.call(["rm","-rf","%s"%self.output_file_name])
     
