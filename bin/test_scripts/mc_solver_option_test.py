@@ -67,9 +67,16 @@ if(__name__ == '__main__' and len(sys.argv)>3):
   platform_name = sys.argv[1]
   paths = int(sys.argv[3])
   script_option = sys.argv[2]
-  option_seeds = sys.argv[4:]
-  
-  options = [option_generator.generate_option(int(o_s)) for o_s in option_seeds]
+  option_triples = sys.argv[4:]
+
+  options_tuple = []
+  for o_t in option_triples:
+        triple = o_t.split(' ')
+	options_tuple += [(triple[0],triple[1],int(triple[2]))]
+
+  options_tuple = tuple(options_tuple)
+
+  options = [option_generator.generate_option(underlying_type=o_t[0],option_type=o_t[1],seed=o_t[2]) for o_t in options_tuple]
   compile_results,execute_results = run_option_solver(platform_name,paths,script_option,options,debug=True,threads=0)
   
   if(len(compile_results)>0):
@@ -83,4 +90,4 @@ if(__name__ == '__main__' and len(sys.argv)>3):
     print "Latency: %s uS (%s uS Setup Time + %s uS Activity Time)"%(execute_results["Total time"],execute_results["User time"],execute_results["Kernel time"])
     
 elif(__name__ == '__main__'):
-  print "usage: python mc_solver_test_script [CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA|OpenCL_AlteraFPGA] [Generate|&Compile|&Execute] [Number of Paths] [Option Seed 1] [Option Seed 2] [...] [Option Seed N]"
+  print "usage: python mc_solver_test_script [CPU|OpenCL_GPU|Maxeler_FPGA|Vivado_FPGA|OpenCL_AlteraFPGA] [Generate|&Compile|&Execute] [Number of Paths] [Option Underlying Type 1] [Option Derivative Type 1] [Option Seed 1] [Option Underlying Type 2] [Option Derivative Type 2]  [Option Seed 2] [...] [Option Underlying Type N] [Option Derivative Type M]  [Option Seed N]"
