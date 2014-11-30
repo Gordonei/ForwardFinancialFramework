@@ -55,3 +55,6 @@ class Platform:
   
     def root_directory(self):
         return self.root_directory_string
+    
+    def absolute_platform_directory(self):
+        return os.path.join(self.root_directory_string,self.platform_directory_string)
