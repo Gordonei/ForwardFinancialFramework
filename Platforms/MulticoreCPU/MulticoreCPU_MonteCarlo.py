@@ -606,7 +606,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     self.solver_metadata["rng_seed"] = seed
 
     #Remote running
-    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias,"source","/etc/profile"]
+    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias,"source","/etc/profile;"]
     else: run_cmd = []
     
     #Absolute run path
