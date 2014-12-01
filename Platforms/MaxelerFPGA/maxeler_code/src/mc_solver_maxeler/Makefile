@@ -155,10 +155,10 @@ $(APP)FPGA.o:
 $(basename $(HOSTCODE)).o: $(HOSTCODE)
 	$(CC) $(HOSTCODE) $(CPPFLAGS) $(CFLAGS) -DDESIGN_NAME=$(APP) -c -o $(basename $(HOSTCODE)).o
 	
-$(APP)Run: $(basename $(HOSTCODE)).o $(APP)FPGA.o $(OTHER_OBJECTS)
-	$(CC) $^ $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) -o $(APP)Run
+$(APP): $(basename $(HOSTCODE)).o $(APP)FPGA.o $(OTHER_OBJECTS)
+	$(CC) $^ $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) -o $(APP)
 
-app-hw: $(APP)Run
+app-hw: $(APP)
 	
 run-hw: $(APP)Run
 	./$(APP)Run

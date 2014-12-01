@@ -656,8 +656,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       self.latency_model = self.generate_aggregate_latency_model()
       self.accuracy_model = self.generate_aggregate_accuracy_model()"""
   
-  def execute(self,cleanup=False,debug=False):
-    """
+  #def execute(self,cleanup=False,debug=False):
+  """
     try:
       os.chdir("..")
       os.chdir(self.platform.platform_directory())
@@ -666,18 +666,16 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       os.chdir("bin")
       return "Maxeler Code directory doesn't exist!"
     """
-    #Remote running
-    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias]
-    else: run_cmd = []
-    
-    run_cmd += ["%s/%sRun"%(self.platform.absolute_platform_directory(),self.output_file_name)]
+  
+  """
+    run_cmd = ["%s/%sRun"%(self.platform.absolute_platform_directory(),self.output_file_name)]
     for k in sorted(self.solver_metadata): run_cmd += [str(self.solver_metadata[k])]
     
     for index,u_a in enumerate(self.underlying_attributes):
-        for a in u_a: run_cmd += [str(self.underlying[index].__dict__[a])] #mirrors generation code to preserve order of variable loading
+        for a in u_a: run_cmd.append(str(self.underlying[index].__dict__[a])) #mirrors generation code to preserve order of variable loading
     
     for index,o_a in enumerate(self.derivative_attributes): 
-        for a in o_a: run_cmd += [str(self.derivative[index].__dict__[a])]
+        for a in o_a: run_cmd.append(str(self.derivative[index].__dict__[a]))
     
     run_string = ""
     for r_c in run_cmd: run_string += " %s"%(r_c)
@@ -696,6 +694,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     if(cleanup): self.cleanup()
     
     return results
+    """
   
   def trial_run(self,paths,steps,redudancy=10,paths_start=0,stepping="linear"):
       accuracy = []
