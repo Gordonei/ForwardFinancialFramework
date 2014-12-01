@@ -2,8 +2,12 @@
 Created on 30 October 2012
 
 '''
-import os,time,sys,time,math,platform,random,subprocess
-#import subprocess32 as subprocess
+import os,time,sys,time,math,platform,random
+try:
+  import subprocess32 as subprocess
+except ImportError:
+  import subprocess
+  
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
