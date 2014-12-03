@@ -2,7 +2,12 @@
 Created on 30 October 2012
 
 '''
-import os,time,subprocess,sys,time,math,platform,random
+import os,time,sys,time,math,platform,random
+try:
+  import subprocess32 as subprocess
+except ImportError:
+  import subprocess
+  
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
@@ -605,12 +610,12 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     self.solver_metadata["rng_seed"] = seed
 
     #Remote running
-    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias]
+    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias,"source","/etc/profile;"]
     else: run_cmd = []
     
     #Absolute run path
-    run_cmd += ["source","/etc/profile;","%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
-    
+    run_cmd += ["%s/%s"%(self.platform.absolute_platform_directory(),self.output_file_name)]
+    #"source", "/etc/profile",";"
     #Solver metadata
     for k in sorted(self.solver_metadata): run_cmd+= [str(self.solver_metadata[k])]
     
@@ -624,8 +629,9 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     for r_c in run_cmd: run_string += " %s"%r_c
     if(debug): print run_string
     
+    env = os.environ
     start = time.time() #Wall-time is measured by framework, as well as in the generated application to measure overhead in calling code
-    results = subprocess.check_output(run_cmd)
+    results = subprocess.check_output(run_cmd,env=env)
     finish = time.time()
     
     results = results.split("\n")[:-1]
