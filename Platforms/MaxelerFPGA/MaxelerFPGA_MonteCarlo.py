@@ -50,7 +50,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  elif("black_scholes" in u.name): black_scholes_count += 1
 	  else: underlying_count += 1
 	
-      self.instances = max(1,16/(heston_count*2 + black_scholes_count + underlying_count))
+      self.instances = max(1,20/(heston_count*2 + black_scholes_count + underlying_count))
       
     if not(self.c_slow): self.c_slow = True  
 
@@ -126,31 +126,34 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("long double temp_value_sqrd_%d=0;"%d)
     
     output_list.append("//**Generating initial random seed**")
-    output_list.append("uint32_t initial_seed;") #%%((uint32_t)pow(2,31)-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
+    output_list.append("uint32_t initial_seed = temp_data->thread_rng_seed;") #%%((uint32_t)pow(2,31)-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
     output_list.append("rng_state_t temp_state_x,temp_state_y;")
-    output_list.append("srand48(start.tv_nsec);")
+    #output_list.append("srand48(start.tv_nsec);")
     
-    output_list.append("int loops = ceil(paths/instance_paths/instances);");
+    output_list.append("int loops = ceil(((float)paths)/instance_paths/instances);");
     output_list.append("if(loops==0) loops = 1;")
+    output_list.append("unsigned int paths_count = 0;")
     output_list.append("for (i=0;i < loops;++i){")
     
     output_list.append("//**Populating Seed Array(s)**")
     for index,u in enumerate(self.underlying):
     	
 	output_list.append("for (j=0;j<(instance_paths);++j){")
-	output_list.append("initial_seed = (uint32_t)(drand48()*pow(2,32)-16);");
-	output_list.append("ctrng_seed(100,initial_seed,&temp_state_x);")
+	#output_list.append("initial_seed = (uint32_t)(drand48()*pow(2,32)-16);");
+	output_list.append("ctrng_seed(10,initial_seed,&temp_state_x);")
 	output_list.append("seeds_in[j*8] = temp_state_x.s1;")
 	output_list.append("seeds_in[j*8+1] = temp_state_x.s2;")
 	output_list.append("seeds_in[j*8+2] = temp_state_x.s3;")
 	output_list.append("seeds_in[j*8+3] = temp_state_x.offset;")
 	
-	output_list.append("initial_seed = (uint32_t)(drand48()*pow(2,32)-16);");
-	output_list.append("ctrng_seed(100,initial_seed,&temp_state_y);")
+	#output_list.append("initial_seed = (uint32_t)(drand48()*pow(2,32)-16);");
+	output_list.append("initial_seed = __random32(&temp_state_x);");
+	output_list.append("ctrng_seed(10,initial_seed,&temp_state_y);")
 	output_list.append("seeds_in[j*8+4] = temp_state_y.s1;")
 	output_list.append("seeds_in[j*8+5] = temp_state_y.s2;")
 	output_list.append("seeds_in[j*8+6] = temp_state_y.s3;")
 	output_list.append("seeds_in[j*8+7] = temp_state_y.offset;")
+	output_list.append("initial_seed = __random32(&temp_state_y);");
 	output_list.append("}")
 	
     	"""
@@ -188,10 +191,11 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("max_end());")
     
     output_list.append("//**Post-Kernel Aggregation**")
-    output_list.append("for (j=0;(j<(instance_paths*%d))&&((j<paths*%d));j = j + %d){"%(values_out*4,values_out*4,values_out*4))
+    output_list.append("for (j=0;(j<(instance_paths*%d))&&(paths_count<paths);j = j + %d){"%(values_out*4,values_out*4))
     for index,d in enumerate(self.derivative):
       output_list.append("temp_total_%d += values_out[j+2*%d];"%(index,index))
       output_list.append("temp_value_sqrd_%d += values_out[j+2*%d+1];"%(index,index))
+      output_list.append("paths_count += %d;"%self.instances)
     output_list.append("}")
     
       #output_list.append("if(values_out[i*%d+%d]){printf(\"%%d - %%f\\n\",i,values_out[i*%d+%d]);}"%(values_out*4,index,values_out*4,index))
