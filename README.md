@@ -6,9 +6,10 @@ F^3 is a Python-based application framework for valuing forward looking financia
 
 The vision of F^3 is to allow financial engineers to express valuation computations naturally while taking advantage of the plethora of new computing platforms available.
 
-The application framework also serves as a test case for research into domain specific heterogeneous computing.
+The application framework also serves as a test case for research into domain-specific, heterogeneous computing.
 
 Current Underlyings and Derivatives Supported:
+
  * Black-Scholes Stochastic Underlyings
  * Heston-based Stochastic Underlyings
  * European Options
@@ -17,19 +18,21 @@ Current Underlyings and Derivatives Supported:
  * European Asian Options
  
 Platforms:
+
  * Multicore CPUs (via GCC and Posix threads)
- * Maxeler FPGA Platforms
+ * Maxeler FPGA Platforms (via Maxcompiler)
  * Xilinx FPGAs (via VivadoHLS)
- * Altera FPGAs (via OpenCL)
+ * Altera FPGAs (via Altera's OpenCL SDK)
  * GPUs and Co-Processors (via OpenCL)
  
 In Progress:
+
  * Derivatives with American exercise properties
  * Automatic scheduling of tasks across a range of platforms
  
 Coming Soon:
+
  * Interest-rate derivatives
- * IP-based Network execution
  * Lattice-based Solvers
 
 ##Framework Layout
@@ -45,15 +48,21 @@ ForwardFinancialFramework
 
 ##Installation
 
-F^3 requires:  
+F^3 requires:
+
  * A *nix-based Operating System    
  * [GCC](http://gcc.gnu.org)
  * [Python](http://www.python.org) >= 2.7
  * [Numpy](http://numpy.scipy.org)
- * Maxcompiler version 12.1 >= (For Maxeler code)  
- * [PyOpenCL](http://mathema.tician.de/software/pyopencl)
+ * Maxcompiler version 12.2 >= (For Maxeler code)  
+ * [PyOpenCL](http://mathema.tician.de/software/pyopencl) (for any OpenCL Execution)
  * X OpenCL SDK (where X is the vendor of the OpenCL platform in question)
  * Xilinx Vivado HLS 2013.4 (For VivadoHLS code)
+ 
+The following environmental variables also need to be set:
+
+ * `F3_ROOT` needs to be equal to the location of this repository, including the directory name (e.g. `/home/[Username]/workspace/ForwardFinancialFramework`)
+ * `PYTHONPATH=$PYTHONPATH:$F3_ROOT/..`
 
 ##Getting Started
 
