@@ -2,7 +2,7 @@
 Created on 30 October 2012
 
 '''
-import os,time,sys,time,math,platform,random
+import os,time,sys,time,math,platform,random,numpy
 try:
   import subprocess32 as subprocess
 except ImportError:
@@ -597,7 +597,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       #os.chdir(self.platform.root_directory)
       #os.chdir("bin")
           
-  def execute(self,cleanup=False,debug=False,seed=int(random.randint(0,2**32-16))):
+  def execute(self,cleanup=False,debug=False,seed=None):
+    if(seed==None): seed = numpy.random.randint(0,2**32-16)
     """
     try:
       os.chdir("..")

@@ -27,9 +27,11 @@ class Platform:
                 sys.exit(1)
                 
         #if the environmental variable isn't set, and its on a remote server
+        
+        
         elif not(self.root_directory_string):
             try:
-                ssh_cmd = ["ssh","%s"%self.ssh_alias,"source",".profile;","printenv","|","grep","F3_ROOT"]
+                ssh_cmd = ["ssh","%s"%self.ssh_alias,"source",".profile;","printenv","|","grep","^F3_ROOT"]
                 output = subprocess.check_output(ssh_cmd)
                 if not(output): raise KeyError("F3_ROOT environmental variable not set on %s"%self.ssh_alias)
                 output= output.split("=")[1].strip("\r\n")
