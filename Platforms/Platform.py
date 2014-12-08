@@ -42,7 +42,7 @@ class Platform:
                 sys.exit(1)
                 
         if(self.hostname==None and not(self.remote)):
-            self.hostname = os.uname()[1] #System hostname
+            self.hostname = os.uname()[1].replace(".","_") #System hostname
             
         elif(self.hostname==None):
             ssh_cmd = ["ssh","%s"%self.ssh_alias,"hostname"]
