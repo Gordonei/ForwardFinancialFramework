@@ -50,7 +50,7 @@ class Platform:
             #if not(output): raise KeyError("F3_ROOT environmental variable not set on %s"%self.ssh_alias)
             output = output.replace("\n","") #output.split("=")[1].strip("\r\n")
         
-            self.hostname = output
+            self.hostname = output.replace(".","_")
         
     def platform_directory(self):
         return self.platform_directory_string
