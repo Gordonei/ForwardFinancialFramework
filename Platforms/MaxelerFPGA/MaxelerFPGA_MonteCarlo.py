@@ -753,10 +753,10 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       
       underlying = [Underlying.Underlying(rfir,current_price)]
       option = [Option.Option(underlying,time_period,call,strike_price)]
-      platform = MaxelerFPGA.MaxelerFPGA(remote=self.platform.remote,ssh_alias=self.platform.ssh_alias)
+      #platform = MaxelerFPGA.MaxelerFPGA(remote=self.platform.remote,ssh_alias=self.platform.ssh_alias)
       
       delay = self.solver_metadata["delay"]
-      mc_solver = MaxelerFPGA_MonteCarlo(option,paths,platform,instances=1) #because we can do recursive calls like this
+      mc_solver = MaxelerFPGA_MonteCarlo(option,paths,self.platform,instances=1) #because we can do recursive calls like this
       #mc_solver.generate()
       #compile_output = mc_solver.compile() #assume this has been done already
       
