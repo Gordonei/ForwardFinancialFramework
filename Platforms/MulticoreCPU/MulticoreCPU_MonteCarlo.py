@@ -573,6 +573,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         #Compile for this specific Machine (Linux only)
         if("darwin" not in sys.platform):compile_cmd.append("-march=native")
 	
+	if(debug): compile_cmd += ["-ggdb","-pg"]
+	
 	#Adding other compile flags
         for c_o in compile_options: compile_cmd.append(c_o)
         
@@ -597,7 +599,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       #os.chdir(self.platform.root_directory)
       #os.chdir("bin")
           
-  def execute(self,cleanup=False,debug=False,seed=None):
+  def execute(self,cleanup=False,debug=False,seed=None,timeout=None):
     if(seed==None): seed = numpy.random.randint(0,2**32-16)
     """
     try:
@@ -611,7 +613,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     self.solver_metadata["rng_seed"] = seed
 
     #Remote running
-    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias,"source","/etc/profile;"]
+    if(self.platform.remote): run_cmd = ["ssh","-t",self.platform.ssh_alias,"shopt","-s","huponexit;","source","/etc/profile;"]
     else: run_cmd = []
     
     #Absolute run path
@@ -632,7 +634,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     env = os.environ
     start = time.time() #Wall-time is measured by framework, as well as in the generated application to measure overhead in calling code
-    results = subprocess.check_output(run_cmd,env=env)
+    results = subprocess.check_output(run_cmd,env=env,timeout=timeout)
     finish = time.time()
     
     results = results.split("\n")[:-1]
