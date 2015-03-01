@@ -2,12 +2,12 @@
 # Based upon the Generic formulation for the Capacitated Facility Location Problem from Zimpl example set
 #
 
-set PLATFORMS := {read "platforms.txt" as "<1s>"}; #{ "P0", "P1"};
-set TASKS := {read "tasks.txt" as "<1s>"}; #{1 .. 3};
+set PLATFORMS := {read PLATFORM_FILE as "<1s>"}; #{ "P0", "P1"};
+set TASKS := {read TASK_FILE as "<1s>"}; #{1 .. 3};
 set PT:= PLATFORMS * TASKS;
 
-param LATENCY_PP[PT] := read "latency_pp.txt" as "<1s,2s> 3n";
-param LATENCY_SETUP[PT] := read "latency_setup.txt" as "<1s,2s> 3n";
+param LATENCY_PP[PT] := read LATENCY_PP_FILE as "<1s,2s> 3n";
+param LATENCY_SETUP[PT] := read LATENCY_SETUP_FILE as "<1s,2s> 3n";
 
 var A[PT] real >= 0;  # Allocation proportion matrix
 var task_max real;
