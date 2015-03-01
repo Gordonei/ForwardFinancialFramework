@@ -882,7 +882,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     return result
  
   """
-  def execute(self,cleanup=False,debug=False):
+  def execute(self,cleanup=False,debug=False,execute=None):
     #self.set_chunk_paths() #just making sure this has been set...
     
     while(self.solver_metadata["paths"]<(self.solver_metadata["chunk_paths"]*self.solver_metadata["kernel_loops"])): #if one chunk is bigger than the total number of paths
@@ -895,7 +895,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       else: #well, we've tried everything...
         break
       
-    result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.execute(self,cleanup,debug)
+    result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.execute(self,cleanup,debug,timeout=timeout)
   
     return result
     """
