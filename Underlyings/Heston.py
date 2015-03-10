@@ -47,6 +47,10 @@ class Heston(Underlying.Underlying):
         self.correlation_matrix_1_0 = self.correlation_matrix_1_1[1,0]
         self.correlation_matrix_1_1 = self.correlation_matrix_1_1[1,1]
         
+    def __repr__(self):
+        return str(Underlying.Underlying.__repr__(self)+" inital_volatility="+str(self.initial_volatility)+" volatility_volatility="+str(self.volatility_volatility)+" rho="+str(self.rho)+" kappa="+str(self.kappa)+" theta="+str(self.theta))
+    
+        
     def path(self,delta_time):
         #rfir,volatility_volatility,delta_time,volatility,rho,kappa,theta
         

@@ -32,6 +32,9 @@ class Barrier_Option(European_Option.European_Option):
         
         self.barrier_event = False #We start off without having crossed the barrier
         
+    def __repr__(self):
+        return str(str(European_Option.European_Option.__repr__(self)) + " barrier=" + str(self.barrier) + " out=" + str(self.out) + " down="+str(self.down) + " points=" + str(self.points))
+        
     def path_init(self):
         European_Option.European_Option.path_init(self)
         self.barrier_event = False
@@ -45,4 +48,4 @@ class Barrier_Option(European_Option.European_Option):
         
     def payoff(self,end_price):
         if((self.out and self.barrier_event) or (not(self.out) and not(self.barrier_event))): self.value = 0
-        else: self.value = European_Option.European_Option.payoff
+        else: self.value = European_Option.European_Option.payoff(self)

@@ -25,6 +25,9 @@ class Asian_Option(European_Option.European_Option):
         
         self.average_value = 0.0
         
+    def __repr__(self):
+        return str(European_Option.European_Option.__repr__(self) + " points="+str(self.points))
+        
     def path_init(self):
         European_Option.European_Option.path_init(self)
         self.average_value = 0.0

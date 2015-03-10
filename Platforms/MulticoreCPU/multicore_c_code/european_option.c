@@ -6,7 +6,7 @@
  */
 #include "european_option.h"
 
-void european_option_derivative_init(FP_t t,FP_t c,FP_t k,european_option_attributes* o_a){
+void european_option_derivative_init(FP_t t,char c,FP_t k,european_option_attributes* o_a){
 	option_derivative_init(t,c,k,&(o_a->option));
   
 	o_a->time_period = (o_a->option).time_period;

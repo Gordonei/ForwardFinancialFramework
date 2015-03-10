@@ -93,8 +93,9 @@ class MonteCarlo:
     
     def generate_name(self):
       self.output_file_name = "mc_solver"  
-      self.output_file_name = ("%s_%s"%(self.output_file_name,self.platform.name))
-      
+      self.output_file_name += "_%s"%(self.platform.name)
+      if(self.platform.hostname): self.output_file_name += "_%s"%self.platform.hostname.replace('-','_')
+
       temp = [] #Generating Filename - based on underlyings,derivatives and platforms used
       for u in self.underlying:
 	if u.name not in temp:
@@ -102,7 +103,7 @@ class MonteCarlo:
             for uu in self.underlying:
               if(uu.name==u.name): count = count + 1
     
-            self.output_file_name = "%s_%s_%d" % (self.output_file_name,u.name[0:2],count) #First letter is used to keep names succinct
+            self.output_file_name += "_%s_%d" % (u.name[0:2],count) #First letter is used to keep names succinct
             temp.append(u.name)
     
       for d in self.derivative:
@@ -111,7 +112,7 @@ class MonteCarlo:
 	    for dd in self.derivative:
 	      if(dd.name==d.name): count = count + 1
   
-	    self.output_file_name = "%s_%s_%d" % (self.output_file_name,d.name[0:2],count)
+	    self.output_file_name += "_%s_%d" % (d.name[0:2],count)
 	    temp.append(d.name)
     
     def populate_model(self,base_trial_paths,trial_steps,redudancy=10,stepping="linear"):

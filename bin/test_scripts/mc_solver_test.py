@@ -2,8 +2,6 @@
 Created on 6 May 2013
 '''
 import sys,os
-os.chdir("..")
-sys.path.append("../..")
 from ForwardFinancialFramework.Underlyings import Underlying
 from ForwardFinancialFramework.Derivatives import Option
 
@@ -27,18 +25,20 @@ def run_test_solver(platform_name,cmd_option):
  
   if(platform_name=="OpenCL_GPU"):
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
-    platform = OpenCLGPU.OpenCLGPU()
-    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform,random_number_generator="taus_boxmuller")
+    #
+    platform = OpenCLGPU.OpenCLGPU(ssh_alias="ee-snowball1-external",remote=True)
+    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform)
     
   elif(platform_name=="CPU"):
     from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo,MulticoreCPU
+    #ssh_alias="ee-gi11-external",remote=True
     platform = MulticoreCPU.MulticoreCPU()
     mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform)
     
   elif(platform_name=="Maxeler_FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
     platform = MaxelerFPGA.MaxelerFPGA()
-    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform)
+    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform,c_slow=True)
     
   elif(platform_name=="Vivado_FPGA"):
     from ForwardFinancialFramework.Platforms.VivadoFPGA import VivadoFPGA_MonteCarlo,VivadoFPGA
@@ -48,19 +48,20 @@ def run_test_solver(platform_name,cmd_option):
   elif(platform_name=="OpenCL_AlteraFPGA"):
     from ForwardFinancialFramework.Platforms.OpenCLAlteraFPGA import OpenCLAlteraFPGA_MonteCarlo,OpenCLAlteraFPGA
     platform = OpenCLAlteraFPGA.OpenCLAlteraFPGA()
-    mc_solver = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo(option,paths,platform)
+    mc_solver = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo(option,paths,platform,pipelining=1,instances=1,kernel_path_max=20,cslow=True,simulation=True)
     
   else:
     print "incorrect platform type!"
     sys.exit()
     
-  if("Generate" in cmd_option): mc_solver.generate()
+  if("Generate" in cmd_option): mc_solver.generate(debug=True)
     
   compile_output = ""
   if("Compile" in cmd_option): compile_output = mc_solver.compile(debug=True)
   
   execution_output = ""
-  if("Execute" in cmd_option): execution_output = mc_solver.execute(debug=True)
+  if("Execute" in cmd_option):
+    execution_output = mc_solver.execute(debug=True)
   
   return (compile_output,execution_output)
   

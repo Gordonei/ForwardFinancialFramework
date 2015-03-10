@@ -1,9 +1,8 @@
+#!python
 '''
 Created on 6 May 2013
 '''
 import sys,os
-sys.path.append("%s/../../.."%os.getcwd())
-os.chdir("..")
 import ForwardFinancialFramework.bin.KS_ProblemSet as KS_ProblemSet
 
 def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=0):  
@@ -11,40 +10,45 @@ def run_ks_solver(platform_name,paths,script_option,options,debug=False,threads=
  
   if(platform_name=="OpenCL_GPU"):
     from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo,OpenCLGPU
-    platform = OpenCLGPU.OpenCLGPU()
-    mc_solver = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(option,paths,platform)
+    platform_class = OpenCLGPU.OpenCLGPU
+    mc_solver_class = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo
     
   elif(platform_name=="CPU"):
     from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo, MulticoreCPU
-    platform = MulticoreCPU.MulticoreCPU()
-    mc_solver = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo(option,paths,platform)
+    platform_class = MulticoreCPU.MulticoreCPU
+    mc_solver_class = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo
     
   elif(platform_name=="Maxeler_FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
-    platform = MaxelerFPGA.MaxelerFPGA()
-    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform)
+    platform_class = MaxelerFPGA.MaxelerFPGA
+    mc_solver_class = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo
     
   elif(platform_name=="Vivado_FPGA"):
     from ForwardFinancialFramework.Platforms.VivadoFPGA import VivadoFPGA_MonteCarlo,VivadoFPGA
-    platform = VivadoFPGA.VivadoFPGA()
-    mc_solver = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo(option,paths,platform)
+    platform_class = VivadoFPGA.VivadoFPGA
+    mc_solver_class = VivadoFPGA_MonteCarlo.VivadoFPGA_MonteCarlo
     
   elif(platform_name=="OpenCL_AlteraFPGA"):
     from ForwardFinancialFramework.Platforms.OpenCLAlteraFPGA import OpenCLAlteraFPGA_MonteCarlo,OpenCLAlteraFPGA
-    platform = OpenCLAlteraFPGA.OpenCLAlteraFPGA()
-    mc_solver = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo(option,paths,platform)
-    
+    platform_class = OpenCLAlteraFPGA.OpenCLAlteraFPGA
+    mc_solver_class = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo
+  
   else:
     print "incorrect platform type!"
     sys.exit()
     
-  if("Generate" in script_option): mc_solver.generate()
+  platform = platform_class()
+  mc_solver = mc_solver_class(option,paths,platform,random_number_generator="taus_boxmuller")#,instances=1)
+    
+  if("Generate" in script_option): mc_solver.generate(debug=debug)
   
   compile_output = [""]
   if ("Compile" in script_option): compile_output = mc_solver.compile(debug=debug)
   
   execution_output=[""]
-  if ("Execute" in script_option): execution_output = mc_solver.execute(debug=debug)
+  if ("Execute" in script_option): 
+	if("Maxeler_FPGA" in platform_name): mc_solver.dummy_run()
+	execution_output = mc_solver.execute(debug=debug)
  
   execution_output_dict = {}
   if("Execute" in script_option):
