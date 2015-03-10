@@ -36,10 +36,10 @@ public class CombinedTauswortheRNG extends KernelLib{
       DFEVar loop_offset = (Kernel.dfeUInt(64)).newInstance(this);
       
       DFEVar start = this.count === 0;
-      this.s1 = start ? s1 : stream.offset(loop_s1,-4);
-      this.s2 = start ? s2 : stream.offset(loop_s2,-4);
-      this.s3 = start ? s3 : stream.offset(loop_s3,-4);
-      this.offset = start ? offset.cast(Kernel.dfeUInt(64)) : stream.offset(loop_offset,-4);
+      this.s1 = start ? s1 : stream.offset(loop_s1,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+      this.s2 = start ? s2 : stream.offset(loop_s2,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+      this.s3 = start ? s3 : stream.offset(loop_s3,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
+      this.offset = start ? offset.cast(Kernel.dfeUInt(64)) : stream.offset(loop_offset,-((MC_Solver_Maxeler_Base_Kernel)this.kernel).delay);
       
       DFEVar t_s1,t_s2,t_s3,t_offset,s1_c,s2_c,s3_c; //s1,s2,s3,
 
