@@ -1,0 +1,82 @@
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEArray;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEArrayType;
+public class mc_solver_maxeler_fpga_un_1_op_1_cslow_True_pipe_1_insts_1_delay_13_Kernel extends MC_Solver_Maxeler_Base_Kernel {
+
+	//*Type Declarations*
+
+	DFEArrayType<DFEVar> outputArrayType = new DFEArrayType<DFEVar>(inputFloatType,4);
+
+	//*Kernel Class*
+
+	public mc_solver_maxeler_fpga_un_1_op_1_cslow_True_pipe_1_insts_1_delay_13_Kernel(KernelParameters parameters,int instance_paths,int path_points,int instances,int delay){
+		super(parameters,instance_paths,path_points,instances,delay);
+
+		//**Counters**
+
+		CounterChain chain = control.count.makeCounterChain();
+		DFEVar pp = chain.addCounter(this.path_points+1,1).cast(dfeUInt(32));
+		DFEVar p = chain.addCounter(this.instance_paths,1).cast(dfeUInt(32));
+		DFEVar d = p;
+
+		//**Scaler Inputs**
+
+
+		//***Underlying Attributes***
+
+		DFEVar underlying_0_rfir = (io.scalarInput("underlying_0_rfir", inputFloatType));
+		DFEVar underlying_0_current_price = (io.scalarInput("underlying_0_current_price", inputFloatType));
+
+		//***Derivative Attributes***
+		DFEVar option_0_time_period = (io.scalarInput("option_0_time_period", inputFloatType));
+		DFEVar option_0_call = (io.scalarInput("option_0_call", inputFloatType));
+		DFEVar option_0_strike_price = (io.scalarInput("option_0_strike_price", inputFloatType));
+
+		//**Random Seed Input**
+
+		DFEArray<DFEVar> input_array = io.input("seeds_in",inputArrayType,(pp.eq(0)));
+		DFEVar accumulate_0 = this.constant.var(this.inputDoubleType,0.0);
+		DFEVar accumulate_sqrd_0 = this.constant.var(this.inputDoubleType,0.0);
+		DFEVar delta_time_0 = option_0_time_period/this.path_points;
+
+		//**Parallelism Loop**
+		for (int i=0;i<this.instances;i++){
+
+			//***Underlying and Derivative Declaration(s)***
+			option_parameters option_0_parameters = new option_parameters(this,option_0_time_period,option_0_call,option_0_strike_price);
+			underlying_parameters underlying_0_parameters = new underlying_parameters(this,underlying_0_rfir,underlying_0_current_price);
+
+			//***Pipeline Stage 0***
+			underlying underlying_0_0 = new underlying(this,pp,p,d,underlying_0_parameters);
+			underlying_0_0.path_init();
+			option option_0_0 = new option(this,pp,p,d,this.constant.var(true),option_0_parameters);
+			option_0_0.path_init();
+
+			//***Path Initialisation and Path Calls***
+			underlying_0_0.path(delta_time_0);
+			DFEVar temp_price_0_0 = (underlying_0_0.parameters.current_price*KernelMath.exp(underlying_0_0.gamma));
+			option_0_0.path(temp_price_0_0,underlying_0_0.time);
+
+			//***Path Connect Calls***
+			underlying_0_0.connect_path(false,underlying_0_0.new_gamma,underlying_0_0.new_time);
+			option_0_0.connect_path(false);
+
+			//***Path Payoff and Accumulate Calls***
+			DFEVar payoff_0 = option_0_0.payoff(temp_price_0_0);
+			accumulate_0 += payoff_0;
+			accumulate_sqrd_0 += payoff_0*payoff_0;
+			}
+
+		//**Copying Outputs to Output array and outputing it**
+		DFEArray<DFEVar> output_array = outputArrayType.newInstance(this);
+		output_array[0] <== (accumulate_0).cast(inputFloatType);
+		output_array[1] <== (accumulate_sqrd_0).cast(inputFloatType);
+		output_array[2] <== this.constant.var(inputFloatType,0.0);
+		output_array[3] <== this.constant.var(inputFloatType,0.0);
+		io.output("values_out", output_array ,outputArrayType,pp.eq(this.path_points));
+		}
+	}
