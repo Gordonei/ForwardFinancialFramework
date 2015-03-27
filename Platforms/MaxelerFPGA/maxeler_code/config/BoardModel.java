@@ -1,9 +1,9 @@
 package config;
 
-import com.maxeler.maxcompiler.v1.managers.MAX3BoardModel;
+import com.maxeler.maxcompiler.v2.managers.DFEModel;
 
 public class BoardModel {
-	public static final MAX3BoardModel BOARDMODEL = MAX3BoardModel.MAX3424A;
+	public static final DFEModel BOARDMODEL = DFEModel.VECTIS;
 
 	public static void main(String argv[])
 	{

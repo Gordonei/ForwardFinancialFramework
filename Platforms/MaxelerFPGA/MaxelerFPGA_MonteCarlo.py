@@ -2,7 +2,7 @@
 Created on 30 October 2012
 
 '''
-import os,time,subprocess,sys,time,math,multiprocessing,numpy
+import os,time,subprocess,sys,time,math,multiprocessing #,numpy
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo
 from ForwardFinancialFramework.Underlyings import Underlying
 from ForwardFinancialFramework.Derivatives import Option
@@ -32,8 +32,9 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         
     self.iterations = int(self.solver_metadata["paths"]/self.solver_metadata["instance_paths"]) #calculating the number of iterations required of the kernel
     
-    self.utility_libraries = ["stdio.h","stdlib.h","stdint.h","pthread.h","MaxCompilerRT.h","sys/time.h","sys/resource.h","gauss.h"] #"mersenne_twister_seeding.h"
-    
+    #self.utility_libraries = ["stdio.h","stdlib.h","stdint.h","pthread.h","MaxCompilerRT.h","sys/time.h","sys/resource.h","gauss.h"] #"mersenne_twister_seeding.h"
+    self.utility_libraries += ["Maxfiles.h","MaxSLiCInterface.h","gauss.h"]    
+
     self.activity_thread_name = "maxeler_montecarlo_activity_thread"
     self.floating_point_format = "float"
     
@@ -69,13 +70,13 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     #Generate Maxeler Kernel Code
     kernel_code_string = self.generate_kernel()
-    self.generate_source(kernel_code_string,"_Kernel.java")
-    if(debug): print "Generated %s/%s_Kernel.java"%(self.platform.absolute_platform_directory(),self.output_file_name)    
+    self.generate_source(kernel_code_string,"_Kernel.maxj")
+    if(debug): print "Generated %s/%s_Kernel.maxj"%(self.platform.absolute_platform_directory(),self.output_file_name)    
 
-    #Generate Maxeler HW Builder Code
-    hw_builder_code_string = self.generate_hw_builder()
-    self.generate_source(hw_builder_code_string,"_HW_Builder.java")
-    if(debug): print "Generated %s/%s_HW_Builder.java"%(self.platform.absolute_platform_directory(),self.output_file_name)
+    #Generate Maxeler Manager Code
+    manager_code_string = self.generate_manager()
+    self.generate_source(manager_code_string,"_Manager.maxj")
+    if(debug): print "Generated %s/%s_Manager.maxj"%(self.platform.absolute_platform_directory(),self.output_file_name)
 
     #Generate Maxeler Makefile
     #self.generate_makefile()
@@ -99,14 +100,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//*MC Maxeler Activity Thread Function*")
     output_list.append("void * %s(void* thread_arg){"%self.activity_thread_name)
     output_list.append("struct thread_data* temp_data;")
-    output_list.append("temp_data = (struct thread_data*) thread_arg;")
-    output_list.append("//**Creating Maxeler Variables, opening and configuring the FPGA**")
-    output_list.append("char *device_name = \"/dev/maxeler0\";") #TODO
-    output_list.append("max_maxfile_t* maxfile;")
-    output_list.append("max_device_handle_t* device;")
-    output_list.append("maxfile = max_maxfile_init_%s();"%self.output_file_name)
-    output_list.append("device = max_open_device(maxfile, device_name);")
-    output_list.append("max_set_terminate_on_error(device);")
+    output_list.append("temp_data = (struct thread_data*) thread_arg;")  
     
     output_list.append("//**Creating kernel IO variables**")
     output_list.append("uint32_t *seeds_in;")
@@ -156,39 +150,26 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	output_list.append("initial_seed = __random32(&temp_state_y);");
 	output_list.append("}")
 	
-    	"""
-	output_list.append("temp_seeds = getSeeds(initial_seed);")
-    	output_list.append("for (j=0;j<(624);++j) seeds_in[j*%d + %d*2] = ((uint32_t) temp_seeds[j]);"%(seeds_in*4,index))
-	output_list.append("initial_seed = (uint32_t)(drand48()*pow(2,32));");
-    	output_list.append("temp_seeds2 = getSeeds(initial_seed);")
-	output_list.append("for (j=0;j<(624);++j) seeds_in[j*%d + %d*2 +1] = ((uint32_t) temp_seeds2[j]);"%(seeds_in*4,index))
-	"""
     
-    output_list.append("//**Streaming data to/from FPGA**")
-    output_list.append("//***Setting Scaler(Parameters) Values***")
-    output_list.append("//****Underlying Attributes****")
-    index = 0
-    for u_a in self.underlying_attributes:
+    output_list.append("//**Running on the FPGA**")
+    output_list.append("%s("%self.output_file_name)
+    output_list.append("//****Underlying Attributes****") 
+    for index,u_a in enumerate(sorted(self.underlying_attributes)):
         for a in u_a:
-            attribute = "%s_%d_%s" % (self.underlying[index].name,index,a)
-            output_list.append("max_set_scalar_input_f(device,\"%s_Kernel.%s\",%s,FPGA_A);"%(self.output_file_name,attribute,attribute))
-        index += 1
+            attribute = "%s_%d_%s," % (self.underlying[index].name,index,a)
+	    output_list.append(attribute)
+            #output_list.append("max_set_scalar_input_f(device,\"%s_Kernel.%s\",%s,FPGA_A);"%(self.output_file_name,attribute,attribute))
     
     output_list.append("//****Derivative Attributes****")
-    index = 0
-    for o_a in self.derivative_attributes:
+    for index,o_a in enumerate(sorted(self.derivative_attributes)):
         for a in o_a:
-            attribute = "%s_%d_%s" % (self.derivative[index].name,index,a)
-            output_list.append("max_set_scalar_input_f(device,\"%s_Kernel.%s\",%s,FPGA_A);"%(self.output_file_name,attribute,attribute))
-        index += 1
-        
-    output_list.append("//***Streaming IO Data to FPGA and Running Kernel***")
-    output_list.append("max_run(device,")
-    output_list.append("max_input(\"seeds_in\",seeds_in, %d*instance_paths*sizeof(uint32_t)),"%(4*seeds_in))
-    output_list.append("max_output(\"values_out\", values_out, %d*instance_paths*sizeof(float)),"%(4*values_out))
-    if(self.c_slow): output_list.append("max_runfor(\"%s_Kernel\",instance_paths*(path_points+1)),"%(self.output_file_name))
-    else: output_list.append("max_runfor(\"%s_Kernel\",instance_paths*(path_points/%d+1)*delay),"%(self.output_file_name,self.pipelining))
-    output_list.append("max_end());")
+            attribute = "%s_%d_%s," % (self.derivative[index].name,index,a)
+            output_list.append(attribute)
+	    #output_list.append("max_set_scalar_input_f(device,\"%s_Kernel.%s\",%s,FPGA_A);"%(self.output_file_name,attribute,attribute))
+    
+    output_list.append("//****Inputs and Output****") 
+    output_list.append("seeds_in,")
+    output_list.append("values_out);")
     
     output_list.append("//**Post-Kernel Aggregation**")
     output_list.append("for (j=0;(j<(instance_paths*%d))&&(paths_count<paths);j = j + %d){"%(values_out*4,values_out*4))
@@ -222,18 +203,18 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     for u in self.utility_libraries: output_list.append("#include \"%s\""%u)
     
     return output_list
-  
+ 
   def generate_kernel(self,overide=True):
     #Changing to code generation directory
     #os.chdir("..")
     #os.chdir(self.platform.platform_directory())
       
     #Checking that the source code for the derivative and underlying is present
-    for u in self.underlying:
-      if(not(os.path.exists("%s/%s.java"%(self.platform.absolute_platform_directory(),u.name)))): raise IOError, ("missing the source code for the underlying - %s.java" % (u.name))
+    #for u in self.underlying:
+      #if(not(os.path.exists("%s/%s.java"%(self.platform.absolute_platform_directory(),u.name)))): raise IOError, ("missing the source code for the underlying - %s.java" % (u.name))
       #if(not(os.path.exists("%s_parameters.java"%u.name))): raise IOError, ("missing the source code for the underlying parameter set - %s_parameters.java" % (u.name))
-    for d in self.derivative:
-      if(not(os.path.exists("%s/%s.java"%(self.platform.absolute_platform_directory(),d.name)))): raise IOError, ("missing the source code for the derivative - %s.java" %  (d.name))
+    #for d in self.derivative:
+      #if(not(os.path.exists("%s/%s.java"%(self.platform.absolute_platform_directory(),d.name)))): raise IOError, ("missing the source code for the derivative - %s.java" %  (d.name))
       #if(not(os.path.exists("%s_parameters.java"%d.name))): raise IOError, ("missing the source code for the derivative parameter set - %s_parameters.java" %  (d.name))
     
     #os.chdir(self.platform.root_directory())
@@ -242,7 +223,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list = []
     
     #Package Declaration
-    output_list.append("package mc_solver_maxeler;")
+    #output_list.append("package mc_solver_maxeler;")
     
     #Maxeler Library Imports
     output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;")
@@ -294,14 +275,14 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     #Scaler Inputs
     output_list.append("//**Scaler Inputs**\n")
     output_list.append("//***Underlying Attributes***\n")
-    for index,u_a in enumerate(self.underlying_attributes):
+    for index,u_a in enumerate(sorted(self.underlying_attributes)):
         for a in u_a:
             temp_attribute_name = "%s_%d_%s" % (self.underlying[index].name,index,a)
             output_list.append("DFEVar %s = (io.scalarInput(\"%s\", inputFloatType));"%(temp_attribute_name,temp_attribute_name))
         index += 1
     
     output_list.append("//***Derivative Attributes***")
-    for index,o_a in enumerate(self.derivative_attributes):
+    for index,o_a in enumerate(sorted(self.derivative_attributes)):
         for a in o_a:
             temp_attribute_name = "%s_%d_%s" % (self.derivative[index].name,index,a)
             output_list.append("DFEVar %s = (io.scalarInput(\"%s\", inputFloatType));"%(temp_attribute_name,temp_attribute_name))
@@ -433,53 +414,59 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     return output_list
     
-  def generate_hw_builder(self):
+  def generate_manager(self):
     output_list = []
     
     #Package Declaration
-    output_list.append("package mc_solver_maxeler;")
+    #output_list.append("package mc_solver_maxeler;")
     
     #Maxeler Library imports
-    output_list.append("import static config.BoardModel.BOARDMODEL;")
-    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;")
+    output_list.append("import com.maxeler.maxcompiler.v2.managers.engine_interfaces.CPUTypes;")
+    output_list.append("import com.maxeler.maxcompiler.v2.managers.engine_interfaces.EngineInterface;")
+    output_list.append("import com.maxeler.maxcompiler.v2.managers.engine_interfaces.InterfaceParam;")
+    output_list.append("import com.maxeler.maxcompiler.v2.managers.custom.CustomManager;")
+    output_list.append("import com.maxeler.maxcompiler.v2.managers.custom.blocks.KernelBlock;")
+    output_list.append("import com.maxeler.maxcompiler.v2.build.EngineParameters;")
+    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.KernelConfiguration;")  
+    output_list.append("import com.maxeler.maxcompiler.v2.managers.custom.ManagerClock;")    
     output_list.append("import com.maxeler.maxcompiler.v2.managers.BuildConfig;")
-    output_list.append("import com.maxeler.maxcompiler.v2.managers.standard.Manager;")
-    output_list.append("import com.maxeler.maxcompiler.v2.managers.standard.Manager.IOType;")
-    output_list.append("import com.maxeler.maxcompiler.v2.kernelcompiler.KernelConfiguration;")
-    
+
     #Class declaration
-    output_list.append("public class %s_HW_Builder {"%self.output_file_name)
+    output_list.append("public class %s_Manager extends CustomManager{"%self.output_file_name)
     
     #Kernel Variable Setting
-    output_list.append("private static int instance_paths = %d;"%self.solver_metadata["instance_paths"])
-    output_list.append("private static int path_points = %d;"%self.solver_metadata["path_points"])
-    output_list.append("private static int instances = %d;"%self.solver_metadata["instances"])
+    output_list.append("private static final int instance_paths = %d;"%self.solver_metadata["instance_paths"])
+    output_list.append("private static final int path_points = %d;"%self.solver_metadata["path_points"])
+    output_list.append("private static final int instances = %d;"%self.solver_metadata["instances"])
     
     if(self.c_slow): output_list.append("private static int delay = instance_paths;")
     else: output_list.append("private static int delay = %d;"%self.delay)
     
-    #Main Method
-    output_list.append("public static void main(String[] args) {")
     #Manager Declaration
-    output_list.append("Manager m = new Manager(\"%s\", BOARDMODEL);"%self.output_file_name)
-    
+    output_list.append("%s_Manager(EngineParameters ep){"%self.output_file_name)
+    output_list.append("super(ep);")    
+
     #Optimisation Options
-    output_list.append("KernelConfiguration currKConf = m.getCurrentKernelConfig();")
+    output_list.append("KernelConfiguration currKConf = getCurrentKernelConfig();")
     output_list.append("currKConf.optimization.setUseGlobalClockBuffer(true);")
     output_list.append("currKConf.optimization.setTriAddsEnabled(true);")
     output_list.append("currKConf.optimization.setDSPMulAddChainBehavior(KernelConfiguration.OptimizationOptions.DSPMulAddChainBehaviour.OPTIMISE);")
-    #Kernel Declaration and parameter setting
-    output_list.append("Kernel k = new %s_Kernel(m.makeKernelParameters(\"%s_Kernel\"),instance_paths,path_points,instances,delay);"%(self.output_file_name,self.output_file_name))
     
-    output_list.append("m.setKernel(k);")
-    output_list.append("m.setIO(IOType.ALL_PCIE);")
+    #Setting the clock
+    output_list.append("ManagerClock clock = generateStreamClock(\"%s_clock\",200);"%self.output_file_name)
+    output_list.append("pushDefaultClock(clock);")        
+    
+    #Kernel Declaration and parameter setting
+    output_list.append("KernelBlock k = addKernel(new %s_Kernel(makeKernelParameters(\"%s_Kernel\"),instance_paths,path_points,instances,delay));"%(self.output_file_name,self.output_file_name))
+    output_list.append("k.getInput(\"seeds_in\") <== addStreamFromCPU(\"seeds_in\");")   
+    output_list.append("addStreamToCPU(\"values_out\") <== k.getOutput(\"values_out\");")
+    """
     output_list.append("m.addMaxFileConstant(\"instance_paths\", instance_paths);")
     output_list.append("m.addMaxFileConstant(\"path_points\", path_points);")
     output_list.append("m.addMaxFileConstant(\"instances\", instances);")
     output_list.append("m.addMaxFileConstant(\"delay\", delay);")
-    output_list.append("m.setClockFrequency(200);")
-    
-    
+    """
+
     #Build Configuration
     output_list.append("BuildConfig c = new BuildConfig(BuildConfig.Level.FULL_BUILD);")
     output_list.append("c.setBuildEffort(BuildConfig.Effort.HIGH);")  #LOW,MEDIUM,HIGH,VERY_HIGH
@@ -488,47 +475,46 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     threads = int(math.ceil(multiprocessing.cpu_count()))
     if(threads>6): threads = 6
     output_list.append("c.setMPPRParallelism(%d);"%threads) #This has to be done carefully, as it takes a *lot* of RAM
-    output_list.append("m.setBuildConfig(c);")
-    output_list.append("m.build();")
-    output_list.append("}")#Closing off Main Method
+    output_list.append("setBuildConfig(c);")
+    #output_list.append("m.build();")
+    output_list.append("}")#Closing off Manager decleration
+
+    #Interface Decleration
+    output_list.append("private static EngineInterface interfaceDefault(){") 
+    output_list.append("EngineInterface engine_interface = new EngineInterface();")
+    
+    output_list.append("CPUTypes inType = CPUTypes.UINT32;")
+    output_list.append("int inSize = inType.sizeInBytes()*%d;"%(len(self.derivative)*8))
+    output_list.append("CPUTypes outType = CPUTypes.FLOAT;")
+    output_list.append("int outSize = outType.sizeInBytes()*%d;"%(math.ceil(len(self.derivative)*0.25))) 
+
+    #output_list.append("InterfaceParam inN = engine_interface.addParam(\"N\", CPUTypes.INT);")
+    #output_list.append("InterfaceParam inSizeBytes = instance_paths * inSize;")
+    #output_list.append("InterfaceParam outSizeBytes = instance_paths * outSize;")
+
+    if(self.c_slow):
+    	output_list.append("engine_interface.setTicks(\"%s_Kernel\",instance_paths*(path_points+1));"%self.output_file_name)
+    else:
+    	output_list.append("engine_interface.setTicks(\"%s_Kernel\",instance_paths*(path_points/%d+1)*delay);"%self.output_file_name)
+
+    output_list.append("engine_interface.setStream(\"seeds_in\", inType, inSize*instance_paths);")
+    output_list.append("engine_interface.setStream(\"values_out\", outType, outSize*instance_paths);")
+    output_list.append("return engine_interface;")
+    
+    output_list.append("}")
+
+    #main
+    output_list.append("public static void main(String[] args){")
+    output_list.append("%s_Manager manager = new %s_Manager(new EngineParameters(args));"%(self.output_file_name,self.output_file_name))
+    output_list.append("manager.createSLiCinterface(interfaceDefault());")
+    output_list.append("manager.build();")
+    output_list.append("}")
+    
+
     output_list.append("}")#Closing off Class decleration
     
     return output_list
   
-  def generate_makefile(self):
-    #os.chdir("..")
-    #os.chdir(self.platform.platform_directory())
-    
-    makefile = open("Makefile","w")
-    makefile.write("BASEDIR=../..\n")
-    makefile.write("PACKAGE=mc_solver_maxeler\n")
-    makefile.write("APP=dummy\n")#%self.output_file_name)
-    makefile.write("HWMAXFILE=$(APP).max\n")
-    #makefile.write("HOSTSIMMAXFILE=$(APP)_Host_Sim.max")
-    makefile.write("HWBUILDER=$(APP)_HW_Builder.java\n")
-    #makefile.write("HOSTSIMBUILDER=$(APP)_Host_Sim_Builder.java")
-    #makefile.write("SIMRUNNER=$(APP)_Sim_Runner.java")
-    makefile.write("HOSTCODE=$(APP)_Host_Code.c\n")
-    makefile.write("KERNELCODE=$(APP)_Kernel.java\n")
-    makefile.write("CFLAGS+=-DFP_t=%s\n\n"%self.floating_point_format)
-    
-    """makefile.write("nullstring :=\n")
-    makefile.write("space := $(nullstring)\n")
-    makefile.write("MAXCOMPILERDIR_QUOTE:=$(subst $(space),\ ,$(MAXCOMPILERDIR))\n")
-    makefile.write("include $(MAXCOMPILERDIR_QUOTE)/lib/Makefile.include\n")
-    makefile.write("ifndef MAXCOMPILERDIR\n")
-    makefile.write("\t$(error MAXCOMPILERDIR environment variable is not set)\n")
-    makefile.write("endif\n")
-    makefile.write("nullstring :=\n")
-    makefile.write("space := $(nullstring) # a space at the end\n")
-    makefile.write("MAXCOMPILERDIR_QUOTE:=$(subst $(space),\\ ,$(MAXCOMPILERDIR))\n")"""
-    makefile.write("include $(MAXCOMPILERDIR)/lib/Makefile.include\n")
-    makefile.write("include $(MAXCOMPILERDIR)/examples/common/Makefile.include\n")
-    #makefile.write("include $(MAXCOMPILERDIR_QUOTE)/examples/common/Makefile.include\n")
-    makefile.close()
-    
-    os.chdir(self.platform.root_directory())
-    os.chdir("bin")
     
   def compile(self,override=True,cleanup=True,debug=True):
     """
@@ -538,12 +524,12 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       
     except:
       os.chdir("bin")
-      return "Maxeler Code directory doesn't exist!"
+h   return "Maxeler Code directory doesn't exist!"
     """
     
     if(override or not os.path.exists("%s/../../hardware/%s/"%(self.platform.absolute_platform_directory(),self.output_file_name))):
       #Hardware Build Process
-      compile_cmd = ["make","-C",self.platform.absolute_platform_directory(),"build-hw","APP=%s"%self.output_file_name]
+      compile_cmd = ["make","-C","%s/../build"%self.platform.absolute_platform_directory(),"build","APP=%s"%self.output_file_name]
       
       compile_string = ""
       for c_c in compile_cmd: compile_string += " %s"%c_c
@@ -556,6 +542,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #print hw_result
       
       #Host Code Compile
+      sw_result = []
+      """
       compile_cmd = ["make","-C",self.platform.absolute_platform_directory(),"app-hw","APP=%s"%self.output_file_name]
       
       compile_string = ""
@@ -565,7 +553,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       try: sw_result = subprocess.check_output(compile_cmd)
       except: pass
       #print sw_result
-      
+      """
       #os.chdir(self.platform.root_directory())
       #os.chdir("bin")
       
