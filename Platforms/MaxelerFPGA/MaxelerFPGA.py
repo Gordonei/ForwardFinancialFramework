@@ -8,5 +8,7 @@ class MaxelerFPGA(Platform.Platform):
   name = "maxeler_fpga"
   threads = 1
   
-  def __init__(self,platform_directory_string="Platforms/MaxelerFPGA/maxeler_code/src",root_directory_string=None,ssh_alias="",remote=False,hostname=""):
+  def __init__(self,platform_directory_string="Platforms/MaxelerFPGA/maxeler_code/build",root_directory_string=None,ssh_alias="",remote=False,hostname="",board="max3"):
     Platform.Platform.__init__(self,platform_directory_string,root_directory_string,ssh_alias,remote,hostname)
+    self.board = board
+    
