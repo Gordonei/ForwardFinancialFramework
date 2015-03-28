@@ -177,7 +177,7 @@ $(APP)_dfe: $(APP)_dfe.o $(APP)_dfec.o gauss.o
 build: $(APP)_dfe
 
 run:
-	SLIC_CONF=$(SLIC_CONF) LD_PRELOAD=$(MAXOS_HW) ./${PRJ}_dfe $(ARGS)
+	SLIC_CONF=$(SLIC_CONF) LD_PRELOAD=$(MAXOS_HW) ./${APP}_dfe $(ARGS)
 
 gdbdfe:
 	DEBUG_FLAGS="-O0 -g" make build

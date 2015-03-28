@@ -38,11 +38,8 @@ public class underlying extends KernelLib {
 		//this.path_init();
 		//this.path();
 
-
 		//this.gamma = this.kernel.constant.var(doubleType,0.0);//doubleType.newInstance(this.kern);
 		//this.time = this.kernel.constant.var(doubleType,0.0);//doubleType.newInstance(this.kern);
-
-
 	}
 
 	public DFEVar getCurrentPrice(){
