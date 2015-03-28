@@ -536,7 +536,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     if(override):
       #Hardware Build Process
       compile_cmd = ["make","-C","%s/../build"%self.platform.absolute_platform_directory(),"build","APP=%s"%self.output_file_name]
-      if(self.board!="max3"): compile_cmd += ["MAX3=false"]  
+      if(self.platform.board!="max3"): compile_cmd += ["MAX3=false"]  
     
       compile_string = ""
       for c_c in compile_cmd: compile_string += " %s"%c_c

@@ -145,12 +145,12 @@ $(APP)_sim.o: $(SIMMAXDIR)/$(APP).max
 $(APP)_simc.o: $(CPUFILES) $(OBJS)
 	$(CPUCOMPILER) $^ $(ALL_FLAGS) -I$(SIMMAXDIR) -D__SIM__ -DDESIGN_NAME=$(APP) -c -o $@
 
-$(APP): $(APP)_sim.o $(APP)_simc.o gauss.o
+$(APP)_sim: $(APP)_sim.o $(APP)_simc.o gauss.o
 	$(CPUCOMPILER) $(ALL_FLAGS) $^ $(LFLAGS) -o $@
 
 runsim: $(APP)
 	$(MAXCOMPILERSIM) -n $(USER)a -c$(DEVICENUM) -d$(NUMDEVICES) restart
-	SLIC_CONF+="use_simulation=$(USER)a" LD_PRELOAD=$(MAXOS_SIM) ./$(APP) $(ARGS) $(USER)a0:$(USER)a
+	SLIC_CONF+="use_simulation=$(USER)a" LD_PRELOAD=$(MAXOS_SIM) ./$(APP)_sim $(ARGS) $(USER)a0:$(USER)a
 	make stopsim
 
 stopsim:
@@ -173,7 +173,7 @@ $(APP)_dfe.o: $(DFEMAXDIR)/$(APP).max
 $(APP)_dfec.o: $(CPUFILES) $(OBJS)
 	$(CPUCOMPILER) $^ $(ALL_FLAGS) -I$(DFEMAXDIR) -DDESIGN_NAME=$(APP) -c -o $@
 
-$(APP)_dfe: $(APP)_dfe.o $(APP)_dfec.o gauss.o
+$(APP): $(APP)_dfe.o $(APP)_dfec.o gauss.o
 	$(CPUCOMPILER) $(ALL_FLAGS) $^ $(LFLAGS) -o $@
 
 build: $(APP)
