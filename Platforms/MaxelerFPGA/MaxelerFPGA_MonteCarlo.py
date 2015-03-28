@@ -533,7 +533,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
    
   def compile(self,override=True,cleanup=True,debug=True):
     
-    if(override or not os.path.exists("%s/../../hardware/%s/"%(self.platform.absolute_platform_directory(),self.output_file_name))):
+    if(override):
       #Hardware Build Process
       compile_cmd = ["make","-C","%s/../build"%self.platform.absolute_platform_directory(),"build","APP=%s"%self.output_file_name]
       if(self.board!="max3"): compile_cmd += ["MAX3=false"]  
