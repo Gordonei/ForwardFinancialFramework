@@ -46,7 +46,7 @@ def run_option_solver(platform_name,paths,script_option,options,debug=False,thre
   
   execution_output=[""]
   if ("Execute" in script_option): 
-	if("Maxeler_FPGA" in platform_name): mc_solver.dummy_run()
+	#if("Maxeler_FPGA" in platform_name): mc_solver.dummy_run()
 	numpy.random.seed(int(time.time()))
 	execution_output = mc_solver.execute(debug=debug)
  
@@ -68,6 +68,7 @@ def run_option_solver(platform_name,paths,script_option,options,debug=False,thre
     
 if(__name__ == '__main__' and len(sys.argv)>3):
   ssh_alias = sys.argv[1]
+  if(ssh_alias.lower()=='localhost'): ssh_alias=None
   platform_name = sys.argv[2]
   paths = int(sys.argv[4])
   script_option = sys.argv[3]
