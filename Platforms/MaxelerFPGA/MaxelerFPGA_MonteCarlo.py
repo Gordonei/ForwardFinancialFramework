@@ -51,7 +51,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  elif("black_scholes" in u.name): black_scholes_count += 1
 	  else: underlying_count += 1
 	
-      self.instances = max(1,20/(heston_count*2 + black_scholes_count + underlying_count))
+      self.instances = max(1,20/(heston_count*2.2 + black_scholes_count + underlying_count))
       
     if not(self.c_slow): self.c_slow = True  
 
@@ -459,7 +459,10 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("currKConf.optimization.setDSPMulAddChainBehavior(KernelConfiguration.OptimizationOptions.DSPMulAddChainBehaviour.OPTIMISE);")
     
     #Setting the clock
-    output_list.append("ManagerClock clock = generateStreamClock(\"%s_clock\",200);"%self.output_file_name)
+    clock_rate = 200
+    if(self.platform.board!="max3"): clock_rate = 180 
+ 
+    output_list.append("ManagerClock clock = generateStreamClock(\"%s_clock\",%d);"%self.output_file_name,clock_rate)
     output_list.append("pushDefaultClock(clock);")        
     
     #Kernel Declaration and parameter setting
@@ -564,7 +567,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       #os.chdir(self.platform.root_directory())
       #os.chdir("bin")
       
-      return (hw_result,sw_result)
+      return hw_result
        
   #def execute(self,cleanup=False,debug=False):
   """
