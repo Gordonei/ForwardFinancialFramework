@@ -58,8 +58,8 @@ else
     CPUCOMPILER = $(CC)
 
     # Assuming CC points to gcc/cc by default
-    COMPILER_CFLAGS = -std=c99 -fopenmp -lm
-    OPT_FLAGS = -march=native -O3
+    COMPILER_CFLAGS = -std=c99 -fopenmp -lm -L$(MAXCOMPILERDIR)/lib/gcc/lib64
+    OPT_FLAGS = -O3 #-march=native -O3
 
     ifeq ($(CC), icc)
       COMPILER_CFLAGS = -std=c99 -openmp
@@ -103,7 +103,7 @@ ALL_FLAGS = $(CFLAGS) $(EXTRA_CFLAGS) $(DEBUG_FLAGS)
 DFEID=/dev/maxeler0
 
 # Files to remove on clean
-TRASH=*~ ../src/*~ *.o
+TRASH=*~ ../src/*~ *.o $(APP)_$(DFEModel)_DFE/scratch
 DIST_TRASH=Maxfiles.h *.class *.o debug* *.dot *.png
 
 help:
@@ -187,18 +187,16 @@ gdbdfe:
 
 # ---- Clean ----
 
-cleansim:
-	rm -f $(APP) $(TRASH)
+clean:
+	rm -rf $(TRASH)
 
-cleandfe:
-	rm -f $(APP) $(TRASH)
+cleanbin: clean
+	rm -f $(APP)
 
-clean: cleansim cleandfe
-
-distcleansim: cleansim
+distcleansim: clean
 	rm -rf $(DIST_TRASH) $(APP)_$(DFEModel)_DFE_SIM
 
-distcleandfe: cleandfe
+distcleandfe: clean
 	rm -rf $(DIST_TRASH) $(APP)_$(DFEModel)_DFE
 
 distclean: distcleansim distcleandfe
