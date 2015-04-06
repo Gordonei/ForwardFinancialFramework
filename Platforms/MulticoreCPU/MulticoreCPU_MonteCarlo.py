@@ -605,11 +605,11 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     self.solver_metadata["rng_seed"] = seed
 
     #Remote running
-    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias,"bash","-c","\"","shopt","-s","huponexit;","source",".profile;"] #,]
+    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias,"source",".profile;","bash","-c","\"","shopt","-s","huponexit;"] #,]
     else: run_cmd = []
 
     #Setting environmental variables
-    for var in self.platform.env_vars: run_cmd += ["%s=\"%s\";"%(var,self.platform.shell_vars[var])] 
+    for var in self.platform.shell_vars: run_cmd += ["%s=\"%s\";"%(var,self.platform.shell_vars[var])] 
     
     #Absolute run path
     run_cmd += ["%s/%s"%(self.platform.absolute_platform_directory(),self.output_file_name)]
