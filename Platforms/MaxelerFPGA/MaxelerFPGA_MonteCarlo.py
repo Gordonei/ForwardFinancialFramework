@@ -462,7 +462,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     clock_rate = 200
     if(self.platform.board!="max3"): clock_rate = 180 
  
-    output_list.append("ManagerClock clock = generateStreamClock(\"%s_clock\",%d);"%self.output_file_name,clock_rate)
+    output_list.append("ManagerClock clock = generateStreamClock(\"%s_clock\",%d);"%(self.output_file_name,clock_rate))
     output_list.append("pushDefaultClock(clock);")        
     
     #Kernel Declaration and parameter setting
