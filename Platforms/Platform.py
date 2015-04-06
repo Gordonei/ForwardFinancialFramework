@@ -10,12 +10,13 @@ class Platform:
     ssh_alias = ""
     remote = False
     
-    def __init__(self,platform_directory_string=None,root_directory_string=None,ssh_alias="",remote=False,hostname=None):
+    def __init__(self,platform_directory_string=None,root_directory_string=None,ssh_alias="",remote=False,hostname=None,env_vars={}):
         self.platform_directory_string = platform_directory_string
         self.root_directory_string = root_directory_string
         self.ssh_alias = ssh_alias
         self.remote = remote
         self.hostname = hostname
+	self.env_vars = env_vars
         
         if(self.remote and not(self.ssh_alias)): raise ValueError("ssh alias needs to be set")
         
