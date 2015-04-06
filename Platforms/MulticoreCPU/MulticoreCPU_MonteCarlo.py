@@ -609,7 +609,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     else: run_cmd = []
 
     #Setting environmental variables
-    for var in self.platform.env_vars: run_cmd += ["%s=\"%s\";"%(var,self.platform.env_vars[var])] 
+    for var in self.platform.env_vars: run_cmd += ["%s=\"%s\";"%(var,self.platform.shell_vars[var])] 
     
     #Absolute run path
     run_cmd += ["%s/%s"%(self.platform.absolute_platform_directory(),self.output_file_name)]
