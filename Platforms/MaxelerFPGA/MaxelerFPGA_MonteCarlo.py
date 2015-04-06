@@ -50,7 +50,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  elif("black_scholes" in u.name): black_scholes_count += 1
 	  else: underlying_count += 1
 	
-      self.instances = max(1,20/(heston_count*2 + black_scholes_count + underlying_count))
+      self.instances = max(1,16/(heston_count*2 + black_scholes_count + underlying_count))
       
     if not(self.c_slow): self.c_slow = True  
 
