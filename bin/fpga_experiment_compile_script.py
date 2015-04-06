@@ -5,7 +5,8 @@ import sys
 import KS_ProblemSet
 
 def fpga_compile(mc_solver):
-    mc_solver.generate()
+    try: mc_solver.generate()
+    except: "Error generating %s\n"%mc_solver.output_file_name
     print "Now building: %s\n"%mc_solver.output_file_name
     try: mc_solver.compile()
     except: print "Error building %s\n"%mc_solver.output_file_name
@@ -25,9 +26,7 @@ def option_enumeration(platform_name,instance_paths,path_points,options,optimisa
             pipelining = 1
             
             if("naive"==opt): pass
-                
-            if("cslow"==opt): cslow_flag = True
-            
+                            
             if("pipeline_parallelism"==opt):
                 if(platform_name=="Maxeler"):
                     pipelining = 8
@@ -41,7 +40,9 @@ def option_enumeration(platform_name,instance_paths,path_points,options,optimisa
                 if(platform_name=="Maxeler"):
                     instances = 8
                     if(o=="13"): instances = 16
-                
+
+            if("cslow"==opt): cslow_flag = True                
+
             if(platform_name=="Maxeler"):
                 from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
                 platform = MaxelerFPGA.MaxelerFPGA()
