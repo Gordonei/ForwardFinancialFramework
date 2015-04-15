@@ -50,8 +50,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  if("heston" in u.name): heston_count += 1
 	  elif("black_scholes" in u.name): black_scholes_count += 1
 	  else: underlying_count += 1
-	
-      self.instances = max(1,20/(heston_count*2.2 + black_scholes_count + underlying_count))
+
+      self.instances = max(1,int(self.platform.device_resources/(heston_count*2.2 + black_scholes_count + underlying_count)))
       
     if not(self.c_slow): self.c_slow = True  
 
@@ -454,20 +454,19 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
     #Optimisation Options
     output_list.append("KernelConfiguration currKConf = getCurrentKernelConfig();")
-    output_list.append("currKConf.optimization.setUseGlobalClockBuffer(true);")
-    output_list.append("currKConf.optimization.setTriAddsEnabled(true);")
-    output_list.append("currKConf.optimization.setDSPMulAddChainBehavior(KernelConfiguration.OptimizationOptions.DSPMulAddChainBehaviour.OPTIMISE);")
+    #output_list.append("currKConf.optimization.setUseGlobalClockBuffer(true);")
+    #output_list.append("currKConf.optimization.setTriAddsEnabled(true);")
+    #output_list.append("currKConf.optimization.setDSPMulAddChainBehavior(KernelConfiguration.OptimizationOptions.DSPMulAddChainBehaviour.OPTIMISE);")
     
     #Setting the clock
-    clock_rate = 200
-    if(self.platform.board!="max3"): clock_rate = 180 
  
-    output_list.append("ManagerClock clock = generateStreamClock(\"%s_clock\",%d);"%(self.output_file_name,clock_rate))
-    output_list.append("pushDefaultClock(clock);")        
-    
+    output_list.append("ManagerClock clock = generateStreamClock(\"%s_clock\",%d);"%(self.output_file_name,self.platform.clock_rate))
+    #output_list.append("pushDefaultClock(clock);")        
+
     #Kernel Declaration and parameter setting
     output_list.append("KernelBlock k = addKernel(new %s_Kernel(makeKernelParameters(\"%s_Kernel\"),instance_paths,path_points,instances,delay));"%(self.output_file_name,self.output_file_name))
-
+    output_list.append("k.setClock(clock);")    
+    
     for index,u in enumerate(self.underlying): 
 	for k in range(8):
 		output_list.append("k.getInput(\"seeds_in_%d\") <== addStreamFromCPU(\"seeds_in_%d\");"%(index*8+k,index*8+k))   
@@ -485,11 +484,11 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
     #Build Configuration
     output_list.append("BuildConfig c = new BuildConfig(BuildConfig.Level.FULL_BUILD);")
-    output_list.append("c.setBuildEffort(BuildConfig.Effort.HIGH);")  #LOW,MEDIUM,HIGH,VERY_HIGH
+    output_list.append("c.setBuildEffort(BuildConfig.Effort.VERY_HIGH);")  #LOW,MEDIUM,HIGH,VERY_HIGH
     output_list.append("c.setEnableTimingAnalysis(true);")
     output_list.append("c.setMPPRCostTableSearchRange(1,100);")
     threads = int(math.ceil(multiprocessing.cpu_count()))
-    if(threads>6): threads = 6
+    if(threads>4): threads = 4
     output_list.append("c.setMPPRParallelism(%d);"%threads) #This has to be done carefully, as it takes a *lot* of RAM
     output_list.append("setBuildConfig(c);")
     #output_list.append("m.build();")
