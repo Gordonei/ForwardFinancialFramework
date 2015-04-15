@@ -168,7 +168,8 @@ $(DFEMAXDIR)/$(APP).max: $(ENGINEFILES)
 	MAXAPPJCP=. MAXSOURCEDIRS='../src' $(MAXJAVARUN) -v -m 8192 $(MANAGER) DFEModel=$(DFEModel) maxFileName=$(APP) target='DFE' enableMPCX=$(MPCX)
 	cp $(DFEMAXDIR)/$(APP).h $(DFEMAXDIR)/Maxfiles.h
 	cp $(DFEMAXDIR)/$(APP).max $(DFEMAXDIR)/$(APP).max.bak
-	cp $(DFEMAXDIR)/$(APP).max.bak $(DFEMAXDIR)/$(APP).max
+	rm $(DFEMAXDIR)/$(APP).max
+	mv $(DFEMAXDIR)/$(APP).max.bak $(DFEMAXDIR)/$(APP).max
 
 $(APP)_dfe.o: $(DFEMAXDIR)/$(APP).max
 	$(SLICCOMPILE) $< $@
