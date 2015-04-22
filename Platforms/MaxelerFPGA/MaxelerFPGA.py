@@ -15,5 +15,9 @@ class MaxelerFPGA(Platform.Platform):
     self.board = board
     self.boardid = boardid
 
-    self.shell_vars["SLIC_CONF"] = "default_engine_resource=%s"%self.boardid
-    
+
+    if(board=="max4"):
+	self.shell_cmds += ["maxorch -r 192.168.0.1 -c reserve -i %s -t \"MAIA*1\""%self.boardid]
+	self.shell_vars["SLIC_CONF"] = "default_engine_resource=%s^192.168.0.1"%self.boardid
+    else:
+    	self.shell_vars["SLIC_CONF"] = "default_engine_resource=%s"%self.boardid
