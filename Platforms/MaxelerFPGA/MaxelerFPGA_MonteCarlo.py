@@ -100,15 +100,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//*MC Maxeler Activity Thread Function*")
     output_list.append("void * %s(void* thread_arg){"%self.activity_thread_name)
     output_list.append("struct thread_data* temp_data;")
-    output_list.append("temp_data = (struct thread_data*) thread_arg;")  
-    
-    output_list.append("//**Creating kernel IO variables**")
-    output_list.append("uint32_t *seeds_in;")
-    #output_list.append("long *temp_seeds,*temp_seeds2;")
-    output_list.append("float *values_out;")
-    
-    seeds_in = len(self.underlying)*2 #math.ceil(float(len(self.underlying))/2) #Making sure seeds in is in increments of 128 bits (groups of 4 x 32 bit variables)
-    values_out = math.ceil(float(len(self.derivative))/2) #Making sure values are in increments of 128 bits
+
 
     output_list.append("seeds_in = malloc(%d*instance_paths*sizeof(uint32_t));"%(int(seeds_in*4)))
     output_list.append("values_out = malloc(%d*instance_paths*sizeof(float));"%(int(values_out*4)))
@@ -166,7 +158,6 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
             attribute = "%s_%d_%s," % (self.derivative[index].name,index,a)
             temp_list += [attribute]
 	    #output_list.append("max_set_scalar_input_f(device,\"%s_Kernel.%s\",%s,FPGA_A);"%(self.output_file_name,attribute,attribute))
-    output_list += sorted(temp_list)    
 
     output_list.append("//****Inputs and Output****") 
     for index in range(len(self.underlying)*8): output_list.append("&(seeds_in[%d*instance_paths]),"%(index))

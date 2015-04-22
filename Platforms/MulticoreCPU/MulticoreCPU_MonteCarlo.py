@@ -601,20 +601,15 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
           
   def execute(self,cleanup=False,debug=False,seed=None,timeout=None):
     if(seed==None): seed = numpy.random.randint(0,2**32-16)
-    """
-    try:
-      os.chdir("..")
-      os.chdir(self.platform.platform_directory())
-    except:
-      os.chdir("bin")
-      return "Multicore C directory doesn't exist!"
-    """
 
     self.solver_metadata["rng_seed"] = seed
 
     #Remote running
-    if(self.platform.remote): run_cmd = ["ssh","-t",self.platform.ssh_alias,"shopt","-s","huponexit;","source","/etc/profile;"]
+    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias,"source",".profile;","bash","-c","\"","shopt","-s","huponexit;"] #,]
     else: run_cmd = []
+
+    #Setting environmental variables
+    for var in self.platform.shell_vars: run_cmd += ["%s=\"%s\";"%(var,self.platform.shell_vars[var])] 
     
     #Absolute run path
     run_cmd += ["%s/%s"%(self.platform.absolute_platform_directory(),self.output_file_name)]
@@ -627,6 +622,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     for index,o_a in enumerate(self.derivative_attributes): 
         for a in o_a: run_cmd += [str(self.derivative[index].__dict__[a])]
+
+    run_cmd += ["\""]
 
     run_string = ""
     for r_c in run_cmd: run_string += " %s"%r_c
