@@ -38,7 +38,7 @@ def run_test_solver(platform_name,cmd_option):
   elif(platform_name=="Maxeler_FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
     platform = MaxelerFPGA.MaxelerFPGA()
-    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform,c_slow=True)
+    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo(option,paths,platform,instances=1)
     
   elif(platform_name=="Vivado_FPGA"):
     from ForwardFinancialFramework.Platforms.VivadoFPGA import VivadoFPGA_MonteCarlo,VivadoFPGA

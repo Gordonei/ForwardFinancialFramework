@@ -63,10 +63,12 @@ void heston_underlying_underlying_path(FP_t delta_time,heston_underlying_variabl
 	#endif
         
 	//central discretisation
+	/*
 	u_v->theta_v = (u_a->theta-u_a->volatility_volatility*u_a->volatility_volatility/4/u_a->kappa)/u_v->volatility; 
 	u_v->u = u_v->theta_v + (u_v->volatility-u_v->theta_v)*native_exp(-0.5f*u_a->kappa*delta_time); //native_exp
 	u_v->volatility_approx = 0.5f*(u_v->volatility+u_v->u);
 	u_v->theta_v_approx = (u_a->theta-u_a->volatility_volatility*u_a->volatility_volatility/4/u_a->kappa)/u_v->volatility_approx;
+	*/
         
 	//moment matching
 	u_v->moment_difference = u_a->theta + (u_v->volatility*u_v->volatility-u_a->theta)*native_exp(-u_a->kappa*delta_time) - u_a->volatility_volatility*u_a->volatility_volatility/4/u_a->kappa*(1-native_exp(-u_a->kappa*delta_time)); //native_ex[

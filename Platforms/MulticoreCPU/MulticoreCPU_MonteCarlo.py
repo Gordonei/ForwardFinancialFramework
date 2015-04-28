@@ -2,7 +2,7 @@
 Created on 30 October 2012
 
 '''
-import os,time,sys,time,math,platform,random
+import os,time,sys,time,math,platform,random,numpy
 try:
   import subprocess32 as subprocess
 except ImportError:
@@ -573,6 +573,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         #Compile for this specific Machine (Linux only)
         if("darwin" not in sys.platform):compile_cmd.append("-march=native")
 	
+	if(debug): compile_cmd += ["-ggdb","-pg"]
+	
 	#Adding other compile flags
         for c_o in compile_options: compile_cmd.append(c_o)
         
@@ -597,21 +599,17 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       #os.chdir(self.platform.root_directory)
       #os.chdir("bin")
           
-  def execute(self,cleanup=False,debug=False,seed=int(random.randint(0,2**32-16))):
-    """
-    try:
-      os.chdir("..")
-      os.chdir(self.platform.platform_directory())
-    except:
-      os.chdir("bin")
-      return "Multicore C directory doesn't exist!"
-    """
+  def execute(self,cleanup=False,debug=False,seed=None,timeout=None):
+    if(seed==None): seed = numpy.random.randint(0,2**32-16)
 
     self.solver_metadata["rng_seed"] = seed
 
     #Remote running
-    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias,"source","/etc/profile;"]
+    if(self.platform.remote): run_cmd = ["ssh",self.platform.ssh_alias,"source",".profile;","bash","-c","\"","shopt","-s","huponexit;"] #,]
     else: run_cmd = []
+
+    #Setting environmental variables
+    for var in self.platform.shell_vars: run_cmd += ["%s=\"%s\";"%(var,self.platform.shell_vars[var])] 
     
     #Absolute run path
     run_cmd += ["%s/%s"%(self.platform.absolute_platform_directory(),self.output_file_name)]
@@ -625,13 +623,15 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     for index,o_a in enumerate(self.derivative_attributes): 
         for a in o_a: run_cmd += [str(self.derivative[index].__dict__[a])]
 
+    run_cmd += ["\""]
+
     run_string = ""
     for r_c in run_cmd: run_string += " %s"%r_c
     if(debug): print run_string
     
     env = os.environ
     start = time.time() #Wall-time is measured by framework, as well as in the generated application to measure overhead in calling code
-    results = subprocess.check_output(run_cmd,env=env)
+    results = subprocess.check_output(run_cmd,env=env,timeout=timeout)
     finish = time.time()
     
     results = results.split("\n")[:-1]

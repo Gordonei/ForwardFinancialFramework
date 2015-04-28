@@ -1,0 +1,38 @@
+//package mc_solver_maxeler;
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix.SignMode;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFloat;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEArray;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEArrayType;
+
+public class MC_Solver_Maxeler_Base_Kernel extends Kernel {
+
+	//*Type Decleration*
+
+	DFEFloat inputFloatType = Kernel.dfeFloat(8, 24);
+	DFEFloat inputDoubleType = Kernel.dfeFloat(8, 24);
+	//DFEArrayType<DFEVar> inputArrayType = new DFEArrayType<DFEVar>(Kernel.dfeUInt(32),8);
+	//DFEFix accumType = Kernel.dfeFix(32,32,SignMode.TWOSCOMPLEMENT);
+
+	//*Class Parameters*
+
+	protected int instance_paths;
+	protected int path_points;
+	protected int instances;
+	protected int delay;
+
+	//*Kernel Class*
+
+	public MC_Solver_Maxeler_Base_Kernel(KernelParameters parameters,int instance_paths,int path_points,int instances,int delay){
+		super(parameters);
+		this.instance_paths=instance_paths;
+		this.path_points=path_points;
+		this.instances=instances;
+		this.delay = delay;
+		}
+	}

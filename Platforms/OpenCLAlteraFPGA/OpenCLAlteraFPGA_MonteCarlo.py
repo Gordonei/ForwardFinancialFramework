@@ -28,6 +28,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     
     self.set_instance_paths(instance_paths)
     self.solver_metadata["local_work_items"] = self.instances
+
+    del self.solver_metadata["gpu_threads"] #this doesn't make sense for this implementation
     
     if("CL/cl.hpp" in self.utility_libraries): self.utility_libraries.remove("CL/cl.hpp")
     if("CL/opencl.h" not in self.utility_libraries): self.utility_libraries.append("CL/opencl.h")
