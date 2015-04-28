@@ -417,8 +417,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
     if(debug): print compile_string
     
-    #result = [subprocess.check_output(compile_cmd)]
-    result = []
+    result = [subprocess.check_output(compile_cmd)]
+    #result = []
 
     #subprocess.call(["rm","-rf","%s"%self.output_file_name])
     
