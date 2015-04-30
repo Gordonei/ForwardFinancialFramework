@@ -609,8 +609,11 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     else: run_cmd = []
 
     #Setting environmental variables
-    for var in self.platform.shell_vars: run_cmd += ["%s=\"%s\";"%(var,self.platform.shell_vars[var])] 
-    
+    for var in self.platform.shell_vars: run_cmd += ["%s=\"%s\";"%(var,self.platform.shell_vars[var])]    
+ 
+    #Running the platform shell commands
+    if(self.platform.shell_setup_cmds): run_cmd += self.platform.shell_setup_cmds + [";"]
+
     #Absolute run path
     run_cmd += ["%s/%s"%(self.platform.absolute_platform_directory(),self.output_file_name)]
     #"source", "/etc/profile",";"
@@ -623,7 +626,9 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     for index,o_a in enumerate(self.derivative_attributes): 
         for a in o_a: run_cmd += [str(self.derivative[index].__dict__[a])]
 
-    run_cmd += ["\""]
+    if(self.platform.shell_exit_cmds): run_cmd += [";"] + self.platform.shell_exit_cmds + [";"]
+
+    if(self.platform.remote): run_cmd += ["\""]
 
     run_string = ""
     for r_c in run_cmd: run_string += " %s"%r_c
@@ -636,12 +641,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
     results = results.split("\n")[:-1]
     results.append((finish-start)*1000000)
-    
-    """
-    os.chdir(self.platform.root_directory())
-    os.chdir("bin")
-    """
-    
+     
     if(cleanup): self.cleanup()
     
     return results
