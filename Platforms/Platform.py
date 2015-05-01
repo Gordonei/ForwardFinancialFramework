@@ -39,7 +39,7 @@ class Platform:
         #if the environmental variable isn't set, and its on a remote server
         
         
-        elif not(self.root_directory_string):
+        elif not(self.root_directory_string and self.remote):
             try:
                 ssh_cmd = ["ssh","%s"%self.ssh_alias,"source",".profile;","printenv","|","grep","^F3_ROOT"]
                 output = subprocess.check_output(ssh_cmd)
