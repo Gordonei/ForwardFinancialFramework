@@ -10,7 +10,7 @@ class OpenCLAlteraFPGA(Platform.Platform):
     device_type = pyopencl.device_type.ALL
     board = ""
     
-    def __init__(self,platform_directory_string="Platforms/OpenCLAlteraFPGA/openclalterafpga_code",root_directory_string=None,platform_name="Altera Corporation",board="pcie385n_d5",ssh_alias="",remote=False,hostname=""):
+    def __init__(self,platform_directory_string="Platforms/OpenCLAlteraFPGA/openclalterafpga_code",root_directory_string=None,platform_name="Altera Corporation",board="p385_hpc_d5",ssh_alias="",remote=False,hostname=""):
         Platform.Platform.__init__(self,platform_directory_string,root_directory_string,ssh_alias,remote,hostname)
     
         self.platform_name = platform_name
