@@ -47,13 +47,12 @@ class Option:
 		#self.latency_model_coefficients = []
 		#self.accuracy_model_coefficients = []
 
-    	"""
-    def __repr__(self):
-	return_string = ""
-	for u in self.underlying:
-	    return_string += repr(u)
-	return str(self.name + " derivative" + " underlying="+return_string + " time_period=" + str(self.time_period) + " call="+ str(self.call) + " strike_price=" + str(self.strike_price))
-    	"""
+    	
+    	def __repr__(self):
+		return_string = ""
+		for u in self.underlying: return_string += repr(u)
+		return str(self.name + " derivative" + " underlying="+return_string + " time_period=" + str(self.time_period) + " call="+ str(self.call) + " strike_price=" + str(self.strike_price))
+    	
 
 	def path_init(self):
        		"""Path initialisation method
