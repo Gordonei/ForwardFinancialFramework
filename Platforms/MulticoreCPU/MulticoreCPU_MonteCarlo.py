@@ -16,6 +16,9 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 	This class is for generating, compiling and executing Monte Carlo solvers upon Multicore CPU platforms. Many other classes depend upon it, so cave editor!
 	"""
 
+	##Format used for floating point computations
+	floating_point_format = None
+
 	def __init__(self,derivative,paths,platform,reduce_underlyings=True,random_number_generator="taus_ziggurat",floating_point_format="float",default_points=4096):
 		"""Constructor
 
@@ -173,11 +176,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 		#output_list.append("gettimeofday(&start,NULL);")
 		if("darwin" not in sys.platform): output_list.append("clock_gettime(CLOCK_MONOTONIC,&start);")
 		else: output_list.append("start = mach_absolute_time();")
-		#output_list.append("ret=getrusage(who,&usage);")
-		##Commented out diagnostic tool
-		#output_file.write("/*for(i=0;i<argc;i++){//For diagnostic Purposes\nprintf(\"%s \",argv[i]);\n}*/\n")
+		
+		#Commented out diagnostic tool
 
-		##Convert command line arguments to static variables
+		#Convert command line arguments to static variables
 		output_list.append("//**Unpacking Command Line Variables**")
 		temp = 1
 		output_list.append("//***Solver Metadata***")
@@ -460,7 +462,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       
 		return output_list
   
-	def compile(self,overide=True,compile_options=[],debug=False):
+	def compile(self,overide=True,compile_options=[],debug=False,profile=False):
     		"""Compile method
 
 		This compiles the generated source code.
@@ -469,6 +471,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 			override - (bool) option to force the compilation
 			compile_options - (list of strings) pass in any compiler options
 			debug - (bool) option to compile with debugging symbols
+			profile - (bool) option to compile with profiling symbols *big performance hit*
 		"""
     		
    		if(overide or not os.path.exists("%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name))):
@@ -540,7 +543,8 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         		#Compile for this specific Machine (Linux only)
         		if("darwin" not in sys.platform):compile_cmd.append("-march=native")
 	
-			if(debug): compile_cmd += ["-ggdb"] #,"-pg"]
+			if(debug): compile_cmd += ["-ggdb"]
+			if(profile): compile_cmd += ["-pg"]
 	
 			#Adding other compile flags
         		for c_o in compile_options: compile_cmd.append(c_o)
