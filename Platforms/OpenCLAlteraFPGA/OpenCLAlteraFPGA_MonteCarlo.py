@@ -10,19 +10,19 @@ from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
   instance_paths = 1
-  instances = 1
-  pipelining = 1
-  cslow = False
-  simulation = False
-  simd_width = 1
+  #instances = 1
+  #pipelining = 1
+  #cslow = False
+  #simulation = False
+  #simd_width = 1
     
-  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=1,random_number_generator="taus_boxmuller",floating_point_format="float",instances=None,pipelining=None,cslow=True,simulation=False,default_points=4096,optimisation=False,instance_paths=None,simd_width=1):
+  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=1,random_number_generator="taus_boxmuller",floating_point_format="float",instances=None,pipelining=None,cslow=True,simulation=False,default_points=4096,optimisation=False,instance_paths=None,simd_width=None):
     self.simulation = simulation
     self.optimisation = optimisation #use the built-in optimisation flag
     self.pipelining = pipelining
     self.cslow = cslow
     self.instances = instances
-    self.simd_width = 1
+    self.simd_width = simd_width
 
     OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings=reduce_underlyings,kernel_path_max=kernel_path_max,random_number_generator=random_number_generator,floating_point_format=floating_point_format,default_points=default_points)
     
@@ -35,11 +35,12 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     if("CL/opencl.h" not in self.utility_libraries): self.utility_libraries.append("CL/opencl.h")
   
   def set_default_parameters(self):
-    if ("heston" in self.underlying[0].name): self.pipelining = 10
-    else: self.pipelining = 20
+    if(self.pipelining==None):
+    	if ("heston" in self.underlying[0].name): self.pipelining = 10
+    	else: self.pipelining = 20
     
-    self.simd_width = 2
-    self.instances = 1
+    if(self.simd_width==None): self.simd_width = 2
+    if(self.instances==None): self.instances = 1
     
     """if not(self.pipelining):
       units = 0

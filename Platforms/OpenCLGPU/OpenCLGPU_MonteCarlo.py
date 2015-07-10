@@ -20,7 +20,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       self.utility_libraries.extend(["OpenCL/opencl.h"])
       #mwc64x_path_string = "%s/../%s/%s"%(os.getcwd(),self.platform.platform_directory(),mwc64x_path_string)
     else:
-      self.utility_libraries.append("CL/opencl.h")
+      self.utility_libraries += ["CL/opencl.h"]
       
     self.utility_libraries.append("assert.h")
     
@@ -228,8 +228,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("chunk_paths = (chunk_paths < temp_data->thread_paths) ? chunk_paths - chunk_paths%local_work_items : temp_data->thread_paths - temp_data->thread_paths%local_work_items;")
     
     #This allows overriding of the number of compute units being used, which are the unit of task parallelism in OpenCL
-    output_list.append("if(gpu_threads) chunk_paths = (chunk_paths/local_work_items < gpu_threads) ? chunk_paths : local_work_items*gpu_threads;")
-    
+    output_list.append("if(gpu_threads) chunk_paths = (chunk_paths/local_work_items < gpu_threads) ? chunk_paths : gpu_threads*local_work_items;")    
+    #output_list.append("if(gpu_threads) local_work_items = (chunk_paths/local_work_items < gpu_threads) ? local_work_items : chunk_paths/compute_units - chunk_paths%compute_units;")
+    #output_list.append("if(local_work_items < 1) local_work_items = 1;")    
+
     #max_wg_size = self.program.all_kernels()[0].get_work_group_info(pyopencl.kernel_work_group_info.WORK_GROUP_SIZE,self.platform.device)
     #num_wg = math.floor(max_wg_size/preferred_wg_size_multiple/self.work_groups_per_compute_unit)
     
@@ -288,13 +290,15 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("cl_uint chunk_number = 0;")
     output_list.append("ret = clSetKernelArg(%s_kernel, 3, sizeof(cl_uint), &chunk_number);"%(self.output_file_name))
     output_list.append("assert(ret==CL_SUCCESS);")
+    output_list.append("ret = clSetKernelArg(%s_kernel, 4, sizeof(cl_uint), &kernel_loops);"%(self.output_file_name))
+    output_list.append("assert(ret==CL_SUCCESS);")
     
     for index,u in enumerate(self.underlying):
       temp = ("%s_underlying_init("%u.name)
       for u_a in self.underlying_attributes[index][:-1]: temp=("%s%s_%d_%s,"%(temp,u.name,index,u_a))
       temp=("%s%s_%d_%s,&u_a_%d);"%(temp,u.name,index,self.underlying_attributes[index][-1],index))   
       output_list.append(temp)
-      output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,4 + index,u.name,index))
+      output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,5 + index,u.name,index))
       output_list.append("assert(ret==CL_SUCCESS);")
       
       """if(self.random_number_generator=="mwc64x_boxmuller"):
@@ -309,11 +313,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       for o_a in self.derivative_attributes[index][:-1]: temp=("%s%s_%d_%s,"%(temp,d.name,index,o_a))
       temp=("%s%s_%d_%s,&o_a_%d);"%(temp,d.name,index,self.derivative_attributes[index][-1],index))
       output_list.append(temp)
-      output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,4 + index*3 + len(self.underlying),d.name,index))
+      output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,5 + index*3 + len(self.underlying),d.name,index))
       output_list.append("assert(ret==CL_SUCCESS);")
-      output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_%d_buff);"%(self.output_file_name,4 + index*3 + 1 + len(self.underlying),index))
+      output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_%d_buff);"%(self.output_file_name,5 + index*3 + 1 + len(self.underlying),index))
       output_list.append("assert(ret==CL_SUCCESS);")
-      output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,4 + index*3 + 2 + len(self.underlying),index))
+      output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,5 + index*3 + 2 + len(self.underlying),index))
       output_list.append("assert(ret==CL_SUCCESS);")
       
     """if(self.platform.amd_gpu_flag):
@@ -611,6 +615,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("\tconst uint seed,")
     output_list.append("\tconst uint chunk_size,") #constant
     output_list.append("\tconst uint chunk_number,") #constant
+    output_list.append("\tconst uint kernel_loops,") #constant
     for index,u in enumerate(self.underlying):
       output_list.append("\tconst %s_attributes u_a_%d,"%(u.name,index)) #constant
       #if(self.random_number_generator=="mwc64x_boxmuller"): output_list.append("\tconstant mwc64x_state_t seed_%d,"%(index))
@@ -643,6 +648,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("uint local_chunk_size = chunk_size;")
     output_list.append("uint local_chunk_number = chunk_number;")
     output_list.append("uint local_seed = seed;")
+    output_list.append("uint local_kernel_loops = kernel_loops;")
       
     output_list.append("//**Creating Kernel variables and Copying parameters from host**")
     for index,u in enumerate(self.underlying):
@@ -672,7 +678,6 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	  output_list.append("temp_u_v_%d.rng_state.offset = 0;"%(index))"""
 	   
       
-	
 	  #if("darwin" not in sys.platform): output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(chunk_size[0]*chunk_number[0]+1)*time,%d*4096*2*i);"%(index,self.kernel_loops))
         #else: output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),(chunk_size[0]*chunk_number[0]+1)*local_seed,%d*4096*2*i);"%(index,self.kernel_loops))
     
@@ -684,7 +689,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("FP_t temp_value_%d = 0.0;"%index)
       output_list.append("FP_t temp_value_sqrd_%d = 0.0;"%index)
     
-    output_list.append("for(int k=0;k<%d;++k){"%self.kernel_loops)
+    #output_list.append("for(int k=0;k<%d;++k){"%self.kernel_loops)
+    output_list.append("for(int k=0;k<local_kernel_loops;++k){")
     
     output_list.append("//**Initiating the Path and creating path variables**")
     for index,u in enumerate(self.underlying):
