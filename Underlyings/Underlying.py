@@ -1,6 +1,6 @@
-'''@package ForwardFinancialFramework.Underlyings.Underlying
+'''@package ForwardFinancialFramework.Underlyings
 
-This package contains the base underlying class.
+This package contains the underlying classes.
 Created on 30 May 2012
 '''
 
@@ -54,7 +54,7 @@ class Underlying:
 	def path(self,delta_time):
 		"""Path evolution method
 		
-		Paramters
+		Parameters
 			delta_time - (float) the time step by which the price should be evoloved.
 		
 		"""
