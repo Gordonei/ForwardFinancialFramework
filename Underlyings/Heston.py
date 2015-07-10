@@ -34,7 +34,7 @@ class Heston(Underlying.Underlying):
     	##Volatility is a variable in this instance
     	volatility = 0.0
 
-	def __init__(self,rfir,current_price,initial_volatility,volatility_volatility,rho,kappa,theta,correlation_matrix_0_0=0.0,correlation_matrix_0_1=0.0,correlation_matrix_1_0=0.0,correlation_matrix_1_1=0.0):
+	def __init__(self,rfir,current_price,initial_volatility,volatility_volatility,rho,kappa,theta,correlation_matrix_0_0=None,correlation_matrix_0_1=None,correlation_matrix_1_0=None,correlation_matrix_1_1=None):
 		'''Constructor
 
 		Parameters
@@ -54,12 +54,12 @@ class Heston(Underlying.Underlying):
 
 		self.volatility = (float(initial_volatility)**0.5)
 
-		if(correlation_matrix!=0.0): 
-			correlation_matrix = scipy.linalg.cholesky(numpy.matrix([[1.0,self.rho],[self.rho,1.0]]),lower=False)
-			self.correlation_matrix_0_0 = correlation_matrix[0,0]
-			self.correlation_matrix_0_1 = correlation_matrix[0,1]
-			self.correlation_matrix_1_0 = correlation_matrix[1,0]
-			self.correlation_matrix_1_1 = correlation_matrix[1,1]
+		if(correlation_matrix_0_0==None): 
+			self.correlation_matrix_1_1 = scipy.linalg.cholesky(numpy.matrix([[1.0,self.rho],[self.rho,1.0]]),lower=False)
+			self.correlation_matrix_0_0 = self.correlation_matrix_1_1[0,0]
+			self.correlation_matrix_0_1 = self.correlation_matrix_1_1[0,1]
+			self.correlation_matrix_1_0 = self.correlation_matrix_1_1[1,0]
+			self.correlation_matrix_1_1 = self.correlation_matrix_1_1[1,1]
 	
 	def path(self,delta_time):
 		"""Path evolution method
