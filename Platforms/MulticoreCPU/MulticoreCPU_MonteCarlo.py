@@ -540,6 +540,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         		#Compile for this specific Machine (Linux only)
         		if("darwin" not in sys.platform):compile_cmd.append("-march=native")
 	
+			if(debug): compile_cmd += ["-ggdb"] #,"-pg"]
 	
 			#Adding other compile flags
         		for c_o in compile_options: compile_cmd.append(c_o)
