@@ -37,7 +37,7 @@ def run_option_solver(platform_name,paths,script_option,options,debug=False,thre
     
   if(ssh_alias): platform = platform_class(remote=True,ssh_alias=ssh_alias,board="max4",boardid="test2")
   else: platform = platform_class()
-  mc_solver = mc_solver_class(options,paths,platform,instances=1)
+  mc_solver = mc_solver_class(options,paths,platform)
     
   if("Generate" in script_option): mc_solver.generate(debug=debug)
   
