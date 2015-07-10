@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['value',['value',['../classworkspace_1_1_forward_financial_framework_1_1_derivatives_1_1_option_1_1_option.html#a18ca57481c6752dde5565b20d31b5b23',1,'workspace::ForwardFinancialFramework::Derivatives::Option::Option']]],
-  ['volatility',['volatility',['../classworkspace_1_1_forward_financial_framework_1_1_underlyings_1_1_black___scholes_1_1_black___scholes.html#a801c4f61f9a32712a66c02759e7c1f96',1,'workspace.ForwardFinancialFramework.Underlyings.Black_Scholes.Black_Scholes.volatility()'],['../classworkspace_1_1_forward_financial_framework_1_1_underlyings_1_1_heston_1_1_heston.html#af2a4d68f33a9faadd25bd60444a280f1',1,'workspace.ForwardFinancialFramework.Underlyings.Heston.Heston.volatility()']]],
-  ['volatility_5fvolatility',['volatility_volatility',['../classworkspace_1_1_forward_financial_framework_1_1_underlyings_1_1_heston_1_1_heston.html#aa7279ba8690027beef2c7a49b9f643fb',1,'workspace::ForwardFinancialFramework::Underlyings::Heston::Heston']]]
+  ['second_5fbarrier',['second_barrier',['../classworkspace_1_1_forward_financial_framework_1_1_derivatives_1_1_double___barrier___option_1_1_double___barrier___option.html#ae8397d6f4409c7c27f392621845fabdb',1,'workspace::ForwardFinancialFramework::Derivatives::Double_Barrier_Option::Double_Barrier_Option']]],
+  ['ssh_5falias',['ssh_alias',['../classworkspace_1_1_forward_financial_framework_1_1_platforms_1_1_platform_1_1_platform.html#a92ede90e41627517ed9bb4ddb2729417',1,'workspace::ForwardFinancialFramework::Platforms::Platform::Platform']]],
+  ['strike_5fprice',['strike_price',['../classworkspace_1_1_forward_financial_framework_1_1_derivatives_1_1_option_1_1_option.html#a87553eba5370a83ebf85e75047b638a4',1,'workspace::ForwardFinancialFramework::Derivatives::Option::Option']]]
 ];
