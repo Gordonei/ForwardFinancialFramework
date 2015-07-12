@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['random_5fnumber_5fgenerator',['random_number_generator',['../classworkspace_1_1_forward_financial_framework_1_1_platforms_1_1_open_c_l_g_p_u_1_1_open_c_l_g_p5c21649ed9d0538b43ed088ca0879b3b.html#a1d68d8b4ceeb15a0f96a9ea766980ef6',1,'workspace::ForwardFinancialFramework::Platforms::OpenCLGPU::OpenCLGPU_MonteCarlo::OpenCLGPU_MonteCarlo']]],
-  ['reduce_5funderlyings',['reduce_underlyings',['../classworkspace_1_1_forward_financial_framework_1_1_solvers_1_1_monte_carlo_1_1_monte_carlo_1_1_monte_carlo.html#af2961fc8b7c4a73911f1c09226196880',1,'workspace::ForwardFinancialFramework::Solvers::MonteCarlo::MonteCarlo::MonteCarlo']]],
-  ['remote',['remote',['../classworkspace_1_1_forward_financial_framework_1_1_platforms_1_1_platform_1_1_platform.html#afc35b6a67c21b94eb755effb2c8e0888',1,'workspace::ForwardFinancialFramework::Platforms::Platform::Platform']]],
-  ['rfir',['rfir',['../classworkspace_1_1_forward_financial_framework_1_1_underlyings_1_1_underlying_1_1_underlying.html#a04295008d24c323f3dcb4789af0d026c',1,'workspace::ForwardFinancialFramework::Underlyings::Underlying::Underlying']]],
-  ['rho',['rho',['../classworkspace_1_1_forward_financial_framework_1_1_underlyings_1_1_heston_1_1_heston.html#a27558d3713a1cbd051680251de236c07',1,'workspace::ForwardFinancialFramework::Underlyings::Heston::Heston']]],
-  ['root_5fdirectory',['root_directory',['../classworkspace_1_1_forward_financial_framework_1_1_platforms_1_1_platform_1_1_platform.html#ade34753373be6ab73a6f23a5be66bbec',1,'workspace::ForwardFinancialFramework::Platforms::Platform::Platform']]],
-  ['root_5fdirectory_5fstring',['root_directory_string',['../classworkspace_1_1_forward_financial_framework_1_1_platforms_1_1_platform_1_1_platform.html#a3db51007b6fe24e7a04aa2b989b59e4d',1,'workspace::ForwardFinancialFramework::Platforms::Platform::Platform']]]
+  ['reduce_5funderlyings',['reduce_underlyings',['../class_forward_financial_framework_1_1_solvers_1_1_monte_carlo_1_1_monte_carlo_1_1_monte_carlo.html#a32a2fb3510e6545b5eb37e52bf966542',1,'ForwardFinancialFramework::Solvers::MonteCarlo::MonteCarlo::MonteCarlo']]],
+  ['remote',['remote',['../class_forward_financial_framework_1_1_platforms_1_1_platform_1_1_platform.html#ae06a4325a8a8d2668a3dad77e42684a2',1,'ForwardFinancialFramework::Platforms::Platform::Platform']]],
+  ['rfir',['rfir',['../class_forward_financial_framework_1_1_underlyings_1_1_underlying_1_1_underlying.html#a8c42dfdc693d588057af5faec3adacd6',1,'ForwardFinancialFramework::Underlyings::Underlying::Underlying']]],
+  ['rho',['rho',['../class_forward_financial_framework_1_1_underlyings_1_1_heston_1_1_heston.html#ae5a318bc4e56ee8fc8bf10932a2039e1',1,'ForwardFinancialFramework::Underlyings::Heston::Heston']]],
+  ['root_5fdirectory',['root_directory',['../class_forward_financial_framework_1_1_platforms_1_1_platform_1_1_platform.html#ad5f6202083a02f3ceab8102398f0713c',1,'ForwardFinancialFramework::Platforms::Platform::Platform']]],
+  ['root_5fdirectory_5fstring',['root_directory_string',['../class_forward_financial_framework_1_1_platforms_1_1_platform_1_1_platform.html#a6c2146608fd1722a4f44c7afe071a721',1,'ForwardFinancialFramework::Platforms::Platform::Platform']]]
 ];

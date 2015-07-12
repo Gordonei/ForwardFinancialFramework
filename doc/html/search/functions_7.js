@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setup_5funderlyings',['setup_underlyings',['../classworkspace_1_1_forward_financial_framework_1_1_solvers_1_1_monte_carlo_1_1_monte_carlo_1_1_monte_carlo.html#a587aa711c767893cc85e357d41cabc74',1,'workspace::ForwardFinancialFramework::Solvers::MonteCarlo::MonteCarlo::MonteCarlo']]]
+  ['root_5fdirectory',['root_directory',['../class_forward_financial_framework_1_1_platforms_1_1_platform_1_1_platform.html#ad5f6202083a02f3ceab8102398f0713c',1,'ForwardFinancialFramework::Platforms::Platform::Platform']]]
 ];

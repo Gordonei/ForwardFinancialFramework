@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kappa',['kappa',['../classworkspace_1_1_forward_financial_framework_1_1_underlyings_1_1_heston_1_1_heston.html#a624778d7cad24eb8eaa68b0048090113',1,'workspace::ForwardFinancialFramework::Underlyings::Heston::Heston']]]
+  ['kappa',['kappa',['../class_forward_financial_framework_1_1_underlyings_1_1_heston_1_1_heston.html#a4f93d295847c24982e2f6fa0fba30629',1,'ForwardFinancialFramework::Underlyings::Heston::Heston']]]
 ];

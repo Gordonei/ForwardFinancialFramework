@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['execute',['execute',['../classworkspace_1_1_forward_financial_framework_1_1_platforms_1_1_multicore_c_p_u_1_1_multicore_ccef1146b6c6089cf754e4316d472ed17.html#a3e26991baedf3ed052132076c8a51c7b',1,'workspace.ForwardFinancialFramework.Platforms.MulticoreCPU.MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.execute()'],['../classworkspace_1_1_forward_financial_framework_1_1_solvers_1_1_monte_carlo_1_1_monte_carlo_1_1_monte_carlo.html#ab8c1aee88dd2a3482a2bbec421f57319',1,'workspace.ForwardFinancialFramework.Solvers.MonteCarlo.MonteCarlo.MonteCarlo.execute()']]]
+  ['dummy_5frun',['dummy_run',['../class_forward_financial_framework_1_1_platforms_1_1_maxeler_f_p_g_a_1_1_maxeler_f_p_g_a___monte_85195d8bd16b129546c195bcbdd0e2f8.html#a41eba63166e34bd9bf4e19f54eda07a4',1,'ForwardFinancialFramework::Platforms::MaxelerFPGA::MaxelerFPGA_MonteCarlo::MaxelerFPGA_MonteCarlo']]]
 ];

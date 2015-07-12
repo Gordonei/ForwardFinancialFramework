@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['barrier',['barrier',['../classworkspace_1_1_forward_financial_framework_1_1_derivatives_1_1_barrier___option_1_1_barrier___option.html#a61f45d6fbc351da83c60febb38f60a13',1,'workspace::ForwardFinancialFramework::Derivatives::Barrier_Option::Barrier_Option']]]
+  ['barrier',['barrier',['../class_forward_financial_framework_1_1_derivatives_1_1_barrier___option_1_1_barrier___option.html#ad5dcb1aaac6a7ebc5b0b848254ad9dc5',1,'ForwardFinancialFramework::Derivatives::Barrier_Option::Barrier_Option']]],
+  ['board',['board',['../class_forward_financial_framework_1_1_platforms_1_1_maxeler_f_p_g_a_1_1_maxeler_f_p_g_a_1_1_maxeler_f_p_g_a.html#ac8b9ddaf49141b15b5ff69907e7e862e',1,'ForwardFinancialFramework.Platforms.MaxelerFPGA.MaxelerFPGA.MaxelerFPGA.board()'],['../class_forward_financial_framework_1_1_platforms_1_1_open_c_l_altera_f_p_g_a_1_1_open_c_l_altera_bf0e594dc44e9f147a7134dabe185109.html#a72eaf964aafc13716b6bacc91fcfe142',1,'ForwardFinancialFramework.Platforms.OpenCLAlteraFPGA.OpenCLAlteraFPGA.OpenCLAlteraFPGA.board()']]]
 ];
