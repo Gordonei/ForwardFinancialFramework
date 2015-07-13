@@ -42,8 +42,7 @@ class MaxelerFPGA(Platform.Platform):
 
 	 	if(self.board=="max4" and self.remote):
 			ssh_cmd = ["ssh","%s"%self.ssh_alias,"source",".profile;","bash","-c","\"","maxorch -r 192.168.0.1 -c reserve -i %s -t MAIA*1 > /dev/null"%self.boardid,"\""]
-		
-		output = subprocess.check_output(ssh_cmd)
+			output = subprocess.check_output(ssh_cmd)
 
 	 	if(board=="max4"):
 			self.shell_vars["SLIC_CONF"] = "default_engine_resource=%s^192.168.0.1"%self.boardid

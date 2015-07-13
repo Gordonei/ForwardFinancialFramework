@@ -54,6 +54,9 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		self.activity_thread_name = "maxeler_montecarlo_activity_thread"
 		#self.floating_point_format = "float"
 		
+		self.seeds_in = math.ceil(float(len(self.underlying))/2)*4 #Making sure seeds_in is in increments of 128 bits
+		self.values_out = math.ceil(float(len(self.derivative))/2)*4 #Making sure values_out are in increments of 128 bits
+		
 	def set_default_parameters(self):
 		"""Helper method for setting the default FPGA parameters to use
 		"""
@@ -113,8 +116,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("void * %s(void* thread_arg){"%self.activity_thread_name)
 		output_list.append("struct thread_data* temp_data;")
 
-		output_list.append("seeds_in = malloc(%d*instance_paths*sizeof(uint32_t));"%(int(seeds_in*4)))
-		output_list.append("values_out = malloc(%d*instance_paths*sizeof(float));"%(int(values_out*4)))
+		output_list.append("seeds_in = malloc(%d*instance_paths*sizeof(uint32_t));"%(int(self.seeds_in*4)))
+		output_list.append("values_out = malloc(%d*instance_paths*sizeof(float));"%(int(self.values_out*4)))
 		
 		for d in range(len(self.derivative)): 
 			output_list.append("long double temp_total_%d=0;"%d)
@@ -215,8 +218,6 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		#Class Declaration
 		output_list.append("public class %s_Kernel extends MC_Solver_Maxeler_Base_Kernel {"%self.output_file_name)
 		
-		seeds_in = math.ceil(float(len(self.underlying))/2)*4 #Making sure seeds_in is in increments of 128 bits
-		values_out = math.ceil(float(len(self.derivative))/2)*4 #Making sure values_out are in increments of 128 bits
 		
 		#Class Constructor Declaration and call to parent class constructor
 		output_list.append("//*Kernel Class*\n")

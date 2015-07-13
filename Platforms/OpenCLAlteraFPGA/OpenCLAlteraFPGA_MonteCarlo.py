@@ -96,7 +96,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	 	for d_index,d in enumerate(self.derivative):
 			output_list.remove("FP_t *value_sqrd_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % d_index)
 			output_list.remove("cl_mem value_sqrd_%d_buff = clCreateBuffer(context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(FP_t),NULL,&ret);" % (d_index))
-			output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,4 + d_index*3 + 2 + len(self.underlying),d_index))
+			#output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,4 + d_index*3 + 2 + len(self.underlying),d_index))
+			output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,5 + d_index*3 + 2 + len(self.underlying),d_index))
 			output_list.remove("ret = clEnqueueReadBuffer(command_queue, value_sqrd_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(FP_t),value_sqrd_%d, 1, kernel_event, &read_events[%d]);"%(d_index,d_index,d_index*2+1))
 			output_list.remove("clReleaseMemObject(value_sqrd_%d_buff);"%d_index)	
 
@@ -117,14 +118,14 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	 
 	 	#Setting attribute struct buffers as the kernel arguments 
 	 	for u_index,u in enumerate(self.underlying):
-	   		index = output_list.index("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,4 + u_index,u.name,u_index))
-	   		output_list.insert(index,"ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&u_a_%d_buff);"%(self.output_file_name,4 + u_index,u_index))
-	   		output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,4 + u_index,u.name,u_index))
+	   		index = output_list.index("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,5 + u_index,u.name,u_index))
+			output_list.insert(index,"ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&u_a_%d_buff);"%(self.output_file_name,5 + u_index,u_index))
+	   		output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,5 + u_index,u.name,u_index))
 	   
 	 	for d_index,d in enumerate(self.derivative):
-	   		index = output_list.index("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,4 + len(self.underlying) + d_index,d.name,d_index))
-	   		output_list.insert(index,"ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&o_a_%d_buff);"%(self.output_file_name,4 + len(self.underlying) + d_index,d_index))
-	   		output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,4 + len(self.underlying) + d_index,d.name,d_index))
+	   		index = output_list.index("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,5 + len(self.underlying) + d_index,d.name,d_index))
+	   		output_list.insert(index,"ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&o_a_%d_buff);"%(self.output_file_name,5 + len(self.underlying) + d_index,d_index))
+	   		output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,5 + len(self.underlying) + d_index,d.name,d_index))
 	 
 		#Writing to the attribute struct buffers
 	 		index = output_list.index("long double temp_total_0=0;")
@@ -154,9 +155,9 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	 	#removing the information calls that are used to dynamically set the workgroup size on GPUs and CPUs
 	 	output_list.remove("ret = clGetKernelWorkGroupInfo(%s_kernel,device,CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE,sizeof(size_t),&pref_wg_size_multiple,NULL);"%self.output_file_name)
 	 
-	 	index = output_list.index("size_t chunk_paths = max_wg_size*compute_units*work_groups_per_compute_unit;")
-	 	output_list.insert(index,"size_t chunk_paths = instance_paths;")
-	 	output_list.remove("size_t chunk_paths = max_wg_size*compute_units*work_groups_per_compute_unit;")
+	 	index = output_list.index("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
+		output_list.insert(index,"size_t chunk_paths = instance_paths;")
+	 	output_list.remove("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
 	 
 	 	index = output_list.index("const size_t kernel_paths = chunk_paths;")
 	 	output_list.insert(index,"const size_t kernel_paths = instance_paths;")
@@ -203,16 +204,17 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	   		output_list.remove("FP_t spot_price_%d,time_%d;"%(index,index))
 	 	for index,d in enumerate(self.derivative): output_list.remove("%s_variables temp_o_v_%d;"%(d.name,index))
 	 
-	 	lindex = output_list.index("for(int k=0;k<%d;++k){"%self.kernel_loops)
+	 	lindex = output_list.index("for(int k=0;k<local_kernel_loops;++k){") #{for(int k=0;k<%d;++k){"%self.kernel_loops
 	 	output_list.insert(lindex,"if(p<PATHS){")
 	 	for index,u in enumerate(self.underlying):
 	   		output_list.insert(lindex,"%s_variables temp_u_v_%d;"%(u.name,index))
 	   		output_list.insert(lindex,"FP_t spot_price_%d,time_%d;"%(index,index))
 	 	for index,d in enumerate(self.derivative): output_list.insert(lindex,"%s_variables temp_o_v_%d;"%(d.name,index))
-	 		output_list.insert(lindex,"uint k = p%PATHS;")
-	 		output_list.insert(lindex,"for(unsigned int p=0;p<PATHS*PATH_POINTS;++p){")
+		
+		output_list.insert(lindex,"uint k = p%PATHS;")
+	 	output_list.insert(lindex,"for(unsigned int p=0;p<PATHS*PATH_POINTS;++p){")
 	 
-	 	output_list.remove("for(int k=0;k<%d;++k){"%self.kernel_loops)
+	 	output_list.remove("for(int k=0;k<local_kernel_loops;++k){") #{for(int k=0;k<%d;++k)%self.kernel_loops
 	 
 	 	#Modifying the inner, path simulation loop
 	 	lindex = output_list.index("for(uint j=0;j<local_path_points;++j){")+1
