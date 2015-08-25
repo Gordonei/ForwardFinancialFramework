@@ -543,14 +543,14 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		"""
 		compile_flags = ["-lOpenCL","-I/opt/AMDAPP/include","-I/opt/nvidia/cuda/include","-fpermissive"]
     		if(debug): compile_flags.append("-ggdb")
-    		if(self.mac_flag):
+    		if("darwin" in sys.platform):
       			compile_flags.remove("-lOpenCL")
       			compile_flags.extend(["-framework","OpenCL"])
     		
 		result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_flags,debug) #Compiling Host C Code
       
     
-   		if (not self.mac_flag):
+   		if (not "darwin" in sys.platform):
       			opencl_compile_flags = ""
       			if(self.random_number_generator=="mwc64x_boxmuller"): opencl_compile_flags = "%s -DMWC64X_BOXMULLER"%opencl_compile_flags
       			elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): opencl_compile_flags = "%s -DTAUS_BOXMULLER"%opencl_compile_flags
