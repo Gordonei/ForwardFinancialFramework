@@ -3,7 +3,6 @@ Created on 23 February 2013
 
 '''
 import os,time,subprocess,sys,time,math,pyopencl
-#import platform as plat
 from ForwardFinancialFramework.Platforms.MulticoreCPU import MulticoreCPU_MonteCarlo
 from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
@@ -14,19 +13,25 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	This class provides the generation, compilation and execution behaviours for OpenCL GPU platforms (including Xeon Phis if the OpenCL device type is set to ACCELERATOR).
 	The Multicore solver class is reused heavily, with only the activity thread being implemented differently.
 	"""
-	def __init__(self,derivative,paths,platform,default_points=4096,reduce_underlyings=True,kernel_path_max=8,random_number_generator="mwc64x_boxmuller",floating_point_format="float"):
+	def __init__(self,derivative,paths,platform,default_points=4096,reduce_underlyings=True,kernel_path_max=8,random_number_generator="mwc64x_boxmuller",floating_point_format="float",runtime_opencl_compile=None):
     		MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings,default_points=default_points,random_number_generator=random_number_generator,floating_point_format=floating_point_format)
     		"""Constructor
 		
 		Parameters
 			derivative, paths, platform, reduce_underlyings, default_points, random_number_generator, floating_point_format - same as in MulticoreCPU_MonteCarlo class
 			kernel_path_max - (int) number of simulations to perform within each workitem
+			runtime_opencl_compile - (bool) option for performing OpenCL compile at runtime as opposed to when compiling host code. Defaults to False on Linux, and True on Mac OSx
 		"""
 		self.solver_metadata["threads"] = 1 #In this context this means something different
     
     		#Forcing the RNG to be the Taus Boxmuller
 		if(("Advanced Micro Devices" in self.platform.platform_name or "AMD" in self.platform.platform_name or "Intel" in self.platform.platform_name) and (self.random_number_generator=="mwc64x_boxmuller")): self.random_number_generator = "taus_boxmuller"
-    
+   
+   		#flag for check if OSX or not
+		if(runtime_opencl_compile==None and "darwin" in sys.platform): self.runtime_opencl_compile = True
+		elif(runtime_opencl_compile==None): self.runtime_opencl_compile = False
+		else: self.runtime_opencl_compile = runtime_opencl_compile
+
     		if("darwin" in sys.platform):
       			self.utility_libraries.extend(["OpenCL/opencl.h"])
       			#mwc64x_path_string = "%s/../%s/%s"%(os.getcwd(),self.platform.platform_directory(),mwc64x_path_string)
@@ -85,7 +90,23 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     		#Generate C Host Code largely using Multicore C infrastructure
     		MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate(self,".c",override,verbose,debug)
     
-  
+ 
+	def generate_kernel_binary_file_read(self,file_extension="clbin"):
+		output_list = []
+		output_list.append("size_t binary_size;")
+		output_list.append("FILE *fp = fopen(\"%s/%s.%s\", \"r\");"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name,file_extension))
+		output_list.append("assert(fp != NULL);")
+		output_list.append("fseek(fp,0,SEEK_END);")
+		output_list.append("binary_size = ftell(fp);")
+		output_list.append("fseek(fp,0,SEEK_SET);")
+
+		output_list.append("char *binary_buf = (char *)malloc(binary_size+1);")
+		output_list.append("size_t read_size = fread(binary_buf, sizeof(char), binary_size, fp);")
+		output_list.append("assert(read_size == binary_size);")
+		output_list.append("fclose(fp);")
+		
+		return output_list
+
 	def generate_activity_thread(self):
     		"""Helper method for generating activity thread
 
@@ -135,12 +156,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("cl_device_id device = devices[0];")
      
 		#Creating the OpenCL Program from the precompiled binary
-		if('darwin' not in sys.platform):
+		if(not self.runtime_opencl_compile):
 			output_list.append("//***Creating Program***")
-			output_list.append("FILE *fp=fopen(\"%s/%s.clbin\", \"r\");"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
-			output_list.append("char *binary_buf = (char *)malloc(0x55000000);")
-			output_list.append("size_t binary_size = fread(binary_buf, 1, 0x55000000, fp);")
-			output_list.append("fclose(fp);")
+			output_list.extend(self.generate_kernel_binary_file_read())
 			output_list.append("cl_program program = clCreateProgramWithBinary(context, 1, &device, (const size_t *)&binary_size,(const unsigned char **)&binary_buf, NULL, &ret);")
 			output_list.append("assert(ret==CL_SUCCESS);")
 			output_list.append("ret = clBuildProgram(program, 1, &device, NULL, NULL, NULL);")
@@ -525,14 +543,14 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		"""
 		compile_flags = ["-lOpenCL","-I/opt/AMDAPP/include","-I/opt/nvidia/cuda/include","-fpermissive"]
     		if(debug): compile_flags.append("-ggdb")
-    		if("darwin" in sys.platform):
+    		if(self.mac_flag):
       			compile_flags.remove("-lOpenCL")
       			compile_flags.extend(["-framework","OpenCL"])
     		
 		result = MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_flags,debug) #Compiling Host C Code
       
     
-   		if ("darwin" not in sys.platform):
+   		if (not self.mac_flag):
       			opencl_compile_flags = ""
       			if(self.random_number_generator=="mwc64x_boxmuller"): opencl_compile_flags = "%s -DMWC64X_BOXMULLER"%opencl_compile_flags
       			elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): opencl_compile_flags = "%s -DTAUS_BOXMULLER"%opencl_compile_flags
