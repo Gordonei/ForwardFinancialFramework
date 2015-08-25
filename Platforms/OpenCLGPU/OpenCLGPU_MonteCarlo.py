@@ -127,6 +127,33 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
 		return output_list
 
+	def generate_kernel_runtime_parameters(self):
+		output_list = []
+
+   		output_list.append("size_t pref_wg_size_multiple;")
+		output_list.append("ret = clGetKernelWorkGroupInfo(%s_kernel,device,CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE,sizeof(size_t),&pref_wg_size_multiple,NULL);"%self.output_file_name)
+    		output_list.append("assert(ret==CL_SUCCESS);")
+    
+    		output_list.append("size_t max_wg_size;")
+    		output_list.append("ret = clGetKernelWorkGroupInfo(%s_kernel,device,CL_KERNEL_WORK_GROUP_SIZE,sizeof(size_t),&max_wg_size,NULL);"%self.output_file_name)
+    		output_list.append("assert(ret==CL_SUCCESS);")
+    
+		output_list.append("cl_uint compute_units;")
+		output_list.append("ret = clGetDeviceInfo(device,CL_DEVICE_MAX_COMPUTE_UNITS,sizeof(cl_uint),&compute_units,NULL);")
+		output_list.append("assert(ret==CL_SUCCESS);")
+
+		output_list.append("size_t local_work_items = max_wg_size;")
+		output_list.append("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
+
+		#This is if the number of paths specified is below the optimal execution parameters
+		output_list.append("local_work_items = (local_work_items < temp_data->thread_paths) ? local_work_items : pref_wg_size_multiple;")
+		output_list.append("chunk_paths = (chunk_paths < temp_data->thread_paths) ? chunk_paths - chunk_paths%local_work_items : temp_data->thread_paths - temp_data->thread_paths%local_work_items;")
+    
+		#This allows overriding of the number of compute units being used, which are the unit of task parallelism in OpenCL
+		output_list.append("if(gpu_threads) chunk_paths = (chunk_paths/local_work_items < gpu_threads) ? chunk_paths : gpu_threads*local_work_items;")    
+		
+		return output_list
+	
 	def generate_activity_thread(self):
     		"""Helper method for generating activity thread
 
@@ -227,27 +254,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     		#Optimising kernel execution parameters
     		output_list.append("//***Optimising Kernel Parameters***")
     
-   		output_list.append("size_t pref_wg_size_multiple;")
-    		output_list.append("ret = clGetKernelWorkGroupInfo(%s_kernel,device,CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE,sizeof(size_t),&pref_wg_size_multiple,NULL);"%self.output_file_name)
-    		output_list.append("assert(ret==CL_SUCCESS);")
-    
-    		output_list.append("size_t max_wg_size;")
-    		output_list.append("ret = clGetKernelWorkGroupInfo(%s_kernel,device,CL_KERNEL_WORK_GROUP_SIZE,sizeof(size_t),&max_wg_size,NULL);"%self.output_file_name)
-    		output_list.append("assert(ret==CL_SUCCESS);")
-    
-		output_list.append("cl_uint compute_units;")
-		output_list.append("ret = clGetDeviceInfo(device,CL_DEVICE_MAX_COMPUTE_UNITS,sizeof(cl_uint),&compute_units,NULL);")
-		output_list.append("assert(ret==CL_SUCCESS);")
-
-		output_list.append("size_t local_work_items = max_wg_size;")
-		output_list.append("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
-
-		#This is if the number of paths specified is below the optimal execution parameters
-		output_list.append("local_work_items = (local_work_items < temp_data->thread_paths) ? local_work_items : pref_wg_size_multiple;")
-		output_list.append("chunk_paths = (chunk_paths < temp_data->thread_paths) ? chunk_paths - chunk_paths%local_work_items : temp_data->thread_paths - temp_data->thread_paths%local_work_items;")
-    
-		#This allows overriding of the number of compute units being used, which are the unit of task parallelism in OpenCL
-		output_list.append("if(gpu_threads) chunk_paths = (chunk_paths/local_work_items < gpu_threads) ? chunk_paths : gpu_threads*local_work_items;")    
+		output_list.append(self.generate_kernel_runtime_parameters())
       
 		#Creating the Memory Objects for each underlying and derivative
 		output_list.append("//***Creating OpenCL Memory Objects***")

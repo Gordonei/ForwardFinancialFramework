@@ -76,6 +76,15 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	def generate_opencl_kernel_call(self,first_call=False,runtime_managed_wg_sizes=True):
 		return OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_opencl_kernel_call(self,first_call,runtime_managed_wg_sizes)
 
+	def generate_kernel_runtime_parameters(self):
+	 	output_list = []
+ 
+		output_list.append("size_t chunk_paths = instance_paths;")
+	 	output_list.append("const size_t kernel_paths = instance_paths;")
+	 	output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/kernel_loops);")
+
+		return output_list
+
 	def generate_activity_thread(self):
 		"""Similiar to other solver classes - overriding the generate activity thread method
 		"""
@@ -154,21 +163,21 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	 	#output_list.remove("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, read_events, kernel_event);"%(self.output_file_name,2*len(self.derivative)))
 	 
 	 	#removing the information calls that are used to dynamically set the workgroup size on GPUs and CPUs
-	 	output_list.remove("ret = clGetKernelWorkGroupInfo(%s_kernel,device,CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE,sizeof(size_t),&pref_wg_size_multiple,NULL);"%self.output_file_name)
+	 	#output_list.remove("ret = clGetKernelWorkGroupInfo(%s_kernel,device,CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE,sizeof(size_t),&pref_wg_size_multiple,NULL);"%self.output_file_name)
 	 
-	 	index = output_list.index("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
-		output_list.insert(index,"size_t chunk_paths = instance_paths;")
-	 	output_list.remove("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
+	 	#index = output_list.index("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
+		#output_list.insert(index,"size_t chunk_paths = instance_paths;")
+	 	#output_list.remove("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
 	 
-	 	index = output_list.index("const size_t kernel_paths = chunk_paths;")
-	 	output_list.insert(index,"const size_t kernel_paths = instance_paths;")
-	 	output_list.remove("const size_t kernel_paths = chunk_paths;")
+	 	#index = output_list.index("const size_t kernel_paths = chunk_paths;")
+	 	#output_list.insert(index,"const size_t kernel_paths = instance_paths;")
+	 	#output_list.remove("const size_t kernel_paths = chunk_paths;")
 	 
-	 	output_list.remove("chunk_paths = (chunk_paths < temp_data->thread_paths) ? chunk_paths - chunk_paths%local_work_items : temp_data->thread_paths - temp_data->thread_paths%local_work_items;")
+	 	#output_list.remove("chunk_paths = (chunk_paths < temp_data->thread_paths) ? chunk_paths - chunk_paths%local_work_items : temp_data->thread_paths - temp_data->thread_paths%local_work_items;")
 	 
-	 	index = output_list.index("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
-	 	output_list.insert(index,"unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/kernel_loops);")
-	 	output_list.remove("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
+	 	#index = output_list.index("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
+	 	#output_list.insert(index,"unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/kernel_loops);")
+	 	#output_list.remove("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
  
 		return output_list
 
