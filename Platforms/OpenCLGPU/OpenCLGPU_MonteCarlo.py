@@ -152,6 +152,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		#This allows overriding of the number of compute units being used, which are the unit of task parallelism in OpenCL
 		output_list.append("if(gpu_threads) chunk_paths = (chunk_paths/local_work_items < gpu_threads) ? chunk_paths : gpu_threads*local_work_items;")    
 		
+		output_list.append("const size_t kernel_paths = chunk_paths;")
+		output_list.append("const size_t local_kernel_paths = local_work_items;")
+		output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
+		
 		return output_list
 	
 	def generate_activity_thread(self):
@@ -329,13 +333,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("//**Run the kernel for the 1st Time**")
 		output_list.append("cl_event kernel_event[1];")
 		output_list.append("cl_event read_events[%d];"%(len(self.derivative)*2))
-		output_list.append("const size_t kernel_paths = chunk_paths;")
-		output_list.append("const size_t local_kernel_paths = local_work_items;")
 		
 		output_list.extend(self.generate_opencl_kernel_call(first_call=True))
 		#output_list.append("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, kernel_event);"%(self.output_file_name))
 		output_list.append("assert(ret==CL_SUCCESS);")    
-		output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
     		output_list.append("unsigned int j = 1;")
     		for index,d in enumerate(self.derivative): output_list.append("long long remaining_paths_%d = temp_data->thread_paths;"%index)
       

@@ -56,7 +56,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     			if ("heston" in self.underlying[0].name): self.pipelining = 10
     			else: self.pipelining = 20
     
-    		if(self.simd_width==None): self.simd_width = 2
+    		if(self.simd_width==None): self.simd_width = 1
     		if(self.instances==None): self.instances = 1
     
 
@@ -354,7 +354,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	 	compile_cmd = ["aoc"]
 	 	compile_cmd.extend(opencl_compile_flags)
 	 	compile_cmd.append("%s/%s.cl"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
-	 	compile_cmd.extend(["-o","%s/%s_kernel.aocx"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)])
+	 	compile_cmd.extend(["-o","%s/%s.aocx"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)])
 	 
 	 	compile_string = ""
 	 	for c_c in compile_cmd: compile_string = "%s %s"%(compile_string,c_c)
