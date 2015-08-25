@@ -10,19 +10,16 @@ from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
   instance_paths = 1
-  instances = 1
-  pipelining = 1
   cslow = False
   simulation = False
-  simd_width = 1
     
-  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=1,random_number_generator="taus_boxmuller",floating_point_format="float",instances=None,pipelining=None,cslow=True,simulation=False,default_points=4096,optimisation=False,instance_paths=None,simd_width=1):
+  def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=1,random_number_generator="taus_boxmuller",floating_point_format="float",instances=None,pipelining=None,cslow=True,simulation=False,default_points=4096,optimisation=False,instance_paths=None,simd_width=None):
     self.simulation = simulation
     self.optimisation = optimisation #use the built-in optimisation flag
     self.pipelining = pipelining
     self.cslow = cslow
     self.instances = instances
-    self.simd_width = 1
+    self.simd_width = simd_width
 
     OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings=reduce_underlyings,kernel_path_max=kernel_path_max,random_number_generator=random_number_generator,floating_point_format=floating_point_format,default_points=default_points)
     
@@ -35,11 +32,12 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     if("CL/opencl.h" not in self.utility_libraries): self.utility_libraries.append("CL/opencl.h")
   
   def set_default_parameters(self):
-    if ("heston" in self.underlying[0].name): self.pipelining = 10
-    else: self.pipelining = 20
+    if(self.pipelining==None):
+    	if ("heston" in self.underlying[0].name): self.pipelining = 10
+    	else: self.pipelining = 20
     
-    self.simd_width = 2
-    self.instances = 1
+    if(self.simd_width==None): self.simd_width = 2
+    if(self.instances==None): self.instances = 1
     
     """if not(self.pipelining):
       units = 0
@@ -147,16 +145,18 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     #removing the information calls that are used to dynamically set the workgroup size on GPUs and CPUs
     output_list.remove("ret = clGetKernelWorkGroupInfo(%s_kernel,device,CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE,sizeof(size_t),&pref_wg_size_multiple,NULL);"%self.output_file_name)
     
-    index = output_list.index("size_t chunk_paths = max_wg_size*compute_units*work_groups_per_compute_unit;")
+    index = output_list.index("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
     output_list.insert(index,"size_t chunk_paths = instance_paths;")
-    output_list.remove("size_t chunk_paths = max_wg_size*compute_units*work_groups_per_compute_unit;")
+    output_list.remove("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
     
     index = output_list.index("const size_t kernel_paths = chunk_paths;")
     output_list.insert(index,"const size_t kernel_paths = instance_paths;")
     output_list.remove("const size_t kernel_paths = chunk_paths;")
-    
+  
     output_list.remove("chunk_paths = (chunk_paths < temp_data->thread_paths) ? chunk_paths - chunk_paths%local_work_items : temp_data->thread_paths - temp_data->thread_paths%local_work_items;")
-    
+  
+    output_list.remove("if(gpu_threads) chunk_paths = (chunk_paths/local_work_items < gpu_threads) ? chunk_paths : local_work_items*gpu_threads;")
+  
     index = output_list.index("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
     output_list.insert(index,"unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/kernel_loops);")
     output_list.remove("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
