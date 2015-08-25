@@ -27,6 +27,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 			simd_width - (int) vector width to use
 		 
 		"""
+		
 		##Boolean option for CPU simulation
 		self.simulation = simulation
 		##Boolean option to use Altera OpenCL compiler optimisation flags
@@ -40,6 +41,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		##integer simd width to use
 		self.simd_width = simd_width
 		 
+		OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.__init__(self,derivative,paths,platform,default_points,reduce_underlyings,kernel_path_max,random_number_generator,floating_point_format,runtime_opencl_compile=False) #Altera OpenCL SDK doesn't support runtime compilation
+		
 		self.set_instance_paths(instance_paths)
 		self.solver_metadata["local_work_items"] = self.instances
 
@@ -65,34 +68,36 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	   	self.output_file_name = ("%s_cslow_%s_pipe_%d_insts_%d_simd_%d"%(self.output_file_name,str(self.cslow),self.pipelining,self.instances,self.simd_width))
 	   	if(self.simulation): self.output_file_name = ("%s_sim"%(self.output_file_name))
 	
+	def generate_kernel_binary_file_read(self,file_extension="aocx"):
+		"""Overriding the helper method in OpenCLGPU_MonteCarlo to use the aocx file extension by default.
+		"""
+		return OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_binary_file_read(self,file_extension=file_extension)
+
+	def generate_opencl_kernel_call(self,first_call=False,runtime_managed_wg_sizes=True):
+		return OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_opencl_kernel_call(self,first_call,runtime_managed_wg_sizes)
+
 	def generate_activity_thread(self):
 		"""Similiar to other solver classes - overriding the generate activity thread method
 		"""
 		output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_activity_thread(self)
 		 
-		#Looking for an aocx file instead of a clbin file
-		index = output_list.index("FILE *fp=fopen(\"%s/%s.clbin\", \"r\");"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
-		output_list.insert(index,"FILE *fp=fopen(\"%s/%s_kernel.aocx\", \"r\");"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
-		output_list.remove("FILE *fp=fopen(\"%s/%s.clbin\", \"r\");"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
-
-		index = output_list.index("const size_t local_kernel_paths = local_work_items;")
-		output_list.insert(index,"const size_t local_kernel_paths = 1;") #TODO I should rather be getting the OpenCL runtime to do this
-		output_list.remove("const size_t local_kernel_paths = local_work_items;")
+		#index = output_list.index("const size_t local_kernel_paths = local_work_items;")
+		#output_list.insert(index,"const size_t local_kernel_paths = 1;") #TODO I should rather be getting the OpenCL runtime to do this
+		#output_list.remove("const size_t local_kernel_paths = local_work_items;")
 
 		#Aligning to 64 Bytes for DMA
-		for d_index,d in enumerate(self.derivative):
-	 		index = output_list.index("FP_t *value_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % d_index)
-			output_list.insert(index,"FP_t *value_%d;"%d_index)
-			output_list.insert(index+1,"ret = posix_memalign((void**)&value_%d, 64, chunk_paths*sizeof(FP_t));" % d_index)
-			output_list.insert(index+2,"assert(ret==0);")
-			output_list.remove("FP_t *value_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % d_index)
+		#for d_index,d in enumerate(self.derivative):
+	 	#	index = output_list.index("FP_t *value_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % d_index)
+		#	output_list.insert(index,"FP_t *value_%d;"%d_index)
+		#	output_list.insert(index+1,"ret = posix_memalign((void**)&value_%d, 64, chunk_paths*sizeof(FP_t));" % d_index)
+		#	output_list.insert(index+2,"assert(ret==0);")
+		#	output_list.remove("FP_t *value_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % d_index)
 	     
 
 		#Removing references to value_sqrd_buff
 	 	for d_index,d in enumerate(self.derivative):
-			output_list.remove("FP_t *value_sqrd_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % d_index)
+			#output_list.remove("FP_t *value_sqrd_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % d_index)
 			output_list.remove("cl_mem value_sqrd_%d_buff = clCreateBuffer(context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(FP_t),NULL,&ret);" % (d_index))
-			#output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,4 + d_index*3 + 2 + len(self.underlying),d_index))
 			output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,5 + d_index*3 + 2 + len(self.underlying),d_index))
 			output_list.remove("ret = clEnqueueReadBuffer(command_queue, value_sqrd_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(FP_t),value_sqrd_%d, 1, kernel_event, &read_events[%d]);"%(d_index,d_index,d_index*2+1))
 			output_list.remove("clReleaseMemObject(value_sqrd_%d_buff);"%d_index)	
@@ -102,51 +107,51 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 			output_list.remove("temp_value_sqrd_%d += value_sqrd_%d[i];"%(d_index,d_index))
 
 	 	#Creating attribute struct buffers as Altera OpenCL doesn't support passing structs as kernel arguments directly
-	 	for u_index,u in enumerate(self.underlying):
-	  		index = output_list.index("%s_attributes u_a_%d;" % (u.name,u_index))
-	   		output_list.insert(index+1,"cl_mem u_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,&ret);" % (u_index,u.name))
-	   		output_list.insert(index+2,"assert(ret==CL_SUCCESS);")
+	 	#for u_index,u in enumerate(self.underlying):
+	  	#	index = output_list.index("%s_attributes u_a_%d;" % (u.name,u_index))
+	   	#	output_list.insert(index+1,"cl_mem u_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,&ret);" % (u_index,u.name))
+	   	#	output_list.insert(index+2,"assert(ret==CL_SUCCESS);")
 	 
-	 	for d_index,d in enumerate(self.derivative):
-	   		index = output_list.index("%s_attributes o_a_%d;" % (d.name,d_index))
-	   		output_list.insert(index+1,"cl_mem o_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,&ret);" % (d_index,d.name))
-	   		output_list.insert(index+2,"assert(ret==CL_SUCCESS);")
+	 	#for d_index,d in enumerate(self.derivative):
+	   	#	index = output_list.index("%s_attributes o_a_%d;" % (d.name,d_index))
+	   	#	output_list.insert(index+1,"cl_mem o_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,&ret);" % (d_index,d.name))
+	   	#	output_list.insert(index+2,"assert(ret==CL_SUCCESS);")
 	 
 	 	#Setting attribute struct buffers as the kernel arguments 
-	 	for u_index,u in enumerate(self.underlying):
-	   		index = output_list.index("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,5 + u_index,u.name,u_index))
-			output_list.insert(index,"ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&u_a_%d_buff);"%(self.output_file_name,5 + u_index,u_index))
-	   		output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,5 + u_index,u.name,u_index))
+	 	#for u_index,u in enumerate(self.underlying):
+	   	#	index = output_list.index("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,5 + u_index,u.name,u_index))
+		#	output_list.insert(index,"ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&u_a_%d_buff);"%(self.output_file_name,5 + u_index,u_index))
+	   	#	output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,5 + u_index,u.name,u_index))
 	   
-	 	for d_index,d in enumerate(self.derivative):
-	   		index = output_list.index("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,5 + len(self.underlying) + d_index,d.name,d_index))
-	   		output_list.insert(index,"ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&o_a_%d_buff);"%(self.output_file_name,5 + len(self.underlying) + d_index,d_index))
-	   		output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,5 + len(self.underlying) + d_index,d.name,d_index))
+	 	#for d_index,d in enumerate(self.derivative):
+	   	#	index = output_list.index("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,5 + len(self.underlying) + d_index,d.name,d_index))
+	   	#	output_list.insert(index,"ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&o_a_%d_buff);"%(self.output_file_name,5 + len(self.underlying) + d_index,d_index))
+	   	#	output_list.remove("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,5 + len(self.underlying) + d_index,d.name,d_index))
 	 
 		#Writing to the attribute struct buffers
-	 		index = output_list.index("long double temp_total_0=0;")
-	 		output_list.insert(index,"cl_event write_events[%d];"%(len(self.underlying)+len(self.derivative)))
-	 		index += 1
+	 	#	index = output_list.index("long double temp_total_0=0;")
+	 	#	output_list.insert(index,"cl_event write_events[%d];"%(len(self.underlying)+len(self.derivative)))
+	 	#	index += 1
 	 
-	 	for u_index,u in enumerate(self.underlying):
-	     		output_list.insert(index,"ret = clEnqueueWriteBuffer(command_queue, u_a_%d_buff, CL_TRUE, 0, sizeof(%s_attributes), &u_a_%d, 0, NULL, &write_events[%d]);"%(u_index,u.name,u_index,u_index))
-	     		output_list.insert(index+1,"assert(ret==CL_SUCCESS);")
-	     		index += 2
+	 	#for u_index,u in enumerate(self.underlying):
+	     	#	output_list.insert(index,"ret = clEnqueueWriteBuffer(command_queue, u_a_%d_buff, CL_TRUE, 0, sizeof(%s_attributes), &u_a_%d, 0, NULL, &write_events[%d]);"%(u_index,u.name,u_index,u_index))
+	     	#	output_list.insert(index+1,"assert(ret==CL_SUCCESS);")
+	     	#	index += 2
 	 
-	 	for d_index,d in enumerate(self.derivative):
-	     		output_list.insert(index,"ret = clEnqueueWriteBuffer(command_queue, o_a_%d_buff, CL_TRUE, 0, sizeof(%s_attributes), &o_a_%d, 0, NULL, &write_events[%d]);"%(d_index,d.name,d_index,len(self.underlying)+d_index))
-	     		output_list.insert(index+1,"assert(ret==CL_SUCCESS);")
-	     		index += 2
+	 	#for d_index,d in enumerate(self.derivative):
+	     	#	output_list.insert(index,"ret = clEnqueueWriteBuffer(command_queue, o_a_%d_buff, CL_TRUE, 0, sizeof(%s_attributes), &o_a_%d, 0, NULL, &write_events[%d]);"%(d_index,d.name,d_index,len(self.underlying)+d_index))
+	     	#	output_list.insert(index+1,"assert(ret==CL_SUCCESS);")
+	     	#	index += 2
 	     
 	 	#Changing 1st kernel call to be dependent on the option and underlying write events. Also, the number of work items per work group is left up to the compiler
-	 	index = output_list.index("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, kernel_event);"%(self.output_file_name))
-	 	output_list.insert(index,"ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, NULL, %d, write_events, kernel_event);"%(self.output_file_name,len(self.underlying)+len(self.derivative)))
-	 	output_list.remove("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, kernel_event);"%(self.output_file_name))
+	 	#index = output_list.index("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, kernel_event);"%(self.output_file_name))
+	 	#output_list.insert(index,"ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, NULL, %d, write_events, kernel_event);"%(self.output_file_name,len(self.underlying)+len(self.derivative)))
+	 	#output_list.remove("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, kernel_event);"%(self.output_file_name))
 	 
 	 	#Changing the following kernel calls to let the compiler determine the number of work items per work group is left up to the compiler
-	 	index  = output_list.index("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, read_events, kernel_event);"%(self.output_file_name,2*len(self.derivative)))
-	 	output_list.insert(index,"ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, NULL, %d, read_events, kernel_event);"%(self.output_file_name,len(self.derivative)))
-	 	output_list.remove("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, read_events, kernel_event);"%(self.output_file_name,2*len(self.derivative)))
+	 	#index  = output_list.index("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, read_events, kernel_event);"%(self.output_file_name,2*len(self.derivative)))
+	 	#output_list.insert(index,"ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, NULL, %d, read_events, kernel_event);"%(self.output_file_name,len(self.derivative)))
+	 	#output_list.remove("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, read_events, kernel_event);"%(self.output_file_name,2*len(self.derivative)))
 	 
 	 	#removing the information calls that are used to dynamically set the workgroup size on GPUs and CPUs
 	 	output_list.remove("ret = clGetKernelWorkGroupInfo(%s_kernel,device,CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE,sizeof(size_t),&pref_wg_size_multiple,NULL);"%self.output_file_name)
@@ -164,26 +169,6 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	 	index = output_list.index("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
 	 	output_list.insert(index,"unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/kernel_loops);")
 	 	output_list.remove("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
-
-    
-		#removing the information calls that are used to dynamically set the workgroup size on GPUs and CPUs
-		output_list.remove("ret = clGetKernelWorkGroupInfo(%s_kernel,device,CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE,sizeof(size_t),&pref_wg_size_multiple,NULL);"%self.output_file_name)
-		
-		index = output_list.index("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
-		output_list.insert(index,"size_t chunk_paths = instance_paths;")
-		output_list.remove("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
-		
-		index = output_list.index("const size_t kernel_paths = chunk_paths;")
-		output_list.insert(index,"const size_t kernel_paths = instance_paths;")
-		output_list.remove("const size_t kernel_paths = chunk_paths;")
-		
-		output_list.remove("chunk_paths = (chunk_paths < temp_data->thread_paths) ? chunk_paths - chunk_paths%local_work_items : temp_data->thread_paths - temp_data->thread_paths%local_work_items;")
-		
-		output_list.remove("if(gpu_threads) chunk_paths = (chunk_paths/local_work_items < gpu_threads) ? chunk_paths : local_work_items*gpu_threads;")
-		
-		index = output_list.index("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
-		output_list.insert(index,"unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/kernel_loops);")
-		output_list.remove("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
  
 		return output_list
 
@@ -392,8 +377,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 			instance_paths - (int) number of instance paths to use
 		"""
 		if(instance_paths): self.instance_paths = instance_paths
-	 	else: 
-	   		self.instance_paths = max(self.paths/self.kernel_loops/10,1) #ideally we want to minimse the number of kernel calls but still hide the accumulate latency
+	 	else:
+	   		self.instance_paths = max(self.paths/self.instance_paths/10,1) #ideally we want to minimse the number of kernel calls but still hide the accumulate latency
 	   	
 		if(self.instance_paths%self.instances): self.instance_paths = self.instances*(self.instance_paths/self.instances + 1) #Making sure the instance paths are divisible by the SIMD work units
 	 

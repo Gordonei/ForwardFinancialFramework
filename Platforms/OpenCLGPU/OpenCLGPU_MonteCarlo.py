@@ -92,6 +92,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
  
 	def generate_kernel_binary_file_read(self,file_extension="clbin"):
+		"""Helper method for generating code for reading the size and contents of a kernel binary file.
+
+		Parameters
+			file_extenions - (str) file extension of kernel binary file
+		"""
 		output_list = []
 		output_list.append("size_t binary_size;")
 		output_list.append("FILE *fp = fopen(\"%s/%s.%s\", \"r\");"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name,file_extension))
@@ -105,6 +110,21 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("assert(read_size == binary_size);")
 		output_list.append("fclose(fp);")
 		
+		return output_list
+
+	def generate_opencl_kernel_call(self,first_call=False,runtime_managed_wg_sizes=False):
+		dep_events_str = "read_events"
+		dep_events_num = len(self.derivative*2)
+		if(first_call): 
+			dep_events_str = "NULL"
+			dep_events_num = 0
+		
+		wg_str = "&local_kernel_paths"
+		if(runtime_managed_wg_sizes): wg_str = "NULL"
+
+		output_list = []
+		output_list.append("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, %s, %d, %s, kernel_event);"%(self.output_file_name,wg_str,dep_events_num,dep_events_str))
+
 		return output_list
 
 	def generate_activity_thread(self):
@@ -237,11 +257,16 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     		for index,d in enumerate(self.derivative):
         		output_list.append("%s_attributes o_a_%d;" % (d.name,index))
-        
-       			output_list.append("FP_t *value_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % (index))
-        		output_list.append("cl_mem value_%d_buff = clCreateBuffer(context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(FP_t),NULL,&ret);" % (index))
+     
+       			output_list.append("FP_t *value_%d;"%index)
+			output_list.append("ret = posix_memalign((void**)&value_%d, 64, chunk_paths*sizeof(FP_t));" % index) 
+        		output_list.append("assert(ret==0);")
+			output_list.append("cl_mem value_%d_buff = clCreateBuffer(context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(FP_t),NULL,&ret);" % (index))
 			output_list.append("assert(ret==CL_SUCCESS);")
-        		output_list.append("FP_t *value_sqrd_%d = (FP_t*) malloc(chunk_paths*sizeof(FP_t));" % (index))
+        		
+			output_list.append("FP_t *value_sqrd_%d;" % index)
+			output_list.append("ret = posix_memalign((void**)&value_sqrd_%d, 64, chunk_paths*sizeof(FP_t));" % index) 
+        		output_list.append("assert(ret==0);")
         		output_list.append("cl_mem value_sqrd_%d_buff = clCreateBuffer(context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(FP_t),NULL,&ret);" % (index))
 			output_list.append("assert(ret==CL_SUCCESS);")
         
@@ -299,7 +324,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("cl_event read_events[%d];"%(len(self.derivative)*2))
 		output_list.append("const size_t kernel_paths = chunk_paths;")
 		output_list.append("const size_t local_kernel_paths = local_work_items;")
-		output_list.append("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, kernel_event);"%(self.output_file_name))
+		
+		output_list.extend(self.generate_opencl_kernel_call(first_call=True))
+		#output_list.append("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, 0, NULL, kernel_event);"%(self.output_file_name))
 		output_list.append("assert(ret==CL_SUCCESS);")    
 		output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
     		output_list.append("unsigned int j = 1;")
@@ -323,7 +350,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     		#Running the actual kernel
     		output_list.append("//**Run the kernel**")
-    		output_list.append("ret = clEnqueueNDRangeKernel(command_queue, %s_kernel, (cl_uint) 1, NULL, &kernel_paths, &local_kernel_paths, %d, read_events, kernel_event);"%(self.output_file_name,len(self.derivative)*2))
+		output_list.extend(self.generate_opencl_kernel_call(first_call=True))
     		output_list.append("assert(ret==CL_SUCCESS);")
     
    		output_list.append("//**Post-Kernel Calculations**")
