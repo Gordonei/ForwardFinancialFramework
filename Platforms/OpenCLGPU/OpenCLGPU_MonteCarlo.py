@@ -254,7 +254,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     		#Optimising kernel execution parameters
     		output_list.append("//***Optimising Kernel Parameters***")
     
-		output_list.append(self.generate_kernel_runtime_parameters())
+		output_list.extend(self.generate_kernel_runtime_parameters())
       
 		#Creating the Memory Objects for each underlying and derivative
 		output_list.append("//***Creating OpenCL Memory Objects***")
