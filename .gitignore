@@ -43,6 +43,8 @@ MC_Solver_Test_*
 #Random Files
 .DS_Store
 
+#Doc LaTex Files
+doc/latex/
 
 # Vivado/PlanAhead
 *.xpr
