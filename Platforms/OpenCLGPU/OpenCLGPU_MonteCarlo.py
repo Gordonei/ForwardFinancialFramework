@@ -621,7 +621,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       			for u_index,u in enumerate(d.underlying):
 				output_list.append("%s_derivative_payoff(spot_price_%d,&temp_o_v_%d,&temp_o_a_%d);"%(d.name,u_index,index,index))
 				output_list.append("temp_value_%d += temp_o_v_%d.value;"%(index,index))
-        			output_list.append("temp_value_sqrd_%d += native_powr(temp_o_v_%d.value,2);"%(index,index))
+        			output_list.append("temp_value_sqrd_%d += temp_o_v_%d.value*temp_o_v_%d.value;"%(index,index))
 	
     		output_list.append("}") #End of Kernel For Loop
     
