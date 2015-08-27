@@ -254,16 +254,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     		output_list.append("//**Creating Kernel variables and Copying parameters from host**")
     		for index,u in enumerate(self.underlying):
       			output_list.append("%s_attributes temp_u_a_%d = *u_a_%d;"%(u.name,index,index))
-      			output_list.append("%s_variables temp_u_v_%d;"%(u.name,index))
-      
-      			if(self.random_number_generator=="mwc64x_boxmuller"):
-				if("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-	  				output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),local_seed + 4096*2*local_chunk_size*(local_chunk_number*%d + %d),4096*2);"%(index,len(self.underlying),index))
-	  
-      			elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
-				if("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-					output_list.append("ctrng_seed(1,local_seed + %d * (i*PATHS*PATH_POINTS+k*PATH_POINTS+local_chunk_size*local_chunk_number*PATHS*PATH_POINTS),&(temp_u_v_%d.rng_state));"%(index+1,index))
-	  
+      			output_list.append("%s_variables temp_u_v_%d;"%(u.name,index)) 
      
     		for index,d in enumerate(self.derivative):
       			output_list.append("%s_attributes temp_o_a_%d = *o_a_%d;"%(d.name,index,index))
