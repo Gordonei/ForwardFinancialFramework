@@ -171,11 +171,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list = []
 
 		for index,u in enumerate(self.underlying):
-			output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,offset + len(self.derivative)*2 + index, u.name, index))
+			output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &u_a_%d);"%(self.output_file_name,offset + index, u.name, index))
       			output_list.append("assert(ret==CL_SUCCESS);")
 
 		for index,d in enumerate(self.derivative):
-		      	output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,offset + len(self.derivative)*2 + len(self.underlying) + index, d.name, index))
+		      	output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(%s_attributes), &o_a_%d);"%(self.output_file_name,offset + len(self.underlying) + index, d.name, index))
 		      	output_list.append("assert(ret==CL_SUCCESS);")
 
 		return output_list
@@ -283,13 +283,19 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
 		output_list.extend(self.generate_kernel_runtime_parameters())
       
+		##Creating the Command Queue for the Kernel
+    		output_list.append("//**Creating OpenCL Command Queue**")
+    		output_list.append("cl_command_queue command_queue = clCreateCommandQueue(context, device, 0, &ret);")
+    		output_list.append("assert(ret==CL_SUCCESS);") 
+		
 		#Creating the Memory Objects for each underlying and derivative
 		output_list.append("//***Creating OpenCL Memory Objects***")
     
-    		#Adding attribute memory structures
+		#Adding attribute memory structures
 		output_list.extend(self.generate_attribute_structures())
-
-    		for index,d in enumerate(self.derivative):
+    		
+		#Derivative value memory structures
+		for index,d in enumerate(self.derivative):
        			output_list.append("FP_t *value_%d;"%index)
 			output_list.append("ret = posix_memalign((void**)&value_%d, 64, chunk_paths*sizeof(FP_t));" % index) 
         		output_list.append("assert(ret==0);")
@@ -301,6 +307,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
         		output_list.append("assert(ret==0);")
         		output_list.append("cl_mem value_sqrd_%d_buff = clCreateBuffer(context, CL_MEM_WRITE_ONLY,chunk_paths*sizeof(FP_t),NULL,&ret);" % (index))
 			output_list.append("assert(ret==CL_SUCCESS);")
+    		
         
     		output_list.append("//**Setting Kernel Arguments**")
 		
@@ -319,8 +326,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("assert(ret==CL_SUCCESS);")
 		output_list.append("ret = clSetKernelArg(%s_kernel, 4, sizeof(cl_uint), &kernel_loops);"%(self.output_file_name))
 		output_list.append("assert(ret==CL_SUCCESS);")
-    
-    		for index,u in enumerate(self.underlying):
+    		
+		for index,u in enumerate(self.underlying):
       			temp = ("%s_underlying_init("%u.name)
       			for u_a in self.underlying_attributes[index][:-1]: temp=("%s%s_%d_%s,"%(temp,u.name,index,u_a))
       			temp=("%s%s_%d_%s,&u_a_%d);"%(temp,u.name,index,self.underlying_attributes[index][-1],index))   
@@ -332,19 +339,17 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       			temp=("%s%s_%d_%s,&o_a_%d);"%(temp,d.name,index,self.derivative_attributes[index][-1],index))
 		      	output_list.append(temp)
 
-		      	output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_%d_buff);"%(self.output_file_name,5 + index*2,index))
-		      	output_list.append("assert(ret==CL_SUCCESS);")
-		      	
-			output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,5 + index*2 + 1,index))
-		      	output_list.append("assert(ret==CL_SUCCESS);")
-			
-		##Creating the Command Queue for the Kernel
-    		output_list.append("//**Creating OpenCL Command Queue**")
-    		output_list.append("cl_command_queue command_queue = clCreateCommandQueue(context, device, 0, &ret);")
-    		output_list.append("assert(ret==CL_SUCCESS);") 
 		
 		#Setting attribute structure arguments
 		output_list.extend(self.generate_attribute_kernel_arguments())
+    
+		for index,d in enumerate(self.derivative):
+		      	output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_%d_buff);"%(self.output_file_name,5 + len(self.underlying) + len(self.derivative) + index*2,index))
+		      	output_list.append("assert(ret==CL_SUCCESS);")
+		      	
+			output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&value_sqrd_%d_buff);"%(self.output_file_name,5 + len(self.underlying) + len(self.derivative) + index*2 + 1,index))
+		      	output_list.append("assert(ret==CL_SUCCESS);")
+				
     
    		for d in range(len(self.derivative)): 
       			output_list.append("long double temp_total_%d = 0;"%d)
@@ -497,11 +502,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     		output_list.append("\tconst uint chunk_number,") #constant
     		output_list.append("\tconst uint kernel_loops,") #constant
     
-    		for index,d in enumerate(self.derivative):
+		output_list.extend(self.generate_kernel_attribute_arguments())
+    		
+		for index,d in enumerate(self.derivative):
       			output_list.append("\tglobal FP_t *%s value_%d,"%(restrict_str,index))
       			output_list.append("\tglobal FP_t *%s value_sqrd_%d,"%(restrict_str,index))
-    	
-		output_list.extend(self.generate_kernel_attribute_arguments())
 
 		output_list[-1] = "%s){" % (output_list[-1][:-1])
 

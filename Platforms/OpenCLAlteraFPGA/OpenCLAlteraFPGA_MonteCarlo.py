@@ -94,7 +94,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	def generate_attribute_structures(self):
 		output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_attribute_structures(self)
 
-		for index,u in enumerate(self.derivative):
+		for index,u in enumerate(self.underlying):
 	   		output_list.append("cl_mem u_a_%d_buff = clCreateBuffer(context, CL_MEM_READ_ONLY,sizeof(%s_attributes),NULL,&ret);" % (index,u.name))
 	   		output_list.append("assert(ret==CL_SUCCESS);")
 	
@@ -109,13 +109,13 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 
 		output_list.append("cl_event write_events[%d];"%(len(self.underlying)+len(self.derivative)))
 		for index,u in enumerate(self.underlying):
-			output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&u_a_%d_buff);"%(self.output_file_name,offset + len(self.derivative)*2 + index, index))
+			output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&u_a_%d_buff);"%(self.output_file_name,offset + index, index))
 	     		output_list.append("assert(ret==CL_SUCCESS);")
 			output_list.append("ret = clEnqueueWriteBuffer(command_queue, u_a_%d_buff, CL_TRUE, 0, sizeof(%s_attributes), &u_a_%d, 0, NULL, &write_events[%d]);"%(index,u.name,index,index))
 	     		output_list.append("assert(ret==CL_SUCCESS);")
 
 		for index,d in enumerate(self.derivative):
-			output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&o_a_%d_buff);"%(self.output_file_name,offset + len(self.derivative)*2 + len(self.underlying) + index, index))
+			output_list.append("ret = clSetKernelArg(%s_kernel, %d, sizeof(cl_mem), (void *)&o_a_%d_buff);"%(self.output_file_name,offset + len(self.underlying) + index, index))
 	     		output_list.append("assert(ret==CL_SUCCESS);")
 	     		output_list.append("ret = clEnqueueWriteBuffer(command_queue, o_a_%d_buff, CL_TRUE, 0, sizeof(%s_attributes), &o_a_%d, 0, NULL, &write_events[%d]);"%(index,d.name,index,len(self.underlying)+index))
 	     		output_list.append("assert(ret==CL_SUCCESS);")
