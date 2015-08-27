@@ -482,7 +482,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		return output_list
 
 
-	def generate_kernel_definition(self):
+	def generate_kernel_definition(self,restrict_arrays=False):
+		restrict_str = ""
+		if(restrict_arrays): restrict_str = "restrict"
+
 		output_list = []
 
 		#Kernel definition
@@ -494,8 +497,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     		output_list.append("\tconst uint kernel_loops,") #constant
     
     		for index,d in enumerate(self.derivative):
-      			output_list.append("\tglobal FP_t *value_%d,"%(index))
-      			output_list.append("\tglobal FP_t *value_sqrd_%d,"%(index))
+      			output_list.append("\tglobal FP_t *%s value_%d,"%(restrict_str,index))
+      			output_list.append("\tglobal FP_t *%s value_sqrd_%d,"%(restrict_str,index))
     	
 		output_list.extend(self.generate_kernel_attribute_arguments())
 
@@ -511,15 +514,6 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     		for index,u in enumerate(self.underlying):
       			output_list.append("%s_attributes temp_u_a_%d = u_a_%d;"%(u.name,index,index))
       			output_list.append("%s_variables temp_u_v_%d;"%(u.name,index))
-      
-      			if(self.random_number_generator=="mwc64x_boxmuller"):
-				if("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-	  				output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),local_seed + 4096*2*local_chunk_size*(local_chunk_number*%d + %d),4096*2);"%(index,len(self.underlying),index))
-	  
-      			elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
-				if("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
-					output_list.append("ctrng_seed(20,local_seed + %d * (i*%d+local_chunk_size*local_chunk_number),&(temp_u_v_%d.rng_state));"%(index+1,self.kernel_loops,index))
-	  
     
     
     		for index,d in enumerate(self.derivative):
