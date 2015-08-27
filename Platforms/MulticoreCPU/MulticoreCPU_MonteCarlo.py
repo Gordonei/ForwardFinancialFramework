@@ -62,7 +62,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 			code_string.extend(self.generate_identifier())
 			code_string.extend(self.generate_libraries())
 			code_string.extend(self.generate_variable_declaration())
-			code_string.extend(self.generate_activity_thread())
+			code_string.extend(self.generate_activity_thread(debug))
 			code_string.extend(self.generate_main_thread())
 		
 			#Actually writing to the file
@@ -352,7 +352,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
             
     		return output_list
   
-	def generate_activity_thread(self):
+	def generate_activity_thread(self,debug):
 		"""Helper method for generating activity thread
 
 		This is the method overrided by the children of this class.
