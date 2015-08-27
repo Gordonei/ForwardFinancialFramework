@@ -180,7 +180,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
 		return output_list
 
-	def generate_activity_thread(self):
+	def generate_activity_thread(self,debug=False):
     		"""Helper method for generating activity thread
 
 		Overrides the method in MulticoreCPU_MonteCarlo
@@ -263,14 +263,15 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       		output_list.append("ret = clBuildProgram(program, 1, &device, buildOption, NULL, NULL);")
       
       		#Outputing the Build Log
-      		output_list.append("size_t ret_val_size;")
-      		output_list.append("clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &ret_val_size);")   
-      		output_list.append("char build_log[ret_val_size+1];")
-      		output_list.append("clGetProgramBuildInfo(program,device,CL_PROGRAM_BUILD_LOG,sizeof(build_log),build_log,NULL);")
-      		output_list.append("build_log[ret_val_size] = '\0';")
-      		output_list.append("printf(\"OpenCL Build Log: %s\\n\",build_log);")
+		if(debug):
+      			output_list.append("size_t ret_val_size;")
+      			output_list.append("clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &ret_val_size);")   
+      			output_list.append("char build_log[ret_val_size+1];")
+      			output_list.append("clGetProgramBuildInfo(program,device,CL_PROGRAM_BUILD_LOG,sizeof(build_log),build_log,NULL);")
+      			output_list.append("build_log[ret_val_size] = '\0';")
+      			output_list.append("printf(\"OpenCL Build Log: %s\\n\",build_log);")
       
-      		output_list.append("assert(ret==CL_SUCCESS);")
+      		output_list.append("assert(ret==CL_SUCCESS);") #We want to see the build log even if the build program command fails
 
     		#Creating the OpenCL Kernel
     		output_list.append("//***Creating Kernel Object***")
