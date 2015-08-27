@@ -438,13 +438,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
 		return output_list
 
+	def generate_kernel_preprocessor_defines(self):
+     		output_list = []
 
-	def generate_kernel(self):
- 		"""Helper method for generating OpenCL kernel
-		"""
-	  	output_list = []
-     
-     		#Initial defines
+		#Initial defines
     		output_list.append("#ifndef M_PI")
     		output_list.append("#define M_PI 3.141592653589793238f")
     		output_list.append("#endif")
@@ -481,7 +478,13 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 			if(b not in temp):
 				output_list.append("#include \"%s/%s.c\"" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),b))
 				temp.append(b)
-                
+		
+		return output_list
+
+
+	def generate_kernel_definition(self):
+		output_list = []
+
 		#Kernel definition
     		output_list.append("kernel void %s_kernel("%self.output_file_name)
     		output_list.append("\tconst uint path_points,")
@@ -497,19 +500,13 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.extend(self.generate_kernel_attribute_arguments())
 
 		output_list[-1] = "%s){" % (output_list[-1][:-1])
-    
-    		#Getting kernel ID
-    		output_list.append("//**getting unique ID**")
-    		output_list.append("int i = get_global_id(0);")
-    
-    		#Getting private versions of commonly used parameters
-    		output_list.append("//**reading parameters from host**")
-    		output_list.append("uint local_path_points = path_points;")
-    		output_list.append("uint local_chunk_size = chunk_size;")
-    		output_list.append("uint local_chunk_number = chunk_number;")
-    		output_list.append("uint local_seed = seed;")
-    		output_list.append("uint local_kernel_loops = kernel_loops;")
-      
+
+
+		return output_list
+
+	def generate_kernel_local_memory_structures(self):
+		output_list = []
+
     		output_list.append("//**Creating Kernel variables and Copying parameters from host**")
     		for index,u in enumerate(self.underlying):
       			output_list.append("%s_attributes temp_u_a_%d = u_a_%d;"%(u.name,index,index))
@@ -524,17 +521,79 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 					output_list.append("ctrng_seed(20,local_seed + %d * (i*%d+local_chunk_size*local_chunk_number),&(temp_u_v_%d.rng_state));"%(index+1,self.kernel_loops,index))
 	  
     
-     		output_list.append("FP_t spot_price_%d,time_%d;"%(index,index))
     
     		for index,d in enumerate(self.derivative):
       			output_list.append("%s_attributes temp_o_a_%d = o_a_%d;"%(d.name,index,index))
       			output_list.append("%s_variables temp_o_v_%d;"%(d.name,index))
+
+		return output_list
+
+	def generate_kernel_path_loop_definition(self):
+		output_list = []
+		
+		output_list.append("for(uint k=0;k<local_kernel_loops;++k){")
+		
+		return output_list
+
+	def generate_kernel_rng_seeding(self):
+		output_list = []
+
+    		output_list.append("//**Creating Kernel variables and Copying parameters from host**")
+    		for index,u in enumerate(self.underlying):
+      			if(self.random_number_generator=="mwc64x_boxmuller"):
+				if("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
+	  				output_list.append("MWC64X_SeedStreams(&(temp_u_v_%d.rng_state),local_seed + 4096*2*local_chunk_size*(local_chunk_number*%d + %d),4096*2);"%(index,len(self.underlying),index))
+	  
+      			elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"):
+				if("heston_underlying" in u.name or "black_scholes_underlying" in u.name):
+					output_list.append("ctrng_seed(20,local_seed + %d * (i*%d+local_chunk_size*local_chunk_number),&(temp_u_v_%d.rng_state));"%(index+1,self.kernel_loops,index))
+
+		return output_list
+	
+	def generate_kernel_path_points_loop_definition(self):
+		output_list = []
+		
+		output_list.append("for(uint j=0;j<local_path_points;++j){")
+		
+		return output_list
+
+	def generate_kernel(self):
+ 		"""Helper method for generating OpenCL kernel
+		"""
+	  	output_list = []
+     
+     		#Kernel Preprocessor commands
+            	output_list.extend(self.generate_kernel_preprocessor_defines())
+ 
+ 		#Kernel definition
+ 		output_list.extend(self.generate_kernel_definition())
+
+    		#Getting kernel ID
+    		output_list.append("//**getting unique ID**")
+    		output_list.append("int i = get_global_id(0);")
+    
+    		#Getting private versions of commonly used parameters
+    		output_list.append("//**reading parameters from host**")
+    		output_list.append("uint local_path_points = path_points;")
+    		output_list.append("uint local_chunk_size = chunk_size;")
+    		output_list.append("uint local_chunk_number = chunk_number;")
+    		output_list.append("uint local_seed = seed;")
+    		output_list.append("uint local_kernel_loops = kernel_loops;")
+     
+		output_list.extend(self.generate_kernel_local_memory_structures())
+
+		for index,u in enumerate(self.underlying):
+     			output_list.append("FP_t spot_price_%d,time_%d;"%(index,index))
+     		
+		for index,d in enumerate(self.derivative):
       			output_list.append("FP_t temp_value_%d = 0.0;"%index)
       			output_list.append("FP_t temp_value_sqrd_%d = 0.0;"%index)
     
     		#For loop for controlling the paths done per work item
-		output_list.append("for(int k=0;k<local_kernel_loops;++k){")
-    
+   		output_list.extend(self.generate_kernel_path_loop_definition())
+
+		output_list.extend(self.generate_kernel_rng_seeding())
+
 		output_list.append("//**Initiating the Path and creating path variables**")
     		for index,u in enumerate(self.underlying):
         		output_list.append("%s_underlying_path_init(&temp_u_v_%d,&temp_u_a_%d);" % (u.name,index,index))
@@ -548,7 +607,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 			if("points" not in self.derivative_attributes[index]): output_list.append("temp_o_v_%d.delta_time = temp_o_a_%d.time_period/local_path_points;"%(index,index))
 	
     		output_list.append("//**Running the path**")
-    		output_list.append("for(uint j=0;j<local_path_points;++j){")
+    		output_list.extend(self.generate_kernel_path_points_loop_definition())
     
     		temp_underlying = self.underlying[:]
     		for index,d in enumerate(self.derivative):
