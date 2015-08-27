@@ -296,7 +296,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	def generate_kernel_path_points_loop_definition(self):
 		output_list = []
 	
-		output_list.append("pragma unroll UNROLL_FACTOR"
+		output_list.append("pragma unroll UNROLL_FACTOR")
 		output_list.append("for(uint j=0;j<PATH_POINTS;++j){")
 		
 		return output_list
