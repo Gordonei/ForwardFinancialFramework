@@ -14,7 +14,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	##Number of simulations to use per instance - analogous to the kernel path max used in OpenCL GPU class
 	instance_paths = 1
 	 
-	def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=1,random_number_generator="taus_boxmuller",floating_point_format="float",instances=None,pipelining=None,cslow=True,simulation=False,default_points=4096,optimisation=False,instance_paths=None,simd_width=None):
+	def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=1,random_number_generator="taus_boxmuller",floating_point_format="float",instances=None,pipelining=None,cslow=False,simulation=False,default_points=4096,optimisation=False,instance_paths=None,simd_width=None):
 		"""Constructor
 	
 		Parameters
