@@ -244,7 +244,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		output_list.append("__attribute__((reqd_work_group_size(SIMD_UNITS,1,1)))")
 	 	output_list.append("__attribute__((num_compute_units(COMPUTE_UNITS)))")
 
-		output_list.extend(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo(self))
+		output_list.extend(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_definition(self,restrict_arrays=True))
 
 		return output_list
 
@@ -300,12 +300,12 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		
 		return output_list
 
-	def generate_kernel(self):
-	 	"""Overriding kernel generation method.
+	#def generate_kernel(self):
+	 	#"""Overriding kernel generation method.
 
-		In this case, the parent method from the OpenCL GPU class is called, but the output is then modified.
-		"""
-		output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel(self)
+		#In this case, the parent method from the OpenCL GPU class is called, but the output is then modified.
+		#"""
+		#output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel(self)
 	  
 	 	#if(self.cslow):
 	     	#	for index,u in enumerate(self.underlying):
@@ -383,27 +383,27 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		#	lindex = output_list.index("temp_value_sqrd_%d += native_powr(temp_o_v_%d.value,2);"%(len(self.derivative)-1,len(self.derivative)-1))
 		#	output_list.insert(lindex+1,"}")
 	 
-		for index,u in enumerate(self.underlying):
-			temp_index = output_list.index("%s_attributes temp_u_a_%d = u_a_%d;"%(u.name,index,index))
-			output_list.insert(temp_index,"%s_attributes temp_u_a_%d = *u_a_%d;"%(u.name,index,index))
-	  		output_list.remove("%s_attributes temp_u_a_%d = u_a_%d;"%(u.name,index,index))
+		#for index,u in enumerate(self.underlying):
+		#	temp_index = output_list.index("%s_attributes temp_u_a_%d = u_a_%d;"%(u.name,index,index))
+		#	output_list.insert(temp_index,"%s_attributes temp_u_a_%d = *u_a_%d;"%(u.name,index,index))
+	  	#	output_list.remove("%s_attributes temp_u_a_%d = u_a_%d;"%(u.name,index,index))
 	   
-	 	for index,d in enumerate(self.derivative):
-	   		temp_index = output_list.index("\tconst %s_attributes o_a_%d,"%(d.name,index))
-	   		output_list.insert(temp_index,"\tglobal %s_attributes *restrict o_a_%d,"%(d.name,index))
-	   		output_list.remove("\tconst %s_attributes o_a_%d,"%(d.name,index))
+	 	#for index,d in enumerate(self.derivative):
+	   	#	temp_index = output_list.index("\tconst %s_attributes o_a_%d,"%(d.name,index))
+	   	#	output_list.insert(temp_index,"\tglobal %s_attributes *restrict o_a_%d,"%(d.name,index))
+	   	#	output_list.remove("\tconst %s_attributes o_a_%d,"%(d.name,index))
 	   
-	   		temp_index = output_list.index("%s_attributes temp_o_a_%d = o_a_%d;"%(d.name,index,index))
-	   		output_list.insert(temp_index,"%s_attributes temp_o_a_%d = *o_a_%d;"%(d.name,index,index))
-	   		output_list.remove("%s_attributes temp_o_a_%d = o_a_%d;"%(d.name,index,index))
+	   	#	temp_index = output_list.index("%s_attributes temp_o_a_%d = o_a_%d;"%(d.name,index,index))
+	   	#	output_list.insert(temp_index,"%s_attributes temp_o_a_%d = *o_a_%d;"%(d.name,index,index))
+	   	#	output_list.remove("%s_attributes temp_o_a_%d = o_a_%d;"%(d.name,index,index))
 	   
-	   		temp_index = output_list.index("\tglobal FP_t *value_%d,"%(index))
-	   		output_list.insert(temp_index,"\tglobal FP_t *restrict value_%d,"%(index))
-	   		output_list.remove("\tglobal FP_t *value_%d,"%(index))
+	   	#	temp_index = output_list.index("\tglobal FP_t *value_%d,"%(index))
+	   	#	output_list.insert(temp_index,"\tglobal FP_t *restrict value_%d,"%(index))
+	   	#	output_list.remove("\tglobal FP_t *value_%d,"%(index))
 	   		
-			temp_index = output_list.index("\tglobal FP_t *value_sqrd_%d,"%(index))
-	   		output_list.insert(temp_index,"\tglobal FP_t *restrict value_sqrd_%d,"%(index))
-	   		output_list.remove("\tglobal FP_t *value_sqrd_%d,"%(index))
+		#	temp_index = output_list.index("\tglobal FP_t *value_sqrd_%d,"%(index))
+	   	#	output_list.insert(temp_index,"\tglobal FP_t *restrict value_sqrd_%d,"%(index))
+	   	#	output_list.remove("\tglobal FP_t *value_sqrd_%d,"%(index))
 	   
 	   		#if(index==(len(self.derivative)-1)):
 	     		#	output_list[temp_index] = output_list[temp_index][:-1]+"){"
@@ -433,7 +433,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	   	#	output_list.remove("temp_value_%d += temp_o_v_%d.value;"%(index,index))
 	   
 	     
-	 	return output_list
+	 	#return output_list
 
 	def compile(self,override=True,debug=False):
 		"""Overriding the compile method as the Altera command line compiler must be used for their SDK
