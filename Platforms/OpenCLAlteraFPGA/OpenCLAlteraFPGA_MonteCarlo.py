@@ -55,7 +55,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
     			if ("heston" in self.underlying[0].name): self.pipelining = 10
     			else: self.pipelining = 20
     
-    		if(self.simd_width==None): self.simd_width = 1
+    		if(self.simd_width==None): self.simd_width = 16
     		if(self.instances==None): self.instances = 1
     
 
