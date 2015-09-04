@@ -99,11 +99,13 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
     output_list.append("//*MC Maxeler Activity Thread Function*")
     output_list.append("void * %s(void* thread_arg){"%self.activity_thread_name)
-    output_list.append("struct thread_data* temp_data;")
+    output_list.append("struct thread_data* temp_data = (struct thread_arg*) thread_arg;")
 
+    seeds_in = len(self.underlying)*2
+    values_out = len(self.derivative)
 
-    output_list.append("seeds_in = malloc(%d*instance_paths*sizeof(uint32_t));"%(int(seeds_in*4)))
-    output_list.append("values_out = malloc(%d*instance_paths*sizeof(float));"%(int(values_out*4)))
+    output_list.append("uint32_t* seeds_in = (uint32_t*) malloc(%d*instance_paths*sizeof(uint32_t));"%(int(seeds_in*4)))
+    output_list.append("FP_t* values_out = (FP_t*) malloc(%d*instance_paths*sizeof(FP_t));"%(int(values_out*2)))
     #output_list.append("posix_memalign(&seeds_in,%d,sizeof(uint32_t)*%d);"%(seeds_in*4,self.iterations*seeds_in*4))
     #output_list.append("posix_memalign(&values_out,%d,sizeof(float)*%d);"%(values_out*4,self.iterations*values_out*4))
     
@@ -112,7 +114,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       output_list.append("long double temp_value_sqrd_%d=0;"%d)
     
     output_list.append("//**Generating initial random seed**")
-    output_list.append("uint32_t initial_seed = temp_data->thread_rng_seed;") #%%((uint32_t)pow(2,31)-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
+    output_list.append("uint32_t initial_seed = (uint32_t) temp_data->thread_rng_seed;") #%%((uint32_t)pow(2,31)-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
     output_list.append("rng_state_t temp_state_x,temp_state_y;")
     #output_list.append("srand48(start.tv_nsec);")
     
@@ -146,18 +148,16 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**Running on the FPGA**")
     output_list.append("%s("%self.output_file_name)
     output_list.append("//****Scaler Attributes****") 
-    temp_list = []
-    for index,u_a in enumerate(sorted(self.underlying_attributes)):
+    attribute_list = []
+    for index,u_a in enumerate(self.underlying_attributes):
         for a in u_a:
-            attribute = "%s_%d_%s," % (self.underlying[index].name,index,a)
-	    temp_list += [attribute]
-            #output_list.append("max_set_scalar_input_f(device,\"%s_Kernel.%s\",%s,FPGA_A);"%(self.output_file_name,attribute,attribute))
-    
-    for index,o_a in enumerate(sorted(self.derivative_attributes)):
+            attribute_list += ["%s_%d_%s" % (self.underlying[index].name,index,a)]
+
+    for index,o_a in enumerate(self.derivative_attributes):
         for a in o_a:
-            attribute = "%s_%d_%s," % (self.derivative[index].name,index,a)
-            temp_list += [attribute]
-	    #output_list.append("max_set_scalar_input_f(device,\"%s_Kernel.%s\",%s,FPGA_A);"%(self.output_file_name,attribute,attribute))
+            attribute_list += ["%s_%d_%s" % (self.derivative[index].name,index,a)]
+    
+    for attribute in sorted(attribute_list): output_list.append("%s,"%attribute)
 
     output_list.append("//****Inputs and Output****") 
     for index in range(len(self.underlying)*8): output_list.append("&(seeds_in[%d*instance_paths]),"%(index))
@@ -168,9 +168,11 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     output_list.append("//**Post-Kernel Aggregation**")
     output_list.append("for (j=0;(j<(instance_paths)&&(paths_count<paths));++j){")
     for index,d in enumerate(self.derivative):
+      output_list.append("if(!isnan(values_out[j+%d*instance_paths*2])){"%index)
       output_list.append("temp_total_%d += values_out[j+%d*instance_paths*2];"%(index,index))
       output_list.append("temp_value_sqrd_%d += values_out[j+instance_paths*1+%d*instance_paths*2];"%(index,index))
       output_list.append("paths_count += %d;"%self.instances)
+      output_list.append("}")
     output_list.append("}")
     
       #output_list.append("if(values_out[i*%d+%d]){printf(\"%%d - %%f\\n\",i,values_out[i*%d+%d]);}"%(values_out*4,index,values_out*4,index))
