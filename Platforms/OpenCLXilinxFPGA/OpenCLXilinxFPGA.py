@@ -4,7 +4,7 @@ Created on 1 April 2014
 import ForwardFinancialFramework.Platforms.Platform as Platform
 import pyopencl
 
-class OpenCLAlteraFPGA(Platform.Platform):
+class OpenCLXilinxFPGA(Platform.Platform):
 	"""OpenCL Xilinx FPGA Platform Class
 
 	"""
@@ -17,7 +17,7 @@ class OpenCLAlteraFPGA(Platform.Platform):
 	##OpenCL Xilinx board to use
 	board = ""
     
-	def __init__(self,platform_directory_string="Platforms/OpenCLAlteraFPGA/openclalterafpga_code",root_directory_string=None,platform_name="Xilinx Corporation",board="vc690-admpcie7v3-1ddr-gen2",ssh_alias="",remote=False,hostname=""):
+	def __init__(self,platform_directory_string="Platforms/OpenCLXilinxFPGA/openclxilinxfpga_code",root_directory_string=None,platform_name="Xilinx Corporation",board="vc690-admpcie7v3-1ddr-gen2",ssh_alias="",remote=False,hostname=""):
         	"""Constructor
 
 		Parameters
