@@ -461,7 +461,56 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
       
 		return output_list
-  
+ 
+	def compile_define_flags(self):
+		"""Helper method for compile method. Generates the compilation definition flags
+
+		Parameters
+			None
+		"""
+		output_list = []
+
+		#Platform type
+		output_list += ["-DMULTICORE_CPU"]
+
+		#Setting the random number generator
+		if(self.random_number_generator=="taus_ziggurat"): output_list += ["-DTAUS_ZIGGURAT"]
+		elif(self.random_number_generator=="drand48_boxmuller"): output_list += ["-DDRAND48_BOXMULLER"]
+		elif(self.random_number_generator=="taus_boxmuller"): output_list += ["-DTAUS_BOXMULLER"]
+	 
+	 	#Number Representation
+        	output_list += ["-DFP_t=%s"%self.floating_point_format]
+
+		return output_list
+
+	def compile_optimisation_flags(self):
+		"""Helper method for compile method. Generates the list
+
+		Parameters
+			None
+		"""
+
+		output_list = []
+
+		#Optimisation Level 3 - turning the amp to 11
+		output_list += ["-O3"]
+		output_list += ["-w"]
+
+		#SSE
+		#output_list += ["-msse3"]
+
+		#Fast Math
+		output_list += ["-ffast-math"]
+
+		#Permissive
+		output_list += ["-fpermissive"]
+
+		#Compile for this specific Machine (Linux only)
+		if("darwin" not in sys.platform):output_list += ["-march=native"]
+	
+		return output_list
+
+
 	def compile(self,overide=True,compile_options=[],debug=False,profile=False):
     		"""Compile method
 
@@ -475,18 +524,14 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 		"""
     		
    		if(overide or not os.path.exists("%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name))):
-        		compile_cmd = ["g++","%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
+        		compile_cmd = ["g++"]
+			#Main File
+			compile_cmd.append("%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
+			#Include File
 			compile_cmd.append("-I%s%s"%(self.platform.root_directory(),self.platform.platform_directory()))
         
-			compile_cmd.append("-DMULTICORE_CPU")
+       			compile_cmd.extend(self.compile_define_flags())
 
-			#Setting the random number generator
-			if(self.random_number_generator=="taus_ziggurat"): compile_cmd.append("-DTAUS_ZIGGURAT")
-			elif(self.random_number_generator=="drand48_boxmuller"): compile_cmd.append("-DDRAND48_BOXMULLER")
-			elif(self.random_number_generator=="taus_boxmuller"): compile_cmd.append("-DTAUS_BOXMULLER")
-	 
-        		compile_cmd.append("-DFP_t=%s"%self.floating_point_format)
-        
 			#Including all of the derivative and option classes that are used
         		temp = []
         		for u in self.underlying:
@@ -517,35 +562,19 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
                 			if(b not in temp):
                     				compile_cmd.append(("%s/%s.c" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),b)))
                     				temp.append(b) 
-        
-            
-        
+         
         		#Linking pthread library
         		compile_cmd.append("-lpthread")
         
        			#RT
         		if("darwin" not in sys.platform):compile_cmd.append("-lrt")
         
-        		#Optimisation Level 3 - turning the amp to 11
-        		compile_cmd.append("-O3")
-        		compile_cmd.append("-w")
-        
-        		#SSE
-        		#compile_cmd.append("-msse3")
-        
-        
-        		#Fast Math
-        		compile_cmd.append("-ffast-math")
-        
-        		#Permissive
-        		compile_cmd.append("-fpermissive")
-        
-        		#Compile for this specific Machine (Linux only)
-        		if("darwin" not in sys.platform):compile_cmd.append("-march=native")
-	
+			compile_cmd.extend(self.compile_optimisation_flags())
+			
+			#Debugging and Profiling flags
 			if(debug): compile_cmd += ["-ggdb"]
 			if(profile): compile_cmd += ["-pg"]
-	
+
 			#Adding other compile flags
         		for c_o in compile_options: compile_cmd.append(c_o)
         
@@ -558,11 +587,10 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         		if(debug): print compile_string
         
         		result = subprocess.check_output(compile_cmd)
-	
-        
+	 
 			return result
       
-		else: print "multicore binary already exists, using previous version. Set overide to True if you would like to force the code to be recompiled"
+		else: return "multicore binary already exists, using previous version. Set overide to True if you would like to force the code to be recompiled"
           
 	def execute(self,debug=False,seed=None,timeout=None):
 		"""Execute method. This runs the generated and compiled solver (assuming it exists).

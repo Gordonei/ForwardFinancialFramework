@@ -85,7 +85,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		"""
 		#Generate OpenCL Kernel Code
     		self.kernel_code_list = self.generate_kernel()
-    		self.generate_source(self.kernel_code_list,".cl")
+    		self.generate_source(self.kernel_code_list,".cl",verbose=verbose)
     
     		#Generate C Host Code largely using Multicore C infrastructure
     		MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate(self,".c",override,verbose,debug)
