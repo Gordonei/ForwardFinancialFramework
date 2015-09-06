@@ -40,4 +40,36 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		return output_list
 
+	def generate_kernel_definition(self):
+		"""Overriding the kernel definition method, adding the Xilinx OpenCL preprocessor directives required before and after the kernel definition
+		"""
+		output_list = []
+
+		#Adding Xilinx OpenCl directives
+	 	#output_list.append("__attribute__((num_simd_work_items(SIMD_UNITS)))")
+		output_list.append("__attribute__((reqd_work_group_size(SIMD_UNITS,1,1)))")
+
+		output_list.extend(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_definition(self,restrict_arrays=True))
+		
+		#output_list.append("__attribute__((xcl_pipeline_workitems))")
+
+		return output_list
+	
+	def generate_kernel_local_memory_structures(self):
+		"""Overriding the override, back to the original GPU behaviour.
+		"""
+		output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_local_memory_structures(self)
+
+		return output_list
+
+	def generate_kernel_path_points_loop_definition(self):
+		"""Overriding the override, so that the correct Xilinx OpenCL pipelining factor is used
+		"""
+		output_list = []
+	
+		output_list.append("__attribute__((opencl_unroll_hint,UNROLL_FACTOR))")
+		output_list.append("__attribute__((xcl_pipeline_loop))")
+		output_list.append("for(uint j=0;j<PATH_POINTS;++j){")
+		
+		return output_list
 
