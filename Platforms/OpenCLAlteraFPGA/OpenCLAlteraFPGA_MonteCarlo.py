@@ -222,6 +222,9 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		#return output_list
  	
 	def generate_kernel_attribute_arguments(self):
+		"""Overriding the generate_kernel_attribute_arguments helper method so that attribute struct memories are used instead of the values directly.
+		"""
+		
 		output_list = []
 
 	 	#Making struct arguments into memory operations. Also, adding the restrict keyword to arguments
@@ -234,6 +237,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		return output_list
 
 	def generate_kernel_preprocessor_defines(self):
+		"""Overriding the kernel preprocessor helper method, adding the constant loop bounds required
+		"""
 		output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_preprocessor_defines(self)
 
 	 	#Adding Compile time loop bounds
@@ -243,9 +248,11 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		return output_list
 	    	
 	def generate_kernel_definition(self):
+		"""Overriding the kernel definition method, adding the OpenCL preprocessor directives required
+		"""
 		output_list = []
 
-		#Adding OpenCl directives
+		#Adding Altera OpenCl directives
 	 	output_list.append("__attribute__((num_simd_work_items(SIMD_UNITS)))")
 		output_list.append("__attribute__((reqd_work_group_size(SIMD_UNITS,1,1)))")
 	 	output_list.append("__attribute__((num_compute_units(COMPUTE_UNITS)))")
@@ -255,6 +262,9 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		return output_list
 
 	def generate_kernel_local_memory_structures(self):
+		"""Overriding the kernel local memory structures helper method, so that the attribute values are read out of the attribute memories
+		"""
+		
 		output_list = []
 
     		output_list.append("//**Creating Kernel variables and Copying parameters from host**")
@@ -291,6 +301,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		return output_list
 
 	def generate_kernel_path_points_loop_definition(self):
+		"""Overriding the inner simulation loop to use constant loop bounds
+		"""
 		output_list = []
 	
 		output_list.append("#pragma unroll UNROLL_FACTOR")
