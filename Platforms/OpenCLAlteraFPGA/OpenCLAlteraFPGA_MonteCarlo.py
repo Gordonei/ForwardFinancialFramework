@@ -73,6 +73,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		return OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_binary_file_read(self,file_extension=file_extension)
 
 	def generate_opencl_kernel_call(self,first_call=False,runtime_managed_wg_sizes=True):
+		"""Overriding the helper method in OpenCLGPU_MonteCarlo to make the first kernel call dependent on the struct attribute writes
+		"""
 		dep_events_str = None
 		dep_events_num = None
 
@@ -92,6 +94,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		return output_list
 
 	def generate_attribute_structures(self):
+		"""Overriding helper method for generating the data structures required for the underlying and derivative structs. Adding cl_mems for those data structures.
+		"""
 		output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_attribute_structures(self)
 
 		for index,u in enumerate(self.underlying):
@@ -105,6 +109,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		return output_list
 
 	def generate_attribute_kernel_arguments(self,offset=5):
+		"""Overriding the helper method for setting the host code's kernel arguments so that the attribute memories as opposed to passing the values by reference directly.
+		"""
 		output_list = []
 
 		output_list.append("cl_event write_events[%d];"%(len(self.underlying)+len(self.derivative)))
