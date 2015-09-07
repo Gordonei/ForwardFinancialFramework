@@ -89,19 +89,45 @@ FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state)
 #endif
 
 #ifdef TAUS_BOXMULLER
-void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_state)
+
+#ifdef SIN_COS_WORKAROUND
+#include "sin_cos_2y32.h" 
+#endif
+
+void box_muller(FP_t *g1, FP_t *g2, uint32_t u1, uint32_t u2)
 {
-  FP_t t_x,t_y,u,v;
-  
-  u = __drandom32(rng_state);
-  v = __drandom32(rng_state);
-  
-  t_x = native_sqrt(-2.0f*native_log(u))*native_cos((FP_t)(6.2831855f*v));
-  t_y = native_sqrt(-2.0f*native_log(u))*native_sin((FP_t)(6.2831855f*v));
-  t_y = t_x*rho+native_sqrt((FP_t)(1.0f-rho*rho))*t_y;
-  
-  *x = t_x;
-  *y = t_y;
+	const FP_t scale = ldexpf(1,-32);
+
+	#ifdef SIN_COS_WORKAROUND
+	sin_cos_2y32(u1,g1,g2);
+	#else
+	//sincosf(u1*scale*6.2831853071795f,g1,g2);
+	FP_t angle = u1*scale*6.2831853071795f;
+	*g1 = native_cos(angle);
+	*g2 = native_sin(angle);
+	#endif
+	
+	FP_t r = native_sqrt(-2*native_log(u2*scale));
+	
+	*g1 = (*g1)*r;
+	*g2 = (*g2)*r;
+}
+
+void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y, FP_t rho, rng_state_t *rng_state)
+{
+	FP_t t_x,t_y;
+
+	uint32_t u = __random32(rng_state);
+	uint32_t v = __random32(rng_state);
+
+	box_muller(&t_x,&t_y,u,v);
+
+	//t_x = native_sqrt(-2.0f*native_log(u))*native_cos((FP_t)(6.2831855f*v));
+	//t_y = native_sqrt(-2.0f*native_log(u))*native_sin((FP_t)(6.2831855f*v));
+	t_y = t_x*rho+native_sqrt((FP_t)(1.0f-rho*rho))*t_y;
+
+	*x = t_x;
+	*y = t_y;
   
 }
 #endif

@@ -189,6 +189,8 @@ FP_t __drandom32(rng_state_t *rng_state);
 
 
 #ifdef TAUS_BOXMULLER
+void box_muller(FP_t *g1, FP_t *g2, uint32_t u1, uint32_t u2);
+
 void taus_ran_gaussian_boxmuller(FP_t *x, FP_t *y,FP_t rho,rng_state_t *rng_state);
 #endif
 //End of modified code that uses the Combined TAUSWORTHE RNG
