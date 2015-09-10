@@ -31,6 +31,11 @@ def run_option_solver(platform_name,paths,script_option,options,debug=False,thre
     platform_class = OpenCLAlteraFPGA.OpenCLAlteraFPGA
     mc_solver_class = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo
   
+  elif(platform_name=="OpenCL_XilinxFPGA"):
+    from ForwardFinancialFramework.Platforms.OpenCLXilinxFPGA import OpenCLXilinxFPGA_MonteCarlo,OpenCLXilinxFPGA
+    platform_class = OpenCLXilinxFPGA.OpenCLXilinxFPGA
+    mc_solver_class = OpenCLXilinxFPGA_MonteCarlo.OpenCLXilinxFPGA_MonteCarlo
+  
   else:
     print "incorrect platform type!"
     sys.exit()

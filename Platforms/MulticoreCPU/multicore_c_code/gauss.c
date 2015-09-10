@@ -90,10 +90,6 @@ FP_t taus_ran_gaussian_ziggurat (FP_t sigma, rng_state_t *rng_state)
 
 #ifdef TAUS_BOXMULLER
 
-#ifdef SIN_COS_WORKAROUND
-#include "sin_cos_2y32.h" 
-#endif
-
 void box_muller(FP_t *g1, FP_t *g2, uint32_t u1, uint32_t u2)
 {
 	const FP_t scale = ldexpf(1,-32);

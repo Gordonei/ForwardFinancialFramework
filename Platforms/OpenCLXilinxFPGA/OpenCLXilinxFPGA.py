@@ -13,7 +13,7 @@ class OpenCLXilinxFPGA(Platform.Platform):
 	##This variable isn't used here, so set to 0 for safety
 	threads = 0
 	##Currently unused, but if it was, would use ALL device type
-	device_type = pyopencl.device_type.ALL
+	device_type = pyopencl.device_type.ACCELERATOR
 	##OpenCL Xilinx board to use
 	board = ""
     

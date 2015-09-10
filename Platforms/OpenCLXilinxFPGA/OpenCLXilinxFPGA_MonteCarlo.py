@@ -40,16 +40,30 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		return output_list
 
+	def generate_kernel_preprocessor_defines(self):
+		output_list  = []
+		
+		#All have to be done in the kernel file, apparently the SDAccel preprocessor is a bit weird
+		output_list += ["#define OPENCL_GPU"]
+		output_list += ["#define native_exp exp"]
+		output_list += ["#define native_log log"]
+		output_list += ["#define native_sqrt sqrt"]
+		output_list += ["#define uint32_t uint"]
+		output_list += ["#define TAUS_BOXMULLER"]
+		output_list += ["#define SIMD_UNITS %d"%self.simd_width]
+		output_list += ["#define SIN_COS_WORKAROUND"]
+		output_list += ["#include %s"%(os.path.join(self.platform.directory_string,"sin_2y32.h"))]
+		output_list += ["#include %s"%(os.path.join(self.platform.directory_string,"sin_cos_2y32.h"))]
+
+		output_list += OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_preprocessor_defines(self)
+
+		return output_list
+
 	def generate_kernel_definition(self):
 		"""Overriding the kernel definition method, adding the Xilinx OpenCL preprocessor directives required before and after the kernel definition
 		"""
 		output_list = []
 
-		output_list += ["#define OPENCL_GPU"]
-		output_list += ["#define native_exp exp"]
-      		if(self.random_number_generator=="mwc64x_boxmuller"): output_list.append += ["#define MWC64X_BOXMULLER"]
-      		elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): output_list += ["#define TAUS_BOXMULLER"]
-		output_list += ["#define SIMD_UNITS %d"%self.simd_width]
 
 		#Adding Xilinx OpenCl directives
 	 	#output_list.append("__attribute__((num_simd_work_items(SIMD_UNITS)))")
@@ -85,7 +99,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list = []
 
 		output_list.append("# Create SDAccel project") 
-		output_list.append("create_project -name %s -dir %s -force"%self.output_file_name,os.path.join(self.platform.root_directory(),self.platform.platform_directory()))
+		output_list.append("create_project -name %s -dir %s -force"%(self.output_file_name,os.path.join(self.platform.root_directory(),self.platform.platform_directory())))
 		output_list.append("set_property platform %s [current_project]"%self.platform.board)
 
 		compile_str = "-lpthread -lrt"
@@ -118,6 +132,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 					temp.append(b)
   
 		#Random number generator file
+		output_list.append("add_files \"%s/sin_cos_2y32.h\""%os.path.join(self.platform.root_directory(),self.platform.platform_directory()))
 		output_list.append("add_files \"%s/gauss.c\""%os.path.join(self.platform.root_directory(),self.platform.platform_directory()))
 		
 		for d in self.derivative:
@@ -130,17 +145,17 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 	
 			for b in base_list:
 				if(b not in temp):
-					add_files.append(("add_files \"%s/%s.c\"" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),b)))
+					output_list.append(("add_files \"%s/%s.c\"" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),b)))
 					temp.append(b) 
 
 		output_list.append("\n#Kernel Definition ")
-		output_list.append("create_kernel %s -type clc"%self.output_file_name)
+		output_list.append("create_kernel %s_kernel -type clc"%self.output_file_name)
 		output_list.append("add_files -kernel [get_kernels %s] \"%s/%s.cl\""%(self.output_file_name,os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
 
 		output_list.append("\n#Define the Binary Containers")
 		output_list.append("create_opencl_binary -device [lindex [get_device \"fpga0\"] 0] %s"%self.output_file_name)
 		output_list.append("set_property region \"OCL_REGION_0\" [get_opencl_binary %s]"%self.output_file_name)
-		for i in range(self.instances): output_list.append("create_compute_unit -opencl_binary [get_opencl_binary %s] -kernel [get_kernels %s] -name %s_%d"%(self.output_file_name,self.output_file_name,self.output_file_name,i))
+		for i in range(self.instances): output_list.append("create_compute_unit -opencl_binary [get_opencl_binary %s] -kernel [get_kernels %s_kernel] -name %s_%d"%(self.output_file_name,self.output_file_name,self.output_file_name,i))
 
 		output_list.append("\n#Build System")
 		output_list.append("build_system")
