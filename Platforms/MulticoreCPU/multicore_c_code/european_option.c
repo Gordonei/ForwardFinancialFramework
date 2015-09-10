@@ -51,9 +51,9 @@ void european_option_derivative_path(FP_t price,FP_t time,european_option_variab
 	
 	#ifdef OPENCL_XILINX
 	option_attributes temp_o_a_option;
-	temp_o_a->time_period = o_a->time_period;
-	temp_o_a->strike_price = o_a->strike_price;
-	temp_o_a->call = o_a->call;
+	temp_o_a_option.time_period = o_a->time_period;
+	temp_o_a_option.strike_price = o_a->strike_price;
+	temp_o_a_option.call = o_a->call;
 	temp_o_a = &(temp_o_a_option);
 
 	option_variables temp_o_v_option;
@@ -73,9 +73,9 @@ void european_option_derivative_payoff(FP_t end_price,european_option_variables*
 	
 	#ifdef OPENCL_XILINX
 	option_attributes temp_o_a_option;
-	temp_o_a->time_period = o_a->time_period;
-	temp_o_a->strike_price = o_a->strike_price;
-	temp_o_a->call = o_a->call;
+	temp_o_a_option.time_period = o_a->time_period;
+	temp_o_a_option.strike_price = o_a->strike_price;
+	temp_o_a_option.call = o_a->call;
 	temp_o_a = &(temp_o_a_option);
 
 	option_variables temp_o_v_option;

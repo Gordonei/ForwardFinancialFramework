@@ -117,7 +117,7 @@ void digital_double_barrier_option_derivative_payoff(FP_t end_price,digital_doub
 	temp_o_v = &(temp_o_v_option);
 	#else
 	temp_o_a = &(o_a->double_barrier_option);	
-	temp_o_v = &(o_v->barrier_option);	
+	temp_o_v = &(o_v->double_barrier_option);	
 	#endif
     
 	//Calling Double Barrier Behaviour
