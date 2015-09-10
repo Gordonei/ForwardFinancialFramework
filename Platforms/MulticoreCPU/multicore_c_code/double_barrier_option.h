@@ -13,7 +13,9 @@ typedef struct {
         char barrier_event;
 	FP_t delta_time;
 	FP_t value;
+	#ifndef OPENCL_XILINX
         barrier_option_variables barrier_option;
+	#endif
 } double_barrier_option_variables;
 
 typedef struct {
@@ -26,7 +28,9 @@ typedef struct {
 	FP_t time_period;
 	char call;
 	FP_t points;
+	#ifndef OPENCL_XILINX
         barrier_option_attributes barrier_option;
+	#endif
 } double_barrier_option_attributes;
 
 void double_barrier_option_derivative_init(FP_t t,char c,FP_t k,FP_t p,FP_t b,char o,char d,FP_t s_b,double_barrier_option_attributes* o_a);

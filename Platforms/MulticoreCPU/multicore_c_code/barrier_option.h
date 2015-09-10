@@ -14,7 +14,9 @@ typedef struct{
     
 	FP_t delta_time;
 	FP_t value;
-        european_option_variables european;
+	#ifndef OPENCL_XILINX
+        european_option_variables european_option;
+	#endif
 } barrier_option_variables;
 
 typedef struct {
@@ -26,7 +28,9 @@ typedef struct {
 	FP_t time_period;
 	char call;
 	FP_t points;
-        european_option_attributes european;
+	#ifndef OPENCL_XILINX
+        european_option_attributes european_option;
+	#endif
 } barrier_option_attributes;
 
 void barrier_option_derivative_init(FP_t t,char c,FP_t k,FP_t p,FP_t b,char o,char d,barrier_option_attributes* o_a);

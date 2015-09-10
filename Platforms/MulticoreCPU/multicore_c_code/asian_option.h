@@ -9,11 +9,12 @@
 #include "european_option.h"
 
 typedef struct {
-        FP_t average_value;
-        
+        FP_t average_value;        
         FP_t delta_time;
 	FP_t value;
+	#ifndef OPENCL_XILINX
         european_option_variables european_option;
+	#endif
 } asian_option_variables;
 
 typedef struct {
@@ -21,7 +22,9 @@ typedef struct {
 	FP_t time_period;
 	char call;
 	FP_t points;
+	#ifndef OPENCL_XILINX
         european_option_attributes european_option;
+	#endif
 } asian_option_attributes;
 
 void asian_option_derivative_init(FP_t t,char c,FP_t k,FP_t p,asian_option_attributes* o_a);

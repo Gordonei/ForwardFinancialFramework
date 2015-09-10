@@ -45,6 +45,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		
 		#All have to be done in the kernel file, apparently the SDAccel preprocessor is a bit weird
 		output_list += ["#define OPENCL_GPU"]
+		output_list += ["#define OPENCL_XILINX"]
 		output_list += ["#define native_exp exp"]
 		output_list += ["#define native_log log"]
 		output_list += ["#define native_sqrt sqrt"]
@@ -99,11 +100,11 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list = []
 
 		output_list.append("# Create SDAccel project") 
-		output_list.append("create_project -name %s -dir %s -force"%(self.output_file_name,os.path.join(self.platform.root_directory(),self.platform.platform_directory())))
+		output_list.append("create_project -name %s -dir %s"%(self.output_file_name,os.path.join(self.platform.root_directory(),self.platform.platform_directory())))
 		output_list.append("set_property platform %s [current_project]"%self.platform.board)
 
 		compile_str = "-lpthread -lrt"
-		compile_define_flags = self.compile_define_flags() + ["-DSIN_COS_WORKAROUND"] #Used to avoid trigonometric functions
+		compile_define_flags = self.compile_define_flags() + ["-DOPENCL_XILINX -DSIN_COS_WORKAROUND"] #Used to avoid trigonometric functions
 		for c in self.compile_define_flags(): compile_str= "%s %s"%(compile_str,c)
 		for c in self.compile_optimisation_flags(): compile_str= "%s %s"%(compile_str,c)
 		for c in compile_options: compile_str= "%s %s"%(compile_str,c)

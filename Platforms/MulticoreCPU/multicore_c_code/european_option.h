@@ -12,14 +12,18 @@
 typedef struct {
 	FP_t delta_time;
 	FP_t value;
+	#ifndef OPENCL_XILINX
 	option_variables option;
+	#endif
 } european_option_variables;//european_option_opt_var;
 
 typedef struct {
 	FP_t strike_price;
 	FP_t time_period;
 	char call;
+	#ifndef OPENCL_XILINX
 	option_attributes option;
+	#endif
 } european_option_attributes;//european_option_opt_attr;
 
 //time_period, call, strike_price, points
