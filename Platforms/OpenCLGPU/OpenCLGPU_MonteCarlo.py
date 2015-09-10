@@ -444,23 +444,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
 		return output_list
 
-	def generate_kernel_preprocessor_defines(self):
-     		output_list = []
-
-		#Initial defines
-    		output_list.append("#ifndef M_PI")
-    		output_list.append("#define M_PI 3.141592653589793238f")
-    		output_list.append("#endif")
-    
-    		output_list.append("#define FP_t %s"%self.floating_point_format)
-    		if(self.floating_point_format.lower()=="double"):
-			output_list.append("#if defined(cl_amd_fp64)")
-      			output_list.append("#pragma OPENCL EXTENSION cl_amd_fp64 : enable")
-      			output_list.append("#elif defined(cl_khr_fp64)")
-      			output_list.append("#pragma OPENCL EXTENSION cl_khr_fp64 : enable")
-      			output_list.append("#endif")
-      
-      		#Including the RNG source file
+	def generate_kernel_includes(self):
+		output_list = []
+      		
+		#Including the RNG source file
     		path_string = ""
     		if(self.random_number_generator=="mwc64x_boxmuller"): path_string = "%s/mwc64x/cl/mwc64x.cl"%os.path.join(self.platform.root_directory(),self.platform.platform_directory())
     		elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): path_string = "%s/gauss.c"%os.path.join(self.platform.root_directory(),self.platform.platform_directory())
@@ -484,7 +471,28 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 			if(b not in temp):
 				output_list.append("#include \"%s/%s.c\"" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),b))
 				temp.append(b)
-		
+
+		return output_list
+
+
+	def generate_kernel_preprocessor_defines(self):
+     		output_list = []
+
+		#Initial defines
+    		output_list.append("#ifndef M_PI")
+    		output_list.append("#define M_PI 3.141592653589793238f")
+    		output_list.append("#endif")
+    
+    		output_list.append("#define FP_t %s"%self.floating_point_format)
+    		if(self.floating_point_format.lower()=="double"):
+			output_list.append("#if defined(cl_amd_fp64)")
+      			output_list.append("#pragma OPENCL EXTENSION cl_amd_fp64 : enable")
+      			output_list.append("#elif defined(cl_khr_fp64)")
+      			output_list.append("#pragma OPENCL EXTENSION cl_khr_fp64 : enable")
+      			output_list.append("#endif")
+      
+		output_list += self.generate_kernel_includes()
+
 		return output_list
 
 
