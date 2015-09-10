@@ -53,8 +53,8 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list += ["#define TAUS_BOXMULLER"]
 		output_list += ["#define SIMD_UNITS %d"%self.simd_width]
 		output_list += ["#define SIN_COS_WORKAROUND"]
-		output_list += ["#include %s"%(os.path.join(self.platform.directory_string,"sin_2y32.h"))]
-		output_list += ["#include %s"%(os.path.join(self.platform.directory_string,"sin_cos_2y32.h"))]
+		output_list += ["#include %s"%(os.path.join(self.platform.platform_directory_string,"sin_2y32.h"))]
+		output_list += ["#include %s"%(os.path.join(self.platform.platform_directory_string,"sin_cos_2y32.h"))]
 
 		output_list += OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_preprocessor_defines(self)
 
