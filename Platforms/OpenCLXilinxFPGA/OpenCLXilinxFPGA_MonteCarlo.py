@@ -53,10 +53,11 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list += ["#define TAUS_BOXMULLER"]
 		output_list += ["#define SIMD_UNITS %d"%self.simd_width]
 		output_list += ["#define SIN_COS_WORKAROUND"]
-		output_list += ["#include %s"%(os.path.join(self.platform.platform_directory_string,"sin_2y32.h"))]
-		output_list += ["#include %s"%(os.path.join(self.platform.platform_directory_string,"sin_cos_2y32.h"))]
 
-		output_list += OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_preprocessor_defines(self)
+		output_list += OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo.generate_kernel_preprocessor_defines(self)
+		
+		output_list += ["#include \"%s/%s\""%(os.path.join(self.platform.root_directory_string,self.platform.platform_directory_string),"sin_2y32.h")]
+		output_list += ["#include \"%s/%s\""%(os.path.join(self.platform.root_directory_string,self.platform.platform_directory_string),"sin_cos_2y32.h")]
 
 		return output_list
 
@@ -151,7 +152,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		output_list.append("\n#Kernel Definition ")
 		output_list.append("create_kernel %s_kernel -type clc"%self.output_file_name)
-		output_list.append("add_files -kernel [get_kernels %s] \"%s/%s.cl\""%(self.output_file_name,os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
+		output_list.append("add_files -kernel [get_kernels %s_kernel] \"%s/%s.cl\""%(self.output_file_name,os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
 
 		output_list.append("\n#Define the Binary Containers")
 		output_list.append("create_opencl_binary -device [lindex [get_device \"fpga0\"] 0] %s"%self.output_file_name)
