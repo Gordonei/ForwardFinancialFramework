@@ -109,7 +109,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		"""
 		output_list = []
 	
-		output_list.append("__attribute__((opencl_unroll_hint,UNROLL_FACTOR))")
+		output_list.append("__attribute__((opencl_unroll_hint(UNROLL_FACTOR)))")
 		output_list.append("__attribute__((xcl_pipeline_loop))")
 		output_list.append("for(uint j=0;j<PATH_POINTS;++j){")
 		
@@ -179,6 +179,8 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list.append("set_property region \"OCL_REGION_0\" [get_opencl_binary %s]"%self.output_file_name)
 		for i in range(self.instances): output_list.append("create_compute_unit -opencl_binary [get_opencl_binary %s] -kernel [get_kernels %s_kernel] -name %s_%d"%(self.output_file_name,self.output_file_name,self.output_file_name,i))
 
+		output_list.append("\n#Generating Size Report")
+		output_list.append("report_estimate")
 		output_list.append("\n#Build System")
 		output_list.append("build_system")
 
