@@ -15,10 +15,20 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		"""
 		return OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_binary_file_read(self,file_extension=file_extension)
 	
-	def generate_opencl_kernel_call(self,first_call=False,runtime_managed_wg_sizes=True):
-		"""Overriding the override of the helper method, as attribute struct memories do not need to be used
+	def generate_opencl_kernel_call(self,first_call=False,runtime_managed_wg_sizes=False):
+		"""Overriding the override of the helper method, as attribute struct memories do not need to be used and the runtime can't manage wg sizes
 		"""
 		return OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_opencl_kernel_call(self,first_call,runtime_managed_wg_sizes)
+	
+	def generate_kernel_runtime_parameters(self):
+	 	output_list = []
+ 
+		output_list.append("size_t chunk_paths = instance_paths;")
+	 	output_list.append("const size_t kernel_paths = {instance_paths};")
+		output_list.append("const size_t local_kernel_paths = {SIMD_UNITS};")
+	 	output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/kernel_loops);")
+
+		return output_list
 
 	def generate_attribute_structures(self):
 		"""Overriding the override of the helper method, as attribute struct memories do not need to be used.
@@ -115,7 +125,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list.append("set_property platform %s [current_project]"%self.platform.board)
 
 		compile_str = "-lpthread -lrt"
-		compile_define_flags = self.compile_define_flags() + ["-DOPENCL_XILINX -DSIN_COS_WORKAROUND"] #Used to avoid trigonometric functions
+		compile_define_flags = self.compile_define_flags() + ["-DOPENCL_XILINX -DSIN_COS_WORKAROUND -DSIMD_UNITS=%d"%self.simd_width] #Used to avoid trigonometric functions
 		for c in self.compile_define_flags(): compile_str= "%s %s"%(compile_str,c)
 		for c in self.compile_optimisation_flags(): compile_str= "%s %s"%(compile_str,c)
 		for c in compile_options: compile_str= "%s %s"%(compile_str,c)
