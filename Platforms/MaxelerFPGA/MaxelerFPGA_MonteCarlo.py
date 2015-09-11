@@ -107,7 +107,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
 	
 	
-	def generate_activity_thread(self):
+	def generate_activity_thread(self,debug):
 		"""Overriding the generate activity thread method so that it sets up and communicates with the Maxeler DFE
 		"""
 		output_list = []
