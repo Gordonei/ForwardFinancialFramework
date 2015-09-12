@@ -451,9 +451,9 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("int outSize = outType.sizeInBytes();") 
 
 		if(self.c_slow):
-			output_list.append("engine_interface.setTicks(\"%s_Kernel\",instance_paths*(path_points+1));"%self.output_file_name)
+			output_list.append("engine_interface.setTicks(\"%s_Kernel\",instance_paths*(path_points/%d+1));"%(self.output_file_name,self.pipelining))
 		else:
-			output_list.append("engine_interface.setTicks(\"%s_Kernel\",instance_paths*(path_points/%d+1)*delay);"%self.output_file_name)
+			output_list.append("engine_interface.setTicks(\"%s_Kernel\",instance_paths*(path_points/%d+1)*delay);"%(self.output_file_name,self.pipelining))
 		
 		for index,u in enumerate(self.underlying): 
 			for k in range(8): output_list.append("engine_interface.setStream(\"seeds_in_%d\", inType, inSize*instance_paths);"%(index*8+k))
