@@ -35,7 +35,7 @@ def run_option_solver(platform_name,paths,script_option,options,debug=False,thre
     print "incorrect platform type!"
     sys.exit()
     
-  if(ssh_alias): platform = platform_class(remote=True,ssh_alias=ssh_alias)
+  if(ssh_alias): platform = platform_class(remote=True,ssh_alias=ssh_alias,board="max4",boardid="test2")
   else: platform = platform_class()
   mc_solver = mc_solver_class(options,paths,platform)
     
@@ -64,6 +64,7 @@ def run_option_solver(platform_name,paths,script_option,options,debug=False,thre
     execution_output_dict["User time"] = execution_output[-3]
     execution_output_dict["Kernel time"] = execution_output[-2]
   
+  del platform,mc_solver
   return (compile_output,execution_output_dict)
     
 if(__name__ == '__main__' and len(sys.argv)>3):

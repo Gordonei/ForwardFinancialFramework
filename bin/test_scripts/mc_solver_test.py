@@ -37,12 +37,12 @@ def run_test_solver(platform_name,ssh_alias,cmd_option):
   elif(platform_name=="Maxeler_FPGA"):
     from ForwardFinancialFramework.Platforms.MaxelerFPGA import MaxelerFPGA_MonteCarlo,MaxelerFPGA
     platform_class = MaxelerFPGA.MaxelerFPGA
-    mc_solver = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo
+    mc_solver_class = MaxelerFPGA_MonteCarlo.MaxelerFPGA_MonteCarlo
     
   elif(platform_name=="OpenCL_AlteraFPGA"):
     from ForwardFinancialFramework.Platforms.OpenCLAlteraFPGA import OpenCLAlteraFPGA_MonteCarlo,OpenCLAlteraFPGA
     platform_class = OpenCLAlteraFPGA.OpenCLAlteraFPGA
-    mc_solver = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo
+    mc_solver_class = OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo
     
   else:
     print "incorrect platform type!"
@@ -52,7 +52,7 @@ def run_test_solver(platform_name,ssh_alias,cmd_option):
   else: platform = platform_class(remote=True,ssh_alias=ssh_alias)    
 
   if(platform_name in ["CPU","OpenCL_GPU"]): mc_solver = mc_solver_class(option,paths,platform) 
-  elif(platform_name in ["Maxeler_FPGA"]): mc_solver = mc_solver_class(option,paths,platform,instance=1)
+  elif(platform_name in ["Maxeler_FPGA"]): mc_solver = mc_solver_class(option,paths,platform,instances=1)
   elif(platform_name in ["OpenCL_AlteraFPGA"]): mc_solver = mc_solver_class(option,paths,platform,pipelining=1,instances=1,kernel_path_max=20,cslow=True,simulation=True)
 
   if("Generate" in cmd_option): mc_solver.generate(debug=True)
