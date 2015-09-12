@@ -175,7 +175,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 			      attribute = "%s_%d_%s," % (self.derivative[index].name,index,a)
 			      temp_list += [attribute]
     
-   	 	for attribute in sorted(attribute_list): output_list.append("%s,"%attribute)
+   	 	for attribute in sorted(temp_list): output_list.append("%s,"%attribute)
 
 		output_list.append("//****Inputs and Output****") 
 		for index in range(len(self.underlying)*8): output_list.append("&(seeds_in[%d*instance_paths]),"%(index))
