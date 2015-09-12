@@ -200,3 +200,24 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate(self,override,verbose,debug)
 
+	def compile(self,override=True,cleanup=True,debug=False):
+		"""Overriding the compile method, as Xilinx's SDAccel is used for compilation
+
+		Parameters
+			override, cleanup, debug - same as in OpenCLGPU_MonteCarlo class
+		"""
+
+		#running SDAccel
+		sdaccel_compile_cmd = ["sdaccel","%s/%s.tcl" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
+		result = [subprocess.check_output(sdaccel_compile_cmd)]
+
+		#copying the host code into the platform directory
+		results += [subprocess.check_output(["cp","%s/%s/impl/host/x86_64/%s.exe"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name,self.output_file_name),"%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)])
+		
+		#copying the kernel file into the platform directory
+		results += [subprocess.check_output(["cp","%s/%s/impl/build/system/%s/bitstream/%s.xclbin"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.xclbin"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)])
+		
+		#copying results in platform directory
+		results += [subprocess.check_output(["cp","%s/%s/impl/kernels/%s_kernel/solution_OCL_REGION_0/syn/report/%s_kernel_csynth.rpt"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.rpt"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)])
+
+		return results
