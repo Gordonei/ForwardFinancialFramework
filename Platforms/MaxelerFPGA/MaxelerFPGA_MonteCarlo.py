@@ -339,26 +339,32 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 				temp_path_call_derivative.append("%s_%d_%d"%(d.name,d_index,pipe))
 	
 			
-			output_list.append("//***Path Connect Calls***")
-			for index,tpc in enumerate(temp_path_call_underlying): #this is fairly dodgy - TODO improve
-				if(int(tpc[-1])>0): #connect each point in the pipeline to the value that proceeded it
-					output_list.append("%s.connect_path(true,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-1],int(tpc[-1])-1,tpc[:-1],int(tpc[-1])-1))
-			
-					if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
-				else: #loop back to the end for the first value in the pipeline
-					output_list.append("%s.connect_path(false,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-1],self.pipelining-1,tpc[:-1],self.pipelining-1))
-					if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)	
+		output_list.append("//***Path Connect Calls***")
+		for index,tpc in enumerate(temp_path_call_underlying):
+			pipeline_stage = int(tpc.split("_")[-1])
+			pipeline_stage_len = len(tpc.split("_")[-1])
+			if(pipeline_stage > 0): #connect each point in the pipeline to the value that proceeded it
+				output_list.append("%s.connect_path(true,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-pipeline_stage_len],pipeline_stage-1,tpc[:-pipeline_stage_len],pipeline_stage-1))
 
-			for index,tpc in enumerate(temp_path_call_derivative):
-				if(int(tpc[-1])>0): #connect each point in the pipeline to the value that proceeded it
-					output_list.append("%s.connect_path(true);"%tpc)
-					
-					if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
-					if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
-				else: #loop back to the end for the first value in the pipeline
-					output_list.append("%s.connect_path(false);"%tpc)
-					if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)
-					if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)
+				if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],pipeline_stage-1)
+			else: #loop back to the end for the first value in the pipeline
+				output_list.append("%s.connect_path(false,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-pipeline_stage_len],self.pipelining-1,tpc[:-pipeline_stage_len],self.pipelining-1))
+				
+				if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],self.pipelining-1)	
+
+		for index,tpc in enumerate(temp_path_call_derivative):
+			pipeline_stage = int(tpc.split("_")[-1])	
+			pipeline_stage_len = len(tpc.split("_")[-1])
+			if(pipeline_stage > 0): #connect each point in the pipeline to the value that proceeded it
+				output_list.append("%s.connect_path(true);"%tpc)
+				
+				if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],pipeline_stage-1)
+				if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],pipeline_stage-1)
+			else: #loop back to the end for the first value in the pipeline
+				output_list.append("%s.connect_path(false);"%tpc)
+				
+				if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],self.pipelining-1)
+				if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],self.pipelining-1)
 		 
 	
 		output_list.append("//***Path Payoff and Accumulate Calls***") 
