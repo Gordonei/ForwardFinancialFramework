@@ -371,8 +371,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("}") #End of parallelism loop
 		
 		output_list.append("//**Copying Outputs to Output array and outputing it**")	
-		output_condition = "pp.eq(this.path_points-1)&d.eq(0)"
-		if(self.c_slow): output_condition = "pp.eq(this.path_points-1)"
+		output_condition = "pp.eq(this.path_points-%d)&d.eq(0)"%self.pipelining
+		if(self.c_slow): output_condition = "pp.eq(this.path_points-%d)"%self.pipelining
 
 		for index,d in enumerate(self.derivative):
 			output_list.append("io.output(\"values_out_%d\",(accumulate_%d).cast(this.inputFloatType),this.inputFloatType,%s);"%(index*2,index,output_condition))
