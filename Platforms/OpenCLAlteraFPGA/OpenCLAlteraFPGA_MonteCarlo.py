@@ -51,7 +51,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		if("CL/opencl.h" not in self.utility_libraries): self.utility_libraries.append("CL/opencl.h")
   
 	def set_default_parameters(self):
-		if(board=="p385_hpc_d5"):
+		if(self.board=="p385_hpc_d5"):
 			if(self.pipelining==None):
 				if ("heston" in self.underlying[0].name): self.pipelining = 10
 				else: self.pipelining = 20
