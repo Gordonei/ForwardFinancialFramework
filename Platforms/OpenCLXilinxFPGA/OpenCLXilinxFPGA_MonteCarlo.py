@@ -155,9 +155,10 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 					output_list.append(("add_files \"%s/%s.c\"" % (directory_string,b)))
 					temp.append(b)
   
-		#Random number generator file
-		output_list.append("add_files \"%s/sin_cos_2y32.h\""%os.path.join(self.platform.root_directory(),self.platform.platform_directory()))
-		output_list.append("add_files \"%s/gauss.c\""%os.path.join(self.platform.root_directory(),self.platform.platform_directory()))
+		#Random number generator and maths library files
+		output_list.append("add_files \"%s/fast_math.h\""%directory_string)
+		output_list.append("add_files \"%s/sin_cos_2y32.h\""%directory_string)
+		output_list.append("add_files \"%s/gauss.c\""%directory_string)
 		
 		for d in self.derivative:
 			if(not(d.name in temp)):
