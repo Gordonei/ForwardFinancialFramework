@@ -53,6 +53,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 	def generate_kernel_includes(self):
 		output_list = []
 		
+		output_list += ["#include \"%s/%s\""%(os.path.join(self.platform.root_directory_string,self.platform.platform_directory_string),"fastmath.h")]
 		output_list += ["#include \"%s/%s\""%(os.path.join(self.platform.root_directory_string,self.platform.platform_directory_string),"sin_2y32.h")]
 		output_list += ["#include \"%s/%s\""%(os.path.join(self.platform.root_directory_string,self.platform.platform_directory_string),"sin_cos_2y32.h")]
 
@@ -66,9 +67,9 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		#All have to be done in the kernel file, apparently the SDAccel preprocessor is a bit weird
 		output_list += ["#define OPENCL_GPU"]
 		output_list += ["#define OPENCL_XILINX"]
-		output_list += ["#define native_exp exp"]
-		output_list += ["#define native_log log"]
-		output_list += ["#define native_sqrt sqrt"]
+		output_list += ["#define native_exp(X) fastexp(X)"]
+		output_list += ["#define native_log(X) fastlog(X)"]
+		output_list += ["#define native_sqrt(X) fastpow(X,0.5f)"]
 		output_list += ["#define uint32_t uint"]
 		output_list += ["#define TAUS_BOXMULLER"]
 		output_list += ["#define SIMD_UNITS %d"%self.simd_width]
