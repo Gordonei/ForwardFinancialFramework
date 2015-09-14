@@ -481,7 +481,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	 	compiler = "g++"
 		native_arch = True
 		if(self.platform.board=="c5soc"): 
-			compiler = "$QUARTUS_ROOTDIR_OVERRIDE/../embedded/ds-5/sw/gcc/bin/arm-linux-gnueabihf-g++"
+			compiler = "%s/../embedded/ds-5/sw/gcc/bin/arm-linux-gnueabihf-g++"%os.environ["QUARTUS_ROOTDIR_OVERRIDE"]
 	 		native_arch = False
 
 		#Compiling Host C Code
