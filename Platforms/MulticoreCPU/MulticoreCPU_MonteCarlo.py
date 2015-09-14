@@ -462,7 +462,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
       
 		return output_list
   
-	def compile(self,overide=True,compile_options=[],debug=False,profile=False):
+	def compile(self,overide=True,compile_options=[],debug=False,profile=False,compiler="g++",native_arch=True):
     		"""Compile method
 
 		This compiles the generated source code.
@@ -475,7 +475,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 		"""
     		
    		if(overide or not os.path.exists("%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name))):
-        		compile_cmd = ["g++","%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
+        		compile_cmd = [compiler,"%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
 			compile_cmd.append("-I%s%s"%(self.platform.root_directory(),self.platform.platform_directory()))
         
 			compile_cmd.append("-DMULTICORE_CPU")
@@ -541,7 +541,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
         		compile_cmd.append("-fpermissive")
         
         		#Compile for this specific Machine (Linux only)
-        		if("darwin" not in sys.platform):compile_cmd.append("-march=native")
+        		if("darwin" not in sys.platform and native_arch):compile_cmd.append("-march=native")
 	
 			if(debug): compile_cmd += ["-ggdb"]
 			if(profile): compile_cmd += ["-pg"]

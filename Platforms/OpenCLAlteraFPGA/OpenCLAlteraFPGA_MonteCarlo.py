@@ -466,21 +466,28 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	 
 	 	result = [subprocess.check_output(compile_cmd)]
 	 	#result = []
-
-	 
-	 
+ 
 	 	#Host code compilation
 	 	compile_flags = subprocess.check_output(["aocl","compile-config"]).strip("\n").split(" ")
-	 	compile_flags.extend(subprocess.check_output(["aocl","ldflags"]).strip("\n").split(" "))
-	 	compile_flags.extend(subprocess.check_output(["aocl","ldlibs"]).strip("\n").split(" "))
+	 	
+		compile_flags += subprocess.check_output(["aocl","ldflags"]).strip("\n").split(" ")
+	 	compile_flags += subprocess.check_output(["aocl","ldlibs"]).strip("\n").split(" ")
 	 
-	 	compile_flags.extend(["-fpermissive", "-DSIMD_UNITS=%d"%self.instances,"-DUNROLL_FACTOR=%d"%self.pipelining])
+	 	compile_flags += ["-fpermissive", "-DSIMD_UNITS=%d"%self.instances,"-DUNROLL_FACTOR=%d"%self.pipelining]
+
 	 	if(debug): compile_flags.append("-ggdb")
 	 	while('' in compile_flags): compile_flags.remove('')
 	 
-	 	result.append(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_flags,debug)) #Compiling Host C Code
+	 	compiler = "g++"
+		native_arch = True
+		if(self.platform.board=="c5soc"): 
+			compiler = "$QUARTUS_ROOTDIR_OVERRIDE/../embedded/ds-5/sw/gcc/bin/arm-linux-gnueabihf-g++"
+	 		native_arch = False
 
-	 	return result
+		#Compiling Host C Code
+		result.append(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_flags,debug,compiler = compiler, native_arch = native_arch)) 
+	 	
+		return result
 	
 	def set_instance_paths(self,instance_paths):
 		"""Helper method for setting number of instance paths
