@@ -445,7 +445,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	 	opencl_compile_flags = ["-v","--report"]
 	 	if(debug): opencl_compile_flags.append("-g")
 	 	opencl_compile_flags.extend(["--board",self.platform.board])
-	 
+	 	if(self.platform.board=="c5soc"): opencl_compile_flags += ["--high-effort"]
+
 	 	if(self.random_number_generator=="mwc64x_boxmuller"): opencl_compile_flags.append("-DMWC64X_BOXMULLER")
 	 	elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): opencl_compile_flags.append("-DTAUS_BOXMULLER")
 	 
