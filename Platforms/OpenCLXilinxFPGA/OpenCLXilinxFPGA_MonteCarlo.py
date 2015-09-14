@@ -120,9 +120,10 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		"""Helper method for generating the tcl build script need by sdaccel to build the designs
 		"""
 		output_list = []
+		directory_string = os.path.join(self.platform.root_directory(),self.platform.platform_directory())
 
 		output_list.append("# Create SDAccel project") 
-		output_list.append("create_project -name %s -dir %s"%(self.output_file_name,os.path.join(self.platform.root_directory(),self.platform.platform_directory())))
+		output_list.append("create_project -name %s -dir %s"%(self.output_file_name,directory_string))
 		output_list.append("set_property platform %s [current_project]"%self.platform.board)
 
 		compile_str = "-lpthread -lrt"
@@ -136,14 +137,14 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		output_list.append("\n#Host Source Files ")
 		#Main file
-		output_list.append("add_files \"%s/%s.c\""%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
+		output_list.append("add_files \"%s/%s.c\""%(directory_string,self.output_file_name))
 		#Other sources
 		
 		#Including all of the derivative and option classes that are used
 		temp = []
 		for u in self.underlying:
 			if(not(u.name in temp)):
-				output_list.append(("add_files \"%s/%s.c\"" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),u.name)))
+				output_list.append(("add_files \"%s/%s.c\"" % (directory_string,u.name)))
 				temp.append(u.name)
     
 			base_list = []
@@ -151,7 +152,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 			for b in base_list:
 				if(b not in temp):
-					output_list.append(("add_files \"%s/%s.c\"" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),b)))
+					output_list.append(("add_files \"%s/%s.c\"" % (directory_string,b)))
 					temp.append(b)
   
 		#Random number generator file
@@ -160,7 +161,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		
 		for d in self.derivative:
 			if(not(d.name in temp)):
-				output_list.append(("add_files \"%s/%s.c\"" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),d.name)))
+				output_list.append(("add_files \"%s/%s.c\"" % (directory_string,d.name)))
 				temp.append(d.name)
 	
 			base_list = []
@@ -168,12 +169,12 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 	
 			for b in base_list:
 				if(b not in temp):
-					output_list.append(("add_files \"%s/%s.c\"" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),b)))
+					output_list.append(("add_files \"%s/%s.c\"" % (directory_string,b)))
 					temp.append(b) 
 
 		output_list.append("\n#Kernel Definition ")
 		output_list.append("create_kernel %s_kernel -type clc"%self.output_file_name)
-		output_list.append("add_files -kernel [get_kernels %s_kernel] \"%s/%s.cl\""%(self.output_file_name,os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
+		output_list.append("add_files -kernel [get_kernels %s_kernel] \"%s/%s.cl\""%(self.output_file_name,directory_string,self.output_file_name))
 
 		output_list.append("\n#Define the Binary Containers")
 		output_list.append("create_opencl_binary -device [lindex [get_device \"fpga0\"] 0] %s"%self.output_file_name)
@@ -207,18 +208,19 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		Parameters
 			override, cleanup, debug - same as in OpenCLGPU_MonteCarlo class
 		"""
+		directory_string = os.path.join(self.platform.root_directory(),self.platform.platform_directory())
 
 		#running SDAccel
-		sdaccel_compile_cmd = ["sdaccel","%s/%s.tcl" % (os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
+		sdaccel_compile_cmd = ["sdaccel","%s/%s.tcl" % (,self.output_file_name)]
 		result = [subprocess.check_output(sdaccel_compile_cmd)]
 
 		#copying the host code into the platform directory
-		results += [subprocess.check_output(["cp","%s/%s/impl/host/x86_64/%s.exe"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name,self.output_file_name),"%s/%s"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)])
+		results += [subprocess.check_output(["cp","%s/%s/impl/host/x86_64/%s.exe"%(directory_string,self.output_file_name,self.output_file_name),"%s/%s"%(directory_string,self.output_file_name)])
 		
 		#copying the kernel file into the platform directory
-		results += [subprocess.check_output(["cp","%s/%s/impl/build/system/%s/bitstream/%s.xclbin"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.xclbin"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)])
+		results += [subprocess.check_output(["cp","%s/%s/impl/build/system/%s/bitstream/%s.xclbin"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.xclbin"%(directory_string,self.output_file_name)])
 		
 		#copying results in platform directory
-		results += [subprocess.check_output(["cp","%s/%s/impl/kernels/%s_kernel/solution_OCL_REGION_0/syn/report/%s_kernel_csynth.rpt"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.rpt"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)])
+		results += [subprocess.check_output(["cp","%s/%s/impl/kernels/%s_kernel/solution_OCL_REGION_0/syn/report/%s_kernel_csynth.rpt"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.rpt"%(directory_string,self.output_file_name)])
 
 		return results
