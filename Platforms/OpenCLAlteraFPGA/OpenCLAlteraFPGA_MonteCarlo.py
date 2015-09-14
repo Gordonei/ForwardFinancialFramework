@@ -51,20 +51,28 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		if("CL/opencl.h" not in self.utility_libraries): self.utility_libraries.append("CL/opencl.h")
   
 	def set_default_parameters(self):
-    		if(self.pipelining==None):
-    			if ("heston" in self.underlying[0].name): self.pipelining = 10
-    			else: self.pipelining = 20
-    
-    		if(self.simd_width==None): self.simd_width = 16
-    		if(self.instances==None): self.instances = 1
-    
+		if(board=="p385_hpc_d5"):
+			if(self.pipelining==None):
+				if ("heston" in self.underlying[0].name): self.pipelining = 10
+				else: self.pipelining = 20
+	    
+			if(self.simd_width==None): self.simd_width = 1
+			if(self.instances==None): self.instances = 1
+   		else:
+			if(self.pipelining==None):
+				if ("heston" in self.underlying[0].name): self.pipelining = 2
+				else: self.pipelining = 4
+	    
+			if(self.simd_width==None): self.simd_width = 1
+			if(self.instances==None): self.instances = 1
+
 
 	def generate_name(self):
 	   	"""Overriding method for generating name
 	   	"""
 		self.set_default_parameters()
 	   	MonteCarlo.MonteCarlo.generate_name(self)  
-	   	self.output_file_name = ("%s_cslow_%s_pipe_%d_insts_%d_simd_%d"%(self.output_file_name,str(self.cslow),self.pipelining,self.instances,self.simd_width))
+	   	self.output_file_name = ("%s_pipe_%d_insts_%d_simd_%d_%s"%(self.output_file_name,self.pipelining,self.instances,self.simd_width,self.board))
 	   	if(self.simulation): self.output_file_name = ("%s_sim"%(self.output_file_name))
 	
 	def generate_kernel_binary_file_read(self,file_extension="aocx"):
