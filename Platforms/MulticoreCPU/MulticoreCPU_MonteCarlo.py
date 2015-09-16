@@ -461,7 +461,6 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
       
 		return output_list
-<<<<<<< HEAD
  
 	def compile_define_flags(self):
 		"""Helper method for compile method. Generates the compilation definition flags
