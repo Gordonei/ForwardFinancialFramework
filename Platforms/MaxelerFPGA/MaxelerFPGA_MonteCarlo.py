@@ -88,10 +88,11 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	
 	def generate(self,override=True,verbose=False,debug=False):
 		"""Overriding generate method. In addition to host code, the code for Maxeler DFE and its manager class are generated.
-
+		
 		Parameters
 			override, verbose, debug - same as for MulticoreCPU_MonteCarlo class
 		"""
+
 		#Generate C Host Code largely using Multicore infrastructure
 		MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.generate(self,"_Host_Code.c",override,verbose=verbose,debug=debug)
 		
@@ -105,23 +106,30 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		self.generate_source(manager_code_string,"_Manager.maxj")
 		if(debug): print "Generated %s/%s_Manager.maxj"%(self.platform.absolute_platform_directory(),self.output_file_name)
 
-	
-	
-	def generate_activity_thread(self):
+	"""
+    
+    
+
+	"""
+
+	def generate_activity_thread(self,debug):
 		"""Overriding the generate activity thread method so that it sets up and communicates with the Maxeler DFE
 		"""
 		output_list = []
-
+    		
 		output_list.append("//*MC Maxeler Activity Thread Function*")
-		output_list.append("void * %s(void* thread_arg){"%self.activity_thread_name)
-		output_list.append("struct thread_data* temp_data;")
+    		output_list.append("void * %s(void* thread_arg){"%self.activity_thread_name)
+    		output_list.append("struct thread_data* temp_data = (struct thread_arg*) thread_arg;")
 
-		output_list.append("seeds_in = malloc(%d*instance_paths*sizeof(uint32_t));"%(int(self.seeds_in*4)))
-		output_list.append("values_out = malloc(%d*instance_paths*sizeof(float));"%(int(self.values_out*4)))
+    		seeds_in = len(self.underlying)*2
+    		values_out = len(self.derivative)
+
+    		output_list.append("uint32_t* seeds_in = (uint32_t*) malloc(%d*instance_paths*sizeof(uint32_t));"%(int(seeds_in*4)))
+    		output_list.append("FP_t* values_out = (FP_t*) malloc(%d*instance_paths*sizeof(FP_t));"%(int(values_out*2)))
 		
 		for d in range(len(self.derivative)): 
 			output_list.append("long double temp_total_%d=0;"%d)
-			output_list.append("long double temp_value_sqrd_%d=0;"%d)
+			output_list.append("long double temp_value_sqrd_%d=0;"%d) 
 		
 		output_list.append("//**Generating initial random seed**")
 		output_list.append("uint32_t initial_seed = temp_data->thread_rng_seed;") #%%((uint32_t)pow(2,31)-%d);"%(seeds_in*self.iterations)) #Start the seeds off at some random point
@@ -142,6 +150,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 			output_list.append("seeds_in[j+3*instance_paths+%d*8*instance_paths] = temp_state_x.offset;"%index)
 			
 			#output_list.append("initial_seed = (uint32_t)(drand48()*pow(2,32)-16);");
+			"""
 			output_list.append("initial_seed = __random32(&temp_state_x);");
 			output_list.append("ctrng_seed(10,initial_seed,&temp_state_y);")
 			output_list.append("seeds_in[j+4*instance_paths+%d*8*instance_paths] = temp_state_y.s1;"%index)
@@ -150,7 +159,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 			output_list.append("seeds_in[j+7*instance_paths+%d*8*instance_paths] = temp_state_y.offset;"%index)
 			output_list.append("initial_seed = __random32(&temp_state_y);");
 			output_list.append("}")
-	
+			"""
 		
 		output_list.append("//**Running on the FPGA**")
 		output_list.append("%s("%self.output_file_name)
@@ -165,6 +174,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 			  for a in o_a:
 			      attribute = "%s_%d_%s," % (self.derivative[index].name,index,a)
 			      temp_list += [attribute]
+    
+   	 	for attribute in sorted(temp_list): output_list.append("%s,"%attribute)
 
 		output_list.append("//****Inputs and Output****") 
 		for index in range(len(self.underlying)*8): output_list.append("&(seeds_in[%d*instance_paths]),"%(index))
@@ -175,9 +186,11 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("//**Post-Kernel Aggregation**")
 		output_list.append("for (j=0;(j<(instance_paths)&&(paths_count<paths));++j){")
 		for index,d in enumerate(self.derivative):
+      			output_list.append("if(!isnan(values_out[j+%d*instance_paths*2])){"%index)
 			output_list.append("temp_total_%d += values_out[j+%d*instance_paths*2];"%(index,index))
 			output_list.append("temp_value_sqrd_%d += values_out[j+instance_paths*1+%d*instance_paths*2];"%(index,index))
 			output_list.append("paths_count += %d;"%self.instances)
+      			output_list.append("}")
 		output_list.append("}")
 			
 		output_list.append("}")
@@ -189,7 +202,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("}")
 		
 		return output_list
-	
+    	
 	def generate_libraries(self):
 		"""Overriding the libraries generation
 		"""
@@ -326,26 +339,32 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 				temp_path_call_derivative.append("%s_%d_%d"%(d.name,d_index,pipe))
 	
 			
-			output_list.append("//***Path Connect Calls***")
-			for index,tpc in enumerate(temp_path_call_underlying): #this is fairly dodgy - TODO improve
-				if(int(tpc[-1])>0): #connect each point in the pipeline to the value that proceeded it
-					output_list.append("%s.connect_path(true,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-1],int(tpc[-1])-1,tpc[:-1],int(tpc[-1])-1))
-			
-					if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
-				else: #loop back to the end for the first value in the pipeline
-					output_list.append("%s.connect_path(false,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-1],self.pipelining-1,tpc[:-1],self.pipelining-1))
-					if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)	
+		output_list.append("//***Path Connect Calls***")
+		for index,tpc in enumerate(temp_path_call_underlying):
+			pipeline_stage = int(tpc.split("_")[-1])
+			pipeline_stage_len = len(tpc.split("_")[-1])
+			if(pipeline_stage > 0): #connect each point in the pipeline to the value that proceeded it
+				output_list.append("%s.connect_path(true,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-pipeline_stage_len],pipeline_stage-1,tpc[:-pipeline_stage_len],pipeline_stage-1))
 
-			for index,tpc in enumerate(temp_path_call_derivative):
-				if(int(tpc[-1])>0): #connect each point in the pipeline to the value that proceeded it
-					output_list.append("%s.connect_path(true);"%tpc)
-					
-					if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
-					if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-1],int(tpc[-1])-1)
-				else: #loop back to the end for the first value in the pipeline
-					output_list.append("%s.connect_path(false);"%tpc)
-					if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)
-					if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-1],self.pipelining-1)
+				if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],pipeline_stage-1)
+			else: #loop back to the end for the first value in the pipeline
+				output_list.append("%s.connect_path(false,%s%d.new_gamma,%s%d.new_time);"%(tpc,tpc[:-pipeline_stage_len],self.pipelining-1,tpc[:-pipeline_stage_len],self.pipelining-1))
+				
+				if("heston" in tpc): output_list[-1] = "%s,%s%d.new_volatility);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],self.pipelining-1)	
+
+		for index,tpc in enumerate(temp_path_call_derivative):
+			pipeline_stage = int(tpc.split("_")[-1])	
+			pipeline_stage_len = len(tpc.split("_")[-1])
+			if(pipeline_stage > 0): #connect each point in the pipeline to the value that proceeded it
+				output_list.append("%s.connect_path(true);"%tpc)
+				
+				if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],pipeline_stage-1)
+				if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],pipeline_stage-1)
+			else: #loop back to the end for the first value in the pipeline
+				output_list.append("%s.connect_path(false);"%tpc)
+				
+				if("asian" in tpc): output_list[-1] = "%s,%s%d.new_average);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],self.pipelining-1)
+				if("barrier" in tpc): output_list[-1] = "%s,%s%d.new_barrier_event);"%(output_list[-1][:-2],tpc[:-pipeline_stage_len],self.pipelining-1)
 		 
 	
 		output_list.append("//***Path Payoff and Accumulate Calls***") 
@@ -358,8 +377,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("}") #End of parallelism loop
 		
 		output_list.append("//**Copying Outputs to Output array and outputing it**")	
-		output_condition = "pp.eq(this.path_points-1)&d.eq(0)"
-		if(self.c_slow): output_condition = "pp.eq(this.path_points-1)"
+		output_condition = "pp.eq(this.path_points-%d)&d.eq(0)"%self.pipelining
+		if(self.c_slow): output_condition = "pp.eq(this.path_points-%d)"%self.pipelining
 
 		for index,d in enumerate(self.derivative):
 			output_list.append("io.output(\"values_out_%d\",(accumulate_%d).cast(this.inputFloatType),this.inputFloatType,%s);"%(index*2,index,output_condition))
@@ -438,9 +457,9 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("int outSize = outType.sizeInBytes();") 
 
 		if(self.c_slow):
-			output_list.append("engine_interface.setTicks(\"%s_Kernel\",instance_paths*(path_points+1));"%self.output_file_name)
+			output_list.append("engine_interface.setTicks(\"%s_Kernel\",instance_paths*(path_points/%d+1));"%(self.output_file_name,self.pipelining))
 		else:
-			output_list.append("engine_interface.setTicks(\"%s_Kernel\",instance_paths*(path_points/%d+1)*delay);"%self.output_file_name)
+			output_list.append("engine_interface.setTicks(\"%s_Kernel\",instance_paths*(path_points/%d+1)*delay);"%(self.output_file_name,self.pipelining))
 		
 		for index,u in enumerate(self.underlying): 
 			for k in range(8): output_list.append("engine_interface.setStream(\"seeds_in_%d\", inType, inSize*instance_paths);"%(index*8+k))

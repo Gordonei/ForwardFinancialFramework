@@ -51,20 +51,28 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		if("CL/opencl.h" not in self.utility_libraries): self.utility_libraries.append("CL/opencl.h")
   
 	def set_default_parameters(self):
-    		if(self.pipelining==None):
-    			if ("heston" in self.underlying[0].name): self.pipelining = 10
-    			else: self.pipelining = 20
-    
-    		if(self.simd_width==None): self.simd_width = 16
-    		if(self.instances==None): self.instances = 1
-    
+		if(self.platform.board=="p385_hpc_d5"):
+			if(self.pipelining==None):
+				if ("heston" in self.underlying[0].name): self.pipelining = 10
+				else: self.pipelining = 20
+	    
+			if(self.simd_width==None): self.simd_width = 1
+			if(self.instances==None): self.instances = 1
+   		else:
+			if(self.pipelining==None):
+				if ("heston" in self.underlying[0].name): self.pipelining = 2
+				else: self.pipelining = 4
+	    
+			if(self.simd_width==None): self.simd_width = 1
+			if(self.instances==None): self.instances = 1
+
 
 	def generate_name(self):
 	   	"""Overriding method for generating name
 	   	"""
 		self.set_default_parameters()
 	   	MonteCarlo.MonteCarlo.generate_name(self)  
-	   	self.output_file_name = ("%s_cslow_%s_pipe_%d_insts_%d_simd_%d"%(self.output_file_name,str(self.cslow),self.pipelining,self.instances,self.simd_width))
+	   	self.output_file_name = ("%s_pipe_%d_insts_%d_simd_%d_%s"%(self.output_file_name,self.pipelining,self.instances,self.simd_width,self.platform.board))
 	   	if(self.simulation): self.output_file_name = ("%s_sim"%(self.output_file_name))
 	
 	def generate_kernel_binary_file_read(self,file_extension="aocx"):
@@ -448,7 +456,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	 	opencl_compile_flags = ["-v","--report"]
 	 	if(debug): opencl_compile_flags.append("-g")
 	 	opencl_compile_flags.extend(["--board",self.platform.board])
-	 
+	 	if(self.platform.board=="c5soc"): opencl_compile_flags += ["--high-effort"]
+
 	 	if(self.random_number_generator=="mwc64x_boxmuller"): opencl_compile_flags.append("-DMWC64X_BOXMULLER")
 	 	elif(self.random_number_generator=="taus_boxmuller" or self.random_number_generator=="taus_ziggurat"): opencl_compile_flags.append("-DTAUS_BOXMULLER")
 	 
@@ -469,21 +478,28 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	 
 	 	result = [subprocess.check_output(compile_cmd)]
 	 	#result = []
-
-	 
-	 
+ 
 	 	#Host code compilation
 	 	compile_flags = subprocess.check_output(["aocl","compile-config"]).strip("\n").split(" ")
-	 	compile_flags.extend(subprocess.check_output(["aocl","ldflags"]).strip("\n").split(" "))
-	 	compile_flags.extend(subprocess.check_output(["aocl","ldlibs"]).strip("\n").split(" "))
+	 	
+		compile_flags += subprocess.check_output(["aocl","ldflags"]).strip("\n").split(" ")
+	 	compile_flags += subprocess.check_output(["aocl","ldlibs"]).strip("\n").split(" ")
 	 
-	 	compile_flags.extend(["-fpermissive", "-DSIMD_UNITS=%d"%self.instances,"-DUNROLL_FACTOR=%d"%self.pipelining])
+	 	compile_flags += ["-fpermissive", "-DSIMD_UNITS=%d"%self.instances,"-DUNROLL_FACTOR=%d"%self.pipelining]
+
 	 	if(debug): compile_flags.append("-ggdb")
 	 	while('' in compile_flags): compile_flags.remove('')
 	 
-	 	result.append(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_flags,debug)) #Compiling Host C Code
+	 	compiler = "g++"
+		native_arch = True
+		if(self.platform.board=="c5soc"): 
+			compiler = "%s/../embedded/ds-5/sw/gcc/bin/arm-linux-gnueabihf-g++"%os.environ["QUARTUS_ROOTDIR_OVERRIDE"]
+	 		native_arch = False
 
-	 	return result
+		#Compiling Host C Code
+		result.append(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.compile(self,override,compile_flags,debug,compiler = compiler, native_arch = native_arch)) 
+	 	
+		return result
 	
 	def set_instance_paths(self,instance_paths):
 		"""Helper method for setting number of instance paths

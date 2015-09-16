@@ -461,6 +461,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
     
       
 		return output_list
+<<<<<<< HEAD
  
 	def compile_define_flags(self):
 		"""Helper method for compile method. Generates the compilation definition flags
@@ -511,7 +512,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 		return output_list
 
 
-	def compile(self,overide=True,compile_options=[],debug=False,profile=False):
+	def compile(self,overide=True,compile_options=[],debug=False,profile=False,compiler="g++",native_arch=True):
     		"""Compile method
 
 		This compiles the generated source code.
@@ -524,10 +525,7 @@ class MulticoreCPU_MonteCarlo(MonteCarlo.MonteCarlo):
 		"""
     		
    		if(overide or not os.path.exists("%s%s%s"%(self.platform.root_directory(),self.platform.platform_directory(),self.output_file_name))):
-        		compile_cmd = ["g++"]
-			#Main File
-			compile_cmd.append("%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name))
-			#Include File
+        		compile_cmd = [compiler,"%s/%s.c"%(os.path.join(self.platform.root_directory(),self.platform.platform_directory()),self.output_file_name)]
 			compile_cmd.append("-I%s%s"%(self.platform.root_directory(),self.platform.platform_directory()))
         
        			compile_cmd.extend(self.compile_define_flags())
