@@ -215,7 +215,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 					temp.append(b)
   
 		#Random number generator and maths library files
-		output_list.append("add_files \"%s/fast_math.h\""%directory_string)
+		output_list.append("add_files \"%s/fastmath.h\""%directory_string)
 		output_list.append("add_files \"%s/sin_cos_2y32.h\""%directory_string)
 		output_list.append("add_files \"%s/gauss.c\""%directory_string)
 		
