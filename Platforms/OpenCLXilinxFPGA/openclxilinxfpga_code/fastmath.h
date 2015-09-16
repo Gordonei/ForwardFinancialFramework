@@ -40,7 +40,7 @@
 
 //For the full source code, please see http://fastapprox.googlecode.com/svn/trunk/fastapprox/src/fastonebigheader.h
 
-#ifndef
+#ifndef _FASTMATH_H_
 #define _FASTMATH_H_
 #define cast_uint32_t (uint32_t)
 
