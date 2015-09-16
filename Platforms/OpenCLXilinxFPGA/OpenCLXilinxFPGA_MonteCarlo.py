@@ -10,20 +10,28 @@ from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo):
+	def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=10,random_number_generator="taus_boxmuller",floating_point_format="float",instances=None,pipelining=None,cslow=False,simulation=False,default_points=4096,optimisation=False,instance_paths=None,simd_width=None):
+		print kernel_path_max
+	
+		OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings,kernel_path_max,random_number_generator,floating_point_format,instances,pipelining,cslow,simulation,default_points,optimisation,instance_paths,simd_width)
+		
+		self.solver_metadata["kernel_loops"] = self.pipelining*kernel_path_max
+		self.kernel_loops = self.pipelining*kernel_path_max
+
 	def set_default_parameters(self):
 		if(self.simd_width==None): self.simd_width = 1
 		if(self.instances==None): self.instances = 1
 		
 		if(self.platform.board=="vc690-admpcie7v3-1ddr-gen2"):
 			if(self.pipelining==None):
-				if ("heston" in self.underlying[0].name): self.pipelining = 40
-				else: self.pipelining = 80
+				if ("heston" in self.underlying[0].name): self.pipelining = 20
+				else: self.pipelining = 40
 	    
 		
 		elif(self.platform.board=="zc706-linux-uart"):
 			if(self.pipelining==None):
-				if ("heston" in self.underlying[0].name): self.pipelining = 20
-				else: self.pipelining = 40
+				if ("heston" in self.underlying[0].name): self.pipelining = 10
+				else: self.pipelining = 20
 	    
 	
 	def generate_kernel_binary_file_read(self,file_extension="xclbin"):
@@ -88,13 +96,14 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list += ["#define native_sqrt(X) fastpow(X,0.5f)"]
 		output_list += ["#define uint32_t uint"]
 		output_list += ["#define TAUS_BOXMULLER"]
+		output_list += ["#define UNROLL_FACTOR %d"%self.pipelining]
 		output_list += ["#define SIMD_UNITS %d"%self.simd_width]
 		output_list += ["#define SIN_COS_WORKAROUND"]
 
 		output_list += OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo.generate_kernel_preprocessor_defines(self)
 		
-		output_list += ["#include \"%s/%s\""%(os.path.join(self.platform.root_directory_string,self.platform.platform_directory_string),"sin_2y32.h")]
-		output_list += ["#include \"%s/%s\""%(os.path.join(self.platform.root_directory_string,self.platform.platform_directory_string),"sin_cos_2y32.h")]
+		#output_list += ["#include \"%s/%s\""%(os.path.join(self.platform.root_directory_string,self.platform.platform_directory_string),"sin_2y32.h")]
+		#output_list += ["#include \"%s/%s\""%(os.path.join(self.platform.root_directory_string,self.platform.platform_directory_string),"sin_cos_2y32.h")]
 
 		return output_list
 
@@ -110,8 +119,17 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		output_list += OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_definition(self,restrict_arrays=True)
 		
-		#output_list.append("__attribute__((xcl_pipeline_workitems))")
+		output_list.append("__attribute__((xcl_pipeline_workitems)){")
 
+		return output_list
+	
+	def generate_kernel_path_points_loop_definition(self):
+		"""Overriding the inner simulation loop to use constant loop bounds
+		"""
+		output_list = []
+	
+		output_list.append("for(uint j=0;j<PATH_POINTS;++j){")
+		
 		return output_list
 	
 	def generate_kernel_local_memory_structures(self):
@@ -121,15 +139,39 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		return output_list
 
-	def generate_kernel_path_points_loop_definition(self):
-		"""Overriding the override, so that the correct Xilinx OpenCL pipelining factor is used
-		"""
-		output_list = []
 	
+	def generate_kernel_path_loop_definition(self):
+		output_list = []
+		
 		output_list.append("__attribute__((opencl_unroll_hint(UNROLL_FACTOR)))")
 		output_list.append("__attribute__((xcl_pipeline_loop))")
-		output_list.append("for(uint j=0;j<PATH_POINTS;++j){")
+
+		output_list += OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo.generate_kernel_path_loop_definition(self)
+
+		return output_list
+
+	def generate_kernel_path_lifetime_loop(self):
+		output_list = []
+   		
+		output_list += ["//**Running the path**"]
+		output_list += self.generate_kernel_path_points_loop_definition() #FOR PATH_POINTS
 		
+		output_list += self.generate_kernel_path_loop_definition() #FOR PATHS
+		output_list += self.generate_kernel_path_loop_array_access()
+		
+		#output_list += self.generate_kernel_loop_temp_variables()
+   		output_list += self.generate_kernel_path_loop_body()
+    		
+		output_list += ["}"]
+    		
+		output_list += ["}"] 
+
+		return output_list
+	def generate_kernel_path_payoff_loop(self):
+		output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_path_payoff_loop(self)
+
+		output_list += ["}"] #for the ocl_pipeline_workitems
+
 		return output_list
 
 	def generate_tcl_build_script(self,compile_options=[]):
@@ -140,7 +182,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		output_list.append("# Create SDAccel project") 
 		output_list.append("create_project -name %s -dir %s"%(self.output_file_name,directory_string))
-		if(self.board=="zc706-linux-uart"): output_list.append("set_property platform_repo_paths \"%s\" [current_project]"%self.platform.platform_repo) 
+		if(self.platform.board=="zc706-linux-uart"): output_list.append("set_property platform_repo_paths \"%s\" [current_project]"%self.platform.platform_repo) 
 		output_list.append("set_property platform %s [current_project]"%self.platform.board)
 
 		compile_str = "-lpthread -lrt"
@@ -229,16 +271,16 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		directory_string = os.path.join(self.platform.root_directory(),self.platform.platform_directory())
 
 		#running SDAccel
-		sdaccel_compile_cmd = ["sdaccel","%s/%s.tcl" % (,self.output_file_name)]
+		sdaccel_compile_cmd = ["sdaccel","%s/%s.tcl" % (directory_string,self.output_file_name)]
 		result = [subprocess.check_output(sdaccel_compile_cmd)]
 
 		#copying the host code into the platform directory
-		results += [subprocess.check_output(["cp","%s/%s/impl/host/x86_64/%s.exe"%(directory_string,self.output_file_name,self.output_file_name),"%s/%s"%(directory_string,self.output_file_name)])
+		results += [subprocess.check_output(["cp","%s/%s/impl/host/x86_64/%s.exe"%(directory_string,self.output_file_name,self.output_file_name),"%s/%s"%(directory_string,self.output_file_name)])]
 		
 		#copying the kernel file into the platform directory
-		results += [subprocess.check_output(["cp","%s/%s/impl/build/system/%s/bitstream/%s.xclbin"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.xclbin"%(directory_string,self.output_file_name)])
+		results += [subprocess.check_output(["cp","%s/%s/impl/build/system/%s/bitstream/%s.xclbin"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.xclbin"%(directory_string,self.output_file_name)])]
 		
 		#copying results in platform directory
-		results += [subprocess.check_output(["cp","%s/%s/impl/kernels/%s_kernel/solution_OCL_REGION_0/syn/report/%s_kernel_csynth.rpt"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.rpt"%(directory_string,self.output_file_name)])
+		results += [subprocess.check_output(["cp","%s/%s/impl/kernels/%s_kernel/solution_OCL_REGION_0/syn/report/%s_kernel_csynth.rpt"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.rpt"%(directory_string,self.output_file_name)])]
 
 		return results
