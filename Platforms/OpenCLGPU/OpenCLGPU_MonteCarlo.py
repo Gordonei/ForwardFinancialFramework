@@ -692,6 +692,16 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
 		return output_list
 
+	def generate_kernel_copyoff(self):
+		output_list = []
+    		
+		output_list.append("//**Copying the result to global memory**")
+    		for index,d in enumerate(self.derivative):
+      			output_list.append("value_%d[i] = temp_value_%d;"%(index,index))
+      			output_list.append("value_sqrd_%d[i] = temp_value_sqrd_%d;"%(index,index))
+
+		return output_list
+
 	def generate_kernel(self):
  		"""Helper method for generating OpenCL kernel
 		"""
@@ -717,11 +727,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
     		#output_list.append("}") #End of Path For Loop
     
-    		output_list.append("//**Copying the result to global memory**")
-    		for index,d in enumerate(self.derivative):
-      			output_list.append("value_%d[i] = temp_value_%d;"%(index,index))
-      			output_list.append("value_sqrd_%d[i] = temp_value_sqrd_%d;"%(index,index))
-      
+     		output_list += self.generate_kernel_copyoff()
+
     		output_list.append("}") #End of Kernel
     
 		#Turning output list into output string

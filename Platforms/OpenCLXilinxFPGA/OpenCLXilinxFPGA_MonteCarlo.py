@@ -174,12 +174,18 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list += ["}"] 
 
 		return output_list
-	def generate_kernel_path_payoff_loop(self):
-		output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_path_payoff_loop(self)
 
-		output_list += ["}"] #for the ocl_pipeline_workitems
+	def generate_kernel_copyoff(self):
+		output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_copyoff(self)
+		output_list += ["}"]
 
 		return output_list
+	#def generate_kernel_path_payoff_loop(self):
+	#	output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_path_payoff_loop(self)
+
+	#	output_list += ["}"] #for the ocl_pipeline_workitems
+
+	#	return output_list
 
 	def generate_tcl_build_script(self,compile_options=[]):
 		"""Helper method for generating the tcl build script need by sdaccel to build the designs
