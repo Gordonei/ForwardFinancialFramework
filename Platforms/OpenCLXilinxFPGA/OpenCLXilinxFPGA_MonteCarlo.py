@@ -60,6 +60,13 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_attribute_structures(self)
 
 		return output_list
+
+	def generate_kernel_local_attributes(self):
+		"""Overriding the kernel local memory structures helper method, so that the attribute values are read out of the attribute memories
+		"""
+		return OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_local_attributes(self)
+
+
 	def generate_attribute_kernel_arguments(self,offset=5):
 		"""Overriding the override, to pass the attribute struct memories by default 
 		"""
