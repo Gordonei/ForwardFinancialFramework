@@ -42,6 +42,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings,floating_point_format="float")
 		self.delay = self.get_delay()
 
+		if(points%self.pipelining): raise Exception("The pipelining factor should be a integer factor of the number of points")
+
 		self.solver_metadata["instances"] = self.instances
 		if (not(instance_paths) and self.c_slow): self.solver_metadata["instance_paths"] = 1000*((self.delay-self.delay%1000)/1000+1) #rounding up the number of paths to the nearest 1000
 		elif(not(instance_paths)): self.solver_metadata["instance_paths"] = 1000 #this gives us plenty of time to do the necessary accumulation on the CPU
@@ -106,11 +108,6 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		self.generate_source(manager_code_string,"_Manager.maxj")
 		if(debug): print "Generated %s/%s_Manager.maxj"%(self.platform.absolute_platform_directory(),self.output_file_name)
 
-	"""
-    
-    
-
-	"""
 
 	def generate_activity_thread(self,debug):
 		"""Overriding the generate activity thread method so that it sets up and communicates with the Maxeler DFE
@@ -150,7 +147,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 			output_list.append("seeds_in[j+3*instance_paths+%d*8*instance_paths] = temp_state_x.offset;"%index)
 			
 			#output_list.append("initial_seed = (uint32_t)(drand48()*pow(2,32)-16);");
-			"""
+		
 			output_list.append("initial_seed = __random32(&temp_state_x);");
 			output_list.append("ctrng_seed(10,initial_seed,&temp_state_y);")
 			output_list.append("seeds_in[j+4*instance_paths+%d*8*instance_paths] = temp_state_y.s1;"%index)
@@ -159,7 +156,7 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 			output_list.append("seeds_in[j+7*instance_paths+%d*8*instance_paths] = temp_state_y.offset;"%index)
 			output_list.append("initial_seed = __random32(&temp_state_y);");
 			output_list.append("}")
-			"""
+		
 		
 		output_list.append("//**Running on the FPGA**")
 		output_list.append("%s("%self.output_file_name)
@@ -167,13 +164,11 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		temp_list = []
 		for index,u_a in enumerate(sorted(self.underlying_attributes)):
 			  for a in u_a:
-			      attribute = "%s_%d_%s," % (self.underlying[index].name,index,a)
-			      temp_list += [attribute]
+			      temp_list += ["%s_%d_%s" % (self.underlying[index].name,index,a)]
 		
 		for index,o_a in enumerate(sorted(self.derivative_attributes)):
 			  for a in o_a:
-			      attribute = "%s_%d_%s," % (self.derivative[index].name,index,a)
-			      temp_list += [attribute]
+			      temp_list += ["%s_%d_%s" % (self.derivative[index].name,index,a)]
     
    	 	for attribute in sorted(temp_list): output_list.append("%s,"%attribute)
 
@@ -242,12 +237,12 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("CounterChain chain = control.count.makeCounterChain();")
 		
 		if(self.c_slow):
-			output_list.append("DFEVar pp = chain.addCounter(this.path_points+1,%d).cast(dfeUInt(32));"%(self.pipelining)) #Path Points is the outer loop so as to implement a C-Slow architecture
+			output_list.append("DFEVar pp = chain.addCounter(this.path_points/%d+1,1).cast(dfeUInt(32));"%(self.pipelining)) #Path Points is the outer loop so as to implement a C-Slow architecture
 			output_list.append("DFEVar p = chain.addCounter(this.instance_paths,1).cast(dfeUInt(32));")
 			output_list.append("DFEVar d = p;") #Just make the delay counter equal to the path counter - it functions as the same thing
 		else:
 			output_list.append("DFEVar p = chain.addCounter(this.instance_paths,1).cast(dfeUInt(32));")
-			output_list.append("DFEVar pp = chain.addCounter(this.path_points+1,%d).cast(dfeUInt(32));"%(self.pipelining)) #Path Points is the outer loop so as to implement a C-Slow architecture
+			output_list.append("DFEVar pp = chain.addCounter(this.path_points/%d+1,1).cast(dfeUInt(32));"%(self.pipelining)) #Path Points is the outer loop so as to implement a C-Slow architecture
 			output_list.append("DFEVar d = chain.addCounter(this.delay,1);")
 		
 		#Scaler Inputs
@@ -377,8 +372,8 @@ class MaxelerFPGA_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("}") #End of parallelism loop
 		
 		output_list.append("//**Copying Outputs to Output array and outputing it**")	
-		output_condition = "pp.eq(this.path_points-%d)&d.eq(0)"%self.pipelining
-		if(self.c_slow): output_condition = "pp.eq(this.path_points-%d)"%self.pipelining
+		output_condition = "pp.eq(this.path_points/%d-1)&d.eq(0)"%self.pipelining
+		if(self.c_slow): output_condition = "pp.eq(this.path_points/%d-1)"%self.pipelining
 
 		for index,d in enumerate(self.derivative):
 			output_list.append("io.output(\"values_out_%d\",(accumulate_%d).cast(this.inputFloatType),this.inputFloatType,%s);"%(index*2,index,output_condition))
