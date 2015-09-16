@@ -17,7 +17,7 @@ class OpenCLXilinxFPGA(Platform.Platform):
 	##OpenCL Xilinx board to use
 	board = ""
     
-	def __init__(self,platform_directory_string="Platforms/OpenCLXilinxFPGA/openclxilinxfpga_code",root_directory_string=None,platform_name="Xilinx Corporation",board="vc690-admpcie7v3-1ddr-gen2",ssh_alias="",remote=False,hostname=""):
+	def __init__(self,platform_directory_string="Platforms/OpenCLXilinxFPGA/openclxilinxfpga_code",root_directory_string=None,platform_name="Xilinx Corporation",board="vc690-admpcie7v3-1ddr-gen2",ssh_alias="",remote=False,hostname="",platform_repo="/mnt/applications/Xilinx/SDAccel_ZC706_platformRepo"):
         	"""Constructor
 
 		Parameters
@@ -28,3 +28,5 @@ class OpenCLXilinxFPGA(Platform.Platform):
     
 		self.platform_name = platform_name
 		self.board = board
+		self.platform_repo = platform_repo
+

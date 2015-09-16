@@ -10,6 +10,22 @@ from ForwardFinancialFramework.Platforms.OpenCLGPU import OpenCLGPU_MonteCarlo
 from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo):
+	def set_default_parameters(self):
+		if(self.simd_width==None): self.simd_width = 1
+		if(self.instances==None): self.instances = 1
+		
+		if(self.platform.board=="vc690-admpcie7v3-1ddr-gen2"):
+			if(self.pipelining==None):
+				if ("heston" in self.underlying[0].name): self.pipelining = 40
+				else: self.pipelining = 80
+	    
+		
+		elif(self.platform.board=="zc706-linux-uart"):
+			if(self.pipelining==None):
+				if ("heston" in self.underlying[0].name): self.pipelining = 20
+				else: self.pipelining = 40
+	    
+	
 	def generate_kernel_binary_file_read(self,file_extension="xclbin"):
 		"""Overriding the overide of the helper method in OpenCLAlteraFPGA_MonteCarlo to use the xclbin file extension by default.
 		"""
@@ -124,6 +140,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		output_list.append("# Create SDAccel project") 
 		output_list.append("create_project -name %s -dir %s"%(self.output_file_name,directory_string))
+		if(self.board=="zc706-linux-uart"): output_list.append("set_property platform_repo_paths \"%s\" [current_project]"%self.platform.platform_repo) 
 		output_list.append("set_property platform %s [current_project]"%self.platform.board)
 
 		compile_str = "-lpthread -lrt"
