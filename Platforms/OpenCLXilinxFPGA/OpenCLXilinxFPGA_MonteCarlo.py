@@ -199,9 +199,10 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		compile_str = "-lpthread -lrt"
 		compile_define_flags = self.compile_define_flags() + ["-DSIMD_UNITS=%d"%self.simd_width] #Used to avoid trigonometric functions
-		for c in compile_define_flags: compile_str= "%s %s"%(compile_str,c)
-		for c in self.compile_optimisation_flags(): compile_str= "%s %s"%(compile_str,c)
-		for c in compile_options: compile_str= "%s %s"%(compile_str,c)
+		for c in compile_define_flags: compile_str = "%s %s"%(compile_str,c)
+		for c in self.compile_optimisation_flags(): 
+			if not(self.platform.board=="zc706-linux-uart" and c=="-march-native"): compile_str = "%s %s"%(compile_str,c)
+		for c in compile_options: compile_str = "%s %s"%(compile_str,c)
 		
 		output_list.append("\n#Host Compiler Flags ")
 		output_list.append("set_property -name host_cflags -value \"%s\" -objects [current_project]"%compile_str)
