@@ -288,7 +288,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		results = [subprocess.check_output(sdaccel_compile_cmd)]
 
 		#copying the host code into the platform directory
-		results += [subprocess.check_output(["cp","%s/%s_build/impl/host/x86_64/%s.exe"%(directory_string,self.output_file_name,self.output_file_name),"%s/%s"%(directory_string,self.output_file_name)])]
+		results += [subprocess.check_output(["cp","%s/%s_build/impl/host/x86_64/%s_build.exe"%(directory_string,self.output_file_name,self.output_file_name),"%s/%s"%(directory_string,self.output_file_name)])]
 		
 		#copying the kernel file into the platform directory
 		results += [subprocess.check_output(["cp","%s/%s_build/impl/build/system/%s/bitstream/%s.xclbin"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.xclbin"%(directory_string,self.output_file_name)])]
