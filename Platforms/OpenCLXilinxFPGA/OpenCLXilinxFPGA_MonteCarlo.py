@@ -248,6 +248,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list.append("\n#Kernel Definition ")
 		output_list.append("create_kernel %s_kernel -type clc"%self.output_file_name)
 		output_list.append("add_files -kernel [get_kernels %s_kernel] \"%s/%s.cl\""%(self.output_file_name,directory_string,self.output_file_name))
+		output_list.append("set_property max_memory_ports true [get_kernels %s_kernel]"%self.output_file_name)
 
 		output_list.append("\n#Define the Binary Containers")
 		output_list.append("create_opencl_binary -device [lindex [get_device \"fpga0\"] 0] %s"%self.output_file_name)
