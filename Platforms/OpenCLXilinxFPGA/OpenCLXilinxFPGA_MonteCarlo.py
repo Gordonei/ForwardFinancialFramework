@@ -11,7 +11,6 @@ from ForwardFinancialFramework.Solvers.MonteCarlo import MonteCarlo
 
 class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo):
 	def __init__(self,derivative,paths,platform,reduce_underlyings=True,kernel_path_max=10,random_number_generator="taus_boxmuller",floating_point_format="float",instances=None,pipelining=None,cslow=False,simulation=False,default_points=4096,optimisation=False,instance_paths=None,simd_width=None):
-		print kernel_path_max
 	
 		OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo.__init__(self,derivative,paths,platform,reduce_underlyings,kernel_path_max,random_number_generator,floating_point_format,instances,pipelining,cslow,simulation,default_points,optimisation,instance_paths,simd_width)
 		
