@@ -194,7 +194,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		directory_string = os.path.join(self.platform.root_directory(),self.platform.platform_directory())
 
 		output_list.append("# Create SDAccel project") 
-		output_list.append("create_project -name %s -dir %s"%(self.output_file_name,directory_string))
+		output_list.append("create_project -name %s_build -dir %s"%(self.output_file_name,directory_string))
 		if(self.platform.board=="zc706-linux-uart"): output_list.append("set_property platform_repo_paths \"%s\" [current_project]"%self.platform.platform_repo) 
 		output_list.append("set_property platform %s [current_project]"%self.platform.board)
 
@@ -289,12 +289,12 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		result = [subprocess.check_output(sdaccel_compile_cmd)]
 
 		#copying the host code into the platform directory
-		results += [subprocess.check_output(["cp","%s/%s/impl/host/x86_64/%s.exe"%(directory_string,self.output_file_name,self.output_file_name),"%s/%s"%(directory_string,self.output_file_name)])]
+		results += [subprocess.check_output(["cp","%s/%s_build/impl/host/x86_64/%s.exe"%(directory_string,self.output_file_name,self.output_file_name),"%s/%s"%(directory_string,self.output_file_name)])]
 		
 		#copying the kernel file into the platform directory
-		results += [subprocess.check_output(["cp","%s/%s/impl/build/system/%s/bitstream/%s.xclbin"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.xclbin"%(directory_string,self.output_file_name)])]
+		results += [subprocess.check_output(["cp","%s/%s_build/impl/build/system/%s/bitstream/%s.xclbin"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.xclbin"%(directory_string,self.output_file_name)])]
 		
 		#copying results in platform directory
-		results += [subprocess.check_output(["cp","%s/%s/impl/kernels/%s_kernel/solution_OCL_REGION_0/syn/report/%s_kernel_csynth.rpt"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.rpt"%(directory_string,self.output_file_name)])]
+		results += [subprocess.check_output(["cp","%s/%s_build/impl/kernels/%s_kernel/solution_OCL_REGION_0/syn/report/%s_kernel_csynth.rpt"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.rpt"%(directory_string,self.output_file_name)])]
 
 		return results
