@@ -285,7 +285,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		#running SDAccel
 		sdaccel_compile_cmd = ["sdaccel","%s/%s.tcl" % (directory_string,self.output_file_name)]
-		result = [subprocess.check_output(sdaccel_compile_cmd)]
+		results = [subprocess.check_output(sdaccel_compile_cmd)]
 
 		#copying the host code into the platform directory
 		results += [subprocess.check_output(["cp","%s/%s_build/impl/host/x86_64/%s.exe"%(directory_string,self.output_file_name,self.output_file_name),"%s/%s"%(directory_string,self.output_file_name)])]
