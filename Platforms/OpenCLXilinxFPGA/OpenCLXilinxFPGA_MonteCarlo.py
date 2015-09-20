@@ -116,8 +116,8 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 	def generate_kernel_local_variable_arrays(self):
     		output_list = []
 		
-		for index,u in enumerate(self.underlying): output_list.append("%s_variables temp_u_v_%d_array[PATHS] __attribute__((xcl_array_partition(cyclic,1,UNROLL_FACTOR)));"%(u.name,index))
-    		for index,d in enumerate(self.derivative): output_list.append("%s_variables temp_o_v_%d_array[PATHS] __attribute__((xcl_array_partition(cyclic,1,UNROLL_FACTOR)));"%(d.name,index))
+		for index,u in enumerate(self.underlying): output_list.append("%s_variables temp_u_v_%d_array[PATHS] __attribute__((xcl_array_partition(cyclic,UNROLL_FACTOR,1)));"%(u.name,index))
+    		for index,d in enumerate(self.derivative): output_list.append("%s_variables temp_o_v_%d_array[PATHS] __attribute__((xcl_array_partition(cyclic,UNROLL_FACTOR,1)));"%(d.name,index))
 
 		return output_list
 
