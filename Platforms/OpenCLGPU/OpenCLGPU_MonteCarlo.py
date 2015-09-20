@@ -529,6 +529,14 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		
 		return output_list
 
+	def generate_kernel_local_variable_arrays(self):
+    		output_list = []
+		
+		for index,u in enumerate(self.underlying): output_list.append("%s_variables temp_u_v_%d_array[%d];"%(u.name,index,self.kernel_loops))
+    		for index,d in enumerate(self.derivative): output_list.append("%s_variables temp_o_v_%d_array[%d];"%(d.name,index,self.kernel_loops))
+
+		return output_list
+
 	def generate_kernel_local_memory_structures(self):
 		output_list = []
     		
@@ -542,8 +550,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
     		output_list.append("//**Creating Kernel variables and Copying parameters from host**")
 		output_list += self.generate_kernel_local_attributes()
-    		for index,u in enumerate(self.underlying): output_list.append("%s_variables temp_u_v_%d_array[%d];"%(u.name,index,self.kernel_loops))
-    		for index,d in enumerate(self.derivative): output_list.append("%s_variables temp_o_v_%d_array[%d];"%(d.name,index,self.kernel_loops))
+		output_list += self.generate_kernel_local_variable_arrays()
 
 		return output_list
 

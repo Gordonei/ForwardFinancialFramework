@@ -112,6 +112,14 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		#output_list += ["#include \"%s/%s\""%(os.path.join(self.platform.root_directory_string,self.platform.platform_directory_string),"sin_cos_2y32.h")]
 
 		return output_list
+	
+	def generate_kernel_local_variable_arrays(self):
+    		output_list = []
+		
+		for index,u in enumerate(self.underlying): output_list.append("%s_variables temp_u_v_%d_array[PATHS] __attribute__((xcl_array_partition(cyclic,UNROLL_FACTOR,1)));"%(u.name,index))
+    		for index,d in enumerate(self.derivative): output_list.append("%s_variables temp_o_v_%d_array[PATHS] __attribute__((xcl_array_partition(cyclic,UNROLL_FACTOR,1)));"%(d.name,index))
+
+		return output_list
 
 	def generate_kernel_definition(self):
 		"""Overriding the kernel definition method, adding the Xilinx OpenCL preprocessor directives required before and after the kernel definition
