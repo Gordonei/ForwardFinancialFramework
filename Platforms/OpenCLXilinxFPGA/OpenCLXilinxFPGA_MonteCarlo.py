@@ -23,14 +23,14 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		
 		if(self.platform.board=="vc690-admpcie7v3-1ddr-gen2"):
 			if(self.pipelining==None):
-				if ("heston" in self.underlying[0].name): self.pipelining = 20
-				else: self.pipelining = 40
+				if ("heston" in self.underlying[0].name): self.pipelining = 8
+				else: self.pipelining = 16
 	    
 		
 		elif(self.platform.board=="zc706-linux-uart"):
 			if(self.pipelining==None):
-				if ("heston" in self.underlying[0].name): self.pipelining = 10
-				else: self.pipelining = 20
+				if ("heston" in self.underlying[0].name): self.pipelining = 4
+				else: self.pipelining = 8
 	    
 	
 	def generate_kernel_binary_file_read(self,file_extension="xclbin"):
