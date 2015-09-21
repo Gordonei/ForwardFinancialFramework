@@ -509,7 +509,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 		"""
 		if(instance_paths): self.instance_paths = instance_paths
 	 	else:
-	   		self.instance_paths = max(self.paths/self.instance_paths/10,1) #ideally we want to minimse the number of kernel calls but still hide the accumulate latency
+	   		self.instance_paths = max(self.paths/self.instance_paths/self.kernel_loops/10,1) #ideally we want to minimse the number of kernel calls but still hide the accumulate latency
 	   	
 		if(self.instance_paths%self.instances): self.instance_paths = self.instances*(self.instance_paths/self.instances + 1) #Making sure the instance paths are divisible by the SIMD work units
 	 
