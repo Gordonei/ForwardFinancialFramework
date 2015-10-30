@@ -142,6 +142,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		"""
 		output_list = []
 	
+		output_list.append("__attribute__((opencl_unroll_hint(UNROLL_FACTOR)))")
 		output_list.append("for(uint j=0;j<PATH_POINTS;++j){")
 		
 		return output_list
@@ -157,7 +158,8 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 	def generate_kernel_path_loop_definition(self):
 		output_list = []
 		
-		output_list.append("__attribute__((opencl_unroll_hint(UNROLL_FACTOR)))")
+		#output_list.append("__attribute__((opencl_unroll_hint(UNROLL_FACTOR)))")
+		output_list.append("__attribute__((opencl_unroll_hint(COMPUTE_UNITS)))")
 		output_list.append("__attribute__((xcl_pipeline_loop))")
 
 		output_list += OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo.generate_kernel_path_loop_definition(self)
@@ -187,6 +189,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list += ["}"]
 
 		return output_list
+	
 	#def generate_kernel_path_payoff_loop(self):
 	#	output_list = OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_kernel_path_payoff_loop(self)
 
@@ -201,7 +204,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		directory_string = os.path.join(self.platform.root_directory(),self.platform.platform_directory())
 
 		output_list.append("# Create SDAccel project") 
-		output_list.append("create_project -name %s_build -dir %s"%(self.output_file_name,directory_string))
+		output_list.append("create_project -name %s_build -dir %s -force"%(self.output_file_name,directory_string))
 		if(self.platform.board=="zc706-linux-uart"): output_list.append("set_property platform_repo_paths \"%s\" [current_project]"%self.platform.platform_repo) 
 		output_list.append("set_property platform %s [current_project]"%self.platform.board)
 
@@ -261,7 +264,8 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list.append("\n#Define the Binary Containers")
 		output_list.append("create_opencl_binary -device [lindex [get_device \"fpga0\"] 0] %s"%self.output_file_name)
 		output_list.append("set_property region \"OCL_REGION_0\" [get_opencl_binary %s]"%self.output_file_name)
-		for i in range(self.instances): output_list.append("create_compute_unit -opencl_binary [get_opencl_binary %s] -kernel [get_kernels %s_kernel] -name %s_%d"%(self.output_file_name,self.output_file_name,self.output_file_name,i))
+		#for i in range(self.instances): output_list.append("create_compute_unit -opencl_binary [get_opencl_binary %s] -kernel [get_kernels %s_kernel] -name %s_%d"%(self.output_file_name,self.output_file_name,self.output_file_name,i))
+		for i in range(1): output_list.append("create_compute_unit -opencl_binary [get_opencl_binary %s] -kernel [get_kernels %s_kernel] -name %s_%d"%(self.output_file_name,self.output_file_name,self.output_file_name,i))
 
 		output_list.append("\n#Generating Size Report")
 		output_list.append("report_estimate")
