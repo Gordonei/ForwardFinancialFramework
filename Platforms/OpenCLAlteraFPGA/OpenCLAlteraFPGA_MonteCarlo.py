@@ -60,8 +60,8 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 			if(self.instances==None): self.instances = 1
    		else:
 			if(self.pipelining==None):
-				if ("heston" in self.underlying[0].name): self.pipelining = 2
-				else: self.pipelining = 4
+				if ("heston" in self.underlying[0].name): self.pipelining = 1
+				else: self.pipelining = 1
 	    
 			if(self.simd_width==None): self.simd_width = 1
 			if(self.instances==None): self.instances = 1
