@@ -66,7 +66,7 @@ class Platform:
 
 		elif not(self.root_directory_string and self.remote):
 		    try:
-			ssh_cmd = ["ssh","%s"%self.ssh_alias,"source",".profile;","printenv","|","grep","^F3_ROOT"]
+			ssh_cmd = ["ssh","%s"%self.ssh_alias,"source","~/.profile;","env","|","grep","^F3_ROOT"]
 			output = subprocess.check_output(ssh_cmd)
 			if not(output): raise KeyError("F3_ROOT environmental variable not set on %s"%self.ssh_alias)
 			output= output.split("=")[1].strip("\r\n")
