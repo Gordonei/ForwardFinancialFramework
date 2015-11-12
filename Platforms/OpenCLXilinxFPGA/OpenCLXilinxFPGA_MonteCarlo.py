@@ -266,8 +266,8 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 		output_list.append("\n#Generating Size Report")
 		output_list.append("report_estimate")
-		output_list.append("set_param compiler.generateExtraRunData true")
-		output_list.append("set_param compiler.preserveHlsOutput 1")
+		#output_list.append("set_param compiler.generateExtraRunData true")
+		#output_list.append("set_param compiler.preserveHlsOutput 1")
 		output_list.append("\n#Build System")
 		output_list.append("build_system")
 
