@@ -97,14 +97,14 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		#All have to be done in the kernel file, apparently the SDAccel preprocessor is a bit weird
 		output_list += ["#define OPENCL_GPU"]
 		output_list += ["#define OPENCL_XILINX"]
-		#output_list += ["#define native_exp(X) fastexp(X)"]
-		#output_list += ["#define native_log(X) fastlog(X)"]
-		#output_list += ["#define native_sqrt(X) fastpow(X,0.5f)"]
+		output_list += ["#define native_exp(X) fastexp(X)"]
+		output_list += ["#define native_log(X) fastlog(X)"]
+		output_list += ["#define native_sqrt(X) fastpow(X,0.5f)"]
 		output_list += ["#define uint32_t uint"]
 		output_list += ["#define TAUS_BOXMULLER"]
 		output_list += ["#define UNROLL_FACTOR %d"%self.pipelining]
 		output_list += ["#define SIMD_UNITS %d"%self.simd_width]
-		#output_list += ["#define SIN_COS_WORKAROUND"]
+		output_list += ["#define SIN_COS_WORKAROUND"]
 
 		output_list += OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo.generate_kernel_preprocessor_defines(self)
 		
