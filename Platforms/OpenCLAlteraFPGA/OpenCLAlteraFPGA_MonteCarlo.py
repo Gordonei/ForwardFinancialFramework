@@ -72,7 +72,7 @@ class OpenCLAlteraFPGA_MonteCarlo(OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo):
 	   	"""
 		self.set_default_parameters()
 	   	MonteCarlo.MonteCarlo.generate_name(self)  
-		self.output_file_name = ("%s_pipe_%d_insts_%d_simd_%d_%s"%(self.output_file_name,self.pipelining,self.instances,self.simd_width,self.platform.board.replace('-','').replace(':','')))
+		self.output_file_name = ("%s_pipe_%d_insts_%d_simd_%d_%s"%(self.output_file_name,self.pipelining,self.instances,self.simd_width,self.platform.board.replace('-','').replace(':','').replace('.','')))
 	   	if(self.simulation): self.output_file_name = ("%s_sim"%(self.output_file_name))
 	
 	def generate_kernel_binary_file_read(self,file_extension="aocx"):
