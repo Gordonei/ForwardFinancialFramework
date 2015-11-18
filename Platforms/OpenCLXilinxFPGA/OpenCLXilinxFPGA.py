@@ -17,13 +17,15 @@ class OpenCLXilinxFPGA(Platform.Platform):
 	##OpenCL Xilinx board to use
 	board = ""
     
-	def __init__(self,platform_directory_string="Platforms/OpenCLXilinxFPGA/openclxilinxfpga_code",root_directory_string=None,platform_name="Xilinx Corporation",board="vc690-admpcie7v3-1ddr-gen2",ssh_alias="",remote=False,hostname="",platform_repo="/mnt/applications/Xilinx/SDAccel_ZC706_platformRepo"):
+	def __init__(self,platform_directory_string="Platforms/OpenCLXilinxFPGA/openclxilinxfpga_code",root_directory_string=None,platform_name="Xilinx Corporation",board="xilinx:adm-pcie-7v3:1ddr:1.0",ssh_alias="",remote=False,hostname="",platform_repo="/mnt/applications/Xilinx/SDAccel_ZC706_platformRepo"):
         	"""Constructor
 
 		Parameters
 			platform_directory_string, root_directory_String, ssh_alias, remote, hostname - same as Platform class
 			board - (string) OpenCL Xilinx Certified board to use"	
 		"""
+		#board name for 2014.* versions: vc690-admpcie7v3-1ddr-gen2
+		
 		Platform.Platform.__init__(self,platform_directory_string,root_directory_string,ssh_alias,remote,hostname)
     
 		self.platform_name = platform_name

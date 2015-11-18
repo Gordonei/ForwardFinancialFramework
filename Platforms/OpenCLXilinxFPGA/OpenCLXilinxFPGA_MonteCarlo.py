@@ -97,14 +97,14 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		#All have to be done in the kernel file, apparently the SDAccel preprocessor is a bit weird
 		output_list += ["#define OPENCL_GPU"]
 		output_list += ["#define OPENCL_XILINX"]
-		output_list += ["#define native_exp(X) fastexp(X)"]
-		output_list += ["#define native_log(X) fastlog(X)"]
+		#output_list += ["#define native_exp(X) fastexp(X)"]
+		#output_list += ["#define native_log(X) fastlog(X)"]
 		output_list += ["#define native_sqrt(X) fastpow(X,0.5f)"]
 		output_list += ["#define uint32_t uint"]
 		output_list += ["#define TAUS_BOXMULLER"]
 		output_list += ["#define UNROLL_FACTOR %d"%self.pipelining]
 		output_list += ["#define SIMD_UNITS %d"%self.simd_width]
-		output_list += ["#define SIN_COS_WORKAROUND"]
+		#output_list += ["#define SIN_COS_WORKAROUND"]
 
 		output_list += OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo.generate_kernel_preprocessor_defines(self)
 		
@@ -195,16 +195,20 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 	#	return output_list
 
-	def generate_tcl_build_script(self,compile_options=[]):
+	def generate_tcl_build_script(self,compile_options=[],version = "2015.1"):
 		"""Helper method for generating the tcl build script need by sdaccel to build the designs
 		"""
 		output_list = []
 		directory_string = os.path.join(self.platform.root_directory(),self.platform.platform_directory())
 
 		output_list.append("# Create SDAccel project") 
-		output_list.append("create_project -name %s_build -dir %s -force"%(self.output_file_name,directory_string))
+		if("2014" in version): output_list.append("create_project -name %s_build -dir %s -force"%(self.output_file_name,directory_string))
+		else: output_list.append("create_solution -name %s_build -dir %s -force"%(self.output_file_name,directory_string))
+		
 		if(self.platform.board=="zc706-linux-uart"): output_list.append("set_property platform_repo_paths \"%s\" [current_project]"%self.platform.platform_repo) 
-		output_list.append("set_property platform %s [current_project]"%self.platform.board)
+		
+		if("2014" in version): output_list.append("set_property platform %s [current_project]"%self.platform.board)
+		else: output_list.append("add_device -vbnv %s [current_project]"%self.platform.board)
 
 		compile_str = "-lpthread -lrt"
 		compile_define_flags = self.compile_define_flags() + ["-DSIMD_UNITS=%d"%self.simd_width] #Used to avoid trigonometric functions
@@ -238,7 +242,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
   
 		#Random number generator and maths library files
 		output_list.append("add_files \"%s/fastmath.h\""%directory_string)
-		output_list.append("add_files \"%s/sin_cos_2y32.h\""%directory_string)
+		#output_list.append("add_files \"%s/sin_cos_2y32.h\""%directory_string)
 		output_list.append("add_files \"%s/gauss.c\""%directory_string)
 		
 		for d in self.derivative:
@@ -260,7 +264,10 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list.append("set_property max_memory_ports true [get_kernels %s_kernel]"%self.output_file_name)
 
 		output_list.append("\n#Define the Binary Containers")
-		output_list.append("create_opencl_binary -device [lindex [get_device \"fpga0\"] 0] %s"%self.output_file_name)
+		if("2014" in version): output_list.append("create_opencl_binary -device [lindex [get_device \"fpga0\"] 0] %s"%self.output_file_name)
+		else: output_list.append("create_opencl_binary %s"%self.output_file_name)
+
+		
 		output_list.append("set_property region \"OCL_REGION_0\" [get_opencl_binary %s]"%self.output_file_name)
 		for i in range(self.instances): output_list.append("create_compute_unit -opencl_binary [get_opencl_binary %s] -kernel [get_kernels %s_kernel] -name %s_%d"%(self.output_file_name,self.output_file_name,self.output_file_name,i))
 
