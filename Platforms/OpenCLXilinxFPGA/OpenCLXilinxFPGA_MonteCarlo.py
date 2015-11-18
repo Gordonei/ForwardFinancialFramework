@@ -208,7 +208,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		if(self.platform.board=="zc706-linux-uart"): output_list.append("set_property platform_repo_paths \"%s\" [current_project]"%self.platform.platform_repo) 
 		
 		if("2014" in version): output_list.append("set_property platform %s [current_project]"%self.platform.board)
-		else: output_list.append("add_device -vbnv %s [current_project]"%self.platform.board)
+		else: output_list.append("add_device %s [current_project]"%self.platform.board)
 
 		compile_str = "-lpthread -lrt"
 		compile_define_flags = self.compile_define_flags() + ["-DSIMD_UNITS=%d"%self.simd_width] #Used to avoid trigonometric functions
