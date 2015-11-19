@@ -724,7 +724,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
     		#Getting kernel ID
     		output_list.append("//**getting unique ID**")
-    		output_list.append("uint i = get_global_id(0);")
+    		output_list.append("uint i = (uint) get_global_id(0);")
      
 		output_list += self.generate_kernel_local_memory_structures()
      		
