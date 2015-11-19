@@ -318,7 +318,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("cl_uint seed = (cl_uint) (temp_data->thread_rng_seed);")
 		output_list.append("ret = clSetKernelArg(%s_kernel, 1, sizeof(cl_uint), &seed);"%(self.output_file_name))
 		output_list.append("assert(ret==CL_SUCCESS);")
-		output_list.append("cl_uint chunk_size = chunk_paths*kernel_loops;")
+		output_list.append("cl_uint chunk_size = chunk_paths;")
 		output_list.append("ret = clSetKernelArg(%s_kernel, 2, sizeof(cl_uint), &chunk_size);"%(self.output_file_name))
 		output_list.append("assert(ret==CL_SUCCESS);")
 		output_list.append("cl_uint chunk_number = 0;")
