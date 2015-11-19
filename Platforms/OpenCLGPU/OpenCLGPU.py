@@ -18,7 +18,7 @@ class OpenCLGPU(Platform.Platform):
 	##The OpenCL device type is set to ALL by default to pickup everything
 	device_type = pyopencl.device_type.ALL
   
-	def __init__(self,threads=0,platform_directory_string="Platforms/OpenCLGPU/opencl_code",root_directory_string=None,platform_name="",device_type=pyopencl.device_type.GPU,ssh_alias="",remote=False,hostname=None):
+	def __init__(self,threads=0,platform_directory_string="Platforms/OpenCLGPU/opencl_code",root_directory_string=None,platform_name="",device_type=pyopencl.device_type.CPU,ssh_alias="",remote=False,hostname=None):
 		"""Constructor
 		
 		Parameters

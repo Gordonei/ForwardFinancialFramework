@@ -144,7 +144,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.append("assert(ret==CL_SUCCESS);")
 
 		output_list.append("size_t local_work_items = max_wg_size;")
-		output_list.append("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit;")
+		output_list.append("size_t chunk_paths = local_work_items*compute_units*work_groups_per_compute_unit*kernel_loops;")
 
 		#This is if the number of paths specified is below the optimal execution parameters
 		output_list.append("local_work_items = (local_work_items < temp_data->thread_paths) ? local_work_items : pref_wg_size_multiple;")
@@ -155,7 +155,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		
 		output_list.append("const size_t kernel_paths = chunk_paths;")
 		output_list.append("const size_t local_kernel_paths = local_work_items;")
-		output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths/kernel_loops);")
+		output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/chunk_paths);")
 		
 		return output_list
 	
@@ -393,7 +393,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       			output_list.append("if((remaining_paths_%d>0) && !(isnan(value_%d[i])||isinf(value_%d[i]))){"%(index,index,index))
       			output_list.append("temp_total_%d += value_%d[i];"%(index,index))
       			output_list.append("temp_value_sqrd_%d += value_sqrd_%d[i];"%(index,index))
-      			output_list.append("remaining_paths_%d = remaining_paths_%d - kernel_loops;"%(index,index))
+      			output_list.append("remaining_paths_%d--;"%(index))
       			output_list.append("}")
     		output_list.append("}")
     
@@ -616,8 +616,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       			for u_index,u in enumerate(d.underlying):
         			output_list.append("FP_t spot_price_%d = temp_u_a_%d.current_price*native_exp(temp_u_v_%d->gamma);"%(u_index,u_index,u_index))
 				output_list.append("%s_derivative_payoff(spot_price_%d,temp_o_v_%d,&temp_o_a_%d);"%(d.name,u_index,index,index))
-				output_list.append("temp_value_%d += temp_o_v_%d->value;"%(index,index))
-        			output_list.append("temp_value_sqrd_%d += temp_o_v_%d->value*temp_o_v_%d->value;"%(index,index,index))
+				output_list.append("value_%d[i*local_kernel_loops + k] = temp_o_v_%d->value;"%(index,index))
+        			output_list.append("value_sqrd_%d[i*local_kernel_loops + k] = temp_o_v_%d->value*temp_o_v_%d->value;"%(index,index,index))
+				#output_list.append("temp_value_%d += temp_o_v_%d->value;"%(index,index))
+        			#output_list.append("temp_value_sqrd_%d += temp_o_v_%d->value*temp_o_v_%d->value;"%(index,index,index))
 
 		return output_list
 
@@ -722,7 +724,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
     		#Getting kernel ID
     		output_list.append("//**getting unique ID**")
-    		output_list.append("int i = get_global_id(0);")
+    		output_list.append("uint i = get_global_id(0);")
      
 		output_list += self.generate_kernel_local_memory_structures()
      		
@@ -734,7 +736,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
     		#output_list.append("}") #End of Path For Loop
     
-     		output_list += self.generate_kernel_copyoff()
+     		#output_list += self.generate_kernel_copyoff()
 
     		output_list.append("}") #End of Kernel
     
