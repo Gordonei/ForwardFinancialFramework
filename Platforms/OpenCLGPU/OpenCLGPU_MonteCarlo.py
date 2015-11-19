@@ -557,7 +557,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 	def generate_kernel_path_loop_definition(self):
 		output_list = []
 		
-		output_list.append("for(uint k=0;k<local_kernel_loops;++k){")
+		output_list.append("for(uint k=0;k<%d;++k){"%self.solver_metadata["kernel_loops"])
 		
 		return output_list
 
@@ -616,11 +616,11 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       			for u_index,u in enumerate(d.underlying):
         			output_list.append("FP_t spot_price_%d = temp_u_a_%d.current_price*native_exp(temp_u_v_%d->gamma);"%(u_index,u_index,u_index))
 				output_list.append("%s_derivative_payoff(spot_price_%d,temp_o_v_%d,&temp_o_a_%d);"%(d.name,u_index,index,index))
-				output_list.append("int offset = (int)(i*local_kernel_loops + k);")
-				output_list.append("value_%d[offset] = temp_o_v_%d->value;"%(index,index))
-        			output_list.append("value_sqrd_%d[offset] = temp_o_v_%d->value*temp_o_v_%d->value;"%(index,index,index))
-				#output_list.append("temp_value_%d += temp_o_v_%d->value;"%(index,index))
-        			#output_list.append("temp_value_sqrd_%d += temp_o_v_%d->value*temp_o_v_%d->value;"%(index,index,index))
+				#output_list.append("int offset = (int)(i*local_kernel_loops + k);")
+				#output_list.append("value_%d[offset] = temp_o_v_%d->value;"%(index,index))
+        			#output_list.append("value_sqrd_%d[offset] = temp_o_v_%d->value*temp_o_v_%d->value;"%(index,index,index))
+				output_list.append("temp_value_%d[k] = temp_o_v_%d->value;"%(index,index))
+        			output_list.append("temp_value_sqrd_%d[k] = temp_o_v_%d->value*temp_o_v_%d->value;"%(index,index,index))
 
 		return output_list
 
@@ -642,8 +642,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list = []
 
 		for index,d in enumerate(self.derivative):
-      			output_list.append("FP_t temp_value_%d = 0.0;"%index)
-      			output_list.append("FP_t temp_value_sqrd_%d = 0.0;"%index)
+      			#output_list.append("FP_t temp_value_%d = 0.0;"%index)
+      			#output_list.append("FP_t temp_value_sqrd_%d = 0.0;"%index)
+      			output_list.append("FP_t temp_value_%d[%d];"%(index,self.solver_metadata["kernel_loops"]))
+      			output_list.append("FP_t temp_value_sqrd_%d[%d];"%(index,self.solver_metadata["kernel_loops"]))
 
 		return output_list
 
@@ -707,8 +709,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     		
 		output_list.append("//**Copying the result to global memory**")
     		for index,d in enumerate(self.derivative):
-      			output_list.append("value_%d[i] = temp_value_%d;"%(index,index))
-      			output_list.append("value_sqrd_%d[i] = temp_value_sqrd_%d;"%(index,index))
+      			output_list.append("for(uint k=0;k<%d;++k) value_%d[i+k] = temp_value_%d[k];"%(index,self.solver_metadata["kernel_loops"],index))
+      			output_list.append("for(uint k=0;k<%d;++k) value_sqrd_%d[i+k] = temp_value_sqrd_%d[k];"%(index,self.solver_metadata["kernel_loops"],index))
 
 		return output_list
 
@@ -737,7 +739,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
     		#output_list.append("}") #End of Path For Loop
     
-     		#output_list += self.generate_kernel_copyoff()
+     		output_list += self.generate_kernel_copyoff()
 
     		output_list.append("}") #End of Kernel
     
