@@ -709,8 +709,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     		
 		output_list.append("//**Copying the result to global memory**")
     		for index,d in enumerate(self.derivative):
-      			output_list.append("for(uint k=0;k<%d;++k) value_%d[i+k] = temp_value_%d[k];"%(index,self.solver_metadata["kernel_loops"],index))
-      			output_list.append("for(uint k=0;k<%d;++k) value_sqrd_%d[i+k] = temp_value_sqrd_%d[k];"%(index,self.solver_metadata["kernel_loops"],index))
+      			output_list.append("for(uint k=0;k<%d;++k) value_%d[i+k] = temp_value_%d[k];"%(self.solver_metadata["kernel_loops"],index,index))
+      			output_list.append("for(uint k=0;k<%d;++k) value_sqrd_%d[i+k] = temp_value_sqrd_%d[k];"%(self.solver_metadata["kernel_loops"],index,index))
 
 		return output_list
 
