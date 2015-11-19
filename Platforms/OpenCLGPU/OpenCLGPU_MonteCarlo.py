@@ -384,7 +384,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     
     		#Running the actual kernel
     		output_list.append("//**Run the kernel**")
-		output_list.extend(self.generate_opencl_kernel_call(first_call=True))
+		output_list.extend(self.generate_opencl_kernel_call())
     		output_list.append("assert(ret==CL_SUCCESS);")
     
    		output_list.append("//**Post-Kernel Calculations**")
