@@ -769,7 +769,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		Parameters
 			override, cleanup, debug - same as in Mutlicore CPU class
 		"""
-		compile_flags = ["-lOpenCL","-I/opt/AMDAPP/include","-I/opt/nvidia/cuda/include","-fpermissive"]
+		compile_flags = ["-lOpenCL","-I/mnt/applications/AMD/APP/2.9.1/include","-I/mnt/applications/nvidia/cuda/7.0/include","-fpermissive"]
     		if(debug): compile_flags.append("-ggdb")
     		if("darwin" in sys.platform):
       			compile_flags.remove("-lOpenCL")
