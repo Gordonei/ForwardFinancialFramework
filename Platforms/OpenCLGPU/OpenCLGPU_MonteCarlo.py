@@ -616,7 +616,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
       			for u_index,u in enumerate(d.underlying):
         			output_list.append("FP_t spot_price_%d = temp_u_a_%d.current_price*native_exp(temp_u_v_%d->gamma);"%(u_index,u_index,u_index))
 				output_list.append("%s_derivative_payoff(spot_price_%d,temp_o_v_%d,&temp_o_a_%d);"%(d.name,u_index,index,index))
-				output_list.append("int offset = (uint)(i*local_kernel_loops + k);")
+				output_list.append("int offset = (int)(i*local_kernel_loops + k);")
 				output_list.append("value_%d[offset] = temp_o_v_%d->value;"%(index,index))
         			output_list.append("value_sqrd_%d[offset] = temp_o_v_%d->value*temp_o_v_%d->value;"%(index,index,index))
 				#output_list.append("temp_value_%d += temp_o_v_%d->value;"%(index,index))
