@@ -195,6 +195,9 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 
 	#	return output_list
 
+	def generate_summation_loop(self,invalid_check=False):	
+		return OpenCLGPU_MonteCarlo.OpenCLGPU_MonteCarlo.generate_summation_loop(self,invalid_check)
+
 	def generate_tcl_build_script(self,compile_options=[],version = "2015.1"):
 		"""Helper method for generating the tcl build script need by sdaccel to build the designs
 		"""

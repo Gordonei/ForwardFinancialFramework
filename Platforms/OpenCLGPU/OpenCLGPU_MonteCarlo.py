@@ -180,6 +180,22 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 
 		return output_list
 
+	def generate_summation_loop(self,invalid_check=True):
+		output_list = []
+    		
+		output_list.append("for(int i=0;i<chunk_paths;i++){")
+		for index,d in enumerate(self.derivative):
+      			output_list.append("if((remaining_paths_%d>0)")
+			if(invalid_check): output_list.append("   && !(isnan(value_%d[i])||isinf(value_%d[i]))){"%(index,index,index))
+			else: output_list.append("    ){")
+			output_list.append("temp_total_%d += value_%d[i];"%(index,index))
+      			output_list.append("temp_value_sqrd_%d += value_sqrd_%d[i];"%(index,index))
+      			output_list.append("remaining_paths_%d--;"%(index))
+      			output_list.append("}")
+    		output_list.append("}")
+
+		return output_list
+
 	def generate_activity_thread(self,debug=False):
     		"""Helper method for generating activity thread
 
@@ -388,14 +404,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     		output_list.append("assert(ret==CL_SUCCESS);")
     
    		output_list.append("//**Post-Kernel Calculations**")
-    		output_list.append("for(int i=0;i<chunk_paths;i++){")
-    		for index,d in enumerate(self.derivative):
-      			output_list.append("if((remaining_paths_%d>0) && !(isnan(value_%d[i])||isinf(value_%d[i]))){"%(index,index,index))
-      			output_list.append("temp_total_%d += value_%d[i];"%(index,index))
-      			output_list.append("temp_value_sqrd_%d += value_sqrd_%d[i];"%(index,index))
-      			output_list.append("remaining_paths_%d--;"%(index))
-      			output_list.append("}")
-    		output_list.append("}")
+    		
+		output_list += self.generate_summation_loop() 
     
     		output_list.append("j++;")
     		output_list.append("}")
