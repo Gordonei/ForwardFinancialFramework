@@ -47,9 +47,8 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 	 	output_list = []
  
 		output_list.append("size_t chunk_paths = instance_paths;")
-	 	output_list.append("const size_t kernel_paths = {instance_paths};")
+	 	output_list.append("const size_t kernel_paths = {instance_paths/kernel_loops};")
 		output_list.append("const size_t local_kernel_paths = {SIMD_UNITS};")
-	 	output_list.append("unsigned int chunks = ceil(((FP_t)temp_data->thread_paths)/kernel_loops);")
 
 		return output_list
 
