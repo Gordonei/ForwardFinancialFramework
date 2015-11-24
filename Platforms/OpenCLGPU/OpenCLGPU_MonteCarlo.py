@@ -403,7 +403,7 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.extend(self.generate_opencl_kernel_call())
     		output_list.append("assert(ret==CL_SUCCESS);")
     
-    		output_list.append("ret = clWaitForEvents(%d,kernel_events);"%(len(self.derivative)*2))
+    		output_list.append("ret = clWaitForEvents(%d,read_events);"%(len(self.derivative)*2))
     		output_list.append("assert(ret==CL_SUCCESS);")
    		
 		output_list.append("//**Post-Kernel Calculations**")
