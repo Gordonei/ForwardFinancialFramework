@@ -51,8 +51,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
     		output_list.append("assert(ret==CL_SUCCESS);")
  
 		output_list.append("size_t chunk_paths = instance_paths;")
-	 	output_list.append("const size_t kernel_paths = {instance_paths/kernel_loops};")
-		output_list.append("kernel_paths -= kernel_paths%max_wg_size;")
+	 	output_list.append("const size_t kernel_paths = {instance_paths/kernel_loops - (instance_paths/kernel_loops)%max_wg_size};")
 		output_list.append("const size_t local_kernel_paths = {max_wg_size};")
 
 		return output_list
