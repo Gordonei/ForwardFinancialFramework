@@ -423,7 +423,8 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     		output_list.append("assert(ret==CL_SUCCESS);")
     
     		for index,d in enumerate(self.derivative):
-      			output_list.append("ret = clReleaseEvent(read_events[%d]);"%index)
+      			output_list.append("ret = clReleaseEvent(read_events[%d]);"%(index*2))
+      			output_list.append("ret = clReleaseEvent(read_events[%d]);"%(index*2+1))
       			output_list.append("assert(ret==CL_SUCCESS);")
     
     		output_list.append("ret = clReleaseKernel(%s_kernel);"%self.output_file_name)
