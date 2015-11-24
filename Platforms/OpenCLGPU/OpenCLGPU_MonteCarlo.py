@@ -390,9 +390,9 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
     		#Reading the Results out
     		output_list.append("//**Reading the results**")
     		for d_index,d in enumerate(self.derivative):
-        		output_list.append("ret = clEnqueueReadBuffer(command_queue, value_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(FP_t),value_%d, 1, kernel_event, &read_events[%d]);"%(d_index,d_index,d_index*2))
+        		output_list.append("ret = clEnqueueReadBuffer(command_queue, value_%d_buff, CL_FALSE, 0, chunk_paths * sizeof(FP_t),value_%d, 1, kernel_event, &read_events[%d]);"%(d_index,d_index,d_index*2))
         		output_list.append("assert(ret==CL_SUCCESS);")
-			output_list.append("ret = clEnqueueReadBuffer(command_queue, value_sqrd_%d_buff, CL_TRUE, 0, chunk_paths * sizeof(FP_t),value_sqrd_%d, 1, kernel_event, &read_events[%d]);"%(d_index,d_index,d_index*2+1))
+			output_list.append("ret = clEnqueueReadBuffer(command_queue, value_sqrd_%d_buff, CL_FALSE, 0, chunk_paths * sizeof(FP_t),value_sqrd_%d, 1, kernel_event, &read_events[%d]);"%(d_index,d_index,d_index*2+1))
 			output_list.append("assert(ret==CL_SUCCESS);")
     
     		output_list.append("ret = clSetKernelArg(%s_kernel, 3, sizeof(cl_uint), &chunk_number);"%(self.output_file_name))
@@ -403,8 +403,10 @@ class OpenCLGPU_MonteCarlo(MulticoreCPU_MonteCarlo.MulticoreCPU_MonteCarlo):
 		output_list.extend(self.generate_opencl_kernel_call())
     		output_list.append("assert(ret==CL_SUCCESS);")
     
-   		output_list.append("//**Post-Kernel Calculations**")
-    		
+    		output_list.append("ret = clWaitForEvents(%d,kernel_events);"%(len(self.derivative)*2))
+    		output_list.append("assert(ret==CL_SUCCESS);")
+   		
+		output_list.append("//**Post-Kernel Calculations**")
 		output_list += self.generate_summation_loop() 
     
     		output_list.append("j++;")
