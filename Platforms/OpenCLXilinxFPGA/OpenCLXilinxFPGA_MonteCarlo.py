@@ -322,7 +322,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		results += [subprocess.check_output(["cp","%s/%s_build/impl/build/system/%s/bitstream/%s.xclbin"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.xclbin"%(directory_string,self.output_file_name)])]
 		
 		#copying results in platform directory
-		results += [subprocess.check_output(["cp","%s/%s_build/rpt/system_estimate.txt"%(directory_string,self.output_file_name),"%s/%s.rpt"%(directory_string,self.output_file_name)])]
+		results += [subprocess.check_output(["cp","%s/%s_build/rpt/system_estimate.xtxt"%(directory_string,self.output_file_name),"%s/%s.rpt"%(directory_string,self.output_file_name)])]
 		#results += [subprocess.check_output(["cp","%s/%s_build/impl/kernels/%s_kernel/solution_OCL_REGION_0/syn/report/%s_kernel_csynth.rpt"%(directory_string,self.output_file_name,self.output_file_name,self.output_file_name),"%s/%s.rpt"%(directory_string,self.output_file_name)])]
 
 		return results
