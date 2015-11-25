@@ -108,7 +108,7 @@ class OpenCLXilinxFPGA_MonteCarlo(OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_M
 		output_list += ["#define TAUS_BOXMULLER"]
 		output_list += ["#define UNROLL_FACTOR %d"%self.pipelining]
 		output_list += ["#define SIMD_UNITS %d"%self.simd_width]
-		#output_list += ["#define SIN_COS_WORKAROUND"]
+		output_list += ["#define SIN_COS_WORKAROUND"]
 
 		output_list += OpenCLAlteraFPGA_MonteCarlo.OpenCLAlteraFPGA_MonteCarlo.generate_kernel_preprocessor_defines(self)
 		
