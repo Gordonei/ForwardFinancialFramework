@@ -35,7 +35,7 @@ def run_option_solver(platform_name,paths,script_option,options,debug=False,thre
     print "incorrect platform type!"
     sys.exit()
     
-  if(ssh_alias): platform = platform_class(remote=True,ssh_alias=ssh_alias,board="max4",boardid="test2")
+  if(ssh_alias): platform = platform_class(remote=True,ssh_alias=ssh_alias)
   else: platform = platform_class()
   mc_solver = mc_solver_class(options,paths,platform)
     
